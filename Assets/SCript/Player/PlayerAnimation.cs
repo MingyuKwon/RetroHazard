@@ -11,7 +11,10 @@ public class PlayerAnimation : MonoBehaviour
     private Rigidbody2D rb;
     private PokemonPlayerMove pm;
 
-    [Header("FOr Debug")]
+    [Header("changable")]
+    [SerializeField] float pixelRetouch;
+
+    [Header("For Debug")]
     [SerializeField] bool isAttacking;
     [SerializeField] float XVelocity;
     [SerializeField] float YVelocity;
@@ -68,14 +71,19 @@ public class PlayerAnimation : MonoBehaviour
 
     private void OnAttackPressed(InputActionEventData data)
     {
-        isAttacking = true;
-        pm.canMove = false;
-        animator.SetBool("Slash", isAttacking);
+        if(!isAttacking)
+        {
+            isAttacking = true;
+            pm.canMove = false;
+            animator.SetBool("Slash", isAttacking);
+        }
     }
 
     public void SlashStart()
     {
         Debug.Log("Slash Start");
+        Debug.Log(transform.name);
+        transform.position = new Vector3(transform.position.x, transform.position.y - pixelRetouch, transform.position.z);
     }
 
     public void SlashEnd()
@@ -83,7 +91,9 @@ public class PlayerAnimation : MonoBehaviour
         Debug.Log("Slash End");
         isAttacking = false;
         pm.canMove = true;
+        transform.position = new Vector3(transform.position.x, transform.position.y + pixelRetouch, transform.position.z);
         animator.SetBool("Slash", isAttacking);
+        
     }
 
     private void OnDestroy() {
