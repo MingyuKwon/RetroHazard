@@ -18,8 +18,9 @@ public class PlayerAnimation : MonoBehaviour
     [SerializeField] bool isAttacking;
     [SerializeField] float XVelocity;
     [SerializeField] float YVelocity;
-    [SerializeField] float LastXVelocity;
-    [SerializeField] float LastYVelocity;
+    [SerializeField] float LastXVelocity = 0f;
+    [SerializeField] float LastYVelocity = -1f;
+    
 
     private Player player;
 
@@ -75,15 +76,13 @@ public class PlayerAnimation : MonoBehaviour
         {
             isAttacking = true;
             pm.canMove = false;
-            animator.SetBool("Slash", isAttacking);
+            animator.SetBool("Stab", isAttacking);
         }
     }
 
     public void SlashStart()
     {
         Debug.Log("Slash Start");
-        Debug.Log(transform.name);
-        transform.position = new Vector3(transform.position.x, transform.position.y - pixelRetouch, transform.position.z);
     }
 
     public void SlashEnd()
@@ -91,8 +90,21 @@ public class PlayerAnimation : MonoBehaviour
         Debug.Log("Slash End");
         isAttacking = false;
         pm.canMove = true;
-        transform.position = new Vector3(transform.position.x, transform.position.y + pixelRetouch, transform.position.z);
         animator.SetBool("Slash", isAttacking);
+        
+    }
+
+    public void StabStart()
+    {
+        Debug.Log("Stab Start");
+    }
+
+    public void StabEnd()
+    {
+        Debug.Log("Stab End");
+        isAttacking = false;
+        pm.canMove = true;
+        animator.SetBool("Stab", isAttacking);
         
     }
 
