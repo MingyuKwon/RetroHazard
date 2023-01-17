@@ -16,6 +16,7 @@ public class PlayerAnimation : MonoBehaviour
     [Header("For Debug")]
     [SerializeField] bool isAttacking;
     [SerializeField] bool isSheilding; 
+    [SerializeField] bool isParrying;
 
     [Space]
     [SerializeField] float XVelocity;
@@ -39,6 +40,7 @@ public class PlayerAnimation : MonoBehaviour
         SetWalkAnimation();
         SetAttackAnimation();
         SetShieldAnimation();
+        SetParryAnimation();
     }
 
     private void SetPlayerMove(bool flag)
@@ -89,6 +91,7 @@ public class PlayerAnimation : MonoBehaviour
         {
             if(isAttacking) return;
             if(isSheilding) return;
+            if(isParrying) return;
 
             animator.SetTrigger("Attack");
             isAttacking = true;
@@ -98,7 +101,9 @@ public class PlayerAnimation : MonoBehaviour
 
     private void SetShieldAnimation()
     {
-        if(player.GetButtonDown("Shield"))
+        if(isParrying) return;
+
+        if(player.GetButton("Shield"))
         {
             SetPlayerMove(false);
         }
@@ -111,8 +116,17 @@ public class PlayerAnimation : MonoBehaviour
 
         isSheilding = player.GetButton("Shield");
         animator.SetBool("Shield", isSheilding);
-        
-        
+          
+    }
+
+    private void SetParryAnimation()
+    {
+        if(player.GetButton("Shield") && player.GetButtonDown("Interactive"))
+        {
+            if(isParrying) return;
+            animator.SetTrigger("Parry");
+            isParrying = true;
+        }
     }
 
     //Animation event
@@ -123,7 +137,6 @@ public class PlayerAnimation : MonoBehaviour
 
     public void SlashEnd()
     {
-        pm.canMove = true;
         isAttacking = false;
         SetPlayerMove(true);
     }
@@ -132,10 +145,22 @@ public class PlayerAnimation : MonoBehaviour
     {
     }
 
-    public void StabEnd()
+    public void StabEnd() 
     {
-        pm.canMove = true;
         isAttacking = false;
+        SetPlayerMove(true);
+    }
+
+    public void ParryStart()
+    {
+        Debug.Log("ParryStart");
+    }
+
+    public void ParryEnd()
+    {
+        Debug.Log("ParryEnd");
+        isParrying = false;
+        SetPlayerMove(true);
     }
 
     //Animation event
