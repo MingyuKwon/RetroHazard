@@ -15,6 +15,9 @@ public class PlayerAnimation : MonoBehaviour
 
     [Header("For Debug")]
     [SerializeField] bool isAttacking;
+    [SerializeField] bool isSheilding; 
+
+    [Space]
     [SerializeField] float XVelocity;
     [SerializeField] float YVelocity;
     [SerializeField] float LastXVelocity = 0f;
@@ -35,6 +38,12 @@ public class PlayerAnimation : MonoBehaviour
     {
         SetWalkAnimation();
         SetAttackAnimation();
+        SetShieldAnimation();
+    }
+
+    private void SetPlayerMove(bool flag)
+    {
+        pm.canMove = flag;
     }
 
     private void SetWalkAnimation()
@@ -79,37 +88,56 @@ public class PlayerAnimation : MonoBehaviour
         if(player.GetButtonDown("Attack"))
         {
             if(isAttacking) return;
-            
+            if(isSheilding) return;
+
             animator.SetTrigger("Attack");
             isAttacking = true;
-            pm.canMove = false;
+            SetPlayerMove(false);
         }
+    }
+
+    private void SetShieldAnimation()
+    {
+        if(player.GetButtonDown("Shield"))
+        {
+            SetPlayerMove(false);
+        }
+
+        if(player.GetButtonUp("Shield"))
+        {
+            SetPlayerMove(true);
+        }
+
+
+        isSheilding = player.GetButton("Shield");
+        animator.SetBool("Shield", isSheilding);
+        
+        
     }
 
     //Animation event
     public void SlashStart()
     {
-        Debug.Log("Slash Start");
+
     }
 
     public void SlashEnd()
     {
-        Debug.Log("Slash End");
         pm.canMove = true;
         isAttacking = false;
+        SetPlayerMove(true);
     }
 
     public void StabStart()
     {
-        Debug.Log("Stab Start");
     }
 
     public void StabEnd()
     {
-        Debug.Log("Stab End");
         pm.canMove = true;
         isAttacking = false;
     }
+
     //Animation event
 
     private void OnDestroy() {
