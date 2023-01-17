@@ -1283,5 +1283,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6387553227545934027, guid: 3a038018e0d4ac142a5a9ed9a8a8fa80, type: 3}
+      propertyPath: pixelRetouch.y
+      value: -0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6387553227545934037, guid: 3a038018e0d4ac142a5a9ed9a8a8fa80, type: 3}
+      propertyPath: m_SortingLayer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6387553227545934037, guid: 3a038018e0d4ac142a5a9ed9a8a8fa80, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1575797767
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a038018e0d4ac142a5a9ed9a8a8fa80, type: 3}
