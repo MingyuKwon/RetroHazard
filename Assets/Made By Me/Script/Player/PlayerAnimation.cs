@@ -29,8 +29,8 @@ public class PlayerAnimation : MonoBehaviour
 
     private void Awake() {
         animator = GetComponent<Animator>();
-        rb = GetComponentInParent<Rigidbody2D>();
-        pm = GetComponentInParent<PokemonPlayerMove>();
+        rb = GetComponent<Rigidbody2D>();
+        pm = GetComponent<PokemonPlayerMove>();
 
         player = ReInput.players.GetPlayer(0);
     }
