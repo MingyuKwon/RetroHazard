@@ -156,6 +156,16 @@ public class PlayerAnimation : MonoBehaviour
         Debug.Log("ParryStart");
     }
 
+    public void ParryFrameStart()
+    {
+        Debug.Log("ParryFrameStart");
+    }
+
+    public void ParryFrameEnd()
+    {
+        Debug.Log("ParryFrameEnd");
+    }
+
     public void ParryEnd()
     {
         Debug.Log("ParryEnd");
