@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99652aa1957e80f49a9c5c0b514715db, type: 3}
+  m_Name: Toby's Dialog
+  m_EditorClassIdentifier: 
+  NPCname: Toby
+  hasChoiceDialog: 1
+  ChoiceQuestionQuantity: 1
+  FirstEnCountDialogs:
+  - Hello My name is Toby
+  ReapeatingDialogs:
+  - Ah ha?
+  EventDialogs: []
+  ChoiceDialog:
+  - Would you Follow Me?
+  - Yes
+  - No
+  - Where are you going?
+  option1Dialog:
+  - Good Choice Follow me!
+  option2Dialog:
+  - Consider Again
+  option3Dialog:
+  - Do you need some TIme? Talk to me later

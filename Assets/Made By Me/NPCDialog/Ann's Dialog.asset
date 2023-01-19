@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99652aa1957e80f49a9c5c0b514715db, type: 3}
+  m_Name: Ann's Dialog
+  m_EditorClassIdentifier: 
+  NPCname: Ann
+  hasChoiceDialog: 1
+  ChoiceQuestionQuantity: 2
+  FirstEnCountDialogs:
+  - Hi You must be Player
+  - Go right if you want to learn commands
+  - Go left if you want to buy something
+  - I can Level up you
+  ReapeatingDialogs:
+  - "Here is our town. A lovely Town. \nAnd you have a duty to protect the town. 
+    \nUse NPCs in town efficiently if you want to be stronger."
+  EventDialogs: []
+  ChoiceDialog:
+  - What do you want?
+  - 'You can choose one '
+  - Level UP
+  - tell me something
+  - nothing
+  option1Dialog:
+  - Okay, I will give you a power
+  option2Dialog:
+  - "Here is our town. A lovely Town. \nAnd you have a duty to protect the town. 
+    \nUse NPCs in town efficiently if you want to be stronger."
+  option3Dialog:
+  - Oh, I see. come to me if you want to level up

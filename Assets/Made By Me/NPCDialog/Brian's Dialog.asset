@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99652aa1957e80f49a9c5c0b514715db, type: 3}
+  m_Name: Brian's Dialog
+  m_EditorClassIdentifier: 
+  NPCname: Brian
+  hasChoiceDialog: 1
+  ChoiceQuestionQuantity: 2
+  FirstEnCountDialogs:
+  - 'Welcom to My Shop!
+
+    I sell lots of item that you''ll like. Come and See!'
+  ReapeatingDialogs:
+  - "I dont have any items or money now. \nBut, after this game has the shop system
+    you can use my shop as you want!"
+  EventDialogs: []
+  ChoiceDialog:
+  - Welcom to my Shop!
+  - What do you want?
+  - Buy items
+  - Sell items
+  - No, Thanks
+  option1Dialog:
+  - Sorry, but I'm preparing items. Please Come Back later
+  option2Dialog:
+  - Sorry, but I'm not having cash. Please Come Back later
+  option3Dialog:
+  - Okay. Peace!

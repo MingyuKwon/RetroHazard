@@ -1,0 +1,30 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using Rewired;
+using Sirenix.OdinInspector;
+using DG.Tweening;
+
+public class EnemyStatus : MonoBehaviour
+{
+    [SerializeField] EnemyStatValue[] EnemyStats;
+
+    [Header("Basic")]
+    public float MaxHP = 100f;
+    public float CurrentHP = 50f;
+    public float Speed;
+
+    [Header("Battle")]
+    public float Attack = 0f;
+    public float ArmorDefence = 0f;
+
+    private void Start() {
+        MaxHP = EnemyStats[GameManager.instance.DEFCON].MaxHP;
+        CurrentHP = EnemyStats[GameManager.instance.DEFCON].CurrentHP;
+        Speed = EnemyStats[GameManager.instance.DEFCON].Speed;
+
+        Attack = EnemyStats[GameManager.instance.DEFCON].Attack;
+        ArmorDefence = EnemyStats[GameManager.instance.DEFCON].ArmorDefence;
+    }
+
+}
