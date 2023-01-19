@@ -40,9 +40,25 @@ public class PokemonPlayerMove : MonoBehaviour
 
     }
 
+    bool flag = false;
+    [Button]
+    void changePlayer()
+    {
+        if(!flag)
+        {
+            player.controllers.maps.LoadMap(ControllerType.Keyboard, 0, "talk wirh NPC", "Standard");
+            flag = !flag;
+        }else
+        {
+            player.controllers.maps.LoadMap(ControllerType.Keyboard, 0, "Normal", "Standard");
+            flag = !flag;
+        }
+        
+    }
+
     void Update()
     {
-        if(canMove)
+        if(canMove && !(GameManager.instance.isPlayerPaused))
         {
             if(player.GetButton("Move Up"))
             {

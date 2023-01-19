@@ -24,6 +24,7 @@ public class NPCDialogScript : MonoBehaviour
         playerInput.enabled = false;
     }
 
+    // for question option select
     void OnUP(InputValue value)
     {
         if(isShowingOption)
@@ -38,14 +39,25 @@ public class NPCDialogScript : MonoBehaviour
             SelectOptionindex++;
         }
     }
+    // for question option select
 
     void OnTriggerEnter2D(Collider2D other) {
-        GameManager.instance.isPlayerNearNPC = true;
-        playerInput.enabled = true;
+
+        if(other.tag == "Player")
+        {
+            GameManager.instance.isPlayerNearNPC = true;
+            playerInput.enabled = true;
+        }
+        
     }
+
     void OnTriggerExit2D(Collider2D other) {
-        GameManager.instance.isPlayerNearNPC = false;
-        playerInput.enabled = false;
+        if(other.tag == "Player")
+        {
+            GameManager.instance.isPlayerNearNPC = false;
+            playerInput.enabled = false;
+        }
+        
     }
 
     void StopPlayer_ShowDialog()
@@ -60,7 +72,6 @@ public class NPCDialogScript : MonoBehaviour
         GameManagerUI.instance.VisualizeDialogUI(false);
         callCount = 0;
         isChatting = false;
-
     }
 
     public void showDialog()

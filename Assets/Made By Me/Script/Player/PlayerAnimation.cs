@@ -37,6 +37,8 @@ public class PlayerAnimation : MonoBehaviour
 
     void Update()
     {
+        if(GameManager.instance.isPlayerPaused) return;
+        
         SetWalkAnimation();
         SetAttackAnimation();
         SetShieldAnimation();

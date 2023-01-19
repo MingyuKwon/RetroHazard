@@ -16,7 +16,7 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(GameManager.instance.isPlayerPaused) return;
     }
 
     private void OnAttack(InputActionEventData data)
