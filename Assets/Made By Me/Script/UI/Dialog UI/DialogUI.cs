@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using UnityEngine.UI;
 
 public class DialogUI : MonoBehaviour
 {
@@ -12,8 +12,8 @@ public class DialogUI : MonoBehaviour
 
     option[] Option;
 
-    TextMeshProUGUI dialogText;
-    TextMeshProUGUI speakerText;
+    Text dialogText;
+    Text speakerText;
 
     void Awake() {
          if(instance == null)
@@ -28,8 +28,8 @@ public class DialogUI : MonoBehaviour
         dialogPanel = GetComponentInChildren<DialogPanel>().gameObject;
         speakerPanel = GetComponentInChildren<SpeakerPanel>().gameObject;
 
-        dialogText = dialogPanel.gameObject.GetComponentInChildren<TextMeshProUGUI>();
-        speakerText = speakerPanel.gameObject.GetComponentInChildren<TextMeshProUGUI>();
+        dialogText = dialogPanel.gameObject.GetComponentInChildren<Text>();
+        speakerText = speakerPanel.gameObject.GetComponentInChildren<Text>();
 
         Option = dialogPanel.GetComponentsInChildren<option>();
     }

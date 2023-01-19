@@ -19,7 +19,7 @@ public class option : MonoBehaviour
     }
     public void changeText(string text)
     {
-        GetComponentInChildren<TextMeshProUGUI>().text = text;
+        GetComponentInChildren<Text>().text = text;
     }
 
     public void Select(bool flag)
