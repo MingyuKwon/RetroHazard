@@ -51,13 +51,13 @@ public class NPCDialogScript : MonoBehaviour
     void StopPlayer_ShowDialog()
     {
         GameManager.instance.SetPausePlayer(true);
-        GameManager.instance.VisualizeDialogUI(true);
+        GameManagerUI.instance.VisualizeDialogUI(true);
     }
 
     void ActivatePlayer_DisappearDialog()
     {
         GameManager.instance.SetPausePlayer(false);
-        GameManager.instance.VisualizeDialogUI(false);
+        GameManagerUI.instance.VisualizeDialogUI(false);
         callCount = 0;
         isChatting = false;
 
@@ -68,7 +68,7 @@ public class NPCDialogScript : MonoBehaviour
         if(isChatting == false)
         {
              StopPlayer_ShowDialog();
-             GameManager.instance.SetSpeakerText(dialog.NPCname);
+             GameManagerUI.instance.SetSpeakerText(dialog.NPCname);
              isChatting = true;
              if(visited == false)
              {
@@ -99,7 +99,7 @@ public class NPCDialogScript : MonoBehaviour
         int strCount = FirstEncountDialog.Length;
         while(strCount > callCount)
         {
-            GameManager.instance.SetDialogText(FirstEncountDialog[callCount]);
+            GameManagerUI.instance.SetDialogText(FirstEncountDialog[callCount]);
             yield return new WaitForEndOfFrame();
         }
         ActivatePlayer_DisappearDialog();
@@ -111,7 +111,7 @@ public class NPCDialogScript : MonoBehaviour
         int strCount = RepeatingDialog.Length;
         while(strCount > callCount)
         {
-            GameManager.instance.SetDialogText(RepeatingDialog[callCount]);
+            GameManagerUI.instance.SetDialogText(RepeatingDialog[callCount]);
             yield return new WaitForEndOfFrame();
 
         }
@@ -141,10 +141,10 @@ public class NPCDialogScript : MonoBehaviour
 
         while(ChoiceQuestionQuantity-1 > callCount)
         {
-            GameManager.instance.SetDialogText(question[callCount]);
+            GameManagerUI.instance.SetDialogText(question[callCount]);
             yield return new WaitForEndOfFrame();
         }
-        GameManager.instance.SetDialogText(question[callCount]);
+        GameManagerUI.instance.SetDialogText(question[callCount]);
 
         callCount = 0;
         StartCoroutine(showSelectButtons(choice));       
@@ -152,17 +152,17 @@ public class NPCDialogScript : MonoBehaviour
 
     IEnumerator showSelectButtons(string[] choice)
     {
-        GameManager.instance.SetOptionsText(choice);
+        GameManagerUI.instance.SetOptionsText(choice);
         isShowingOption = true;
         
         while(callCount == 0)
         {
             SelectOptionindex = (int)Mathf.Clamp(SelectOptionindex, 0f, choice.Length-1);
-            GameManager.instance.SelectOption(SelectOptionindex);
+            GameManagerUI.instance.SelectOption(SelectOptionindex);
             yield return new WaitForEndOfFrame();
         }
 
-        GameManager.instance.showOptionUI(false);
+        GameManagerUI.instance.showOptionUI(false);
         isShowingOption = false;
         callCount = 0;
         StartCoroutine(showOptionDialog(SelectOptionindex));
@@ -193,7 +193,7 @@ public class NPCDialogScript : MonoBehaviour
         int strCount = OptionDialog.Length;
         while(strCount > callCount)
         {
-            GameManager.instance.SetDialogText(OptionDialog[callCount]);
+            GameManagerUI.instance.SetDialogText(OptionDialog[callCount]);
             yield return new WaitForEndOfFrame();
 
         }
