@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
 
     public int DEFCON = 0;
     public bool isPlayerNearNPC = false;
-    public bool isPlayerPaused = false;
+    public bool isPlayerPaused = false; // Every player script refer to this value 
 
     void Awake() {
         if(instance == null)

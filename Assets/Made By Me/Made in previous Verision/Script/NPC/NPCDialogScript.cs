@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using Rewired;
 using Sirenix.OdinInspector;
 using DG.Tweening;
@@ -10,75 +9,55 @@ using DG.Tweening;
 public class NPCDialogScript : MonoBehaviour
 {
     [SerializeField] Dialog dialog;
-    PlayerInput playerInput;
-
     [SerializeField] int callCount = 0;
     [SerializeField] bool visited = false;
     [SerializeField] bool isChatting = false;
 
-    [SerializeField] bool isShowingOption = false;
-    [SerializeField] int SelectOptionindex = 0;
+    public bool isShowingOption = false;
+    public int SelectOptionindex = 0;
 
     private void Awake() {
-        playerInput = this.GetComponent<PlayerInput>();
-        playerInput.enabled = false;
+        
     }
 
     // for question option select
-    void OnUP(InputValue value)
+    public void EnterPressed()
     {
+        Debug.Log("NPC EnterPressed");
+        showDialog();
+    }
+    public void UpPressed()
+    {
+        Debug.Log("NPC EnterUp");
         if(isShowingOption)
         {
             SelectOptionindex--;
         }
     }
-    void OnDown(InputValue value)
+    public void DownPressed()
     {
+        Debug.Log("NPC EnterDown");
         if(isShowingOption)
         {
             SelectOptionindex++;
         }
     }
+    public void RightPressed()
+    {
+        Debug.Log("NPC EnterRight");
+    }
+    public void LeftPressed()
+    {
+        Debug.Log("NPC EnterLeft");
+    }
     // for question option select
 
-    void OnTriggerEnter2D(Collider2D other) {
 
-        if(other.tag == "Player")
-        {
-            GameManager.instance.isPlayerNearNPC = true;
-            playerInput.enabled = true;
-        }
-        
-    }
-
-    void OnTriggerExit2D(Collider2D other) {
-        if(other.tag == "Player")
-        {
-            GameManager.instance.isPlayerNearNPC = false;
-            playerInput.enabled = false;
-        }
-        
-    }
-
-    void StopPlayer_ShowDialog()
-    {
-        GameManager.instance.SetPausePlayer(true);
-        GameManagerUI.instance.VisualizeDialogUI(true);
-    }
-
-    void ActivatePlayer_DisappearDialog()
-    {
-        GameManager.instance.SetPausePlayer(false);
-        GameManagerUI.instance.VisualizeDialogUI(false);
-        callCount = 0;
-        isChatting = false;
-    }
-
-    public void showDialog()
+    void showDialog()
     {
         if(isChatting == false)
         {
-             StopPlayer_ShowDialog();
+             GameManagerUI.instance.VisualizeDialogUI(true);
              GameManagerUI.instance.SetSpeakerText(dialog.NPCname);
              isChatting = true;
              if(visited == false)
@@ -101,7 +80,14 @@ public class NPCDialogScript : MonoBehaviour
         {
              callCount++;
         }
+    }
 
+    void ActivatePlayer_DisappearDialog()
+    {
+        GameMangerInput.instance.changePlayerInputRule(0);
+        GameManagerUI.instance.VisualizeDialogUI(false);
+        callCount = 0;
+        isChatting = false;
     }
 
     IEnumerator showFirstEncountDialog()

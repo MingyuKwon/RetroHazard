@@ -21,8 +21,8 @@ public class PlayerAnimation : MonoBehaviour
     [Space]
     [SerializeField] float XVelocity;
     [SerializeField] float YVelocity;
-    [SerializeField] float LastXVelocity = 0f;
-    [SerializeField] float LastYVelocity = -1f;
+    [SerializeField] float LastXInput = 0f;
+    [SerializeField] float LastYInput = -1f;
     
 
     private Player player;
@@ -33,6 +33,10 @@ public class PlayerAnimation : MonoBehaviour
         pm = GetComponent<PokemonPlayerMove>();
 
         player = ReInput.players.GetPlayer(0);
+        player.AddInputEventDelegate(UPPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Move Up");
+        player.AddInputEventDelegate(DownPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Move Down");
+        player.AddInputEventDelegate(RightPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed,"Move Right");
+        player.AddInputEventDelegate(LeftPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed,"Move Left");
     }
 
     void Update()
@@ -55,36 +59,10 @@ public class PlayerAnimation : MonoBehaviour
         XVelocity = rb.velocity.x;
         YVelocity = rb.velocity.y;
 
-        if(XVelocity != 0f)
-        {
-            if(XVelocity < 0)
-            {
-                LastXVelocity = -1f;
-                LastYVelocity = 0f;
-            }else
-            {
-                LastXVelocity = 1f;
-                LastYVelocity = 0f;
-            }
-        }
-
-        if(YVelocity != 0f)
-        {
-            if(YVelocity < 0)
-            {
-                LastXVelocity = 0f;
-                LastYVelocity = -1f;
-            }else
-            {
-                LastXVelocity = 0f;
-                LastYVelocity = 1f;
-            }
-        }
-
         animator.SetFloat("XInput", XVelocity);
         animator.SetFloat("YInput", YVelocity);
-        animator.SetFloat("LastXInput", LastXVelocity);
-        animator.SetFloat("LastYInput", LastYVelocity);
+        animator.SetFloat("LastXInput", LastXInput);
+        animator.SetFloat("LastYInput", LastYInput);
     }
 
     private void SetAttackAnimation()
@@ -130,6 +108,34 @@ public class PlayerAnimation : MonoBehaviour
             isParrying = true;
         }
     }
+
+    //input Aniamtion Event
+    void UPPressed(InputActionEventData data)
+    {
+        LastXInput = 0f;
+        LastYInput = 1f;
+    }
+
+    void DownPressed(InputActionEventData data)
+    {
+        LastXInput = 0f;
+        LastYInput = -1f;
+    }
+
+    void RightPressed(InputActionEventData data)
+    {
+        LastXInput = 1f;
+        LastYInput = 0f;
+    }
+
+    void LeftPressed(InputActionEventData data)
+    {
+        LastXInput = -1f;
+        LastYInput = 0f;
+    }
+    //input Aniamtion Event
+
+
 
     //Animation event
     public void SlashStart()

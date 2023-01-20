@@ -245,6 +245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHP: 100
   CurrentHP: 50
+  Speed: 0
   Attack: 10
   ArmorDefence: 5
   Weapon: 1
@@ -262,6 +263,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4812573a544c4f43b95e10facf5597b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SheildMaxDurability: 10
+  SheildCurrentDurability: 5
+  SheildReductionRate: 0.7
 --- !u!1 &6387553226888266342
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,6 +280,9 @@ GameObject:
   - component: {fileID: 7293342018351241486}
   - component: {fileID: 3488315143066334263}
   - component: {fileID: 8763340259208351857}
+  - component: {fileID: 5496397582843710029}
+  - component: {fileID: 7168993580999198587}
+  - component: {fileID: 6457469133992971984}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -432,3 +439,39 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &5496397582843710029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6387553226888266342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3acfe5e60fda0de4fb526df7e68f089b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7168993580999198587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6387553226888266342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aef0326d7e5f5724ebc7ef708e6298c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6457469133992971984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6387553226888266342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a71ed12ab1efe7c448fbeb25f1d12847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

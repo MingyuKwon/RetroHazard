@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -38,22 +39,6 @@ public class PokemonPlayerMove : MonoBehaviour
         player.AddInputEventDelegate(OnMoveHorizontalReleased, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased,"Move Right");
         player.AddInputEventDelegate(OnMoveHorizontalReleased, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased,"Move Left");
 
-    }
-
-    bool flag = false;
-    [Button]
-    void changePlayer()
-    {
-        if(!flag)
-        {
-            player.controllers.maps.LoadMap(ControllerType.Keyboard, 0, "talk wirh NPC", "Standard");
-            flag = !flag;
-        }else
-        {
-            player.controllers.maps.LoadMap(ControllerType.Keyboard, 0, "Normal", "Standard");
-            flag = !flag;
-        }
-        
     }
 
     void Update()
