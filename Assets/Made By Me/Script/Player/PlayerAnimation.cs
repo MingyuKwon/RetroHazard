@@ -112,24 +112,28 @@ public class PlayerAnimation : MonoBehaviour
     //input Aniamtion Event
     void UPPressed(InputActionEventData data)
     {
+        if(isAttacking || isSheilding || isParrying ) return;
         LastXInput = 0f;
         LastYInput = 1f;
     }
 
     void DownPressed(InputActionEventData data)
     {
+        if(isAttacking || isSheilding || isParrying ) return;
         LastXInput = 0f;
         LastYInput = -1f;
     }
 
     void RightPressed(InputActionEventData data)
     {
+        if(isAttacking || isSheilding || isParrying ) return;
         LastXInput = 1f;
         LastYInput = 0f;
     }
 
     void LeftPressed(InputActionEventData data)
     {
+        if(isAttacking || isSheilding || isParrying ) return;
         LastXInput = -1f;
         LastYInput = 0f;
     }
