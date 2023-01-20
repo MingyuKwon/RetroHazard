@@ -365,8 +365,8 @@ MonoBehaviour:
   isParrying: 0
   XVelocity: 0
   YVelocity: 0
-  LastXVelocity: 0
-  LastYVelocity: -1
+  LastXInput: 0
+  LastYInput: -1
 --- !u!212 &3488315143066334263
 SpriteRenderer:
   m_ObjectHideFlags: 0

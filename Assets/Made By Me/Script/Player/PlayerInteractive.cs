@@ -48,6 +48,7 @@ public class PlayerInteractive : MonoBehaviour
         if(GameManager.instance.isPlayerNearNPC)
         {
             GameMangerInput.instance.changePlayerInputRule(1);
+            nearNPC.EnterPressed();
         }
     }
     private void InteractiveReleased(InputActionEventData data)

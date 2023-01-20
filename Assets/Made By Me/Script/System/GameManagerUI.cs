@@ -18,9 +18,7 @@ public class GameManagerUI : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-    }
 
-    private void Start() {
         blackoutUI = FindObjectOfType<blackOut>();
         dialogUI = FindObjectOfType<DialogUI>();
     }

@@ -54,6 +54,7 @@ public class DialogUI : MonoBehaviour
     {
         dialogPanel.SetActive(flag);
         speakerPanel.SetActive(flag);
+        GameManagerUI.instance.showOptionUI(false);
     }
 
     public void SetDialogText(string text)

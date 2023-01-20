@@ -57,24 +57,24 @@ public class NPCDialogScript : MonoBehaviour
     {
         if(isChatting == false)
         {
-             GameManagerUI.instance.VisualizeDialogUI(true);
-             GameManagerUI.instance.SetSpeakerText(dialog.NPCname);
-             isChatting = true;
-             if(visited == false)
-             {
+            GameManagerUI.instance.VisualizeDialogUI(true);
+            GameManagerUI.instance.SetSpeakerText(dialog.NPCname);
+            isChatting = true;
+            if(visited == false)
+            {
                 StartCoroutine(showFirstEncountDialog());
                 visited = true;
-             }else
-             {
-                 if(dialog.hasChoiceDialog)
-                 {
+            }else
+            {
+                if(dialog.hasChoiceDialog)
+                {
                      StartCoroutine(showChoiceDialog());
-                 }else
-                 {
+                }else
+                {
                      StartCoroutine(showRepeatingDialog());
-                 }
+                }
                 
-             }
+            }
 
         }else
         {
@@ -86,6 +86,7 @@ public class NPCDialogScript : MonoBehaviour
     {
         GameMangerInput.instance.changePlayerInputRule(0);
         GameManagerUI.instance.VisualizeDialogUI(false);
+        GameManagerUI.instance.showOptionUI(false);
         callCount = 0;
         isChatting = false;
     }
