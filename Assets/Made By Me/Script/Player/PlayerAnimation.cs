@@ -18,6 +18,8 @@ public class PlayerAnimation : MonoBehaviour
     [SerializeField] bool isSheilding; 
     [SerializeField] bool isParrying;
 
+    [SerializeField] float AttackKind  = 0f;
+
     [Space]
     [SerializeField] float XVelocity;
     [SerializeField] float YVelocity;
@@ -33,10 +35,10 @@ public class PlayerAnimation : MonoBehaviour
         pm = GetComponent<PokemonPlayerMove>();
 
         player = ReInput.players.GetPlayer(0);
-        player.AddInputEventDelegate(UPPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Move Up");
-        player.AddInputEventDelegate(DownPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Move Down");
-        player.AddInputEventDelegate(RightPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed,"Move Right");
-        player.AddInputEventDelegate(LeftPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed,"Move Left");
+        player.AddInputEventDelegate(UPPressed, UpdateLoopType.Update, InputActionEventType.ButtonPressed, "Move Up");
+        player.AddInputEventDelegate(DownPressed, UpdateLoopType.Update, InputActionEventType.ButtonPressed, "Move Down");
+        player.AddInputEventDelegate(RightPressed, UpdateLoopType.Update, InputActionEventType.ButtonPressed,"Move Right");
+        player.AddInputEventDelegate(LeftPressed, UpdateLoopType.Update, InputActionEventType.ButtonPressed,"Move Left");
     }
 
     void Update()
@@ -73,6 +75,7 @@ public class PlayerAnimation : MonoBehaviour
             if(isSheilding) return;
             if(isParrying) return;
 
+            animator.SetFloat("AttackKind", AttackKind);
             animator.SetTrigger("Attack");
             isAttacking = true;
             SetPlayerMove(false);
