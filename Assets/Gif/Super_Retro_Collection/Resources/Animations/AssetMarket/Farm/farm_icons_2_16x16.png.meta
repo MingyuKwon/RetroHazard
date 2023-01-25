@@ -589,9 +589,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      farm_icons_2_16x16_12: -1106640711
       farm_icons_2_16x16_14: 958697938
       farm_icons_2_16x16_7: -1750941078
+      farm_icons_2_16x16_1: 414281244
       farm_icons_2_16x16_4: 1960423689
       farm_icons_2_16x16_6: 1394845599
       farm_icons_2_16x16_9: -264679706
@@ -609,8 +609,8 @@ TextureImporter:
       farm_icons_2_16x16_0: 2058606294
       farm_icons_2_16x16_19: -1735007086
       farm_icons_2_16x16_17: 109935085
-      farm_icons_2_16x16_1: 414281244
       farm_icons_2_16x16_5: 252673452
+      farm_icons_2_16x16_12: -1106640711
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

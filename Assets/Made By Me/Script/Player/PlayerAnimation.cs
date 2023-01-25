@@ -8,6 +8,7 @@ using DG.Tweening;
 public class PlayerAnimation : MonoBehaviour
 {
     private Animator animator;
+    private Animator vfxAnimator;
     private Rigidbody2D rb;
     private PokemonPlayerMove pm;
 
@@ -31,6 +32,8 @@ public class PlayerAnimation : MonoBehaviour
 
     private void Awake() {
         animator = GetComponent<Animator>();
+        vfxAnimator = GetComponentInChildren<VFX>().gameObject.GetComponent<Animator>();
+        Debug.Log(vfxAnimator);
         rb = GetComponent<Rigidbody2D>();
         pm = GetComponent<PokemonPlayerMove>();
 
@@ -79,6 +82,7 @@ public class PlayerAnimation : MonoBehaviour
             animator.SetTrigger("Attack");
             isAttacking = true;
             SetPlayerMove(false);
+            
         }
     }
 
@@ -147,7 +151,7 @@ public class PlayerAnimation : MonoBehaviour
     //Animation event
     public void SlashStart()
     {
-
+        
     }
 
     public void SlashEnd()
@@ -168,12 +172,13 @@ public class PlayerAnimation : MonoBehaviour
 
     public void ParryStart()
     {
-
+        
     }
 
     public void ParryFrameStart()
     {
-
+        GameManager.instance.SlowMotion();
+        vfxAnimator.SetTrigger("Parry");
     }
 
     public void ParryFrameEnd()
