@@ -19,5 +19,7 @@ public class PlayerStatus : MonoBehaviour
     [Header("Equipped")]
     public int Weapon = 1;
     public int Sheild = 101;
-    public int Staff = 201;
+
+    [Header("InGame")]
+    public bool parryFrame = false;
 }

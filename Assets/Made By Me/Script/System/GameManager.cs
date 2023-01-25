@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public int DEFCON = 0;
 
     public bool isSlowMotion = false;
-    public const float defalutSlowScale = 0.5f;
+    public const float defalutSlowScale = 0.3f;
     public float slowMotionTimer = 0f;
     public const float defaultSlowMotionTime = 0.8f;
     public float slowMotionTime = 0.8f;

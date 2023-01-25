@@ -168,21 +168,9 @@ public class PlayerAnimation : MonoBehaviour
         isAttacking = false;
         SetPlayerMove(true);
     }
-
     public void ParryStart()
     {
         
-    }
-
-    public void ParryFrameStart()
-    {
-        GameManager.instance.SlowMotion();
-        vfxAnimator.SetTrigger("Parry");
-    }
-
-    public void ParryFrameEnd()
-    {
-
     }
 
     public void ParryEnd()

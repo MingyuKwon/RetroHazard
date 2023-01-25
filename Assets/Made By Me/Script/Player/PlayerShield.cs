@@ -1,18 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Rewired;
+using Sirenix.OdinInspector;
+using DG.Tweening;
+
 
 public class PlayerShield : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
+    PlayerStatus stat;
+    private Animator vfxAnimator;
+
+    private void Awake() {
+        vfxAnimator = GetComponentInChildren<VFX>().gameObject.GetComponent<Animator>();
+        stat = GetComponentInChildren<PlayerStatus>();
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        Debug.Log("enemy : " + other.GetContact(0).collider);
+        Debug.Log("player : " + other.otherCollider);
+
+        if(other.otherCollider.tag == "Sheild")
+        {
+            if(other.GetContact(0).collider.tag == "Attack" && stat.parryFrame)
+            {
+                vfxAnimator.SetTrigger("Parry");
+                GameManager.instance.SlowMotion();
+            }
+        }
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ParryFrameStart()
     {
-        if(GameManager.instance.isPlayerPaused) return;
+        stat.parryFrame = true;
+        
+    }
+
+    public void ParryFrameEnd()
+    {
+        stat.parryFrame = false;
     }
 }
