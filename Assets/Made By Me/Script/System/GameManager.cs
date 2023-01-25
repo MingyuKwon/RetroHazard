@@ -15,8 +15,8 @@ public class GameManager : MonoBehaviour
     public bool isSlowMotion = false;
     public const float defalutSlowScale = 0.5f;
     public float slowMotionTimer = 0f;
-    public const float defaultSlowMotionTime = 0.6f;
-    public float slowMotionTime = 0.6f;
+    public const float defaultSlowMotionTime = 0.8f;
+    public float slowMotionTime = 0.8f;
 
     public bool isPlayerNearNPC = false;
     public bool isPlayerPaused = false; // Every player script refer to this value 

@@ -33,7 +33,6 @@ public class PlayerAnimation : MonoBehaviour
     private void Awake() {
         animator = GetComponent<Animator>();
         vfxAnimator = GetComponentInChildren<VFX>().gameObject.GetComponent<Animator>();
-        Debug.Log(vfxAnimator);
         rb = GetComponent<Rigidbody2D>();
         pm = GetComponent<PokemonPlayerMove>();
 

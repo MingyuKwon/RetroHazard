@@ -46,8 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DEFCON: 0
   isSlowMotion: 0
-  defalutSlowScale: 0.5
   slowMotionTimer: 0
-  slowMotionTime: 0.6
+  slowMotionTime: 0.8
   isPlayerNearNPC: 0
   isPlayerPaused: 0
