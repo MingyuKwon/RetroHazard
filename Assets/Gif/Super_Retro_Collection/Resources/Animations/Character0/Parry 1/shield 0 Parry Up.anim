@@ -55,7 +55,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.33333334
+        time: 0.25
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -161,9 +161,9 @@ AnimationClip:
       value: {fileID: 397247298, guid: 0d4df1c6fde90d245b0b660afd28c4e6, type: 3}
     - time: 0.083333336
       value: {fileID: -352997027, guid: 0d4df1c6fde90d245b0b660afd28c4e6, type: 3}
-    - time: 0.33333334
+    - time: 0.25
       value: {fileID: 397247298, guid: 0d4df1c6fde90d245b0b660afd28c4e6, type: 3}
-    - time: 0.6666667
+    - time: 0.5833333
       value: {fileID: 397247298, guid: 0d4df1c6fde90d245b0b660afd28c4e6, type: 3}
     attribute: m_Sprite
     path: 
@@ -273,7 +273,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.33333334
+        time: 0.25
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -448,14 +448,14 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.33333334
+  - time: 0.25
     functionName: ParryFrameEnd
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.6666667
+  - time: 0.5833333
     functionName: ParryEnd
     data: 
     objectReferenceParameter: {fileID: 0}

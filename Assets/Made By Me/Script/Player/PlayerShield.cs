@@ -8,12 +8,14 @@ using DG.Tweening;
 
 public class PlayerShield : MonoBehaviour
 {
+    private CapsuleCollider2D playerBodyCollider;
     PlayerStatus stat;
     private Animator vfxAnimator;
 
     private void Awake() {
         vfxAnimator = GetComponentInChildren<VFX>().gameObject.GetComponent<Animator>();
         stat = GetComponentInChildren<PlayerStatus>();
+        playerBodyCollider = GetComponentInChildren<PlayerCollider>().gameObject.GetComponent<CapsuleCollider2D>();
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
@@ -32,7 +34,6 @@ public class PlayerShield : MonoBehaviour
     public void ParryFrameStart()
     {
         stat.parryFrame = true;
-        
     }
 
     public void ParryFrameEnd()

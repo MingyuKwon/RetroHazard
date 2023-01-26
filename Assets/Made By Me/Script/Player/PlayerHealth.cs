@@ -5,15 +5,18 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     public float reflectForceScholar = 300f;
-
+    private CapsuleCollider2D playerBodyCollider;
     PlayerStatus status;
     private Animator animator;
+    private Animator vfxAnimator;
     Rigidbody2D rb;
 
     private void Awake() {
         status = GetComponentInChildren<PlayerStatus>();
         animator = GetComponent<Animator>();
+        vfxAnimator = GetComponentInChildren<VFX>().gameObject.GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        playerBodyCollider = GetComponentInChildren<PlayerCollider>().gameObject.GetComponent<CapsuleCollider2D>();
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
@@ -32,10 +35,13 @@ public class PlayerHealth : MonoBehaviour
         GameManager.instance.isPlayerPaused = true;
         GameManager.instance.SetPlayerMove(true);
         GameManager.instance.SetPlayerAnimationBool(false);
+        playerBodyCollider.enabled = false;
+        vfxAnimator.SetTrigger("Stun");
     }
 
     public void StunEnd()
     {
         GameManager.instance.isPlayerPaused = false;
+        playerBodyCollider.enabled = true;
     }
 }
