@@ -275,7 +275,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6387553226888266341}
-  - component: {fileID: 6387553226888266340}
+  - component: {fileID: 6089768402828800010}
   - component: {fileID: 6387553226888266267}
   - component: {fileID: 7293342018351241486}
   - component: {fileID: 3488315143066334263}
@@ -309,7 +309,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6387553226888266340
+--- !u!114 &6089768402828800010
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -318,10 +318,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6387553226888266342}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd2900bf863f3942897e273a2f4199d, type: 3}
+  m_Script: {fileID: 11500000, guid: bda484821f80d2843824ef263f6cc910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 300
+  moveSpeed: 0.7
   canMove: 1
   PlayerState: 0
   SpeedScholar: 0
@@ -342,7 +342,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 5
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -366,10 +366,10 @@ MonoBehaviour:
   isSheilding: 0
   isParrying: 0
   AttackKind: 0
-  XVelocity: 0
-  YVelocity: 0
   LastXInput: 0
   LastYInput: -1
+  XInput: 0
+  YInput: -1
 --- !u!212 &3488315143066334263
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -454,6 +454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37791aefc99ddd4fa2c15b10d42fe1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reflectForceScholar: 300
 --- !u!114 &5496397582843710029
 MonoBehaviour:
   m_ObjectHideFlags: 0

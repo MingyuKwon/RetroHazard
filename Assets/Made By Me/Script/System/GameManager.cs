@@ -8,7 +8,7 @@ using DG.Tweening;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
-    PokemonPlayerMove player;
+    PlayerMove player;
     PlayerAnimation playerAnimation;
 
     public int DEFCON = 0;
@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     }
 
     void Start() {
-        player = FindObjectOfType<PokemonPlayerMove>();
+        player = FindObjectOfType<PlayerMove>();
         playerAnimation = FindObjectOfType<PlayerAnimation>();
     }
 
