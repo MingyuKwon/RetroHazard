@@ -45,9 +45,10 @@ public class PlayerInteractive : MonoBehaviour
 // Normal Input event
     private void InteractivePressed(InputActionEventData data)
     {
-        if(GameManager.instance.isPlayerNearNPC)
+        if(GameManager.instance.isPlayerNearNPC && !GameManager.instance.isPlayerSheilding)
         {
             GameMangerInput.instance.changePlayerInputRule(1);
+            GameManager.instance.SetPlayerAnimationIdle();
             nearNPC.EnterPressed();
         }
     }

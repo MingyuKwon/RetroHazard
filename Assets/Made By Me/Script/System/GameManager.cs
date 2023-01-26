@@ -11,15 +11,19 @@ public class GameManager : MonoBehaviour
     PlayerMove player;
     PlayerAnimation playerAnimation;
 
+    [Header("Difficulty")]
     public int DEFCON = 0;
 
+    [Header("Slow Motion")]
     public bool isSlowMotion = false;
     public const float defalutSlowScale = 0.3f;
     public float slowMotionTimer = 0f;
     public const float defaultSlowMotionTime = 0.8f;
     public float slowMotionTime = 0.8f;
 
+    [Header("Flag field")]
     public bool isPlayerNearNPC = false;
+    public bool isPlayerSheilding = false;
     public bool isPlayerPaused = false; // Every player script refer to this value 
 
     void Awake() {
@@ -65,11 +69,13 @@ public class GameManager : MonoBehaviour
         player.canMove = flag;
     }
 
-    public void SetPlayerAnimationBool(bool flag)
+    public void SetPlayerAnimationIdle()
     {
-        playerAnimation.isAttacking = flag;
-        playerAnimation.isParrying = flag;
-        playerAnimation.isSheilding = flag;
+        playerAnimation.isAttacking = false;
+        playerAnimation.isParrying = false;
+        playerAnimation.isSheilding = false;
+        playerAnimation.XInput = 0f;
+        playerAnimation.YInput = 0f;
 
     }
 
@@ -78,6 +84,7 @@ public class GameManager : MonoBehaviour
         isPlayerPaused = flag;
     }
 
+    //SlowMotion
     public void SlowMotion()
     {
         Time.timeScale = defalutSlowScale;
@@ -93,4 +100,5 @@ public class GameManager : MonoBehaviour
         this.slowMotionTime = slowMotionTime;
         isSlowMotion = true;
     }
+    //SlowMotion
 }

@@ -23,12 +23,10 @@ public class NPCDialogScript : MonoBehaviour
     // for question option select
     public void EnterPressed()
     {
-        Debug.Log("NPC EnterPressed");
         showDialog();
     }
     public void UpPressed()
     {
-        Debug.Log("NPC EnterUp");
         if(isShowingOption)
         {
             SelectOptionindex--;
@@ -36,7 +34,6 @@ public class NPCDialogScript : MonoBehaviour
     }
     public void DownPressed()
     {
-        Debug.Log("NPC EnterDown");
         if(isShowingOption)
         {
             SelectOptionindex++;
@@ -44,11 +41,11 @@ public class NPCDialogScript : MonoBehaviour
     }
     public void RightPressed()
     {
-        Debug.Log("NPC EnterRight");
+        
     }
     public void LeftPressed()
     {
-        Debug.Log("NPC EnterLeft");
+
     }
     // for question option select
 

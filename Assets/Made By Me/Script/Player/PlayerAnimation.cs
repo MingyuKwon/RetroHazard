@@ -22,10 +22,10 @@ public class PlayerAnimation : MonoBehaviour
     [SerializeField] float AttackKind  = 0f;
 
     [Space]
-    [SerializeField] float LastXInput = 0f;
-    [SerializeField] float LastYInput = -1f;
-    [SerializeField] float XInput = 0f;
-    [SerializeField] float YInput = 0f;
+    public float LastXInput = 0f;
+    public float LastYInput = -1f;
+    public float XInput = 0f;
+    public float YInput = 0f;
     
 
     private Player player;
@@ -55,6 +55,7 @@ public class PlayerAnimation : MonoBehaviour
 
     void Update()
     {
+        GameManager.instance.isPlayerSheilding = isSheilding;
         if(GameManager.instance.isPlayerPaused) return;
         
         SetWalkAnimation();

@@ -27,14 +27,13 @@ public class PlayerHealth : MonoBehaviour
             rb.AddForce(other.GetContact(0).normal * reflectForceScholar);
             animator.SetTrigger("Stun");
         }
-        
     }
 
     public void StunStart()
     {
         GameManager.instance.isPlayerPaused = true;
         GameManager.instance.SetPlayerMove(true);
-        GameManager.instance.SetPlayerAnimationBool(false);
+        GameManager.instance.SetPlayerAnimationIdle();
         playerBodyCollider.enabled = false;
         vfxAnimator.SetTrigger("Stun");
     }
