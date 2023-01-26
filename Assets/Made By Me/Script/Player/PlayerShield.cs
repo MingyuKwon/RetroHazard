@@ -17,8 +17,6 @@ public class PlayerShield : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
-        Debug.Log("enemy : " + other.GetContact(0).collider);
-        Debug.Log("player : " + other.otherCollider);
 
         if(other.otherCollider.tag == "Sheild")
         {

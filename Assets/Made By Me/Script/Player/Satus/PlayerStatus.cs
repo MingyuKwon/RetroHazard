@@ -8,13 +8,13 @@ using DG.Tweening;
 public class PlayerStatus : MonoBehaviour
 {
     [Header("Basic")]
-    public float MaxHP = 100f;
-    public float CurrentHP = 50f;
-    public float Speed;
+    public int MaxHP = 100;
+    public int CurrentHP = 50;
+    public int Speed;
 
     [Header("Battle")]
-    public float Attack = 0f;
-    public float ArmorDefence = 0f;
+    public int Attack = 0;
+    public int ArmorDefence = 0;
 
     [Header("Equipped")]
     public int Weapon = 1;

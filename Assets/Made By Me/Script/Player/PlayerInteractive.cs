@@ -40,7 +40,7 @@ public class PlayerInteractive : MonoBehaviour
     }
 
     private void Update() {
-
+        if(GameManager.instance.isPlayerPaused) return;
     }
 // Normal Input event
     private void InteractivePressed(InputActionEventData data)

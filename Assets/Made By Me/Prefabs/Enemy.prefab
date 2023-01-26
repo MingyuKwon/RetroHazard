@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 243028646}
   - component: {fileID: 243028647}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Attack Collider
-  m_TagString: Untagged
+  m_TagString: Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69,7 +69,7 @@ GameObject:
   - component: {fileID: 9194674445698836696}
   - component: {fileID: 8385213062286057647}
   - component: {fileID: 6840078731692293}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy status
   m_TagString: System Management
   m_Icon: {fileID: 0}
@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 8539821890712935125}
   - component: {fileID: 8539821890712935080}
   - component: {fileID: 6137115793047490147}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -274,7 +274,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8539821891057573363}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -308,9 +308,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8539821892566529950}
   - component: {fileID: 8539821892566529951}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Body Collider
-  m_TagString: Untagged
+  m_TagString: Enemy Body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -343,7 +343,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.025507659}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -354,5 +354,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7402849, y: 1.0504361}
+  m_Size: {x: 0.5999937, y: 0.9994207}
   m_EdgeRadius: 0

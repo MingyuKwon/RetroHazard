@@ -1357,10 +1357,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 243028645, guid: 0ec8d5ca52754fb4880419bd55f4906d, type: 3}
-      propertyPath: m_TagString
-      value: Attack
-      objectReference: {fileID: 0}
     - target: {fileID: 8539821890712935083, guid: 0ec8d5ca52754fb4880419bd55f4906d, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1408,26 +1404,6 @@ PrefabInstance:
     - target: {fileID: 8539821890712935124, guid: 0ec8d5ca52754fb4880419bd55f4906d, type: 3}
       propertyPath: m_Name
       value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 8539821892566529945, guid: 0ec8d5ca52754fb4880419bd55f4906d, type: 3}
-      propertyPath: m_TagString
-      value: Enemy Body
-      objectReference: {fileID: 0}
-    - target: {fileID: 8539821892566529951, guid: 0ec8d5ca52754fb4880419bd55f4906d, type: 3}
-      propertyPath: m_Size.x
-      value: 0.5999937
-      objectReference: {fileID: 0}
-    - target: {fileID: 8539821892566529951, guid: 0ec8d5ca52754fb4880419bd55f4906d, type: 3}
-      propertyPath: m_Size.y
-      value: 0.9994207
-      objectReference: {fileID: 0}
-    - target: {fileID: 8539821892566529951, guid: 0ec8d5ca52754fb4880419bd55f4906d, type: 3}
-      propertyPath: m_Offset.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8539821892566529951, guid: 0ec8d5ca52754fb4880419bd55f4906d, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.025507659
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ec8d5ca52754fb4880419bd55f4906d, type: 3}

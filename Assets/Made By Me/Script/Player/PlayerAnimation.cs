@@ -15,9 +15,9 @@ public class PlayerAnimation : MonoBehaviour
     [Header("changable")]
 
     [Header("For Debug")]
-    [SerializeField] bool isAttacking;
-    [SerializeField] bool isSheilding; 
-    [SerializeField] bool isParrying;
+    public bool isAttacking;
+    public bool isSheilding; 
+    public bool isParrying;
 
     [SerializeField] float AttackKind  = 0f;
 

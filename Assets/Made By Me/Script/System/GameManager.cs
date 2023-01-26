@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
     PokemonPlayerMove player;
+    PlayerAnimation playerAnimation;
 
     public int DEFCON = 0;
 
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour
 
     void Start() {
         player = FindObjectOfType<PokemonPlayerMove>();
+        playerAnimation = FindObjectOfType<PlayerAnimation>();
     }
 
     private void Update() {
@@ -57,9 +59,18 @@ public class GameManager : MonoBehaviour
          
     }
 
+    // dont move position while doing another action
     public void SetPlayerMove(bool flag)
     {
         player.canMove = flag;
+    }
+
+    public void SetPlayerAnimationBool(bool flag)
+    {
+        playerAnimation.isAttacking = flag;
+        playerAnimation.isParrying = flag;
+        playerAnimation.isSheilding = flag;
+
     }
 
     public void SetPausePlayer(bool flag)
