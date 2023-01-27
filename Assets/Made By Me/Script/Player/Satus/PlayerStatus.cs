@@ -23,3 +23,4 @@ public class PlayerStatus : MonoBehaviour
     [Header("InGame")]
     public bool parryFrame = false;
 }
+
