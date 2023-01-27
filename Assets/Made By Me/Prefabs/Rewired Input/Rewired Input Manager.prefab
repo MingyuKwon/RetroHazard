@@ -352,6 +352,24 @@ MonoBehaviour:
       _behaviorId: 0
       _userAssignable: 1
       _categoryId: 3
+    - _id: 15
+      _name: Weapon Change
+      _type: 1
+      _descriptiveName: change Weapon
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 2
+    - _id: 16
+      _name: Energy Change
+      _type: 1
+      _descriptiveName: change Energy
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 2
     actionCategories:
     - _name: Default
       _descriptiveName: Default
@@ -380,7 +398,7 @@ MonoBehaviour:
       - categoryId: 1
         actionIds: 0200000003000000
       - categoryId: 2
-        actionIds: 0000000007000000010000000800000006000000
+        actionIds: 00000000070000000100000008000000060000000f00000010000000
       - categoryId: 3
         actionIds: 090000000a0000000b0000000c0000000d0000000e000000
     inputBehaviors:
@@ -541,6 +559,28 @@ MonoBehaviour:
         _modifierKey1: 0
         _modifierKey2: 0
         _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 15
+        _elementType: 1
+        _elementIdentifierId: -1
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 117
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 16
+        _elementType: 1
+        _elementIdentifierId: -1
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 105
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
     - id: 4
       categoryId: 2
       layoutId: 1
@@ -680,7 +720,7 @@ MonoBehaviour:
           _customControllerSourceId: -1
           _controllerId: -1
     playerIdCounter: 2
-    actionIdCounter: 15
+    actionIdCounter: 17
     actionCategoryIdCounter: 4
     inputBehaviorIdCounter: 1
     mapCategoryIdCounter: 3

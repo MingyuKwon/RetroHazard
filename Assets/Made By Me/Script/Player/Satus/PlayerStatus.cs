@@ -17,7 +17,7 @@ public class PlayerStatus : MonoBehaviour
     public int ArmorDefence = 0;
 
     [Header("Equipped")]
-    public int Weapon = 1;
+    public int Weapon = 100;
     public int Sheild = 101;
 
     [Header("InGame")]

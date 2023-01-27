@@ -11,6 +11,7 @@ public class PlayerAnimation : MonoBehaviour
     private Animator vfxAnimator;
     private Rigidbody2D rb;
     private PlayerMove pm;
+    private PlayerStatus status;
 
     [Header("changable")]
 
@@ -19,7 +20,7 @@ public class PlayerAnimation : MonoBehaviour
     public bool isSheilding; 
     public bool isParrying;
 
-    [SerializeField] float AttackKind  = 0f;
+    private float WeaponKind  = 0f;
 
     [Space]
     public float LastXInput = 0f;
@@ -34,6 +35,7 @@ public class PlayerAnimation : MonoBehaviour
         animator = GetComponent<Animator>();
         vfxAnimator = GetComponentInChildren<VFX>().gameObject.GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        status = GetComponentInChildren<PlayerStatus>();
 
         player = ReInput.players.GetPlayer(0);
 
@@ -56,6 +58,7 @@ public class PlayerAnimation : MonoBehaviour
     void Update()
     {
         GameManager.instance.isPlayerSheilding = isSheilding;
+        WeaponKind = status.Weapon % 10;
         if(GameManager.instance.isPlayerPaused) return;
         
         SetWalkAnimation();
@@ -80,7 +83,7 @@ public class PlayerAnimation : MonoBehaviour
             if(isSheilding) return;
             if(isParrying) return;
 
-            animator.SetFloat("AttackKind", AttackKind);
+            animator.SetFloat("AttackKind", WeaponKind);
             animator.SetTrigger("Attack");
             isAttacking = true;
             GameManager.instance.SetPlayerMove(false);
