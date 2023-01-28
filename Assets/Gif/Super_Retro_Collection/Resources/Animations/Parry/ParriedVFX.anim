@@ -21,17 +21,17 @@ AnimationClip:
   - curve:
     - time: 0
       value: {fileID: -427511738, guid: 7d0e076ba5e476b4eba1062a193d4d17, type: 3}
-    - time: 0.083333336
+    - time: 0.125
       value: {fileID: 1880243303, guid: 7d0e076ba5e476b4eba1062a193d4d17, type: 3}
-    - time: 0.20833333
+    - time: 0.29166666
       value: {fileID: -903587529, guid: 7d0e076ba5e476b4eba1062a193d4d17, type: 3}
-    - time: 0.33333334
-      value: {fileID: 2888858, guid: 7d0e076ba5e476b4eba1062a193d4d17, type: 3}
     - time: 0.45833334
+      value: {fileID: 2888858, guid: 7d0e076ba5e476b4eba1062a193d4d17, type: 3}
+    - time: 0.625
       value: {fileID: -528930082, guid: 7d0e076ba5e476b4eba1062a193d4d17, type: 3}
-    - time: 0.5833333
+    - time: 0.7916667
       value: {fileID: 1101062876, guid: 7d0e076ba5e476b4eba1062a193d4d17, type: 3}
-    - time: 0.7083333
+    - time: 0.9583333
       value: {fileID: -427511738, guid: 7d0e076ba5e476b4eba1062a193d4d17, type: 3}
     attribute: m_Sprite
     path: 
@@ -64,7 +64,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.75
+    m_StopTime: 1
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -91,7 +91,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.7083333
+  - time: 1
     functionName: ParriedVFXEnd
     data: 
     objectReferenceParameter: {fileID: 0}

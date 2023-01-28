@@ -57,7 +57,6 @@ public class EnemyCollide : MonoBehaviour
                 {
                     if(contactPlayerStat.parryFrame && !enemyManager.isParried)
                     {
-                        Debug.Log("Enemy Collide");
                         enemyManager.TriggerEnemyParriedAnimation();
                     }
                 }
@@ -69,19 +68,24 @@ public class EnemyCollide : MonoBehaviour
 
         }
 
-        
     }
 
     public void StunStart()
     {
+        Debug.Log("StunStart");
         enemyManager.isEnemyPaused = true;
         EnemyBodyCollider.enabled = false;
     }
 
     public void StunEnd()
     {
+        Debug.Log("StunEnd");
         enemyManager.isEnemyPaused = false;
         EnemyBodyCollider.enabled = true;
+        if(enemyManager.isParried)
+        {
+            enemyManager.SetEnemyParried(false);
+        }
     }
 
     private void Reflect(float Damage)
@@ -89,5 +93,17 @@ public class EnemyCollide : MonoBehaviour
         Damage = Mathf.Log(Damage / damageStandard + 1);
 
         rb.AddForce(ForceInput * reflectForceScholar * Damage);
+    }
+
+    public void ParreidStart()
+    {
+        Debug.Log(1);
+        enemyManager.SetEnemyParried(true);
+    }
+
+    public void ParriedEnd()
+    {
+        Debug.Log(2);
+        enemyManager.SetEnemyParried(false);
     }
 }

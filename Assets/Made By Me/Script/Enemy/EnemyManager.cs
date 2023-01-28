@@ -25,24 +25,13 @@ public class EnemyManager : MonoBehaviour
     public void TriggerEnemyParriedAnimation()
     {
         vfxAnimator.SetTrigger("Parried");
+        animator.SetTrigger("Stagger");
     }
 
     public void SetEnemyParried(bool flag)
     {
         isParried = flag;
-    }
-
-    public void SetEnemyStaggered(bool flag)
-    {
         isEnemyPaused = flag;
-        animator.SetTrigger("Idle");
-        if(flag)
-        {
-            spriteRenderer.color = parriedColor;
-        }else
-        {
-            spriteRenderer.color = normalColor;
-        }
     }
 
 }

@@ -47,28 +47,9 @@ public class VFX : MonoBehaviour
 
     public void ParreidVFXStart()
     {
-        attackCollider.enabled = false;
-        if(isPlayer)
-        {
-            GameManager.instance.SetPausePlayer(true);
-        }else
-        {
-            enemyManager.SetEnemyParried(true);
-            enemyManager.SetEnemyStaggered(true);
-        }
-
     }
 
     public void ParriedVFXEnd()
     {
-        attackCollider.enabled = true;
-        if(isPlayer)
-        {
-            GameManager.instance.SetPausePlayer(false);
-        }else
-        {
-            enemyManager.SetEnemyParried(false);
-            enemyManager.SetEnemyStaggered(false);
-        }
     }
 }
