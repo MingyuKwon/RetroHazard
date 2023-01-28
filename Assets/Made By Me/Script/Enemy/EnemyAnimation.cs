@@ -15,9 +15,26 @@ public class EnemyAnimation : MonoBehaviour
         enemyManager = GetComponent<EnemyManager>();
     }
 
+    private void Start() {
+        StartCoroutine(AttackRepeating());
+    }
+
 
     private void Update() {
-        animator.SetTrigger("Attack");
+        
+        
+    }
+
+    IEnumerator AttackRepeating()
+    {
+        while(true)
+        {
+            if(enemyManager.isEnemyPaused) yield return new WaitForEndOfFrame();
+
+            animator.SetTrigger("Attack");
+            yield return new WaitForSeconds(2f);
+        }
+        
     }
 
     private void SetWalkAnimation()
