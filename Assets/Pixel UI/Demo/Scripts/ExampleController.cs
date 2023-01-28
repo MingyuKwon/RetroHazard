@@ -19,7 +19,7 @@ namespace PixelsoftGames.PixelUI
 
         private Image image;
         private Shake shake = null;
-        private bool isBeingAttacked = false;
+        private bool isBeingAttacked;
         private BoxCollider2D col = null;
 
         // Use this for initialization
