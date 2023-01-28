@@ -45,11 +45,12 @@ public class EnemyHealth : MonoBehaviour
             else if(contactCollider.tag == "Attack")
             {
                 damage = contactPlayerStat.Attack * contactPlayerStat.Attack;
+                animator.SetTrigger("Stun");
             }
 
             ForceInput = other.GetContact(0).normal;
             Reflect(damage);
-            animator.SetTrigger("Stun");
+            
         }
     }
 

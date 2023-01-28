@@ -17,7 +17,7 @@ public class EnemyAnimation : MonoBehaviour
 
 
     private void Update() {
-        
+        animator.SetTrigger("Attack");
     }
 
     private void SetWalkAnimation()
