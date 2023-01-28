@@ -7,13 +7,21 @@ using DG.Tweening;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public float reflectForceScholar = 300f;
-    private CapsuleCollider2D playerBodyCollider;
+    Rigidbody2D rb;
     PlayerStatus status;
+    private CapsuleCollider2D playerBodyCollider;
     private Animator animator;
     private Animator vfxAnimator;
-    Rigidbody2D rb;
 
+    private Collider2D contactCollider;
+    private GameObject contactObject;
+    private EnemyStatus contactEnemyStat;
+    private Vector2 ForceInput;
+
+    private float reflectForceScholar = 150f;
+    private float damage = 0f;
+    const float damageStandard = 10f;
+    
     private void Awake() {
         status = GetComponentInChildren<PlayerStatus>();
         animator = GetComponent<Animator>();
@@ -26,8 +34,21 @@ public class PlayerHealth : MonoBehaviour
 
         if(other.otherCollider.tag == "Player Body" && other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            Debug.Log(other.GetContact(0).normal);
-            rb.AddForce(other.GetContact(0).normal * reflectForceScholar);
+            contactCollider = other.GetContact(0).collider;
+            contactObject = contactCollider.transform.parent.transform.parent.gameObject;
+            contactEnemyStat = contactObject.GetComponentInChildren<EnemyStatus>();
+
+            if(contactCollider.tag == "Enemy Body")
+            {
+                damage = contactEnemyStat.Attack * contactEnemyStat.bodyDamageRatio;
+            }
+            else if(contactCollider.tag == "Attack")
+            {
+                damage = contactEnemyStat.Attack * contactEnemyStat.AttackDamageRatio;
+            }
+
+            ForceInput = other.GetContact(0).normal;
+            Reflect(damage);
             animator.SetTrigger("Stun");
         }
     }
@@ -45,5 +66,12 @@ public class PlayerHealth : MonoBehaviour
     {
         GameManager.instance.isPlayerPaused = false;
         playerBodyCollider.enabled = true;
+    }
+
+    private void Reflect(float Damage)
+    {
+        Damage = Mathf.Log(Damage / damageStandard + 1);
+
+        rb.AddForce(ForceInput * reflectForceScholar * Damage);
     }
 }

@@ -14,4 +14,8 @@ public class EnemyStatValue : ScriptableObject
     [Header("Battle")]
     public float Attack;
     public float ArmorDefence;
+
+    [Space]
+    public float bodyDamageRatio;
+    public float AttackDamageRatio;
 }

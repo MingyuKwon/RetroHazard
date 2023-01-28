@@ -15,5 +15,7 @@ MonoBehaviour:
   MaxHP: 100
   CurrentHP: 50
   Speed: 1
-  Attack: 2
+  Attack: 10
   ArmorDefence: 1
+  bodyDamageRatio: 1
+  AttackDamageRatio: 2

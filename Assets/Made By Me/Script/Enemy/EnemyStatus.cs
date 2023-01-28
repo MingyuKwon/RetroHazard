@@ -17,6 +17,9 @@ public class EnemyStatus : MonoBehaviour
     [Header("Battle")]
     public float Attack = 0f;
     public float ArmorDefence = 0f;
+    [Space]
+    public float bodyDamageRatio;
+    public float AttackDamageRatio;
 
     private void Start() {
         MaxHP = EnemyStats[GameManager.instance.DEFCON].MaxHP;
@@ -25,6 +28,9 @@ public class EnemyStatus : MonoBehaviour
 
         Attack = EnemyStats[GameManager.instance.DEFCON].Attack;
         ArmorDefence = EnemyStats[GameManager.instance.DEFCON].ArmorDefence;
+
+        bodyDamageRatio = EnemyStats[GameManager.instance.DEFCON].bodyDamageRatio;
+        AttackDamageRatio = EnemyStats[GameManager.instance.DEFCON].AttackDamageRatio;
     }
 
 }
