@@ -32,25 +32,32 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
 
-        if(other.otherCollider.tag == "Player Body" && other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        if(other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            contactCollider = other.GetContact(0).collider;
-            contactObject = contactCollider.transform.parent.transform.parent.gameObject;
-            contactEnemyStat = contactObject.GetComponentInChildren<EnemyStatus>();
-
-            if(contactCollider.tag == "Enemy Body")
+            if(other.otherCollider.tag == "Player Body")
             {
-                damage = contactEnemyStat.Attack * contactEnemyStat.bodyDamageRatio;
-            }
-            else if(contactCollider.tag == "Attack")
-            {
-                damage = contactEnemyStat.Attack * contactEnemyStat.AttackDamageRatio;
-            }
+                contactCollider = other.GetContact(0).collider;
+                contactObject = contactCollider.transform.parent.transform.parent.gameObject;
+                contactEnemyStat = contactObject.GetComponentInChildren<EnemyStatus>();
 
-            ForceInput = other.GetContact(0).normal;
-            Reflect(damage);
-            animator.SetTrigger("Stun");
+                if(status.blockSuccessEnemy == contactObject.name) return;
+
+                if(contactCollider.tag == "Enemy Body")
+                {
+                    damage = contactEnemyStat.Attack * contactEnemyStat.bodyDamageRatio;
+                }
+                else if(contactCollider.tag == "Attack")
+                {
+                    damage = contactEnemyStat.Attack * contactEnemyStat.AttackDamageRatio;
+                }
+
+                ForceInput = other.GetContact(0).normal;
+                Reflect(damage);
+                animator.SetTrigger("Stun");
+            }
         }
+
+        
     }
 
     public void StunStart()

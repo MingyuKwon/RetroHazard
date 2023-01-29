@@ -9,14 +9,14 @@ using DG.Tweening;
 public class PlayerShield : MonoBehaviour
 {
     private CapsuleCollider2D playerBodyCollider;
-    PlayerStatus stat;
+    PlayerStatus status;
     private Animator vfxAnimator;
     private Animator animator;
 
     private void Awake() {
         animator = GetComponent<Animator>();
         vfxAnimator = GetComponentInChildren<VFX>().gameObject.GetComponent<Animator>();
-        stat = GetComponentInChildren<PlayerStatus>();
+        status = GetComponentInChildren<PlayerStatus>();
         playerBodyCollider = GetComponentInChildren<PlayerCollider>().gameObject.GetComponent<CapsuleCollider2D>();
     }
 
@@ -24,24 +24,35 @@ public class PlayerShield : MonoBehaviour
 
         if(other.otherCollider.tag == "Sheild")
         {
-            if(other.GetContact(0).collider.tag == "Attack" && stat.parryFrame)
+            if(other.GetContact(0).collider.tag == "Attack" && status.parryFrame)
             {
                 vfxAnimator.SetTrigger("Parry");
                 GameManager.instance.SlowMotion();
             }
-
+            
             animator.SetTrigger("Block");
+            status.blockSuccessEnemy = other.GetContact(0).collider.transform.parent.transform.parent.name;
         }
         
     }
 
     public void ParryFrameStart()
     {
-        stat.parryFrame = true;
+        status.parryFrame = true;
     }
 
     public void ParryFrameEnd()
     {
-        stat.parryFrame = false;
+        status.parryFrame = false;
+    }
+
+    public void BlockStart()
+    {
+        GameManager.instance.SetPlayerMove(false);
+    }
+
+    public void BlockEnd()
+    {
+        GameManager.instance.SetPlayerMove(true);
     }
 }

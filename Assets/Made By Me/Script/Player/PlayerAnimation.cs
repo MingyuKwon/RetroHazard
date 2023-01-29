@@ -303,16 +303,6 @@ public class PlayerAnimation : MonoBehaviour
         GameManager.instance.SetPlayerMove(true);
     }
 
-    public void BlockStart()
-    {
-        GameManager.instance.SetPlayerMove(false);
-    }
-
-    public void BlockEnd()
-    {
-        GameManager.instance.SetPlayerMove(true);
-    }
-
     //Animation event
 
     private void OnDestroy() {
