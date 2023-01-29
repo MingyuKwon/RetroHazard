@@ -96,7 +96,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.083333336
-        value: 1
+        value: 0.8
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -124,7 +124,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -0.06475271
+        value: -0.12
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -174,6 +174,8 @@ AnimationClip:
       value: {fileID: 1916233693, guid: 328486c7f0e49634d962ed3bb16bc156, type: 3}
     - time: 0.25
       value: {fileID: -910523790, guid: 328486c7f0e49634d962ed3bb16bc156, type: 3}
+    - time: 0.33333334
+      value: {fileID: 1182801555, guid: 911d76e312dfb67448e8a857ed14cbd3, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -231,12 +233,13 @@ AnimationClip:
     - {fileID: 1114901149, guid: 328486c7f0e49634d962ed3bb16bc156, type: 3}
     - {fileID: 1916233693, guid: 328486c7f0e49634d962ed3bb16bc156, type: 3}
     - {fileID: -910523790, guid: 328486c7f0e49634d962ed3bb16bc156, type: 3}
+    - {fileID: 1182801555, guid: 911d76e312dfb67448e8a857ed14cbd3, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.5
+    m_StopTime: 0.6666667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -331,7 +334,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.083333336
-        value: 1
+        value: 0.8
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -359,7 +362,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -0.06475271
+        value: -0.12
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -412,7 +415,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.5
+  - time: 0.6666667
     functionName: StabEnd
     data: 
     objectReferenceParameter: {fileID: 0}

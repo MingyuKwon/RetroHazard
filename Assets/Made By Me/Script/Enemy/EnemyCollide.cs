@@ -72,14 +72,12 @@ public class EnemyCollide : MonoBehaviour
 
     public void StunStart()
     {
-        Debug.Log("StunStart");
         enemyManager.isEnemyPaused = true;
         EnemyBodyCollider.enabled = false;
     }
 
     public void StunEnd()
     {
-        Debug.Log("StunEnd");
         enemyManager.isEnemyPaused = false;
         EnemyBodyCollider.enabled = true;
         if(enemyManager.isParried)
@@ -97,13 +95,11 @@ public class EnemyCollide : MonoBehaviour
 
     public void ParreidStart()
     {
-        Debug.Log(1);
         enemyManager.SetEnemyParried(true);
     }
 
     public void ParriedEnd()
     {
-        Debug.Log(2);
         enemyManager.SetEnemyParried(false);
     }
 }
