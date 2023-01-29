@@ -11,8 +11,10 @@ public class PlayerShield : MonoBehaviour
     private CapsuleCollider2D playerBodyCollider;
     PlayerStatus stat;
     private Animator vfxAnimator;
+    private Animator animator;
 
     private void Awake() {
+        animator = GetComponent<Animator>();
         vfxAnimator = GetComponentInChildren<VFX>().gameObject.GetComponent<Animator>();
         stat = GetComponentInChildren<PlayerStatus>();
         playerBodyCollider = GetComponentInChildren<PlayerCollider>().gameObject.GetComponent<CapsuleCollider2D>();
@@ -27,6 +29,8 @@ public class PlayerShield : MonoBehaviour
                 vfxAnimator.SetTrigger("Parry");
                 GameManager.instance.SlowMotion();
             }
+
+            animator.SetTrigger("Block");
         }
         
     }
