@@ -54,5 +54,6 @@ public class PlayerShield : MonoBehaviour
     public void BlockEnd()
     {
         GameManager.instance.SetPlayerMove(true);
+        status.blockSuccessEnemy = null;
     }
 }
