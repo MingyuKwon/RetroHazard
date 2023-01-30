@@ -71,11 +71,7 @@ public class GameManager : MonoBehaviour
 
     public void SetPlayerAnimationIdle()
     {
-        playerAnimation.isAttacking = false;
-        playerAnimation.isParrying = false;
-        playerAnimation.isSheilding = false;
-        playerAnimation.XInput = 0f;
-        playerAnimation.YInput = 0f;
+        playerAnimation.SetPlayerAnimationIdle();
 
     }
 

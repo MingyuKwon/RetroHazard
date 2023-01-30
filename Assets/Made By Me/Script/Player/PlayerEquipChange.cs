@@ -20,12 +20,10 @@ public class PlayerEquipChange : MonoBehaviour
 
     void ChangeWeapon(InputActionEventData data)
     {
-        if(status.Weapon % 10 == 0)
+        status.Energy++;
+        if(status.Energy > 3)
         {
-            status.Weapon = 101;
-        }else
-        {
-            status.Weapon = 100;
+            status.Energy = 0;
         }
     }
 

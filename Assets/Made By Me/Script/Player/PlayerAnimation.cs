@@ -20,8 +20,6 @@ public class PlayerAnimation : MonoBehaviour
     public bool isSheilding; 
     public bool isParrying;
 
-    private float WeaponKind  = 0f;
-
     [Space]
     public float LastXInput = 0f;
     public float LastYInput = -1f;
@@ -58,7 +56,6 @@ public class PlayerAnimation : MonoBehaviour
     void Update()
     {
         GameManager.instance.isPlayerSheilding = isSheilding;
-        WeaponKind = status.Weapon % 10;
         if(GameManager.instance.isPlayerPaused) return;
         
         SetWalkAnimation();
@@ -83,7 +80,7 @@ public class PlayerAnimation : MonoBehaviour
             if(isSheilding) return;
             if(isParrying) return;
 
-            animator.SetFloat("AttackKind", WeaponKind);
+            animator.SetFloat("Energy", status.Energy);
             animator.SetTrigger("Attack");
             isAttacking = true;
             GameManager.instance.SetPlayerMove(false);
@@ -121,7 +118,56 @@ public class PlayerAnimation : MonoBehaviour
         }
     }
 
-    //input Aniamtion Event
+    public void SetPlayerAnimationIdle()
+    {
+        isAttacking = false;
+        isParrying = false;
+        isSheilding = false;
+        XInput = 0f;
+        YInput = 0f;
+        animator.ResetTrigger("Block");
+    }
+
+    //Animation event
+    public void SlashStart()
+    {
+        
+    }
+
+    public void SlashEnd()
+    {
+        isAttacking = false;
+        GameManager.instance.SetPlayerMove(true);
+    }
+
+    public void StabStart()
+    {
+    }
+
+    public void StabEnd() 
+    {
+        isAttacking = false;
+        GameManager.instance.SetPlayerMove(true);
+    }
+    public void ParryStart()
+    {
+        
+    }
+
+    public void ParryEnd()
+    {
+        isParrying = false;
+        GameManager.instance.SetPlayerAnimationIdle();
+        GameManager.instance.SetPlayerMove(true);
+    }
+
+    //Animation event
+
+    private void OnDestroy() {
+    }
+
+
+     //input Aniamtion Event
 
     // keep presseing
     void UPPressed(InputActionEventData data)
@@ -268,43 +314,4 @@ public class PlayerAnimation : MonoBehaviour
     // just the time release the button
 
     //input Aniamtion Event
-
-
-
-    //Animation event
-    public void SlashStart()
-    {
-        
-    }
-
-    public void SlashEnd()
-    {
-        isAttacking = false;
-        GameManager.instance.SetPlayerMove(true);
-    }
-
-    public void StabStart()
-    {
-    }
-
-    public void StabEnd() 
-    {
-        isAttacking = false;
-        GameManager.instance.SetPlayerMove(true);
-    }
-    public void ParryStart()
-    {
-        
-    }
-
-    public void ParryEnd()
-    {
-        isParrying = false;
-        GameManager.instance.SetPlayerMove(true);
-    }
-
-    //Animation event
-
-    private void OnDestroy() {
-    }
 }

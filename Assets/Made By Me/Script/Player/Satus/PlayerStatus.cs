@@ -17,8 +17,9 @@ public class PlayerStatus : MonoBehaviour
     public int ArmorDefence = 0;
 
     [Header("Equipped")]
-    public int Weapon = 100;
+    public int Energy = 0;
     public int Sheild = 101;
+    
 
     [Header("InGame")]
     public bool parryFrame = false;

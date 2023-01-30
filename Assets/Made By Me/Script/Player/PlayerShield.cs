@@ -22,16 +22,18 @@ public class PlayerShield : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
 
-        if(other.otherCollider.tag == "Sheild")
+        if(other.otherCollider.tag == "Sheild" && other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
             if(other.GetContact(0).collider.tag == "Attack" && status.parryFrame)
             {
                 vfxAnimator.SetTrigger("Parry");
                 GameManager.instance.SlowMotion();
+            }else
+            {
+                animator.SetTrigger("Block");
+                status.blockSuccessEnemy = other.GetContact(0).collider.transform.parent.transform.parent.name;
             }
             
-            animator.SetTrigger("Block");
-            status.blockSuccessEnemy = other.GetContact(0).collider.transform.parent.transform.parent.name;
         }
         
     }
