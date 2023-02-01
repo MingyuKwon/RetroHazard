@@ -46,7 +46,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.15, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -247,7 +247,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8856375875515930427}
   - component: {fileID: 1624969407852753537}
-  - component: {fileID: 8406867541495432556}
   m_Layer: 7
   m_Name: Status
   m_TagString: System Management
@@ -287,24 +286,10 @@ MonoBehaviour:
   Speed: 0
   Attack: 10
   ArmorDefence: 5
-  Weapon: 1
-  Sheild: 11
+  Energy: 0
+  Sheild: 0
   parryFrame: 0
---- !u!114 &8406867541495432556
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5173697449217300463}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4812573a544c4f43b95e10facf5597b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SheildMaxDurability: 10
-  SheildCurrentDurability: 5
-  SheildReductionRate: 0.7
+  blockSuccessEnemy: 
 --- !u!1 &6387553226888266342
 GameObject:
   m_ObjectHideFlags: 0
@@ -402,7 +387,6 @@ MonoBehaviour:
   isAttacking: 0
   isSheilding: 0
   isParrying: 0
-  AttackKind: 0
   LastXInput: 0
   LastYInput: -1
   XInput: 0
@@ -446,7 +430,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1575797767
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 1
   m_Sprite: {fileID: 1796625577, guid: 0dd4469dd1abd2d4b8d472eedba8098c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -491,7 +475,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37791aefc99ddd4fa2c15b10d42fe1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reflectForceScholar: 300
 --- !u!114 &5496397582843710029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -548,6 +531,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 6387553226888266341}
     m_Modifications:
     - target: {fileID: -4494166270279363422, guid: 13cda4b25387c874ca7950e9ca7e2702, type: 3}
+      propertyPath: BodyCollider
+      value: 
+      objectReference: {fileID: 1393747762899981243}
+    - target: {fileID: -4494166270279363422, guid: 13cda4b25387c874ca7950e9ca7e2702, type: 3}
       propertyPath: attackCollider
       value: 
       objectReference: {fileID: 2853062384719752504}
@@ -561,15 +548,15 @@ PrefabInstance:
       objectReference: {fileID: 1393747762899981243}
     - target: {fileID: 2528563590888435374, guid: 13cda4b25387c874ca7950e9ca7e2702, type: 3}
       propertyPath: m_Size.x
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2528563590888435374, guid: 13cda4b25387c874ca7950e9ca7e2702, type: 3}
       propertyPath: m_Size.y
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2528563590888435374, guid: 13cda4b25387c874ca7950e9ca7e2702, type: 3}
       propertyPath: m_SortingLayer
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2528563590888435374, guid: 13cda4b25387c874ca7950e9ca7e2702, type: 3}
       propertyPath: m_SortingLayerID
@@ -625,7 +612,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3200710469118324047, guid: 13cda4b25387c874ca7950e9ca7e2702, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13cda4b25387c874ca7950e9ca7e2702, type: 3}

@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!70 &88209326 stripped
-CapsuleCollider2D:
-  m_CorrespondingSourceObject: {fileID: 1393747762899981243, guid: 3a038018e0d4ac142a5a9ed9a8a8fa80, type: 3}
-  m_PrefabInstance: {fileID: 6387553227980103771}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &782279406 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8539821892566529945, guid: 0ec8d5ca52754fb4880419bd55f4906d, type: 3}
@@ -1265,54 +1260,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2853062384719752504, guid: 3a038018e0d4ac142a5a9ed9a8a8fa80, type: 3}
-      propertyPath: m_Size.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2853062384719752504, guid: 3a038018e0d4ac142a5a9ed9a8a8fa80, type: 3}
-      propertyPath: m_Size.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2853062384719752504, guid: 3a038018e0d4ac142a5a9ed9a8a8fa80, type: 3}
-      propertyPath: m_Offset.x
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 2853062384719752504, guid: 3a038018e0d4ac142a5a9ed9a8a8fa80, type: 3}
-      propertyPath: m_Offset.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3467572099129448923, guid: 3a038018e0d4ac142a5a9ed9a8a8fa80, type: 3}
-      propertyPath: BodyCollider
-      value: 
-      objectReference: {fileID: 88209326}
-    - target: {fileID: 4176982278061835403, guid: 3a038018e0d4ac142a5a9ed9a8a8fa80, type: 3}
-      propertyPath: m_Size.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4176982278061835403, guid: 3a038018e0d4ac142a5a9ed9a8a8fa80, type: 3}
-      propertyPath: m_Size.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4176982278061835403, guid: 3a038018e0d4ac142a5a9ed9a8a8fa80, type: 3}
-      propertyPath: m_Offset.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4176982278061835403, guid: 3a038018e0d4ac142a5a9ed9a8a8fa80, type: 3}
-      propertyPath: m_Offset.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5956444630566986711, guid: 3a038018e0d4ac142a5a9ed9a8a8fa80, type: 3}
-      propertyPath: m_Size.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5956444630566986711, guid: 3a038018e0d4ac142a5a9ed9a8a8fa80, type: 3}
-      propertyPath: m_Size.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5956444630566986711, guid: 3a038018e0d4ac142a5a9ed9a8a8fa80, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6387553226888266341, guid: 3a038018e0d4ac142a5a9ed9a8a8fa80, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1360,10 +1307,6 @@ PrefabInstance:
     - target: {fileID: 6387553226888266342, guid: 3a038018e0d4ac142a5a9ed9a8a8fa80, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 6761588402886647862, guid: 3a038018e0d4ac142a5a9ed9a8a8fa80, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a038018e0d4ac142a5a9ed9a8a8fa80, type: 3}

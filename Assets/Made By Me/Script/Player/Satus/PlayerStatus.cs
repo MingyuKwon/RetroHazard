@@ -18,7 +18,7 @@ public class PlayerStatus : MonoBehaviour
 
     [Header("Equipped")]
     public int Energy = 0;
-    public int Sheild = 101;
+    public int Sheild = 0;
     
 
     [Header("InGame")]

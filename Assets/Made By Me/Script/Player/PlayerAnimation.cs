@@ -95,6 +95,7 @@ public class PlayerAnimation : MonoBehaviour
         if(player.GetButton("Shield"))
         {
             GameManager.instance.SetPlayerMove(false);
+            animator.SetFloat("Sheild Kind", status.Sheild);
         }
 
         if(player.GetButtonUp("Shield"))

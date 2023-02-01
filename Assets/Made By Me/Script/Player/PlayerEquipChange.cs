@@ -13,7 +13,7 @@ public class PlayerEquipChange : MonoBehaviour
     private void Awake() {
         player = ReInput.players.GetPlayer(0);
         player.AddInputEventDelegate(ChangeWeapon, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Weapon Change");
-        player.AddInputEventDelegate(ChangeEnergy, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Energy Change");
+        player.AddInputEventDelegate(ChangeSheild, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Sheild Change");
 
         status = GetComponentInChildren<PlayerStatus>();
     }
@@ -27,8 +27,12 @@ public class PlayerEquipChange : MonoBehaviour
         }
     }
 
-    void ChangeEnergy(InputActionEventData data)
+    void ChangeSheild(InputActionEventData data)
     {
-
+        status.Sheild++;
+        if(status.Sheild > 2)
+        {
+            status.Sheild = 0;
+        }
     }
 }
