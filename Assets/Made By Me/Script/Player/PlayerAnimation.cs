@@ -111,7 +111,7 @@ public class PlayerAnimation : MonoBehaviour
 
     private void SetParryAnimation()
     {
-        if(player.GetButton("Shield") && player.GetButtonDown("Interactive"))
+        if(player.GetButton("Shield") && player.GetButtonDown("Interactive") && status.Sheild != 2)
         {
             if(isParrying) return;
             animator.SetTrigger("Parry");
