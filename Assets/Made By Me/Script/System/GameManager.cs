@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Rewired;
 using Sirenix.OdinInspector;
 using DG.Tweening;
@@ -8,6 +10,8 @@ using DG.Tweening;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
+    public static event Action GameOver;
+
     PlayerMove player;
     PlayerAnimation playerAnimation;
 

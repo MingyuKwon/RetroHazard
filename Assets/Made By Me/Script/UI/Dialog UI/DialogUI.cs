@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class DialogUI : MonoBehaviour
 {
-    public static DialogUI instance = null;
-
     GameObject dialogPanel;
     GameObject speakerPanel;
 
@@ -16,15 +14,6 @@ public class DialogUI : MonoBehaviour
     Text speakerText;
 
     void Awake() {
-         if(instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(this.gameObject);
-        }else
-        {
-            Destroy(this.gameObject);
-        }
-
         dialogPanel = GetComponentInChildren<DialogPanel>().gameObject;
         speakerPanel = GetComponentInChildren<SpeakerPanel>().gameObject;
 

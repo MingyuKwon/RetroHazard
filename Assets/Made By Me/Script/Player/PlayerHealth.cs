@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -52,13 +53,28 @@ public class PlayerHealth : MonoBehaviour
                 }
 
                 ForceInput = other.GetContact(0).normal;
+                DamageReDuce();
+                Debug.Log("player had damage : " + damage);
                 Reflect(damage);
                 animator.SetTrigger("Stun");
+                status.HealthChange(damage);
             }
         }
 
-        
     }
+
+    private void DamageReDuce()
+    {
+        damage = damage * ( (float)(100 - status.ArmorDefence) / 100 );
+    }
+
+    private void Reflect(float Damage)
+    {
+        Damage = Mathf.Log(Damage / damageStandard + 1);
+
+        rb.AddForce(ForceInput * reflectForceScholar * Damage);
+    }
+
 
     public void StunStart()
     {
@@ -75,10 +91,4 @@ public class PlayerHealth : MonoBehaviour
         playerBodyCollider.enabled = true;
     }
 
-    private void Reflect(float Damage)
-    {
-        Damage = Mathf.Log(Damage / damageStandard + 1);
-
-        rb.AddForce(ForceInput * reflectForceScholar * Damage);
-    }
 }

@@ -25,6 +25,8 @@ public class PlayerEquipChange : MonoBehaviour
         {
             status.Energy = 0;
         }
+
+        status.Attack = status.EnergyDamage[status.Energy];
     }
 
     void ChangeSheild(InputActionEventData data)

@@ -43,12 +43,15 @@ public class EnemyCollide : MonoBehaviour
                 }
                 else if(contactCollider.tag == "Attack")
                 {
-                    damage = contactPlayerStat.Attack * contactPlayerStat.Attack;
+                    damage = contactPlayerStat.Attack;
                     animator.SetTrigger("Stun");
                 }
 
                 ForceInput = other.GetContact(0).normal;
+                DamageReDuce();
+                Debug.Log("Enemy had damage : " + damage);
                 Reflect(damage);
+                status.HealthChange(damage);
             
             }
             else if(other.otherCollider.tag == "Attack")
@@ -91,6 +94,11 @@ public class EnemyCollide : MonoBehaviour
         Damage = Mathf.Log(Damage / damageStandard + 1);
 
         rb.AddForce(ForceInput * reflectForceScholar * Damage);
+    }
+
+    private void DamageReDuce()
+    {
+        damage = damage * ( (float)(100 - status.ArmorDefence) / 100 );
     }
 
     public void ParreidStart()

@@ -152,7 +152,7 @@ public class PlayerAnimation : MonoBehaviour
     }
     public void ParryStart()
     {
-        
+        GameManager.instance.SetPlayerMove(false);
     }
 
     public void ParryEnd()

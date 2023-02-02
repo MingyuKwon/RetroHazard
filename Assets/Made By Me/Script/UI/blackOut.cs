@@ -9,25 +9,12 @@ using DG.Tweening;
 
 public class blackOut : MonoBehaviour
 {
-    public static blackOut instance;
     float delayTime = 1.5f;
     [SerializeField] Image image;
 
-    void Awake() {
-        if(instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(this.transform.parent.gameObject);
-        }else
-        {
-            Destroy(this.transform.parent.gameObject);
-        }
-
-    }
-
     public void BlackOut(int index)
     {
-        instance.StartCoroutine(blackout(index));
+        StartCoroutine(blackout(index));
     }
 
      IEnumerator blackout(int index)

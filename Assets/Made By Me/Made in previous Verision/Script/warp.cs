@@ -14,7 +14,7 @@ public class warp : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other) 
     {
         cameraSetting.gameObject.SetActive(false);
-        blackOut.instance.BlackOut(sceneIndex);
+        GameManagerUI.instance.BlackOut(sceneIndex);
         other.gameObject.transform.position = new Vector3(wayPoint.x, wayPoint.y, other.gameObject.transform.position.z);
     }   
 }

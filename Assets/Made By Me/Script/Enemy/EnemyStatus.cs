@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,8 @@ using DG.Tweening;
 public class EnemyStatus : MonoBehaviour
 {
     [SerializeField] EnemyStatValue[] EnemyStats;
+    public static event Action EnemyHealthChange;
+    public static event Action EnemyDeath;
 
     [Header("Basic")]
     public float MaxHP = 100f;
@@ -31,6 +34,16 @@ public class EnemyStatus : MonoBehaviour
 
         bodyDamageRatio = EnemyStats[GameManager.instance.DEFCON].bodyDamageRatio;
         AttackDamageRatio = EnemyStats[GameManager.instance.DEFCON].AttackDamageRatio;
+    }
+
+    public void HealthChange(float damage)
+    {
+        CurrentHP -= damage;
+        EnemyHealthChange?.Invoke();
+        if(CurrentHP <=0 )
+        {
+            EnemyDeath?.Invoke();
+        }
     }
 
 }

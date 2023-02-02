@@ -23,6 +23,11 @@ public class GameManagerUI : MonoBehaviour
         dialogUI = FindObjectOfType<DialogUI>();
     }
 
+    public void BlackOut(int index)
+    {
+        blackoutUI.BlackOut(index);
+    }
+
     public void VisualizeDialogUI(bool flag)
     {
         dialogUI.VisualizeDialogUI(flag);
