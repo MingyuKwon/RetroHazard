@@ -51,11 +51,13 @@ public class PlayerShield : MonoBehaviour
     public void BlockStart()
     {
         GameManager.instance.SetPlayerMove(false);
+        status.isBlocked = true;
     }
 
     public void BlockEnd()
     {
         GameManager.instance.SetPlayerMove(true);
+        status.isBlocked = false;
         status.blockSuccessEnemy = null;
     }
 }

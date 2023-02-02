@@ -28,6 +28,7 @@ public class PlayerStatus : MonoBehaviour
 
     [Header("InGame")]
     public bool parryFrame = false;
+    public bool isBlocked = false;
     public string blockSuccessEnemy = null;
 
 

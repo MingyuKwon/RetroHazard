@@ -100,6 +100,7 @@ public class PlayerAnimation : MonoBehaviour
 
         if(player.GetButtonUp("Shield"))
         {
+            if(status.isBlocked) return;
             GameManager.instance.SetPlayerMove(true);
         }
 
