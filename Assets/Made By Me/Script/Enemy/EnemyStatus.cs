@@ -11,6 +11,7 @@ public class EnemyStatus : MonoBehaviour
     [SerializeField] EnemyStatValue[] EnemyStats;
     public static event Action EnemyHealthChange;
     public static event Action EnemyDeath;
+    private EnemyManager enemyManager = null;
 
     [Header("Basic")]
     public float MaxHP = 100f;
@@ -23,6 +24,14 @@ public class EnemyStatus : MonoBehaviour
     [Space]
     public float bodyDamageRatio;
     public float AttackDamageRatio;
+
+    private void OnEnable() {
+        EnemyDeath += DestroySelf;
+    }
+
+    private void Awake() {
+        enemyManager = transform.parent.GetComponent<EnemyManager>();
+    }
 
     private void Start() {
         MaxHP = EnemyStats[GameManager.instance.DEFCON].MaxHP;
@@ -45,5 +54,11 @@ public class EnemyStatus : MonoBehaviour
             EnemyDeath?.Invoke();
         }
     }
+
+    private void DestroySelf()
+    {
+        enemyManager.KillEnemy();
+    }
+
 
 }

@@ -52,4 +52,14 @@ public class VFX : MonoBehaviour
     public void ParriedVFXEnd()
     {
     }
+
+    public void DeathStart()
+    {
+
+    }
+
+    public void DeathEnd()
+    {
+        Destroy(this.transform.parent.gameObject);
+    }
 }

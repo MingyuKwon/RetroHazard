@@ -17,7 +17,7 @@ public class EnemyCollide : MonoBehaviour
 
     const float reflectForceScholar = 1000f;
     private float damage = 0f;
-    const float damageStandard = 50f;
+    const float damageStandard = 20f;
     
     private void Awake() {
         status = GetComponentInChildren<EnemyStatus>();

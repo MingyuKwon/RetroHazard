@@ -34,4 +34,10 @@ public class EnemyManager : MonoBehaviour
         isEnemyPaused = flag;
     }
 
+    public void KillEnemy()
+    {
+        animator.SetTrigger("Die");
+        vfxAnimator.SetTrigger("Die");
+    }
+
 }
