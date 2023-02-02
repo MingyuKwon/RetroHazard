@@ -25,6 +25,8 @@ public class EnemyStatus : MonoBehaviour
     public float bodyDamageRatio;
     public float AttackDamageRatio;
 
+    public bool ParriedWithParrySheild;
+
     private void OnEnable() {
         EnemyDeath += DestroySelf;
     }

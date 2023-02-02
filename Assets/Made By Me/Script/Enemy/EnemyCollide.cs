@@ -49,6 +49,7 @@ public class EnemyCollide : MonoBehaviour
 
                 ForceInput = other.GetContact(0).normal;
                 DamageReDuce();
+                damage = damage * (float)(status.ParriedWithParrySheild ? 1.5 : 1);
                 Debug.Log("Enemy had damage : " + damage);
                 Reflect(damage);
                 status.HealthChange(damage);
@@ -60,6 +61,7 @@ public class EnemyCollide : MonoBehaviour
                 {
                     if(contactPlayerStat.parryFrame && !enemyManager.isParried)
                     {
+                        if(contactPlayerStat.Sheild == 1) status.ParriedWithParrySheild = true;
                         enemyManager.TriggerEnemyParriedAnimation();
                     }
                 }
@@ -75,6 +77,7 @@ public class EnemyCollide : MonoBehaviour
 
     public void StunStart()
     {
+        status.ParriedWithParrySheild = false;
         enemyManager.isEnemyPaused = true;
         EnemyBodyCollider.enabled = false;
     }
@@ -83,6 +86,7 @@ public class EnemyCollide : MonoBehaviour
     {
         enemyManager.isEnemyPaused = false;
         EnemyBodyCollider.enabled = true;
+
         if(enemyManager.isParried)
         {
             enemyManager.SetEnemyParried(false);
@@ -108,6 +112,7 @@ public class EnemyCollide : MonoBehaviour
 
     public void ParriedEnd()
     {
+        status.ParriedWithParrySheild = false;
         enemyManager.SetEnemyParried(false);
     }
 }

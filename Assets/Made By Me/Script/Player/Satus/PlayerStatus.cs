@@ -23,7 +23,7 @@ public class PlayerStatus : MonoBehaviour
     [Header("Equipped")]
     public int Energy = 0;
     public int[] EnergyDamage = {20, 100 , 200, 150};
-    public int Sheild = 0;
+    public int Sheild = 0; // 0-> normal, 1-> parry, 2 -> big
     
 
     [Header("InGame")]
