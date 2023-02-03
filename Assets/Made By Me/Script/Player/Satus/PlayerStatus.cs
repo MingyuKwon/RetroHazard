@@ -13,8 +13,8 @@ public class PlayerStatus : MonoBehaviour
     public static event Action<float> EnergyChangeEvent;
 
     public static event Action PlayerDeathEvent;
-    public static event Action SheildCrashEvent;
-    public static event Action SheildRecoveryEvent;
+    public static event Action<bool> SheildCrashEvent;
+    public static event Action<bool> SheildRecoveryEvent;
 
     [Header("Basic")]
     public float MaxHP = 100;
@@ -64,6 +64,8 @@ public class PlayerStatus : MonoBehaviour
 
     public void SheildDurabilityChange(float damage)
     {
+        bool flag;
+        flag = (damage == 0f) ? true : false;
         SheildDurability -= damage;
         GameManager.instance.Sheild_Durability_Reducing = false;
         SheildMaganize[Sheild] = (int)SheildDurability;
@@ -72,13 +74,13 @@ public class PlayerStatus : MonoBehaviour
         {
             SheildDurability = 0;
             SheildCrash = true;
-            SheildCrashEvent?.Invoke();
+            SheildCrashEvent?.Invoke(flag);
         }else
         {
             if(SheildCrash)
             {
                 SheildCrash = false;
-                SheildRecoveryEvent?.Invoke();
+                SheildRecoveryEvent?.Invoke(flag);
             }
         }
         

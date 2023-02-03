@@ -60,7 +60,7 @@ public class PlayerAnimation : MonoBehaviour
         PlayerStatus.SheildRecoveryEvent += SetSheildRecovery;
     }
 
-    private void SetSheildCrash()
+    private void SetSheildCrash(bool ChangeSheild)
     {
         sheildCrash = true;
         isSheilding = false;
@@ -68,7 +68,7 @@ public class PlayerAnimation : MonoBehaviour
         GameManager.instance.SetPlayerMove(true);
     }
 
-    private void SetSheildRecovery()
+    private void SetSheildRecovery(bool ChangeSheild)
     {
         sheildCrash = false;
         GameManager.instance.SetPlayerMove(true);

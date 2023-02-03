@@ -1,4 +1,5 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
@@ -10,6 +11,7 @@ public class VFX : MonoBehaviour
     public CapsuleCollider2D BodyCollider;
     public BoxCollider2D attackCollider;
     public BoxCollider2D sheildCollider;
+    private Animator vfxAnimator;
 
     private EnemyManager enemyManager = null;
     private bool isPlayer;
@@ -24,7 +26,29 @@ public class VFX : MonoBehaviour
         {
             isPlayer = false;
         }
+
+        vfxAnimator = GetComponent<Animator>();
     }
+
+    private void OnEnable() {
+        PlayerStatus.SheildCrashEvent += SheildCrash;
+        PlayerStatus.SheildRecoveryEvent += SheildRecovery;
+    }
+
+    private void SheildCrash(bool ChangeSheild)
+    {
+        if(ChangeSheild) return;
+        if(isPlayer)
+        vfxAnimator.SetTrigger("Sheild Crash");
+    }
+
+    private void SheildRecovery(bool ChangeSheild)
+    {
+        if(ChangeSheild) return;
+        if(isPlayer)
+        vfxAnimator.SetTrigger("Sheild Recovery");
+    }
+
 
     public void ParryVFXStart()
     {

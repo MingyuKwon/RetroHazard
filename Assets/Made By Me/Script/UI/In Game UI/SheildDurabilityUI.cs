@@ -26,12 +26,12 @@ public class SheildDurabilityUI : MonoBehaviour
         sheildDurabilityText.text = CurrentDurability.ToString();
         sheildDurabilityText.color = Color.white;
     }
-    private void SetSheildCrash()
+    private void SetSheildCrash(bool ChangeSheild)
     {
         sheildDurabilityText.color = Color.red;
     }
 
-    private void SetSheildRecovery()
+    private void SetSheildRecovery(bool ChangeSheild)
     {
         sheildDurabilityText.color = Color.white;
     }
