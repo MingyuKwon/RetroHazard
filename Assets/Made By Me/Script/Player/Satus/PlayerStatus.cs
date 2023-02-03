@@ -48,7 +48,7 @@ public class PlayerStatus : MonoBehaviour
     private void Awake() {
         Attack = EnergyDamage[Energy];
         SheildDurability = 5;
-        EnergyAmount = 0;
+        EnergyAmount = EnergyMaganize[Energy];
     }
 
     public void HealthChange(float damage)
@@ -88,12 +88,16 @@ public class PlayerStatus : MonoBehaviour
 
     public void EnergyChange(float energyReduce)
     {
-        EnergyAmount -= energyReduce;
-        if(EnergyAmount <=0 )
+        if(Energy != 0)
         {
-            
+            EnergyAmount -= energyReduce;
+            if(EnergyAmount <= 0)
+            {
+                EnergyAmount = 0;
+            }
+            EnergyMaganize[Energy] = (int)EnergyAmount;
         }
-        EnergyMaganize[Energy] = (int)EnergyAmount;
+
         EnergyChangeEvent?.Invoke(EnergyAmount);
     }
 }

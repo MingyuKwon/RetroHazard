@@ -95,6 +95,7 @@ public class PlayerAnimation : MonoBehaviour
 
     private void SetAttackAnimation()
     {
+        if(status.EnergyAmount == 0) return;
         if(player.GetButtonDown("Attack"))
         {
             if(isAttacking) return;
@@ -105,6 +106,7 @@ public class PlayerAnimation : MonoBehaviour
             animator.SetTrigger("Attack");
             isAttacking = true;
             GameManager.instance.SetPlayerMove(false);
+            status.EnergyChange(1);
             
         }
     }
