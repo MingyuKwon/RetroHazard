@@ -15,6 +15,8 @@ public class PlayerAnimation : MonoBehaviour
 
     [Header("changable")]
 
+    public bool sheildCrash;
+
     [Header("For Debug")]
     public bool isAttacking;
     public bool isSheilding; 
@@ -51,6 +53,23 @@ public class PlayerAnimation : MonoBehaviour
         player.AddInputEventDelegate(DownJustReleased, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased, "Move Down");
         player.AddInputEventDelegate(RightJustReleased, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased,"Move Right");
         player.AddInputEventDelegate(LeftJustReleased, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased,"Move Left");
+    }
+
+    private void OnEnable() {
+        PlayerStatus.SheildCrashEvent += SetSheildCrash;
+        PlayerStatus.SheildRecoveryEvent += SetSheildRecovery;
+    }
+
+    private void SetSheildCrash()
+    {
+        sheildCrash = true;
+        SetPlayerAnimationIdle();
+    }
+
+    private void SetSheildRecovery()
+    {
+        sheildCrash = false;
+        SetPlayerAnimationIdle();
     }
 
     void Update()
@@ -90,7 +109,7 @@ public class PlayerAnimation : MonoBehaviour
 
     private void SetShieldAnimation()
     {
-        if(isParrying) return;
+        if(isParrying || sheildCrash) return;
 
         if(player.GetButton("Shield"))
         {
@@ -112,9 +131,10 @@ public class PlayerAnimation : MonoBehaviour
 
     private void SetParryAnimation()
     {
+        if(isParrying || sheildCrash) return;
+
         if(player.GetButton("Shield") && player.GetButtonDown("Interactive") && status.Sheild != 2)
         {
-            if(isParrying) return;
             animator.SetTrigger("Parry");
             isParrying = true;
         }
@@ -125,9 +145,11 @@ public class PlayerAnimation : MonoBehaviour
         isAttacking = false;
         isParrying = false;
         isSheilding = false;
+        animator.SetBool("Shield", isSheilding);
         XInput = 0f;
         YInput = 0f;
         animator.ResetTrigger("Block");
+        animator.ResetTrigger("Parry");
     }
 
     //Animation event
@@ -159,6 +181,7 @@ public class PlayerAnimation : MonoBehaviour
     public void ParryEnd()
     {
         isParrying = false;
+        
         GameManager.instance.SetPlayerAnimationIdle();
         GameManager.instance.SetPlayerMove(true);
     }

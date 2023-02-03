@@ -27,10 +27,12 @@ public class PlayerShield : MonoBehaviour
             if(other.GetContact(0).collider.tag == "Attack" && status.parryFrame)
             {
                 vfxAnimator.SetTrigger("Parry");
+                status.parrySuccess = true;
                 GameManager.instance.SlowMotion();
             }else
             {
                 animator.SetTrigger("Block");
+                status.SheildDurabilityChange(1);
                 status.blockSuccessEnemy = other.GetContact(0).collider.transform.parent.transform.parent.name;
             }
             
@@ -46,6 +48,11 @@ public class PlayerShield : MonoBehaviour
     public void ParryFrameEnd()
     {
         status.parryFrame = false;
+        if(!status.parrySuccess)
+        {
+            status.SheildDurabilityChange(1);
+        }
+        status.parrySuccess = false;
     }
 
     public void BlockStart()

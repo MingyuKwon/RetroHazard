@@ -8,39 +8,89 @@ using DG.Tweening;
 
 public class PlayerStatus : MonoBehaviour
 {
-    public static event Action<float> PlayerHealthChange;
-    public static event Action PlayerDeath;
+    public static event Action<float> PlayerHealthChangeEvent;
+    public static event Action<float> SheildDurabilityChangeEvent;
+    public static event Action<float> EnergyChangeEvent;
+
+    public static event Action PlayerDeathEvent;
+    public static event Action SheildCrashEvent;
+    public static event Action SheildRecoveryEvent;
 
     [Header("Basic")]
     public float MaxHP = 100;
-    public float CurrentHP = 50;
+    public float CurrentHP = 100;
     public float Speed;
 
     [Header("Battle")]
     public float Attack = 0;
     public float ArmorDefence = 0;
+    public float SheildDurability = 0;
+    public bool SheildCrash = false;
+    public float EnergyAmount = 0;
 
     [Header("Equipped")]
     public int Energy = 0;
     public int[] EnergyDamage = {20, 100 , 200, 150};
+    public int[] EnergyMaganize = {-1, 0 , 0, 0};
+    public int[] EnergyMaganizeMaximum = {-1, 10 , 8, 5};
+
     public int Sheild = 0; // 0-> normal, 1-> parry, 2 -> big
+    public int[] SheildMaganize = {5 , 0, 0};
+    public int[] SheildMaganizeMaximum = { 10 , 5, 15};
     
 
     [Header("InGame")]
     public bool parryFrame = false;
+    public bool parrySuccess = false;
     public bool isBlocked = false;
     public string blockSuccessEnemy = null;
 
+    private void Awake() {
+        Attack = EnergyDamage[Energy];
+        SheildDurability = 5;
+        EnergyAmount = 0;
+    }
 
     public void HealthChange(float damage)
     {
         CurrentHP -= damage;
         if(CurrentHP <=0 )
         {
-            PlayerHealthChange?.Invoke(0f);
-            PlayerDeath?.Invoke();
+            PlayerHealthChangeEvent?.Invoke(0f);
+            PlayerDeathEvent?.Invoke();
         }
-        PlayerHealthChange?.Invoke(CurrentHP);
+        PlayerHealthChangeEvent?.Invoke(CurrentHP);
+    }
+
+    public void SheildDurabilityChange(float damage)
+    {
+        SheildDurability -= damage;
+        if(SheildDurability <=0 )
+        {
+            SheildDurability = 0;
+            SheildCrash = true;
+            SheildCrashEvent?.Invoke();
+        }else
+        {
+            if(SheildCrash)
+            {
+                SheildCrash = false;
+                SheildRecoveryEvent?.Invoke();
+            }
+        }
+        SheildMaganize[Sheild] = (int)SheildDurability;
+        SheildDurabilityChangeEvent?.Invoke(SheildDurability);
+    }
+
+    public void EnergyChange(float energyReduce)
+    {
+        EnergyAmount -= energyReduce;
+        if(EnergyAmount <=0 )
+        {
+            
+        }
+        EnergyMaganize[Energy] = (int)EnergyAmount;
+        EnergyChangeEvent?.Invoke(EnergyAmount);
     }
 }
 
