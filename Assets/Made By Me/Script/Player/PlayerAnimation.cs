@@ -63,13 +63,15 @@ public class PlayerAnimation : MonoBehaviour
     private void SetSheildCrash()
     {
         sheildCrash = true;
-        SetPlayerAnimationIdle();
+        isSheilding = false;
+        animator.SetBool("Shield", isSheilding);
+        GameManager.instance.SetPlayerMove(true);
     }
 
     private void SetSheildRecovery()
     {
         sheildCrash = false;
-        SetPlayerAnimationIdle();
+        GameManager.instance.SetPlayerMove(true);
     }
 
     void Update()
@@ -109,13 +111,9 @@ public class PlayerAnimation : MonoBehaviour
 
     private void SetShieldAnimation()
     {
-        if(isParrying || sheildCrash) return;
+        if(isParrying) return;
 
-        if(player.GetButton("Shield"))
-        {
-            GameManager.instance.SetPlayerMove(false);
-            animator.SetFloat("Sheild Kind", status.Sheild);
-        }
+        if(sheildCrash) return;
 
         if(player.GetButtonUp("Shield"))
         {
@@ -123,6 +121,11 @@ public class PlayerAnimation : MonoBehaviour
             GameManager.instance.SetPlayerMove(true);
         }
 
+        if(player.GetButton("Shield"))
+        {
+            GameManager.instance.SetPlayerMove(false);
+            animator.SetFloat("Sheild Kind", status.Sheild);
+        }
 
         isSheilding = player.GetButton("Shield");
         animator.SetBool("Shield", isSheilding);
@@ -145,7 +148,6 @@ public class PlayerAnimation : MonoBehaviour
         isAttacking = false;
         isParrying = false;
         isSheilding = false;
-        animator.SetBool("Shield", isSheilding);
         XInput = 0f;
         YInput = 0f;
         animator.ResetTrigger("Block");
@@ -171,18 +173,6 @@ public class PlayerAnimation : MonoBehaviour
     public void StabEnd() 
     {
         isAttacking = false;
-        GameManager.instance.SetPlayerMove(true);
-    }
-    public void ParryStart()
-    {
-        GameManager.instance.SetPlayerMove(false);
-    }
-
-    public void ParryEnd()
-    {
-        isParrying = false;
-        
-        GameManager.instance.SetPlayerAnimationIdle();
         GameManager.instance.SetPlayerMove(true);
     }
 

@@ -65,6 +65,9 @@ public class PlayerStatus : MonoBehaviour
     public void SheildDurabilityChange(float damage)
     {
         SheildDurability -= damage;
+        GameManager.instance.Sheild_Durability_Reducing = false;
+        SheildMaganize[Sheild] = (int)SheildDurability;
+        SheildDurabilityChangeEvent?.Invoke(SheildDurability);
         if(SheildDurability <=0 )
         {
             SheildDurability = 0;
@@ -78,8 +81,7 @@ public class PlayerStatus : MonoBehaviour
                 SheildRecoveryEvent?.Invoke();
             }
         }
-        SheildMaganize[Sheild] = (int)SheildDurability;
-        SheildDurabilityChangeEvent?.Invoke(SheildDurability);
+        
     }
 
     public void EnergyChange(float energyReduce)

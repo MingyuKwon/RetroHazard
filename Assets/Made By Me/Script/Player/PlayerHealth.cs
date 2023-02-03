@@ -43,6 +43,7 @@ public class PlayerHealth : MonoBehaviour
 
                 if(status.blockSuccessEnemy == contactObject.name) return;
 
+
                 if(contactCollider.tag == "Enemy Body")
                 {
                     damage = contactEnemyStat.Attack * contactEnemyStat.bodyDamageRatio;
@@ -78,6 +79,10 @@ public class PlayerHealth : MonoBehaviour
 
     public void StunStart()
     {
+        if(GameManager.instance.Sheild_Durability_Reducing)
+        {
+            status.SheildDurabilityChange(1);
+        }
         GameManager.instance.isPlayerPaused = true;
         GameManager.instance.SetPlayerMove(true);
         GameManager.instance.SetPlayerAnimationIdle();

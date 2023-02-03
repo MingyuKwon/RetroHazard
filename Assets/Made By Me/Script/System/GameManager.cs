@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     [Header("Flag field")]
     public bool isPlayerNearNPC = false;
     public bool isPlayerSheilding = false;
+    public bool Sheild_Durability_Reducing = false;
     public bool isPlayerPaused = false; // Every player script refer to this value 
 
     void Awake() {
@@ -44,6 +45,15 @@ public class GameManager : MonoBehaviour
     void Start() {
         player = FindObjectOfType<PlayerMove>();
         playerAnimation = FindObjectOfType<PlayerAnimation>();
+    }
+
+    private void OnEnable() {
+        PlayerShield.Sheild_Durability_Reduce_Start_Event += Set_Sheild_Durability_Reducing;
+    }
+
+    private void Set_Sheild_Durability_Reducing()
+    {
+        Sheild_Durability_Reducing = true;
     }
 
     private void Update() {

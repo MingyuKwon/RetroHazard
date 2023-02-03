@@ -18,19 +18,25 @@ public class SheildDurabilityUI : MonoBehaviour
         PlayerStatus.SheildDurabilityChangeEvent += SetSheildDurabilityUI;
         PlayerStatus.SheildCrashEvent += SetSheildCrash;
         PlayerStatus.SheildRecoveryEvent += SetSheildRecovery;
+        PlayerShield.Sheild_Durability_Reduce_Start_Event += Sheild_Durability_Reduce_Start;
     }
 
-    public void SetSheildDurabilityUI(float CurrentDurability)
+    private void SetSheildDurabilityUI(float CurrentDurability)
     {
         sheildDurabilityText.text = CurrentDurability.ToString();
+        sheildDurabilityText.color = Color.white;
     }
-    public void SetSheildCrash()
+    private void SetSheildCrash()
     {
         sheildDurabilityText.color = Color.red;
     }
 
-    public void SetSheildRecovery()
+    private void SetSheildRecovery()
     {
         sheildDurabilityText.color = Color.white;
+    }
+    private void Sheild_Durability_Reduce_Start()
+    {
+        sheildDurabilityText.color = Color.gray;
     }
 }
