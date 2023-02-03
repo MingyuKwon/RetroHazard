@@ -295,7 +295,7 @@ MonoBehaviour:
   EnergyMaganizeMaximum: ffffffff0a0000000800000005000000
   Sheild: 0
   SheildMaganize: 050000000000000000000000
-  SheildMaganizeMaximum: 0a000000050000000f000000
+  SheildMaganizeMaximum: 0a0000000500000014000000
   parryFrame: 0
   parrySuccess: 0
   isBlocked: 0
@@ -568,6 +568,10 @@ PrefabInstance:
     - target: {fileID: 2528563590888435374, guid: 13cda4b25387c874ca7950e9ca7e2702, type: 3}
       propertyPath: m_SortingLayer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2528563590888435374, guid: 13cda4b25387c874ca7950e9ca7e2702, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2528563590888435374, guid: 13cda4b25387c874ca7950e9ca7e2702, type: 3}
       propertyPath: m_SortingLayerID

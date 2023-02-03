@@ -36,7 +36,7 @@ public class PlayerStatus : MonoBehaviour
 
     public int Sheild = 0; // 0-> normal, 1-> parry, 2 -> big
     public int[] SheildMaganize = {5 , 0, 0};
-    public int[] SheildMaganizeMaximum = { 10 , 5, 15};
+    public int[] SheildMaganizeMaximum = { 10 , 5, 20};
     
 
     [Header("InGame")]
@@ -66,7 +66,15 @@ public class PlayerStatus : MonoBehaviour
     {
         bool flag;
         flag = (damage == 0f) ? true : false;
-        SheildDurability -= damage;
+
+        if(Sheild == 2 && damage > 0 )
+        {
+            SheildDurability -= damage * 0.5f;
+        }else
+        {
+            SheildDurability -= damage;
+        }
+        
         GameManager.instance.Sheild_Durability_Reducing = false;
         SheildMaganize[Sheild] = (int)SheildDurability;
         SheildDurabilityChangeEvent?.Invoke(SheildDurability);

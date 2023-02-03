@@ -111,6 +111,7 @@ MonoBehaviour:
   ArmorDefence: 0
   bodyDamageRatio: 0
   AttackDamageRatio: 0
+  ParriedWithParrySheild: 0
 --- !u!1 &8539821890712935124
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,8 +238,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 100
-  m_LinearDrag: 20
+  m_Mass: 10
+  m_LinearDrag: 5
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -354,6 +355,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8539821892566529950}
   - component: {fileID: 4436124895477627331}
+  - component: {fileID: 782279409}
   m_Layer: 6
   m_Name: Body Collider
   m_TagString: Enemy Body
@@ -392,6 +394,18 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.6, y: 1.1}
   m_Direction: 0
+--- !u!114 &782279409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8539821892566529945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9215ea0b1018bc4b96b898a66d0b92f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2737896458889065460
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -409,19 +423,23 @@ PrefabInstance:
       objectReference: {fileID: 243028647}
     - target: {fileID: 2528563590888435374, guid: 13cda4b25387c874ca7950e9ca7e2702, type: 3}
       propertyPath: m_Size.x
-      value: 2
+      value: 2.6666667
       objectReference: {fileID: 0}
     - target: {fileID: 2528563590888435374, guid: 13cda4b25387c874ca7950e9ca7e2702, type: 3}
       propertyPath: m_Size.y
-      value: 2
+      value: 2.6666667
       objectReference: {fileID: 0}
     - target: {fileID: 2528563590888435374, guid: 13cda4b25387c874ca7950e9ca7e2702, type: 3}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2528563590888435374, guid: 13cda4b25387c874ca7950e9ca7e2702, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2528563590888435374, guid: 13cda4b25387c874ca7950e9ca7e2702, type: 3}
       propertyPath: m_SortingLayerID
-      value: 577266655
+      value: -1926604995
       objectReference: {fileID: 0}
     - target: {fileID: 2528563590888435374, guid: 13cda4b25387c874ca7950e9ca7e2702, type: 3}
       propertyPath: m_WasSpriteAssigned

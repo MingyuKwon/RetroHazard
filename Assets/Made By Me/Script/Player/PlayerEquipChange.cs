@@ -53,9 +53,9 @@ public class PlayerEquipChange : MonoBehaviour
     }
     void SheildRefill(InputActionEventData data)
     {
-        int temp = 0;
+        float temp = 0;
         temp = status.SheildMaganizeMaximum[status.Sheild];
-        temp -= (int)status.SheildDurability;
+        temp -= status.SheildDurability;
         status.SheildDurabilityChange(-temp);
     }
 }
