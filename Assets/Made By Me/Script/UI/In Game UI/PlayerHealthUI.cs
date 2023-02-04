@@ -9,7 +9,6 @@ public class PlayerHealthUI : MonoBehaviour
     Text healthText;
     RectTransform UItransform;
     UIStatBar healthBar;
-    PlayerStatus status;
 
      
 
@@ -17,7 +16,6 @@ public class PlayerHealthUI : MonoBehaviour
         UItransform = GetComponent<RectTransform>();
         healthText = GetComponentInChildren<Text>();
         healthBar = GetComponentInChildren<UIStatBar>();
-        status = FindObjectOfType<PlayerStatus>();
     }
     
     private void OnEnable() {
@@ -26,7 +24,7 @@ public class PlayerHealthUI : MonoBehaviour
 
     public void SetPlayerHealthUI(float CurrentHP, float MaxHP)
     {
-        healthText.text = CurrentHP.ToString() + " / " + MaxHP.ToString();
+        healthText.text = CurrentHP.ToString() + " | " + MaxHP.ToString();
         healthBar.SetValue(CurrentHP, MaxHP);
         UItransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, MaxHP * 3);
     }

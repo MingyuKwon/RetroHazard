@@ -10,7 +10,7 @@ public class PlayerStatus : MonoBehaviour
 {
     public static event Action<float, float> PlayerHealthChangeEvent;
     public static event Action<float, int> SheildDurabilityChangeEvent;
-    public static event Action<float> EnergyChangeEvent;
+    public static event Action<float, int> EnergyChangeEvent;
 
     public static event Action PlayerDeathEvent;
     public static event Action<bool> SheildCrashEvent;
@@ -53,6 +53,8 @@ public class PlayerStatus : MonoBehaviour
 
     private void Start() {
         PlayerHealthChangeEvent?.Invoke(CurrentHP, MaxHP);
+        EnergyChangeEvent?.Invoke(EnergyAmount, Energy);
+        SheildDurabilityChangeEvent?.Invoke(SheildDurability, Sheild);
     }
 
     public void HealthChange(float damage)
@@ -111,7 +113,7 @@ public class PlayerStatus : MonoBehaviour
             EnergyMaganize[Energy] = (int)EnergyAmount;
         }
 
-        EnergyChangeEvent?.Invoke(EnergyAmount);
+        EnergyChangeEvent?.Invoke(EnergyAmount, Energy);
     }
 }
 

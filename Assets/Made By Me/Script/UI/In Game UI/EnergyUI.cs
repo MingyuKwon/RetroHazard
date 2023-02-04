@@ -5,22 +5,31 @@ using UnityEngine.UI;
 
 public class EnergyUI : MonoBehaviour
 {
-    Text EnergyText;
+    Text[] EnergyText; // 0: now, 1 : store
+    Image EnergyImage;
+
+    [SerializeField] Sprite[] energySprite;
 
     private void Awake() {
-        EnergyText = GetComponent<Text>();
-    }
-
-    private void Start() {
-        EnergyText.text =  FindObjectOfType<PlayerStatus>().EnergyAmount.ToString();
+        EnergyText = GetComponentsInChildren<Text>();
+        EnergyImage = GetComponentInChildren<Image>();
+        
     }
 
     private void OnEnable() {
         PlayerStatus.EnergyChangeEvent += SetEnergyUI;
     }
 
-    public void SetEnergyUI(float EnergyAmount)
+    public void SetEnergyUI(float EnergyAmount, int Energy)
     {
-        EnergyText.text = EnergyAmount.ToString();
+        if(EnergyAmount == -1)
+        {
+            EnergyText[0].text = "--";
+        }else
+        {
+            EnergyText[0].text = EnergyAmount.ToString();
+        }
+        
+        EnergyImage.sprite = energySprite[Energy];
     }
 }
