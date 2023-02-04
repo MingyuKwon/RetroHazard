@@ -83,7 +83,7 @@ public class PlayerShield : MonoBehaviour
     {
         playerAnimation.isParrying = false;
         
-        GameManager.instance.SetPlayerAnimationIdle();
+        GameManager.instance.SetPlayerFree();
         GameManager.instance.SetPlayerMove(true);
     }
 

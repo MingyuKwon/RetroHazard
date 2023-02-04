@@ -65,7 +65,6 @@ public class PlayerAnimation : MonoBehaviour
         sheildCrash = true;
         isSheilding = false;
         animator.SetBool("Shield", isSheilding);
-        GameManager.instance.SetPlayerMove(true);
     }
 
     private void SetSheildRecovery(bool ChangeSheild)
@@ -147,11 +146,17 @@ public class PlayerAnimation : MonoBehaviour
 
     public void SetPlayerAnimationIdle()
     {
+        SetPlayerFree();
+        status.parryFrame = false;
+        XInput = 0f;
+        YInput = 0f;
+    }
+
+    public void SetPlayerFree()
+    {
         isAttacking = false;
         isParrying = false;
         isSheilding = false;
-        XInput = 0f;
-        YInput = 0f;
         animator.ResetTrigger("Block");
         animator.ResetTrigger("Parry");
     }

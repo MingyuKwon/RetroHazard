@@ -89,6 +89,11 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void SetPlayerFree()
+    {
+        playerAnimation.SetPlayerFree();
+    }
+
     public void SetPausePlayer(bool flag)
     {
         isPlayerPaused = flag;
