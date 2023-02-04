@@ -8,7 +8,7 @@ using DG.Tweening;
 
 public class PlayerStatus : MonoBehaviour
 {
-    public static event Action<float> PlayerHealthChangeEvent;
+    public static event Action<float, float> PlayerHealthChangeEvent;
     public static event Action<float, int> SheildDurabilityChangeEvent;
     public static event Action<float> EnergyChangeEvent;
 
@@ -51,15 +51,20 @@ public class PlayerStatus : MonoBehaviour
         EnergyAmount = EnergyMaganize[Energy];
     }
 
+    private void Start() {
+        PlayerHealthChangeEvent?.Invoke(CurrentHP, MaxHP);
+    }
+
     public void HealthChange(float damage)
     {
         CurrentHP -= damage;
         if(CurrentHP <=0 )
         {
-            PlayerHealthChangeEvent?.Invoke(0f);
+            CurrentHP = 0;
+            PlayerHealthChangeEvent?.Invoke(CurrentHP, MaxHP);
             PlayerDeathEvent?.Invoke();
         }
-        PlayerHealthChangeEvent?.Invoke(CurrentHP);
+        PlayerHealthChangeEvent?.Invoke(CurrentHP, MaxHP);
     }
 
     public void SheildDurabilityChange(float damage)

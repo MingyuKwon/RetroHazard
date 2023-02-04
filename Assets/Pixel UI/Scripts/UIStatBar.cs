@@ -40,7 +40,7 @@ namespace PixelsoftGames.PixelUI
         /// </summary>
         /// <param name="cur">The current stat value</param>
         /// <param name="max">The maximum stat value</param>
-        public void SetValue(int cur, int max)
+        public void SetValue(float cur, float max)
         {
             slider.value = cur / max;
         }
