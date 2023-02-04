@@ -9,7 +9,7 @@ using DG.Tweening;
 public class PlayerStatus : MonoBehaviour
 {
     public static event Action<float> PlayerHealthChangeEvent;
-    public static event Action<float> SheildDurabilityChangeEvent;
+    public static event Action<float, int> SheildDurabilityChangeEvent;
     public static event Action<float> EnergyChangeEvent;
 
     public static event Action PlayerDeathEvent;
@@ -35,8 +35,8 @@ public class PlayerStatus : MonoBehaviour
     public int[] EnergyMaganizeMaximum = {-1, 10 , 8, 5};
 
     public int Sheild = 0; // 0-> normal, 1-> parry, 2 -> big
-    public int[] SheildMaganize = {5 , 0, 0};
-    public int[] SheildMaganizeMaximum = { 10 , 5, 20};
+    public int[] SheildMaganize = {1 , 0, 0};
+    public int[] SheildMaganizeMaximum = { 4 , 4, 4};
     
 
     [Header("InGame")]
@@ -47,7 +47,7 @@ public class PlayerStatus : MonoBehaviour
 
     private void Awake() {
         Attack = EnergyDamage[Energy];
-        SheildDurability = 5;
+        SheildDurability = SheildMaganize[Energy];
         EnergyAmount = EnergyMaganize[Energy];
     }
 
@@ -77,7 +77,7 @@ public class PlayerStatus : MonoBehaviour
         
         GameManager.instance.Sheild_Durability_Reducing = false;
         SheildMaganize[Sheild] = (int)SheildDurability;
-        SheildDurabilityChangeEvent?.Invoke(SheildDurability);
+        SheildDurabilityChangeEvent?.Invoke(SheildDurability, Sheild);
         if(SheildDurability <=0 )
         {
             SheildDurability = 0;

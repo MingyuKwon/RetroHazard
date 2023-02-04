@@ -5,14 +5,23 @@ using UnityEngine.UI;
 
 public class SheildDurabilityUI : MonoBehaviour
 {
-    Text sheildDurabilityText;
+    PlayerStatus playerStatus;
+    Image sheildDurabilityImage;
+    Animator animator;
+    float SheildDurability;
+    float SheildKind;
 
     private void Awake() {
-        sheildDurabilityText = GetComponent<Text>();
+        sheildDurabilityImage = GetComponent<Image>();
+        animator = GetComponent<Animator>();
     }
 
     private void Start() {
-        sheildDurabilityText.text =  FindObjectOfType<PlayerStatus>().SheildDurability.ToString();
+        playerStatus = FindObjectOfType<PlayerStatus>();
+        SheildDurability = playerStatus.SheildDurability;
+        SheildKind = playerStatus.Sheild;
+        animator.SetFloat("Sheild Durability", SheildDurability);
+        animator.SetFloat("Sheild Kind", SheildKind);
     }
     private void OnEnable() {
         PlayerStatus.SheildDurabilityChangeEvent += SetSheildDurabilityUI;
@@ -21,22 +30,26 @@ public class SheildDurabilityUI : MonoBehaviour
         PlayerShield.Sheild_Durability_Reduce_Start_Event += Sheild_Durability_Reduce_Start;
     }
 
-    private void SetSheildDurabilityUI(float CurrentDurability)
+    private void SetSheildDurabilityUI(float CurrentDurability, int Sheild)
     {
-        sheildDurabilityText.text = CurrentDurability.ToString();
-        sheildDurabilityText.color = Color.white;
+        SheildDurability = CurrentDurability;
+        animator.SetBool("Sheild Durability Reducing", false);
+        animator.SetFloat("Sheild Durability", SheildDurability);
+        animator.SetFloat("Sheild Kind", Sheild);
     }
     private void SetSheildCrash(bool ChangeSheild)
     {
-        sheildDurabilityText.color = Color.red;
+        if(ChangeSheild) return;
+
+        animator.SetTrigger("Sheild Crash");
     }
 
     private void SetSheildRecovery(bool ChangeSheild)
     {
-        sheildDurabilityText.color = Color.white;
+        
     }
     private void Sheild_Durability_Reduce_Start()
     {
-        sheildDurabilityText.color = Color.gray;
+        animator.SetBool("Sheild Durability Reducing", true);
     }
 }
