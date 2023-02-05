@@ -40,7 +40,7 @@ public class PlayerStatus : MonoBehaviour
     public int Sheild = 0; // 0-> normal, 1-> parry, 2 -> big
     public float SheildDurability = 0f;
     public float[] SheildMaganize = {0f , 0f, 0f}; // Current Sheild Durability contain
-    public float[] SheildMaganizeMaximum = {4f , 4f, 4f}; // Current Sheild Durability contain
+    public float SheildMaganizeMaximum = 4f; // Current Sheild Durability contain
 
     
     [Header("Store")]
