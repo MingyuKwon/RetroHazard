@@ -61,6 +61,7 @@ public class PlayerStatus : MonoBehaviour
 
     private void OnEnable() {
        bulletItem.Obtain_bullet_Item_Event += Obtain_bullet_Item;
+       ExpansionItem.Obtain_Expansion_Item_Event += Obtain_Expansion_Item;
         
     }
 
@@ -147,25 +148,37 @@ public class PlayerStatus : MonoBehaviour
         {
             Sheild_Item_Obtain(amount, Sheild);
             return;
-        }
-
-        if(isEnergy1)
+        }else if(isEnergy1)
         {
             Energy_Item_Obtain(amount, 1);
             return;
-        }
-
-        if(isEnergy2)
+        }else if(isEnergy2)
         {
             Energy_Item_Obtain(amount, 2);
             return;
-        }
-
-        if(isEnergy3)
+        }else if(isEnergy3)
         {
             Energy_Item_Obtain(amount, 3);
             return;
         }
+
+        
+    }
+
+    public void Obtain_Expansion_Item(bool isEnergy1, bool isEnergy2, bool isEnergy3, int amount)
+    {
+        if(isEnergy1)
+        {
+            EnergyMaganizeMaximum[1] += amount;
+        }else if(isEnergy2)
+        {
+            EnergyMaganizeMaximum[2] += amount;
+        }else if(isEnergy3)
+        {
+            EnergyMaganizeMaximum[3] += amount;
+        }
+
+        EnergyChange(0);
         
     }
 }
