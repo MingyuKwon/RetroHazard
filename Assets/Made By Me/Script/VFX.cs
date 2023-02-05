@@ -32,7 +32,7 @@ public class VFX : MonoBehaviour
 
     private void OnEnable() {
         PlayerStatus.SheildCrashEvent += SheildCrash;
-        PlayerStatus.SheildRecoveryEvent += SheildRecovery;
+        PlayerShield.Recovery_VFX_Start_Event += SheildRecovery;
     }
 
     private void SheildCrash(bool ChangeSheild)
@@ -42,9 +42,8 @@ public class VFX : MonoBehaviour
         vfxAnimator.SetTrigger("Sheild Crash");
     }
 
-    private void SheildRecovery(bool ChangeSheild)
+    private void SheildRecovery()
     {
-        if(ChangeSheild) return;
         if(isPlayer)
         vfxAnimator.SetTrigger("Sheild Recovery");
     }

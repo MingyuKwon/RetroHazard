@@ -11,14 +11,17 @@ public class PlayerEquipChange : MonoBehaviour
     private Player player;
     private PlayerStatus status;
 
+    private Animator animator;
+
     private void Awake() {
         player = ReInput.players.GetPlayer(0);
         player.AddInputEventDelegate(ChangeWeapon, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Weapon Change");
         player.AddInputEventDelegate(ChangeSheild, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Sheild Change");
-        player.AddInputEventDelegate(EnergyRefill, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Energy Refill");
-        player.AddInputEventDelegate(SheildRefill, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Sheild Refill");
+        player.AddInputEventDelegate(EnergyReloadStart, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Energy Refill");
+        player.AddInputEventDelegate(SheildReloadStart, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Sheild Refill");
 
         status = GetComponentInChildren<PlayerStatus>();
+        animator = GetComponent<Animator>();
     }
 
     void ChangeWeapon(InputActionEventData data)
@@ -45,7 +48,7 @@ public class PlayerEquipChange : MonoBehaviour
         status.SheildDurability = status.SheildMaganize[status.Sheild];
         status.SheildDurabilityChange(0);
     }
-    void EnergyRefill(InputActionEventData data)
+    void EnergyReLoad()
     {
         float temp = 0;
         temp = status.EnergyMaganizeMaximum[status.Energy];
@@ -58,7 +61,7 @@ public class PlayerEquipChange : MonoBehaviour
         status.EnergyStore[status.Energy] -= temp;
         status.EnergyChange(-temp);
     }
-    void SheildRefill(InputActionEventData data)
+    void SheildReLoad()
     {
         float temp = 0;
         temp = status.SheildMaganizeMaximum[status.Sheild];
@@ -71,4 +74,34 @@ public class PlayerEquipChange : MonoBehaviour
         status.SheildStore -= temp;
         status.SheildDurabilityChange(-temp);
     }
+
+    void EnergyReloadStart(InputActionEventData data)
+    {
+        animator.SetTrigger("Reload");
+        animator.SetFloat("ReloadEnergy", 1f);
+        GameManager.instance.SetPlayerMove(false);
+    }
+
+    void SheildReloadStart(InputActionEventData data)
+    {
+        animator.SetTrigger("Reload");
+        animator.SetFloat("ReloadEnergy", 0f);
+        GameManager.instance.SetPlayerMove(false);
+    }
+
+    public void EnergyReloadEnd()
+    {
+        EnergyReLoad();
+        GameManager.instance.SetPlayerFree();
+        GameManager.instance.SetPlayerMove(true);
+    }
+
+    public void SheildReloadEnd()
+    {
+        SheildReLoad();
+        GameManager.instance.SetPlayerFree();
+        GameManager.instance.SetPlayerMove(true);
+    }
+
+    
 }

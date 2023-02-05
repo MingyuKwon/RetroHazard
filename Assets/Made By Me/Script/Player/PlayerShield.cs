@@ -10,6 +10,7 @@ using DG.Tweening;
 public class PlayerShield : MonoBehaviour
 {
     public static event Action Sheild_Durability_Reduce_Start_Event;
+    public static event Action Recovery_VFX_Start_Event;
     private CapsuleCollider2D playerBodyCollider;
     PlayerStatus status;
     PlayerAnimation playerAnimation;
@@ -51,6 +52,10 @@ public class PlayerShield : MonoBehaviour
         
     }
 
+    public void RecoveryVFXStart()
+    {
+        Recovery_VFX_Start_Event.Invoke();
+    }
 
     public void ParryFrameStart()
     {
