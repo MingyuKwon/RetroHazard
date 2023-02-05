@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using Rewired;
 using Sirenix.OdinInspector;
@@ -46,9 +47,15 @@ public class PlayerEquipChange : MonoBehaviour
     }
     void EnergyRefill(InputActionEventData data)
     {
-        int temp = 0;
+        float temp = 0;
         temp = status.EnergyMaganizeMaximum[status.Energy];
-        temp -= (int)status.EnergyAmount;
+        temp -= status.EnergyAmount;
+
+        if(temp > status.EnergyStore[status.Energy])
+        {
+            temp = status.EnergyStore[status.Energy];
+        }
+        status.EnergyStore[status.Energy] -= temp;
         status.EnergyChange(-temp);
     }
     void SheildRefill(InputActionEventData data)
@@ -56,6 +63,12 @@ public class PlayerEquipChange : MonoBehaviour
         float temp = 0;
         temp = status.SheildMaganizeMaximum[status.Sheild];
         temp -= status.SheildDurability;
+
+        if(temp > status.SheildStore)
+        {
+            temp = status.SheildStore;
+        }
+        status.SheildStore -= temp;
         status.SheildDurabilityChange(-temp);
     }
 }

@@ -7,35 +7,40 @@ public class SheildDurabilityUI : MonoBehaviour
 {
     PlayerStatus playerStatus;
     Image sheildDurabilityImage;
+    Text sheildDurabilityText;
     Animator animator;
     float SheildDurability;
-    float SheildKind;
+    float Sheild;
 
     private void Awake() {
-        sheildDurabilityImage = GetComponent<Image>();
-        animator = GetComponent<Animator>();
+        sheildDurabilityImage = GetComponentInChildren<Image>();
+        sheildDurabilityText = GetComponentInChildren<Text>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     private void Start() {
         playerStatus = FindObjectOfType<PlayerStatus>();
         SheildDurability = playerStatus.SheildDurability;
-        SheildKind = playerStatus.Sheild;
+        Sheild = playerStatus.Sheild;
         animator.SetFloat("Sheild Durability", SheildDurability);
-        animator.SetFloat("Sheild Kind", SheildKind);
+        animator.SetFloat("Sheild Kind", Sheild);
     }
     private void OnEnable() {
         PlayerStatus.SheildDurabilityChangeEvent += SetSheildDurabilityUI;
         PlayerStatus.SheildCrashEvent += SetSheildCrash;
         PlayerStatus.SheildRecoveryEvent += SetSheildRecovery;
+        PlayerStatus.Sheild_Durability_Item_Obtain_Event += SetSheildStoreUI;
         PlayerShield.Sheild_Durability_Reduce_Start_Event += Sheild_Durability_Reduce_Start;
     }
 
-    private void SetSheildDurabilityUI(float CurrentDurability, int Sheild)
+    private void SetSheildDurabilityUI(float CurrentDurability, int SheildKind, float SheildStore)
     {
         SheildDurability = CurrentDurability;
+        Sheild = SheildKind;
+        sheildDurabilityText.text = "/ " + SheildStore.ToString();
         animator.SetBool("Sheild Durability Reducing", false);
         animator.SetFloat("Sheild Durability", SheildDurability);
-        animator.SetFloat("Sheild Kind", Sheild);
+        animator.SetFloat("Sheild Kind", SheildKind);
     }
     private void SetSheildCrash(bool ChangeSheild)
     {
@@ -51,5 +56,13 @@ public class SheildDurabilityUI : MonoBehaviour
     private void Sheild_Durability_Reduce_Start()
     {
         animator.SetBool("Sheild Durability Reducing", true);
+    }
+
+    public void SetSheildStoreUI(float SheildObtained, int SheildKind)
+    {
+        if(Sheild == SheildKind)
+        {
+            sheildDurabilityText.text = "/ " + SheildObtained.ToString();
+        }
     }
 }

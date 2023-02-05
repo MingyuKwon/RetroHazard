@@ -286,16 +286,36 @@ MonoBehaviour:
   Speed: 0
   Attack: 0
   ArmorDefence: 0
-  SheildDurability: 0
   SheildCrash: 0
-  EnergyAmount: 0
   Energy: 0
+  EnergyAmount: -1
   EnergyDamage: 1400000064000000c800000096000000
-  EnergyMaganize: ffffffff000000000000000000000000
-  EnergyMaganizeMaximum: ffffffff0a0000000800000005000000
+  EnergyMaganize:
+  - -1
+  - 0
+  - 0
+  - 0
+  EnergyMaganizeMaximum:
+  - -1
+  - 5
+  - 4
+  - 3
   Sheild: 0
-  SheildMaganize: 050000000000000000000000
-  SheildMaganizeMaximum: 0a0000000500000014000000
+  SheildDurability: 0
+  SheildMaganize:
+  - 0
+  - 0
+  - 0
+  SheildMaganizeMaximum:
+  - 4
+  - 4
+  - 4
+  EnergyStore:
+  - -1
+  - 0
+  - 0
+  - 0
+  SheildStore: 0
   parryFrame: 0
   parrySuccess: 0
   isBlocked: 0
