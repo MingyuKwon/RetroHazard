@@ -9,8 +9,8 @@ using DG.Tweening;
 public class PlayerStatus : MonoBehaviour
 {
     public static event Action<float, float> PlayerHealthChangeEvent;
-    public static event Action<float, int, float> SheildDurabilityChangeEvent;
-    public static event Action<float, int, float> EnergyChangeEvent;
+    public static event Action<float, int> SheildDurabilityChangeEvent;
+    public static event Action<float, int> EnergyChangeEvent;
 
     public static event Action<float, int> Sheild_Durability_Item_Obtain_Event;
     public static event Action<float, int> Energy_Item_Obtain_Event;
@@ -97,7 +97,7 @@ public class PlayerStatus : MonoBehaviour
         
         GameManager.instance.Sheild_Durability_Reducing = false;
         SheildMaganize[Sheild] = (int)SheildDurability;
-        SheildDurabilityChangeEvent?.Invoke(SheildDurability, Sheild, SheildStore);
+        SheildDurabilityChangeEvent?.Invoke(SheildDurability, Sheild);
         if(SheildDurability <=0 )
         {
             SheildDurability = 0;
@@ -132,7 +132,7 @@ public class PlayerStatus : MonoBehaviour
             EnergyMaganize[Energy] = (int)EnergyAmount;
         }
 
-        EnergyChangeEvent?.Invoke(EnergyAmount, Energy, EnergyStore[Energy]);
+        EnergyChangeEvent?.Invoke(EnergyAmount, Energy);
     }
 
     public void Energy_Item_Obtain(int EnergyObtain, int EnergyKind)

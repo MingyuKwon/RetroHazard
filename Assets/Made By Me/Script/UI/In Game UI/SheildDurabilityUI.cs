@@ -9,6 +9,8 @@ public class SheildDurabilityUI : MonoBehaviour
     Image sheildDurabilityImage;
     Text sheildDurabilityText;
     Animator animator;
+    PlayerStatus status;
+
     float SheildDurability;
     float Sheild;
 
@@ -16,6 +18,7 @@ public class SheildDurabilityUI : MonoBehaviour
         sheildDurabilityImage = GetComponentInChildren<Image>();
         sheildDurabilityText = GetComponentInChildren<Text>();
         animator = GetComponentInChildren<Animator>();
+        status = FindObjectOfType<PlayerStatus>();
     }
 
     private void Start() {
@@ -33,11 +36,11 @@ public class SheildDurabilityUI : MonoBehaviour
         PlayerShield.Sheild_Durability_Reduce_Start_Event += Sheild_Durability_Reduce_Start;
     }
 
-    private void SetSheildDurabilityUI(float CurrentDurability, int SheildKind, float SheildStore)
+    private void SetSheildDurabilityUI(float CurrentDurability, int SheildKind)
     {
         SheildDurability = CurrentDurability;
         Sheild = SheildKind;
-        sheildDurabilityText.text = "/ " + SheildStore.ToString();
+        sheildDurabilityText.text = "/ " + status.SheildStore.ToString();
         animator.SetBool("Sheild Durability Reducing", false);
         animator.SetFloat("Sheild Durability", SheildDurability);
         animator.SetFloat("Sheild Kind", SheildKind);

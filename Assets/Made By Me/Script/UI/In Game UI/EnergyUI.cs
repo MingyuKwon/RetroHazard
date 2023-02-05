@@ -7,10 +7,10 @@ public class EnergyUI : MonoBehaviour
 {
     Text[] EnergyText; // 0: now, 1 : store
     Image EnergyImage;
+    PlayerStatus status;
 
     int Energy;
     int EnergyCurrent;
-    int EnergyStore;
 
 
     [SerializeField] Sprite[] energySprite;
@@ -18,6 +18,7 @@ public class EnergyUI : MonoBehaviour
     private void Awake() {
         EnergyText = GetComponentsInChildren<Text>();
         EnergyImage = GetComponentInChildren<Image>();
+        status = FindObjectOfType<PlayerStatus>();
         
     }
 
@@ -26,16 +27,28 @@ public class EnergyUI : MonoBehaviour
         PlayerStatus.Energy_Item_Obtain_Event += SetEnergyStoreUI;
     }
 
-    public void SetEnergyUI(float EnergyAmount, int EnergyKind, float EnergyStore)
+    public void SetEnergyUI(float EnergyAmount, int EnergyKind)
     {
         if(EnergyAmount == -1)
         {
             EnergyText[0].text = "--";
+            EnergyText[0].color = Color.white;
             EnergyText[1].text = "| --";
         }else
         {
             EnergyText[0].text = EnergyAmount.ToString();
-            EnergyText[1].text = "| " + EnergyStore.ToString();
+            if(EnergyAmount == status.EnergyMaganizeMaximum[EnergyKind])
+            {
+                EnergyText[0].color = Color.green;
+            }else if(EnergyAmount == 0)
+            {
+                EnergyText[0].color = Color.red;
+            }else
+            {
+                EnergyText[0].color = Color.white;
+            }
+            
+            EnergyText[1].text = "| " + status.EnergyStore[EnergyKind].ToString();
         }
         Energy = EnergyKind;
         EnergyImage.sprite = energySprite[EnergyKind];
