@@ -13,48 +13,57 @@ public class NPCDialogScript : MonoBehaviour
     [SerializeField] bool visited = false;
     [SerializeField] bool isChatting = false;
 
+    private Player player;
+
     public bool isShowingOption = false;
     public int SelectOptionindex = 0;
 
     private void Awake() {
-        
+        player = ReInput.players.GetPlayer(0);
+
+        player.AddInputEventDelegate(EnterPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Enter");
+        player.AddInputEventDelegate(UpPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "SelectUp");
+        player.AddInputEventDelegate(DownPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "SelectDown");
+        player.AddInputEventDelegate(RightPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "SelectRight");
+        player.AddInputEventDelegate(LeftPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "SelectLeft");
     }
 
     // for question option select
-    public void EnterPressed()
+    public void EnterPressed(InputActionEventData data)
     {
         showDialog();
     }
-    public void UpPressed()
+    public void UpPressed(InputActionEventData data)
     {
         if(isShowingOption)
         {
             SelectOptionindex--;
         }
     }
-    public void DownPressed()
+    public void DownPressed(InputActionEventData data)
     {
         if(isShowingOption)
         {
             SelectOptionindex++;
         }
     }
-    public void RightPressed()
+    public void RightPressed(InputActionEventData data)
     {
         
     }
-    public void LeftPressed()
+    public void LeftPressed(InputActionEventData data)
     {
 
     }
     // for question option select
 
 
-    void showDialog()
+    public void showDialog()
     {
+        return;
         if(isChatting == false)
         {
-            GameManagerUI.instance.VisualizeDialogUI(true);
+            GameManagerUI.instance.VisualizeDialogUI(true, true);
             GameManagerUI.instance.SetSpeakerText(dialog.NPCname);
             isChatting = true;
             if(visited == false)
@@ -82,7 +91,7 @@ public class NPCDialogScript : MonoBehaviour
     void ActivatePlayer_DisappearDialog()
     {
         GameMangerInput.instance.changePlayerInputRule(0);
-        GameManagerUI.instance.VisualizeDialogUI(false);
+        GameManagerUI.instance.VisualizeDialogUI(false, true);
         GameManagerUI.instance.showOptionUI(false);
         callCount = 0;
         isChatting = false;

@@ -46,6 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cef73b166e49af0428041bed2980fa42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialog: {fileID: 11400000, guid: 0f7390e72ffe6504cbbefa2f38d3d926, type: 2}
+  spriteRenderer: {fileID: 0}
+  itemUp: {x: 0, y: 0.5, z: 0}
   isEnergy1: 0
   isEnergy2: 1
   isEnergy3: 0

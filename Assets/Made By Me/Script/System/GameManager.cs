@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour
     public bool isPlayerPaused = false; // Every player script refer to this value 
     public bool isGamePaused = false; // Every player script refer to this value 
 
+    public bool ObtainKeyItem = false;
+
     void Awake() {
         if(instance == null)
         {
@@ -94,6 +96,13 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void SetPlayerAnimationObtainKeyItem(bool flag)
+    {
+        playerAnimation.animator.SetBool("Obtain Key Item", flag);
+        ObtainKeyItem = flag;
+
+    }
+
     public void SetPlayerFree()
     {
         playerAnimation.SetPlayerFree();
@@ -149,25 +158,34 @@ public class GameManager : MonoBehaviour
     //SlowMotion
 
     //Pause
-    public void SetPauseGame()
+    public void SetPauseGame(bool flag)
     {
-        if(Time.timeScale == 0f)
+        isGamePaused = flag;
+        SetPausePlayer(flag);
+        if(flag)
         {
-            isGamePaused = false;
-            Time.timeScale = 1f;
-            SetPausePlayer(false);
-        }
-        else if(Time.timeScale == 1f)
-        {
-            isGamePaused = true;
             Time.timeScale = 0f;
-            SetPausePlayer(true);
+        }
+        else
+        {
+            Time.timeScale = 1f;
         }
         
     }
-    public void SetPauseGameInput(InputActionEventData data)
+
+    private void SetPauseGameInput(InputActionEventData data)
     {
-        SetPauseGame();
+        if(ObtainKeyItem) return;
+
+        if(Time.timeScale == 0f)
+        {
+            SetPauseGame(false);
+        }
+        else if(Time.timeScale == 1f)
+        {
+            SetPauseGame(true);
+        }
+        
     }
 
     //Pause

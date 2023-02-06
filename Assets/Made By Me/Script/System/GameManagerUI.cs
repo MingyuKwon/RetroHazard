@@ -23,14 +23,18 @@ public class GameManagerUI : MonoBehaviour
         dialogUI = FindObjectOfType<DialogUI>();
     }
 
+// BlackOut UI
     public void BlackOut(int index)
     {
         blackoutUI.BlackOut(index);
     }
+// BlackOut UI
 
-    public void VisualizeDialogUI(bool flag)
+
+// Dialog UI
+    public void VisualizeDialogUI(bool flag, bool isNPC)
     {
-        dialogUI.VisualizeDialogUI(flag);
+        dialogUI.VisualizeDialogUI(flag,isNPC);
     }
 
     public void SetDialogText(string text)
@@ -41,20 +45,36 @@ public class GameManagerUI : MonoBehaviour
     {
         dialogUI.SetSpeakerText(text);
     }
-
+    public void SetInteractiveDialogText(string[] texts)
+    {
+        dialogUI.SetInteractiveDialogText(texts);
+    }
     public void SetOptionsText(string[] texts)
     {
         dialogUI.SetOptionsText(texts);
-        
     }
 
     public void showOptionUI(bool flag)
     {
         dialogUI.showOptionUI(flag);
     }
+    public void showSpeakerPanelUI(bool flag)
+    {
+        dialogUI.showSpeakerPanelUI(flag);
+    }
+    public void showDialogPanelUI(bool flag)
+    {
+        dialogUI.showDialogPanelUI(flag);
+    }
+    public void showInteractiveDialogPanelUI(bool flag)
+    {
+        dialogUI.showInteractiveDialogPanelUI(flag);
+    }
 
     public void SelectOption(int index)
     {
         dialogUI.SelectOption(index);
     }
+
+    // Dialog UI
 }

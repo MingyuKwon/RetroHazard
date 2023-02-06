@@ -31,17 +31,12 @@ public class PlayerInteractive : MonoBehaviour
         player.AddInputEventDelegate(InteractivePressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Interactive");
         player.AddInputEventDelegate(InteractiveReleased, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased, "Interactive");
 
-        player.AddInputEventDelegate(EnterPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Enter");
-        player.AddInputEventDelegate(UpPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "SelectUp");
-        player.AddInputEventDelegate(DownPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "SelectDown");
-        player.AddInputEventDelegate(RightPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "SelectRight");
-        player.AddInputEventDelegate(LeftPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "SelectLeft");
-
     }
 
     private void Update() {
         if(GameManager.instance.isPlayerPaused) return;
     }
+    
 // Normal Input event
     private void InteractivePressed(InputActionEventData data)
     {
@@ -49,7 +44,7 @@ public class PlayerInteractive : MonoBehaviour
         {
             GameMangerInput.instance.changePlayerInputRule(1);
             GameManager.instance.SetPlayerAnimationIdle();
-            nearNPC.EnterPressed();
+            nearNPC.showDialog();
         }
     }
     private void InteractiveReleased(InputActionEventData data)
@@ -57,29 +52,6 @@ public class PlayerInteractive : MonoBehaviour
 
     }
 // Normal Input event
-
-// Talk NPC Input event
-    private void EnterPressed(InputActionEventData data)
-    {
-        nearNPC.EnterPressed();
-    }
-    private void UpPressed(InputActionEventData data)
-    {
-        nearNPC.UpPressed();
-    }
-    private void DownPressed(InputActionEventData data)
-    {
-        nearNPC.DownPressed();
-    }
-    private void RightPressed(InputActionEventData data)
-    {
-        nearNPC.RightPressed();
-    }
-    private void LeftPressed(InputActionEventData data)
-    {
-        nearNPC.LeftPressed();
-    }
-// Talk NPC Input event
 
     private void OnDestroy() {
         player.RemoveInputEventDelegate(InteractivePressed);

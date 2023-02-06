@@ -240,6 +240,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3639844838293332525, guid: 5abe8d55cb13dc54e9d943eea5921253, type: 3}
+      propertyPath: itemUp.y
+      value: 0.7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5abe8d55cb13dc54e9d943eea5921253, type: 3}
 --- !u!4 &87789321 stripped
@@ -963,6 +967,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 317192637}
     m_Modifications:
+    - target: {fileID: 3920922161006216032, guid: 29086f839efd5f84a88ccbf64e64fb0e, type: 3}
+      propertyPath: itemUp.y
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 3920922161006216034, guid: 29086f839efd5f84a88ccbf64e64fb0e, type: 3}
       propertyPath: m_Name
       value: Energy 1 expansion Item (1)
@@ -2405,6 +2413,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 317192637}
     m_Modifications:
+    - target: {fileID: 3624122438793742088, guid: 5947e236275f87b4bb4569250a7d48a7, type: 3}
+      propertyPath: itemUp.y
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 3624122438793742090, guid: 5947e236275f87b4bb4569250a7d48a7, type: 3}
       propertyPath: m_Name
       value: Energy 3 expansion Item (1)
@@ -2642,6 +2654,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 317192637}
     m_Modifications:
+    - target: {fileID: 3624122438793742088, guid: 5947e236275f87b4bb4569250a7d48a7, type: 3}
+      propertyPath: itemUp.y
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 3624122438793742090, guid: 5947e236275f87b4bb4569250a7d48a7, type: 3}
       propertyPath: m_Name
       value: Energy 3 expansion Item
@@ -2747,6 +2763,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3639844838293332525, guid: 5abe8d55cb13dc54e9d943eea5921253, type: 3}
+      propertyPath: itemUp.y
+      value: 0.7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5abe8d55cb13dc54e9d943eea5921253, type: 3}
 --- !u!1001 &3871184949941908781
@@ -2813,6 +2833,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 317192637}
     m_Modifications:
+    - target: {fileID: 3920922161006216032, guid: 29086f839efd5f84a88ccbf64e64fb0e, type: 3}
+      propertyPath: itemUp.y
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 3920922161006216034, guid: 29086f839efd5f84a88ccbf64e64fb0e, type: 3}
       propertyPath: m_Name
       value: Energy 1 expansion Item
