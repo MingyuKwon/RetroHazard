@@ -108,6 +108,9 @@ public class DialogUI : MonoBehaviour
     {
         dialogPanel.SetActive(flag);
     }
+
+
+    ///////////////////////////////override////////////////////////
     public void showInteractiveDialogPanelUI(bool flag)
     {
         if(flag)
@@ -125,7 +128,28 @@ public class DialogUI : MonoBehaviour
         interactiveDialogPanel.SetActive(flag);
         
     }
+    public void showInteractiveDialogPanelUI(bool flag, string ItemName)
+    {
+        if(flag)
+        {
+            GameMangerInput.instance.changePlayerInputRule(1);
+            dialogPanel.SetActive(false);
+            speakerPanel.SetActive(false);
+            StartCoroutine(InteractiveDialog(ItemName));
+        }else
+        {
+            callCount = 0;
+            GameMangerInput.instance.changePlayerInputRule(0);
+        }
 
+        interactiveDialogPanel.SetActive(flag);
+        
+    }
+
+    ///////////////////////////////override////////////////////////
+
+
+    ///////////////////////////////override////////////////////////
     IEnumerator InteractiveDialog()
     {
         int strCount = interactivedialogTexts.Length;
@@ -140,7 +164,29 @@ public class DialogUI : MonoBehaviour
         GameManager.instance.SetPlayerAnimationObtainKeyItem(false);
     }
 
+    IEnumerator InteractiveDialog(string ItemName)
+    {
+        int strCount = interactivedialogTexts.Length;
+        while(callCount == 0)
+        {
+            interactiveDialogText.text = "You obtained <color=blue>\"" + ItemName + "\"</color> !";
+            yield return new WaitForEndOfFrame();
+        }
 
+        callCount = 0;
+
+        while(strCount > callCount)
+        {
+            interactiveDialogText.text = interactivedialogTexts[callCount];
+            yield return new WaitForEndOfFrame();
+        }
+
+        showInteractiveDialogPanelUI(false);
+        GameManager.instance.SetPauseGame(false);
+        GameManager.instance.SetPlayerAnimationObtainKeyItem(false);
+    }
+
+    ///////////////////////////////override////////////////////////
 
     public void SetDialogText(string text)
     {

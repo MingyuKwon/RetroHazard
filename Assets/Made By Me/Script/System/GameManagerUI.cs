@@ -70,6 +70,10 @@ public class GameManagerUI : MonoBehaviour
     {
         dialogUI.showInteractiveDialogPanelUI(flag);
     }
+    public void showInteractiveDialogPanelUI(bool flag, string ItemName)
+    {
+        dialogUI.showInteractiveDialogPanelUI(flag,ItemName);
+    }
 
     public void SelectOption(int index)
     {

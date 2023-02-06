@@ -17,4 +17,5 @@ MonoBehaviour:
   isInteractiveItem: 0
   ItemDescription:
   - It will expand your Energy 1 conatin limit !
-  InteractiveDialog: []
+  InteractiveDialog:
+  - 

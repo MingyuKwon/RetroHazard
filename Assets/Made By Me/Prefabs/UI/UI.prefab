@@ -268,8 +268,9 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1813215065411066562, guid: 3fbbeb02a197ab64ba3a73837d91dbb5, type: 3}
       propertyPath: m_Text
-      value: "<b>Hello World! </b>\tHello World!\tHello World!\tHello World!Hello
-        World\t!Hello World!\tHello World!\tHello World!\tHello World!\tHello World!"
+      value: "<color=blue>Hello World! </color>\tHello World!\tHello World!\tHello
+        World!Hello World\t!Hello World!\tHello World!\tHello World!\tHello World!\tHello
+        World!"
       objectReference: {fileID: 0}
     - target: {fileID: 5888823859735638674, guid: 3fbbeb02a197ab64ba3a73837d91dbb5, type: 3}
       propertyPath: m_Name
