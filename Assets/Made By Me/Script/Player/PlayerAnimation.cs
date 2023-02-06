@@ -7,7 +7,7 @@ using DG.Tweening;
 
 public class PlayerAnimation : MonoBehaviour
 {
-    private Animator animator;
+    public Animator animator;
     private Animator vfxAnimator;
     private Rigidbody2D rb;
     private PlayerMove pm;
@@ -20,13 +20,16 @@ public class PlayerAnimation : MonoBehaviour
     [Header("For Debug")]
     public bool isAttacking;
     public bool isSheilding; 
-    public bool isParrying;
+    public bool isParrying;    
+    public bool isWalkingPress;
 
     [Space]
     public float LastXInput = 0f;
     public float LastYInput = -1f;
     public float XInput = 0f;
     public float YInput = 0f;
+    public float BeforePauseXInput = 0f;
+    public float BeforePauseYInput = 0f;
     
 
     private Player player;
@@ -76,6 +79,7 @@ public class PlayerAnimation : MonoBehaviour
     void Update()
     {
         GameManager.instance.isPlayerSheilding = isSheilding;
+        isWalkingPress = player.GetButton("Move Up") || player.GetButton("Move Down") || player.GetButton("Move Right") || player.GetButton("Move Left");
         if(GameManager.instance.isPlayerPaused) return;
         
         SetWalkAnimation();

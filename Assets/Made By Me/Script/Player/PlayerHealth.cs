@@ -83,7 +83,7 @@ public class PlayerHealth : MonoBehaviour
         {
             status.SheildDurabilityChange(1);
         }
-        GameManager.instance.isPlayerPaused = true;
+        GameManager.instance.SetPausePlayer(true);
         GameManager.instance.SetPlayerMove(true);
         GameManager.instance.SetPlayerAnimationIdle();
         playerBodyCollider.enabled = false;
@@ -92,7 +92,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void StunEnd()
     {
-        GameManager.instance.isPlayerPaused = false;
+        GameManager.instance.SetPausePlayer(false);
         playerBodyCollider.enabled = true;
     }
 

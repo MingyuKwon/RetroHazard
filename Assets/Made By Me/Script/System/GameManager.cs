@@ -12,8 +12,9 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;
     public static event Action GameOver;
 
-    PlayerMove player;
+    PlayerMove playerMove;
     PlayerAnimation playerAnimation;
+    private Player player;
 
     [Header("Difficulty")]
     public int DEFCON = 0;
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour
     public bool isPlayerSheilding = false;
     public bool Sheild_Durability_Reducing = false;
     public bool isPlayerPaused = false; // Every player script refer to this value 
+    public bool isGamePaused = false; // Every player script refer to this value 
 
     void Awake() {
         if(instance == null)
@@ -40,10 +42,13 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        player = ReInput.players.GetPlayer(0);
+        player.AddInputEventDelegate(SetPauseGameInput, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Pause");
     }
 
     void Start() {
-        player = FindObjectOfType<PlayerMove>();
+        playerMove = FindObjectOfType<PlayerMove>();
         playerAnimation = FindObjectOfType<PlayerAnimation>();
     }
 
@@ -80,7 +85,7 @@ public class GameManager : MonoBehaviour
     // dont move position while doing another action
     public void SetPlayerMove(bool flag)
     {
-        player.canMove = flag;
+        playerMove.canMove = flag;
     }
 
     public void SetPlayerAnimationIdle()
@@ -97,6 +102,32 @@ public class GameManager : MonoBehaviour
     public void SetPausePlayer(bool flag)
     {
         isPlayerPaused = flag;
+        if(flag)
+        {
+            playerAnimation.BeforePauseXInput = playerAnimation.LastXInput;
+            playerAnimation.BeforePauseYInput = playerAnimation.LastYInput;
+            playerAnimation.XInput = 0;
+            playerAnimation.animator.SetFloat("XInput", 0);
+            playerAnimation.YInput = 0;
+            playerAnimation.animator.SetFloat("YInput", 0);
+        }else
+        {
+            if(playerAnimation.isWalkingPress)
+            {
+                playerAnimation.XInput = playerAnimation.LastXInput;
+                playerAnimation.animator.SetFloat("XInput", playerAnimation.XInput);
+                playerAnimation.YInput = playerAnimation.LastYInput;
+                playerAnimation.animator.SetFloat("YInput", playerAnimation.YInput);
+            }else
+            {
+                playerAnimation.LastXInput = playerAnimation.BeforePauseXInput;
+                playerAnimation.LastYInput = playerAnimation.BeforePauseYInput;
+                playerAnimation.animator.SetFloat("LastXInput", playerAnimation.BeforePauseXInput);
+                playerAnimation.animator.SetFloat("LastYInput", playerAnimation.BeforePauseYInput);
+            }
+            
+        }
+        
     }
 
     //SlowMotion
@@ -116,4 +147,28 @@ public class GameManager : MonoBehaviour
         isSlowMotion = true;
     }
     //SlowMotion
+
+    //Pause
+    public void SetPauseGame()
+    {
+        if(Time.timeScale == 0f)
+        {
+            isGamePaused = false;
+            Time.timeScale = 1f;
+            SetPausePlayer(false);
+        }
+        else if(Time.timeScale == 1f)
+        {
+            isGamePaused = true;
+            Time.timeScale = 0f;
+            SetPausePlayer(true);
+        }
+        
+    }
+    public void SetPauseGameInput(InputActionEventData data)
+    {
+        SetPauseGame();
+    }
+
+    //Pause
 }

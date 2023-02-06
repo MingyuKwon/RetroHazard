@@ -857,6 +857,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC_Ann
       objectReference: {fileID: 0}
+    - target: {fileID: 8361707585408783802, guid: 65506c44c5d28d24290df7e57b024d87, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 8361707585408783807, guid: 65506c44c5d28d24290df7e57b024d87, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -900,6 +904,10 @@ PrefabInstance:
     - target: {fileID: 8361707585408783807, guid: 65506c44c5d28d24290df7e57b024d87, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8361707585845461540, guid: 65506c44c5d28d24290df7e57b024d87, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65506c44c5d28d24290df7e57b024d87, type: 3}

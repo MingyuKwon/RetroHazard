@@ -50,6 +50,7 @@ public class PlayerEquipChange : MonoBehaviour
     }
     void EnergyReLoad()
     {
+        
         float temp = 0;
         temp = status.EnergyMaganizeMaximum[status.Energy];
         temp -= status.EnergyAmount;
@@ -79,6 +80,7 @@ public class PlayerEquipChange : MonoBehaviour
     {
         if(status.EnergyStore[status.Energy] == 0) return;
         if(status.EnergyAmount == status.EnergyMaganizeMaximum[status.Energy]) return;
+        GameManager.instance.SetPausePlayer(true);
         animator.SetTrigger("Reload");
         animator.SetFloat("ReloadEnergy", 1f);
         GameManager.instance.SetPlayerMove(false);
@@ -88,6 +90,7 @@ public class PlayerEquipChange : MonoBehaviour
     {
         if(status.SheildStore == 0) return;
         if(status.SheildDurability == status.SheildMaganizeMaximum) return;
+        GameManager.instance.SetPausePlayer(true);
         animator.SetTrigger("Reload");
         animator.SetFloat("ReloadEnergy", 0f);
         GameManager.instance.SetPlayerMove(false);
@@ -95,18 +98,18 @@ public class PlayerEquipChange : MonoBehaviour
 
     public void EnergyReloadEnd()
     {
-        
         EnergyReLoad();
         GameManager.instance.SetPlayerFree();
         GameManager.instance.SetPlayerMove(true);
+        GameManager.instance.SetPausePlayer(false);
     }
 
     public void SheildReloadEnd()
     {
-        
         SheildReLoad();
         GameManager.instance.SetPlayerFree();
         GameManager.instance.SetPlayerMove(true);
+        GameManager.instance.SetPausePlayer(false);
     }
 
     
