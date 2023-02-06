@@ -33,11 +33,12 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
 
-        if(other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        contactCollider = other.GetContact(0).collider;
+
+        if(contactCollider.gameObject.layer == LayerMask.NameToLayer("Enemy Body") || contactCollider.gameObject.layer == LayerMask.NameToLayer("Enemy not Body"))
         {
             if(other.otherCollider.tag == "Player Body")
             {
-                contactCollider = other.GetContact(0).collider;
                 contactObject = contactCollider.transform.parent.transform.parent.gameObject;
                 contactEnemyStat = contactObject.GetComponentInChildren<EnemyStatus>();
 
@@ -61,7 +62,6 @@ public class PlayerHealth : MonoBehaviour
                 status.HealthChange(damage);
             }
         }
-
     }
 
     private void DamageReDuce()

@@ -29,19 +29,16 @@ public class EnemyCollide : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
 
-        if(other.gameObject.layer == LayerMask.NameToLayer("Player"))
+        contactCollider = other.GetContact(0).collider;
+        
+        if(contactCollider.gameObject.layer == LayerMask.NameToLayer("Player not Body"))
         {
-            contactCollider = other.GetContact(0).collider;
             contactObject = contactCollider.transform.parent.transform.parent.gameObject;
             contactPlayerStat = contactObject.GetComponentInChildren<PlayerStatus>();
 
             if(other.otherCollider.tag == "Enemy Body")
             {
-                if(contactCollider.tag == "Player Body")
-                {
-                    damage = 0f;
-                }
-                else if(contactCollider.tag == "Attack")
+                if(contactCollider.tag == "Attack")
                 {
                     damage = contactPlayerStat.Attack;
                     animator.SetTrigger("Stun");
@@ -65,12 +62,7 @@ public class EnemyCollide : MonoBehaviour
                         enemyManager.TriggerEnemyParriedAnimation();
                     }
                 }
-                else if(contactCollider.tag == "Player Body")
-                {
-
-                }
             }
-
         }
 
     }

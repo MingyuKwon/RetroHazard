@@ -12,6 +12,7 @@ public class PlayerShield : MonoBehaviour
     public static event Action Sheild_Durability_Reduce_Start_Event;
     public static event Action Recovery_VFX_Start_Event;
     private CapsuleCollider2D playerBodyCollider;
+    private Collider2D contactCollider;
     PlayerStatus status;
     PlayerAnimation playerAnimation;
     private Animator vfxAnimator;
@@ -31,9 +32,10 @@ public class PlayerShield : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
 
-        if(other.otherCollider.tag == "Sheild" && other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        contactCollider = other.GetContact(0).collider;
+        if(other.otherCollider.tag == "Sheild" && contactCollider.gameObject.layer == LayerMask.NameToLayer("Enemy not Body"))
         {
-            if(other.GetContact(0).collider.tag == "Attack" && status.parryFrame)
+            if(contactCollider.tag == "Attack" && status.parryFrame)
             {
                 vfxAnimator.SetTrigger("Parry");
                 status.parrySuccess = true;
@@ -45,7 +47,7 @@ public class PlayerShield : MonoBehaviour
                 {
                     Sheild_Durability_Reduce_Start_Event.Invoke();
                 }
-                status.blockSuccessEnemy = other.GetContact(0).collider.transform.parent.transform.parent.name;
+                status.blockSuccessEnemy = contactCollider.transform.parent.transform.parent.name;
             }
             
         }

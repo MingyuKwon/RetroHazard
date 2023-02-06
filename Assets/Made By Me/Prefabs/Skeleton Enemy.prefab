@@ -68,7 +68,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9194674445698836696}
   - component: {fileID: 6840078731692293}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Enemy status
   m_TagString: System Management
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ GameObject:
   - component: {fileID: 3772624557210476387}
   - component: {fileID: 5045913225724831934}
   - component: {fileID: 5841114251678152527}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Skeleton Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -321,7 +321,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8539821891057573363}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -356,7 +356,7 @@ GameObject:
   - component: {fileID: 8539821892566529950}
   - component: {fileID: 4436124895477627331}
   - component: {fileID: 782279409}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: Body Collider
   m_TagString: Enemy Body
   m_Icon: {fileID: 0}

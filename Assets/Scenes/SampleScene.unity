@@ -913,7 +913,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1133805715}
   - component: {fileID: 1133805714}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1235,7 +1235,7 @@ GameObject:
   - component: {fileID: 1499421679}
   - component: {fileID: 1499421678}
   - component: {fileID: 1499421680}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: StartStage
   m_TagString: Untagged
   m_Icon: {fileID: 0}

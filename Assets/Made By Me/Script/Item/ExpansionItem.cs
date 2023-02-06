@@ -13,14 +13,10 @@ public class ExpansionItem : MonoBehaviour
     public int amount;
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if(other.gameObject.layer == LayerMask.NameToLayer("Player") )
+        if(other.gameObject.layer == LayerMask.NameToLayer("Player Body") )
         {
-            if(other.tag == "Player Body")
-            {
-                Obtain_Expansion_Item_Event?.Invoke(isEnergy1, isEnergy2, isEnergy3, amount);
-                Destroy(this.gameObject);
-            }
-            
+            Obtain_Expansion_Item_Event?.Invoke(isEnergy1, isEnergy2, isEnergy3, amount);
+            Destroy(this.gameObject);
         }
     }
 }
