@@ -47,11 +47,12 @@ public class GameManager : MonoBehaviour
 
         player = ReInput.players.GetPlayer(0);
         player.AddInputEventDelegate(SetPauseGameInput, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Pause");
+        playerMove = FindObjectOfType<PlayerMove>();
+        playerAnimation = FindObjectOfType<PlayerAnimation>();
     }
 
     void Start() {
-        playerMove = FindObjectOfType<PlayerMove>();
-        playerAnimation = FindObjectOfType<PlayerAnimation>();
+        
     }
 
     private void OnEnable() {
@@ -136,7 +137,6 @@ public class GameManager : MonoBehaviour
             }
             
         }
-        
     }
 
     //SlowMotion

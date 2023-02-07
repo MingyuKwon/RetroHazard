@@ -37,6 +37,9 @@ public class GameManagerUI : MonoBehaviour
         dialogUI.VisualizeDialogUI(flag,isNPC);
     }
 
+
+
+    //////////////////SetTExt/////////////////////////////////////
     public void SetDialogText(string text)
     {
         dialogUI.SetDialogText(text);
@@ -53,6 +56,9 @@ public class GameManagerUI : MonoBehaviour
     {
         dialogUI.SetOptionsText(texts);
     }
+    //////////////////SetTExt///////////////////////////////////////
+
+
 
     public void showOptionUI(bool flag)
     {
@@ -60,12 +66,16 @@ public class GameManagerUI : MonoBehaviour
     }
     public void showSpeakerPanelUI(bool flag)
     {
-        dialogUI.showSpeakerPanelUI(flag);
+        dialogUI.SetSpeakerPanelUI(flag);
     }
     public void showDialogPanelUI(bool flag)
     {
-        dialogUI.showDialogPanelUI(flag);
+        dialogUI.SetDialogPanelUI(flag);
     }
+
+
+
+    /////////////////Override////////////////////////
     public void showInteractiveDialogPanelUI(bool flag)
     {
         dialogUI.showInteractiveDialogPanelUI(flag);
@@ -74,6 +84,17 @@ public class GameManagerUI : MonoBehaviour
     {
         dialogUI.showInteractiveDialogPanelUI(flag,ItemName);
     }
+    /////////////////Override////////////////////////
+
+
+
+    //////////////////////////////////////////////////
+    public void showTalkNPCDialog(bool visited , Dialog dialog)
+    {
+        dialogUI.showTalkNPCDialog(visited,dialog);
+    }
+    //////////////////////////////////////////////////
+
 
     public void SelectOption(int index)
     {

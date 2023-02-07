@@ -22,9 +22,12 @@ public class DialogUI : MonoBehaviour
     string[] dialogtexts;
     string[] interactivedialogTexts;
 
-    ///
+    /// talk with NPC /////////
     int callCount = 0;
-    ///
+    Dialog dialog;
+    public int SelectOptionindex = 0;
+    public bool isShowingOption = false;
+    /// talk with NPC /////////
 
     void Awake() {
         player = ReInput.players.GetPlayer(0);
@@ -46,18 +49,24 @@ public class DialogUI : MonoBehaviour
         Option = dialogPanel.GetComponentsInChildren<option>();
     }
 
-        // for question option select
+    // for question option select
     public void EnterPressed(InputActionEventData data)
     {
         callCount++;
     }
     public void UpPressed(InputActionEventData data)
     {
-
+        if(isShowingOption)
+        {
+            SelectOptionindex--;
+        }
     }
     public void DownPressed(InputActionEventData data)
     {
-
+        if(isShowingOption)
+        {
+            SelectOptionindex++;
+        }
     }
     public void RightPressed(InputActionEventData data)
     {
@@ -69,28 +78,10 @@ public class DialogUI : MonoBehaviour
     }
     // for question option select
 
-
     void Start() {
         dialogText.text = "dialog";
         speakerText.text = "speaker";
         VisualizeDialogUI(false, false);
-    }
-
-    public void VisualizeDialogUI(bool flag, bool isNPC)
-    {
-        if(isNPC)
-        {
-            showSpeakerPanelUI(flag);
-            showDialogPanelUI(flag);
-            showInteractiveDialogPanelUI(false);
-        }else
-        {
-            showSpeakerPanelUI(false);
-            showDialogPanelUI(false);
-            showInteractiveDialogPanelUI(flag);
-        }
-        
-        showOptionUI(false);
     }
 
     public void showOptionUI(bool flag)
@@ -100,54 +91,214 @@ public class DialogUI : MonoBehaviour
             Option[i].gameObject.SetActive(flag);
         }
     }
-    public void showSpeakerPanelUI(bool flag)
+    public void SetSpeakerPanelUI(bool flag)
     {
         speakerPanel.SetActive(flag);
     }
-    public void showDialogPanelUI(bool flag)
+    public void SetDialogPanelUI(bool flag)
     {
         dialogPanel.SetActive(flag);
     }
+    public void SetInteractiveDialogPanelUI(bool flag)
+    {
+        interactiveDialogPanel.SetActive(flag);
+    }
 
+    public void VisualizeDialogUI(bool flag, bool isNPC)
+    {
+        if(isNPC)
+        {
+            SetSpeakerPanelUI(flag);
+            SetDialogPanelUI(flag);
+            SetInteractiveDialogPanelUI(false);
+        }else
+        {
+            SetSpeakerPanelUI(false);
+            SetDialogPanelUI(false);
+            SetInteractiveDialogPanelUI(flag);
+        }
+        
+        showOptionUI(false);
+        GameManager.instance.SetPauseGame(flag);
+
+        if(flag)
+        {
+            GameMangerInput.instance.changePlayerInputRule(1);
+        }else
+        {
+            GameMangerInput.instance.changePlayerInputRule(0);
+        }
+    }
 
     ///////////////////////////////override////////////////////////
     public void showInteractiveDialogPanelUI(bool flag)
     {
         if(flag)
         {
-            GameMangerInput.instance.changePlayerInputRule(1);
             dialogPanel.SetActive(false);
             speakerPanel.SetActive(false);
             StartCoroutine(InteractiveDialog());
         }else
         {
             callCount = 0;
-            GameMangerInput.instance.changePlayerInputRule(0);
         }
-
-        interactiveDialogPanel.SetActive(flag);
+        VisualizeDialogUI(flag, false);
         
     }
     public void showInteractiveDialogPanelUI(bool flag, string ItemName)
-    {
+    {        
         if(flag)
         {
-            GameMangerInput.instance.changePlayerInputRule(1);
             dialogPanel.SetActive(false);
             speakerPanel.SetActive(false);
             StartCoroutine(InteractiveDialog(ItemName));
         }else
         {
             callCount = 0;
-            GameMangerInput.instance.changePlayerInputRule(0);
         }
 
-        interactiveDialogPanel.SetActive(flag);
+        VisualizeDialogUI(flag, false);
         
     }
 
     ///////////////////////////////override////////////////////////
 
+    //Talk with NPC//////////////
+    public void showTalkNPCDialog(bool visited ,Dialog dialog)
+    {
+        VisualizeDialogUI(true, true);
+        this.dialog = dialog;
+        SetSpeakerText(dialog.NPCname);
+        if(visited == false)
+        {
+            StartCoroutine(showFirstEncountDialog());
+        }else
+        {
+            if(dialog.hasChoiceDialog)
+            {
+                StartCoroutine(showChoiceDialog());
+            }else
+            {
+                StartCoroutine(showRepeatingDialog());
+            } 
+        }
+    }
+
+    void DisappearTalkNPCDialog()
+    {
+        VisualizeDialogUI(false, true);
+        callCount = 0;
+    }
+
+
+    IEnumerator showFirstEncountDialog()
+    {
+        string[] FirstEncountDialog = dialog.FirstEnCountDialogs;
+        int strCount = FirstEncountDialog.Length;
+        while(strCount > callCount)
+        {
+            GameManagerUI.instance.SetDialogText(FirstEncountDialog[callCount]);
+            yield return new WaitForEndOfFrame();
+        }
+        DisappearTalkNPCDialog();
+    }
+
+    IEnumerator showRepeatingDialog()
+    {
+        string[] RepeatingDialog = dialog.ReapeatingDialogs;
+        int strCount = RepeatingDialog.Length;
+        while(strCount > callCount)
+        {
+            GameManagerUI.instance.SetDialogText(RepeatingDialog[callCount]);
+            yield return new WaitForEndOfFrame();
+
+        }
+        DisappearTalkNPCDialog();
+    }
+
+    IEnumerator showChoiceDialog()
+    {
+        string[] ChoiceDialog = dialog.ChoiceDialog;
+        int ChoiceQuestionQuantity = dialog.ChoiceQuestionQuantity;
+        int strCount = ChoiceDialog.Length;
+
+        string[] question = new string[ChoiceQuestionQuantity];
+        string[] choice = new string[strCount - ChoiceQuestionQuantity];
+
+        int index;
+        for(index = 0; index<ChoiceQuestionQuantity; index++)
+        {
+            question[index] = ChoiceDialog[index];
+        }
+
+        for(int i = 0; i<strCount - ChoiceQuestionQuantity; i++)
+        {
+            choice[i] = ChoiceDialog[index];
+            index++;
+        }
+
+        while(ChoiceQuestionQuantity-1 > callCount)
+        {
+            GameManagerUI.instance.SetDialogText(question[callCount]);
+            yield return new WaitForEndOfFrame();
+        }
+        GameManagerUI.instance.SetDialogText(question[callCount]);
+
+        callCount = 0;
+        StartCoroutine(showSelectButtons(choice));       
+    }
+
+    IEnumerator showSelectButtons(string[] choice)
+    {
+        GameManagerUI.instance.SetOptionsText(choice);
+        isShowingOption = true;
+        
+        while(callCount == 0)
+        {
+            SelectOptionindex = (int)Mathf.Clamp(SelectOptionindex, 0f, choice.Length-1);
+            GameManagerUI.instance.SelectOption(SelectOptionindex);
+            yield return new WaitForEndOfFrame();
+        }
+
+        GameManagerUI.instance.showOptionUI(false);
+        isShowingOption = false;
+        callCount = 0;
+        StartCoroutine(showOptionDialog(SelectOptionindex));
+        SelectOptionindex = 0;
+    }
+
+    IEnumerator showEventDialog()
+    {
+        string[] EventDialog = dialog.EventDialogs;
+        int strCount = EventDialog.Length;
+        yield return new WaitForEndOfFrame();
+    }
+
+    IEnumerator showOptionDialog(int index)
+    {
+        string[] OptionDialog;
+        if(index == 0)
+        {
+            OptionDialog = dialog.option1Dialog;
+        }else if(index == 1)
+        {
+            OptionDialog = dialog.option2Dialog;
+        }else
+        {
+            OptionDialog = dialog.option3Dialog;
+        }
+
+        int strCount = OptionDialog.Length;
+        while(strCount > callCount)
+        {
+            GameManagerUI.instance.SetDialogText(OptionDialog[callCount]);
+            yield return new WaitForEndOfFrame();
+
+        }
+        DisappearTalkNPCDialog();
+    }
+
+    //Talk with NPC//////////////
 
     ///////////////////////////////override////////////////////////
     IEnumerator InteractiveDialog()
@@ -160,8 +311,6 @@ public class DialogUI : MonoBehaviour
         }
 
         showInteractiveDialogPanelUI(false);
-        GameManager.instance.SetPauseGame(false);
-        GameManager.instance.SetPlayerAnimationObtainKeyItem(false);
     }
 
     IEnumerator InteractiveDialog(string ItemName)
@@ -169,7 +318,7 @@ public class DialogUI : MonoBehaviour
         int strCount = interactivedialogTexts.Length;
         while(callCount == 0)
         {
-            interactiveDialogText.text = "You obtained <color=blue>\"" + ItemName + "\"</color> !";
+            interactiveDialogText.text = "You obtained <b><color=blue>\"" + ItemName + "\"</color></b> !";
             yield return new WaitForEndOfFrame();
         }
 
@@ -182,7 +331,6 @@ public class DialogUI : MonoBehaviour
         }
 
         showInteractiveDialogPanelUI(false);
-        GameManager.instance.SetPauseGame(false);
         GameManager.instance.SetPlayerAnimationObtainKeyItem(false);
     }
 
@@ -208,9 +356,7 @@ public class DialogUI : MonoBehaviour
         {
             Option[i].changeText(texts[i]); 
         }
-        
     }
-
 
     public void SelectOption(int index)
     {

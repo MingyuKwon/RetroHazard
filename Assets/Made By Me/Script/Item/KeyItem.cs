@@ -18,8 +18,6 @@ public class KeyItem : MonoBehaviour
             GameManager.instance.SetPlayerAnimationObtainKeyItem(true);
             GameManagerUI.instance.SetInteractiveDialogText(dialog.ItemDescription);
         }
-
-        GameManager.instance.SetPauseGame(true);
         spriteRenderer.sortingLayerName = "4";
         GameManagerUI.instance.showInteractiveDialogPanelUI(true, dialog.ItemName);
         StartCoroutine(isDialogEnd());
