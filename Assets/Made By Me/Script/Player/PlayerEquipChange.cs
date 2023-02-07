@@ -47,6 +47,7 @@ public class PlayerEquipChange : MonoBehaviour
 
         status.SheildDurability = status.SheildMaganize[status.Sheild];
         status.SheildDurabilityChange(0);
+        animator.SetFloat("Sheild Kind", status.Sheild);
     }
     void EnergyReLoad()
     {
