@@ -200,13 +200,13 @@ public class GameManager : MonoBehaviour
         if(ObtainKeyItem) return;
         if(isPlayerParry) return;
 
-        if(GameManagerUI.instance.isShowingTab)
+        if(GameManagerUI.instance.isShowingTab && GameManagerUI.instance.isShowingMenu)
         {
-            SetPauseGame(false);
+            GameManagerUI.instance.isShowingMenu = false;
             GameManagerUI.instance.Visualize_Tab_Menu(false);  
-        }else
+        }else if(!GameManagerUI.instance.isShowingTab)
         {
-            SetPauseGame(true);
+            GameManagerUI.instance.isShowingMenu = true;
             GameManagerUI.instance.Visualize_Tab_Menu(true);  
         }
          

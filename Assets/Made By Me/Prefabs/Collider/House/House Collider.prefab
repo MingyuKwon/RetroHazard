@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6883227000794905688}
-  - component: {fileID: 6883227000794905689}
+  - component: {fileID: 4386027826616880719}
   m_Layer: 3
   m_Name: House Collider
   m_TagString: Untagged
@@ -32,8 +32,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!60 &6883227000794905689
-PolygonCollider2D:
+--- !u!61 &4386027826616880719
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -45,7 +45,7 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 1.2463992, y: -0.6482979}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -55,13 +55,6 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 3.4378414, y: 0.39129353}
-      - {x: -1.0098257, y: 0.38105464}
-      - {x: -1.0201755, y: -1.9579419}
-      - {x: 0.77309763, y: -1.9208801}
-      - {x: 0.77284336, y: -1.0414877}
-      - {x: 1.9387217, y: -1.0366058}
-      - {x: 1.9393797, y: -1.9394159}
-      - {x: 3.4342165, y: -1.9641237}
+  serializedVersion: 2
+  m_Size: {x: 4.4564037, y: 2.4186466}
+  m_EdgeRadius: 0

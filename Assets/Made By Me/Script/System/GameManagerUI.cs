@@ -14,6 +14,7 @@ public class GameManagerUI : MonoBehaviour
     TabUI tabUI;
 
     public bool isShowingTab;
+    public bool isShowingMenu;
 
     void Awake() {
         if(instance == null)

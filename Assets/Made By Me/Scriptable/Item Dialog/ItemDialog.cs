@@ -10,12 +10,10 @@ public class ItemDialog : ScriptableObject
 
     [Header("Just Select One")]
     public bool isKeyItem;
-    public bool isInteractiveItem;
+    public bool isNormalItem;
 
     [Space]
     [TextArea]
     public string[] ItemDescription;
-    public string[] InteractiveDialog;
-
 
 }
