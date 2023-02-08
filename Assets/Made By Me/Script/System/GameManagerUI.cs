@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Rewired;
+using Sirenix.OdinInspector;
 
 public class GameManagerUI : MonoBehaviour
 {
@@ -8,6 +10,10 @@ public class GameManagerUI : MonoBehaviour
 
     blackOut blackoutUI;
     DialogUI dialogUI;
+    InGameUI inGameUI;
+    TabUI tabUI;
+
+    public bool isShowingTab;
 
     void Awake() {
         if(instance == null)
@@ -21,6 +27,15 @@ public class GameManagerUI : MonoBehaviour
 
         blackoutUI = FindObjectOfType<blackOut>();
         dialogUI = FindObjectOfType<DialogUI>();
+        tabUI = FindObjectOfType<TabUI>();
+        inGameUI = FindObjectOfType<InGameUI>();
+    }
+
+    private void Start() {
+        dialogUI.gameObject.SetActive(true);
+        inGameUI.gameObject.SetActive(true);
+        tabUI.gameObject.SetActive(false);
+        blackoutUI.gameObject.SetActive(false);
     }
 
 // BlackOut UI
@@ -30,6 +45,26 @@ public class GameManagerUI : MonoBehaviour
     }
 // BlackOut UI
 
+// Tab UI
+[Button]
+    public void Visualize_Tab_Interactive(bool flag)
+    {
+        if(isShowingTab && flag) return;
+        inGameUI.gameObject.SetActive(!flag);
+        tabUI.gameObject.SetActive(flag);
+        tabUI.Visualize_Tab_Interactive(flag);
+        isShowingTab = flag;
+    }
+[Button]
+    public void Visualize_Tab_Menu(bool flag)
+    {
+        if(isShowingTab && flag) return;
+        inGameUI.gameObject.SetActive(true);
+        tabUI.gameObject.SetActive(flag);
+        tabUI.Visualize_Tab_Menu(flag);
+        isShowingTab = flag;
+    }
+// Tab UI
 
 // Dialog UI
     public void VisualizeDialogUI(bool flag, bool isNPC)

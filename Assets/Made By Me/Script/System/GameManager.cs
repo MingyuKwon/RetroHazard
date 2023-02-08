@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
 
         player = ReInput.players.GetPlayer(0);
         player.AddInputEventDelegate(SetPauseGameInput, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Pause");
+        player.AddInputEventDelegate(SetTab, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Tab");
         playerMove = FindObjectOfType<PlayerMove>();
         playerAnimation = FindObjectOfType<PlayerAnimation>();
     }
@@ -189,4 +190,22 @@ public class GameManager : MonoBehaviour
     }
 
     //Pause
+
+    //Tab
+    private void SetTab(InputActionEventData data)
+    {
+        if(GameManagerUI.instance.isShowingTab)
+        {
+            SetPauseGame(false);
+            Debug.Log(3);
+            GameManagerUI.instance.Visualize_Tab_Menu(false);  
+        }else
+        {
+            SetPauseGame(true);
+            Debug.Log(4);
+            GameManagerUI.instance.Visualize_Tab_Menu(true);  
+        }
+         
+    }
+    //Tab
 }

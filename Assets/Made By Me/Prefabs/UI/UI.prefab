@@ -55,6 +55,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2252480105119760663}
     m_Modifications:
+    - target: {fileID: 226218479952620125, guid: 03ba0017497999944a5863a2ee3143f5, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1029160029501570809, guid: 03ba0017497999944a5863a2ee3143f5, type: 3}
       propertyPath: m_Name
       value: Tab UI
@@ -347,6 +351,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: In Game UI
       objectReference: {fileID: 0}
+    - target: {fileID: 4915663493571525511, guid: c4bb388f41a408846aefd1cb2998844c, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6815081024173656422, guid: c4bb388f41a408846aefd1cb2998844c, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -390,6 +398,10 @@ PrefabInstance:
     - target: {fileID: 5888823859735638674, guid: 3fbbeb02a197ab64ba3a73837d91dbb5, type: 3}
       propertyPath: m_Name
       value: DialogUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 5888823859735638677, guid: 3fbbeb02a197ab64ba3a73837d91dbb5, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5888823859735638678, guid: 3fbbeb02a197ab64ba3a73837d91dbb5, type: 3}
       propertyPath: m_Pivot.x

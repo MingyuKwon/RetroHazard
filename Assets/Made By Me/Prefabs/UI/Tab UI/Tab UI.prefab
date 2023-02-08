@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7736787937321619943}
   - component: {fileID: 6123242945466293388}
   - component: {fileID: 2491395617774047361}
+  - component: {fileID: 5290039466573392278}
   m_Layer: 5
   m_Name: Interactive Message Panel
   m_TagString: Untagged
@@ -77,6 +78,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5290039466573392278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 356419273802972044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 858d1c5cc79671247898a9b1cddc3631, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1029160029501570809
 GameObject:
   m_ObjectHideFlags: 0
@@ -89,6 +102,7 @@ GameObject:
   - component: {fileID: 226218479952620125}
   - component: {fileID: 7237562800061239048}
   - component: {fileID: 7368028317313967508}
+  - component: {fileID: 2390490038533834198}
   m_Layer: 5
   m_Name: Tab UI
   m_TagString: Untagged
@@ -183,6 +197,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4095
+--- !u!114 &2390490038533834198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1029160029501570809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dde9cb39140924d4ea39c06b53d3d4c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2071380559376689584
 GameObject:
   m_ObjectHideFlags: 0
@@ -277,6 +303,7 @@ GameObject:
   - component: {fileID: 9168654854651875236}
   - component: {fileID: 4177298733404589465}
   - component: {fileID: 5094540610742916204}
+  - component: {fileID: 1324156002928326635}
   m_Layer: 5
   m_Name: Equipped Panel
   m_TagString: Untagged
@@ -342,6 +369,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1324156002928326635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2316220920839496898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1466fa26fd9c1724bbe87a0fcb20c91b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2392120038729689724
 GameObject:
   m_ObjectHideFlags: 0
@@ -669,6 +708,7 @@ GameObject:
   - component: {fileID: 8073066530458270019}
   - component: {fileID: 2179612993841340768}
   - component: {fileID: 9212062737426119064}
+  - component: {fileID: 8614706829371907996}
   m_Layer: 5
   m_Name: Current Goal Panel
   m_TagString: Untagged
@@ -736,6 +776,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8614706829371907996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4478144812131025326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0644fc7ed50797643bb7995b7814411a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7370554086777642930
 GameObject:
   m_ObjectHideFlags: 0
@@ -812,6 +864,7 @@ GameObject:
   - component: {fileID: 6806648644895123148}
   - component: {fileID: 7593130687916441624}
   - component: {fileID: 319604594309843112}
+  - component: {fileID: 4464375187342921669}
   m_Layer: 5
   m_Name: Item Explain Panel
   m_TagString: Untagged
@@ -879,6 +932,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4464375187342921669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7400081595999370803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9070f8becaf5cc14ca38ef3556c04ee9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7668309337448764602
 GameObject:
   m_ObjectHideFlags: 0
