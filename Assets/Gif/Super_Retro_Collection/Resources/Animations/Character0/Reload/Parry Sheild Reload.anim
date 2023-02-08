@@ -41,7 +41,7 @@ AnimationClip:
       value: {fileID: -1696595387, guid: 1048a728ea1578643bf1d25c2f6e4944, type: 3}
     - time: 0.16666667
       value: {fileID: 1754604666, guid: 1048a728ea1578643bf1d25c2f6e4944, type: 3}
-    - time: 0.375
+    - time: 0.33333334
       value: {fileID: 423431072, guid: 1048a728ea1578643bf1d25c2f6e4944, type: 3}
     attribute: m_Sprite
     path: 
@@ -78,7 +78,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.5
+    m_StopTime: 0.5416667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -162,7 +162,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.5
+  - time: 0.5416667
     functionName: SheildReloadEnd
     data: 
     objectReferenceParameter: {fileID: 0}
