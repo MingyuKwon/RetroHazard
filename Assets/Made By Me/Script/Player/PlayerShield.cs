@@ -39,6 +39,7 @@ public class PlayerShield : MonoBehaviour
             {
                 vfxAnimator.SetTrigger("Parry");
                 status.parrySuccess = true;
+                GameManager.instance.isPlayerParry = true;
                 GameManager.instance.SlowMotion();
             }else
             {
@@ -75,6 +76,7 @@ public class PlayerShield : MonoBehaviour
             status.SheildDurabilityChange(0);
         }
         status.parrySuccess = false;
+
     }
 
     public void ParryStart()

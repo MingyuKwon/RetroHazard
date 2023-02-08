@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Flag field")]
     public bool isPlayerNearNPC = false;
+    public bool isPlayerParry = false;
     public bool isPlayerSheilding = false;
     public bool Sheild_Durability_Reducing = false;
     public bool isPlayerPaused = false; // Every player script refer to this value 
@@ -78,6 +79,7 @@ public class GameManager : MonoBehaviour
                 Time.timeScale = 1f;
                 Time.fixedDeltaTime = Time.timeScale * 0.02f;
                 isSlowMotion = false;
+                GameManager.instance.isPlayerParry = false;
             }
         }else
         {
@@ -177,6 +179,7 @@ public class GameManager : MonoBehaviour
     private void SetPauseGameInput(InputActionEventData data)
     {
         if(ObtainKeyItem) return;
+        if(isPlayerParry) return;
 
         if(Time.timeScale == 0f)
         {
@@ -194,15 +197,16 @@ public class GameManager : MonoBehaviour
     //Tab
     private void SetTab(InputActionEventData data)
     {
+        if(ObtainKeyItem) return;
+        if(isPlayerParry) return;
+
         if(GameManagerUI.instance.isShowingTab)
         {
             SetPauseGame(false);
-            Debug.Log(3);
             GameManagerUI.instance.Visualize_Tab_Menu(false);  
         }else
         {
             SetPauseGame(true);
-            Debug.Log(4);
             GameManagerUI.instance.Visualize_Tab_Menu(true);  
         }
          
