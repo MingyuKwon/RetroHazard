@@ -23,7 +23,18 @@ public class PlayerHealth : MonoBehaviour
     private float damage = 0f;
     const float damageStandard = 10f;
     
+    public static PlayerHealth instance;
     private void Awake() {
+
+        if(instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this);
+        }else
+        {
+            Destroy(this);
+        }
+
         status = GetComponentInChildren<PlayerStatus>();
         animator = GetComponent<Animator>();
         vfxAnimator = GetComponentInChildren<VFX>().gameObject.GetComponent<Animator>();
