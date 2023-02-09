@@ -125,20 +125,26 @@ public class GameManager : MonoBehaviour
             playerAnimation.animator.SetFloat("YInput", 0);
         }else
         {
-            if(playerAnimation.isWalkingPress)
-            {
-                playerAnimation.XInput = playerAnimation.LastXInput;
-                playerAnimation.animator.SetFloat("XInput", playerAnimation.XInput);
-                playerAnimation.YInput = playerAnimation.LastYInput;
-                playerAnimation.animator.SetFloat("YInput", playerAnimation.YInput);
-            }else
-            {
-                playerAnimation.LastXInput = playerAnimation.BeforePauseXInput;
-                playerAnimation.LastYInput = playerAnimation.BeforePauseYInput;
-                playerAnimation.animator.SetFloat("LastXInput", playerAnimation.BeforePauseXInput);
-                playerAnimation.animator.SetFloat("LastYInput", playerAnimation.BeforePauseYInput);
-            }
-            
+            StartCoroutine(TwoFrameSkip());
+        }
+    }
+
+    IEnumerator TwoFrameSkip()
+    {
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+        if(playerAnimation.isWalkingPress)
+        {
+            playerAnimation.XInput = playerAnimation.LastXInput;
+            playerAnimation.animator.SetFloat("XInput", playerAnimation.XInput);
+            playerAnimation.YInput = playerAnimation.LastYInput;
+            playerAnimation.animator.SetFloat("YInput", playerAnimation.YInput);
+        }else
+        {
+            playerAnimation.LastXInput = playerAnimation.BeforePauseXInput;
+            playerAnimation.LastYInput = playerAnimation.BeforePauseYInput;
+            playerAnimation.animator.SetFloat("LastXInput", playerAnimation.BeforePauseXInput);
+            playerAnimation.animator.SetFloat("LastYInput", playerAnimation.BeforePauseYInput);
         }
     }
 
