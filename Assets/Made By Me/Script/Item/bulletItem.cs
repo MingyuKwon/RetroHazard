@@ -14,11 +14,10 @@ public class bulletItem : MonoBehaviour
 
     public int amount;
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        if(other.gameObject.layer == LayerMask.NameToLayer("Player Body") )
-        {
-            Obtain_bullet_Item_Event?.Invoke(isSheildDurability, isEnergy1, isEnergy2, isEnergy3, amount);
-            Destroy(this.gameObject);
-        }
+    public void ObtainBulletItem()
+    {
+        Debug.Log(4);
+        Obtain_bullet_Item_Event?.Invoke(isSheildDurability, isEnergy1, isEnergy2, isEnergy3, amount);
+        Destroy(this.gameObject);
     }
 }
