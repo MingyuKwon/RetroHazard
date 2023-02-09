@@ -80,6 +80,35 @@ public class GameManagerUI : MonoBehaviour
         tabUI.Visualize_Tab_Menu(flag);
         isShowingTab = flag;
     }
+
+    ///////// override start //////////////////////
+    public void Visualize_Tab_Obtain(bool flag)
+    {
+        if(isShowingTab && flag) return;
+        inGameUI.gameObject.SetActive(!flag);
+        tabUI.gameObject.SetActive(flag);
+        tabUI.Visualize_Tab_Obtain(flag);
+        isShowingTab = flag;
+    }
+
+    public void Visualize_Tab_Obtain(bool flag, bulletItem item)
+    {
+        if(isShowingTab && flag) return;
+        inGameUI.gameObject.SetActive(!flag);
+        tabUI.gameObject.SetActive(flag);
+        tabUI.Visualize_Tab_Obtain(flag , item);
+        isShowingTab = flag;
+    }
+
+    public void Visualize_Tab_Obtain(bool flag, ExpansionItem item)
+    {
+        if(isShowingTab && flag) return;
+        inGameUI.gameObject.SetActive(!flag);
+        tabUI.gameObject.SetActive(flag);
+        tabUI.Visualize_Tab_Obtain(flag , item);
+        isShowingTab = flag;
+    }
+    ///////// override end //////////////////////
 // Tab UI
 
 // Dialog UI

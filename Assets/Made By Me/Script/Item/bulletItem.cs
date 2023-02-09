@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bulletItem : MonoBehaviour
+public class bulletItem : Item
 {
     public static event Action<bool, bool, bool, bool, int> Obtain_bullet_Item_Event;
 

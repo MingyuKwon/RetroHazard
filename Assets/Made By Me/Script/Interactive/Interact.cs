@@ -43,7 +43,7 @@ public class Interact : MonoBehaviour
             transform.parent.gameObject.GetComponent<ExpansionItem>().ObtainKeyItem(playerCollider2D);
         }else
         {
-            transform.parent.gameObject.GetComponent<bulletItem>().ObtainBulletItem();
+            GameManagerUI.instance.Visualize_Tab_Obtain(true , transform.parent.gameObject.GetComponent<bulletItem>());
         }
     }
 }

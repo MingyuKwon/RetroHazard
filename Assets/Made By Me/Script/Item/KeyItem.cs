@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KeyItem : MonoBehaviour
+public class KeyItem : Item
 {
-    public ItemInformation information;
+    
     public SpriteRenderer spriteRenderer;
     public Vector3 itemUp = new Vector3(0f,0.5f,0f);
 

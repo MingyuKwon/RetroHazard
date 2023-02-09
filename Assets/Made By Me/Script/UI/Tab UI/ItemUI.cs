@@ -38,7 +38,7 @@ public class ItemUI : MonoBehaviour
     }
 
     private void Update() {
-        currentindex = tabUI.currentindex;
+        currentindex = tabUI.currentItemindex;
         ItemContainerFocus();
     }
 

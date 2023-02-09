@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   information: {fileID: 11400000, guid: 384eed5303035e9439fefcdcb8f0026f, type: 2}
   spriteRenderer: {fileID: 0}
-  itemUp: {x: 0, y: 0.5, z: 0}
+  itemUp: {x: 0, y: 0.7, z: 0}
   isEnergy1: 0
   isEnergy2: 1
   isEnergy3: 0

@@ -125,6 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b0fa3d846c1e0940aeabc4d1ba41f87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  information: {fileID: 11400000, guid: 2dcc982ac995ee14ab3813e46ffa841d, type: 2}
   isSheildDurability: 1
   isEnergy1: 0
   isEnergy2: 0
