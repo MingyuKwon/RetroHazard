@@ -15,8 +15,7 @@ public class bulletItem : MonoBehaviour
     public int amount;
 
     public void ObtainBulletItem()
-    {
-        Debug.Log(4);
+    {        
         Obtain_bullet_Item_Event?.Invoke(isSheildDurability, isEnergy1, isEnergy2, isEnergy3, amount);
         Destroy(this.gameObject);
     }

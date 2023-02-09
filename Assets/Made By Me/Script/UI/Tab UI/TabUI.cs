@@ -11,7 +11,8 @@ public class TabUI : MonoBehaviour
 
     private Player player;
 
-    int currentWindowLayer = 0;
+    public int currentWindowLayer = 0;
+    public int currentindex = 0;
 
     ItemUI itemUI;
     ItemExplainUI itemExplainUI;
@@ -37,6 +38,11 @@ public class TabUI : MonoBehaviour
     }
 
     // for question option select
+
+    private void ContainerLimit()
+    {
+        currentindex = Mathf.Clamp(currentindex, 0, GameManagerUI.instance.CurrentContainer-1);
+    }
     public void EnterPressed(InputActionEventData data)
     {
 
@@ -60,19 +66,24 @@ public class TabUI : MonoBehaviour
     }
     public void UpPressed(InputActionEventData data)
     {
-
+        currentindex -= 4;
+        ContainerLimit();
     }
     public void DownPressed(InputActionEventData data)
     {
-
+        currentindex += 4;
+        ContainerLimit();
     }
     public void RightPressed(InputActionEventData data)
     {
+        currentindex++;
+        ContainerLimit();
         
     }
     public void LeftPressed(InputActionEventData data)
     {
-
+        currentindex--;
+        ContainerLimit();
     }
     // for question option select
 

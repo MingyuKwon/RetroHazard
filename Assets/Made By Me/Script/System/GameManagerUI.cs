@@ -16,6 +16,8 @@ public class GameManagerUI : MonoBehaviour
     public bool isShowingTab;
     public bool isShowingMenu;
 
+    public int CurrentContainer;
+
     void Awake() {
         if(instance == null)
         {

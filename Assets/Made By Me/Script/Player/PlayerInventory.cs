@@ -30,4 +30,8 @@ public class PlayerInventory : MonoBehaviour
             items[i] = basicItems[i];
         }
     }
+
+    private void Start() {
+        GameManagerUI.instance.CurrentContainer = StartContainer;
+    }
 }
