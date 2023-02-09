@@ -27,6 +27,7 @@ public class TabUI : MonoBehaviour
     ItemObtainYesNoPanelUI itemObtainYesNoPanelUI;
 
     bulletItem bulletItem;
+    KeyItem keyItem;
     ExpansionItem expansionItem;
 
     private void Awake() {
@@ -59,13 +60,27 @@ public class TabUI : MonoBehaviour
         {
             if(yesNoChoice)
             {
-                bulletItem.ObtainBulletItem();
+                if(bulletItem != null)
+                {
+                    bulletItem.ObtainBulletItem();
+                }else if(keyItem != null)
+                {
+                    keyItem.EventInvokeOverride();
+                }
+                
                 GameManagerUI.instance.Visualize_Tab_Obtain(false);
             }else
             {
                 yesNoChoice = true;
+                if(keyItem != null)
+                {
+                    keyItem.SetSpriteSortNoraml();
+                }
                 GameManagerUI.instance.Visualize_Tab_Obtain(false);
             }
+
+            bulletItem = null;
+            keyItem = null;
         }
     }
     public void BackPressed(InputActionEventData data)
@@ -79,6 +94,10 @@ public class TabUI : MonoBehaviour
                 if(isOpenedItem)
                 {
                     yesNoChoice = true;
+                    if(keyItem != null)
+                    {
+                        keyItem.SetSpriteSortNoraml();
+                    }
                     GameManagerUI.instance.Visualize_Tab_Obtain(false);
                 }else
                 {
@@ -89,7 +108,8 @@ public class TabUI : MonoBehaviour
             {
                 GameManagerUI.instance.Visualize_Tab_Menu(false);
             }
-            
+            bulletItem = null;
+            keyItem = null;
         }
 
     }
@@ -219,9 +239,14 @@ public class TabUI : MonoBehaviour
         interactiveMessageUI.SetItemImage(item.information.ItemImage);
     }
 
-    public void Visualize_Tab_Obtain(bool flag , ExpansionItem item)
+    public void Visualize_Tab_Obtain(bool flag , KeyItem item)
     {
         Visualize_Tab_Obtain(flag);
+        keyItem = item;
+
+        interactiveMessageUI.SetInteractiveName(item.information.ItemName);
+        interactiveMessageUI.SetInteractiveSituation(item.information.ItemDescription[0]);
+        interactiveMessageUI.SetItemImage(item.information.ItemImage);
         
     }
     ////////////////////override end//////////////////////////

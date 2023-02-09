@@ -14,18 +14,12 @@ public class Interact : MonoBehaviour
     private void Start() {
         check.SetActive(false);
     }
-
-    private void OnTriggerEnter2D(Collider2D other) {
-        if(other.gameObject.layer == LayerMask.NameToLayer("Player Body"))
-        {
-            check.SetActive(true);
-        }
-    }
-
+    
     private void OnTriggerStay2D(Collider2D other) {
         if(other.gameObject.layer == LayerMask.NameToLayer("Player Body") )
         {
             playerCollider2D = other;
+            check.SetActive(true);
         }
     }
 
@@ -40,7 +34,7 @@ public class Interact : MonoBehaviour
     {
         if(isKeyItem)
         {
-            transform.parent.gameObject.GetComponent<ExpansionItem>().ObtainKeyItem(playerCollider2D);
+            transform.parent.gameObject.GetComponent<KeyItem>().ObtainKeyItem(playerCollider2D);
         }else
         {
             GameManagerUI.instance.Visualize_Tab_Obtain(true , transform.parent.gameObject.GetComponent<bulletItem>());

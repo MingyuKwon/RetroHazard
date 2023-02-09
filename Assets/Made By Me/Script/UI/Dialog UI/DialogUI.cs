@@ -8,6 +8,8 @@ using DG.Tweening;
 
 public class DialogUI : MonoBehaviour
 {
+    bool inputOk = false;
+
     GameObject dialogPanel;
     GameObject speakerPanel;
     GameObject interactiveDialogPanel;
@@ -23,7 +25,7 @@ public class DialogUI : MonoBehaviour
     string[] interactivedialogTexts;
 
     /// talk with NPC /////////
-    int callCount = 0;
+    public int callCount = 0;
     Dialog dialog;
     public int SelectOptionindex = 0;
     public bool isShowingOption = false;
@@ -52,10 +54,13 @@ public class DialogUI : MonoBehaviour
     // for question option select
     public void EnterPressed(InputActionEventData data)
     {
+        if(!inputOk) return;
         callCount++;
+
     }
     public void UpPressed(InputActionEventData data)
     {
+        if(!inputOk) return;
         if(isShowingOption)
         {
             SelectOptionindex--;
@@ -63,6 +68,7 @@ public class DialogUI : MonoBehaviour
     }
     public void DownPressed(InputActionEventData data)
     {
+        if(!inputOk) return;
         if(isShowingOption)
         {
             SelectOptionindex++;
@@ -70,11 +76,11 @@ public class DialogUI : MonoBehaviour
     }
     public void RightPressed(InputActionEventData data)
     {
-        
+        if(!inputOk) return;
     }
     public void LeftPressed(InputActionEventData data)
     {
-
+        if(!inputOk) return;
     }
     // for question option select
 
@@ -106,6 +112,17 @@ public class DialogUI : MonoBehaviour
 
     public void VisualizeDialogUI(bool flag, bool isNPC)
     {
+        GameManager.instance.SetPauseGame(flag);
+        inputOk = flag;
+
+        if(flag)
+        {
+            GameMangerInput.instance.changePlayerInputRule(1);
+        }else
+        {
+            GameMangerInput.instance.changePlayerInputRule(0);
+        }
+
         if(isNPC)
         {
             SetSpeakerPanelUI(flag);
@@ -119,15 +136,7 @@ public class DialogUI : MonoBehaviour
         }
         
         showOptionUI(false);
-        GameManager.instance.SetPauseGame(flag);
 
-        if(flag)
-        {
-            GameMangerInput.instance.changePlayerInputRule(1);
-        }else
-        {
-            GameMangerInput.instance.changePlayerInputRule(0);
-        }
     }
 
     ///////////////////////////////override////////////////////////
@@ -332,6 +341,7 @@ public class DialogUI : MonoBehaviour
 
         showInteractiveDialogPanelUI(false);
         GameManager.instance.SetPlayerAnimationObtainKeyItem(false);
+
     }
 
     ///////////////////////////////override////////////////////////

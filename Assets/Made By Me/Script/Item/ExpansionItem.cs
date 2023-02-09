@@ -12,12 +12,16 @@ public class ExpansionItem : KeyItem
 
     public int amount;
 
-    public void ObtainKeyItem(Collider2D other)
+    public void ObtainExpansionItem()
     {
-        base.Get_Item_Pause_Game();
-
-        GetComponentInChildren<Interact>().check.SetActive(false);
-        transform.position = other.gameObject.transform.position + base.itemUp;
         Obtain_Expansion_Item_Event?.Invoke(isEnergy1, isEnergy2, isEnergy3, amount);
     }
+
+    public override void EventInvokeOverride()
+    {
+        ObtainExpansionItem();
+        Destroy(this.gameObject);
+    }
+
+
 }

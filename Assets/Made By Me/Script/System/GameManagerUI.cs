@@ -100,7 +100,7 @@ public class GameManagerUI : MonoBehaviour
         isShowingTab = flag;
     }
 
-    public void Visualize_Tab_Obtain(bool flag, ExpansionItem item)
+    public void Visualize_Tab_Obtain(bool flag, KeyItem item)
     {
         if(isShowingTab && flag) return;
         inGameUI.gameObject.SetActive(!flag);
