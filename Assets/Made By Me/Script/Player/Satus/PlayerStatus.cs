@@ -33,7 +33,7 @@ public class PlayerStatus : MonoBehaviour
     [Header("Equipped")]
     public int Energy = 0;
     public float EnergyAmount = 0f;
-    public int[] EnergyDamage = {20, 100 , 200, 150};
+    public int[] EnergyDamage = {8, 30 , 100, 80};
     public float[] EnergyMaganize = {-1f, 0f , 0f, 0f}; // Current sword Energy contain
     public float[] EnergyMaganizeMaximum = {-1f, 5f , 4f, 3f}; // Current sword Energy contain
 
@@ -115,12 +115,6 @@ public class PlayerStatus : MonoBehaviour
         
     }
 
-    public void Sheild_Item_Obtain(int SheildObtain, int SheildKind)
-    {
-        SheildStore += SheildObtain;
-        Sheild_Durability_Item_Obtain_Event?.Invoke(SheildStore, Sheild);
-    }
-
     public void EnergyChange(float energyReduce)
     {
         if(Energy != 0)
@@ -140,6 +134,11 @@ public class PlayerStatus : MonoBehaviour
     {
         EnergyStore[EnergyKind] += EnergyObtain;
         Energy_Item_Obtain_Event?.Invoke(EnergyStore[EnergyKind], EnergyKind);
+    }
+    public void Sheild_Item_Obtain(int SheildObtain, int SheildKind)
+    {
+        SheildStore += SheildObtain;
+        Sheild_Durability_Item_Obtain_Event?.Invoke(SheildStore, Sheild);
     }
 
     public void Obtain_bullet_Item(bool isSheildDurability, bool isEnergy1, bool isEnergy2, bool isEnergy3, int amount)

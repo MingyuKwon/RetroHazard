@@ -9,9 +9,9 @@ using DG.Tweening;
 
 public class ItemContainer : MonoBehaviour
 {
-    Image itemImage;
+    public Image itemImage;
 
     private void Awake() {
-        itemImage = GetComponentInChildren<Image>();
+        itemImage = transform.GetChild(0).GetComponent<Image>();
     }
 }

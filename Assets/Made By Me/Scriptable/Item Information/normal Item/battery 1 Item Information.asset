@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 198fa393f48eb034ab45a9ac87bf02df, type: 3}
-  m_Name: Energy3 Dialog
+  m_Script: {fileID: 11500000, guid: a32a9bd668c1bbb409c635fef9be93c3, type: 3}
+  m_Name: battery 1 Item Information
   m_EditorClassIdentifier: 
-  ItemName: Energy 3 Maganize
-  isKeyItem: 1
-  isInteractiveItem: 0
+  ItemImage: {fileID: -1192900743, guid: 5bdc2781d97139949a21d7b80c0962a6, type: 3}
+  ItemName: Energy 1 battery
+  isKeyItem: 0
+  isNormalItem: 1
   ItemDescription:
-  - It will expand your Energy 3 conatin limit !
-  InteractiveDialog: []
+  - can be used to reload Energy 1

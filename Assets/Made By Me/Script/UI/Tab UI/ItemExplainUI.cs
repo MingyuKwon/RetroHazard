@@ -1,18 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class ItemExplainUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    Text[] itemExplainText; // 0: name, 1 : explain
+
+    private void Awake() {
+        itemExplainText = GetComponentsInChildren<Text>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetItemName(string str)
     {
-        
+        itemExplainText[0].text = "<b>" + str + "</b>";
+    }
+
+    public void SetItemExplain(string str)
+    {
+        itemExplainText[1].text = str;
     }
 }

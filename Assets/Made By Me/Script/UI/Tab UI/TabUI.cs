@@ -76,6 +76,27 @@ public class TabUI : MonoBehaviour
     }
     // for question option select
 
+    ////////////// override start /////////////////////////////
+    public void Visualize_Tab_Interactive(bool flag , InteractiveDialog dialog)
+    {
+        if(isShowing && flag) return;
+
+        Tab_Menu_ChangeInput_PauseGame(flag);
+
+        isInteractive = true;
+        isShowing = flag;
+        itemUI.gameObject.SetActive(flag);
+        itemExplainUI.gameObject.SetActive(flag);
+        interactiveMessageUI.gameObject.SetActive(flag);
+        currentGoalUI.gameObject.SetActive(false);
+        equippedUI.gameObject.SetActive(false);
+
+
+        interactiveMessageUI.SetInteractiveName(dialog.Interactive_name);
+        interactiveMessageUI.SetInteractiveSituation(dialog.Interactive_Situation);
+
+    }
+
     public void Visualize_Tab_Interactive(bool flag)
     {
         if(isShowing && flag) return;
@@ -91,6 +112,7 @@ public class TabUI : MonoBehaviour
         equippedUI.gameObject.SetActive(false);
 
     }
+    ////////////// override end /////////////////////////////
 
     public void Visualize_Tab_Menu(bool flag)
     {

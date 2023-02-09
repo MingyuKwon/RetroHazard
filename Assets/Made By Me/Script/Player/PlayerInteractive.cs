@@ -9,9 +9,10 @@ public class PlayerInteractive : MonoBehaviour
 {
     private Player player;
     private NPCDialogScript nearNPC = null;
-    private Interact nearInteract = null;
+    public Interact nearInteract = null;
 
     void OnTriggerEnter2D(Collider2D other) {
+
         if(other.tag == "NPC" )
         {
             nearNPC = other.GetComponent<NPCDialogScript>();
@@ -53,7 +54,7 @@ public class PlayerInteractive : MonoBehaviour
             nearNPC.showDialog();
         }else if(nearInteract != null && !GameManager.instance.isPlayerSheilding)
         {
-            GameManagerUI.instance.Visualize_Tab_Interactive(true);
+            GameManagerUI.instance.Visualize_Tab_Interactive(true, nearInteract.dialog);
         }
     }
     private void InteractiveReleased(InputActionEventData data)

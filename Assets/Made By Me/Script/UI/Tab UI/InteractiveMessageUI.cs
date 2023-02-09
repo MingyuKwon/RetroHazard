@@ -1,18 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InteractiveMessageUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    Text[] interactMessageTexts;
+
+    private void Awake() {
+        interactMessageTexts = GetComponentsInChildren<Text>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetInteractiveName(string str)
     {
-        
+        interactMessageTexts[0].text = "<b>" + str + "</b>";
+    }
+
+    public void SetInteractiveSituation(string str)
+    {
+        interactMessageTexts[1].text = str;
     }
 }

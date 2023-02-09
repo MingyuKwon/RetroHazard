@@ -55,13 +55,49 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2252480105119760663}
     m_Modifications:
-    - target: {fileID: 226218479952620125, guid: 03ba0017497999944a5863a2ee3143f5, type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
+    - target: {fileID: 57615979548799106, guid: 03ba0017497999944a5863a2ee3143f5, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 57615979548799106, guid: 03ba0017497999944a5863a2ee3143f5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -130
       objectReference: {fileID: 0}
     - target: {fileID: 1029160029501570809, guid: 03ba0017497999944a5863a2ee3143f5, type: 3}
       propertyPath: m_Name
       value: Tab UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902193038736614212, guid: 03ba0017497999944a5863a2ee3143f5, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 700
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902193038736614212, guid: 03ba0017497999944a5863a2ee3143f5, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902193038736614212, guid: 03ba0017497999944a5863a2ee3143f5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902193038736614212, guid: 03ba0017497999944a5863a2ee3143f5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8031528458938714621, guid: 03ba0017497999944a5863a2ee3143f5, type: 3}
+      propertyPath: m_Text
+      value: <b>Locked Door</b>
+      objectReference: {fileID: 0}
+    - target: {fileID: 8031528458938714621, guid: 03ba0017497999944a5863a2ee3143f5, type: 3}
+      propertyPath: m_FontData.m_MaxSize
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 8031528458938714621, guid: 03ba0017497999944a5863a2ee3143f5, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 8031528458938714621, guid: 03ba0017497999944a5863a2ee3143f5, type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8688252110243445740, guid: 03ba0017497999944a5863a2ee3143f5, type: 3}
       propertyPath: m_Pivot.x

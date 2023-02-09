@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Create Item Dialog", fileName = " Dialog")]
-public class ItemDialog : ScriptableObject
+[CreateAssetMenu(menuName = "Create Item Information", fileName = " Item Information")]
+public class ItemInformation : ScriptableObject
 {
+    public Sprite ItemImage;
     public string ItemName;
     [Space]
 

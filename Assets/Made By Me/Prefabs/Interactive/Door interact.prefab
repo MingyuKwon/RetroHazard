@@ -157,4 +157,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   check: {fileID: 3054877796577506306}
-  dialog: {fileID: 0}
+  dialog: {fileID: 11400000, guid: c2a363aba7dbc304cad5871a6d1efe4c, type: 2}

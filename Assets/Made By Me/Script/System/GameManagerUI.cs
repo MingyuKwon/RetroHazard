@@ -47,7 +47,18 @@ public class GameManagerUI : MonoBehaviour
 // BlackOut UI
 
 // Tab UI
+
+///////////////// override start ////////////////////
 [Button]
+    public void Visualize_Tab_Interactive(bool flag, InteractiveDialog dialog)
+    {
+        if(isShowingTab && flag) return;
+        inGameUI.gameObject.SetActive(!flag);
+        tabUI.gameObject.SetActive(flag);
+        tabUI.Visualize_Tab_Interactive(flag, dialog);
+        isShowingTab = flag;
+    }
+
     public void Visualize_Tab_Interactive(bool flag)
     {
         if(isShowingTab && flag) return;
@@ -56,6 +67,8 @@ public class GameManagerUI : MonoBehaviour
         tabUI.Visualize_Tab_Interactive(flag);
         isShowingTab = flag;
     }
+///////////////// override end ////////////////////
+
 [Button]
     public void Visualize_Tab_Menu(bool flag)
     {
