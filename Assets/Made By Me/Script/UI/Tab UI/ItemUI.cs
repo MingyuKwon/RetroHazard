@@ -77,9 +77,19 @@ public class ItemUI : MonoBehaviour
             if(playerInventory.items[i] != null)
             {
                 itemContainers[i].itemImage.sprite = playerInventory.items[i].ItemImage;
+
             }else
             {
                 itemContainers[i].itemImage.sprite = nullSprite;
+            }
+
+            if(playerInventory.itemsamount[i] > 1)
+            {
+                itemContainers[i].SetItemAmountUI(true);
+                itemContainers[i].SetItemAmountText(playerInventory.itemsamount[i].ToString());
+            }else
+            {
+                itemContainers[i].SetItemAmountUI(false);
             }
             
         }

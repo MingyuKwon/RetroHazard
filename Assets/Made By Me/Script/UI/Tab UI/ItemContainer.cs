@@ -10,10 +10,24 @@ using DG.Tweening;
 public class ItemContainer : MonoBehaviour
 {
     public Image itemImage;
+    public Text itemAmount;
     public FocusUI focus;
 
     private void Awake() {
         itemImage = transform.GetChild(0).GetComponent<Image>();
-        focus = transform.GetChild(1).GetComponent<FocusUI>();
+        itemAmount = transform.GetChild(1).GetComponentInChildren<Text>();
+        focus = transform.GetChild(2).GetComponent<FocusUI>();
+
+        transform.GetChild(1).gameObject.SetActive(false);
+    }
+
+    public void SetItemAmountUI(bool flag)
+    {
+        transform.GetChild(1).gameObject.SetActive(flag);
+    }
+
+    public void SetItemAmountText(String str)
+    {
+        itemAmount.text = str;
     }
 }
