@@ -247,11 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84366b3c145bcaf429f9f46ee9da9779, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basicItems:
-  - {fileID: 11400000, guid: f2073bb23ad75ac40b3e9d4f81e75a8b, type: 2}
-  - {fileID: 11400000, guid: 232931fc76b48a941ac3dc37c562e8ad, type: 2}
-  - {fileID: 11400000, guid: c9129d4e8eda8944d9e0b8f269109da2, type: 2}
-  - {fileID: 11400000, guid: 2dcc982ac995ee14ab3813e46ffa841d, type: 2}
+  basicItems: []
   items: []
   itemsamount: 
   StartContainer: 8
@@ -573,6 +569,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3acfe5e60fda0de4fb526df7e68f089b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nearInteract: {fileID: 0}
 --- !u!114 &7168993580999198587
 MonoBehaviour:
   m_ObjectHideFlags: 0

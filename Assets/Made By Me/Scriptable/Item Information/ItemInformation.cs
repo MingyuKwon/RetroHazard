@@ -13,6 +13,12 @@ public class ItemInformation : ScriptableObject
     public bool isKeyItem;
     public bool isNormalItem;
 
+    [Header("Just Select One")]
+    public bool isSheild;
+    public bool isEnergy1;
+    public bool isEnergy2;
+    public bool isEnergy3;
+
     [Space]
     [TextArea]
     public string[] ItemDescription;

@@ -12,7 +12,7 @@ public class PlayerStatus : MonoBehaviour
     public static event Action<float, int> SheildDurabilityChangeEvent;
     public static event Action<float, int> EnergyChangeEvent;
 
-    public static event Action<float, int> Sheild_Durability_Item_Obtain_Event;
+    public static event Action<float> Sheild_Durability_Item_Obtain_Event;
     public static event Action<float, int> Energy_Item_Obtain_Event;
 
     public static event Action PlayerDeathEvent;
@@ -59,10 +59,53 @@ public class PlayerStatus : MonoBehaviour
         EnergyAmount = EnergyMaganize[Energy];
     }
 
-    private void OnEnable() {
-       bulletItem.Obtain_bullet_Item_Event += Obtain_bullet_Item;
-       ExpansionItem.Obtain_Expansion_Item_Event += Obtain_Expansion_Item;
-        
+    public void Use_bullet_Item(ItemInformation itemInformation, int amount)
+    {
+        if(itemInformation.isSheild)
+        {
+            Sheild_Item_Obtain(amount, Sheild);
+            return;
+        }else if(itemInformation.isEnergy1)
+        {
+            Energy_Item_Obtain(amount, 1);
+            return;
+        }else if(itemInformation.isEnergy2)
+        {
+            Energy_Item_Obtain(amount, 2);
+            return;
+        }else if(itemInformation.isEnergy3)
+        {
+            Energy_Item_Obtain(amount, 3);
+            return;
+        }
+    }
+
+    public void Use_Expansion_Item(ItemInformation itemInformation, int amount)
+    {
+        if(itemInformation.isEnergy1)
+        {
+            EnergyMaganizeMaximum[1] += amount;
+        }else if(itemInformation.isEnergy2)
+        {
+            EnergyMaganizeMaximum[2] += amount;
+        }else if(itemInformation.isEnergy3)
+        {
+            EnergyMaganizeMaximum[3] += amount;
+        }
+        EnergyChange(0);
+    }
+
+
+
+    public void Energy_Item_Obtain(int EnergyObtain, int EnergyKind)
+    {
+        EnergyStore[EnergyKind] += EnergyObtain;
+        Energy_Item_Obtain_Event?.Invoke(EnergyStore[EnergyKind], EnergyKind);
+    }
+    public void Sheild_Item_Obtain(int SheildObtain, int SheildKind)
+    {
+        SheildStore += SheildObtain;
+        Sheild_Durability_Item_Obtain_Event?.Invoke(SheildStore);
     }
 
     private void Start() {
@@ -128,57 +171,6 @@ public class PlayerStatus : MonoBehaviour
         }
 
         EnergyChangeEvent?.Invoke(EnergyAmount, Energy);
-    }
-
-    public void Energy_Item_Obtain(int EnergyObtain, int EnergyKind)
-    {
-        EnergyStore[EnergyKind] += EnergyObtain;
-        Energy_Item_Obtain_Event?.Invoke(EnergyStore[EnergyKind], EnergyKind);
-    }
-    public void Sheild_Item_Obtain(int SheildObtain, int SheildKind)
-    {
-        SheildStore += SheildObtain;
-        Sheild_Durability_Item_Obtain_Event?.Invoke(SheildStore, Sheild);
-    }
-
-    public void Obtain_bullet_Item(bool isSheildDurability, bool isEnergy1, bool isEnergy2, bool isEnergy3, int amount)
-    {
-        if(isSheildDurability)
-        {
-            Sheild_Item_Obtain(amount, Sheild);
-            return;
-        }else if(isEnergy1)
-        {
-            Energy_Item_Obtain(amount, 1);
-            return;
-        }else if(isEnergy2)
-        {
-            Energy_Item_Obtain(amount, 2);
-            return;
-        }else if(isEnergy3)
-        {
-            Energy_Item_Obtain(amount, 3);
-            return;
-        }
-
-        
-    }
-
-    public void Obtain_Expansion_Item(bool isEnergy1, bool isEnergy2, bool isEnergy3, int amount)
-    {
-        if(isEnergy1)
-        {
-            EnergyMaganizeMaximum[1] += amount;
-        }else if(isEnergy2)
-        {
-            EnergyMaganizeMaximum[2] += amount;
-        }else if(isEnergy3)
-        {
-            EnergyMaganizeMaximum[3] += amount;
-        }
-
-        EnergyChange(0);
-        
     }
 }
 

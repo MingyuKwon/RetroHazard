@@ -60,11 +60,8 @@ public class SheildDurabilityUI : MonoBehaviour
         animator.SetBool("Sheild Durability Reducing", true);
     }
 
-    public void SetSheildStoreUI(float SheildObtained, int SheildKind)
+    public void SetSheildStoreUI(float SheildObtained)
     {
-        if(Sheild == SheildKind)
-        {
-            sheildDurabilityText.text = "/ " + SheildObtained.ToString();
-        }
+        sheildDurabilityText.text = "/ " + SheildObtained.ToString();
     }
 }

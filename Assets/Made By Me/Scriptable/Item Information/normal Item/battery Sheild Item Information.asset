@@ -16,5 +16,9 @@ MonoBehaviour:
   ItemName: Sheild battery
   isKeyItem: 0
   isNormalItem: 1
+  isSheild: 1
+  isEnergy1: 0
+  isEnergy2: 0
+  isEnergy3: 0
   ItemDescription:
   - 'can be used to recharge Sheild '

@@ -16,5 +16,9 @@ MonoBehaviour:
   ItemName: Energy 2 battery
   isKeyItem: 0
   isNormalItem: 1
+  isSheild: 0
+  isEnergy1: 0
+  isEnergy2: 1
+  isEnergy3: 0
   ItemDescription:
   - can be used to reload Energy 2

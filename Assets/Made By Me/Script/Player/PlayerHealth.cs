@@ -97,6 +97,7 @@ public class PlayerHealth : MonoBehaviour
         GameManager.instance.SetPausePlayer(true);
         GameManager.instance.SetPlayerMove(true);
         GameManager.instance.SetPlayerAnimationIdle();
+        status.blockSuccessEnemy = null;
         playerBodyCollider.enabled = false;
         vfxAnimator.SetTrigger("Stun");
     }

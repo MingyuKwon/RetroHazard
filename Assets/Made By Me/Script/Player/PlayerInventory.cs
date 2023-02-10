@@ -34,4 +34,40 @@ public class PlayerInventory : MonoBehaviour
     private void Start() {
         GameManagerUI.instance.CurrentContainer = StartContainer;
     }
+
+    private void OnEnable() {
+       bulletItem.Obtain_bullet_Item_Event += Obtain_bullet_Item;
+       ExpansionItem.Obtain_Expansion_Item_Event += Obtain_Expansion_Item;
+    }
+
+    public void Obtain_bullet_Item(ItemInformation itemInformation, int amount)
+    {
+        for(int i=0; i<CurrentContainer; i++)
+        {
+            if(items[i] == null)
+            {
+                items[i] = itemInformation;
+                break;
+            }
+            
+        }
+
+        itemUI.UpdateInventoryUI();
+    }
+
+    public void Obtain_Expansion_Item(ItemInformation itemInformation, int amount)
+    {
+        for(int i=0; i<CurrentContainer; i++)
+        {
+            if(items[i] == null)
+            {
+                items[i] = itemInformation;
+                break;
+            }
+            
+        }
+
+        itemUI.UpdateInventoryUI();
+    }
+
 }

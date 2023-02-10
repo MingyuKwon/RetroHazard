@@ -8,11 +8,24 @@ public class Interact : MonoBehaviour
     public InteractiveDialog dialog;
     public bool isItem;
     public bool isKeyItem;
+    Item item = null;
 
     Collider2D playerCollider2D;
 
-    private void Start() {
+    private void Awake() {
         check.SetActive(false);
+
+        item = transform.parent.GetComponent<Item>();
+
+        if(item == null)
+        {
+            isItem = false;
+        }else
+        {
+            isItem = true;
+            isKeyItem = item.information.isKeyItem;
+        }
+        
     }
     
     private void OnTriggerStay2D(Collider2D other) {
