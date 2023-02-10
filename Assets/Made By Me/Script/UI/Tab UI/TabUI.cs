@@ -7,6 +7,8 @@ using Sirenix.OdinInspector;
 
 public class TabUI : MonoBehaviour
 {
+    public bool inputOk = false;
+
     public bool isShowing = false;
     public bool isInteractive = false;
     public bool isOpenedItem = false;
@@ -19,6 +21,7 @@ public class TabUI : MonoBehaviour
     public int currentItemindex = 0;
     public bool yesNoChoice = true;
 
+    Image background;
     ItemUI itemUI;
     ItemExplainUI itemExplainUI;
     CurrentGoalUI currentGoalUI;
@@ -31,7 +34,7 @@ public class TabUI : MonoBehaviour
     ExpansionItem expansionItem;
 
     private void Awake() {
-         player = ReInput.players.GetPlayer(0);
+        player = ReInput.players.GetPlayer(0);
 
         player.AddInputEventDelegate(EnterPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Enter");
         player.AddInputEventDelegate(BackPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Back");
@@ -40,12 +43,24 @@ public class TabUI : MonoBehaviour
         player.AddInputEventDelegate(RightPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "SelectRight");
         player.AddInputEventDelegate(LeftPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "SelectLeft");
 
+        background = transform.GetChild(0).GetComponent<Image>();
         itemUI = GetComponentInChildren<ItemUI>();
         itemExplainUI = GetComponentInChildren<ItemExplainUI>();
         currentGoalUI = GetComponentInChildren<CurrentGoalUI>();
         interactiveMessageUI = GetComponentInChildren<InteractiveMessageUI>();
         equippedUI = GetComponentInChildren<EquippedUI>();
         itemObtainYesNoPanelUI = GetComponentInChildren<ItemObtainYesNoPanelUI>();
+    }
+
+    private void OnEnable() {
+        IinteractiveUI.interact_Input_Rlease_Event += InputGetBack;
+    }
+
+    private void InputGetBack()
+    {
+        if(this.gameObject.activeInHierarchy != true) return;
+        Debug.Log(this.transform.parent.gameObject);
+        inputOk = true;
     }
 
     // for question option select
@@ -56,10 +71,20 @@ public class TabUI : MonoBehaviour
     }
     public void EnterPressed(InputActionEventData data)
     {
+        if(!inputOk) return;
+
         if(isOpenedItem)
         {
             if(yesNoChoice)
             {
+                if(itemUI.isInventoryFull)
+                {
+                    inputOk = false;
+                    GameManagerUI.instance.SetInteractiveDialogText(new string[] {"<b><color=red>Your inventory is full!</color></b> \n\n\nCan't get this item"});
+                    GameManagerUI.instance.VisualizeInteractiveUI(true);
+                    return;
+                }
+
                 if(bulletItem != null)
                 {
                     bulletItem.ObtainBulletItem();
@@ -85,6 +110,8 @@ public class TabUI : MonoBehaviour
     }
     public void BackPressed(InputActionEventData data)
     {
+        if(!inputOk) return;
+
         currentWindowLayer--;
         if(currentWindowLayer < 0)
         {
@@ -115,18 +142,24 @@ public class TabUI : MonoBehaviour
     }
     public void UpPressed(InputActionEventData data)
     {
+        if(!inputOk) return;
+
         if(isOpenedItem) return;
         currentItemindex -= 4;
         ContainerLimit();
     }
     public void DownPressed(InputActionEventData data)
     {
+        if(!inputOk) return;
+
         if(isOpenedItem) return;
         currentItemindex += 4;
         ContainerLimit();
     }
     public void RightPressed(InputActionEventData data)
     {
+        if(!inputOk) return;
+
         if(isOpenedItem)
         {
             yesNoChoice = false;
@@ -138,6 +171,8 @@ public class TabUI : MonoBehaviour
     }
     public void LeftPressed(InputActionEventData data)
     {
+        if(!inputOk) return;
+
         if(isOpenedItem)
         {
             yesNoChoice = true;
@@ -162,6 +197,7 @@ public class TabUI : MonoBehaviour
 
         isInteractive = true;
         isShowing = flag;
+        background.gameObject.SetActive(flag);
         itemUI.gameObject.SetActive(flag);
         itemExplainUI.gameObject.SetActive(flag);
         interactiveMessageUI.gameObject.SetActive(flag);
@@ -190,6 +226,8 @@ public class TabUI : MonoBehaviour
 
         isInteractive = false;
         isShowing = flag;
+
+        background.gameObject.SetActive(flag);
         itemUI.gameObject.SetActive(flag);
         itemExplainUI.gameObject.SetActive(flag);
         currentGoalUI.gameObject.SetActive(flag);
@@ -219,6 +257,8 @@ public class TabUI : MonoBehaviour
         isInteractive = true;
         isOpenedItem = flag;
         isShowing = flag;
+
+        background.gameObject.SetActive(flag);
         interactiveMessageUI.gameObject.SetActive(flag);
         itemObtainYesNoPanelUI.gameObject.SetActive(flag);
         itemUI.gameObject.SetActive(flag);
@@ -260,6 +300,8 @@ public class TabUI : MonoBehaviour
         {
             GameMangerInput.instance.changePlayerInputRule(0);
         }
+
+        inputOk = flag;
 
         GameManager.instance.SetPauseGame(flag);
     }

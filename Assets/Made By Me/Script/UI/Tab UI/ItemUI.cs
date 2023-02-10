@@ -16,6 +16,7 @@ public class ItemUI : MonoBehaviour
     TabUI tabUI;
     public int currentindex = 0;
     
+    public bool isInventoryFull;
 
     private void Awake() {
         itemContainers = GetComponentsInChildren<ItemContainer>();
@@ -40,6 +41,7 @@ public class ItemUI : MonoBehaviour
     private void Update() {
         currentindex = tabUI.currentItemindex;
         ItemContainerFocus();
+        isInventoryFull = playerInventory.isInventoryFull;
     }
 
     private void ItemContainerFocus()

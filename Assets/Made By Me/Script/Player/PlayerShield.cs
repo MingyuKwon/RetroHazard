@@ -96,6 +96,7 @@ public class PlayerShield : MonoBehaviour
         GameManager.instance.SetPlayerMove(true);
     }
 
+
     public void BlockStart()
     {
         GameManager.instance.SetPlayerMove(false);

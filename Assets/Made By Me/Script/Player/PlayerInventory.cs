@@ -13,6 +13,8 @@ public class PlayerInventory : MonoBehaviour
     public int StartContainer = 8;
     public int CurrentContainer;
 
+    public bool isInventoryFull;
+
     public const int SheildBatteryLimit = 8;
     public const int Energy1BatteryLimit = 30;
     public const int Energy2BatteryLimit = 12;
@@ -33,6 +35,24 @@ public class PlayerInventory : MonoBehaviour
 
     private void Start() {
         GameManagerUI.instance.CurrentContainer = StartContainer;
+    }
+
+    private void Update() {
+        isInventoryFull = CheckInventoryFull();
+
+    }
+
+    private bool CheckInventoryFull()
+    {
+        for(int i=0; i<CurrentContainer; i++)
+        {
+            if(items[i] == null)
+            {
+                return false;
+            }
+            
+        }
+        return true;
     }
 
     private void OnEnable() {

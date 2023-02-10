@@ -24,7 +24,7 @@ public class KeyItem : Item
             GameManagerUI.instance.SetInteractiveDialogText(information.ItemDescription);
         }
         spriteRenderer.sortingLayerName = "4";
-        GameManagerUI.instance.showInteractiveDialogPanelUI(true, information.ItemName);
+        GameManagerUI.instance.VisualizeInteractiveUI(true, information.ItemName);
         StartCoroutine(isDialogEnd());
     }
 

@@ -12,17 +12,14 @@ public class DialogUI : MonoBehaviour
 
     GameObject dialogPanel;
     GameObject speakerPanel;
-    GameObject interactiveDialogPanel;
 
     private Player player;
     option[] Option;
 
     Text dialogText;
     Text speakerText;
-    Text interactiveDialogText;
 
     string[] dialogtexts;
-    string[] interactivedialogTexts;
 
     /// talk with NPC /////////
     public int callCount = 0;
@@ -42,11 +39,11 @@ public class DialogUI : MonoBehaviour
 
         dialogPanel = GetComponentInChildren<DialogPanel>().gameObject;
         speakerPanel = GetComponentInChildren<SpeakerPanel>().gameObject;
-        interactiveDialogPanel = GetComponentInChildren<InteractiveDialogPanel>().gameObject;
+        
 
         dialogText = dialogPanel.gameObject.GetComponentInChildren<Text>();
         speakerText = speakerPanel.gameObject.GetComponentInChildren<Text>();
-        interactiveDialogText = interactiveDialogPanel.gameObject.GetComponentInChildren<Text>();
+        
 
         Option = dialogPanel.GetComponentsInChildren<option>();
     }
@@ -83,11 +80,20 @@ public class DialogUI : MonoBehaviour
         if(!inputOk) return;
     }
     // for question option select
+    private void OnEnable() {
+        IinteractiveUI.interact_Input_Rlease_Event += InputGetBack;
+    }
+
+    private void InputGetBack()
+    {
+        if(this.gameObject.activeInHierarchy != true) return;
+        Debug.Log(this.name);
+        inputOk = true;
+    }
 
     void Start() {
         dialogText.text = "dialog";
         speakerText.text = "speaker";
-        VisualizeDialogUI(false, false);
     }
 
     public void showOptionUI(bool flag)
@@ -105,10 +111,7 @@ public class DialogUI : MonoBehaviour
     {
         dialogPanel.SetActive(flag);
     }
-    public void SetInteractiveDialogPanelUI(bool flag)
-    {
-        interactiveDialogPanel.SetActive(flag);
-    }
+
 
     public void VisualizeDialogUI(bool flag, bool isNPC)
     {
@@ -127,50 +130,17 @@ public class DialogUI : MonoBehaviour
         {
             SetSpeakerPanelUI(flag);
             SetDialogPanelUI(flag);
-            SetInteractiveDialogPanelUI(false);
         }else
         {
             SetSpeakerPanelUI(false);
             SetDialogPanelUI(false);
-            SetInteractiveDialogPanelUI(flag);
         }
         
         showOptionUI(false);
 
     }
 
-    ///////////////////////////////override////////////////////////
-    public void showInteractiveDialogPanelUI(bool flag)
-    {
-        if(flag)
-        {
-            dialogPanel.SetActive(false);
-            speakerPanel.SetActive(false);
-            StartCoroutine(InteractiveDialog());
-        }else
-        {
-            callCount = 0;
-        }
-        VisualizeDialogUI(flag, false);
-        
-    }
-    public void showInteractiveDialogPanelUI(bool flag, string ItemName)
-    {        
-        if(flag)
-        {
-            dialogPanel.SetActive(false);
-            speakerPanel.SetActive(false);
-            StartCoroutine(InteractiveDialog(ItemName));
-        }else
-        {
-            callCount = 0;
-        }
 
-        VisualizeDialogUI(flag, false);
-        
-    }
-
-    ///////////////////////////////override////////////////////////
 
     //Talk with NPC//////////////
     public void showTalkNPCDialog(bool visited ,Dialog dialog)
@@ -195,8 +165,8 @@ public class DialogUI : MonoBehaviour
 
     void DisappearTalkNPCDialog()
     {
-        VisualizeDialogUI(false, true);
         callCount = 0;
+        GameManagerUI.instance.VisualizeDialogUI(false, true);
     }
 
 
@@ -206,7 +176,7 @@ public class DialogUI : MonoBehaviour
         int strCount = FirstEncountDialog.Length;
         while(strCount > callCount)
         {
-            GameManagerUI.instance.SetDialogText(FirstEncountDialog[callCount]);
+            SetDialogText(FirstEncountDialog[callCount]);
             yield return new WaitForEndOfFrame();
         }
         DisappearTalkNPCDialog();
@@ -218,7 +188,7 @@ public class DialogUI : MonoBehaviour
         int strCount = RepeatingDialog.Length;
         while(strCount > callCount)
         {
-            GameManagerUI.instance.SetDialogText(RepeatingDialog[callCount]);
+            SetDialogText(RepeatingDialog[callCount]);
             yield return new WaitForEndOfFrame();
 
         }
@@ -248,7 +218,7 @@ public class DialogUI : MonoBehaviour
 
         while(ChoiceQuestionQuantity-1 > callCount)
         {
-            GameManagerUI.instance.SetDialogText(question[callCount]);
+            SetDialogText(question[callCount]);
             yield return new WaitForEndOfFrame();
         }
         GameManagerUI.instance.SetDialogText(question[callCount]);
@@ -309,42 +279,7 @@ public class DialogUI : MonoBehaviour
 
     //Talk with NPC//////////////
 
-    ///////////////////////////////override////////////////////////
-    IEnumerator InteractiveDialog()
-    {
-        int strCount = interactivedialogTexts.Length;
-        while(strCount > callCount)
-        {
-            interactiveDialogText.text = interactivedialogTexts[callCount];
-            yield return new WaitForEndOfFrame();
-        }
-
-        showInteractiveDialogPanelUI(false);
-    }
-
-    IEnumerator InteractiveDialog(string ItemName)
-    {
-        int strCount = interactivedialogTexts.Length;
-        while(callCount == 0)
-        {
-            interactiveDialogText.text = "You obtained <b><color=blue>\"" + ItemName + "\"</color></b> !";
-            yield return new WaitForEndOfFrame();
-        }
-
-        callCount = 0;
-
-        while(strCount > callCount)
-        {
-            interactiveDialogText.text = interactivedialogTexts[callCount];
-            yield return new WaitForEndOfFrame();
-        }
-
-        showInteractiveDialogPanelUI(false);
-        GameManager.instance.SetPlayerAnimationObtainKeyItem(false);
-
-    }
-
-    ///////////////////////////////override////////////////////////
+    
 
     public void SetDialogText(string text)
     {
@@ -353,10 +288,6 @@ public class DialogUI : MonoBehaviour
     public void SetSpeakerText(string text)
     {
         speakerText.text = text;
-    }
-    public void SetInteractiveDialogText(string[] texts)
-    {
-        interactivedialogTexts = texts;
     }
 
     public void SetOptionsText(string[] texts)
