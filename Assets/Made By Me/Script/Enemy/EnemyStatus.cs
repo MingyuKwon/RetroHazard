@@ -31,6 +31,10 @@ public class EnemyStatus : MonoBehaviour
         EnemyDeath += DestroySelf;
     }
 
+    private void OnDisable() {
+        EnemyDeath -= DestroySelf;
+    }
+
     private void Awake() {
         enemyManager = transform.parent.GetComponent<EnemyManager>();
     }

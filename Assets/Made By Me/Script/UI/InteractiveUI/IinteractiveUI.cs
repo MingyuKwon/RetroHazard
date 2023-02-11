@@ -29,7 +29,9 @@ public class IinteractiveUI : MonoBehaviour
 
     public void EnterPressed(InputActionEventData data)
     {
+        if(this.gameObject.activeInHierarchy == false) return;
         if(!inputOk) return;
+
         callCount++;
     }
 

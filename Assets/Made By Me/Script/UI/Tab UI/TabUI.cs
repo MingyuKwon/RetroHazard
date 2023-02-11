@@ -56,10 +56,13 @@ public class TabUI : MonoBehaviour
         IinteractiveUI.interact_Input_Rlease_Event += InputGetBack;
     }
 
+    private void OnDisable() {
+        IinteractiveUI.interact_Input_Rlease_Event -= InputGetBack;
+    }
+
     private void InputGetBack()
     {
         if(this.gameObject.activeInHierarchy != true) return;
-        Debug.Log(this.transform.parent.gameObject);
         inputOk = true;
     }
 

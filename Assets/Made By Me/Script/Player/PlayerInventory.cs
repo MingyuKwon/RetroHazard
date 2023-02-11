@@ -60,6 +60,11 @@ public class PlayerInventory : MonoBehaviour
        ExpansionItem.Obtain_Expansion_Item_Event += Obtain_Expansion_Item;
     }
 
+    private void OnDisable() {
+        bulletItem.Obtain_bullet_Item_Event += Obtain_bullet_Item;
+        ExpansionItem.Obtain_Expansion_Item_Event += Obtain_Expansion_Item;
+    }
+
     public void Obtain_bullet_Item(ItemInformation itemInformation, int amount)
     {
         for(int i=0; i<CurrentContainer; i++)

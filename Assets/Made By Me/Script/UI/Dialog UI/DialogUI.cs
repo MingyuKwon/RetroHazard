@@ -83,11 +83,15 @@ public class DialogUI : MonoBehaviour
     private void OnEnable() {
         IinteractiveUI.interact_Input_Rlease_Event += InputGetBack;
     }
+    private void OnDisable() {
+        IinteractiveUI.interact_Input_Rlease_Event -= InputGetBack;
+    }
 
     private void InputGetBack()
     {
+        Debug.Log(this.gameObject.transform.parent.GetInstanceID() + "sdfsf");
+
         if(this.gameObject.activeInHierarchy != true) return;
-        Debug.Log(this.name);
         inputOk = true;
     }
 

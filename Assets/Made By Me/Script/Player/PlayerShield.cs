@@ -26,10 +26,6 @@ public class PlayerShield : MonoBehaviour
         playerBodyCollider = GetComponentInChildren<PlayerCollider>().gameObject.GetComponent<CapsuleCollider2D>();
     }
 
-    private void OnEnable() {
-        
-    }
-
     private void OnCollisionEnter2D(Collision2D other) {
 
         contactCollider = other.GetContact(0).collider;

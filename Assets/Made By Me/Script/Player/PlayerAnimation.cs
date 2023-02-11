@@ -63,6 +63,11 @@ public class PlayerAnimation : MonoBehaviour
         PlayerStatus.SheildRecoveryEvent += SetSheildRecovery;
     }
 
+    private void OnDisable() {
+        PlayerStatus.SheildCrashEvent -= SetSheildCrash;
+        PlayerStatus.SheildRecoveryEvent -= SetSheildRecovery;
+    }
+
     private void SetSheildCrash(bool ChangeSheild)
     {
         sheildCrash = true;
