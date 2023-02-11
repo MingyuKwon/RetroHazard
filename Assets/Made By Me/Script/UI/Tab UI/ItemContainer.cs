@@ -9,6 +9,7 @@ using DG.Tweening;
 
 public class ItemContainer : MonoBehaviour
 {
+    Image backGround;
     public Image itemImage;
     public Text itemAmount;
     public FocusUI focus;
@@ -21,6 +22,7 @@ public class ItemContainer : MonoBehaviour
     public int selectIndex = 0;
 
     private void Awake() {
+        backGround = GetComponent<Image>();
         itemImage = transform.GetChild(0).GetComponent<Image>();
         itemAmount = transform.GetChild(1).GetComponentInChildren<Text>();
         focus = transform.GetChild(2).GetComponent<FocusUI>();
@@ -51,9 +53,11 @@ public class ItemContainer : MonoBehaviour
         if(tabUI.currentWindowLayer == 0)
         {
             SetSelect(false);
+            backGround.color = new Color(1f, 1f, 1f, 1f);
         }else if(tabUI.currentWindowLayer == 1)
         {
             SetSelect(true);
+            backGround.color = new Color(0.5f, 0.5f, 0.5f, 1f);
             focus.SetSelect(selectIndex);
             
         }else if(tabUI.currentWindowLayer == 2)
