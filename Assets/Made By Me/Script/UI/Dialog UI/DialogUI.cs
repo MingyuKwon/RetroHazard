@@ -8,7 +8,7 @@ using DG.Tweening;
 
 public class DialogUI : MonoBehaviour
 {
-    bool inputOk = false;
+    public bool inputOk = false;
 
     GameObject dialogPanel;
     GameObject speakerPanel;
@@ -179,6 +179,7 @@ public class DialogUI : MonoBehaviour
             SetDialogText(FirstEncountDialog[callCount]);
             yield return new WaitForEndOfFrame();
         }
+
         DisappearTalkNPCDialog();
     }
 

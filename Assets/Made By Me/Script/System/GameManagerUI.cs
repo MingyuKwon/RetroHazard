@@ -37,15 +37,15 @@ public class GameManagerUI : MonoBehaviour
     }
 
     private void Start() {
-        dialogUI.VisualizeDialogUI(false, false);
-        tabUI.Visualize_Tab_Interactive(false);
-        interactiveUI.VisualizeInteractiveUI(false);
-
         dialogUI.gameObject.SetActive(false);
         tabUI.gameObject.SetActive(false);
         interactiveUI.gameObject.SetActive(false);
         blackoutUI.gameObject.SetActive(false);
         inGameUI.gameObject.SetActive(true);
+
+        dialogUI.VisualizeDialogUI(false, false);
+        tabUI.Visualize_Tab_Interactive(false);
+        interactiveUI.VisualizeInteractiveUI(false);
         
     }
 
