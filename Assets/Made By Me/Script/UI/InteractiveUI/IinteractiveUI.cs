@@ -35,17 +35,6 @@ public class IinteractiveUI : MonoBehaviour
         callCount++;
     }
 
-    public void SetInteractiveUI(bool flag)
-    {
-        interactiveDialogPanel.SetActive(flag);
-        inputOk = flag;
-        if(!flag)
-        {
-            interact_Input_Rlease_Event?.Invoke();
-            gameObject.SetActive(false);
-        }
-    }
-
     public void SetInteractiveDialogText(string[] texts)
     {
         interactivedialogTexts = texts;
@@ -61,7 +50,15 @@ public class IinteractiveUI : MonoBehaviour
         {
             callCount = 0;
         }
-        SetInteractiveUI(flag);
+
+        interactiveDialogPanel.SetActive(flag);
+        Interactive_ChangeInput_PauseGame(flag);
+
+        if(!flag)
+        {
+            interact_Input_Rlease_Event?.Invoke();
+            gameObject.SetActive(false);
+        }
         
     }
     public void VisualizeInteractiveUI(bool flag, string ItemName)
@@ -74,8 +71,36 @@ public class IinteractiveUI : MonoBehaviour
             callCount = 0;
         }
 
-        SetInteractiveUI(flag);
+        interactiveDialogPanel.SetActive(flag);
+        Interactive_ChangeInput_PauseGame(flag);
+        if(!flag)
+        {
+            interact_Input_Rlease_Event?.Invoke();
+            gameObject.SetActive(false);
+        }
         
+    }
+
+    private void Interactive_ChangeInput_PauseGame(bool flag)
+    {
+        if(flag)
+        {
+            GameMangerInput.instance.changePlayerInputRule(1);
+        }else
+        {
+            if(GameManagerUI.instance.isDialogUIActive || GameManagerUI.instance.isTabUIActive)
+            {
+
+            }else
+            {
+                GameMangerInput.instance.changePlayerInputRule(0);
+            }
+            
+        }
+
+        inputOk = flag;
+
+        GameManager.instance.SetPauseGame(flag);
     }
 
     ///////////////////////////////override////////////////////////

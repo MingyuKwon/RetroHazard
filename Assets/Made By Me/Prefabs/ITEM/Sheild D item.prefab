@@ -126,10 +126,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   information: {fileID: 11400000, guid: 2dcc982ac995ee14ab3813e46ffa841d, type: 2}
-  isSheildDurability: 1
-  isEnergy1: 0
-  isEnergy2: 0
-  isEnergy3: 0
   amount: 3
 --- !u!1001 &8643678482148213639
 PrefabInstance:
@@ -138,6 +134,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3598119943708239658}
     m_Modifications:
+    - target: {fileID: 3054877796637674776, guid: 934822e3db8663e47a21236586f88b42, type: 3}
+      propertyPath: checkActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3054877796637674778, guid: 934822e3db8663e47a21236586f88b42, type: 3}
       propertyPath: m_RootOrder
       value: 0

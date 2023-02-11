@@ -8,6 +8,9 @@ public class Interact : MonoBehaviour
     public InteractiveDialog dialog;
     public bool isItem;
     public bool isKeyItem;
+
+    public bool triggerCheckActive = true;
+
     Item item = null;
 
     Collider2D playerCollider2D;
@@ -27,12 +30,26 @@ public class Interact : MonoBehaviour
         }
         
     }
+
+    public void SetCheckActive(bool flag)
+    {
+        check.gameObject.SetActive(flag);
+        triggerCheckActive = flag;
+    }
     
     private void OnTriggerStay2D(Collider2D other) {
         if(other.gameObject.layer == LayerMask.NameToLayer("Player Body") )
         {
             playerCollider2D = other;
-            check.SetActive(true);
+
+            if(triggerCheckActive)
+            {
+                check.SetActive(true);
+            }else
+            {
+                check.SetActive(false);
+            }
+            
         }
     }
 

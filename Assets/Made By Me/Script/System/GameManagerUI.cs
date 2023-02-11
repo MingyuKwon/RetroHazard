@@ -14,6 +14,12 @@ public class GameManagerUI : MonoBehaviour
     TabUI tabUI;
     IinteractiveUI interactiveUI;
 
+    public bool isDialogUIActive;
+    public bool isTabUIActive;
+    public bool isinGameUIActive;
+    public bool isInteractiveUIActive;
+
+
     public bool isShowingTab;
     public bool isShowingMenu;
 
@@ -46,7 +52,18 @@ public class GameManagerUI : MonoBehaviour
         dialogUI.VisualizeDialogUI(false, false);
         tabUI.Visualize_Tab_Interactive(false);
         interactiveUI.VisualizeInteractiveUI(false);
-        
+    }
+
+    private void Update() {
+        isDialogUIActive = dialogUI.gameObject.activeInHierarchy;
+        isTabUIActive = tabUI.gameObject.activeInHierarchy;
+        isinGameUIActive = inGameUI.gameObject.activeInHierarchy;
+        isInteractiveUIActive = interactiveUI.gameObject.activeInHierarchy;
+    }
+
+    private void checkActive()
+    {
+
     }
 
 // BlackOut UI

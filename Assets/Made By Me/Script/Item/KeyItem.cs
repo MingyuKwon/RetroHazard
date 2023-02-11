@@ -18,11 +18,10 @@ public class KeyItem : Item
     }
     public void Get_Item_Pause_Game()
     {
-        if(information.isKeyItem)
-        {
-            GameManager.instance.SetPlayerAnimationObtainKeyItem(true);
-            GameManagerUI.instance.SetInteractiveDialogText(information.ItemDescription);
-        }
+
+        GameManager.instance.SetPlayerAnimationObtainKeyItem(true);
+        GameManagerUI.instance.SetInteractiveDialogText(information.ItemDescription);
+
         spriteRenderer.sortingLayerName = "4";
         GameManagerUI.instance.VisualizeInteractiveUI(true, information.ItemName);
         StartCoroutine(isDialogEnd());
@@ -45,7 +44,7 @@ public class KeyItem : Item
     {
         Get_Item_Pause_Game();
 
-        GetComponentInChildren<Interact>().check.SetActive(false);
+        GetComponentInChildren<Interact>().SetCheckActive(false);
         transform.position = other.gameObject.transform.position + itemUp;
         
     }

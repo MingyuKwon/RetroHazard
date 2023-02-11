@@ -50,9 +50,6 @@ MonoBehaviour:
   information: {fileID: 11400000, guid: 384eed5303035e9439fefcdcb8f0026f, type: 2}
   spriteRenderer: {fileID: 0}
   itemUp: {x: 0, y: 0.7, z: 0}
-  isEnergy1: 0
-  isEnergy2: 1
-  isEnergy3: 0
   amount: 4
 --- !u!212 &3639844838293332526
 SpriteRenderer:
@@ -141,6 +138,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3054877796637674776, guid: 934822e3db8663e47a21236586f88b42, type: 3}
       propertyPath: isKeyItem
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3054877796637674776, guid: 934822e3db8663e47a21236586f88b42, type: 3}
+      propertyPath: checkActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3054877796637674778, guid: 934822e3db8663e47a21236586f88b42, type: 3}
