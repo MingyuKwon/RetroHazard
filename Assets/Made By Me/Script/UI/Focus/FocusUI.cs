@@ -15,6 +15,11 @@ public class FocusUI : MonoBehaviour
         selectButtons = transform.GetChild(0).GetComponentsInChildren<SelectButton>();
         image = GetComponent<Image>();
         image.enabled = false;
+        if(transform.parent.GetComponent<ItemContainer>() == null)
+        {
+            Destroy(transform.GetChild(0).gameObject);
+        }
+        
     }
 
     public void SetFocus(bool flag)
