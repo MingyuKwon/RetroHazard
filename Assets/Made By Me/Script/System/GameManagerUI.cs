@@ -49,7 +49,7 @@ public class GameManagerUI : MonoBehaviour
         blackoutUI.gameObject.SetActive(false);
         inGameUI.gameObject.SetActive(true);
 
-        dialogUI.VisualizeDialogUI(false, false);
+        dialogUI.VisualizeDialogUI(false);
         tabUI.Visualize_Tab_Interactive(false);
         interactiveUI.VisualizeInteractiveUI(false);
     }
@@ -153,10 +153,10 @@ public class GameManagerUI : MonoBehaviour
 // Tab UI
 
 // Dialog UI
-    public void VisualizeDialogUI(bool flag, bool isNPC)
+    public void VisualizeDialogUI(bool flag)
     {
         dialogUI.gameObject.SetActive(flag);
-        dialogUI.VisualizeDialogUI(flag,isNPC);
+        dialogUI.VisualizeDialogUI(flag);
     }
 
 

@@ -117,7 +117,7 @@ public class DialogUI : MonoBehaviour
     }
 
 
-    public void VisualizeDialogUI(bool flag, bool isNPC)
+    public void VisualizeDialogUI(bool flag)
     {
         GameManager.instance.SetPauseGame(flag);
         inputOk = flag;
@@ -130,15 +130,10 @@ public class DialogUI : MonoBehaviour
             GameMangerInput.instance.changePlayerInputRule(0);
         }
 
-        if(isNPC)
-        {
-            SetSpeakerPanelUI(flag);
-            SetDialogPanelUI(flag);
-        }else
-        {
-            SetSpeakerPanelUI(false);
-            SetDialogPanelUI(false);
-        }
+
+        SetSpeakerPanelUI(flag);
+        SetDialogPanelUI(flag);
+
         
         showOptionUI(false);
 
@@ -149,7 +144,7 @@ public class DialogUI : MonoBehaviour
     //Talk with NPC//////////////
     public void showTalkNPCDialog(bool visited ,Dialog dialog)
     {
-        VisualizeDialogUI(true, true);
+        VisualizeDialogUI(true);
         this.dialog = dialog;
         SetSpeakerText(dialog.NPCname);
         if(visited == false)
@@ -170,7 +165,7 @@ public class DialogUI : MonoBehaviour
     void DisappearTalkNPCDialog()
     {
         callCount = 0;
-        GameManagerUI.instance.VisualizeDialogUI(false, true);
+        GameManagerUI.instance.VisualizeDialogUI(false);
     }
 
 
