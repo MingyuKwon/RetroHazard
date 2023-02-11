@@ -17,7 +17,7 @@ public class TabUI : MonoBehaviour
 
     
 
-    public int currentWindowLayer = 0;
+    public int currentWindowLayer = 0; // 0 : normal, 1 : select, 2 : combine
     public int currentItemindex = 0;
     public bool yesNoChoice = true;
 
@@ -58,6 +58,7 @@ public class TabUI : MonoBehaviour
 
     private void OnDisable() {
         IinteractiveUI.interact_Input_Rlease_Event -= InputGetBack;
+        currentWindowLayer = 0;
     }
 
     private void InputGetBack()
@@ -109,6 +110,11 @@ public class TabUI : MonoBehaviour
 
             bulletItem = null;
             keyItem = null;
+        }else
+        {
+            if(itemUI.playerInventory.items[itemUI.currentindex] == null) return;
+            currentWindowLayer++;
+            currentWindowLayer =  Mathf.Clamp(currentWindowLayer, 0, 1);
         }
     }
     public void BackPressed(InputActionEventData data)
@@ -148,16 +154,42 @@ public class TabUI : MonoBehaviour
         if(!inputOk) return;
 
         if(isOpenedItem) return;
-        currentItemindex -= 4;
-        ContainerLimit();
+
+        if(currentWindowLayer == 0)
+        {
+            currentItemindex -= 4;
+            ContainerLimit();
+        }else if(currentWindowLayer == 1)
+        {
+            int n = itemUI.itemContainers[itemUI.currentindex].selectIndex;
+            n--;
+            itemUI.itemContainers[itemUI.currentindex].selectIndex = Mathf.Clamp(n, 0, 2);
+        }else  if(currentWindowLayer == 2)
+        {
+
+        }
+        
     }
     public void DownPressed(InputActionEventData data)
     {
         if(!inputOk) return;
 
         if(isOpenedItem) return;
-        currentItemindex += 4;
-        ContainerLimit();
+
+        if(currentWindowLayer == 0)
+        {
+            currentItemindex += 4;
+            ContainerLimit();
+        }else if(currentWindowLayer == 1)
+        {
+            int n = itemUI.itemContainers[itemUI.currentindex].selectIndex;
+            n++;
+            itemUI.itemContainers[itemUI.currentindex].selectIndex = Mathf.Clamp(n, 0, 2);
+        }else  if(currentWindowLayer == 2)
+        {
+            
+        }
+
     }
     public void RightPressed(InputActionEventData data)
     {
@@ -168,8 +200,18 @@ public class TabUI : MonoBehaviour
             yesNoChoice = false;
             return;
         }
-        currentItemindex++;
-        ContainerLimit();
+
+        if(currentWindowLayer == 0)
+        {
+            currentItemindex++;
+            ContainerLimit();
+        }else if(currentWindowLayer == 1)
+        {
+
+        }else  if(currentWindowLayer == 2)
+        {
+            
+        }
         
     }
     public void LeftPressed(InputActionEventData data)
@@ -181,8 +223,18 @@ public class TabUI : MonoBehaviour
             yesNoChoice = true;
             return;
         }
-        currentItemindex--;
-        ContainerLimit();
+
+        if(currentWindowLayer == 0)
+        {
+            currentItemindex--;
+            ContainerLimit();
+        }else if(currentWindowLayer == 1)
+        {
+
+        }else  if(currentWindowLayer == 2)
+        {
+            
+        }
     }
     // for question option select
 

@@ -9,8 +9,9 @@ using DG.Tweening;
 public class ItemUI : MonoBehaviour
 {
     [SerializeField] Sprite nullSprite;
-    ItemContainer[] itemContainers;
-    PlayerInventory playerInventory;
+
+    public ItemContainer[] itemContainers;
+    public PlayerInventory playerInventory;
     ItemExplainUI itemExplainUI;
 
     TabUI tabUI;
@@ -20,6 +21,8 @@ public class ItemUI : MonoBehaviour
 
     private void Awake() {
         itemContainers = GetComponentsInChildren<ItemContainer>();
+        Array.Reverse(itemContainers);
+
         playerInventory = FindObjectOfType<PlayerInventory>();
         itemExplainUI = FindObjectOfType<ItemExplainUI>();
         tabUI = transform.parent.gameObject.GetComponent<TabUI>();
@@ -50,7 +53,7 @@ public class ItemUI : MonoBehaviour
         {
             if(i == currentindex)
             {
-                itemContainers[i].focus.SetFocus(true);
+                itemContainers[i].SetFocus(true);
                 if(playerInventory.items[i] != null)
                 {
                     itemExplainUI.SetItemExplain(playerInventory.items[i].ItemDescription[0]);
@@ -63,7 +66,7 @@ public class ItemUI : MonoBehaviour
                 
             }else
             {
-                itemContainers[i].focus.SetFocus(false);
+                itemContainers[i].SetFocus(false);
             }
             
         }

@@ -1,0 +1,40 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+
+public class FocusUI : MonoBehaviour
+{
+    Image image;
+    SelectButton[] selectButtons;
+
+    
+
+    private void Awake() {
+        selectButtons = transform.GetChild(0).GetComponentsInChildren<SelectButton>();
+        image = GetComponent<Image>();
+        image.enabled = false;
+    }
+
+    public void SetFocus(bool flag)
+    {
+        image.enabled = flag;
+    }
+
+    public void SetSelect(int index)
+    {
+        index = Mathf.Clamp(index , 0, 2);
+        for(int i = 0; i<3; i++)
+        {
+            if(index == i)
+            {
+                selectButtons[i].SetSelect(true);
+            }else
+            {
+                selectButtons[i].SetSelect(false);
+            }
+            
+        }
+    }
+}
