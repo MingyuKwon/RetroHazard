@@ -18,12 +18,6 @@ public class PlayerHealthUI : MonoBehaviour
         healthBar = GetComponentInChildren<UIStatBar>();
     }
     
-    private void OnEnable() {
-        PlayerStatus.PlayerHealthChangeEvent += SetPlayerHealthUI;
-    }
-    private void OnDisable() {
-        PlayerStatus.PlayerHealthChangeEvent -= SetPlayerHealthUI;
-    }
 
     public void SetPlayerHealthUI(float CurrentHP, float MaxHP)
     {

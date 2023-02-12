@@ -22,16 +22,6 @@ public class EnergyUI : MonoBehaviour
         
     }
 
-    private void OnEnable() {
-        PlayerStatus.EnergyChangeEvent += SetEnergyUI;
-        PlayerStatus.Energy_Item_Obtain_Event += SetEnergyStoreUI;
-    }
-
-    private void OnDisable() {
-        PlayerStatus.EnergyChangeEvent -= SetEnergyUI;
-        PlayerStatus.Energy_Item_Obtain_Event -= SetEnergyStoreUI;
-    }
-
     public void SetEnergyUI(float EnergyAmount, int EnergyKind)
     {
         if(EnergyAmount == -1)

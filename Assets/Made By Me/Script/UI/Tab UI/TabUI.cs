@@ -1,4 +1,5 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,6 +8,8 @@ using Sirenix.OdinInspector;
 
 public class TabUI : MonoBehaviour
 {
+    static public event Action<int> discardItemEvent;
+
     public bool inputOk = false;
 
     public bool isShowing = false;
@@ -89,6 +92,8 @@ public class TabUI : MonoBehaviour
                     return;
                 }
 
+                GameManagerUI.instance.Visualize_Tab_Obtain(false);
+
                 if(bulletItem != null)
                 {
                     bulletItem.ObtainBulletItem();
@@ -97,7 +102,7 @@ public class TabUI : MonoBehaviour
                     keyItem.EventInvokeOverride();
                 }
                 
-                GameManagerUI.instance.Visualize_Tab_Obtain(false);
+                
             }else
             {
                 yesNoChoice = true;
@@ -113,8 +118,27 @@ public class TabUI : MonoBehaviour
         }else
         {
             if(itemUI.playerInventory.items[itemUI.currentindex] == null) return;
-            currentWindowLayer++;
-            currentWindowLayer =  Mathf.Clamp(currentWindowLayer, 0, 1);
+            
+            if(currentWindowLayer == 0)
+            {
+                currentWindowLayer++;
+            }
+            else if(currentWindowLayer == 1)
+            {
+                if(itemUI.itemContainers[itemUI.currentindex].selectIndex == 0) // use
+                {
+
+                }else if(itemUI.itemContainers[itemUI.currentindex].selectIndex == 1) // combine
+                {
+
+                }else if(itemUI.itemContainers[itemUI.currentindex].selectIndex == 2) // discard
+                {
+                    discardItemEvent.Invoke(itemUI.currentindex);
+                    currentWindowLayer--;
+                }
+            }
+
+            
         }
     }
     public void BackPressed(InputActionEventData data)

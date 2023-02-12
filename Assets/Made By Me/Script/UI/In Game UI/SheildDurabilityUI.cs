@@ -23,7 +23,7 @@ public class SheildDurabilityUI : MonoBehaviour
 
     private void Start() {
         playerStatus = FindObjectOfType<PlayerStatus>();
-        SheildDurability = playerStatus.SheildDurability;
+        SheildDurability = playerStatus.SheildMaganize[playerStatus.Sheild];
         Sheild = playerStatus.Sheild;
         animator.SetFloat("Sheild Durability", SheildDurability);
         animator.SetFloat("Sheild Kind", Sheild);

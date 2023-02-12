@@ -69,7 +69,7 @@ public class PlayerShield : MonoBehaviour
             status.SheildDurabilityChange(1);
         }else
         {
-            status.SheildDurabilityChange(0);
+            status.UpdateIngameUI();
         }
         status.parrySuccess = false;
 
