@@ -115,16 +115,13 @@ public class PlayerInventory : MonoBehaviour
                         temp -= itemsamount[i];
                         itemsamount[i] = 0;
                         items[i] = null;
-
                     }else
                     {
                         EnergyReloadMacro(temp);
                         itemsamount[i] -= temp;
                         temp = 0;
                     }
-                    
                 }
-
                 if(temp == 0) break;
             }
 
@@ -148,10 +145,8 @@ public class PlayerInventory : MonoBehaviour
                         temp = 0;
                     }
                 }
-
                 if(temp == 0) break;
             }
-
 
         }else if(status.Energy == 3)
         {
@@ -173,14 +168,56 @@ public class PlayerInventory : MonoBehaviour
                         temp = 0;
                     }
                 }
-
-                if(temp == 0) break;
+                if(temp <= 0) break;
             }
+        }
+        status.UpdateIngameUI();
+        itemUI.UpdateInventoryUI();
+    }
+
+    public void SheildReLoad()
+    {
+        float temp = 0;
+        temp = status.SheildMaganizeMaximum;
+        temp -= status.SheildMaganize[status.Sheild];
+
+        if(temp > status.SheildStore)
+        {
+            temp = status.SheildStore;
+        } // up to , temp is determining how many bullet to reload 
+
+
+        for(int i=0; i<CurrentContainer; i++)
+        {
+            if(items[i] == null) continue;
+            if(items[i].isBullet && items[i].isSheild)
+            {
+                if( temp >= itemsamount[i])
+                {
+                    status.SheildDurabilityChange(-itemsamount[i]);
+                    status.SheildStore -= itemsamount[i];
+
+                    temp -= itemsamount[i];
+                    itemsamount[i] = 0;
+                    items[i] = null;
+                }else
+                {
+                    status.SheildDurabilityChange(-temp);
+                    status.SheildStore -= Mathf.CeilToInt(temp);
+                    if(Mathf.CeilToInt(temp) == itemsamount[i])
+                    {
+                        items[i] = null;
+                    }
+                    itemsamount[i] -= Mathf.CeilToInt(temp);
+
+                    temp = 0;
+                }
+            }
+            if(temp <= 0) break;
         }
 
         status.UpdateIngameUI();
         itemUI.UpdateInventoryUI();
-        
     }
 
     public void Obtain_bullet_Item(ItemInformation itemInformation, int amount)

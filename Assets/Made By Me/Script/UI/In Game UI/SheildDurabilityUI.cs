@@ -28,21 +28,20 @@ public class SheildDurabilityUI : MonoBehaviour
         animator.SetFloat("Sheild Durability", SheildDurability);
         animator.SetFloat("Sheild Kind", Sheild);
     }
+    //
     private void OnEnable() {
         PlayerStatus.SheildDurabilityChangeEvent += SetSheildDurabilityUI;
         PlayerStatus.SheildCrashEvent += SetSheildCrash;
-        PlayerStatus.Sheild_Durability_Item_Obtain_Event += SetSheildStoreUI;
         PlayerShield.Sheild_Durability_Reduce_Start_Event += Sheild_Durability_Reduce_Start;
     }
 
     private void OnDisable() {
         PlayerStatus.SheildDurabilityChangeEvent -= SetSheildDurabilityUI;
         PlayerStatus.SheildCrashEvent -= SetSheildCrash;
-        PlayerStatus.Sheild_Durability_Item_Obtain_Event -= SetSheildStoreUI;
         PlayerShield.Sheild_Durability_Reduce_Start_Event -= Sheild_Durability_Reduce_Start;
     }
 
-    private void SetSheildDurabilityUI(float CurrentDurability, int SheildKind)
+    public void SetSheildDurabilityUI(float CurrentDurability, int SheildKind)
     {
         SheildDurability = CurrentDurability;
         Sheild = SheildKind;

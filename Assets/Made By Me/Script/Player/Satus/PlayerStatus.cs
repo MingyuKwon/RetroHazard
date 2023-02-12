@@ -10,8 +10,6 @@ public class PlayerStatus : MonoBehaviour
 {
     public static event Action<float, int> SheildDurabilityChangeEvent;
 
-    public static event Action<float> Sheild_Durability_Item_Obtain_Event;
-
     static public event Action<float,float, int, float, float , int, float, float> Update_IngameUI_Event; // Max HP, Current Hp, Energy, EnergyMaganize[Energy], EnergtStore[Energy] , Sheild, SheildMaganize[Sheild] , SheildStore
 
     public static event Action PlayerDeathEvent;
@@ -37,12 +35,12 @@ public class PlayerStatus : MonoBehaviour
 
     public int Sheild = 0; // 0-> normal, 1-> parry, 2 -> big
     public float[] SheildMaganize = {0f , 0f, 0f}; // Current Sheild Durability contain
-    public float SheildMaganizeMaximum = 4f; // Current Sheild Durability contain
+    public int SheildMaganizeMaximum = 4; // Current Sheild Durability contain
 
     
     [Header("Store")]
     public int[] EnergyStore = {-1, 0 , 0, 0}; // Current sword Energy store in inventory
-    public float SheildStore = 0f; // Current Sheild Durability store in inventory
+    public int SheildStore = 0; // Current Sheild Durability store in inventory
 
     [Header("InGame")]
     public bool parryFrame = false;
@@ -127,6 +125,7 @@ public class PlayerStatus : MonoBehaviour
 
     public void EnergyUse(int energyUse, int energyKind)
     {
+        if(energyKind == 0) return;
         EnergyMaganize[energyKind] -= energyUse;
         UpdateIngameUI();
     }

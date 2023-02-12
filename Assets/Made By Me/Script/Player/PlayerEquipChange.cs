@@ -47,21 +47,10 @@ public class PlayerEquipChange : MonoBehaviour
 
         status.SheildDurabilityChange(0);
         animator.SetFloat("Sheild Kind", status.Sheild);
+        status.UpdateIngameUI();
     }
 
-    void SheildReLoad()
-    {
-        float temp = 0;
-        temp = status.SheildMaganizeMaximum;
-        temp -= status.SheildMaganize[status.Sheild];
 
-        if(temp > status.SheildStore)
-        {
-            temp = status.SheildStore;
-        }
-        status.SheildStore -= temp;
-        status.SheildDurabilityChange(-temp);
-    }
 
     void EnergyReloadStart(InputActionEventData data)
     {
@@ -93,7 +82,7 @@ public class PlayerEquipChange : MonoBehaviour
 
     public void SheildReloadEnd()
     {
-        SheildReLoad();
+        inventory.SheildReLoad();
         GameManager.instance.SetPlayerFree();
         GameManager.instance.SetPlayerMove(true);
         GameManager.instance.SetPausePlayer(false);
