@@ -6,10 +6,9 @@ using UnityEngine.UI;
 
 public class FocusUI : MonoBehaviour
 {
-    Image image;
-    SelectButton[] selectButtons;
-
     
+    Image image;
+    public SelectButton[] selectButtons;
 
     private void Awake() {
         selectButtons = transform.GetChild(0).GetComponentsInChildren<SelectButton>();
@@ -22,6 +21,7 @@ public class FocusUI : MonoBehaviour
         
     }
 
+
     public void SetFocus(bool flag)
     {
         image.enabled = flag;
@@ -29,7 +29,6 @@ public class FocusUI : MonoBehaviour
 
     public void SetSelect(int index)
     {
-        index = Mathf.Clamp(index , 0, 2);
         for(int i = 0; i<3; i++)
         {
             if(index == i)

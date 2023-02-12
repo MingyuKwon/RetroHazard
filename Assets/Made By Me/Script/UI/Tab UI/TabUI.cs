@@ -163,7 +163,7 @@ public class TabUI : MonoBehaviour
         {
             int n = itemUI.itemContainers[itemUI.currentindex].selectIndex;
             n--;
-            itemUI.itemContainers[itemUI.currentindex].selectIndex = Mathf.Clamp(n, 0, 2);
+            itemUI.itemContainers[itemUI.currentindex].SetSelectIndex(Mathf.Clamp(n, 0, 2));
         }else  if(currentWindowLayer == 2)
         {
 
@@ -184,7 +184,7 @@ public class TabUI : MonoBehaviour
         {
             int n = itemUI.itemContainers[itemUI.currentindex].selectIndex;
             n++;
-            itemUI.itemContainers[itemUI.currentindex].selectIndex = Mathf.Clamp(n, 0, 2);
+            itemUI.itemContainers[itemUI.currentindex].SetSelectIndex(Mathf.Clamp(n, 0, 2));
         }else  if(currentWindowLayer == 2)
         {
             

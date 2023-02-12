@@ -9,15 +9,22 @@ using DG.Tweening;
 
 public class ItemContainer : MonoBehaviour
 {
+    [SerializeField] int containerNum;
+
     Image backGround;
     public Image itemImage;
     public Text itemAmount;
     public FocusUI focus;
 
     TabUI tabUI;
+    ItemUI itemUI;
+
     public GameObject focusSelectPanel;
 
     public bool isFocused = false;
+
+    int indexLimitMin = 0;
+    int indexLimitMax = 2;
 
     public int selectIndex = 0;
 
@@ -28,6 +35,7 @@ public class ItemContainer : MonoBehaviour
         focus = transform.GetChild(2).GetComponent<FocusUI>();
 
         tabUI = transform.parent.transform.parent.GetComponent<TabUI>();
+        itemUI = GetComponentInParent<ItemUI>();
 
         transform.GetChild(1).gameObject.SetActive(false);
 
@@ -40,7 +48,20 @@ public class ItemContainer : MonoBehaviour
     }
 
     private void OnEnable() {
-        selectIndex = 0;
+        if(itemUI != null)
+        {
+            if(itemUI.playerInventory == null) return;
+
+            if(itemUI.playerInventory.items[containerNum] == null) return;
+
+            if(itemUI.playerInventory.items[containerNum].isKeyItem)
+            {
+                indexLimitMax = 1;
+                focus.selectButtons[2].gameObject.SetActive(false);
+            }
+        }
+
+        selectIndex = indexLimitMin;
     }
 
     private void CheckWindowLayer()
@@ -65,6 +86,12 @@ public class ItemContainer : MonoBehaviour
 
         }
     }
+
+    public void SetSelectIndex(int index)
+    {
+        selectIndex = Mathf.Clamp(index, indexLimitMin, indexLimitMax);
+    }
+
 
     public void SetItemAmountUI(bool flag)
     {

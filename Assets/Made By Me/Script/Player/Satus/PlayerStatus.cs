@@ -59,6 +59,10 @@ public class PlayerStatus : MonoBehaviour
         EnergyAmount = EnergyMaganize[Energy];
     }
 
+    private void OnEnable() {
+        //bulletItem.Obtain_bullet_Item_Event +=
+    }
+
     public void Use_bullet_Item(ItemInformation itemInformation, int amount)
     {
         if(itemInformation.isSheild)
