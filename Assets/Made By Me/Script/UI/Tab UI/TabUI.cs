@@ -10,8 +10,8 @@ public class TabUI : MonoBehaviour
     public bool inputOk = false;
 
     public bool isShowing = false;
-    public bool isInteractive = false;
-    public bool isOpenedItem = false;
+    public bool isInteractive = false; // true -> open when get item, interact with object , false -> open with menu
+    public bool isOpenedItem = false; // true -> open when get item, false -> interact with object
 
     private Player player;
 

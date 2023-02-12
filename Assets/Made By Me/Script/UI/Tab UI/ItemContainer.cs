@@ -56,6 +56,16 @@ public class ItemContainer : MonoBehaviour
 
             if(itemUI.playerInventory.items[containerNum].isKeyItem)
             {
+                if(!tabUI.isInteractive)
+                {
+                    indexLimitMin = 1;
+                    focus.selectButtons[0].gameObject.SetActive(false);
+                }else
+                {
+                    indexLimitMin = 0;
+                    focus.selectButtons[0].gameObject.SetActive(true);
+                }
+                
                 indexLimitMax = 1;
                 focus.selectButtons[2].gameObject.SetActive(false);
             }
