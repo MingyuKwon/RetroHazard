@@ -262,6 +262,7 @@ public class PlayerInventory : MonoBehaviour
             if(items[i] == null)
             {
                 items[i] = itemInformation;
+                itemsamount[i] = 1;
                 break;
             }
             

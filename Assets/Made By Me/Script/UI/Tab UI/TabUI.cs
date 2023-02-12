@@ -350,12 +350,12 @@ public class TabUI : MonoBehaviour
     public void Visualize_Tab_Obtain(bool flag , bulletItem item)
     {
         Visualize_Tab_Obtain(flag);
-
         bulletItem = item;
 
         interactiveMessageUI.SetInteractiveName(item.information.ItemName);
         interactiveMessageUI.SetInteractiveSituation(item.information.ItemDescription[0]);
         interactiveMessageUI.SetItemImage(item.information.ItemImage);
+        interactiveMessageUI.SetAmountText(item.information.amount);
     }
 
     public void Visualize_Tab_Obtain(bool flag , KeyItem item)
@@ -366,6 +366,7 @@ public class TabUI : MonoBehaviour
         interactiveMessageUI.SetInteractiveName(item.information.ItemName);
         interactiveMessageUI.SetInteractiveSituation(item.information.ItemDescription[0]);
         interactiveMessageUI.SetItemImage(item.information.ItemImage);
+        interactiveMessageUI.SetAmountText(item.information.amount);
         
     }
     ////////////////////override end//////////////////////////

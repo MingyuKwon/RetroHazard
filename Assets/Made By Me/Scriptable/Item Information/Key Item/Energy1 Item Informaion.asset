@@ -20,5 +20,9 @@ MonoBehaviour:
   isEnergy1: 1
   isEnergy2: 0
   isEnergy3: 0
+  isBullet: 0
+  isPotion: 0
+  amount: 1
+  expansionAmount: 5
   ItemDescription:
   - It will expand your <b>Energy 1 Maximum contain limit</b>

@@ -20,9 +20,12 @@ public class ItemInformation : ScriptableObject
     public bool isEnergy3;
 
     [Header("if it is bullet item, can be used in Menu tab? (Just Select One)")]
-
     public bool isBullet;
     public bool isPotion;
+
+    [Header("amount")]
+    public int amount;
+    public int expansionAmount;
 
     [Space]
     [TextArea]

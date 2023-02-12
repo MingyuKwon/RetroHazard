@@ -6,11 +6,10 @@ using UnityEngine;
 public class ExpansionItem : KeyItem
 {
     public static event Action<ItemInformation, int> Obtain_Expansion_Item_Event;
-    public int amount;
 
     public void ObtainExpansionItem()
     {
-        Obtain_Expansion_Item_Event?.Invoke(information , amount);
+        Obtain_Expansion_Item_Event?.Invoke(information , information.expansionAmount);
     }
 
     public override void EventInvokeOverride()
