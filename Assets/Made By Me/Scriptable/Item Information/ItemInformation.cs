@@ -9,15 +9,20 @@ public class ItemInformation : ScriptableObject
     public string ItemName;
     [Space]
 
-    [Header("Just Select One")]
+    [Header("Interact with Item when first obtain? (Just Select One)")]
     public bool isKeyItem;
     public bool isNormalItem;
 
-    [Header("Just Select One")]
+    [Header("what kind of item? (Just Select One)")]
     public bool isSheild;
     public bool isEnergy1;
     public bool isEnergy2;
     public bool isEnergy3;
+
+    [Header("if it is bullet item, can be used in Menu tab? (Just Select One)")]
+
+    public bool isBullet;
+    public bool isPotion;
 
     [Space]
     [TextArea]

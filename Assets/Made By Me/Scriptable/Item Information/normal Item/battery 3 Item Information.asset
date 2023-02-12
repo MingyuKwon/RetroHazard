@@ -20,5 +20,7 @@ MonoBehaviour:
   isEnergy1: 0
   isEnergy2: 0
   isEnergy3: 1
+  isBullet: 1
+  isPotion: 0
   ItemDescription:
   - can be used to reload Energy 3

@@ -16,5 +16,9 @@ MonoBehaviour:
   ItemName: Energy 3 Maganize
   isKeyItem: 1
   isNormalItem: 0
+  isSheild: 0
+  isEnergy1: 0
+  isEnergy2: 0
+  isEnergy3: 1
   ItemDescription:
   - It will expand your <b>Energy 3 Maximum contain limit</b>
