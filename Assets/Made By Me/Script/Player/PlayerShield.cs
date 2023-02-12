@@ -29,15 +29,27 @@ public class PlayerShield : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other) {
 
         contactCollider = other.GetContact(0).collider;
-        if(other.otherCollider.tag == "Sheild" && contactCollider.gameObject.layer == LayerMask.NameToLayer("Enemy not Body"))
+        if(other.otherCollider.tag == "Sheild")
         {
-            if(contactCollider.tag == "Attack" && status.parryFrame)
+            if(contactCollider.gameObject.layer == LayerMask.NameToLayer("Enemy not Body"))
             {
-                vfxAnimator.SetTrigger("Parry");
-                status.parrySuccess = true;
-                GameManager.instance.isPlayerParry = true;
-                GameManager.instance.SlowMotion();
-            }else
+                if(contactCollider.tag == "Attack" && status.parryFrame)
+                {
+                    vfxAnimator.SetTrigger("Parry");
+                    status.parrySuccess = true;
+                    GameManager.instance.isPlayerParry = true;
+                    GameManager.instance.SlowMotion();
+                }else
+                {
+                    animator.SetTrigger("Block");
+                    if(!GameManager.instance.Sheild_Durability_Reducing)
+                    {
+                        Sheild_Durability_Reduce_Start_Event.Invoke();
+                    }
+                    status.blockSuccessEnemy = contactCollider.transform.parent.transform.parent.name;
+                }
+            }
+            else if(contactCollider.gameObject.layer == LayerMask.NameToLayer("Enemy Body"))
             {
                 animator.SetTrigger("Block");
                 if(!GameManager.instance.Sheild_Durability_Reducing)
@@ -46,6 +58,8 @@ public class PlayerShield : MonoBehaviour
                 }
                 status.blockSuccessEnemy = contactCollider.transform.parent.transform.parent.name;
             }
+
+            
             
         }
         
