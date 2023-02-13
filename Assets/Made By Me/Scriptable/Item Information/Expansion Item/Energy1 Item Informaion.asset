@@ -16,6 +16,9 @@ MonoBehaviour:
   ItemName: Energy 1 Maganize
   isKeyItem: 1
   isNormalItem: 0
+  isEquipItem: 0
+  isInteractiveItem: 0
+  isExpansionItem: 1
   isSheild: 0
   isEnergy1: 1
   isEnergy2: 0

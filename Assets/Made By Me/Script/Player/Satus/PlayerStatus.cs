@@ -31,8 +31,10 @@ public class PlayerStatus : MonoBehaviour
     public int Energy = 0;
     public int[] EnergyDamage = {8, 30 , 100, 80};
     public int[] EnergyMaganize = {-1, 0 , 0, 0}; // Current sword Energy contain
-    public int[] EnergyMaganizeMaximum = {-1, 5 , 4, 3}; // Current sword Energy contain
+    public int[] EnergyMaganizeMaximum = {-1, 0 , 0, 0}; // Current sword Energy contain
     public int[] EnergyUpgrade = {-1, 0 , 0, 0}; // Current sword Energy contain
+
+    public int[] EnergyUPgradeUnit = {0, 5, 4, 3};
 
     public int Sheild = 0; // 0-> normal, 1-> parry, 2 -> big
     public float[] SheildMaganize = {0f , 0f, 0f}; // Current Sheild Durability contain
@@ -53,28 +55,36 @@ public class PlayerStatus : MonoBehaviour
         Attack = EnergyDamage[Energy];
     }
 
-    private void OnEnable() {
-    }
-
     public void UpdateIngameUI()
     {
         Update_IngameUI_Event?.Invoke(MaxHP, CurrentHP, Energy, EnergyMaganize[Energy], EnergyStore[Energy] ,  Sheild, SheildMaganize[Sheild] , SheildStore, EnergyUpgrade[Energy]);
     }
 
-
-    public void Obtain_Expansion_Item(ItemInformation itemInformation, int amount)
+    public void SetEnergyEquipUpgrade(int energyKind,  bool isEquip, bool isObtain,  bool isFirst) 
     {
-        if(itemInformation.isEnergy1)
+        if(isEquip) // weapon
         {
-            EnergyMaganizeMaximum[1] += amount;
-        }else if(itemInformation.isEnergy2)
+            if(!isObtain)
+            {
+                EnergyUpgrade[energyKind] = 0;
+            }else
+            {
+                if(isFirst)
+                {
+                    EnergyUpgrade[energyKind] = 1;
+                    EnergyMaganizeMaximum[energyKind] += EnergyUPgradeUnit[energyKind];
+                }else
+                {
+                    EnergyUpgrade[energyKind] = EnergyMaganizeMaximum[energyKind] / EnergyUPgradeUnit[energyKind];
+                }
+                
+            }
+            
+        }else // upgrade
         {
-            EnergyMaganizeMaximum[2] += amount;
-        }else if(itemInformation.isEnergy3)
-        {
-            EnergyMaganizeMaximum[3] += amount;
+            EnergyUpgrade[energyKind]++;
+            EnergyMaganizeMaximum[energyKind] += EnergyUPgradeUnit[energyKind];
         }
-        UpdateIngameUI();
     }
 
     private void Start() {

@@ -13,6 +13,12 @@ public class ItemInformation : ScriptableObject
     public bool isKeyItem;
     public bool isNormalItem;
 
+    [Header("Is Key Item for equip? interact? expand? (Just Select One)")]
+    public bool isEquipItem;
+    public bool isInteractiveItem;
+    public bool isExpansionItem;
+    public int KeyItemCode;
+
     [Header("what kind of item? (Just Select One)")]
     public bool isSheild;
     public bool isEnergy1;

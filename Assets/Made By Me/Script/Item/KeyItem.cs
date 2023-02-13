@@ -8,9 +8,12 @@ public class KeyItem : Item
     public SpriteRenderer spriteRenderer;
     public Vector3 itemUp = new Vector3(0f,0.5f,0f);
 
+    public Interact interact;
+
     private void Awake() {
         spriteRenderer = GetComponent<SpriteRenderer>();
         firstPosition = GetComponent<Transform>().position;
+        interact = GetComponentInChildren<Interact>();
     }
 
     private void Start() {
@@ -18,7 +21,6 @@ public class KeyItem : Item
     }
     public void Get_Item_Pause_Game()
     {
-
         GameManager.instance.SetPlayerAnimationObtainKeyItem(true);
         GameManagerUI.instance.SetInteractiveDialogText(information.ItemDescription);
 
@@ -36,15 +38,13 @@ public class KeyItem : Item
         transform.position = firstPosition;
         GameManagerUI.instance.Visualize_Tab_Obtain(true , this);
 
-
-        //Destroy(this.gameObject);
     }
 
     public void ObtainKeyItem(Collider2D other)
     {
         Get_Item_Pause_Game();
 
-        GetComponentInChildren<Interact>().SetCheckActive(false);
+        interact.SetCheckActive(false);
         transform.position = other.gameObject.transform.position + itemUp;
         
     }

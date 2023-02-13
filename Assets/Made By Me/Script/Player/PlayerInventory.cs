@@ -62,6 +62,7 @@ public class PlayerInventory : MonoBehaviour
     private void OnEnable() {
        bulletItem.Obtain_bullet_Item_Event += Obtain_bullet_Item;
        ExpansionItem.Obtain_Expansion_Item_Event += Obtain_Expansion_Item;
+       EquipItem.Obtain_Equip_Item_Event += Obtain_Equip_Item;
 
        TabUI.discardItemEvent += DiscardItem;
     }
@@ -265,8 +266,33 @@ public class PlayerInventory : MonoBehaviour
                 itemsamount[i] = 1;
                 break;
             }
+        }
+
+        itemUI.UpdateInventoryUI();
+        status.UpdateIngameUI();
+    }
+
+    public void Obtain_Equip_Item(ItemInformation itemInformation, int KeyItemCode)
+    {
+        for(int i=0; i<CurrentContainer; i++)
+        {
+            if(items[i] == null)
+            {
+                items[i] = itemInformation;
+                itemsamount[i] = 1;
+                break;
+            }
             
         }
+
+        if(itemInformation.KeyItemCode <3)
+        {
+            status.SetEnergyEquipUpgrade(itemInformation.KeyItemCode +1, true, true, true);
+        }else
+        {
+
+        }
+        
 
         itemUI.UpdateInventoryUI();
         status.UpdateIngameUI();

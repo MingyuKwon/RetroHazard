@@ -109,6 +109,7 @@ public class TabUI : MonoBehaviour
                 if(keyItem != null)
                 {
                     keyItem.SetSpriteSortNoraml();
+                    keyItem.interact.SetCheckActive(true);
                 }
                 GameManagerUI.instance.Visualize_Tab_Obtain(false);
             }

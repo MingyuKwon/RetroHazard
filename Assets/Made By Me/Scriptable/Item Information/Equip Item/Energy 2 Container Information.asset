@@ -10,19 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a32a9bd668c1bbb409c635fef9be93c3, type: 3}
-  m_Name: Energy2 Item Information
+  m_Name: Energy 2 Container Information
   m_EditorClassIdentifier: 
-  ItemImage: {fileID: -1780172890, guid: 5bdc2781d97139949a21d7b80c0962a6, type: 3}
-  ItemName: Energy 2 Maganize
+  ItemImage: {fileID: 21300076, guid: a977e104bdeb79746b0814c9c7215e80, type: 3}
+  ItemName: Energy 2 Container
   isKeyItem: 1
   isNormalItem: 0
+  isEquipItem: 1
+  isInteractiveItem: 0
+  isExpansionItem: 0
+  KeyItemCode: 1
   isSheild: 0
   isEnergy1: 0
-  isEnergy2: 1
+  isEnergy2: 0
   isEnergy3: 0
   isBullet: 0
   isPotion: 0
   amount: 1
-  expansionAmount: 4
+  expansionAmount: 0
   ItemDescription:
-  - It will expand your <b>Energy 2 Maximum contain limit</b>
+  - "Containing Energy 2. \nIt enable you to attack using Energy 2"

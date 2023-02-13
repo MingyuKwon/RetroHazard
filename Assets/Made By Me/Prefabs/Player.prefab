@@ -252,6 +252,7 @@ MonoBehaviour:
   itemsamount: 
   StartContainer: 8
   CurrentContainer: 0
+  isInventoryFull: 0
 --- !u!1 &3210448023490803281
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,30 +338,18 @@ MonoBehaviour:
   ArmorDefence: 0
   SheildCrash: 0
   Energy: 0
-  EnergyAmount: -1
   EnergyDamage: 1400000064000000c800000096000000
-  EnergyMaganize:
-  - -1
-  - 0
-  - 0
-  - 0
-  EnergyMaganizeMaximum:
-  - -1
-  - 5
-  - 4
-  - 3
+  EnergyMaganize: ffffffff000000000000000000000000
+  EnergyMaganizeMaximum: ffffffff000000000000000000000000
+  EnergyUpgrade: ffffffff000000000000000000000000
+  EnergyUPgradeUnit: 00000000050000000400000003000000
   Sheild: 0
-  SheildDurability: 0
   SheildMaganize:
   - 0
   - 0
   - 0
   SheildMaganizeMaximum: 4
-  EnergyStore:
-  - -1
-  - 0
-  - 0
-  - 0
+  EnergyStore: ffffffff000000000000000000000000
   SheildStore: 0
   parryFrame: 0
   parrySuccess: 0
