@@ -55,6 +55,7 @@ public class PlayerEquipChange : MonoBehaviour
     void EnergyReloadStart(InputActionEventData data)
     {
         if(status.EnergyStore[status.Energy] == 0) return;
+        if(status.EnergyUpgrade[status.Energy] == 0) return;
         if(status.EnergyMaganize[status.Energy] == status.EnergyMaganizeMaximum[status.Energy]) return;
         GameManager.instance.SetPausePlayer(true);
         animator.SetTrigger("Reload");
@@ -65,7 +66,8 @@ public class PlayerEquipChange : MonoBehaviour
     void SheildReloadStart(InputActionEventData data)
     {
         if(status.SheildStore == 0) return;
-        if(status.SheildMaganize[status.Sheild] == status.SheildMaganizeMaximum) return;
+        if(status.SheildUpgrade[status.Sheild] == 0) return;
+        if(status.SheildMaganize[status.Sheild] == status.SheildMaganizeMaximum[status.Sheild]) return;
         GameManager.instance.SetPausePlayer(true);
         animator.SetTrigger("Reload");
         animator.SetFloat("ReloadEnergy", 0f);

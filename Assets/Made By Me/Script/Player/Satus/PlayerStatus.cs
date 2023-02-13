@@ -38,12 +38,13 @@ public class PlayerStatus : MonoBehaviour
 
     public int Sheild = 0; // 0-> normal, 1-> parry, 2 -> big
     public float[] SheildMaganize = {0f , 0f, 0f}; // Current Sheild Durability contain
-    public int SheildMaganizeMaximum = 4; // Current Sheild Durability contain
-
+    public int[] SheildMaganizeMaximum = {0, 0, 0}; 
+    public int[] SheildUpgrade = {0 ,0, 0};
     
     [Header("Store")]
     public int[] EnergyStore = {-1, 0 , 0, 0}; // Current sword Energy store in inventory
     public int SheildStore = 0; // Current Sheild Durability store in inventory
+    
 
     [Header("InGame")]
     public bool parryFrame = false;
@@ -58,6 +59,22 @@ public class PlayerStatus : MonoBehaviour
     public void UpdateIngameUI()
     {
         Update_IngameUI_Event?.Invoke(MaxHP, CurrentHP, Energy, EnergyMaganize[Energy], EnergyStore[Energy] ,  Sheild, SheildMaganize[Sheild] , SheildStore, EnergyUpgrade[Energy]);
+    }
+
+    public void SetSheildEquip(int sheildKind, bool isObtain)
+    {
+        if(isObtain)
+        {
+            SheildUpgrade[sheildKind] = 1;
+            
+            if(SheildMaganizeMaximum[sheildKind] == 0)
+            {
+                SheildMaganizeMaximum[sheildKind] = 4;
+            }
+        }else
+        {
+            SheildUpgrade[sheildKind] = 0;
+        }
     }
 
     public void SetEnergyEquipUpgrade(int energyKind,  bool isEquip, bool isObtain,  bool isFirst) 

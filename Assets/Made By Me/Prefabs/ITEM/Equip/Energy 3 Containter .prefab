@@ -128,6 +128,7 @@ MonoBehaviour:
   information: {fileID: 11400000, guid: f209011a7837bf3449a9cc3ccc882375, type: 2}
   spriteRenderer: {fileID: 0}
   itemUp: {x: 0, y: 0.5, z: 0}
+  interact: {fileID: 0}
 --- !u!1001 &4434615529258050917
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -138,6 +139,14 @@ PrefabInstance:
     - target: {fileID: 3054877796637674778, guid: 934822e3db8663e47a21236586f88b42, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3054877796637674778, guid: 934822e3db8663e47a21236586f88b42, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3054877796637674778, guid: 934822e3db8663e47a21236586f88b42, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 3054877796637674778, guid: 934822e3db8663e47a21236586f88b42, type: 3}
       propertyPath: m_LocalPosition.x

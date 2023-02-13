@@ -347,6 +347,69 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Simple Items_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 320
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5f793f24e3d4b04f8aec5831677c965
+      internalID: -1501839339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Simple Items_12
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 320
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59848b3aad1960245b59dd1eb8b66fa3
+      internalID: -1402280519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Simple Items_13
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 320
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f623d9adf125efe45baeda009d5d3c36
+      internalID: -151410628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -360,6 +423,7 @@ TextureImporter:
     nameFileIdTable:
       Simple Items_1: 1691647916
       Simple Items_2: -525669263
+      Simple Items_12: -1402280519
       Simple Items_3: 649980537
       Simple Items_0: -1585365941
       Simple Items_4: -1192900743
@@ -369,6 +433,8 @@ TextureImporter:
       Simple Items_7: -1258920416
       Simple Items_10: -705438330
       Simple Items_6: 1033867955
+      Simple Items_11: -1501839339
+      Simple Items_13: -151410628
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

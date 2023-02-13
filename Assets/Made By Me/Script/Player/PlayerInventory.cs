@@ -93,7 +93,7 @@ public class PlayerInventory : MonoBehaviour
     public void EnergyReload()
     {
         if(status.Energy == 0) return;
-
+        
         int temp = 0;
         temp = status.EnergyMaganizeMaximum[status.Energy];
         temp -= status.EnergyMaganize[status.Energy];
@@ -179,7 +179,7 @@ public class PlayerInventory : MonoBehaviour
     public void SheildReLoad()
     {
         float temp = 0;
-        temp = status.SheildMaganizeMaximum;
+        temp = status.SheildMaganizeMaximum[status.Sheild];
         temp -= status.SheildMaganize[status.Sheild];
 
         if(temp > status.SheildStore)
@@ -274,6 +274,8 @@ public class PlayerInventory : MonoBehaviour
 
     public void Obtain_Equip_Item(ItemInformation itemInformation, int KeyItemCode)
     {
+        if(!itemInformation.isEquipItem) return;
+
         for(int i=0; i<CurrentContainer; i++)
         {
             if(items[i] == null)
@@ -284,13 +286,14 @@ public class PlayerInventory : MonoBehaviour
             }
             
         }
+        
 
         if(itemInformation.KeyItemCode <3)
         {
             status.SetEnergyEquipUpgrade(itemInformation.KeyItemCode +1, true, true, true);
         }else
         {
-
+            status.SetSheildEquip(itemInformation.KeyItemCode-3, true);
         }
         
 

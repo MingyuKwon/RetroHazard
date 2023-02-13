@@ -348,7 +348,8 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  SheildMaganizeMaximum: 4
+  SheildMaganizeMaximum: 000000000000000000000000
+  SheildUpgrade: 000000000000000000000000
   EnergyStore: ffffffff000000000000000000000000
   SheildStore: 0
   parryFrame: 0
