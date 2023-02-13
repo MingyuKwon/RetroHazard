@@ -10,7 +10,7 @@ public class PlayerStatus : MonoBehaviour
 {
     public static event Action<float, int> SheildDurabilityChangeEvent;
 
-    static public event Action<float,float, int, float, float , int, float, float> Update_IngameUI_Event; // Max HP, Current Hp, Energy, EnergyMaganize[Energy], EnergtStore[Energy] , Sheild, SheildMaganize[Sheild] , SheildStore
+    static public event Action<float,float, int, float, float , int, float, float, int> Update_IngameUI_Event; // Max HP, Current Hp, Energy, EnergyMaganize[Energy], EnergtStore[Energy] , Sheild, SheildMaganize[Sheild] , SheildStore , energyUpgrade
 
     public static event Action PlayerDeathEvent;
     public static event Action<bool> SheildCrashEvent;
@@ -32,6 +32,7 @@ public class PlayerStatus : MonoBehaviour
     public int[] EnergyDamage = {8, 30 , 100, 80};
     public int[] EnergyMaganize = {-1, 0 , 0, 0}; // Current sword Energy contain
     public int[] EnergyMaganizeMaximum = {-1, 5 , 4, 3}; // Current sword Energy contain
+    public int[] EnergyUpgrade = {-1, 0 , 0, 0}; // Current sword Energy contain
 
     public int Sheild = 0; // 0-> normal, 1-> parry, 2 -> big
     public float[] SheildMaganize = {0f , 0f, 0f}; // Current Sheild Durability contain
@@ -57,7 +58,7 @@ public class PlayerStatus : MonoBehaviour
 
     public void UpdateIngameUI()
     {
-        Update_IngameUI_Event?.Invoke(MaxHP, CurrentHP, Energy, EnergyMaganize[Energy], EnergyStore[Energy] ,  Sheild, SheildMaganize[Sheild] , SheildStore);
+        Update_IngameUI_Event?.Invoke(MaxHP, CurrentHP, Energy, EnergyMaganize[Energy], EnergyStore[Energy] ,  Sheild, SheildMaganize[Sheild] , SheildStore, EnergyUpgrade[Energy]);
     }
 
 

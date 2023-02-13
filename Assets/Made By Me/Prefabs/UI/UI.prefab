@@ -260,6 +260,58 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2252480105119760663}
     m_Modifications:
+    - target: {fileID: 2201660493490923509, guid: c4bb388f41a408846aefd1cb2998844c, type: 3}
+      propertyPath: energy0Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a977e104bdeb79746b0814c9c7215e80, type: 3}
+    - target: {fileID: 2201660493490923509, guid: c4bb388f41a408846aefd1cb2998844c, type: 3}
+      propertyPath: energy1Sprite.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2201660493490923509, guid: c4bb388f41a408846aefd1cb2998844c, type: 3}
+      propertyPath: energy2Sprite.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2201660493490923509, guid: c4bb388f41a408846aefd1cb2998844c, type: 3}
+      propertyPath: energy3Sprite.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2201660493490923509, guid: c4bb388f41a408846aefd1cb2998844c, type: 3}
+      propertyPath: energy1Sprite.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300026, guid: a977e104bdeb79746b0814c9c7215e80, type: 3}
+    - target: {fileID: 2201660493490923509, guid: c4bb388f41a408846aefd1cb2998844c, type: 3}
+      propertyPath: energy1Sprite.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300038, guid: a977e104bdeb79746b0814c9c7215e80, type: 3}
+    - target: {fileID: 2201660493490923509, guid: c4bb388f41a408846aefd1cb2998844c, type: 3}
+      propertyPath: energy1Sprite.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300050, guid: a977e104bdeb79746b0814c9c7215e80, type: 3}
+    - target: {fileID: 2201660493490923509, guid: c4bb388f41a408846aefd1cb2998844c, type: 3}
+      propertyPath: energy2Sprite.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300028, guid: a977e104bdeb79746b0814c9c7215e80, type: 3}
+    - target: {fileID: 2201660493490923509, guid: c4bb388f41a408846aefd1cb2998844c, type: 3}
+      propertyPath: energy2Sprite.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300040, guid: a977e104bdeb79746b0814c9c7215e80, type: 3}
+    - target: {fileID: 2201660493490923509, guid: c4bb388f41a408846aefd1cb2998844c, type: 3}
+      propertyPath: energy2Sprite.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300052, guid: a977e104bdeb79746b0814c9c7215e80, type: 3}
+    - target: {fileID: 2201660493490923509, guid: c4bb388f41a408846aefd1cb2998844c, type: 3}
+      propertyPath: energy3Sprite.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300030, guid: a977e104bdeb79746b0814c9c7215e80, type: 3}
+    - target: {fileID: 2201660493490923509, guid: c4bb388f41a408846aefd1cb2998844c, type: 3}
+      propertyPath: energy3Sprite.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300042, guid: a977e104bdeb79746b0814c9c7215e80, type: 3}
+    - target: {fileID: 2201660493490923509, guid: c4bb388f41a408846aefd1cb2998844c, type: 3}
+      propertyPath: energy3Sprite.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300054, guid: a977e104bdeb79746b0814c9c7215e80, type: 3}
     - target: {fileID: 3589801035101457621, guid: c4bb388f41a408846aefd1cb2998844c, type: 3}
       propertyPath: m_Pivot.x
       value: 0

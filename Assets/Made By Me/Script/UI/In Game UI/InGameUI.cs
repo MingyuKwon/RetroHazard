@@ -19,11 +19,12 @@ public class InGameUI : MonoBehaviour
         PlayerStatus.Update_IngameUI_Event += Update_IngameUI;
     }
 
-    private void Update_IngameUI(float MaxHP, float CurrentHP, int Energy, float EnergyMaganize, float EnergyStore , int Sheild, float SheildMaganize , float SheildStore)
+    private void Update_IngameUI(float MaxHP, float CurrentHP, int Energy, float EnergyMaganize, float EnergyStore , int Sheild, float SheildMaganize , float SheildStore, int EnergyUpgrade)
     {
         playerHealthUI.SetPlayerHealthUI(CurrentHP, MaxHP);
         energyUI.SetEnergyStoreUI(EnergyStore , Energy);
         energyUI.SetEnergyUI(EnergyMaganize, Energy);
+        energyUI.SetEnergyImageUI(EnergyUpgrade, Energy);
         sheildDurabilityUI.SetSheildStoreUI(SheildStore);
         sheildDurabilityUI.SetSheildDurabilityUI(SheildMaganize, Sheild);
     }

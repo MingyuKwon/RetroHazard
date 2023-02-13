@@ -17,12 +17,12 @@ public class InteractiveMessageUI : MonoBehaviour
 
     public void SetInteractiveName(string str)
     {
-        interactMessageTexts[0].text = "<b>" + str + "</b>";
+        interactMessageTexts[1].text = "<b>" + str + "</b>";
     }
 
     public void SetInteractiveSituation(string str)
     {
-        interactMessageTexts[1].text = str;
+        interactMessageTexts[2].text = str;
     }
 
     public void SetItemImage(Sprite sprite)

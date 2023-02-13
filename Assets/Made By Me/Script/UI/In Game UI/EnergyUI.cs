@@ -9,11 +9,12 @@ public class EnergyUI : MonoBehaviour
     Image EnergyImage;
     PlayerStatus status;
 
-    int Energy;
     int EnergyCurrent;
 
-
-    [SerializeField] Sprite[] energySprite;
+    [SerializeField] Sprite energy0Sprite;
+    [SerializeField] Sprite[] energy1Sprite;
+    [SerializeField] Sprite[] energy2Sprite;
+    [SerializeField] Sprite[] energy3Sprite;
 
     private void Awake() {
         EnergyText = GetComponentsInChildren<Text>();
@@ -42,18 +43,33 @@ public class EnergyUI : MonoBehaviour
             {
                 EnergyText[0].color = Color.white;
             }
-            
-            EnergyText[1].text = "| " + status.EnergyStore[EnergyKind].ToString();
+    
         }
-        Energy = EnergyKind;
-        EnergyImage.sprite = energySprite[EnergyKind];
+        //EnergyImage.sprite = energySprite[EnergyKind];
     }
 
     public void SetEnergyStoreUI(float EnergyObtained, int EnergyKind)
     {
-        if(Energy == EnergyKind)
+        EnergyText[1].text = "| " + EnergyObtained.ToString();
+    }
+
+    public void SetEnergyImageUI(int EnergyUpgrade, int EnergyKind)
+    {
+        EnergyUpgrade--;
+
+        if(EnergyKind == 0 || EnergyUpgrade < 0)
         {
-            EnergyText[1].text = "| " + EnergyObtained.ToString();
+            EnergyImage.sprite = energy0Sprite;
+        }else if(EnergyKind == 1)
+        {
+            EnergyImage.sprite = energy1Sprite[EnergyUpgrade];
+        }else if(EnergyKind == 2)
+        {
+            EnergyImage.sprite = energy2Sprite[EnergyUpgrade];
+        }else if(EnergyKind == 3)
+        {
+            EnergyImage.sprite = energy3Sprite[EnergyUpgrade];
         }
+        
     }
 }
