@@ -111,15 +111,15 @@ public class ItemContainer : MonoBehaviour
             {
                 if(itemUI.playerInventory.items[containerNum].KeyItemCode + 1 == status.Energy || itemUI.playerInventory.items[containerNum].KeyItemCode - 3 == status.Sheild) // If that Item is now equipped
                 {
-                    focus.SetselectText(0, "DisArm");
+                    focus.SetselectText(0, "DisArm"); // If you want to modify this String, you should also modify TabUI pressEnter code
                 }else
                 {
-                    focus.SetselectText(0, "Equip");
+                    focus.SetselectText(0, "Equip"); // If you want to modify this String, you should also modify TabUI pressEnter code
                 }
                 
             }else
             {
-                focus.SetselectText(0, "Use");
+                focus.SetselectText(0, "Use"); // If you want to modify this String, you should also modify TabUI pressEnter code
             }
 
     }

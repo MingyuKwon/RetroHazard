@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class SheildDurabilityUI : MonoBehaviour
 {
     PlayerStatus playerStatus;
-    Image sheildDurabilityImage;
+    Image[] sheildDurabilityImages;
     Text sheildDurabilityText;
     Animator animator;
     PlayerStatus status;
@@ -15,7 +15,7 @@ public class SheildDurabilityUI : MonoBehaviour
     float Sheild;
 
     private void Awake() {
-        sheildDurabilityImage = GetComponentInChildren<Image>();
+        sheildDurabilityImages = GetComponentsInChildren<Image>();
         sheildDurabilityText = GetComponentInChildren<Text>();
         animator = GetComponentInChildren<Animator>();
         status = FindObjectOfType<PlayerStatus>();
@@ -39,6 +39,21 @@ public class SheildDurabilityUI : MonoBehaviour
         PlayerStatus.SheildDurabilityChangeEvent -= SetSheildDurabilityUI;
         PlayerStatus.SheildCrashEvent -= SetSheildCrash;
         PlayerShield.Sheild_Durability_Reduce_Start_Event -= Sheild_Durability_Reduce_Start;
+    }
+
+    public void SetSheildDurabilityUIAvailabe(int SheildUpgrade)
+    {
+        if(SheildUpgrade == 0)
+        {
+            sheildDurabilityImages[0].enabled = false;
+            sheildDurabilityImages[1].enabled = false;
+            sheildDurabilityText.enabled = false;
+        }else
+        {
+            sheildDurabilityImages[0].enabled = true;
+            sheildDurabilityImages[1].enabled = true;
+            sheildDurabilityText.enabled = true;
+        }
     }
 
     public void SetSheildDurabilityUI(float CurrentDurability, int SheildKind)

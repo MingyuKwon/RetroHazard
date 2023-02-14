@@ -54,7 +54,7 @@ public class PlayerStatus : MonoBehaviour
 
     private void Awake() {
         Attack = EnergyDamage[Energy];
-        animator = GetComponent<Animator>();
+        animator = transform.parent.gameObject.GetComponent<Animator>();
     }
 
     public void UpdateIngameUI()
@@ -62,14 +62,14 @@ public class PlayerStatus : MonoBehaviour
         Update_IngameUI_Event?.Invoke(MaxHP, CurrentHP, Energy, EnergyMaganize[Energy], EnergyStore[Energy] ,  Sheild, SheildMaganize[Sheild] , SheildStore, EnergyUpgrade[Energy], SheildUpgrade[Sheild]);
     }
 
-    void ChangeWeapon(int energy)
+    public void ChangeWeapon(int energy)
     {
         Energy = energy;
         Attack = EnergyDamage[Energy];
         UpdateIngameUI();
     }
 
-    void ChangeSheild(int sheildKind)
+    public void ChangeSheild(int sheildKind)
     {
         Sheild = sheildKind;
 

@@ -27,6 +27,7 @@ public class InGameUI : MonoBehaviour
         energyUI.SetEnergyImageUI(EnergyUpgrade, Energy);
         sheildDurabilityUI.SetSheildStoreUI(SheildStore);
         sheildDurabilityUI.SetSheildDurabilityUI(SheildMaganize, Sheild);
+        sheildDurabilityUI.SetSheildDurabilityUIAvailabe(SheildUpgrade);
     }
 
 }

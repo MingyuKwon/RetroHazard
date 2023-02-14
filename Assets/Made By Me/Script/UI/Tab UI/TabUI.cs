@@ -9,6 +9,7 @@ using Sirenix.OdinInspector;
 public class TabUI : MonoBehaviour
 {
     static public event Action<int> discardItemEvent;
+    PlayerStatus status;
 
     public bool inputOk = false;
 
@@ -37,6 +38,7 @@ public class TabUI : MonoBehaviour
     ExpansionItem expansionItem;
 
     private void Awake() {
+        status = FindObjectOfType<PlayerStatus>();
         player = ReInput.players.GetPlayer(0);
 
         player.AddInputEventDelegate(EnterPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Enter");
@@ -102,7 +104,6 @@ public class TabUI : MonoBehaviour
                     keyItem.EventInvokeOverride();
                 }
                 
-                
             }else
             {
                 yesNoChoice = true;
@@ -128,6 +129,37 @@ public class TabUI : MonoBehaviour
             {
                 if(itemUI.itemContainers[itemUI.currentindex].selectIndex == 0) // use
                 {
+                    if(itemUI.itemContainers[itemUI.currentindex].focus.selectTexts[0].text == "DisArm")
+                    {
+                        if(itemUI.playerInventory.items[itemUI.currentindex].KeyItemCode < 3)
+                        {
+                            status.ChangeWeapon(0);
+                            itemUI.itemContainers[itemUI.currentindex].focus.SetselectText(0, "Equip");
+                        }else
+                        {
+                            status.ChangeSheild(3);
+                            itemUI.itemContainers[itemUI.currentindex].focus.SetselectText(0, "Equip");
+                        }
+
+                    }else if(itemUI.itemContainers[itemUI.currentindex].focus.selectTexts[0].text == "Equip")
+                    {
+                        if(itemUI.playerInventory.items[itemUI.currentindex].KeyItemCode < 3)
+                        {
+                            status.ChangeWeapon(itemUI.playerInventory.items[itemUI.currentindex].KeyItemCode + 1);
+                            itemUI.itemContainers[itemUI.currentindex].focus.SetselectText(0, "DisArm");
+                        }else
+                        {
+                            status.ChangeSheild(itemUI.playerInventory.items[itemUI.currentindex].KeyItemCode - 3);
+                            itemUI.itemContainers[itemUI.currentindex].focus.SetselectText(0, "DisArm");
+                        }
+
+                        
+                    }else if(itemUI.itemContainers[itemUI.currentindex].focus.selectTexts[0].text == "Use")
+                    {
+
+                    }
+
+                    currentWindowLayer--;
 
                 }else if(itemUI.itemContainers[itemUI.currentindex].selectIndex == 1) // combine
                 {
