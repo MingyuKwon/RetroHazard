@@ -9,12 +9,12 @@ using DG.Tweening;
 public class PlayerStatus : MonoBehaviour
 {
     public static event Action<float, int> SheildDurabilityChangeEvent;
-
-    static public event Action<float,float, int, float, float , int, float, float, int> Update_IngameUI_Event; // Max HP, Current Hp, Energy, EnergyMaganize[Energy], EnergtStore[Energy] , Sheild, SheildMaganize[Sheild] , SheildStore , energyUpgrade
-
+    static public event Action<float,float, int, float, float , int, float, float, int, int> Update_IngameUI_Event; // Max HP, Current Hp, Energy, EnergyMaganize[Energy], EnergtStore[Energy] , Sheild, SheildMaganize[Sheild] , SheildStore , energyUpgrade
     public static event Action PlayerDeathEvent;
     public static event Action<bool> SheildCrashEvent;
     public static event Action<bool> SheildRecoveryEvent;
+
+    private Animator animator;
 
     [Header("Basic")]
     public float MaxHP = 100;
@@ -36,10 +36,10 @@ public class PlayerStatus : MonoBehaviour
 
     public int[] EnergyUPgradeUnit = {0, 5, 4, 3};
 
-    public int Sheild = 0; // 0-> normal, 1-> parry, 2 -> big
-    public float[] SheildMaganize = {0f , 0f, 0f}; // Current Sheild Durability contain
-    public int[] SheildMaganizeMaximum = {0, 0, 0}; 
-    public int[] SheildUpgrade = {0 ,0, 0};
+    public int Sheild = 0; // 0-> normal, 1-> parry, 2 -> big , 3-> none
+    public float[] SheildMaganize = {0f , 0f, 0f, -1f}; // Current Sheild Durability contain
+    public int[] SheildMaganizeMaximum = {0, 0, 0, 0}; 
+    public int[] SheildUpgrade = {0 ,0, 0, 0};
     
     [Header("Store")]
     public int[] EnergyStore = {-1, 0 , 0, 0}; // Current sword Energy store in inventory
@@ -54,15 +54,33 @@ public class PlayerStatus : MonoBehaviour
 
     private void Awake() {
         Attack = EnergyDamage[Energy];
+        animator = GetComponent<Animator>();
     }
 
     public void UpdateIngameUI()
     {
-        Update_IngameUI_Event?.Invoke(MaxHP, CurrentHP, Energy, EnergyMaganize[Energy], EnergyStore[Energy] ,  Sheild, SheildMaganize[Sheild] , SheildStore, EnergyUpgrade[Energy]);
+        Update_IngameUI_Event?.Invoke(MaxHP, CurrentHP, Energy, EnergyMaganize[Energy], EnergyStore[Energy] ,  Sheild, SheildMaganize[Sheild] , SheildStore, EnergyUpgrade[Energy], SheildUpgrade[Sheild]);
+    }
+
+    void ChangeWeapon(int energy)
+    {
+        Energy = energy;
+        Attack = EnergyDamage[Energy];
+        UpdateIngameUI();
+    }
+
+    void ChangeSheild(int sheildKind)
+    {
+        Sheild = sheildKind;
+
+        SheildDurabilityChange(0);
+        animator.SetFloat("Sheild Kind", Sheild);
+        UpdateIngameUI();
     }
 
     public void SetSheildEquip(int sheildKind, bool isObtain)
     {
+        if(sheildKind == 3) return;
         if(isObtain)
         {
             SheildUpgrade[sheildKind] = 1;

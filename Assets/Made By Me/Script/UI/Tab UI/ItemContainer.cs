@@ -11,6 +11,8 @@ public class ItemContainer : MonoBehaviour
 {
     [SerializeField] int containerNum;
 
+    PlayerStatus status;
+
     Image backGround;
     public Image itemImage;
     public Text itemAmount;
@@ -29,6 +31,8 @@ public class ItemContainer : MonoBehaviour
     public int selectIndex = 0;
 
     private void Awake() {
+        status = FindObjectOfType<PlayerStatus>();
+
         backGround = GetComponent<Image>();
         itemImage = transform.GetChild(0).GetComponent<Image>();
         itemAmount = transform.GetChild(1).GetComponentInChildren<Text>();
@@ -54,16 +58,20 @@ public class ItemContainer : MonoBehaviour
 
             if(itemUI.playerInventory.items[containerNum] == null) return;
 
+            SetSelectText();
+
+
             if(itemUI.playerInventory.items[containerNum].isKeyItem)
             {
-                if(!tabUI.isInteractive)
-                {
-                    indexLimitMin = 1;
-                    focus.selectButtons[0].gameObject.SetActive(false);
-                }else
+                if(tabUI.isInteractive || itemUI.playerInventory.items[containerNum].isEquipItem )
                 {
                     indexLimitMin = 0;
                     focus.selectButtons[0].gameObject.SetActive(true);
+                    
+                }else
+                {
+                    indexLimitMin = 1;
+                    focus.selectButtons[0].gameObject.SetActive(false);
                 }
                 
                 indexLimitMax = 1;
@@ -95,6 +103,25 @@ public class ItemContainer : MonoBehaviour
         }
 
         selectIndex = indexLimitMin;
+    }
+
+    private void SetSelectText()
+    {
+            if(itemUI.playerInventory.items[containerNum].isEquipItem)
+            {
+                if(itemUI.playerInventory.items[containerNum].KeyItemCode + 1 == status.Energy || itemUI.playerInventory.items[containerNum].KeyItemCode - 3 == status.Sheild) // If that Item is now equipped
+                {
+                    focus.SetselectText(0, "DisArm");
+                }else
+                {
+                    focus.SetselectText(0, "Equip");
+                }
+                
+            }else
+            {
+                focus.SetselectText(0, "Use");
+            }
+
     }
 
     private void CheckWindowLayer()

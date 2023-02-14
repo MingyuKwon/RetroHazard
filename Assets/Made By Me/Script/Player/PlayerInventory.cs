@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerInventory : MonoBehaviour
 {
 
-    PlayerStatus status;
+    public PlayerStatus status;
     ItemUI itemUI;
 
     [SerializeField] ItemInformation[] basicItems;
@@ -178,6 +178,8 @@ public class PlayerInventory : MonoBehaviour
 
     public void SheildReLoad()
     {
+        if(status.Sheild == 3) return;
+
         float temp = 0;
         temp = status.SheildMaganizeMaximum[status.Sheild];
         temp -= status.SheildMaganize[status.Sheild];

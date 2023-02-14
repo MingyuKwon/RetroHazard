@@ -15,8 +15,6 @@ public class PlayerEquipChange : MonoBehaviour
 
     private void Awake() {
         player = ReInput.players.GetPlayer(0);
-        player.AddInputEventDelegate(ChangeWeapon, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Weapon Change");
-        player.AddInputEventDelegate(ChangeSheild, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Sheild Change");
         player.AddInputEventDelegate(EnergyReloadStart, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Energy Refill");
         player.AddInputEventDelegate(SheildReloadStart, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Sheild Refill");
 
@@ -24,33 +22,6 @@ public class PlayerEquipChange : MonoBehaviour
         animator = GetComponent<Animator>();
         inventory = GetComponentInChildren<PlayerInventory>();
     }
-
-    void ChangeWeapon(InputActionEventData data)
-    {
-        status.Energy++;
-        if(status.Energy > 3)
-        {
-            status.Energy = 0;
-        }
-
-        status.Attack = status.EnergyDamage[status.Energy];
-        status.UpdateIngameUI();
-    }
-
-    void ChangeSheild(InputActionEventData data)
-    {
-        status.Sheild++;
-        if(status.Sheild > 2)
-        {
-            status.Sheild = 0;
-        }
-
-        status.SheildDurabilityChange(0);
-        animator.SetFloat("Sheild Kind", status.Sheild);
-        status.UpdateIngameUI();
-    }
-
-
 
     void EnergyReloadStart(InputActionEventData data)
     {
