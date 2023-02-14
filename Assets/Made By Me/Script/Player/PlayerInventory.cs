@@ -7,11 +7,12 @@ public class PlayerInventory : MonoBehaviour
 {
 
     public PlayerStatus status;
-    ItemUI itemUI;
+    public ItemUI itemUI;
 
     [SerializeField] ItemInformation[] basicItems;
     public ItemInformation[] items;
     public int[] itemsamount;
+    public bool[] isEquipped;
 
     public int StartContainer = 8;
     public int CurrentContainer;
@@ -29,6 +30,7 @@ public class PlayerInventory : MonoBehaviour
 
         items = new ItemInformation[16];
         itemsamount = new int[16];
+        isEquipped = new bool[16];
         CurrentContainer = StartContainer;
 
         for(int i=0; i<basicItems.Length; i++)
@@ -43,7 +45,7 @@ public class PlayerInventory : MonoBehaviour
 
     private void Update() {
         isInventoryFull = CheckInventoryFull();
-
+        CheckInventoryEquipped();
     }
 
     private bool CheckInventoryFull()
@@ -57,6 +59,23 @@ public class PlayerInventory : MonoBehaviour
             
         }
         return true;
+    }
+
+    private void CheckInventoryEquipped()
+    {
+        for(int i=0; i<CurrentContainer; i++)
+        {
+            if(items[i] == null) continue;
+            if(!items[i].isEquipItem) continue;
+
+            if(items[i].KeyItemCode + 1 == status.Energy || items[i].KeyItemCode - 3 == status.Sheild)
+            {
+                isEquipped[i] = true;
+            }else
+            {
+                isEquipped[i] = false;
+            }
+        }
     }
 
     private void OnEnable() {

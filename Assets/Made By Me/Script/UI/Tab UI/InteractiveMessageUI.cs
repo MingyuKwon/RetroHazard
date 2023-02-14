@@ -6,12 +6,12 @@ using UnityEngine.UI;
 public class InteractiveMessageUI : MonoBehaviour
 {
     Text[] interactMessageTexts;
-    public Image image;
+    public Image[] images;
     public Text amountText;
 
     private void Awake() {
         interactMessageTexts = GetComponentsInChildren<Text>();
-        image = transform.GetChild(0).transform.GetChild(0).GetComponent<Image>();
+        images = transform.GetChild(0).GetComponentsInChildren<Image>();
         amountText = transform.GetChild(0).GetComponentInChildren<Text>();
     }
 
@@ -27,7 +27,7 @@ public class InteractiveMessageUI : MonoBehaviour
 
     public void SetItemImage(Sprite sprite)
     {
-        image.sprite = sprite;
+        images[1].sprite = sprite;
     }
 
     public void SetAmountText(int amount)

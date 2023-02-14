@@ -15379,15 +15379,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1430888295931754921, guid: 957092661564a7f4da6ccffbef6c560e, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1430888295931754921, guid: 957092661564a7f4da6ccffbef6c560e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1430888295931754921, guid: 957092661564a7f4da6ccffbef6c560e, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2252480105119760663, guid: 957092661564a7f4da6ccffbef6c560e, type: 3}
       propertyPath: m_RootOrder
@@ -29298,22 +29298,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1624969407852753537, guid: 3a038018e0d4ac142a5a9ed9a8a8fa80, type: 3}
-      propertyPath: Sheild
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1624969407852753537, guid: 3a038018e0d4ac142a5a9ed9a8a8fa80, type: 3}
-      propertyPath: SheildUpgrade.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1624969407852753537, guid: 3a038018e0d4ac142a5a9ed9a8a8fa80, type: 3}
-      propertyPath: SheildMaganize.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1624969407852753537, guid: 3a038018e0d4ac142a5a9ed9a8a8fa80, type: 3}
-      propertyPath: SheildMaganizeMaximum.Array.size
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 6387553226888266341, guid: 3a038018e0d4ac142a5a9ed9a8a8fa80, type: 3}
       propertyPath: m_RootOrder
       value: 2

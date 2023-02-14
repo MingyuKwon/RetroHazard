@@ -16,6 +16,7 @@ public class ItemContainer : MonoBehaviour
     Image backGround;
     public Image itemImage;
     public Text itemAmount;
+    public Image EquipImage;
     public FocusUI focus;
 
     TabUI tabUI;
@@ -36,7 +37,8 @@ public class ItemContainer : MonoBehaviour
         backGround = GetComponent<Image>();
         itemImage = transform.GetChild(0).GetComponent<Image>();
         itemAmount = transform.GetChild(1).GetComponentInChildren<Text>();
-        focus = transform.GetChild(2).GetComponent<FocusUI>();
+        EquipImage = transform.GetChild(2).GetComponent<Image>();
+        focus = transform.GetChild(3).GetComponent<FocusUI>();
 
         tabUI = transform.parent.transform.parent.GetComponent<TabUI>();
         itemUI = GetComponentInParent<ItemUI>();
@@ -63,12 +65,21 @@ public class ItemContainer : MonoBehaviour
 
             if(itemUI.playerInventory.items[containerNum].isKeyItem)
             {
-                if(tabUI.isInteractive || itemUI.playerInventory.items[containerNum].isEquipItem )
+                if(tabUI.isInteractive && !itemUI.playerInventory.items[containerNum].isEquipItem )
                 {
                     indexLimitMin = 0;
                     focus.selectButtons[0].gameObject.SetActive(true);
                     
-                }else
+                }else if(tabUI.isInteractive && itemUI.playerInventory.items[containerNum].isEquipItem)
+                {
+                    indexLimitMin = 1;
+                    focus.selectButtons[0].gameObject.SetActive(false);
+                }
+                else if(!tabUI.isInteractive && itemUI.playerInventory.items[containerNum].isEquipItem)
+                {
+                    indexLimitMin = 0;
+                    focus.selectButtons[0].gameObject.SetActive(true);
+                }else if(!tabUI.isInteractive && !itemUI.playerInventory.items[containerNum].isEquipItem)
                 {
                     indexLimitMin = 1;
                     focus.selectButtons[0].gameObject.SetActive(false);

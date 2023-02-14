@@ -247,9 +247,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84366b3c145bcaf429f9f46ee9da9779, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  status: {fileID: 0}
+  itemUI: {fileID: 0}
   basicItems: []
   items: []
   itemsamount: 
+  isEquipped: 
   StartContainer: 8
   CurrentContainer: 0
   isInventoryFull: 0
@@ -343,13 +346,14 @@ MonoBehaviour:
   EnergyMaganizeMaximum: ffffffff000000000000000000000000
   EnergyUpgrade: ffffffff000000000000000000000000
   EnergyUPgradeUnit: 00000000050000000400000003000000
-  Sheild: 0
+  Sheild: 3
   SheildMaganize:
   - 0
   - 0
   - 0
-  SheildMaganizeMaximum: 000000000000000000000000
-  SheildUpgrade: 000000000000000000000000
+  - 0
+  SheildMaganizeMaximum: 00000000000000000000000000000000
+  SheildUpgrade: 00000000000000000000000000000000
   EnergyStore: ffffffff000000000000000000000000
   SheildStore: 0
   parryFrame: 0

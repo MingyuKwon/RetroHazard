@@ -303,7 +303,7 @@ public class TabUI : MonoBehaviour
 
         Tab_Menu_ChangeInput_PauseGame(flag);
 
-        interactiveMessageUI.image.gameObject.SetActive(false);
+        interactiveMessageUI.images[0].gameObject.SetActive(false);
         interactiveMessageUI.gameObject.GetComponent<Image>().color = new Color(100f / 255f, 150f/ 255f, 200f/ 255f, 220f/ 255f);
         
 
@@ -355,7 +355,8 @@ public class TabUI : MonoBehaviour
 
         Tab_Menu_ChangeInput_PauseGame(flag);
 
-        interactiveMessageUI.image.gameObject.SetActive(true);
+        interactiveMessageUI.images[0].gameObject.SetActive(true);
+
         interactiveMessageUI.gameObject.GetComponent<Image>().color = new Color(166f/ 255f, 166f/ 255f, 166f/ 255f, 220f/ 255f);
 
         if(flag)

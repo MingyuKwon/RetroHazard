@@ -16,7 +16,6 @@ public class ItemUI : MonoBehaviour
 
     TabUI tabUI;
     public int currentindex = 0;
-    
     public bool isInventoryFull;
 
     private void Awake() {
@@ -79,6 +78,16 @@ public class ItemUI : MonoBehaviour
         for(int i=0; i<playerInventory.CurrentContainer; i++)
         {
             itemContainers[i].gameObject.SetActive(true);
+
+            if(playerInventory.isEquipped[i])
+            {
+                itemContainers[i].EquipImage.gameObject.SetActive(true);
+            }else
+            {
+                itemContainers[i].EquipImage.gameObject.SetActive(false);
+            }
+
+
             if(playerInventory.items[i] != null)
             {
                 itemContainers[i].itemImage.sprite = playerInventory.items[i].ItemImage;

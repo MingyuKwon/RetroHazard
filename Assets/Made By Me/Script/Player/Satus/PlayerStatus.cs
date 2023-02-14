@@ -15,6 +15,7 @@ public class PlayerStatus : MonoBehaviour
     public static event Action<bool> SheildRecoveryEvent;
 
     private Animator animator;
+    private PlayerInventory inventory;
 
     [Header("Basic")]
     public float MaxHP = 100;
@@ -55,6 +56,7 @@ public class PlayerStatus : MonoBehaviour
     private void Awake() {
         Attack = EnergyDamage[Energy];
         animator = transform.parent.gameObject.GetComponent<Animator>();
+        inventory = transform.parent.gameObject.GetComponentInChildren<PlayerInventory>();
     }
 
     public void UpdateIngameUI()
@@ -66,7 +68,7 @@ public class PlayerStatus : MonoBehaviour
     {
         Energy = energy;
         Attack = EnergyDamage[Energy];
-        UpdateIngameUI();
+        StartCoroutine(UpdateUIDelay());
     }
 
     public void ChangeSheild(int sheildKind)
@@ -75,7 +77,15 @@ public class PlayerStatus : MonoBehaviour
 
         SheildDurabilityChange(0);
         animator.SetFloat("Sheild Kind", Sheild);
+        StartCoroutine(UpdateUIDelay());
+        
+    }
+
+    IEnumerator UpdateUIDelay()
+    {
+        yield return new WaitForEndOfFrame();
         UpdateIngameUI();
+        inventory.itemUI.UpdateInventoryUI();
     }
 
     public void SetSheildEquip(int sheildKind, bool isObtain)
