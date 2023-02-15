@@ -172,7 +172,7 @@ public class TabUI : MonoBehaviour
 
                 }else if(itemUI.itemContainers[itemUI.currentindex].selectIndex == 1) // combine
                 {
-
+                    currentWindowLayer++;
                 }else if(itemUI.itemContainers[itemUI.currentindex].selectIndex == 2) // discard
                 {
                     discardItemEvent.Invoke(itemUI.currentindex);

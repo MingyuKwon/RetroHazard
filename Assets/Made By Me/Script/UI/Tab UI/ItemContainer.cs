@@ -14,6 +14,7 @@ public class ItemContainer : MonoBehaviour
     PlayerStatus status;
 
     Image backGround;
+    Image fadeImage;
     public Image itemImage;
     public Text itemAmount;
     public Image EquipImage;
@@ -38,7 +39,8 @@ public class ItemContainer : MonoBehaviour
         itemImage = transform.GetChild(0).GetComponent<Image>();
         itemAmount = transform.GetChild(1).GetComponentInChildren<Text>();
         EquipImage = transform.GetChild(2).GetComponent<Image>();
-        focus = transform.GetChild(3).GetComponent<FocusUI>();
+        fadeImage = transform.GetChild(3).GetComponent<Image>();
+        focus = transform.GetChild(4).GetComponent<FocusUI>();
 
         tabUI = transform.parent.transform.parent.GetComponent<TabUI>();
         itemUI = GetComponentInParent<ItemUI>();
@@ -132,29 +134,31 @@ public class ItemContainer : MonoBehaviour
             {
                 focus.SetselectText(0, "Use"); // If you want to modify this String, you should also modify TabUI pressEnter code
             }
-
     }
 
     private void CheckWindowLayer()
     {
+        if(tabUI.currentWindowLayer == 0)
+        {
+            SetSelect(false);
+            backGround.color = new Color(1f, 1f, 1f, 1f);
+            fadeImage.color = new Color(0f, 0f, 0f, 0f);
+        }else if(tabUI.currentWindowLayer == 2)
+        {
+            fadeImage.color = new Color(0f, 0f, 0f, 0.5f);
+        }
+
         if(!isFocused)
         {
             return;
         } 
 
-        if(tabUI.currentWindowLayer == 0)
-        {
-            SetSelect(false);
-            backGround.color = new Color(1f, 1f, 1f, 1f);
-        }else if(tabUI.currentWindowLayer == 1)
+        if(tabUI.currentWindowLayer == 1)
         {
             SetSelect(true);
             backGround.color = new Color(0.5f, 0.5f, 0.5f, 1f);
-            focus.SetSelect(selectIndex);
-            
-        }else if(tabUI.currentWindowLayer == 2)
-        {
-
+            fadeImage.color = new Color(0f, 0f, 0f, 0f);
+            focus.SetSelect(selectIndex); 
         }
     }
 
