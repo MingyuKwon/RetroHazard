@@ -57,14 +57,7 @@ public class PlayerStatus : MonoBehaviour
         Attack = EnergyDamage[Energy];
         animator = transform.parent.gameObject.GetComponent<Animator>();
         inventory = transform.parent.gameObject.GetComponentInChildren<PlayerInventory>();
-    }
 
-    private void OnEnable() {
-        
-    }
-
-    private void OnDisable() {
-        
     }
 
     public void UpdateIngameUI()
@@ -147,11 +140,21 @@ public class PlayerStatus : MonoBehaviour
 
     public void HealthChange(float damage)
     {
+        if(damage == 1)
+        {
+            CurrentHP = MaxHP;
+            UpdateIngameUI();
+            return;
+        }
+
         CurrentHP -= damage;
         if(CurrentHP <=0 )
         {
             CurrentHP = 0;
             PlayerDeathEvent?.Invoke();
+        }else if(CurrentHP > MaxHP)
+        {
+            CurrentHP = MaxHP;
         }
         UpdateIngameUI();
     }

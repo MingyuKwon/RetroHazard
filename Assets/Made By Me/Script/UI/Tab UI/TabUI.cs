@@ -9,6 +9,7 @@ using Sirenix.OdinInspector;
 public class TabUI : MonoBehaviour
 {
     static public event Action<int> discardItemEvent;
+    static public event Action<int, float> UsePotionEvent;
     PlayerStatus status;
 
     public bool inputOk = false;
@@ -161,7 +162,10 @@ public class TabUI : MonoBehaviour
                         
                     }else if(itemUI.itemContainers[itemUI.currentindex].focus.selectTexts[0].text == "Use")
                     {
-
+                        if(itemUI.playerInventory.items[itemUI.currentindex].isPotion)
+                        {
+                            UsePotionEvent.Invoke(itemUI.currentindex, itemUI.playerInventory.items[itemUI.currentindex].healAmount);
+                        }
                     }
 
                     currentWindowLayer--;

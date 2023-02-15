@@ -85,12 +85,16 @@ public class PlayerInventory : MonoBehaviour
        PotionItem.Obtain_potion_Item_Event += Obtain_Potion_Item;
 
        TabUI.discardItemEvent += DiscardItem;
+       TabUI.UsePotionEvent += UsedItem;
     }
 
     private void OnDisable() {
         bulletItem.Obtain_bullet_Item_Event -= Obtain_bullet_Item;
         ExpansionItem.Obtain_Expansion_Item_Event -= Obtain_Expansion_Item;
         PotionItem.Obtain_potion_Item_Event -= Obtain_Potion_Item;
+
+       TabUI.discardItemEvent -= DiscardItem;
+       TabUI.UsePotionEvent -= UsedItem;
     }
 
     public void DiscardItem(int index)
@@ -101,6 +105,14 @@ public class PlayerInventory : MonoBehaviour
         itemsamount[index] = 0;
 
         itemUI.UpdateInventoryUI();
+        
+    }
+
+    public void UsedItem(int index, float damage)
+    {
+        status.HealthChange(-damage);
+
+        DiscardItem(index);
         
     }
 
