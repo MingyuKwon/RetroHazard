@@ -39,6 +39,9 @@ public class TabUI : MonoBehaviour
     PotionItem potionItem;
     ExpansionItem expansionItem;
 
+    public ItemInformation combineStartItem = null;
+    public int combineStartItemIndex;
+
     private void Awake() {
         status = FindObjectOfType<PlayerStatus>();
         player = ReInput.players.GetPlayer(0);
@@ -172,12 +175,18 @@ public class TabUI : MonoBehaviour
 
                 }else if(itemUI.itemContainers[itemUI.currentindex].selectIndex == 1) // combine
                 {
+                    combineStartItem = itemUI.playerInventory.items[itemUI.currentindex];
+                    combineStartItemIndex = itemUI.currentindex;
                     currentWindowLayer++;
                 }else if(itemUI.itemContainers[itemUI.currentindex].selectIndex == 2) // discard
                 {
                     discardItemEvent.Invoke(itemUI.currentindex);
                     currentWindowLayer--;
                 }
+            }
+            else if(currentWindowLayer == 2)
+            {
+
             }
 
             

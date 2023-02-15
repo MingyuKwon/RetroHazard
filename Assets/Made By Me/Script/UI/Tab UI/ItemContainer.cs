@@ -26,11 +26,18 @@ public class ItemContainer : MonoBehaviour
     public GameObject focusSelectPanel;
 
     public bool isFocused = false;
+    public bool isCombineable = false;
 
     int indexLimitMin = 0;
     int indexLimitMax = 2;
 
     public int selectIndex = 0;
+
+
+
+    //for Code Struct
+    public bool isPreviousEneterd;
+    //for Code Struct
 
     private void Awake() {
         status = FindObjectOfType<PlayerStatus>();
@@ -143,22 +150,75 @@ public class ItemContainer : MonoBehaviour
             SetSelect(false);
             backGround.color = new Color(1f, 1f, 1f, 1f);
             fadeImage.color = new Color(0f, 0f, 0f, 0f);
+            isPreviousEneterd = false;
+
         }else if(tabUI.currentWindowLayer == 2)
         {
-            fadeImage.color = new Color(0f, 0f, 0f, 0.5f);
-        }
+            SetSelect(false);
+            if(!isPreviousEneterd)
+            {
+                Debug.Log(1);
+                isPreviousEneterd = true;
 
-        if(!isFocused)
-        {
-            return;
-        } 
+                bool flag = false;
 
-        if(tabUI.currentWindowLayer == 1)
+                if(itemUI.playerInventory.items[containerNum] != null)
+                {
+                 foreach(int itemCode in itemUI.playerInventory.items[containerNum].combineItems)
+                 {
+                    if(itemUI.playerInventory.items[containerNum].isKeyItem)
+                    {
+
+
+                    }
+                    else
+                    {
+                        if(itemUI.playerInventory.items[containerNum].NormalItemCode == itemCode)
+                        {
+                            isCombineable = true;
+                            flag = true;
+                            break;
+                        }
+                        
+                    }
+                 }
+                }
+
+                if(!flag)
+                {
+                    isCombineable = false;
+                }
+
+                if(containerNum == tabUI.combineStartItemIndex)
+                {
+                    isCombineable = false;
+                }
+            }
+
+            if(isCombineable)
+            {
+                fadeImage.color = new Color(0f, 0f, 0f, 0f);
+            }else
+            {
+                fadeImage.color = new Color(0f, 0f, 0f, 0.5f);
+            }
+            
+        }else if(tabUI.currentWindowLayer == 1)
         {
-            SetSelect(true);
-            backGround.color = new Color(0.5f, 0.5f, 0.5f, 1f);
-            fadeImage.color = new Color(0f, 0f, 0f, 0f);
-            focus.SetSelect(selectIndex); 
+            isPreviousEneterd = false;
+            if(isFocused)
+            {
+                SetSelect(true);
+                backGround.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+                fadeImage.color = new Color(0f, 0f, 0f, 0f);
+                focus.SetSelect(selectIndex); 
+            }else
+            {
+                SetSelect(false);
+                backGround.color = new Color(1f, 1f, 1f, 1f);
+                fadeImage.color = new Color(0f, 0f, 0f, 0f);
+            }
+            
         }
     }
 

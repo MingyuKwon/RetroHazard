@@ -20,6 +20,8 @@ MonoBehaviour:
   isInteractiveItem: 0
   isExpansionItem: 0
   KeyItemCode: 0
+  NormalItemCode: 1
+  combineItems: 00000000
   isSheild: 0
   isEnergy1: 0
   isEnergy2: 0

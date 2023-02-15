@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 [CreateAssetMenu(menuName = "Create Item Information", fileName = " Item Information")]
 public class ItemInformation : ScriptableObject
@@ -13,11 +14,21 @@ public class ItemInformation : ScriptableObject
     public bool isKeyItem;
     public bool isNormalItem;
 
-    [Header("Is Key Item for equip? interact? expand? (Just Select One)")]
+    [Header("Is Key Item for equip? interact? expand? (If item is KeyItem, Just Select One. If not, Select Nothing)")]
     public bool isEquipItem;
     public bool isInteractiveItem;
     public bool isExpansionItem;
+    
+
+    [Header("Item Code. Key item is seperated by upward Bool flag, bullet items is integrate and start from 0")]
+    [InfoBox("[KeyItem]\n\n[isEquipItem] 0 : Energy1, 1 : Energy2, 2 : Energy3, 3 : normal Sheild, 4 : parry Sheild, 5 : Big Sheild")]
     public int KeyItemCode;
+
+    [InfoBox("[NormalItem]\n\n0 : heal potion, 1 : upgrade porion, 2 : double heal potion, 3 : elixer potion")]
+    public int NormalItemCode;
+
+    [Header("combine with")]
+    public int[] combineItems;
 
     [Header("what kind of item? (Just Select One)")]
     public bool isSheild;
@@ -37,5 +48,7 @@ public class ItemInformation : ScriptableObject
     [Space]
     [TextArea]
     public string[] ItemDescription;
+
+
 
 }
