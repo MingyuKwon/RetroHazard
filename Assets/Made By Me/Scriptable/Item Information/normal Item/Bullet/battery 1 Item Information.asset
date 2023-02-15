@@ -16,6 +16,12 @@ MonoBehaviour:
   ItemName: Energy 1 battery
   isKeyItem: 0
   isNormalItem: 1
+  isEquipItem: 0
+  isInteractiveItem: 0
+  isExpansionItem: 0
+  KeyItemCode: 0
+  NormalItemCode: 4
+  combineItems: 04000000
   isSheild: 0
   isEnergy1: 1
   isEnergy2: 0
@@ -24,5 +30,6 @@ MonoBehaviour:
   isPotion: 0
   amount: 5
   expansionAmount: 0
+  healAmount: 0
   ItemDescription:
   - can be used to reload Energy 1

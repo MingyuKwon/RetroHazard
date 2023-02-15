@@ -157,7 +157,7 @@ public class ItemContainer : MonoBehaviour
             SetSelect(false);
             if(!isPreviousEneterd)
             {
-                Debug.Log(1);
+                
                 isPreviousEneterd = true;
 
                 bool flag = false;
@@ -173,7 +173,7 @@ public class ItemContainer : MonoBehaviour
                     }
                     else
                     {
-                        if(itemUI.playerInventory.items[containerNum].NormalItemCode == itemCode)
+                        if(tabUI.combineStartItem.NormalItemCode == itemCode)
                         {
                             isCombineable = true;
                             flag = true;

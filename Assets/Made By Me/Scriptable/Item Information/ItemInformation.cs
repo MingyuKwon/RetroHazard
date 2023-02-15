@@ -24,7 +24,7 @@ public class ItemInformation : ScriptableObject
     [InfoBox("[KeyItem]\n\n[isEquipItem] 0 : Energy1, 1 : Energy2, 2 : Energy3, 3 : normal Sheild, 4 : parry Sheild, 5 : Big Sheild")]
     public int KeyItemCode;
 
-    [InfoBox("[NormalItem]\n\n0 : heal potion, 1 : upgrade porion, 2 : double heal potion, 3 : elixer potion")]
+    [InfoBox("[NormalItem]\n\n0 : heal potion, 1 : upgrade porion, 2 : double heal potion, 3 : elixer potion \n 4 : energy1 bullet, 5 : energy2 bullet, 6 : energy3 bullet, 7 : sheild bullet")]
     public int NormalItemCode;
 
     [Header("combine with")]

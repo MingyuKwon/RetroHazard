@@ -16,6 +16,12 @@ MonoBehaviour:
   ItemName: Energy 2 battery
   isKeyItem: 0
   isNormalItem: 1
+  isEquipItem: 0
+  isInteractiveItem: 0
+  isExpansionItem: 0
+  KeyItemCode: 0
+  NormalItemCode: 5
+  combineItems: 05000000
   isSheild: 0
   isEnergy1: 0
   isEnergy2: 1
@@ -24,5 +30,6 @@ MonoBehaviour:
   isPotion: 0
   amount: 4
   expansionAmount: 0
+  healAmount: 0
   ItemDescription:
   - can be used to reload Energy 2
