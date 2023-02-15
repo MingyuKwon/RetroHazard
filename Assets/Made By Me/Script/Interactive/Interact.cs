@@ -67,7 +67,14 @@ public class Interact : MonoBehaviour
             transform.parent.gameObject.GetComponent<KeyItem>().ObtainKeyItem(playerCollider2D);
         }else
         {
-            GameManagerUI.instance.Visualize_Tab_Obtain(true , transform.parent.gameObject.GetComponent<bulletItem>());
+            if(item.information.isBullet)
+            {
+                GameManagerUI.instance.Visualize_Tab_Obtain(true , transform.parent.gameObject.GetComponent<bulletItem>());
+            }else
+            {
+                GameManagerUI.instance.Visualize_Tab_Obtain(true , transform.parent.gameObject.GetComponent<PotionItem>());
+            }
+            
         }
     }
 }

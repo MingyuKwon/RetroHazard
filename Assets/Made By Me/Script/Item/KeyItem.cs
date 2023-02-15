@@ -5,7 +5,7 @@ using UnityEngine;
 public class KeyItem : Item
 {
     Vector3 firstPosition;
-    public SpriteRenderer spriteRenderer;
+    
     public Vector3 itemUp = new Vector3(0f,0.5f,0f);
 
     public Interact interact;

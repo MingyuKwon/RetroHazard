@@ -82,13 +82,15 @@ public class PlayerInventory : MonoBehaviour
        bulletItem.Obtain_bullet_Item_Event += Obtain_bullet_Item;
        ExpansionItem.Obtain_Expansion_Item_Event += Obtain_Expansion_Item;
        EquipItem.Obtain_Equip_Item_Event += Obtain_Equip_Item;
+       PotionItem.Obtain_potion_Item_Event += Obtain_Potion_Item;
 
        TabUI.discardItemEvent += DiscardItem;
     }
 
     private void OnDisable() {
-        bulletItem.Obtain_bullet_Item_Event += Obtain_bullet_Item;
-        ExpansionItem.Obtain_Expansion_Item_Event += Obtain_Expansion_Item;
+        bulletItem.Obtain_bullet_Item_Event -= Obtain_bullet_Item;
+        ExpansionItem.Obtain_Expansion_Item_Event -= Obtain_Expansion_Item;
+        PotionItem.Obtain_potion_Item_Event -= Obtain_Potion_Item;
     }
 
     public void DiscardItem(int index)
@@ -240,6 +242,21 @@ public class PlayerInventory : MonoBehaviour
 
         status.UpdateIngameUI();
         itemUI.UpdateInventoryUI();
+    }
+    public void Obtain_Potion_Item(ItemInformation itemInformation)
+    {
+        for(int i=0; i<CurrentContainer; i++)
+        {
+            if(items[i] == null)
+            {
+                items[i] = itemInformation;
+                itemsamount[i] = 1;
+                break;
+            }
+        }
+
+        itemUI.UpdateInventoryUI();
+        status.UpdateIngameUI();
     }
 
     public void Obtain_bullet_Item(ItemInformation itemInformation, int amount)

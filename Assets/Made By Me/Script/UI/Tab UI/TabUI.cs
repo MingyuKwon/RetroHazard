@@ -35,6 +35,7 @@ public class TabUI : MonoBehaviour
 
     bulletItem bulletItem;
     KeyItem keyItem;
+    PotionItem potionItem;
     ExpansionItem expansionItem;
 
     private void Awake() {
@@ -99,6 +100,10 @@ public class TabUI : MonoBehaviour
                 if(bulletItem != null)
                 {
                     bulletItem.ObtainBulletItem();
+                }else if(potionItem != null)
+                {
+                    
+                    potionItem.ObtainPotionItem();
                 }else if(keyItem != null)
                 {
                     keyItem.EventInvokeOverride();
@@ -385,6 +390,17 @@ public class TabUI : MonoBehaviour
     {
         Visualize_Tab_Obtain(flag);
         bulletItem = item;
+
+        interactiveMessageUI.SetInteractiveName(item.information.ItemName);
+        interactiveMessageUI.SetInteractiveSituation(item.information.ItemDescription[0]);
+        interactiveMessageUI.SetItemImage(item.information.ItemImage);
+        interactiveMessageUI.SetAmountText(item.information.amount);
+    }
+
+    public void Visualize_Tab_Obtain(bool flag , PotionItem item)
+    {
+        Visualize_Tab_Obtain(flag);
+        potionItem = item;
 
         interactiveMessageUI.SetInteractiveName(item.information.ItemName);
         interactiveMessageUI.SetInteractiveSituation(item.information.ItemDescription[0]);

@@ -138,6 +138,18 @@ public class GameManagerUI : MonoBehaviour
         interactiveUI.gameObject.SetActive(false);
     }
 
+    public void Visualize_Tab_Obtain(bool flag, PotionItem item)
+    {
+        if(isShowingTab && flag) return;
+        inGameUI.gameObject.SetActive(!flag);
+        tabUI.gameObject.SetActive(flag);
+        tabUI.Visualize_Tab_Obtain(flag , item);
+        isShowingTab = flag;
+
+        dialogUI.gameObject.SetActive(false);
+        interactiveUI.gameObject.SetActive(false);
+    }
+
     public void Visualize_Tab_Obtain(bool flag, KeyItem item)
     {
         if(isShowingTab && flag) return;

@@ -32,6 +32,7 @@ public class ItemInformation : ScriptableObject
     [Header("amount")]
     public int amount;
     public int expansionAmount;
+    public int healAmount;
 
     [Space]
     [TextArea]

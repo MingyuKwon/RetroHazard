@@ -59,6 +59,14 @@ public class PlayerStatus : MonoBehaviour
         inventory = transform.parent.gameObject.GetComponentInChildren<PlayerInventory>();
     }
 
+    private void OnEnable() {
+        
+    }
+
+    private void OnDisable() {
+        
+    }
+
     public void UpdateIngameUI()
     {
         Update_IngameUI_Event?.Invoke(MaxHP, CurrentHP, Energy, EnergyMaganize[Energy], EnergyStore[Energy] ,  Sheild, SheildMaganize[Sheild] , SheildStore, EnergyUpgrade[Energy], SheildUpgrade[Sheild]);
