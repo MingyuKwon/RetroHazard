@@ -19,6 +19,9 @@ MonoBehaviour:
   isEquipItem: 0
   isInteractiveItem: 0
   isExpansionItem: 1
+  KeyItemCode: 8
+  NormalItemCode: 0
+  combineItems: 02000000
   isSheild: 0
   isEnergy1: 0
   isEnergy2: 0
@@ -27,5 +30,6 @@ MonoBehaviour:
   isPotion: 0
   amount: 1
   expansionAmount: 3
+  healAmount: 0
   ItemDescription:
   - It will expand your <b>Energy 3 Maximum contain limit</b>

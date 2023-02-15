@@ -20,6 +20,8 @@ MonoBehaviour:
   isInteractiveItem: 0
   isExpansionItem: 0
   KeyItemCode: 0
+  NormalItemCode: 0
+  combineItems: 06000000
   isSheild: 0
   isEnergy1: 0
   isEnergy2: 0
@@ -28,5 +30,6 @@ MonoBehaviour:
   isPotion: 0
   amount: 1
   expansionAmount: 0
+  healAmount: 0
   ItemDescription:
   - "Containing Energy 1. \nIt enable you to attack using Energy 1 "

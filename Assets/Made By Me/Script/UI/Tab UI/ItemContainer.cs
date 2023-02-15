@@ -166,9 +166,14 @@ public class ItemContainer : MonoBehaviour
                 {
                  foreach(int itemCode in itemUI.playerInventory.items[containerNum].combineItems)
                  {
-                    if(itemUI.playerInventory.items[containerNum].isKeyItem)
+                    if(tabUI.combineStartItem.isKeyItem)
                     {
-
+                        if(tabUI.combineStartItem.KeyItemCode == itemCode)
+                        {
+                            isCombineable = true;
+                            flag = true;
+                            break;
+                        }
 
                     }
                     else
