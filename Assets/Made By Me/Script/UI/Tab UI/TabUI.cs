@@ -24,6 +24,7 @@ public class TabUI : MonoBehaviour
 
     public int currentWindowLayer = 0; // 0 : normal, 1 : select, 2 : combine
     public int currentItemindex = 0;
+    public int previousItemindex = 0;
     public bool yesNoChoice = true;
 
     Image background;
@@ -177,6 +178,7 @@ public class TabUI : MonoBehaviour
                 {
                     combineStartItem = itemUI.playerInventory.items[itemUI.currentindex];
                     combineStartItemIndex = itemUI.currentindex;
+                    previousItemindex = combineStartItemIndex;
                     currentWindowLayer++;
                 }else if(itemUI.itemContainers[itemUI.currentindex].selectIndex == 2) // discard
                 {
@@ -197,6 +199,12 @@ public class TabUI : MonoBehaviour
         if(!inputOk) return;
 
         currentWindowLayer--;
+
+        if(currentWindowLayer == 1)
+        {   
+            currentItemindex = previousItemindex;
+        }
+        
         if(currentWindowLayer < 0)
         {
             currentWindowLayer = 0;
@@ -241,7 +249,8 @@ public class TabUI : MonoBehaviour
             itemUI.itemContainers[itemUI.currentindex].SetSelectIndex(Mathf.Clamp(n, 0, 2));
         }else  if(currentWindowLayer == 2)
         {
-
+            currentItemindex -= 4;
+            ContainerLimit();
         }
         
     }
@@ -262,7 +271,8 @@ public class TabUI : MonoBehaviour
             itemUI.itemContainers[itemUI.currentindex].SetSelectIndex(Mathf.Clamp(n, 0, 2));
         }else  if(currentWindowLayer == 2)
         {
-            
+            currentItemindex += 4;
+            ContainerLimit();
         }
 
     }
@@ -283,9 +293,10 @@ public class TabUI : MonoBehaviour
         }else if(currentWindowLayer == 1)
         {
 
-        }else  if(currentWindowLayer == 2)
+        }else if(currentWindowLayer == 2)
         {
-            
+            currentItemindex++;
+            ContainerLimit();
         }
         
     }
@@ -308,7 +319,8 @@ public class TabUI : MonoBehaviour
 
         }else  if(currentWindowLayer == 2)
         {
-            
+            currentItemindex--;
+            ContainerLimit();
         }
     }
     // for question option select

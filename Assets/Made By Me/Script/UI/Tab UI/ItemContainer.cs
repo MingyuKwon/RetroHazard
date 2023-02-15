@@ -207,6 +207,7 @@ public class ItemContainer : MonoBehaviour
             {
                 fadeImage.color = new Color(0f, 0f, 0f, 0.5f);
             }
+
             
         }else if(tabUI.currentWindowLayer == 1)
         {
