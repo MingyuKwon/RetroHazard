@@ -23,10 +23,10 @@ public class PlayerInventory : MonoBehaviour
 
     public bool isInventoryFull;
 
-    public const int SheildBatteryLimit = 8;
-    public const int Energy1BatteryLimit = 30;
-    public const int Energy2BatteryLimit = 12;
-    public const int Energy3BatteryLimit = 9;
+    public int SheildBatteryLimit = 8;
+    public int Energy1BatteryLimit = 30;
+    public int Energy2BatteryLimit = 12;
+    public int Energy3BatteryLimit = 9;
 
     private void Awake() {
         itemUI = FindObjectOfType<ItemUI>();
@@ -306,11 +306,54 @@ public class PlayerInventory : MonoBehaviour
 
             }else if(combineStartItem.isBullet && combineEndItem.isBullet)
             {
-                
+                int temp = 0;
+                itemsamount[combineStartItemIndex] += itemsamount[combineEndIndex];
+
+                if(combineStartItem.isSheild)
+                {
+                    if(itemsamount[combineStartItemIndex] > SheildBatteryLimit)
+                    {
+                        temp = itemsamount[combineStartItemIndex] - SheildBatteryLimit;
+                        itemsamount[combineStartItemIndex] = SheildBatteryLimit;
+                    }
+                    
+                }else if(combineStartItem.isEnergy1)
+                {
+                    if(itemsamount[combineStartItemIndex] > Energy1BatteryLimit)
+                    {
+                        temp = itemsamount[combineStartItemIndex] - Energy1BatteryLimit;
+                        itemsamount[combineStartItemIndex] = Energy1BatteryLimit;
+                    }
+
+                }else if(combineStartItem.isEnergy2)
+                {
+                    if(itemsamount[combineStartItemIndex] > Energy2BatteryLimit)
+                    {
+                        temp = itemsamount[combineStartItemIndex] - Energy2BatteryLimit;
+                        itemsamount[combineStartItemIndex] = Energy2BatteryLimit;
+                    }
+
+                }else if(combineStartItem.isEnergy3)
+                {
+                    if(itemsamount[combineStartItemIndex] > Energy3BatteryLimit)
+                    {
+                        temp = itemsamount[combineStartItemIndex] - Energy3BatteryLimit;
+                        itemsamount[combineStartItemIndex] = Energy3BatteryLimit;
+                    }
+
+                }
+
+                itemsamount[combineEndIndex] = temp;
+
+                if(temp == 0)
+                {
+                    DiscardItem(combineEndIndex);
+                }
+
             }
-            
         }
-        
+        itemUI.UpdateInventoryUI();
+        status.UpdateIngameUI();
     }
 
     public void Obtain_Potion_Item(ItemInformation itemInformation)
@@ -331,7 +374,7 @@ public class PlayerInventory : MonoBehaviour
 
     public void Obtain_bullet_Item(ItemInformation itemInformation, int amount)
     {
-        if(amount >= 0)
+        if(amount > 0)
         {
             for(int i=0; i<CurrentContainer; i++)
             {

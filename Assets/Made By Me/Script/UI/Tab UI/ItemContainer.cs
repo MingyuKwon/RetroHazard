@@ -60,6 +60,55 @@ public class ItemContainer : MonoBehaviour
 
     private void Update() {
         CheckWindowLayer();
+        CheckContainerFull();
+    }
+
+    private void CheckContainerFull()
+    {
+        if(itemUI.playerInventory == null) return;
+        if(itemUI.playerInventory.items[containerNum] == null) return;
+
+        if(itemUI.playerInventory.items[containerNum].isEnergy1)
+        {
+            if(itemUI.playerInventory.itemsamount[containerNum] == itemUI.playerInventory.Energy1BatteryLimit)
+            {
+                itemAmount.color = Color.green;
+            }else
+            {
+                itemAmount.color = Color.white;
+            }
+        }else if(itemUI.playerInventory.items[containerNum].isEnergy2)
+        {
+            if(itemUI.playerInventory.itemsamount[containerNum] == itemUI.playerInventory.Energy2BatteryLimit)
+            {
+                itemAmount.color = Color.green;
+            }else
+            {
+                itemAmount.color = Color.white;
+            }
+
+        }else if(itemUI.playerInventory.items[containerNum].isEnergy3)
+        {
+            if(itemUI.playerInventory.itemsamount[containerNum] == itemUI.playerInventory.Energy3BatteryLimit)
+            {
+                itemAmount.color = Color.green;
+            }else
+            {
+                itemAmount.color = Color.white;
+            }
+
+        }else if(itemUI.playerInventory.items[containerNum].isSheild)
+        {
+            if(itemUI.playerInventory.itemsamount[containerNum] == itemUI.playerInventory.SheildBatteryLimit)
+            {
+                itemAmount.color = Color.green;
+            }else
+            {
+                itemAmount.color = Color.white;
+            }
+        }
+        
+
     }
 
     private void OnEnable() {
