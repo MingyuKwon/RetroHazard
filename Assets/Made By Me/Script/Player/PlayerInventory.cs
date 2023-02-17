@@ -266,11 +266,9 @@ public class PlayerInventory : MonoBehaviour
     {
         if(combineStartItem.isKeyItem)
         {
-            int endItemCode = combineEndItem.KeyItemCode;
-
             for(int i=0; i < combineStartItem.combineItems.Length; i++)
             {
-                if(combineStartItem.combineItems[i] == endItemCode)
+                if(combineStartItem.combineItems[i] == combineEndItem.KeyItemCode)
                 {
                     items[combineStartItemIndex] =  combineStartItem.combinResultItems[i];
                     itemsamount[combineStartItemIndex] = 1;
@@ -293,7 +291,24 @@ public class PlayerInventory : MonoBehaviour
             DiscardItem(combineEndIndex);
         }else
         {
-            int endItemCode = combineEndItem.NormalItemCode;
+            if(combineStartItem.isPotion && combineEndItem.isPotion)
+            {
+                for(int i=0; i < combineStartItem.combineItems.Length; i++)
+                {
+                    if(combineStartItem.combineItems[i] == combineEndItem.NormalItemCode)
+                    {
+                        items[combineStartItemIndex] =  combineStartItem.combinResultItems[i];
+                        itemsamount[combineStartItemIndex] = 1;
+                        break;
+                    }
+                }
+                DiscardItem(combineEndIndex);
+
+            }else if(combineStartItem.isBullet && combineEndItem.isBullet)
+            {
+                
+            }
+            
         }
         
     }

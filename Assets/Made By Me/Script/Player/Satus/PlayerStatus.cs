@@ -140,7 +140,6 @@ public class PlayerStatus : MonoBehaviour
 
     public void HealthChange(float damage)
     {
-        Debug.Log("HealthChange");
         if(damage == 1)
         {
             CurrentHP = MaxHP;
@@ -193,7 +192,6 @@ public class PlayerStatus : MonoBehaviour
 
     public void EnergyUse(int energyUse, int energyKind)
     {
-        Debug.Log("EnergyUse");
         if(energyKind == 0) return;
         EnergyMaganize[energyKind] -= energyUse;
         UpdateIngameUI();

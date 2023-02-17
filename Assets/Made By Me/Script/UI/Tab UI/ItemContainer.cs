@@ -159,7 +159,6 @@ public class ItemContainer : MonoBehaviour
             SetSelect(false);
             if(!isPreviousEneterd)
             {
-                
                 isPreviousEneterd = true;
 
                 bool flag = false;
@@ -180,7 +179,16 @@ public class ItemContainer : MonoBehaviour
                         }
                     }else if(!tabUI.combineStartItem.isKeyItem && !itemUI.playerInventory.items[containerNum].isKeyItem)
                     {
+                        foreach(int itemCode in itemUI.playerInventory.items[containerNum].combineItems)
+                        {
+                            if(tabUI.combineStartItem.NormalItemCode == itemCode)
+                            {
+                                isCombineable = true;
+                                flag = true;
+                                break;
+                            }
 
+                        }
                     }
                  
                 }

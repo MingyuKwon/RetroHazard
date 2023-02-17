@@ -22,6 +22,8 @@ MonoBehaviour:
   KeyItemCode: 0
   NormalItemCode: 1
   combineItems: 00000000
+  combinResultItems:
+  - {fileID: 11400000, guid: 039d6d054b7294a4b967a96ac3507a23, type: 2}
   isSheild: 0
   isEnergy1: 0
   isEnergy2: 0
