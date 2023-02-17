@@ -129,7 +129,9 @@ public class ItemContainer : MonoBehaviour
     {
             if(itemUI.playerInventory.items[containerNum].isEquipItem)
             {
-                if(itemUI.playerInventory.items[containerNum].KeyItemCode + 1 == status.Energy || itemUI.playerInventory.items[containerNum].KeyItemCode - 3 == status.Sheild) // If that Item is now equipped
+                int KeyItemCode = itemUI.playerInventory.items[containerNum].KeyItemCode;
+
+                if(KeyItemCode + 1 == status.Energy || KeyItemCode - 3 == status.Sheild || KeyItemCode - 8 == status.Energy || KeyItemCode - 11 == status.Energy) // If that Item is now equipped
                 {
                     focus.SetselectText(0, "DisArm"); // If you want to modify this String, you should also modify TabUI pressEnter code
                 }else
@@ -164,29 +166,23 @@ public class ItemContainer : MonoBehaviour
 
                 if(itemUI.playerInventory.items[containerNum] != null)
                 {
-                 foreach(int itemCode in itemUI.playerInventory.items[containerNum].combineItems)
-                 {
-                    if(tabUI.combineStartItem.isKeyItem)
+                    if(tabUI.combineStartItem.isKeyItem && itemUI.playerInventory.items[containerNum].isKeyItem)
                     {
-                        if(tabUI.combineStartItem.KeyItemCode == itemCode)
+                        foreach(int itemCode in itemUI.playerInventory.items[containerNum].combineItems)
                         {
-                            isCombineable = true;
-                            flag = true;
-                            break;
+                            if(tabUI.combineStartItem.KeyItemCode == itemCode)
+                            {
+                                isCombineable = true;
+                                flag = true;
+                                break;
+                            }
+
                         }
+                    }else if(!tabUI.combineStartItem.isKeyItem && !itemUI.playerInventory.items[containerNum].isKeyItem)
+                    {
 
                     }
-                    else
-                    {
-                        if(tabUI.combineStartItem.NormalItemCode == itemCode)
-                        {
-                            isCombineable = true;
-                            flag = true;
-                            break;
-                        }
-                        
-                    }
-                 }
+                 
                 }
 
                 if(!flag)

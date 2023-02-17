@@ -21,7 +21,10 @@ MonoBehaviour:
   isExpansionItem: 1
   KeyItemCode: 7
   NormalItemCode: 0
-  combineItems: 01000000
+  combineItems: 010000000a000000
+  combinResultItems:
+  - {fileID: 11400000, guid: 6a6298047aedeaa40bfe85805d0c11de, type: 2}
+  - {fileID: 11400000, guid: b143879346080ea4ebf163beea896f04, type: 2}
   isSheild: 0
   isEnergy1: 0
   isEnergy2: 1

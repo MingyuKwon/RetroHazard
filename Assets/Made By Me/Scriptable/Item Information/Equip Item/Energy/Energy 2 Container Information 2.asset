@@ -10,18 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a32a9bd668c1bbb409c635fef9be93c3, type: 3}
-  m_Name: Energy 3 Container Information
+  m_Name: Energy 2 Container Information 2
   m_EditorClassIdentifier: 
-  ItemImage: {fileID: 21300078, guid: a977e104bdeb79746b0814c9c7215e80, type: 3}
-  ItemName: Energy 3 Container
+  ItemImage: {fileID: 21300100, guid: a977e104bdeb79746b0814c9c7215e80, type: 3}
+  ItemName: Energy 2 Container
   isKeyItem: 1
   isNormalItem: 0
   isEquipItem: 1
   isInteractiveItem: 0
   isExpansionItem: 0
-  KeyItemCode: 2
+  KeyItemCode: 13
   NormalItemCode: 0
-  combineItems: 08000000
+  combineItems: 
+  combinResultItems: []
   isSheild: 0
   isEnergy1: 0
   isEnergy2: 0
@@ -32,4 +33,6 @@ MonoBehaviour:
   expansionAmount: 0
   healAmount: 0
   ItemDescription:
-  - "Containing Energy 3. \nIt enable you to attack using Energy 3"
+  - 'Containing Energy 2 up to 12.
+
+    It enable you to attack using Energy 2'

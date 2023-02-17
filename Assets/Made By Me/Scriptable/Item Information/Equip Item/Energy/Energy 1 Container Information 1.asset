@@ -10,29 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a32a9bd668c1bbb409c635fef9be93c3, type: 3}
-  m_Name: Energy3 Item Information
+  m_Name: Energy 1 Container Information 1
   m_EditorClassIdentifier: 
-  ItemImage: {fileID: -705438330, guid: 5bdc2781d97139949a21d7b80c0962a6, type: 3}
-  ItemName: Energy 3 Maganize
+  ItemImage: {fileID: 21300086, guid: a977e104bdeb79746b0814c9c7215e80, type: 3}
+  ItemName: Energy 1 Container
   isKeyItem: 1
   isNormalItem: 0
-  isEquipItem: 0
+  isEquipItem: 1
   isInteractiveItem: 0
-  isExpansionItem: 1
-  KeyItemCode: 8
+  isExpansionItem: 0
+  KeyItemCode: 9
   NormalItemCode: 0
-  combineItems: 020000000b000000
+  combineItems: 06000000
   combinResultItems:
-  - {fileID: 11400000, guid: e6ae5e565e87d05429a0c599d76df5f8, type: 2}
-  - {fileID: 11400000, guid: 112ca1b9ea3532046ac47b57cf3cf199, type: 2}
+  - {fileID: 11400000, guid: 27aee3ff5216c444a983a7847e2dd528, type: 2}
   isSheild: 0
   isEnergy1: 0
   isEnergy2: 0
-  isEnergy3: 1
+  isEnergy3: 0
   isBullet: 0
   isPotion: 0
   amount: 1
-  expansionAmount: 3
+  expansionAmount: 0
   healAmount: 0
   ItemDescription:
-  - It will expand your <b>Energy 3 Maximum contain limit</b>
+  - "Containing Energy 1 up to 10. \nIt enable you to attack using Energy 1 "

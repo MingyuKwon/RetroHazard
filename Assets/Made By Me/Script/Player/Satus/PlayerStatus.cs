@@ -62,7 +62,7 @@ public class PlayerStatus : MonoBehaviour
 
     public void UpdateIngameUI()
     {
-        Update_IngameUI_Event?.Invoke(MaxHP, CurrentHP, Energy, EnergyMaganize[Energy], EnergyStore[Energy] ,  Sheild, SheildMaganize[Sheild] , SheildStore, EnergyUpgrade[Energy], SheildUpgrade[Sheild]);
+        StartCoroutine(UpdateUIDelay());
     }
 
     public void ChangeWeapon(int energy)
@@ -85,7 +85,7 @@ public class PlayerStatus : MonoBehaviour
     IEnumerator UpdateUIDelay()
     {
         yield return new WaitForEndOfFrame();
-        UpdateIngameUI();
+        Update_IngameUI_Event?.Invoke(MaxHP, CurrentHP, Energy, EnergyMaganize[Energy], EnergyStore[Energy] ,  Sheild, SheildMaganize[Sheild] , SheildStore, EnergyUpgrade[Energy], SheildUpgrade[Sheild]);
         inventory.itemUI.UpdateInventoryUI();
     }
 
@@ -140,6 +140,7 @@ public class PlayerStatus : MonoBehaviour
 
     public void HealthChange(float damage)
     {
+        Debug.Log("HealthChange");
         if(damage == 1)
         {
             CurrentHP = MaxHP;
@@ -192,6 +193,7 @@ public class PlayerStatus : MonoBehaviour
 
     public void EnergyUse(int energyUse, int energyKind)
     {
+        Debug.Log("EnergyUse");
         if(energyKind == 0) return;
         EnergyMaganize[energyKind] -= energyUse;
         UpdateIngameUI();

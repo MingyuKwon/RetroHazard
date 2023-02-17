@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a32a9bd668c1bbb409c635fef9be93c3, type: 3}
   m_Name: Energy 2 Container Information
   m_EditorClassIdentifier: 
-  ItemImage: {fileID: 21300076, guid: a977e104bdeb79746b0814c9c7215e80, type: 3}
+  ItemImage: {fileID: 21300088, guid: a977e104bdeb79746b0814c9c7215e80, type: 3}
   ItemName: Energy 2 Container
   isKeyItem: 1
   isNormalItem: 0
@@ -22,6 +22,8 @@ MonoBehaviour:
   KeyItemCode: 1
   NormalItemCode: 0
   combineItems: 07000000
+  combinResultItems:
+  - {fileID: 11400000, guid: 6a6298047aedeaa40bfe85805d0c11de, type: 2}
   isSheild: 0
   isEnergy1: 0
   isEnergy2: 0
@@ -32,4 +34,6 @@ MonoBehaviour:
   expansionAmount: 0
   healAmount: 0
   ItemDescription:
-  - "Containing Energy 2. \nIt enable you to attack using Energy 2"
+  - 'Containing Energy 2 up to 4.
+
+    It enable you to attack using Energy 2'

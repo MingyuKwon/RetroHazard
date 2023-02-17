@@ -22,6 +22,8 @@ MonoBehaviour:
   KeyItemCode: 0
   NormalItemCode: 0
   combineItems: 06000000
+  combinResultItems:
+  - {fileID: 11400000, guid: 8294c9fe43e111f44b832f95471458ca, type: 2}
   isSheild: 0
   isEnergy1: 0
   isEnergy2: 0
@@ -32,4 +34,6 @@ MonoBehaviour:
   expansionAmount: 0
   healAmount: 0
   ItemDescription:
-  - "Containing Energy 1. \nIt enable you to attack using Energy 1 "
+  - 'Containing Energy 1 up to 5.
+
+    It enable you to attack using Energy 1 '

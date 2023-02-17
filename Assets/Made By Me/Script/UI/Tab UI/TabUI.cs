@@ -10,6 +10,7 @@ public class TabUI : MonoBehaviour
 {
     static public event Action<int> discardItemEvent;
     static public event Action<int, float> UsePotionEvent;
+    static public event Action<ItemInformation , int , ItemInformation, int> CombineEvent; // Combine start Item, combine start index, select Item, selected index
     PlayerStatus status;
 
     public bool inputOk = false;
@@ -141,7 +142,8 @@ public class TabUI : MonoBehaviour
                 {
                     if(itemUI.itemContainers[itemUI.currentindex].focus.selectTexts[0].text == "DisArm")
                     {
-                        if(itemUI.playerInventory.items[itemUI.currentindex].KeyItemCode < 3)
+                        int KeyItemCode = itemUI.playerInventory.items[itemUI.currentindex].KeyItemCode;
+                        if(KeyItemCode < 3 || (KeyItemCode > 8 && KeyItemCode < 12) || (KeyItemCode > 11 && KeyItemCode < 15))
                         {
                             status.ChangeWeapon(0);
                             itemUI.itemContainers[itemUI.currentindex].focus.SetselectText(0, "Equip");
@@ -153,13 +155,25 @@ public class TabUI : MonoBehaviour
 
                     }else if(itemUI.itemContainers[itemUI.currentindex].focus.selectTexts[0].text == "Equip")
                     {
-                        if(itemUI.playerInventory.items[itemUI.currentindex].KeyItemCode < 3)
+                        int KeyItemCode = itemUI.playerInventory.items[itemUI.currentindex].KeyItemCode;
+
+                        if(KeyItemCode < 3)
                         {
-                            status.ChangeWeapon(itemUI.playerInventory.items[itemUI.currentindex].KeyItemCode + 1);
+                            status.ChangeWeapon(KeyItemCode + 1);
                             itemUI.itemContainers[itemUI.currentindex].focus.SetselectText(0, "DisArm");
-                        }else
+                        }else if(KeyItemCode > 8 && KeyItemCode < 12)
                         {
-                            status.ChangeSheild(itemUI.playerInventory.items[itemUI.currentindex].KeyItemCode - 3);
+                            status.ChangeWeapon(KeyItemCode - 8);
+                            itemUI.itemContainers[itemUI.currentindex].focus.SetselectText(0, "DisArm");
+                        }
+                        else if(KeyItemCode > 11 && KeyItemCode < 15)
+                        {
+                            status.ChangeWeapon(KeyItemCode - 11);
+                            itemUI.itemContainers[itemUI.currentindex].focus.SetselectText(0, "DisArm");
+                        }
+                        else if(KeyItemCode > 2 && KeyItemCode < 6)
+                        {
+                            status.ChangeSheild(KeyItemCode - 3);
                             itemUI.itemContainers[itemUI.currentindex].focus.SetselectText(0, "DisArm");
                         }
 
@@ -188,7 +202,12 @@ public class TabUI : MonoBehaviour
             }
             else if(currentWindowLayer == 2)
             {
+                if(!itemUI.itemContainers[itemUI.currentindex].isCombineable) return;
 
+                CombineEvent.Invoke(combineStartItem, combineStartItemIndex, itemUI.playerInventory.items[itemUI.currentindex], itemUI.currentindex);
+                currentWindowLayer--;
+                currentWindowLayer--;
+                currentItemindex = previousItemindex;
             }
 
             

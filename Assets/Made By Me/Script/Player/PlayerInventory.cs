@@ -10,6 +10,10 @@ public class PlayerInventory : MonoBehaviour
     public ItemUI itemUI;
 
     [SerializeField] ItemInformation[] basicItems;
+
+    [SerializeField] ItemInformation[] EnergyUpgrade1Item;
+    [SerializeField] ItemInformation[] EnergyUpgrade2Item;
+
     public ItemInformation[] items;
     public int[] itemsamount;
     public bool[] isEquipped;
@@ -65,15 +69,16 @@ public class PlayerInventory : MonoBehaviour
     {
         for(int i=0; i<CurrentContainer; i++)
         {
+            isEquipped[i] = false;
             if(items[i] == null) continue;
             if(!items[i].isEquipItem) continue;
 
-            if(items[i].KeyItemCode + 1 == status.Energy || items[i].KeyItemCode - 3 == status.Sheild)
+            if((items[i].KeyItemCode + 1 == status.Energy || items[i].KeyItemCode -8 == status.Energy || items[i].KeyItemCode -11 == status.Energy) && status.Energy != 0)
             {
                 isEquipped[i] = true;
-            }else
+            }else if(items[i].KeyItemCode - 3 == status.Sheild)
             {
-                isEquipped[i] = false;
+                isEquipped[i] = true;
             }
         }
     }
@@ -85,7 +90,8 @@ public class PlayerInventory : MonoBehaviour
        PotionItem.Obtain_potion_Item_Event += Obtain_Potion_Item;
 
        TabUI.discardItemEvent += DiscardItem;
-       TabUI.UsePotionEvent += UsedItem;
+       TabUI.UsePotionEvent += UsedPotionItem;
+       TabUI.CombineEvent += UpgradeItem;
     }
 
     private void OnDisable() {
@@ -94,7 +100,7 @@ public class PlayerInventory : MonoBehaviour
         PotionItem.Obtain_potion_Item_Event -= Obtain_Potion_Item;
 
        TabUI.discardItemEvent -= DiscardItem;
-       TabUI.UsePotionEvent -= UsedItem;
+       TabUI.UsePotionEvent -= UsedPotionItem;
     }
 
     public void DiscardItem(int index)
@@ -108,7 +114,7 @@ public class PlayerInventory : MonoBehaviour
         
     }
 
-    public void UsedItem(int index, float damage)
+    public void UsedPotionItem(int index, float damage)
     {
         status.HealthChange(-damage);
 
@@ -255,6 +261,43 @@ public class PlayerInventory : MonoBehaviour
         status.UpdateIngameUI();
         itemUI.UpdateInventoryUI();
     }
+
+    public void UpgradeItem(ItemInformation combineStartItem, int combineStartItemIndex, ItemInformation combineEndItem, int combineEndIndex)
+    {
+        if(combineStartItem.isKeyItem)
+        {
+            int endItemCode = combineEndItem.KeyItemCode;
+
+            for(int i=0; i < combineStartItem.combineItems.Length; i++)
+            {
+                if(combineStartItem.combineItems[i] == endItemCode)
+                {
+                    items[combineStartItemIndex] =  combineStartItem.combinResultItems[i];
+                    itemsamount[combineStartItemIndex] = 1;
+
+                    if(combineStartItem.KeyItemCode == 6 || combineEndItem.KeyItemCode == 6)
+                    {
+                        status.SetEnergyEquipUpgrade(1,false, false, false);
+                    }else if(combineStartItem.KeyItemCode == 7 || combineEndItem.KeyItemCode == 7)
+                    {
+                        status.SetEnergyEquipUpgrade(2,false, false, false);
+                    }else if(combineStartItem.KeyItemCode == 8 || combineEndItem.KeyItemCode == 8)
+                    {
+                        status.SetEnergyEquipUpgrade(3,false, false, false);
+                    }
+
+                    break;
+                }
+            }
+
+            DiscardItem(combineEndIndex);
+        }else
+        {
+            int endItemCode = combineEndItem.NormalItemCode;
+        }
+        
+    }
+
     public void Obtain_Potion_Item(ItemInformation itemInformation)
     {
         for(int i=0; i<CurrentContainer; i++)
@@ -301,7 +344,6 @@ public class PlayerInventory : MonoBehaviour
             status.EnergyStore[3] += amount;
         }
         
-
         itemUI.UpdateInventoryUI();
         status.UpdateIngameUI();
     }
@@ -317,7 +359,6 @@ public class PlayerInventory : MonoBehaviour
                 break;
             }
         }
-
         itemUI.UpdateInventoryUI();
         status.UpdateIngameUI();
     }
@@ -336,7 +377,6 @@ public class PlayerInventory : MonoBehaviour
             }
             
         }
-        
 
         if(itemInformation.KeyItemCode <3)
         {
@@ -346,7 +386,6 @@ public class PlayerInventory : MonoBehaviour
             status.SetSheildEquip(itemInformation.KeyItemCode-3, true);
         }
         
-
         itemUI.UpdateInventoryUI();
         status.UpdateIngameUI();
     }

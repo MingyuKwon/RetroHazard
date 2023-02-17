@@ -250,6 +250,14 @@ MonoBehaviour:
   status: {fileID: 0}
   itemUI: {fileID: 0}
   basicItems: []
+  EnergyUpgrade1Item:
+  - {fileID: 11400000, guid: 8294c9fe43e111f44b832f95471458ca, type: 2}
+  - {fileID: 11400000, guid: 6a6298047aedeaa40bfe85805d0c11de, type: 2}
+  - {fileID: 11400000, guid: e6ae5e565e87d05429a0c599d76df5f8, type: 2}
+  EnergyUpgrade2Item:
+  - {fileID: 11400000, guid: 27aee3ff5216c444a983a7847e2dd528, type: 2}
+  - {fileID: 11400000, guid: b143879346080ea4ebf163beea896f04, type: 2}
+  - {fileID: 11400000, guid: 112ca1b9ea3532046ac47b57cf3cf199, type: 2}
   items: []
   itemsamount: 
   isEquipped: 
