@@ -36,7 +36,7 @@ public class EnemyCollide : MonoBehaviour
             contactObject = contactCollider.transform.parent.transform.parent.gameObject;
             contactPlayerStat = contactObject.GetComponentInChildren<PlayerStatus>();
 
-            if(other.otherCollider.tag == "Enemy Body")
+            if(other.otherCollider.tag == "Enemy Body" && contactCollider.tag != "Sheild")
             {
                 if(contactCollider.tag == "Attack")
                 {
@@ -50,6 +50,7 @@ public class EnemyCollide : MonoBehaviour
                 Debug.Log("Enemy had damage : " + damage);
                 Reflect(damage);
                 status.HealthChange(damage);
+                damage = 0;
             
             }
             else if(other.otherCollider.tag == "Attack")
