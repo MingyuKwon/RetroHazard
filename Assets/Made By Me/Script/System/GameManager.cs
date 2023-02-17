@@ -206,6 +206,8 @@ public class GameManager : MonoBehaviour
         if(ObtainKeyItem) return;
         if(isPlayerParry) return;
 
+        if(GameManagerUI.instance.isInteractiveUIActive) return;
+
         if(GameManagerUI.instance.isShowingTab && GameManagerUI.instance.isShowingMenu)
         {
             GameManagerUI.instance.isShowingMenu = false;

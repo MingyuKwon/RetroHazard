@@ -102,6 +102,7 @@ public class PlayerShield : MonoBehaviour
     {
         playerAnimation.isParrying = false;
         
+        status.blockSuccessEnemy = null;
         GameManager.instance.SetPlayerFree();
         GameManager.instance.SetPlayerMove(true);
     }

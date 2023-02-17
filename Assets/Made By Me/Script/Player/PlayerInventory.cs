@@ -208,9 +208,10 @@ public class PlayerInventory : MonoBehaviour
                         temp = 0;
                     }
                 }
-                if(temp <= 0) break;
+                if(temp == 0) break;
             }
         }
+
         status.UpdateIngameUI();
         itemUI.UpdateInventoryUI();
     }
@@ -350,6 +351,7 @@ public class PlayerInventory : MonoBehaviour
                     DiscardItem(combineEndIndex);
                 }
 
+
             }
         }
         itemUI.UpdateInventoryUI();
@@ -387,23 +389,23 @@ public class PlayerInventory : MonoBehaviour
             }
         }
         
-
-        if(itemInformation.isSheild)
+        if(itemInformation.isSheild && itemInformation.isBullet)
         {
             status.SheildStore += amount;
-        }else if(itemInformation.isEnergy1)
+        }else if(itemInformation.isEnergy1 && itemInformation.isBullet)
         {
             status.EnergyStore[1] += amount;
-        }else if(itemInformation.isEnergy2)
+        }else if(itemInformation.isEnergy2 && itemInformation.isBullet)
         {
             status.EnergyStore[2] += amount;
-        }else if(itemInformation.isEnergy3)
+        }else if(itemInformation.isEnergy3 && itemInformation.isBullet)
         {
             status.EnergyStore[3] += amount;
         }
         
         itemUI.UpdateInventoryUI();
         status.UpdateIngameUI();
+        
     }
 
     public void Obtain_Expansion_Item(ItemInformation itemInformation, int amount)
