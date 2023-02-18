@@ -8,6 +8,8 @@ public class PlayerInventory : MonoBehaviour
 
     public PlayerStatus status;
     public ItemUI itemUI;
+    public BoxItemUI boxItemUI;
+    public PlayerItemUI playerItemUI;
 
     [SerializeField] ItemInformation[] basicItems;
 
@@ -30,6 +32,8 @@ public class PlayerInventory : MonoBehaviour
 
     private void Awake() {
         itemUI = FindObjectOfType<ItemUI>();
+        playerItemUI = FindObjectOfType<PlayerItemUI>();
+        boxItemUI = FindObjectOfType<BoxItemUI>();
         status = transform.parent.GetComponentInChildren<PlayerStatus>();
 
         items = new ItemInformation[16];
@@ -90,8 +94,12 @@ public class PlayerInventory : MonoBehaviour
        PotionItem.Obtain_potion_Item_Event += Obtain_Potion_Item;
 
        TabUI.discardItemEvent += DiscardItem;
+       BoxUI.discardItemEvent += DiscardItem;
        TabUI.UsePotionEvent += UsedPotionItem;
        TabUI.CombineEvent += UpgradeItem;
+       BoxUI.CombineEvent += UpgradeItem;
+
+       BoxUI.BoxEvent += BoxInOut;
     }
 
     private void OnDisable() {
@@ -100,7 +108,36 @@ public class PlayerInventory : MonoBehaviour
         PotionItem.Obtain_potion_Item_Event -= Obtain_Potion_Item;
 
        TabUI.discardItemEvent -= DiscardItem;
+       BoxUI.discardItemEvent -= DiscardItem;
        TabUI.UsePotionEvent -= UsedPotionItem;
+       TabUI.CombineEvent -= UpgradeItem;
+       BoxUI.CombineEvent -= UpgradeItem;
+
+       BoxUI.BoxEvent -= BoxInOut;
+    }
+
+    private void BoxInOut(bool flag, ItemInformation information, int amount, int currentindex)
+    {
+        if(flag)
+        {
+            DiscardItem(currentindex);
+        }else
+        {
+            for(int i=0; i<CurrentContainer; i++)
+            {
+                if(items[i] == null)
+                {
+                    items[i] = information;
+                    itemsamount[i] = amount;
+                    break;
+                }
+            }
+
+        }
+
+        status.UpdateIngameUI();
+        playerItemUI.UpdateInventoryUI();
+        boxItemUI.UpdateBoxUI();
     }
 
     public void DiscardItem(int index)
@@ -111,6 +148,7 @@ public class PlayerInventory : MonoBehaviour
         itemsamount[index] = 0;
 
         itemUI.UpdateInventoryUI();
+        playerItemUI.UpdateInventoryUI();
         
     }
 
@@ -214,6 +252,7 @@ public class PlayerInventory : MonoBehaviour
 
         status.UpdateIngameUI();
         itemUI.UpdateInventoryUI();
+        playerItemUI.UpdateInventoryUI();
     }
 
     public void SheildReLoad()
@@ -261,6 +300,7 @@ public class PlayerInventory : MonoBehaviour
 
         status.UpdateIngameUI();
         itemUI.UpdateInventoryUI();
+        playerItemUI.UpdateInventoryUI();
     }
 
     public void UpgradeItem(ItemInformation combineStartItem, int combineStartItemIndex, ItemInformation combineEndItem, int combineEndIndex)
@@ -356,6 +396,7 @@ public class PlayerInventory : MonoBehaviour
         }
         itemUI.UpdateInventoryUI();
         status.UpdateIngameUI();
+        playerItemUI.UpdateInventoryUI();
     }
 
     public void Obtain_Potion_Item(ItemInformation itemInformation)
@@ -372,6 +413,7 @@ public class PlayerInventory : MonoBehaviour
 
         itemUI.UpdateInventoryUI();
         status.UpdateIngameUI();
+        playerItemUI.UpdateInventoryUI();
     }
 
     public void Obtain_bullet_Item(ItemInformation itemInformation, int amount)
@@ -405,6 +447,7 @@ public class PlayerInventory : MonoBehaviour
         
         itemUI.UpdateInventoryUI();
         status.UpdateIngameUI();
+        playerItemUI.UpdateInventoryUI();
         
     }
 
@@ -421,6 +464,7 @@ public class PlayerInventory : MonoBehaviour
         }
         itemUI.UpdateInventoryUI();
         status.UpdateIngameUI();
+        playerItemUI.UpdateInventoryUI();
     }
 
     public void Obtain_Equip_Item(ItemInformation itemInformation, int KeyItemCode)
@@ -448,6 +492,7 @@ public class PlayerInventory : MonoBehaviour
         
         itemUI.UpdateInventoryUI();
         status.UpdateIngameUI();
+        playerItemUI.UpdateInventoryUI();
     }
 
 }

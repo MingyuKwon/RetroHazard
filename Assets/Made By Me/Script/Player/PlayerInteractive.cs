@@ -59,7 +59,14 @@ public class PlayerInteractive : MonoBehaviour
                 nearInteract.ObtainItem();
             }else
             {   
-                GameManagerUI.instance.Visualize_Tab_Interactive(true, nearInteract.dialog);
+                if(nearInteract.isInventoryBox)
+                {
+                    GameManagerUI.instance.Visualize_BoxUI(true);
+                }else
+                {
+                    GameManagerUI.instance.Visualize_Tab_Interactive(true, nearInteract.dialog);
+                }
+                
             }
             
         }

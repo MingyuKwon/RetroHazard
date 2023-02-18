@@ -31,8 +31,8 @@ public class IinteractiveUI : MonoBehaviour
     {
         if(this.gameObject.activeInHierarchy == false) return;
         if(!inputOk) return;
-
         callCount++;
+        
     }
 
     public void SetInteractiveDialogText(string[] texts)
@@ -52,6 +52,7 @@ public class IinteractiveUI : MonoBehaviour
         }
 
         interactiveDialogPanel.SetActive(flag);
+
         Interactive_ChangeInput_PauseGame(flag);
 
         if(!flag)
@@ -88,7 +89,7 @@ public class IinteractiveUI : MonoBehaviour
             GameMangerInput.instance.changePlayerInputRule(1);
         }else
         {
-            if(GameManagerUI.instance.isDialogUIActive || GameManagerUI.instance.isTabUIActive)
+            if(GameManagerUI.instance.isDialogUIActive || GameManagerUI.instance.isTabUIActive || GameManagerUI.instance.isBoxUIActive)
             {
 
             }else
@@ -114,7 +115,6 @@ public class IinteractiveUI : MonoBehaviour
             interactiveDialogText.text = interactivedialogTexts[callCount];
             yield return new WaitForEndOfFrame();
         }
-
         VisualizeInteractiveUI(false);
     }
 

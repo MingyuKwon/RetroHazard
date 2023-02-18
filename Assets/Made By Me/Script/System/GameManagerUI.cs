@@ -12,16 +12,21 @@ public class GameManagerUI : MonoBehaviour
     DialogUI dialogUI;
     InGameUI inGameUI;
     TabUI tabUI;
+    BoxUI boxUI;
     IinteractiveUI interactiveUI;
 
     public bool isDialogUIActive;
     public bool isTabUIActive;
     public bool isinGameUIActive;
     public bool isInteractiveUIActive;
+    public bool isBoxUIActive;
 
 
+    // it is for GameManager not in GameNanagerUI
     public bool isShowingTab;
-    public bool isShowingMenu;
+    public bool isShowingMenu; 
+    public bool isShowingBox;
+    // it is for GameManager not in GameNanagerUI
 
     public int CurrentContainer;
 
@@ -38,6 +43,7 @@ public class GameManagerUI : MonoBehaviour
         blackoutUI = FindObjectOfType<blackOut>();
         dialogUI = FindObjectOfType<DialogUI>();
         tabUI = FindObjectOfType<TabUI>();
+        boxUI = FindObjectOfType<BoxUI>();
         inGameUI = FindObjectOfType<InGameUI>();
         interactiveUI = FindObjectOfType<IinteractiveUI>();
     }
@@ -48,15 +54,19 @@ public class GameManagerUI : MonoBehaviour
         interactiveUI.gameObject.SetActive(false);
         blackoutUI.gameObject.SetActive(false);
         inGameUI.gameObject.SetActive(true);
+        boxUI.gameObject.SetActive(false);
 
         dialogUI.VisualizeDialogUI(false);
         tabUI.Visualize_Tab_Interactive(false);
         interactiveUI.VisualizeInteractiveUI(false);
+        boxUI.Visualize_BoxUI(false);
+        
     }
 
     private void Update() {
         isDialogUIActive = dialogUI.gameObject.activeInHierarchy;
         isTabUIActive = tabUI.gameObject.activeInHierarchy;
+        isBoxUIActive = boxUI.gameObject.activeInHierarchy;
         isinGameUIActive = inGameUI.gameObject.activeInHierarchy;
         isInteractiveUIActive = interactiveUI.gameObject.activeInHierarchy;
     }
@@ -86,6 +96,7 @@ public class GameManagerUI : MonoBehaviour
 
         dialogUI.gameObject.SetActive(false);
         interactiveUI.gameObject.SetActive(false);
+        boxUI.gameObject.SetActive(false);
     }
 
     public void Visualize_Tab_Interactive(bool flag)
@@ -98,6 +109,7 @@ public class GameManagerUI : MonoBehaviour
 
         dialogUI.gameObject.SetActive(false);
         interactiveUI.gameObject.SetActive(false);
+        boxUI.gameObject.SetActive(false);
     }
 ///////////////// override end ////////////////////
 
@@ -111,6 +123,7 @@ public class GameManagerUI : MonoBehaviour
 
         dialogUI.gameObject.SetActive(false);
         interactiveUI.gameObject.SetActive(false);
+        boxUI.gameObject.SetActive(false);
     }
 
     ///////// override start //////////////////////
@@ -124,6 +137,7 @@ public class GameManagerUI : MonoBehaviour
 
         dialogUI.gameObject.SetActive(false);
         interactiveUI.gameObject.SetActive(false);
+        boxUI.gameObject.SetActive(false);
     }
 
     public void Visualize_Tab_Obtain(bool flag, bulletItem item)
@@ -136,6 +150,7 @@ public class GameManagerUI : MonoBehaviour
 
         dialogUI.gameObject.SetActive(false);
         interactiveUI.gameObject.SetActive(false);
+        boxUI.gameObject.SetActive(false);
     }
 
     public void Visualize_Tab_Obtain(bool flag, PotionItem item)
@@ -148,6 +163,7 @@ public class GameManagerUI : MonoBehaviour
 
         dialogUI.gameObject.SetActive(false);
         interactiveUI.gameObject.SetActive(false);
+        boxUI.gameObject.SetActive(false);
     }
 
     public void Visualize_Tab_Obtain(bool flag, KeyItem item)
@@ -160,9 +176,27 @@ public class GameManagerUI : MonoBehaviour
 
         dialogUI.gameObject.SetActive(false);
         interactiveUI.gameObject.SetActive(false);
+        boxUI.gameObject.SetActive(false);
     }
     ///////// override end //////////////////////
 // Tab UI
+
+// BoxUI
+    public void Visualize_BoxUI(bool flag)
+    {
+        if(isShowingTab && flag) return;
+        
+        boxUI.gameObject.SetActive(flag);
+        boxUI.Visualize_BoxUI(flag);
+        isShowingBox = flag;
+
+        dialogUI.gameObject.SetActive(false);
+        interactiveUI.gameObject.SetActive(false);
+        tabUI.gameObject.SetActive(false);
+        inGameUI.gameObject.SetActive(false);
+    }
+
+// BoxUI
 
 // Dialog UI
     public void VisualizeDialogUI(bool flag)

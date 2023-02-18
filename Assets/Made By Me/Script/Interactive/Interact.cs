@@ -9,6 +9,8 @@ public class Interact : MonoBehaviour
     public bool isItem;
     public bool isKeyItem;
 
+    public bool isInventoryBox;
+
     public bool triggerCheckActive = true;
 
     Item item = null;

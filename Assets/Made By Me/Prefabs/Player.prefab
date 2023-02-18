@@ -264,6 +264,10 @@ MonoBehaviour:
   StartContainer: 8
   CurrentContainer: 0
   isInventoryFull: 0
+  SheildBatteryLimit: 8
+  Energy1BatteryLimit: 30
+  Energy2BatteryLimit: 12
+  Energy3BatteryLimit: 9
 --- !u!1 &3210448023490803281
 GameObject:
   m_ObjectHideFlags: 0
@@ -409,6 +413,7 @@ Transform:
   - {fileID: 4581178524171934415}
   - {fileID: 8856375875515930427}
   - {fileID: 7303643369370518805}
+  - {fileID: 5085860361406791113}
   - {fileID: 6362032214999787546}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -608,6 +613,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bbb9fbcdccfedf45a9cd10425c1332d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &8443621313171552822
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5085860361406791113}
+  - component: {fileID: 169274597936053155}
+  m_Layer: 0
+  m_Name: Item Box
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5085860361406791113
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8443621313171552822}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6387553226888266341}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &169274597936053155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8443621313171552822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7080ebb1fc39524999148f0760618d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8196210358786870649
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -653,7 +702,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3023238555493803363, guid: 13cda4b25387c874ca7950e9ca7e2702, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3023238555493803363, guid: 13cda4b25387c874ca7950e9ca7e2702, type: 3}
       propertyPath: m_LocalPosition.x

@@ -16,7 +16,7 @@ public class FocusUI : MonoBehaviour
         selectTexts = transform.GetChild(0).GetComponentsInChildren<Text>();
         image = GetComponent<Image>();
         image.enabled = false;
-        if(transform.parent.GetComponent<ItemContainer>() == null)
+        if(transform.parent.GetComponent<ItemContainer>() == null && transform.parent.GetComponent<BoxItemContainer>() == null && transform.parent.GetComponent<PlayerItemContainer>() == null )
         {
             Destroy(transform.GetChild(0).gameObject);
         }
