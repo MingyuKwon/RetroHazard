@@ -19,6 +19,9 @@ public class TabUI : MonoBehaviour
     public bool isInteractive = false; // true -> open when get item, interact with object , false -> open with menu
     public bool isOpenedItem = false; // true -> open when get item, false -> interact with object
 
+    public bool isUseKeyItem = false; 
+    public int[] neededKeyItemCode;
+
     private Player player;
 
     
@@ -33,7 +36,6 @@ public class TabUI : MonoBehaviour
     ItemExplainUI itemExplainUI;
     CurrentGoalUI currentGoalUI;
     InteractiveMessageUI interactiveMessageUI;
-    EquippedUI equippedUI;
     ItemObtainYesNoPanelUI itemObtainYesNoPanelUI;
 
     bulletItem bulletItem;
@@ -60,7 +62,6 @@ public class TabUI : MonoBehaviour
         itemExplainUI = GetComponentInChildren<ItemExplainUI>();
         currentGoalUI = GetComponentInChildren<CurrentGoalUI>();
         interactiveMessageUI = GetComponentInChildren<InteractiveMessageUI>();
-        equippedUI = GetComponentInChildren<EquippedUI>();
         itemObtainYesNoPanelUI = GetComponentInChildren<ItemObtainYesNoPanelUI>();
     }
 
@@ -134,7 +135,17 @@ public class TabUI : MonoBehaviour
             
             if(currentWindowLayer == 0)
             {
-                currentWindowLayer++;
+                if(isUseKeyItem)
+                {
+                    if(itemUI.itemContainers[itemUI.currentindex].isInteractive)
+                    {
+                        currentWindowLayer++;
+                    }
+                }else
+                {
+                    currentWindowLayer++;
+                }
+                
             }
             else if(currentWindowLayer == 1)
             {
@@ -363,7 +374,6 @@ public class TabUI : MonoBehaviour
         itemExplainUI.gameObject.SetActive(flag);
         interactiveMessageUI.gameObject.SetActive(flag);
         currentGoalUI.gameObject.SetActive(false);
-        equippedUI.gameObject.SetActive(false);
         itemObtainYesNoPanelUI.gameObject.SetActive(false);
 
     }
@@ -371,7 +381,19 @@ public class TabUI : MonoBehaviour
     public void Visualize_Tab_Interactive(bool flag , InteractiveDialog dialog)
     {
         Visualize_Tab_Interactive(flag);
-        
+
+        isUseKeyItem = flag;
+
+        if(flag)
+        {
+            neededKeyItemCode = dialog.InteractKeyItems;
+        }else
+        {
+            neededKeyItemCode = null;
+        }
+
+        itemUI.SetInteractFade();
+
         interactiveMessageUI.SetInteractiveName(dialog.Interactive_name);
         interactiveMessageUI.SetInteractiveSituation(dialog.Interactive_Situation);
 
@@ -392,7 +414,6 @@ public class TabUI : MonoBehaviour
         itemUI.gameObject.SetActive(flag);
         itemExplainUI.gameObject.SetActive(flag);
         currentGoalUI.gameObject.SetActive(flag);
-        equippedUI.gameObject.SetActive(flag);
         interactiveMessageUI.gameObject.SetActive(false);
         itemObtainYesNoPanelUI.gameObject.SetActive(false);
     }
@@ -426,7 +447,6 @@ public class TabUI : MonoBehaviour
         itemUI.gameObject.SetActive(flag);
         itemExplainUI.gameObject.SetActive(false);
         currentGoalUI.gameObject.SetActive(false);
-        equippedUI.gameObject.SetActive(false);
         
     }
 

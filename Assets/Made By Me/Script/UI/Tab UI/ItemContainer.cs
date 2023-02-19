@@ -28,6 +28,8 @@ public class ItemContainer : MonoBehaviour
     public bool isFocused = false;
     public bool isCombineable = false;
 
+    public bool isInteractive = false;
+
     int indexLimitMin = 0;
     int indexLimitMax = 2;
 
@@ -111,6 +113,39 @@ public class ItemContainer : MonoBehaviour
 
     }
 
+    public void SetInteractFade()
+    {
+        if(itemUI.playerInventory == null) return;
+        if(itemUI.playerInventory.items[containerNum] == null) return;
+        if(!tabUI.isUseKeyItem) return;
+
+            if(itemUI.playerInventory.items[containerNum].isKeyItem)
+            {
+                bool flag = false;
+                foreach(int n in tabUI.neededKeyItemCode)
+                {
+                    if(n == itemUI.playerInventory.items[containerNum].KeyItemCode)
+                    {
+                        
+                        flag = true;
+                        break;
+                    }
+                }
+
+                if(flag)
+                {
+                    isInteractive = true;
+                }else
+                {
+                    isInteractive = false;
+                }
+                
+            }else
+            {
+                isInteractive = false;
+            }
+    }
+
     private void OnEnable() {
         if(itemUI != null)
         {
@@ -169,9 +204,14 @@ public class ItemContainer : MonoBehaviour
                     focus.selectButtons[2].gameObject.SetActive(true);
                 }
             }
+
         }
 
         selectIndex = indexLimitMin;
+    }
+
+    private void OnDisable() {
+        fadeImage.color = new Color(0f, 0f, 0f, 0f);
     }
 
     private void SetSelectText()
@@ -200,7 +240,21 @@ public class ItemContainer : MonoBehaviour
         {
             SetSelect(false);
             backGround.color = new Color(1f, 1f, 1f, 1f);
-            fadeImage.color = new Color(0f, 0f, 0f, 0f);
+            if(tabUI.isUseKeyItem)
+            {
+                 if(isInteractive)
+                {
+                    fadeImage.color = new Color(0f, 0f, 0f, 0f);
+                }else
+                {
+                    fadeImage.color = new Color(0f, 0f, 0f, 0.5f);
+                }
+            }else
+            {
+                fadeImage.color = new Color(0f, 0f, 0f, 0f);
+            }
+           
+            
             isPreviousEneterd = false;
 
         }else if(tabUI.currentWindowLayer == 2)
@@ -269,12 +323,24 @@ public class ItemContainer : MonoBehaviour
             {
                 SetSelect(true);
                 backGround.color = new Color(0.5f, 0.5f, 0.5f, 1f);
-                fadeImage.color = new Color(0f, 0f, 0f, 0f);
                 focus.SetSelect(selectIndex); 
             }else
             {
                 SetSelect(false);
                 backGround.color = new Color(1f, 1f, 1f, 1f);
+            }
+
+            if(tabUI.isUseKeyItem)
+            {
+                 if(isInteractive)
+                {
+                    fadeImage.color = new Color(0f, 0f, 0f, 0f);
+                }else
+                {
+                    fadeImage.color = new Color(0f, 0f, 0f, 0.5f);
+                }
+            }else
+            {
                 fadeImage.color = new Color(0f, 0f, 0f, 0f);
             }
             

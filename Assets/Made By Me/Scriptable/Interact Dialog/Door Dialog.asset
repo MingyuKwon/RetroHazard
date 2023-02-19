@@ -13,11 +13,10 @@ MonoBehaviour:
   m_Name: Door Dialog
   m_EditorClassIdentifier: 
   Interactive_name: Locked Door
+  InteractKeyItems: 64000000
   Interactive_Situation: 'Door is locked
 
 
     It seems to need a key to open it'
   SucessDialog:
   - Door opened!
-  FailDialog:
-  - This item doesn't look proper to open this door.......

@@ -74,6 +74,14 @@ public class ItemUI : MonoBehaviour
         }
     }
 
+    public void SetInteractFade()
+    {
+        foreach(ItemContainer itemContainer in itemContainers)
+        {
+            itemContainer.SetInteractFade();
+        }
+    }
+
     
 
     private void ShowingInventory()
