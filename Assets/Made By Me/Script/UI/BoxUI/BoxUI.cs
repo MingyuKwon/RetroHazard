@@ -41,6 +41,12 @@ public class BoxUI : MonoBehaviour
 
     private void OnEnable() {
         IinteractiveUI.interact_Input_Rlease_Event += InputGetBack;
+        previousBoxItemIndex = -1;
+        previousPlayerItemIndex = 0;
+        isBox = false;
+        isInventory = true;
+        boxItemUI.backgroundPanel.color = boxItemUI.unSelectColor;
+        playerItemUI.backgroundPanel.color = playerItemUI.selectColor;
     }
 
     private void OnDisable() {
@@ -83,6 +89,9 @@ public class BoxUI : MonoBehaviour
             boxItemIndex = previousBoxItemIndex;
             isBox = true;
             isInventory = false;
+
+            boxItemUI.backgroundPanel.color = boxItemUI.selectColor;
+            playerItemUI.backgroundPanel.color = playerItemUI.unSelectColor;
         }
         
     }
@@ -97,6 +106,9 @@ public class BoxUI : MonoBehaviour
             playerItemIndex = previousPlayerItemIndex;
             isBox = false;
             isInventory = true;
+
+            boxItemUI.backgroundPanel.color = boxItemUI.unSelectColor;
+            playerItemUI.backgroundPanel.color = playerItemUI.selectColor;
         }
         
     }

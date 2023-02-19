@@ -17,6 +17,11 @@ public class PlayerItemUI : MonoBehaviour
 
     BoxUI boxUI = null;
 
+    public Image backgroundPanel;
+ 
+    public Color selectColor = new Color(0.8f,0.8f,0.8f,1);
+    public Color unSelectColor = new Color(0.5f,0.5f,0.5f,1);
+
     public int currentindex = 0;
     public bool isInventoryFull;
 
@@ -26,6 +31,7 @@ public class PlayerItemUI : MonoBehaviour
 
         playerInventory = FindObjectOfType<PlayerInventory>();
         itemExplainUI = transform.parent.GetComponentInChildren<ItemExplainUI>();
+        backgroundPanel = transform.GetChild(0).GetComponent<Image>();
 
         boxUI = transform.parent.gameObject.GetComponent<BoxUI>();
     }
