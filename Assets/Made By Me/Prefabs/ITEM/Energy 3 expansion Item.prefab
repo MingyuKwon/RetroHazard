@@ -47,10 +47,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cef73b166e49af0428041bed2980fa42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  information: {fileID: 11400000, guid: e86a46a82880c614dba057dcc2db6bca, type: 2}
+  information: {fileID: 11400000, guid: 03126d203ded50e4bbcc94d087643fbf, type: 2}
   spriteRenderer: {fileID: 0}
   itemUp: {x: 0, y: 0.7, z: 0}
-  amount: 3
+  interact: {fileID: 0}
 --- !u!212 &3624122438793742089
 SpriteRenderer:
   m_ObjectHideFlags: 0

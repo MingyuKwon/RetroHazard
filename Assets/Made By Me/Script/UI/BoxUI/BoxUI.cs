@@ -41,8 +41,8 @@ public class BoxUI : MonoBehaviour
 
     private void OnEnable() {
         IinteractiveUI.interact_Input_Rlease_Event += InputGetBack;
-        previousBoxItemIndex = -1;
-        previousPlayerItemIndex = 0;
+        boxItemIndex = -1;
+        playerItemIndex = 0;
         isBox = false;
         isInventory = true;
         boxItemUI.backgroundPanel.color = boxItemUI.unSelectColor;
@@ -205,6 +205,10 @@ public class BoxUI : MonoBehaviour
         if(!inputOk) return;
 
         currentWindowLayer--;
+        if(currentWindowLayer == 1)
+        {
+            playerItemIndex = previousPlayerItemIndex;
+        }
  
         if(currentWindowLayer < 0)
         {

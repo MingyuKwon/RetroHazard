@@ -74,6 +74,7 @@ public class IinteractiveUI : MonoBehaviour
 
         interactiveDialogPanel.SetActive(flag);
         Interactive_ChangeInput_PauseGame(flag);
+        
         if(!flag)
         {
             interact_Input_Rlease_Event?.Invoke();

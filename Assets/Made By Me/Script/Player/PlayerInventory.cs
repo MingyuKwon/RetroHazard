@@ -100,6 +100,8 @@ public class PlayerInventory : MonoBehaviour
        BoxUI.CombineEvent += UpgradeItem;
 
        BoxUI.BoxEvent += BoxInOut;
+
+       KeyItem.inventoryExpandEvent += inventoryExpand;
     }
 
     private void OnDisable() {
@@ -114,6 +116,18 @@ public class PlayerInventory : MonoBehaviour
        BoxUI.CombineEvent -= UpgradeItem;
 
        BoxUI.BoxEvent -= BoxInOut;
+
+       KeyItem.inventoryExpandEvent -= inventoryExpand;
+    }
+
+    private void inventoryExpand()
+    {
+        CurrentContainer += 2;
+        GameManagerUI.instance.CurrentContainer += 2;
+        CurrentContainer = Mathf.Clamp(CurrentContainer, 1, 16);
+
+        itemUI.UpdateInventoryUI();
+        playerItemUI.UpdateInventoryUI();
     }
 
     private void BoxInOut(bool flag, ItemInformation information, int amount, int currentindex)

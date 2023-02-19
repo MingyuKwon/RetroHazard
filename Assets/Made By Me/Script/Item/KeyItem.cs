@@ -1,9 +1,11 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class KeyItem : Item
 {
+    public static event Action inventoryExpandEvent;
     Vector3 firstPosition;
     
     public Vector3 itemUp = new Vector3(0f,0.5f,0f);
@@ -35,9 +37,17 @@ public class KeyItem : Item
         {
             yield return new WaitForEndOfFrame();
         }   
-        transform.position = firstPosition;
-        GameManagerUI.instance.Visualize_Tab_Obtain(true , this);
 
+        if(information.KeyItemCode == 15)
+        {
+            Destroy(this.gameObject);
+            inventoryExpandEvent.Invoke();
+
+        }else
+        {
+            transform.position = firstPosition;
+            GameManagerUI.instance.Visualize_Tab_Obtain(true , this);
+        }
     }
 
     public void ObtainKeyItem(Collider2D other)
