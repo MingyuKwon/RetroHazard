@@ -99,6 +99,8 @@ public class PlayerInventory : MonoBehaviour
        TabUI.CombineEvent += UpgradeItem;
        BoxUI.CombineEvent += UpgradeItem;
 
+       TabUI.Interact_KeyItem_Success_Event += DiscardItem;
+
        BoxUI.BoxEvent += BoxInOut;
 
        KeyItem.inventoryExpandEvent += inventoryExpand;
@@ -164,6 +166,11 @@ public class PlayerInventory : MonoBehaviour
         itemUI.UpdateInventoryUI();
         playerItemUI.UpdateInventoryUI();
         
+    }
+
+    public void DiscardItem(InteractiveDialog interactiveDialog, int index)
+    {
+        DiscardItem(index);
     }
 
     public void UsedPotionItem(int index, float damage)

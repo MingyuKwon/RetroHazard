@@ -33,9 +33,28 @@ public class Interact : MonoBehaviour
         
     }
 
+    private void OnEnable() {
+        TabUI.Interact_KeyItem_Success_Event += interactSuccess;
+    }
+
+    private void OnDisable() {
+        TabUI.Interact_KeyItem_Success_Event -= interactSuccess;
+    }
+
+    private void interactSuccess(InteractiveDialog interactiveDialog, int n)
+    {
+        if(interactiveDialog.InteractCode == dialog.InteractCode)
+        {
+            if(check.activeInHierarchy)
+            {
+                Destroy(this.gameObject);
+            }
+        }
+    }
+
     public void SetCheckActive(bool flag)
     {
-        check.gameObject.SetActive(flag);
+        check.SetActive(flag);
         triggerCheckActive = flag;
     }
     

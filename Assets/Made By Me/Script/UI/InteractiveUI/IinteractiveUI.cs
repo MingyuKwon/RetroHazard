@@ -12,6 +12,8 @@ public class IinteractiveUI : MonoBehaviour
 
     public bool inputOk = false;
 
+    public bool isCalledByKeyItem = false;
+
     private Player player;
     public int callCount = 0;
     GameObject interactiveDialogPanel;
@@ -26,6 +28,16 @@ public class IinteractiveUI : MonoBehaviour
         interactiveDialogPanel = GetComponentInChildren<InteractiveDialogPanel>().gameObject;
         interactiveDialogText = interactiveDialogPanel.gameObject.GetComponentInChildren<Text>();
     }
+
+    private void OnEnable() {
+        GameManagerUI.instance.isInteractiveUIActive = true;
+    }
+
+    private void OnDisable() {
+        GameManagerUI.instance.isInteractiveUIActive = false;
+        isCalledByKeyItem = false;
+    }
+
 
     public void EnterPressed(InputActionEventData data)
     {
@@ -49,17 +61,17 @@ public class IinteractiveUI : MonoBehaviour
         }else
         {
             callCount = 0;
+
         }
-
         interactiveDialogPanel.SetActive(flag);
-
-        Interactive_ChangeInput_PauseGame(flag);
-
         if(!flag)
         {
             interact_Input_Rlease_Event?.Invoke();
             gameObject.SetActive(false);
         }
+
+        Interactive_ChangeInput_PauseGame(flag);
+        
         
     }
     public void VisualizeInteractiveUI(bool flag, string ItemName)

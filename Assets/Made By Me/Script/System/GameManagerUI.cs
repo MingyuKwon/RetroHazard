@@ -95,7 +95,6 @@ public class GameManagerUI : MonoBehaviour
         isShowingTab = flag;
 
         dialogUI.gameObject.SetActive(false);
-        interactiveUI.gameObject.SetActive(false);
         boxUI.gameObject.SetActive(false);
     }
 
@@ -103,12 +102,12 @@ public class GameManagerUI : MonoBehaviour
     {
         if(isShowingTab && flag) return;
         inGameUI.gameObject.SetActive(!flag);
-        tabUI.gameObject.SetActive(flag);
         tabUI.Visualize_Tab_Interactive(flag);
+        tabUI.gameObject.SetActive(flag);
+        
         isShowingTab = flag;
 
         dialogUI.gameObject.SetActive(false);
-        interactiveUI.gameObject.SetActive(false);
         boxUI.gameObject.SetActive(false);
     }
 ///////////////// override end ////////////////////
@@ -122,7 +121,6 @@ public class GameManagerUI : MonoBehaviour
         isShowingTab = flag;
 
         dialogUI.gameObject.SetActive(false);
-        interactiveUI.gameObject.SetActive(false);
         boxUI.gameObject.SetActive(false);
     }
 
@@ -136,7 +134,6 @@ public class GameManagerUI : MonoBehaviour
         isShowingTab = flag;
 
         dialogUI.gameObject.SetActive(false);
-        interactiveUI.gameObject.SetActive(false);
         boxUI.gameObject.SetActive(false);
     }
 
@@ -149,7 +146,6 @@ public class GameManagerUI : MonoBehaviour
         isShowingTab = flag;
 
         dialogUI.gameObject.SetActive(false);
-        interactiveUI.gameObject.SetActive(false);
         boxUI.gameObject.SetActive(false);
     }
 
@@ -162,7 +158,6 @@ public class GameManagerUI : MonoBehaviour
         isShowingTab = flag;
 
         dialogUI.gameObject.SetActive(false);
-        interactiveUI.gameObject.SetActive(false);
         boxUI.gameObject.SetActive(false);
     }
 
@@ -175,7 +170,6 @@ public class GameManagerUI : MonoBehaviour
         isShowingTab = flag;
 
         dialogUI.gameObject.SetActive(false);
-        interactiveUI.gameObject.SetActive(false);
         boxUI.gameObject.SetActive(false);
     }
     ///////// override end //////////////////////
@@ -191,7 +185,6 @@ public class GameManagerUI : MonoBehaviour
         isShowingBox = flag;
 
         dialogUI.gameObject.SetActive(false);
-        interactiveUI.gameObject.SetActive(false);
         tabUI.gameObject.SetActive(false);
         inGameUI.gameObject.SetActive(false);
     }

@@ -10,6 +10,8 @@ public class TabUI : MonoBehaviour
 {
     static public event Action<int> discardItemEvent;
     static public event Action<int, float> UsePotionEvent;
+    static public event Action<InteractiveDialog, int> Interact_KeyItem_Success_Event; // success dialog and delete item from inventory
+
     static public event Action<ItemInformation , int , ItemInformation, int> CombineEvent; // Combine start Item, combine start index, select Item, selected index
     PlayerStatus status;
 
@@ -44,6 +46,8 @@ public class TabUI : MonoBehaviour
     ExpansionItem expansionItem;
 
     public ItemInformation combineStartItem = null;
+
+    public InteractiveDialog interactiveDialog;
     public int combineStartItemIndex;
 
     private void Awake() {
@@ -67,11 +71,14 @@ public class TabUI : MonoBehaviour
 
     private void OnEnable() {
         IinteractiveUI.interact_Input_Rlease_Event += InputGetBack;
+        currentWindowLayer = 0;
     }
 
     private void OnDisable() {
+
         IinteractiveUI.interact_Input_Rlease_Event -= InputGetBack;
         currentWindowLayer = 0;
+        isUseKeyItem = false;
     }
 
     private void InputGetBack()
@@ -85,6 +92,13 @@ public class TabUI : MonoBehaviour
     private void ContainerLimit()
     {
         currentItemindex = Mathf.Clamp(currentItemindex, 0, GameManagerUI.instance.CurrentContainer-1);
+    }
+
+    IEnumerator showInteractiveDialogDelay()
+    {
+        yield return new WaitForEndOfFrame();
+        GameManagerUI.instance.VisualizeInteractiveUI(true);
+        GameManagerUI.instance.Visualize_Tab_Interactive(false);
     }
     public void EnterPressed(InputActionEventData data)
     {
@@ -194,6 +208,16 @@ public class TabUI : MonoBehaviour
                         if(itemUI.playerInventory.items[itemUI.currentindex].isPotion)
                         {
                             UsePotionEvent.Invoke(itemUI.currentindex, itemUI.playerInventory.items[itemUI.currentindex].healAmount);
+                        }
+
+                        // enable to enter use is this item can be used in this situation
+                        if(isUseKeyItem)
+                        {
+                            inputOk = false;
+                            Interact_KeyItem_Success_Event.Invoke(interactiveDialog, itemUI.currentindex);
+                            GameManagerUI.instance.SetInteractiveDialogText(interactiveDialog.SucessDialog);
+                            StartCoroutine(showInteractiveDialogDelay());
+                            
                         }
                     }
 
@@ -361,7 +385,15 @@ public class TabUI : MonoBehaviour
     {
         if(isShowing && flag) return;
 
-        Tab_Menu_ChangeInput_PauseGame(flag);
+        if(isUseKeyItem && !flag && GameManagerUI.instance.isInteractiveUIActive)
+        {
+            
+        }else
+        {
+            Tab_Menu_ChangeInput_PauseGame(flag);
+        }
+        
+        isUseKeyItem = flag;
 
         interactiveMessageUI.images[0].gameObject.SetActive(false);
         interactiveMessageUI.gameObject.GetComponent<Image>().color = new Color(100f / 255f, 150f/ 255f, 200f/ 255f, 220f/ 255f);
@@ -382,17 +414,19 @@ public class TabUI : MonoBehaviour
     {
         Visualize_Tab_Interactive(flag);
 
-        isUseKeyItem = flag;
-
         if(flag)
         {
             neededKeyItemCode = dialog.InteractKeyItems;
+            interactiveDialog = dialog;
         }else
         {
             neededKeyItemCode = null;
+            interactiveDialog = null;
         }
 
         itemUI.SetInteractFade();
+
+        
 
         interactiveMessageUI.SetInteractiveName(dialog.Interactive_name);
         interactiveMessageUI.SetInteractiveSituation(dialog.Interactive_Situation);
