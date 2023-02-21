@@ -45,6 +45,7 @@ public class BoxUI : MonoBehaviour
         playerItemIndex = 0;
         isBox = false;
         isInventory = true;
+
         boxItemUI.backgroundPanel.color = boxItemUI.unSelectColor;
         playerItemUI.backgroundPanel.color = playerItemUI.selectColor;
     }

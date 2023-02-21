@@ -7,7 +7,6 @@ using DG.Tweening;
 
 public class warp : MonoBehaviour
 {
-    [SerializeField] int sceneIndex;
     [SerializeField] WayPoint wayPoint;
     CameraSetting cameraSetting;
 
@@ -18,7 +17,7 @@ public class warp : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other) 
     {
         cameraSetting.gameObject.SetActive(false);
-        GameManagerUI.instance.BlackOut(sceneIndex);
+        GameManagerUI.instance.BlackOut(wayPoint.toIndexNum);
         other.transform.parent.transform.parent.transform.position = new Vector3(wayPoint.x, wayPoint.y, other.gameObject.transform.position.z);
     }   
 }

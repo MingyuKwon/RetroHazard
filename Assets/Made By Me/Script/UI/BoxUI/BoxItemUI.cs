@@ -20,7 +20,7 @@ public class BoxItemUI : MonoBehaviour
 
     public Image backgroundPanel;
     public Color selectColor = new Color(0.8f,0.8f,0.8f,1);
-    public Color unSelectColor = new Color(0.5f,0.5f,0.5f,1);
+    public Color unSelectColor = new Color(0.5f,0.5f,0.5f,1);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
 
     public int currentindex = 0;
     public bool isBoxFull;
