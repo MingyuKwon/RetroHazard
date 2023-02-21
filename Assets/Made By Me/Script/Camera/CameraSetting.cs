@@ -19,6 +19,10 @@ public class CameraSetting : MonoBehaviour
         pm = FindObjectOfType<PlayerHealth>().gameObject;
     }
 
+    private void OnEnable() {
+        
+    }
+
     void Start() {
         maxLimit = new Vector3(tilemap.localBounds.max.x-playerWidth, tilemap.localBounds.max.y-playerWidth, tilemap.localBounds.max.z) ;
         minLimit = new Vector3(tilemap.localBounds.min.x + playerWidth , tilemap.localBounds.min.y + playerWidth , tilemap.localBounds.max.z) ;

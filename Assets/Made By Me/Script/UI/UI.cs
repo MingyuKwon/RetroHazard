@@ -10,10 +10,10 @@ public class UI : MonoBehaviour
         if(instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(this);
+            DontDestroyOnLoad(this.gameObject);
         }else
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
 
     }

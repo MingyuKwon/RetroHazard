@@ -53,10 +53,6 @@ public class GameManager : MonoBehaviour
         playerAnimation = FindObjectOfType<PlayerAnimation>();
     }
 
-    void Start() {
-        
-    }
-
     private void OnEnable() {
         PlayerShield.Sheild_Durability_Reduce_Start_Event += Set_Sheild_Durability_Reducing;
     }

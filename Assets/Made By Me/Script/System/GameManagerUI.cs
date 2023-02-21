@@ -35,6 +35,7 @@ public class GameManagerUI : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(this.gameObject);
+            
         }else
         {
             Destroy(this.gameObject);
@@ -46,13 +47,15 @@ public class GameManagerUI : MonoBehaviour
         boxUI = FindObjectOfType<BoxUI>();
         inGameUI = FindObjectOfType<InGameUI>();
         interactiveUI = FindObjectOfType<IinteractiveUI>();
+
+        
     }
 
     private void Start() {
         dialogUI.gameObject.SetActive(false);
         tabUI.gameObject.SetActive(false);
         interactiveUI.gameObject.SetActive(false);
-        blackoutUI.gameObject.SetActive(false);
+        blackoutUI.gameObject.SetActive(true);
         inGameUI.gameObject.SetActive(true);
         boxUI.gameObject.SetActive(false);
 

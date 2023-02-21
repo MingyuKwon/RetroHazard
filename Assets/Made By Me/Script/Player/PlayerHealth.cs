@@ -29,10 +29,10 @@ public class PlayerHealth : MonoBehaviour
         if(instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(this);
+            DontDestroyOnLoad(this.gameObject);
         }else
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
 
         status = GetComponentInChildren<PlayerStatus>();
