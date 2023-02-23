@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3054877796637674778}
   - component: {fileID: 3054877796637674779}
-  - component: {fileID: 3054877796637674776}
+  - component: {fileID: 7563513110423427547}
   m_Layer: 0
   m_Name: Door interact
   m_TagString: Interact
@@ -144,7 +144,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &3054877796637674776
+--- !u!114 &7563513110423427547
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -153,8 +153,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3054877796637674781}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1cfd51a619a56349a16ea9366c9da1c, type: 3}
+  m_Script: {fileID: 11500000, guid: 3030421d029d41343b9982a7bdaa07de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   check: {fileID: 3054877796577506306}
   dialog: {fileID: 11400000, guid: c2a363aba7dbc304cad5871a6d1efe4c, type: 2}
+  isItem: 0
+  isKeyItem: 0
+  isInventoryBox: 0
+  triggerCheckActive: 1

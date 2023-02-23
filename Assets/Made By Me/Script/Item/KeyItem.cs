@@ -18,9 +18,6 @@ public class KeyItem : Item
         interact = GetComponentInChildren<Interact>();
     }
 
-    private void Start() {
-        spriteRenderer.sprite = information.ItemImage;
-    }
     public void Get_Item_Pause_Game()
     {
         GameManager.instance.SetPlayerAnimationObtainKeyItem(true);
@@ -40,7 +37,7 @@ public class KeyItem : Item
 
         if(information.KeyItemCode == 15)
         {
-            Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
             inventoryExpandEvent.Invoke();
 
         }else

@@ -123,12 +123,12 @@ public class TabUI : MonoBehaviour
                     bulletItem.ObtainBulletItem();
                 }else if(potionItem != null)
                 {
-                    
                     potionItem.ObtainPotionItem();
                 }else if(keyItem != null)
                 {
                     keyItem.EventInvokeOverride();
                 }
+
                 
             }else
             {
@@ -143,6 +143,7 @@ public class TabUI : MonoBehaviour
 
             bulletItem = null;
             keyItem = null;
+            potionItem = null;
         }else
         {
             if(itemUI.playerInventory.items[itemUI.currentindex] == null) return;

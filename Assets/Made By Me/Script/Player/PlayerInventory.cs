@@ -90,6 +90,7 @@ public class PlayerInventory : MonoBehaviour
     private void OnEnable() {
        bulletItem.Obtain_bullet_Item_Event += Obtain_bullet_Item;
        ExpansionItem.Obtain_Expansion_Item_Event += Obtain_Expansion_Item;
+       InteractKeyItem.Obtain_RealKey_Item_Event += Obtain_RealKey_Item;
        EquipItem.Obtain_Equip_Item_Event += Obtain_Equip_Item;
        PotionItem.Obtain_potion_Item_Event += Obtain_Potion_Item;
 
@@ -109,6 +110,7 @@ public class PlayerInventory : MonoBehaviour
     private void OnDisable() {
         bulletItem.Obtain_bullet_Item_Event -= Obtain_bullet_Item;
         ExpansionItem.Obtain_Expansion_Item_Event -= Obtain_Expansion_Item;
+        InteractKeyItem.Obtain_RealKey_Item_Event -= Obtain_RealKey_Item;
         PotionItem.Obtain_potion_Item_Event -= Obtain_Potion_Item;
 
        TabUI.discardItemEvent -= DiscardItem;
@@ -117,6 +119,7 @@ public class PlayerInventory : MonoBehaviour
        TabUI.CombineEvent -= UpgradeItem;
        BoxUI.CombineEvent -= UpgradeItem;
 
+       TabUI.Interact_KeyItem_Success_Event -= DiscardItem;
        BoxUI.BoxEvent -= BoxInOut;
 
        KeyItem.inventoryExpandEvent -= inventoryExpand;
@@ -472,7 +475,7 @@ public class PlayerInventory : MonoBehaviour
         
     }
 
-    public void Obtain_Expansion_Item(ItemInformation itemInformation, int amount)
+    public void Obtain_Expansion_Item(ItemInformation itemInformation)
     {
         for(int i=0; i<CurrentContainer; i++)
         {
@@ -487,6 +490,23 @@ public class PlayerInventory : MonoBehaviour
         status.UpdateIngameUI();
         playerItemUI.UpdateInventoryUI();
     }
+
+    public void Obtain_RealKey_Item(ItemInformation itemInformation)
+    {
+        for(int i=0; i<CurrentContainer; i++)
+        {
+            if(items[i] == null)
+            {
+                items[i] = itemInformation;
+                itemsamount[i] = 1;
+                break;
+            }
+        }
+        itemUI.UpdateInventoryUI();
+        status.UpdateIngameUI();
+        playerItemUI.UpdateInventoryUI();
+    }
+
 
     public void Obtain_Equip_Item(ItemInformation itemInformation, int KeyItemCode)
     {

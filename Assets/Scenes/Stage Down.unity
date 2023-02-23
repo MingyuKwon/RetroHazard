@@ -4611,7 +4611,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cf107ec7e249fa4cadea1fa24aa24b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneIndex: 1
   wayPoint: {fileID: 11400000, guid: 31340baf3f2535f429b311ac39080f47, type: 2}
 --- !u!1 &6178254276572871610
 GameObject:
@@ -8576,7 +8575,7 @@ Grid:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8453541098761863456}
   m_Enabled: 1
-  m_CellSize: {x: 0.99, y: 0.99, z: 0}
+  m_CellSize: {x: 0.97, y: 0.97, z: 0}
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
