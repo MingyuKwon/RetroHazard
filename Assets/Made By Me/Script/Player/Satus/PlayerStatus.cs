@@ -60,6 +60,33 @@ public class PlayerStatus : MonoBehaviour
 
     }
 
+    public void LoadSave(PlayerStatSave save)
+    {
+        MaxHP = save.MaxHP;
+        CurrentHP = save.CurrentHP;
+        Speed = save.Speed;
+
+        Attack = save.Attack;
+        ArmorDefence = save.ArmorDefence;
+        SheildCrash = save.SheildCrash;
+
+        Energy = save.Energy;
+        Array.Copy( save.EnergyDamage , EnergyDamage, save.EnergyDamage.Length);
+        Array.Copy( save.EnergyMaganize , EnergyMaganize, save.EnergyMaganize.Length);
+        Array.Copy( save.EnergyMaganizeMaximum , EnergyMaganizeMaximum, save.EnergyMaganizeMaximum.Length);
+        Array.Copy( save.EnergyUpgrade , EnergyUpgrade, save.EnergyUpgrade.Length);
+
+        Array.Copy( save.EnergyUPgradeUnit , EnergyUPgradeUnit, save.EnergyUPgradeUnit.Length);
+
+        Sheild = save.Sheild;
+        Array.Copy( save.SheildMaganize , SheildMaganize, save.SheildMaganize.Length);
+        Array.Copy( save.SheildMaganizeMaximum , SheildMaganizeMaximum, save.SheildMaganizeMaximum.Length);
+        Array.Copy( save.SheildUpgrade , SheildUpgrade, save.SheildUpgrade.Length);
+
+        Array.Copy( save.EnergyStore , EnergyStore, save.EnergyStore.Length);
+        SheildStore = save.SheildStore;
+    }
+
     public void UpdateIngameUI()
     {
         StartCoroutine(UpdateUIDelay());

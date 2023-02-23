@@ -16,7 +16,13 @@ public class SaveSystem : MonoBehaviour
     }
 
     public static SaveSystem instance;
-    public static string stageSavePath;
+
+    public static string stageSavePath; // 1
+    public static string StatusSavePath; // 2
+    public static string InventorySavePath; // 3
+    public static string ItemBoxSavePath; // 4
+
+    PlayerStatus status;
 
     private void Awake() {
 
@@ -28,62 +34,111 @@ public class SaveSystem : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        status = FindObjectOfType<PlayerStatus>();
+
+        
     }
 
     public StageSave[] ActiveStageSaves;
  
     private void Start() {
         stageSavePath = Path.Combine(Application.persistentDataPath, "StageSaveData.json");
+        StatusSavePath = Path.Combine(Application.persistentDataPath, "StatusSaveData.json");
+        InventorySavePath = Path.Combine(Application.persistentDataPath, "InventorySaveData.json");
+        ItemBoxSavePath = Path.Combine(Application.persistentDataPath, "ItemBoxSaveData.json");
+        
         if(File.Exists(stageSavePath))
         {
-            Load();
+            Load(1);
         }else
         {
            ActiveStageSaves = new StageSave[SceneManager.sceneCountInBuildSettings];
-           Save();
+           Save(1);
         }
-    }
 
-    public void Save()
-    {
-        //StageSave
-        StageArrayWrapper wrapper = new StageArrayWrapper();
-        wrapper.array = ActiveStageSaves;
-        string json = JsonUtility.ToJson(wrapper, true);
-        File.WriteAllText(stageSavePath, json);
-        //StageSave
-    }
-
-    public void Load()
-    {
-        //StageSave
-        if(File.Exists(stageSavePath))
+        if(File.Exists(StatusSavePath))
         {
-            string json = File.ReadAllText(stageSavePath);
-            StageArrayWrapper wrapper = new StageArrayWrapper();
-            JsonUtility.FromJsonOverwrite(json , wrapper);
-            ActiveStageSaves = wrapper.array;
+            Load(2);
         }else
         {
-            Debug.LogError(stageSavePath + " doesnt have any Stage save json File");
+           Save(2);
         }
-        //StageSave
     }
 
     [Button]
-    public void ClearSave()
+    public void Save(int flag)
     {
-        File.Delete(stageSavePath);
-    }
-
-    private void OnDestroy() {
-        if(File.Exists(stageSavePath))
+        if(flag == 1 || flag == 0)
         {
-            Save();
-        }else
-        {
+        //StageSave
+            StageArrayWrapper wrapper = new StageArrayWrapper();
+            wrapper.array = ActiveStageSaves;
+            string json = JsonUtility.ToJson(wrapper, true);
+            File.WriteAllText(stageSavePath, json);
+        //StageSave
+        }
 
+        if(flag == 2 || flag == 0)
+        {
+        //StatusSave
+            string json = JsonUtility.ToJson(status, true);
+            File.WriteAllText(StatusSavePath, json);
+        //StatusSave
         }
         
     }
+
+    public void Load(int flag)
+    {
+
+        if(flag == 1 || flag == 0)
+        {
+            //StageSave
+            if(File.Exists(stageSavePath))
+            {
+                string json = File.ReadAllText(stageSavePath);
+                StageArrayWrapper wrapper = new StageArrayWrapper();
+                JsonUtility.FromJsonOverwrite(json , wrapper);
+                ActiveStageSaves = wrapper.array;
+            }else
+            {
+                Debug.LogError(stageSavePath + " doesnt have any Stage save json File");
+            }
+            //StageSave
+        }
+
+        if(flag == 2 || flag == 0)
+        {
+            //StatusSave
+            if(File.Exists(StatusSavePath))
+            {
+                string json = File.ReadAllText(StatusSavePath);
+                PlayerStatSave save = new PlayerStatSave();
+                JsonUtility.FromJsonOverwrite(json , save);
+                status.LoadSave(save);
+            }else
+            {
+                Debug.LogError(stageSavePath + " doesnt have any Status Save json File");
+            }
+            //StatusSave
+        }
+        
+    }
+
+    [Button]
+    public void ClearSave(int flag)
+    {
+        if(flag == 1 || flag == 0)
+        {
+            File.Delete(stageSavePath);
+        }
+
+        if(flag == 2 || flag == 0)
+        {
+            File.Delete(StatusSavePath);
+        }
+        
+    }
+
 }
