@@ -40,6 +40,7 @@ public class PlayerInventory : MonoBehaviour
         itemsamount = new int[16];
         isEquipped = new bool[16];
         CurrentContainer = StartContainer;
+        GameManagerUI.instance.CurrentContainer = StartContainer;
 
         for(int i=0; i<basicItems.Length; i++)
         {
@@ -47,13 +48,21 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
-    private void Start() {
-        GameManagerUI.instance.CurrentContainer = StartContainer;
-    }
-
     private void Update() {
         isInventoryFull = CheckInventoryFull();
         CheckInventoryEquipped();
+    }
+
+    public void LoadSave(PlayerInventorySave save)
+    {
+        Array.Copy( save.items , items, save.items.Length);
+        Array.Copy( save.itemsamount , itemsamount, save.itemsamount.Length);
+        Array.Copy( save.isEquipped , isEquipped, save.isEquipped.Length);
+
+        CurrentContainer = save.CurrentContainer;
+        GameManagerUI.instance.CurrentContainer = CurrentContainer;
+
+        isInventoryFull = save.isInventoryFull;
     }
 
     private bool CheckInventoryFull()

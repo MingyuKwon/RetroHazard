@@ -14,19 +14,19 @@ public class PlayerStatSave
     public bool SheildCrash;
     
     public int Energy;
-    public int[] EnergyDamage;
-    public int[] EnergyMaganize; // Current sword Energy contain
-    public int[] EnergyMaganizeMaximum; // Current sword Energy contain
-    public int[] EnergyUpgrade; // Current sword Energy contain
+    public int[] EnergyDamage = new int[4];
+    public int[] EnergyMaganize = new int[4]; // Current sword Energy contain
+    public int[] EnergyMaganizeMaximum = new int[4]; // Current sword Energy contain
+    public int[] EnergyUpgrade = new int[4]; // Current sword Energy contain
 
-    public int[] EnergyUPgradeUnit;
+    public int[] EnergyUPgradeUnit = new int[4];
 
     public int Sheild; // 0-> normal, 1-> parry, 2 -> big , 3-> none
-    public float[] SheildMaganize ; // Current Sheild Durability contain
-    public int[] SheildMaganizeMaximum ; 
-    public int[] SheildUpgrade ;
+    public float[] SheildMaganize  = new float[4]; // Current Sheild Durability contain
+    public int[] SheildMaganizeMaximum  = new int[4]; 
+    public int[] SheildUpgrade = new int[4] ;
     
-    public int[] EnergyStore ; // Current sword Energy store in inventory
+    public int[] EnergyStore = new int[4] ; // Current sword Energy store in inventory
     public int SheildStore; // Current Sheild Durability store in inventory
 
     public PlayerStatSave(PlayerStatus status)
@@ -59,7 +59,7 @@ public class PlayerStatSave
 
     public PlayerStatSave()
     {
-        
+
     }
     
 }

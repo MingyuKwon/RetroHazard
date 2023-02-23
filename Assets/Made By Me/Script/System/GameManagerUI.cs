@@ -185,11 +185,12 @@ public class GameManagerUI : MonoBehaviour
         
         boxUI.gameObject.SetActive(flag);
         boxUI.Visualize_BoxUI(flag);
+        inGameUI.gameObject.SetActive(!flag);
         isShowingBox = flag;
 
         dialogUI.gameObject.SetActive(false);
         tabUI.gameObject.SetActive(false);
-        inGameUI.gameObject.SetActive(false);
+        
     }
 
 // BoxUI

@@ -23,6 +23,8 @@ public class SaveSystem : MonoBehaviour
     public static string ItemBoxSavePath; // 4
 
     PlayerStatus status;
+    PlayerInventory inventory;
+    PlayerItemBox itemBox;
 
     private void Awake() {
 
@@ -36,6 +38,8 @@ public class SaveSystem : MonoBehaviour
         }
 
         status = FindObjectOfType<PlayerStatus>();
+        inventory = FindObjectOfType<PlayerInventory>();
+        itemBox = FindObjectOfType<PlayerItemBox>();
 
         
     }
@@ -64,6 +68,22 @@ public class SaveSystem : MonoBehaviour
         {
            Save(2);
         }
+
+        if(File.Exists(InventorySavePath))
+        {
+            Load(3);
+        }else
+        {
+           Save(3);
+        }
+
+        if(File.Exists(ItemBoxSavePath))
+        {
+            Load(4);
+        }else
+        {
+           Save(4);
+        }
     }
 
     [Button]
@@ -82,9 +102,28 @@ public class SaveSystem : MonoBehaviour
         if(flag == 2 || flag == 0)
         {
         //StatusSave
-            string json = JsonUtility.ToJson(status, true);
+            PlayerStatSave save = new PlayerStatSave(status);
+            string json = JsonUtility.ToJson(save, true);
             File.WriteAllText(StatusSavePath, json);
         //StatusSave
+        }
+
+        if(flag == 3 || flag == 0)
+        {
+        //InventorySave
+            PlayerInventorySave save = new PlayerInventorySave(inventory);
+            string json = JsonUtility.ToJson(save, true);
+            File.WriteAllText(InventorySavePath, json);
+        //InventorySave
+        }
+
+        if(flag == 4 || flag == 0)
+        {
+        //ItemBoxSave
+            PlayerBoxItemSave save = new PlayerBoxItemSave(itemBox);
+            string json = JsonUtility.ToJson(save, true);
+            File.WriteAllText(ItemBoxSavePath, json);
+        //ItemBoxSave
         }
         
     }
@@ -119,9 +158,43 @@ public class SaveSystem : MonoBehaviour
                 status.LoadSave(save);
             }else
             {
-                Debug.LogError(stageSavePath + " doesnt have any Status Save json File");
+                Debug.LogError(StatusSavePath + " doesnt have any Status Save json File");
             }
             //StatusSave
+        }
+
+        if(flag == 3 || flag == 0)
+        {
+        //InventorySave
+            if(File.Exists(InventorySavePath)) 
+            {
+                string json = File.ReadAllText(InventorySavePath);
+                PlayerInventorySave save = new PlayerInventorySave();
+                JsonUtility.FromJsonOverwrite(json , save);
+                inventory.LoadSave(save);
+            }else
+            {
+                Debug.LogError(InventorySavePath + " doesnt have any Inventory Save json File");
+            }
+            
+        //InventorySave
+        }
+
+        if(flag == 4 || flag == 0)
+        {
+        //ItemBoxSave
+            if(File.Exists(ItemBoxSavePath)) 
+            {
+                string json = File.ReadAllText(ItemBoxSavePath);
+                PlayerBoxItemSave save = new PlayerBoxItemSave();
+                JsonUtility.FromJsonOverwrite(json , save);
+                itemBox.LoadSave(save);
+            }else
+            {
+                Debug.LogError(ItemBoxSavePath + " doesnt have any Item Box Save json File");
+            }
+            
+        //ItemBoxSave
         }
         
     }
@@ -137,6 +210,16 @@ public class SaveSystem : MonoBehaviour
         if(flag == 2 || flag == 0)
         {
             File.Delete(StatusSavePath);
+        }
+
+        if(flag == 3 || flag == 0)
+        {
+            File.Delete(InventorySavePath);
+        }
+
+        if(flag == 4 || flag == 0)
+        {
+            File.Delete(ItemBoxSavePath);
         }
         
     }

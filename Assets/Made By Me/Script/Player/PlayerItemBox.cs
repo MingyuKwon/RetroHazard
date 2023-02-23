@@ -1,4 +1,5 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -36,6 +37,14 @@ public class PlayerItemBox : MonoBehaviour
 
     private void OnDisable() {
         BoxUI.BoxEvent -= BoxInOut;
+    }
+
+    public void LoadSave(PlayerBoxItemSave save)
+    {
+        Array.Copy( save.items , items, save.items.Length);
+        Array.Copy( save.itemsamount , itemsamount, save.itemsamount.Length);
+
+        isBoxfull = save.isBoxfull;
     }
 
     private void BoxInOut(bool flag, ItemInformation information, int amount, int currentindex)
