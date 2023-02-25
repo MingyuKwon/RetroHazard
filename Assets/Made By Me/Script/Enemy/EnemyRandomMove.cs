@@ -8,12 +8,21 @@ public class EnemyRandomMove : MonoBehaviour
     public float RandomRange = 4;
 
     const float RandomMoveSlow = 0.6f;
+    const float timeElapsedLimit = 3f;
+
+    private bool First = true;
 
     private void Awake() {
+        
         enemyManager = GetComponent<EnemyManager>();
     }
     private void OnEnable() {
-        enemyManager.RandomStartPosition = transform.position;
+        if(First)
+        {
+            enemyManager.RandomStartPosition = transform.position;
+            First = false;
+        }
+    
         StartCoroutine(MoveRandomCircle());
     }
 
@@ -36,7 +45,7 @@ public class EnemyRandomMove : MonoBehaviour
             RandomPositionCircle = enemyManager.RandomStartPosition + new Vector3(randomCircle.x, randomCircle.y, 0) * RandomRange;
                 
             float timeElapsed = 0f;
-            while( Vector3.Magnitude(RandomPositionCircle - transform.position) > 1 && timeElapsed < 4f)
+            while( Vector3.Magnitude(RandomPositionCircle - transform.position) > 1 && timeElapsed < timeElapsedLimit)
             {
                 Vector3 towardPlayerDirection =  new Vector3(RandomPositionCircle.x - transform.position.x, RandomPositionCircle.y - transform.position.y, RandomPositionCircle.z - transform.position.z).normalized;
                 SetXYAnimation(towardPlayerDirection);

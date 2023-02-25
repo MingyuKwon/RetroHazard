@@ -15,7 +15,6 @@ public class EnemyManager : MonoBehaviour
 
     // randomMove
     public Vector3 RandomStartPosition;
-    // randomMove
 
 
     // animation
