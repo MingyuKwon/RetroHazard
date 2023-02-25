@@ -7,17 +7,23 @@ public class EnemyManager : MonoBehaviour
     private Animator animator;
     public bool isEnemyPaused = false;
     public bool isParried = false;
+    public bool MoveStop = false;
+
+    public int animationX = 0;
+    public int animationY = -1;
 
     [SerializeField] Color normalColor;
     [SerializeField] Color parriedColor;
 
     EnemyStatus status;
+    EnemyFollowingPlayer following;
     private Animator vfxAnimator;
     private SpriteRenderer spriteRenderer;
 
     private void Awake() {
         animator = GetComponent<Animator>();
         status = GetComponentInChildren<EnemyStatus>();
+        following = GetComponent<EnemyFollowingPlayer>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         vfxAnimator = GetComponentInChildren<VFX>().gameObject.GetComponent<Animator>();
     }
@@ -38,6 +44,28 @@ public class EnemyManager : MonoBehaviour
     {
         animator.SetTrigger("Die");
         vfxAnimator.SetTrigger("Die");
+    }
+
+    public void EnemyMoveStop(float delay)
+    {
+        if(delay < 0)
+        {
+            Debug.LogError("Delay time must be longer than 0");
+            return;
+        }
+        EnemyMoveStopDirect(true);
+        StartCoroutine(Delay(delay));
+    }
+    IEnumerator Delay(float delay)
+    {   
+        yield return new WaitForSeconds(delay);
+        EnemyMoveStopDirect(false);
+    }
+
+    public void EnemyMoveStopDirect(bool flag)
+    {
+        MoveStop = flag;
+        StopAllCoroutines();
     }
 
 }

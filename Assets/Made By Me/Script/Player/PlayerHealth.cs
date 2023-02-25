@@ -19,7 +19,7 @@ public class PlayerHealth : MonoBehaviour
     private EnemyStatus contactEnemyStat;
     private Vector2 ForceInput;
 
-    const float reflectForceScholar = 150f;
+    const float reflectForceScholar = 300f;
     private float damage = 0f;
     const float damageStandard = 10f;
     

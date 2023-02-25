@@ -15,7 +15,8 @@ public class EnemyCollide : MonoBehaviour
     private PlayerStatus contactPlayerStat;
     private Vector2 ForceInput;
 
-    const float reflectForceScholar = 1000f;
+    const float reflectForceScholar = 1200f;
+    const float damageAndStopDelay = 0.7f;
     private float damage = 0f;
     const float damageStandard = 20f;
     
@@ -64,6 +65,12 @@ public class EnemyCollide : MonoBehaviour
                     }
                 }
             }
+        }else if(contactCollider.gameObject.layer == LayerMask.NameToLayer("Player Body"))
+        {
+            if(other.otherCollider.tag == "Enemy Body")
+            {
+                enemyManager.EnemyMoveStop(damageAndStopDelay);
+            }
         }
 
     }
@@ -71,6 +78,7 @@ public class EnemyCollide : MonoBehaviour
     public void StunStart()
     {
         status.ParriedWithParrySheild = false;
+        enemyManager.EnemyMoveStopDirect(false);
         enemyManager.isEnemyPaused = true;
         EnemyBodyCollider.enabled = false;
     }
