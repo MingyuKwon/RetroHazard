@@ -125,6 +125,7 @@ GameObject:
   - component: {fileID: 8539821890712935125}
   - component: {fileID: 8539821890712935080}
   - component: {fileID: 6137115793047490147}
+  - component: {fileID: 8249774034623749682}
   - component: {fileID: 5754157668622274888}
   - component: {fileID: 3772624557210476387}
   - component: {fileID: 5045913225724831934}
@@ -193,7 +194,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1926604995
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 221564447, guid: 7461a06277291cf48bb9756f4b4f6776, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -259,7 +260,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9049aa17a751c34393839e8da39db20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySpeed: 5
+--- !u!114 &8249774034623749682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8539821890712935124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db10e80b06fbcc848b83bf7557f7b358, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5754157668622274888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,6 +310,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEnemyPaused: 0
   isParried: 0
+  MoveStop: 0
+  animationX: 0
+  animationY: -1
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   parriedColor: {r: 1, g: 1, b: 1, a: 0.5882353}
 --- !u!114 &5841114251678152527
@@ -431,7 +446,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2528563590888435374, guid: 13cda4b25387c874ca7950e9ca7e2702, type: 3}
       propertyPath: m_SortingLayer
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2528563590888435374, guid: 13cda4b25387c874ca7950e9ca7e2702, type: 3}
       propertyPath: m_SortingOrder

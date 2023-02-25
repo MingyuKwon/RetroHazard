@@ -16,7 +16,7 @@ public class EnemyAnimation : MonoBehaviour
     }
 
     private void Start() {
-        StartCoroutine(AttackRepeating());
+    
     }
 
 

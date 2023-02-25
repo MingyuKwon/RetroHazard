@@ -9,8 +9,19 @@ public class EnemyManager : MonoBehaviour
     public bool isParried = false;
     public bool MoveStop = false;
 
+    //Move
+    public float enemySpeed = 3f;
+    //Move
+
+    // randomMove
+    public Vector3 RandomStartPosition;
+    // randomMove
+
+
+    // animation
     public int animationX = 0;
     public int animationY = -1;
+    // animation
 
     [SerializeField] Color normalColor;
     [SerializeField] Color parriedColor;

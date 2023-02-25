@@ -11,7 +11,7 @@ public class EnemyFollowingPlayer : MonoBehaviour
 
     private EnemyManager enemyManager;
 
-    float enemySpeed = 3f;
+    
 
     private void Awake() {
         player = GameObject.FindObjectOfType<PlayerHealth>().gameObject;
@@ -28,7 +28,14 @@ public class EnemyFollowingPlayer : MonoBehaviour
     private void FollowingPlayerDirectly()
     {
         Vector3 towardPlayerDirection =  new Vector3(player.transform.position.x - transform.position.x, player.transform.position.y - transform.position.y, player.transform.position.z - transform.position.z).normalized;
+        SetXYAnimation(towardPlayerDirection);
+        
+        float towardPlayerMagnitude = enemyManager.enemySpeed * Time.fixedDeltaTime;
+        transform.Translate(towardPlayerDirection * towardPlayerMagnitude);
+    }
 
+    private void SetXYAnimation(Vector3 towardPlayerDirection)
+    {
         bool isXBig = Mathf.Abs(towardPlayerDirection.x) >= Mathf.Abs(towardPlayerDirection.y);
 
         if(isXBig)
@@ -52,8 +59,7 @@ public class EnemyFollowingPlayer : MonoBehaviour
             }
             enemyManager.animationX = 0;
         }
-        
-        float towardPlayerMagnitude = enemySpeed * Time.fixedDeltaTime;
-        transform.Translate(towardPlayerDirection * towardPlayerMagnitude);
     }
 }
+
+
