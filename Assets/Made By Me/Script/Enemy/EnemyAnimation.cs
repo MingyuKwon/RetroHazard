@@ -26,19 +26,6 @@ public class EnemyAnimation : MonoBehaviour
         SetWalkAnimation();
     }
 
-    private IEnumerator AttackRepeating()
-    {
-        while(true)
-        {
-            if(enemyManager.isEnemyPaused) yield return new WaitForEndOfFrame();
-
-            animator.SetTrigger("Attack");
-            
-            yield return new WaitForSeconds(2f);
-            
-        }
-    }
-
     private void SetXYAnimation()
     {
         animator.SetFloat("X", enemyManager.animationX);

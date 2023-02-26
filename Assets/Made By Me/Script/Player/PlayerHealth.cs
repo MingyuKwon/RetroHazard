@@ -71,6 +71,7 @@ public class PlayerHealth : MonoBehaviour
                 Reflect(damage);
                 animator.SetTrigger("Stun");
                 status.HealthChange(damage);
+                damage = 0;
             }
         }
     }

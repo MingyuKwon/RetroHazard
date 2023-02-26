@@ -9,6 +9,8 @@ public class EnemyManager : MonoBehaviour
     public bool isParried = false;
     public bool MoveStop = false;
 
+    public bool isLockedOnPlayer = false;
+
     //Move
     public float enemySpeed = 3f;
     //Move
@@ -26,16 +28,54 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] Color parriedColor;
 
     EnemyStatus status;
+    EnemyTrigger trigger;
     EnemyFollowingPlayer following;
+    EnemyRandomMove randomMove;
     private Animator vfxAnimator;
     private SpriteRenderer spriteRenderer;
 
     private void Awake() {
         animator = GetComponent<Animator>();
         status = GetComponentInChildren<EnemyStatus>();
+
         following = GetComponent<EnemyFollowingPlayer>();
+        randomMove = GetComponent<EnemyRandomMove>();
+
+        trigger = GetComponentInChildren<EnemyTrigger>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         vfxAnimator = GetComponentInChildren<VFX>().gameObject.GetComponent<Animator>();
+    }
+
+    private void Update() {
+        CheckRotate();
+    }
+
+    private void CheckRotate()
+    {
+        if(animationX == 0)
+        {
+            if(animationY == 1)
+            {
+                transform.GetChild(1).transform.rotation = Quaternion.Euler(new Vector3 (0, 0, 180));
+            }else if(animationY == -1)
+            {
+                transform.GetChild(1).gameObject.transform.rotation = Quaternion.Euler(new Vector3 (0, 0, 0));
+            }
+        }else if(animationY == 0)
+        {
+            if(animationX == 1)
+            {
+                transform.GetChild(1).gameObject.transform.rotation = Quaternion.Euler(new Vector3 (0, 0, 90));
+            }else if(animationX == -1)
+            {
+                transform.GetChild(1).gameObject.transform.rotation = Quaternion.Euler(new Vector3 (0, 0, 270));
+            }
+        }
+    }
+
+    public void Attack()
+    {
+        animator.SetTrigger("Attack");
     }
 
     public void TriggerEnemyParriedAnimation()
@@ -76,6 +116,17 @@ public class EnemyManager : MonoBehaviour
     {
         MoveStop = flag;
         StopAllCoroutines();
+    }
+
+    public void PlayerLockOn(bool flag)
+    {
+        isLockedOnPlayer = flag;
+
+        following.enabled = flag;
+        randomMove.enabled = !flag;
+
+        trigger.PlayerDetect.enabled = !flag;
+        trigger.AttackDecide.enabled = flag;
     }
 
 }

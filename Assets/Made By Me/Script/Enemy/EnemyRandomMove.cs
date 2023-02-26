@@ -26,6 +26,10 @@ public class EnemyRandomMove : MonoBehaviour
         StartCoroutine(MoveRandomCircle());
     }
 
+    private void OnDisable() {
+        StopAllCoroutines();
+    }
+
     IEnumerator MoveRandomCircle()
     {
         Vector2 previousRandomUnitCircle = new Vector2(-1,0);
