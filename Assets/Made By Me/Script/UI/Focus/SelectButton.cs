@@ -12,7 +12,8 @@ public class SelectButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 {
     [SerializeField] int index;
     Image image;
-    ItemContainer itemContainer;
+    ItemContainer itemContainer = null;
+    PlayerItemContainer PitemContainer = null;
 
     Color normalColor = new Color(90f / 255f, 80f / 255f, 80f / 255f, 0f );
     Color selectColor = new Color(90f / 255f, 80f / 255f, 80f / 255f, 0.7f );
@@ -21,16 +22,30 @@ public class SelectButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         image = GetComponent<Image>();
         image.color = normalColor;
         itemContainer = transform.parent.parent.parent.GetComponent<ItemContainer>();
+        PitemContainer = transform.parent.parent.parent.GetComponent<PlayerItemContainer>();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        itemContainer.selectIndex = index;
+        if(itemContainer != null)
+        {
+            itemContainer.selectIndex = index;
+        }else if(PitemContainer != null)
+        {
+            PitemContainer.selectIndex = index;
+        }
+        
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        itemContainer.selectIndex = -1;
+        if(itemContainer != null)
+        {
+            itemContainer.selectIndex = -1;
+        }else if(PitemContainer != null)
+        {
+            PitemContainer.selectIndex = -1;
+        }
     }
 
     public void SetSelect(bool flag)

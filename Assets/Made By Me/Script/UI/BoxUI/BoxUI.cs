@@ -25,6 +25,8 @@ public class BoxUI : MonoBehaviour
     public bool isBox = false;
     public bool isInventory = true;
 
+    public bool isCursorInBox = false;
+
     public int boxItemIndex = 0;
     public int playerItemIndex = 0;
 
@@ -90,15 +92,19 @@ public class BoxUI : MonoBehaviour
         if(isInventory)
         {   
             previousPlayerItemIndex = playerItemIndex;
-            playerItemIndex = -1;
             boxItemIndex = previousBoxItemIndex;
-            isBox = true;
-            isInventory = false;
-
-            boxItemUI.backgroundPanel.color = boxItemUI.selectColor;
-            playerItemUI.backgroundPanel.color = playerItemUI.unSelectColor;
+            GotoBox();
         }
-        
+    }
+
+    public void GotoBox()
+    {
+        playerItemIndex = -1;
+        isBox = true;
+        isInventory = false;
+
+        boxItemUI.backgroundPanel.color = boxItemUI.selectColor;
+        playerItemUI.backgroundPanel.color = playerItemUI.unSelectColor;
     }
 
     public void RightTab(InputActionEventData data)
@@ -107,15 +113,19 @@ public class BoxUI : MonoBehaviour
         if(isBox)
         {
             previousBoxItemIndex = boxItemIndex;
-            boxItemIndex = -1;
             playerItemIndex = previousPlayerItemIndex;
-            isBox = false;
-            isInventory = true;
-
-            boxItemUI.backgroundPanel.color = boxItemUI.unSelectColor;
-            playerItemUI.backgroundPanel.color = playerItemUI.selectColor;
+            GotoInventory();
         }
-        
+    }
+
+    public void GotoInventory()
+    {
+        boxItemIndex = -1;
+        isBox = false;
+        isInventory = true;
+
+        boxItemUI.backgroundPanel.color = boxItemUI.unSelectColor;
+        playerItemUI.backgroundPanel.color = playerItemUI.selectColor;
     }
 
     IEnumerator showInteractiveDialogDelay()
@@ -130,6 +140,7 @@ public class BoxUI : MonoBehaviour
 
         if(isBox)
         {
+            if(boxItemUI.currentindex < 0) return;
             if(boxItemUI.playerItemBox.items[boxItemUI.currentindex] == null) return;
 
             if(currentWindowLayer == 0)
@@ -155,6 +166,7 @@ public class BoxUI : MonoBehaviour
             }
         }else
         {
+            if(playerItemUI.currentindex < 0) return;
             if(playerItemUI.playerInventory.items[playerItemUI.currentindex] == null) return;
 
             if(currentWindowLayer == 0)
@@ -199,7 +211,6 @@ public class BoxUI : MonoBehaviour
                 CombineEvent.Invoke(combineStartItem, combineStartItemIndex, playerItemUI.playerInventory.items[playerItemUI.currentindex], playerItemUI.currentindex);
                 currentWindowLayer--;
                 currentWindowLayer--;
-                playerItemIndex = previousPlayerItemIndex;
             }
         }
 
@@ -210,9 +221,20 @@ public class BoxUI : MonoBehaviour
         if(!inputOk) return;
 
         currentWindowLayer--;
-        if(currentWindowLayer == 1)
+
+        if(currentWindowLayer == 0)
         {
-            playerItemIndex = previousPlayerItemIndex;
+            if(isCursorInBox)
+            {
+                GotoBox();
+            }else
+            {
+                GotoInventory();
+            }
+
+        }else if(currentWindowLayer == 1)
+        {
+            playerItemUI.ItemContainerFocusDirect(previousPlayerItemIndex);
         }
  
         if(currentWindowLayer < 0)

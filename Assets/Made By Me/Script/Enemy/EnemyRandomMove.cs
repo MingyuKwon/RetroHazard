@@ -8,7 +8,7 @@ public class EnemyRandomMove : MonoBehaviour
     public float RandomRange = 4;
 
     const float RandomMoveSlow = 0.6f;
-    const float timeElapsedLimit = 3f;
+    const float timeElapsedLimit = 2.5f;
 
     private bool First = true;
 

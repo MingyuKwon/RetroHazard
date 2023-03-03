@@ -24,6 +24,6 @@ public class UI : MonoBehaviour
 
     public void MouseCursor(bool flag)
     {
-        transform.GetChild(7).transform.GetChild(0).gameObject.SetActive(flag);
+        transform.GetChild(6).transform.GetChild(0).gameObject.SetActive(flag);
     }
 }

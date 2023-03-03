@@ -6,8 +6,9 @@ using UnityEngine.UI;
 using Rewired;
 using Sirenix.OdinInspector;
 using DG.Tweening;
+using UnityEngine.EventSystems;
 
-public class PlayerItemContainer : MonoBehaviour
+public class PlayerItemContainer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] int containerNum;
 
@@ -36,6 +37,16 @@ public class PlayerItemContainer : MonoBehaviour
     //for Code Struct
     public bool isPreviousEneterd;
     //for Code Struct
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        boxUI.playerItemIndex = containerNum;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        boxUI.playerItemIndex = -1;
+    }
 
     private void Awake() {
         status = FindObjectOfType<PlayerStatus>();

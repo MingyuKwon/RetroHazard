@@ -6,8 +6,10 @@ using UnityEngine.UI;
 using Rewired;
 using Sirenix.OdinInspector;
 using DG.Tweening;
+using UnityEngine.EventSystems;
 
-public class BoxItemContainer : MonoBehaviour
+
+public class BoxItemContainer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] int containerNum;
     public PlayerItemBox playerItemBox;
@@ -26,6 +28,16 @@ public class BoxItemContainer : MonoBehaviour
     public bool isFocused = false;
 
     public int selectIndex = 0;
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        boxUI.boxItemIndex = containerNum;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        boxUI.boxItemIndex = -1;
+    }
 
     private void Awake() {
         playerItemBox = FindObjectOfType<PlayerItemBox>();
@@ -123,7 +135,7 @@ public class BoxItemContainer : MonoBehaviour
 
         }else if(boxUI.currentWindowLayer == 1)
         {
-            if(isFocused)
+            if(isFocused && boxUI.isBox)
             {
                 SetSelect(true);
                 backGround.color = new Color(0.5f, 0.5f, 0.5f, 1f);

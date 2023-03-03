@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Rewired;
 using Sirenix.OdinInspector;
@@ -97,9 +98,36 @@ public class PlayerItemUI : MonoBehaviour
 
     private void ItemContainerFocus()
     {
+        if(boxUI.currentWindowLayer == 1) return;
+
         for(int i=0; i < playerInventory.CurrentContainer; i++)
         {
             if(i == currentindex)
+            {
+                itemContainers[i].SetFocus(true);
+                if(playerInventory.items[i] != null)
+                {
+                    itemExplainUI.SetItemExplain(playerInventory.items[i].ItemDescription[0]);
+                    itemExplainUI.SetItemName(playerInventory.items[i].ItemName);
+                }else
+                {
+                    itemExplainUI.SetItemExplain(" ");
+                    itemExplainUI.SetItemName(" ");
+                }
+                
+            }else
+            {
+                itemContainers[i].SetFocus(false);
+            }
+            
+        }
+    }
+
+    public void ItemContainerFocusDirect(int num)
+    {
+        for(int i=0; i < playerInventory.CurrentContainer; i++)
+        {
+            if(i == num)
             {
                 itemContainers[i].SetFocus(true);
                 if(playerInventory.items[i] != null)
