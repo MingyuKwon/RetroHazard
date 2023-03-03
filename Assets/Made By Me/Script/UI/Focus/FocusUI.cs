@@ -35,6 +35,15 @@ public class FocusUI : MonoBehaviour
 
     public void SetSelect(int index)
     {
+        if(index < 0)
+        {
+            for(int i = 0; i<3; i++)
+            {
+                selectButtons[i].SetSelect(false);
+            }
+            return;
+        }
+
         for(int i = 0; i<3; i++)
         {
             if(index == i)

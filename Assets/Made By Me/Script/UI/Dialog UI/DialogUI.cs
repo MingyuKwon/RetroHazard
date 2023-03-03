@@ -82,9 +82,11 @@ public class DialogUI : MonoBehaviour
     // for question option select
     private void OnEnable() {
         IinteractiveUI.interact_Input_Rlease_Event += InputGetBack;
+        transform.parent.GetComponent<UI>().MouseCursor(true);
     }
     private void OnDisable() {
         IinteractiveUI.interact_Input_Rlease_Event -= InputGetBack;
+        transform.parent.GetComponent<UI>().MouseCursor(false);
     }
 
     private void InputGetBack()

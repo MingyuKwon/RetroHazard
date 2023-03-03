@@ -31,10 +31,12 @@ public class IinteractiveUI : MonoBehaviour
 
     private void OnEnable() {
         GameManagerUI.instance.isInteractiveUIActive = true;
+        transform.parent.GetComponent<UI>().MouseCursor(true);
     }
 
     private void OnDisable() {
         GameManagerUI.instance.isInteractiveUIActive = false;
+        transform.parent.GetComponent<UI>().MouseCursor(false);
         isCalledByKeyItem = false;
     }
 

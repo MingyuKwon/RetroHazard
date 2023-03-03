@@ -63,6 +63,8 @@ public class GameManagerUI : MonoBehaviour
         tabUI.Visualize_Tab_Interactive(false);
         interactiveUI.VisualizeInteractiveUI(false);
         boxUI.Visualize_BoxUI(false);
+
+        Cursor.visible = false;
         
     }
 

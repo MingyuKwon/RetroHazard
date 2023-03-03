@@ -6,8 +6,9 @@ using UnityEngine.UI;
 using Rewired;
 using Sirenix.OdinInspector;
 using DG.Tweening;
+using UnityEngine.EventSystems;
 
-public class ItemContainer : MonoBehaviour
+public class ItemContainer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] int containerNum;
 
@@ -35,11 +36,23 @@ public class ItemContainer : MonoBehaviour
 
     public int selectIndex = 0;
 
-
-
     //for Code Struct
     public bool isPreviousEneterd;
     //for Code Struct
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if(tabUI.isOpenedItem) return;
+        tabUI.currentItemindex = containerNum;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if(tabUI.isOpenedItem) return;
+        tabUI.currentItemindex = -1;
+    }
+
+
 
     private void Awake() {
         status = FindObjectOfType<PlayerStatus>();

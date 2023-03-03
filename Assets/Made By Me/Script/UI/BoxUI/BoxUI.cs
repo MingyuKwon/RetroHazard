@@ -48,11 +48,15 @@ public class BoxUI : MonoBehaviour
 
         boxItemUI.backgroundPanel.color = boxItemUI.unSelectColor;
         playerItemUI.backgroundPanel.color = playerItemUI.selectColor;
+
+        transform.parent.GetComponent<UI>().MouseCursor(true);
     }
 
     private void OnDisable() {
         IinteractiveUI.interact_Input_Rlease_Event -= InputGetBack;
         currentWindowLayer = 0;
+
+        transform.parent.GetComponent<UI>().MouseCursor(false);
     }
     private void InputGetBack()
     {

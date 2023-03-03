@@ -1,6 +1,10 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using Rewired;
+using Sirenix.OdinInspector;
 
 public class UI : MonoBehaviour
 {
@@ -16,5 +20,10 @@ public class UI : MonoBehaviour
             Destroy(this.gameObject);
         }
 
+    }
+
+    public void MouseCursor(bool flag)
+    {
+        transform.GetChild(7).transform.GetChild(0).gameObject.SetActive(flag);
     }
 }

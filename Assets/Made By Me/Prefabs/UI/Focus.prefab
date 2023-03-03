@@ -251,6 +251,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9066681705d43f4458af6ab1699516e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectButtons: []
+  selectTexts: []
 --- !u!1 &6568468409119005383
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,6 +343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 2
 --- !u!1 &6611787939071316617
 GameObject:
   m_ObjectHideFlags: 0
@@ -593,6 +596,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 1
 --- !u!1 &8662854675811386018
 GameObject:
   m_ObjectHideFlags: 0
@@ -683,3 +687,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0

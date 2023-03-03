@@ -72,12 +72,13 @@ public class TabUI : MonoBehaviour
     private void OnEnable() {
         IinteractiveUI.interact_Input_Rlease_Event += InputGetBack;
         currentWindowLayer = 0;
+        transform.parent.GetComponent<UI>().MouseCursor(true);
     }
 
     private void OnDisable() {
-
         IinteractiveUI.interact_Input_Rlease_Event -= InputGetBack;
         currentWindowLayer = 0;
+        transform.parent.GetComponent<UI>().MouseCursor(false);
         isUseKeyItem = false;
     }
 
@@ -146,8 +147,9 @@ public class TabUI : MonoBehaviour
             potionItem = null;
         }else
         {
+            if(itemUI.currentindex < 0) return;
             if(itemUI.playerInventory.items[itemUI.currentindex] == null) return;
-            
+                        
             if(currentWindowLayer == 0)
             {
                 if(isUseKeyItem)
@@ -243,7 +245,6 @@ public class TabUI : MonoBehaviour
                 CombineEvent.Invoke(combineStartItem, combineStartItemIndex, itemUI.playerInventory.items[itemUI.currentindex], itemUI.currentindex);
                 currentWindowLayer--;
                 currentWindowLayer--;
-                currentItemindex = previousItemindex;
             }
 
             
@@ -257,7 +258,7 @@ public class TabUI : MonoBehaviour
 
         if(currentWindowLayer == 1)
         {   
-            currentItemindex = previousItemindex;
+            itemUI.ItemContainerFocusDirect(previousItemindex);
         }
         
         if(currentWindowLayer < 0)
