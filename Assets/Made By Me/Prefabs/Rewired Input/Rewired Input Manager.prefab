@@ -510,6 +510,15 @@ MonoBehaviour:
       _behaviorId: 0
       _userAssignable: 1
       _categoryId: 0
+    - _id: 31
+      _name: MouseThumbButton
+      _type: 1
+      _descriptiveName: MouseThumbButton
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 0
     actionCategories:
     - _name: Default
       _descriptiveName: Default
@@ -539,7 +548,7 @@ MonoBehaviour:
     actionCategoryMap:
       list:
       - categoryId: 0
-        actionIds: 13000000140000001d0000001e000000
+        actionIds: 13000000140000001d0000001e0000001f000000
       - categoryId: 1
         actionIds: 0200000003000000
       - categoryId: 2
@@ -914,6 +923,17 @@ MonoBehaviour:
         _modifierKey1: 0
         _modifierKey2: 0
         _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 6
+        _elementType: 1
+        _elementIdentifierId: 6
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 0
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
     - id: 1
       categoryId: 2
       layoutId: 1
@@ -965,6 +985,17 @@ MonoBehaviour:
         _actionId: 30
         _elementType: 1
         _elementIdentifierId: 4
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 0
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 31
+        _elementType: 1
+        _elementIdentifierId: 6
         _axisRange: 0
         _invert: 0
         _axisContribution: 0
@@ -1106,7 +1137,7 @@ MonoBehaviour:
           _customControllerSourceId: -1
           _controllerId: -1
     playerIdCounter: 2
-    actionIdCounter: 31
+    actionIdCounter: 32
     actionCategoryIdCounter: 7
     inputBehaviorIdCounter: 1
     mapCategoryIdCounter: 4
