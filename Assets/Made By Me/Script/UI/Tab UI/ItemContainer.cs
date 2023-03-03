@@ -270,16 +270,24 @@ public class ItemContainer : MonoBehaviour
                 {
                     if(tabUI.combineStartItem.isKeyItem && itemUI.playerInventory.items[containerNum].isKeyItem)
                     {
-                        foreach(int itemCode in itemUI.playerInventory.items[containerNum].combineItems)
+                        if(itemUI.playerInventory.items[containerNum].combineItems == null)
                         {
-                            if(tabUI.combineStartItem.KeyItemCode == itemCode)
+                            Debug.Log(itemUI.playerInventory.items[containerNum].name + " doesnt have combineItems");
+                        }else
+                        {
+                            foreach(int itemCode in itemUI.playerInventory.items[containerNum].combineItems)
                             {
-                                isCombineable = true;
-                                flag = true;
-                                break;
-                            }
+                                if(tabUI.combineStartItem.KeyItemCode == itemCode)
+                                {
+                                    isCombineable = true;
+                                    flag = true;
+                                    break;
+                                }
 
+                            }
                         }
+
+                        
                     }else if(!tabUI.combineStartItem.isKeyItem && !itemUI.playerInventory.items[containerNum].isKeyItem)
                     {
                         foreach(int itemCode in itemUI.playerInventory.items[containerNum].combineItems)

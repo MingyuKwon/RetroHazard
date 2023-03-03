@@ -10,7 +10,7 @@ public class EnemyStatus : MonoBehaviour
 {
     [SerializeField] EnemyStatValue[] EnemyStats;
     public static event Action EnemyHealthChange;
-    public static event Action EnemyDeath;
+    public static event Action<int> EnemyDeath;
     private EnemyManager enemyManager = null;
 
     [Header("Basic")]
@@ -57,12 +57,14 @@ public class EnemyStatus : MonoBehaviour
         EnemyHealthChange?.Invoke();
         if(CurrentHP <=0 )
         {
-            EnemyDeath?.Invoke();
+            EnemyDeath?.Invoke(transform.parent.transform.GetSiblingIndex());
         }
     }
 
-    private void DestroySelf()
+    private void DestroySelf(int index)
     {
+        if(index != transform.parent.transform.GetSiblingIndex()) return;
+        
         enemyManager.KillEnemy();
     }
 

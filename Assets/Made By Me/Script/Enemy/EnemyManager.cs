@@ -88,6 +88,7 @@ public class EnemyManager : MonoBehaviour
     {
         isParried = flag;
         isEnemyPaused = flag;
+        EnemyMoveStopDirect(flag);
     }
 
     public void KillEnemy()

@@ -16,7 +16,7 @@ public class warp : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other) 
     {
-        if(other.gameObject.layer == LayerMask.NameToLayer("Player not Body"))
+        if(other.gameObject.layer == LayerMask.NameToLayer("Player Body"))
         {
             cameraSetting.gameObject.SetActive(false);
             GameManagerUI.instance.BlackOut(wayPoint.toIndexNum);
