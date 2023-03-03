@@ -14,6 +14,7 @@ public class GameManagerUI : MonoBehaviour
     TabUI tabUI;
     BoxUI boxUI;
     IinteractiveUI interactiveUI;
+    PauseRootUI PauseUI;
 
     public bool isDialogUIActive;
     public bool isTabUIActive;
@@ -26,6 +27,9 @@ public class GameManagerUI : MonoBehaviour
     public bool isShowingTab;
     public bool isShowingMenu; 
     public bool isShowingBox;
+
+
+    public bool isShowingESC;
     // it is for GameManager not in GameNanagerUI
 
     public int CurrentContainer;
@@ -47,7 +51,7 @@ public class GameManagerUI : MonoBehaviour
         boxUI = FindObjectOfType<BoxUI>();
         inGameUI = FindObjectOfType<InGameUI>();
         interactiveUI = FindObjectOfType<IinteractiveUI>();
-
+        PauseUI = FindObjectOfType<PauseRootUI>();
         
     }
 
@@ -58,6 +62,7 @@ public class GameManagerUI : MonoBehaviour
         blackoutUI.gameObject.SetActive(true);
         inGameUI.gameObject.SetActive(true);
         boxUI.gameObject.SetActive(false);
+        PauseUI.gameObject.SetActive(false);
 
         dialogUI.VisualizeDialogUI(false);
         tabUI.Visualize_Tab_Interactive(false);
@@ -76,9 +81,9 @@ public class GameManagerUI : MonoBehaviour
         isInteractiveUIActive = interactiveUI.gameObject.activeInHierarchy;
     }
 
-    private void checkActive()
+    public void Visualize_PauseUI(bool flag)
     {
-
+        PauseUI.gameObject.SetActive(flag);
     }
 
 // BlackOut UI

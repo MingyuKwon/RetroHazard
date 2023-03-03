@@ -185,10 +185,14 @@ public class GameManager : MonoBehaviour
 
         if(Time.timeScale == 0f)
         {
+            GameManagerUI.instance.isShowingESC = false;
+            GameManagerUI.instance.Visualize_PauseUI(false);
             SetPauseGame(false);
         }
         else if(Time.timeScale == 1f)
         {
+            GameManagerUI.instance.isShowingESC = true;
+            GameManagerUI.instance.Visualize_PauseUI(true);
             SetPauseGame(true);
         }
         

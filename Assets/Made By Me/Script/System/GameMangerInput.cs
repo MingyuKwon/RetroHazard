@@ -14,6 +14,7 @@ public class GameMangerInput : MonoBehaviour
     private ControllerMapEnabler.RuleSet[] ruleSets;
     // 0 : normal State
     // 1 : talk with NPC State
+    // 2 : UI
 
     void Awake() {
         if(instance == null)
@@ -31,6 +32,7 @@ public class GameMangerInput : MonoBehaviour
         ruleSets = new ControllerMapEnabler.RuleSet[mapEnabler.ruleSets.Count];
         ruleSets[0] = mapEnabler.ruleSets.Find(x => x.tag == "NormalState");
         ruleSets[1] = mapEnabler.ruleSets.Find(x => x.tag == "TalkWithNPC");
+        ruleSets[2] = mapEnabler.ruleSets.Find(x => x.tag == "UI");
     }
 
     [Button]
