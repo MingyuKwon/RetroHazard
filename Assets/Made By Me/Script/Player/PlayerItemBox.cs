@@ -67,7 +67,7 @@ public class PlayerItemBox : MonoBehaviour
 
         status.UpdateIngameUI();
         playerItemUI.UpdateInventoryUI();
-        boxItemUI.UpdateBoxUI();
+        boxItemUI.UpdateBoxItemUI();
     }
 
     public void removeItem(int index)
@@ -77,7 +77,7 @@ public class PlayerItemBox : MonoBehaviour
 
         status.UpdateIngameUI();
         playerItemUI.UpdateInventoryUI();
-        boxItemUI.UpdateBoxUI();
+        boxItemUI.UpdateBoxItemUI();
     }
 
     private void Update() {

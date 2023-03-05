@@ -15,16 +15,28 @@ public class SaveSystem : MonoBehaviour
         public StageSave[] array;
     }
 
+    public static event Action SaveEvent;
+    public static event Action LoadEvent;
+
     public static SaveSystem instance;
 
+    public static string saveSlotInfoPath; // 0
     public static string stageSavePath; // 1
     public static string StatusSavePath; // 2
     public static string InventorySavePath; // 3
     public static string ItemBoxSavePath; // 4
 
+
+    const int SaveSlotAmount = 10;
+    public static string[] SaveDirectorys;
+    public SaveSlotInfo[] saveSlotInfos;
+    public static int SaveSlotNum = 0; // modify right before player want to save in specific sloat
+
     PlayerStatus status;
     PlayerInventory inventory;
     PlayerItemBox itemBox;
+    public StageSave[] ActiveStageSaves;
+    
 
     private void Awake() {
 
@@ -41,16 +53,45 @@ public class SaveSystem : MonoBehaviour
         inventory = FindObjectOfType<PlayerInventory>();
         itemBox = FindObjectOfType<PlayerItemBox>();
 
-        
+        SaveDirectorys = new string[SaveSlotAmount];
+        saveSlotInfos = new SaveSlotInfo[SaveSlotAmount];
+
+        for(int i=0; i<SaveSlotAmount; i++)
+        {
+            SaveDirectorys[i] = Path.Combine(Application.persistentDataPath, "SaveSlot " + (i+1));
+
+            if(!Directory.Exists(SaveDirectorys[i]))
+            {
+                Directory.CreateDirectory(SaveDirectorys[i]);
+            }
+
+            saveSlotInfos[i] = new SaveSlotInfo();
+
+            if(File.Exists(Path.Combine(SaveDirectorys[i], "SaveSlotInfo.json")))
+            {
+                string json = File.ReadAllText(Path.Combine(SaveDirectorys[i], "SaveSlotInfo.json"));
+                JsonUtility.FromJsonOverwrite(json , saveSlotInfos[i]);
+            }else
+            {
+                saveSlotInfos[i].saveTime = "Empty";
+            }
+        }
     }
 
-    public StageSave[] ActiveStageSaves;
+    private void SetPath()
+    {
+        string LoadSlotPath = SaveDirectorys[SaveSlotNum];
+
+        saveSlotInfoPath = Path.Combine(LoadSlotPath, "SaveSlotInfo.json");
+        stageSavePath = Path.Combine(LoadSlotPath, "StageSaveData.json");
+        StatusSavePath = Path.Combine(LoadSlotPath, "StatusSaveData.json");
+        InventorySavePath = Path.Combine(LoadSlotPath, "InventorySaveData.json");
+        ItemBoxSavePath = Path.Combine(LoadSlotPath, "ItemBoxSaveData.json");
+    }
  
     private void Start() {
-        stageSavePath = Path.Combine(Application.persistentDataPath, "StageSaveData.json");
-        StatusSavePath = Path.Combine(Application.persistentDataPath, "StatusSaveData.json");
-        InventorySavePath = Path.Combine(Application.persistentDataPath, "InventorySaveData.json");
-        ItemBoxSavePath = Path.Combine(Application.persistentDataPath, "ItemBoxSaveData.json");
+
+        SetPath();
         
         if(File.Exists(stageSavePath))
         {
@@ -58,37 +99,42 @@ public class SaveSystem : MonoBehaviour
         }else
         {
            ActiveStageSaves = new StageSave[SceneManager.sceneCountInBuildSettings];
-           Save(1);
+           for(int i=0; i<ActiveStageSaves.Length; i++)
+           {
+                ActiveStageSaves[i] = new StageSave();
+           }
         }
 
         if(File.Exists(StatusSavePath))
         {
             Load(2);
-        }else
-        {
-           Save(2);
         }
 
         if(File.Exists(InventorySavePath))
         {
             Load(3);
-        }else
-        {
-           Save(3);
         }
 
         if(File.Exists(ItemBoxSavePath))
         {
             Load(4);
-        }else
-        {
-           Save(4);
         }
     }
 
     [Button]
     public void Save(int flag)
     {
+        SetPath();
+
+        SaveSlotInfo saveInfo = new SaveSlotInfo();
+        saveInfo.saveTime = System.DateTime.Now.ToString("yyyy-MM-dd \nHH:mm:ss");
+        saveInfo.saveLocation = SceneManager.GetActiveScene().name;
+
+        saveSlotInfos[SaveSlotNum] = saveInfo;
+
+        string saveInfoJson = JsonUtility.ToJson(saveInfo, true);
+        File.WriteAllText(saveSlotInfoPath, saveInfoJson);
+
         if(flag == 1 || flag == 0)
         {
         //StageSave
@@ -125,11 +171,14 @@ public class SaveSystem : MonoBehaviour
             File.WriteAllText(ItemBoxSavePath, json);
         //ItemBoxSave
         }
+
+        SaveEvent.Invoke();
         
     }
 
     public void Load(int flag)
     {
+        SetPath();
 
         if(flag == 1 || flag == 0)
         {
@@ -196,6 +245,15 @@ public class SaveSystem : MonoBehaviour
             
         //ItemBoxSave
         }
+
+        if(flag == 0)
+        {
+            GameManagerUI.instance.BlackOut(1.5f); 
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
+            LoadEvent.Invoke();
+        }
+
+        
         
     }
 
@@ -221,6 +279,7 @@ public class SaveSystem : MonoBehaviour
         {
             File.Delete(ItemBoxSavePath);
         }
+        
         
     }
 

@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 [System.Serializable]
 public class StageSave 
 {
-    public bool isVisited;
+    public bool isVisited = false;
     public bool[] is_BulletItem_Destroy;
     public bool[] is_PotionItem_Destroy;
     public bool[] is_KeyItem_Destroy;

@@ -515,6 +515,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Simple Items_19
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 288
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6494f8956fbc3004eb4fc047c3db9388
+      internalID: 1477276754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -531,6 +552,7 @@ TextureImporter:
       Simple Items_1: 1691647916
       Simple Items_2: -525669263
       Simple Items_12: -1402280519
+      Simple Items_19: 1477276754
       Simple Items_3: 649980537
       Simple Items_14: 419501038
       Simple Items_0: -1585365941

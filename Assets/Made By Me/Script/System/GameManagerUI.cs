@@ -81,15 +81,41 @@ public class GameManagerUI : MonoBehaviour
         isInteractiveUIActive = interactiveUI.gameObject.activeInHierarchy;
     }
 
-    public void Visualize_PauseUI(bool flag)
+    private void Visualize_PauseUI(bool flag)
     {
         PauseUI.gameObject.SetActive(flag);
+        inGameUI.gameObject.SetActive(!flag);
+    }
+
+    public void Visualize_PauseMainUI(bool flag)
+    {
+        Visualize_PauseUI(flag);
+        PauseUI.pauseMainUI.gameObject.SetActive(flag);
+        PauseUI.saveSlotUI.gameObject.SetActive(!flag);
+    }
+
+    public void Visualize_SaveUI(bool flag)
+    {
+        Visualize_PauseUI(flag);
+        PauseUI.saveSlotUI.gameObject.SetActive(flag);
+        PauseUI.pauseMainUI.gameObject.SetActive(!flag);
+    }
+
+    public void Visualize_SaveUI(bool flag, bool isSave)
+    {
+        PauseUI.saveSlotUI.isSave = isSave;
+        Visualize_SaveUI(flag);
     }
 
 // BlackOut UI
     public void BlackOut(int index)
     {
         blackoutUI.BlackOut(index);
+    }
+    
+    public void BlackOut(float speed)
+    {
+        blackoutUI.BlackOut(speed);
     }
 // BlackOut UI
 

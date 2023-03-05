@@ -17,7 +17,12 @@ public class blackOut : MonoBehaviour
         StartCoroutine(blackout(index));
     }
 
-     IEnumerator blackout(int index)
+    public void BlackOut(float time)
+    {
+        StartCoroutine(blackout(time));
+    }
+
+    IEnumerator blackout(int index)
     {
         GameManager.instance.isPlayerPaused = true;
         while(image.color.a < 1f)
@@ -29,6 +34,19 @@ public class blackOut : MonoBehaviour
         while(image.color.a > 0f)
         {
             image.color = new Color(image.color.r, image.color.g, image.color.b, Mathf.MoveTowards(image.color.a, 0f, delayTime * Time.deltaTime));
+            yield return new WaitForEndOfFrame(); 
+        }
+        GameManager.instance.isPlayerPaused = false;
+    }
+
+    IEnumerator blackout(float speed)
+    {
+        GameManager.instance.isPlayerPaused = true;
+        image.color = new Color(image.color.r, image.color.g, image.color.b, 1);
+
+        while(image.color.a > 0f)
+        {
+            image.color = new Color(image.color.r, image.color.g, image.color.b, Mathf.MoveTowards(image.color.a, 0f, speed * Time.deltaTime));
             yield return new WaitForEndOfFrame(); 
         }
         GameManager.instance.isPlayerPaused = false;

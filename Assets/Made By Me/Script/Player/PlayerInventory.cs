@@ -165,7 +165,7 @@ public class PlayerInventory : MonoBehaviour
 
         status.UpdateIngameUI();
         playerItemUI.UpdateInventoryUI();
-        boxItemUI.UpdateBoxUI();
+        boxItemUI.UpdateBoxItemUI();
     }
 
     public void DiscardItem(int index)

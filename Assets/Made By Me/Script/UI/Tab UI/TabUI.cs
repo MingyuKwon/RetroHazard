@@ -88,6 +88,11 @@ public class TabUI : MonoBehaviour
         inputOk = true;
     }
 
+    public void UpdateTabUI()
+    {
+        itemUI.UpdateInventoryUI();
+    }
+
     // for question option select
 
     private void ContainerLimit()

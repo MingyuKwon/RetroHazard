@@ -186,13 +186,33 @@ public class GameManager : MonoBehaviour
         if(Time.timeScale == 0f)
         {
             GameManagerUI.instance.isShowingESC = false;
-            GameManagerUI.instance.Visualize_PauseUI(false);
+            GameManagerUI.instance.Visualize_PauseMainUI(false);
             SetPauseGame(false);
         }
         else if(Time.timeScale == 1f)
         {
             GameManagerUI.instance.isShowingESC = true;
-            GameManagerUI.instance.Visualize_PauseUI(true);
+            GameManagerUI.instance.Visualize_PauseMainUI(true);
+            SetPauseGame(true);
+        }
+        
+    }
+
+    public void SetPauseGameInput()
+    {
+        if(ObtainKeyItem) return;
+        if(isPlayerParry) return;
+
+        if(Time.timeScale == 0f)
+        {
+            GameManagerUI.instance.isShowingESC = false;
+            GameManagerUI.instance.Visualize_PauseMainUI(false);
+            SetPauseGame(false);
+        }
+        else if(Time.timeScale == 1f)
+        {
+            GameManagerUI.instance.isShowingESC = true;
+            GameManagerUI.instance.Visualize_PauseMainUI(true);
             SetPauseGame(true);
         }
         

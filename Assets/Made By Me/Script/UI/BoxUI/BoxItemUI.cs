@@ -38,7 +38,7 @@ public class BoxItemUI : MonoBehaviour
     }
 
     private void Start() {
-        UpdateBoxUI();
+        UpdateBoxItemUI();
     }
 
     private void Update() {
@@ -101,7 +101,7 @@ public class BoxItemUI : MonoBehaviour
 
     
 
-    public void UpdateBoxUI()
+    public void UpdateBoxItemUI()
     {
         foreach(BoxItemContainer itemContainer in itemContainers)
         {

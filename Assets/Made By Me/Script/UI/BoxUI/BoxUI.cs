@@ -66,6 +66,12 @@ public class BoxUI : MonoBehaviour
         inputOk = true;
     }
 
+    public void UpdateBoxUI()
+    {
+        boxItemUI.UpdateBoxItemUI();
+        playerItemUI.UpdateInventoryUI();
+    }
+
     private void Awake() {
         status = FindObjectOfType<PlayerStatus>();
 

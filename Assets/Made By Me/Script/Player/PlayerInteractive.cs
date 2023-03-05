@@ -62,6 +62,9 @@ public class PlayerInteractive : MonoBehaviour
                 if(nearInteract.isInventoryBox)
                 {
                     GameManagerUI.instance.Visualize_BoxUI(true);
+                }else if(nearInteract.isSaveSpot)
+                {
+                    GameManagerUI.instance.Visualize_SaveUI(true, true);
                 }else
                 {
                     GameManagerUI.instance.Visualize_Tab_Interactive(true, nearInteract.dialog);

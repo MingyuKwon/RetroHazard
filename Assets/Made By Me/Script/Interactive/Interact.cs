@@ -11,6 +11,7 @@ public class Interact : MonoBehaviour
     public bool isKeyItem;
 
     public bool isInventoryBox;
+    public bool isSaveSpot;
 
     public bool triggerCheckActive = true;
 
