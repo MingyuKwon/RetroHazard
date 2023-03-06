@@ -22,13 +22,14 @@ public class PauseMainUI : MonoBehaviour
 
     private void Resume()
     {
-        GameManager.instance.SetPauseGameInput();
+        rootUI.CurrentWindowLayer = -1;
+        rootUI.windowLayer_Change_Invoke();
     }
 
     private void Load()
     {
-        GameManagerUI.instance.Visualize_SaveUI(true, false);
-        rootUI.CurrentWindowLayer++;
+        rootUI.CurrentWindowLayer = 1;
+        rootUI.windowLayer_Change_Invoke();
     }
 
     private void Option()

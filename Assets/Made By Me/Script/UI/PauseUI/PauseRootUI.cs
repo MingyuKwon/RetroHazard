@@ -8,6 +8,7 @@ using DG.Tweening;
 
 public class PauseRootUI : MonoBehaviour
 {
+    public static event Action windowLayer_Change_Event;
     private Player player;
     UI ui;
     public PauseMainUI pauseMainUI;
@@ -31,6 +32,8 @@ public class PauseRootUI : MonoBehaviour
         ui.MouseCursor(true);
         GameManager.instance.SetPauseGame(true);
         CurrentWindowLayer = 0;
+
+        windowLayer_Change_Event += windowLayer_Check;
     }
 
     private void OnDisable() { // have an error when game is closed ny force while pause Ui is opened
@@ -38,6 +41,8 @@ public class PauseRootUI : MonoBehaviour
         ui.MouseCursor(false);
         GameManager.instance.SetPauseGame(false);
         CurrentWindowLayer = 0;
+
+        windowLayer_Change_Event -= windowLayer_Check;
     }
 
     private void LeftClicked(InputActionEventData data)
@@ -47,9 +52,32 @@ public class PauseRootUI : MonoBehaviour
     private void RightClicked(InputActionEventData data)
     {
         CurrentWindowLayer--;
+        windowLayer_Change_Event.Invoke();
+        
+    }
+
+    public void windowLayer_Change_Invoke()
+    {
+        windowLayer_Change_Event.Invoke();
+    }
+
+    private void windowLayer_Check()
+    {
         if(CurrentWindowLayer < 0)
         {
             this.gameObject.SetActive(false);
+        }
+
+        if(CurrentWindowLayer == 0)
+        {
+            pauseMainUI.gameObject.SetActive(true);
+            saveSlotUI.gameObject.SetActive(false);
+        }
+
+        if(CurrentWindowLayer == 1)
+        {
+           pauseMainUI.gameObject.SetActive(false);
+            saveSlotUI.gameObject.SetActive(true);
         }
     }
 }
