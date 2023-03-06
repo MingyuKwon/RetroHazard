@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SaveSlotUI : MonoBehaviour
+public class SaveSlotUI : MonoBehaviour, CallBackInterface
 {
     public bool isSave;
     Button[] SaveSlots;
     Text[] SaveSlotsTexts;
+
+    int saveSlotNum;
 
     private void Awake() {
         SaveSlots = GetComponentsInChildren<Button>();
@@ -40,22 +42,13 @@ public class SaveSlotUI : MonoBehaviour
 
     private void OnEnable() {
         SaveSystem.SaveEvent += UpdateSaveSlot;
-        
-        if(isSave)
+
+        for(int i=0; i<SaveSlots.Length; i++)
         {
-            for(int i=0; i<SaveSlots.Length; i++)
-            {
-                int temp = i;
-                SaveSlots[i].onClick.AddListener(() => OnSave(temp));
-            }
-        }else
-        {
-            for(int i=0; i<SaveSlots.Length; i++)
-            {
-                int temp = i;
-                SaveSlots[i].onClick.AddListener(() => OnLoad(temp));
-            }
+            int temp = i;
+            SaveSlots[i].onClick.AddListener(() => SlotClick(temp));
         }
+        
     }
     private void OnDisable() {
         SaveSystem.SaveEvent -= UpdateSaveSlot;
@@ -63,6 +56,36 @@ public class SaveSlotUI : MonoBehaviour
         for(int i=0; i<SaveSlots.Length; i++)
         {
             SaveSlots[i].onClick.RemoveAllListeners();
+        }
+    }
+
+    public void CallBack()
+    {
+        if(isSave)
+        {
+            OnSave(saveSlotNum);
+        }else
+        {
+            AlertUI.instance.previousInputRule = 0;
+            OnLoad(saveSlotNum);
+        }
+    }
+
+    public void SlotClick(int n)
+    {
+        saveSlotNum = n;
+
+        if(isSave)
+        {
+            AlertUI.instance.ShowAlert("Are you sure you want to save in save slot " + (saveSlotNum + 1) + " ?\n\n<i>(save file will be overwrited if save slot already has one)</i>", this);
+        }else
+        {
+            if(SaveSystem.instance.saveSlotInfos[saveSlotNum].saveTime == "Empty")
+            {
+                return;
+            }
+
+            AlertUI.instance.ShowAlert("Are you sure you want to load from save slot " + (saveSlotNum + 1) + " ?", this);
         }
         
     }
@@ -75,11 +98,6 @@ public class SaveSlotUI : MonoBehaviour
 
     private void OnLoad(int num)
     {
-        if(SaveSystem.instance.saveSlotInfos[num].saveTime == "Empty")
-        {
-            return;
-        }
-
         SaveSystem.SaveSlotNum = num;
         SaveSystem.instance.Load(0);
 

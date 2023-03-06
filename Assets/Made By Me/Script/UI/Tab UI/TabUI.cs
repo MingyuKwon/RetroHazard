@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using Rewired;
 using Sirenix.OdinInspector;
 
-public class TabUI : MonoBehaviour
+public class TabUI : MonoBehaviour, CallBackInterface
 {
     static public event Action<int> discardItemEvent;
     static public event Action<int, float> UsePotionEvent;
@@ -50,6 +50,8 @@ public class TabUI : MonoBehaviour
     public InteractiveDialog interactiveDialog;
     public int combineStartItemIndex;
 
+    public int discardTargetItemIndex;
+
     private void Awake() {
         status = FindObjectOfType<PlayerStatus>();
         player = ReInput.players.GetPlayer(0);
@@ -73,6 +75,7 @@ public class TabUI : MonoBehaviour
         IinteractiveUI.interact_Input_Rlease_Event += InputGetBack;
         currentWindowLayer = 0;
         transform.parent.GetComponent<UI>().MouseCursor(true);
+        discardTargetItemIndex = -1;
     }
 
     private void OnDisable() {
@@ -80,6 +83,7 @@ public class TabUI : MonoBehaviour
         currentWindowLayer = 0;
         transform.parent.GetComponent<UI>().MouseCursor(false);
         isUseKeyItem = false;
+        discardTargetItemIndex = -1;
     }
 
     private void InputGetBack()
@@ -239,8 +243,8 @@ public class TabUI : MonoBehaviour
                     currentWindowLayer++;
                 }else if(itemUI.itemContainers[itemUI.currentindex].selectIndex == 2) // discard
                 {
-                    discardItemEvent.Invoke(itemUI.currentindex);
-                    currentWindowLayer--;
+                    discardTargetItemIndex = itemUI.currentindex;
+                    AlertUI.instance.ShowAlert("Are you sure to Discard this Item? \n\n <i>(discarded Item cannot be restored)</i>", this);
                 }
             }
             else if(currentWindowLayer == 2)
@@ -255,6 +259,14 @@ public class TabUI : MonoBehaviour
             
         }
     }
+
+    public void CallBack()
+    {
+        discardItemEvent.Invoke(discardTargetItemIndex);
+        currentWindowLayer--;
+        discardTargetItemIndex = -1;
+    }
+
     public void BackPressed(InputActionEventData data)
     {
         if(!inputOk) return;

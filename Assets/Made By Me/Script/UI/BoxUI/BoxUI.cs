@@ -7,7 +7,7 @@ using Rewired;
 using Sirenix.OdinInspector;
 
 
-public class BoxUI : MonoBehaviour
+public class BoxUI : MonoBehaviour, CallBackInterface
 {
     static public event Action<int> discardItemEvent;
     static public event Action<ItemInformation , int , ItemInformation, int> CombineEvent; // Combine start Item, combine start index, select Item, selected index
@@ -41,10 +41,13 @@ public class BoxUI : MonoBehaviour
     public ItemInformation combineStartItem = null;
     public int combineStartItemIndex;
 
+    public int discardTargetItemIndex;
+
     private void OnEnable() {
         IinteractiveUI.interact_Input_Rlease_Event += InputGetBack;
         boxItemIndex = -1;
         playerItemIndex = 0;
+        discardTargetItemIndex = -1;
         isBox = false;
         isInventory = true;
 
@@ -57,6 +60,7 @@ public class BoxUI : MonoBehaviour
     private void OnDisable() {
         IinteractiveUI.interact_Input_Rlease_Event -= InputGetBack;
         currentWindowLayer = 0;
+        discardTargetItemIndex = -1;
 
         transform.parent.GetComponent<UI>().MouseCursor(false);
     }
@@ -206,8 +210,8 @@ public class BoxUI : MonoBehaviour
                     currentWindowLayer++;
                 }else if(playerItemUI.itemContainers[playerItemUI.currentindex].selectIndex == 2) // discard
                 {
-                    discardItemEvent.Invoke(playerItemUI.currentindex);
-                    currentWindowLayer--;
+                    discardTargetItemIndex = playerItemUI.currentindex;
+                    AlertUI.instance.ShowAlert("Are you sure to Discard this Item? \n\n <i>(discarded Item cannot be restored)</i>", this);
                 }
             }
             else if(currentWindowLayer == 2)
@@ -220,6 +224,13 @@ public class BoxUI : MonoBehaviour
             }
         }
 
+    }
+
+    public void CallBack()
+    {
+        discardItemEvent.Invoke(discardTargetItemIndex);
+        currentWindowLayer--;
+        discardTargetItemIndex = -1;
     }
 
     public void BackPressed(InputActionEventData data)

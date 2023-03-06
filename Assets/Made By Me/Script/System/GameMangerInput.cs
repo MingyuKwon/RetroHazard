@@ -15,6 +15,9 @@ public class GameMangerInput : MonoBehaviour
     // 0 : normal State
     // 1 : talk with NPC State
     // 2 : UI
+    // 3 : Alert
+
+    public int currentInputRule = 0;
 
     void Awake() {
         if(instance == null)
@@ -33,6 +36,7 @@ public class GameMangerInput : MonoBehaviour
         ruleSets[0] = mapEnabler.ruleSets.Find(x => x.tag == "NormalState");
         ruleSets[1] = mapEnabler.ruleSets.Find(x => x.tag == "TalkWithNPC");
         ruleSets[2] = mapEnabler.ruleSets.Find(x => x.tag == "UI");
+        ruleSets[3] = mapEnabler.ruleSets.Find(x => x.tag == "Alert");
     }
 
     [Button]
@@ -43,6 +47,17 @@ public class GameMangerInput : MonoBehaviour
             rule.enabled = false;
         }
         ruleSets[ruleNum].enabled = true;
+
+        currentInputRule = ruleNum;
+
+        if(currentInputRule != 0)
+        {
+            MouseUI.instance.MouseActive(true);
+        }else
+        {
+            MouseUI.instance.MouseActive(false);
+        }
+
         mapEnabler.Apply();
     }
 }
