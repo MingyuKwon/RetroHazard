@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Com.LuisPedroFonseca.ProCamera2D;
 
 public class CameraSetting : MonoBehaviour
 {
@@ -17,10 +18,8 @@ public class CameraSetting : MonoBehaviour
     private void Awake() {
         tilemap = FindObjectOfType<WholeWorld>().GetComponent<Tilemap>();
         pm = FindObjectOfType<PlayerHealth>().gameObject;
-    }
 
-    private void OnEnable() {
-        
+        ProCamera2D.Instance.AddCameraTarget(pm.transform);
     }
 
     void Start() {
@@ -29,12 +28,30 @@ public class CameraSetting : MonoBehaviour
 
         cameraVerticalHalf = Camera.main.orthographicSize;
         cameraHorizontalHalf = Camera.main.aspect * cameraVerticalHalf;
+
     }
 
-    void Update(){
-            Vector3 pmPosition = pm.transform.position;
-            float clampXPosition = Mathf.Clamp(pmPosition.x , minLimit.x + cameraHorizontalHalf, maxLimit.x-cameraHorizontalHalf);
-            float clampYPosition = Mathf.Clamp(pmPosition.y , minLimit.y + cameraVerticalHalf, maxLimit.y - cameraVerticalHalf);
-            transform.position = new Vector3(clampXPosition, clampYPosition, -10);
-    }
+    private void FixedUpdate() {
+
+        if(transform.position.x > maxLimit.x-cameraHorizontalHalf)
+        {
+            transform.position = new Vector3(maxLimit.x-cameraHorizontalHalf, transform.position.y, transform.position.z);
+        }
+
+        if(transform.position.x < minLimit.x+cameraHorizontalHalf)
+        {
+            transform.position = new Vector3(minLimit.x+cameraHorizontalHalf, transform.position.y, transform.position.z);
+        }
+
+        if(transform.position.y > maxLimit.y - cameraVerticalHalf)
+        {
+            transform.position = new Vector3(transform.position.x, maxLimit.y - cameraVerticalHalf, transform.position.z);
+        }
+
+        if(transform.position.y < minLimit.y + cameraVerticalHalf)
+        {
+            transform.position = new Vector3(transform.position.x, minLimit.y + cameraVerticalHalf, transform.position.z);
+        }
+        
+    } 
 }

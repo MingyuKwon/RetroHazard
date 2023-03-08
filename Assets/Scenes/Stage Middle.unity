@@ -23147,7 +23147,7 @@ Grid:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1133805713}
   m_Enabled: 1
-  m_CellSize: {x: 0.99, y: 0.99, z: 0}
+  m_CellSize: {x: 1, y: 1, z: 0}
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
@@ -30030,6 +30030,47 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66cea0c59e85679489967771cffd108e, type: 3}
+--- !u!1 &4729411676623602107 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4729411675851341858, guid: 66cea0c59e85679489967771cffd108e, type: 3}
+  m_PrefabInstance: {fileID: 4729411676623602106}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &4729411676623602108 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 4729411675851341857, guid: 66cea0c59e85679489967771cffd108e, type: 3}
+  m_PrefabInstance: {fileID: 4729411676623602106}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4729411676623602109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4729411676623602107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b8c96e2cdc154e848a3d9fe62464d42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CameraTargets: []
+  CenterTargetOnStart: 1
+  Axis: 0
+  UpdateType: 1
+  FollowHorizontal: 1
+  HorizontalFollowSmoothness: 0.15
+  FollowVertical: 1
+  VerticalFollowSmoothness: 0.15
+  OffsetX: 0
+  OffsetY: 0
+  IsRelativeOffset: 1
+  ZoomWithFOV: 0
+  IgnoreTimeScale: 0
+  CurrentZoomTriggerID: 0
+  IsCameraPositionLeftBounded: 0
+  IsCameraPositionRightBounded: 0
+  IsCameraPositionTopBounded: 0
+  IsCameraPositionBottomBounded: 0
+  GameCamera: {fileID: 4729411676623602108}
 --- !u!4 &4953460887743832137 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4124279778502393785, guid: 545a14b30ccd8c14fa184d2c458cbfce, type: 3}
