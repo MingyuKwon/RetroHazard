@@ -34,7 +34,8 @@ public class PauseMainUI : MonoBehaviour
 
     private void Option()
     {
-
+        rootUI.CurrentWindowLayer = 2;
+        rootUI.windowLayer_Change_Invoke();
     }
 
     private void MainMenu()

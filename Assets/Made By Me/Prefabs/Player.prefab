@@ -249,6 +249,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   status: {fileID: 0}
   itemUI: {fileID: 0}
+  boxItemUI: {fileID: 0}
+  playerItemUI: {fileID: 0}
   basicItems: []
   EnergyUpgrade1Item:
   - {fileID: 11400000, guid: 8294c9fe43e111f44b832f95471458ca, type: 2}
@@ -430,8 +432,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bda484821f80d2843824ef263f6cc910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 3
   canMove: 1
+  InputOk: 0
+  UpInputBlock: 0
+  DownInputBlock: 0
+  RightInputBlock: 0
+  LeftInputBlock: 0
   SpeedScholar: 0
   HorizontalMoveSpeed: 0
   VerticalMoveSpeed: 0
@@ -452,7 +459,7 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
@@ -657,6 +664,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7080ebb1fc39524999148f0760618d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventory: {fileID: 0}
+  status: {fileID: 0}
+  items: []
+  itemsamount: 
+  isBoxfull: 0
+  SheildBatteryLimit: 8
+  Energy1BatteryLimit: 30
+  Energy2BatteryLimit: 12
+  Energy3BatteryLimit: 9
 --- !u!1001 &8196210358786870649
 PrefabInstance:
   m_ObjectHideFlags: 0

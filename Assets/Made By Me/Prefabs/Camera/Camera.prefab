@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4729411675851341857}
   - component: {fileID: 4729411675851341856}
   - component: {fileID: 4729411675851341862}
+  - component: {fileID: 4729411676623602109}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -97,4 +98,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c80caeb124561a541946009a6ab255ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraHeight: -11
   playerWidth: 1.5
+--- !u!114 &4729411676623602109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4729411675851341858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b8c96e2cdc154e848a3d9fe62464d42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CameraTargets: []
+  CenterTargetOnStart: 1
+  Axis: 0
+  UpdateType: 1
+  FollowHorizontal: 1
+  HorizontalFollowSmoothness: 0.2
+  FollowVertical: 1
+  VerticalFollowSmoothness: 0.2
+  OffsetX: 0
+  OffsetY: 0
+  IsRelativeOffset: 1
+  ZoomWithFOV: 0
+  IgnoreTimeScale: 0
+  CurrentZoomTriggerID: 0
+  IsCameraPositionLeftBounded: 0
+  IsCameraPositionRightBounded: 0
+  IsCameraPositionTopBounded: 0
+  IsCameraPositionBottomBounded: 0
+  GameCamera: {fileID: 4729411675851341857}

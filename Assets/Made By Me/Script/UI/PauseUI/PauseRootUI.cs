@@ -13,6 +13,7 @@ public class PauseRootUI : MonoBehaviour
     UI ui;
     public PauseMainUI pauseMainUI;
     public SaveSlotUI saveSlotUI;
+    public OptionUI optionUI;
 
     public int CurrentWindowLayer = 0;
 
@@ -22,6 +23,7 @@ public class PauseRootUI : MonoBehaviour
         ui = GetComponentInParent<UI>();
         pauseMainUI = GetComponentInChildren<PauseMainUI>();
         saveSlotUI = GetComponentInChildren<SaveSlotUI>();
+        optionUI = GetComponentInChildren<OptionUI>();
 
         player.AddInputEventDelegate(LeftClicked, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "MouseLeftButton");
         player.AddInputEventDelegate(RightClicked, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased, "MouseRightButton");
@@ -34,6 +36,8 @@ public class PauseRootUI : MonoBehaviour
         CurrentWindowLayer = 0;
 
         windowLayer_Change_Event += windowLayer_Check;
+
+        windowLayer_Change_Event.Invoke();
     }
 
     private void OnDisable() { // have an error when game is closed ny force while pause Ui is opened
@@ -51,7 +55,14 @@ public class PauseRootUI : MonoBehaviour
     }
     private void RightClicked(InputActionEventData data)
     {
-        CurrentWindowLayer--;
+        if(CurrentWindowLayer == 0 )
+        {
+            CurrentWindowLayer--;
+        }else
+        {
+            CurrentWindowLayer = 0;
+        }
+        
         windowLayer_Change_Event.Invoke();
         
     }
@@ -72,12 +83,21 @@ public class PauseRootUI : MonoBehaviour
         {
             pauseMainUI.gameObject.SetActive(true);
             saveSlotUI.gameObject.SetActive(false);
+            optionUI.gameObject.SetActive(false);
         }
 
         if(CurrentWindowLayer == 1)
         {
            pauseMainUI.gameObject.SetActive(false);
-            saveSlotUI.gameObject.SetActive(true);
+           saveSlotUI.gameObject.SetActive(true);
+           optionUI.gameObject.SetActive(false);
+        }
+
+        if(CurrentWindowLayer == 2)
+        {
+           pauseMainUI.gameObject.SetActive(false);
+           saveSlotUI.gameObject.SetActive(false);
+           optionUI.gameObject.SetActive(true);
         }
     }
 }
