@@ -67,13 +67,12 @@ public class SaveSystem : MonoBehaviour
             {
                 string json = File.ReadAllText(Path.Combine(SaveDirectorys[i], "SaveSlotInfo.json"));
                 JsonUtility.FromJsonOverwrite(json , saveSlotInfos[i]);
-
-                Debug.Log(saveSlotInfos[i].saveTime);
             }else
             {
                 saveSlotInfos[i].saveTime = "Empty";
             }
         }
+
     }
 
     private void SetPath()
@@ -255,7 +254,7 @@ public class SaveSystem : MonoBehaviour
 
         if(SceneManager.GetActiveScene().name == "SingleTon Make Room" && SaveSystem.SaveSlotNum == -1)
         {
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene("Stage Middle");
             return;
         }
 

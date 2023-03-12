@@ -10,9 +10,9 @@ public class PlayerHealthUI : MonoBehaviour
     RectTransform UItransform;
     UIStatBar healthBar;
 
-     
-
     private void Awake() {
+        Debug.Log("Awake");
+        
         UItransform = GetComponent<RectTransform>();
         healthText = GetComponentInChildren<Text>();
         healthBar = GetComponentInChildren<UIStatBar>();
@@ -22,7 +22,9 @@ public class PlayerHealthUI : MonoBehaviour
     public void SetPlayerHealthUI(float CurrentHP, float MaxHP)
     {
         healthText.text = CurrentHP.ToString() + " | " + MaxHP.ToString();
+
         healthBar.SetValue(CurrentHP, MaxHP);
+
         UItransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, MaxHP * 3);
     }
 }

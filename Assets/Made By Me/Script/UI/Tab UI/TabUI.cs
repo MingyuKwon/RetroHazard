@@ -71,6 +71,15 @@ public class TabUI : MonoBehaviour, CallBackInterface
         itemObtainYesNoPanelUI = GetComponentInChildren<ItemObtainYesNoPanelUI>();
     }
 
+    private void OnDestroy() {
+        player.RemoveInputEventDelegate(EnterPressed);
+        player.RemoveInputEventDelegate(BackPressed);
+        player.RemoveInputEventDelegate(UpPressed);
+        player.RemoveInputEventDelegate(DownPressed);
+        player.RemoveInputEventDelegate(RightPressed);
+        player.RemoveInputEventDelegate(LeftPressed);
+    }
+
     private void OnEnable() {
         IinteractiveUI.interact_Input_Rlease_Event += InputGetBack;
         currentWindowLayer = 0;

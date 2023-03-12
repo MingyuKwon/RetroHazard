@@ -53,8 +53,24 @@ public class GameManager : MonoBehaviour
         playerAnimation = FindObjectOfType<PlayerAnimation>();
     }
 
+    private void OnDestroy() {
+        player.RemoveInputEventDelegate(SetPauseGameInput);
+        player.RemoveInputEventDelegate(SetTab);
+    }
+
     private void OnEnable() {
         PlayerShield.Sheild_Durability_Reduce_Start_Event += Set_Sheild_Durability_Reducing;
+
+        PauseMainUI.GotoMainMenuEvent += DestroyMyself;
+    }
+
+    private void OnDisable() {
+        PauseMainUI.GotoMainMenuEvent -= DestroyMyself;
+    }
+
+    private void DestroyMyself()
+    {
+        Destroy(this.gameObject);
     }
 
     private void Set_Sheild_Durability_Reducing()

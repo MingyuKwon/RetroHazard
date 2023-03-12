@@ -54,6 +54,20 @@ public class GameManagerUI : MonoBehaviour
         PauseUI = FindObjectOfType<PauseRootUI>();
         
     }
+    private void OnEnable() {
+        PauseMainUI.GotoMainMenuEvent += DestroyMyself;
+    }
+
+    private void OnDisable() {
+        PauseMainUI.GotoMainMenuEvent -= DestroyMyself;
+    }
+
+    private void DestroyMyself()
+    {
+        Destroy(this.gameObject);
+    }
+
+
 
     private void Start() {
         dialogUI.gameObject.SetActive(false);

@@ -29,6 +29,10 @@ public class IinteractiveUI : MonoBehaviour
         interactiveDialogText = interactiveDialogPanel.gameObject.GetComponentInChildren<Text>();
     }
 
+    private void OnDestroy() {
+        player.RemoveInputEventDelegate(EnterPressed);
+    }
+
     private void OnEnable() {
         GameManagerUI.instance.isInteractiveUIActive = true;
         transform.parent.GetComponent<UI>().MouseCursor(true);

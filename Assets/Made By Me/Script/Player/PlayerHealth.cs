@@ -42,6 +42,19 @@ public class PlayerHealth : MonoBehaviour
         playerBodyCollider = GetComponentInChildren<PlayerCollider>().gameObject.GetComponent<CapsuleCollider2D>();
     }
 
+    private void OnEnable() {
+        PauseMainUI.GotoMainMenuEvent += DestroyMyself;
+    }
+
+    private void OnDisable() {
+        PauseMainUI.GotoMainMenuEvent -= DestroyMyself;
+    }
+
+    private void DestroyMyself()
+    {
+        Destroy(this.gameObject);
+    }
+
     private void OnCollisionEnter2D(Collision2D other) {
 
         contactCollider = other.GetContact(0).collider;

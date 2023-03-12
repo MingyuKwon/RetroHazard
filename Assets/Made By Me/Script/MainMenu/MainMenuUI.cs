@@ -8,13 +8,16 @@ public class MainMenuUI : MonoBehaviour, CallBackInterface
 {
     Button[] buttons;
     MainMenu mainMenu;
+    MouseUI mouseUI;
     int continueNum;
 
     private void Awake() {
         buttons = GetComponentsInChildren<Button>();
         mainMenu = transform.parent.GetComponent<MainMenu>();
-    }
+        
 
+    }
+    
     private void OnEnable() {
 
         for(int i=0; i<buttons.Length; i++)
@@ -29,8 +32,7 @@ public class MainMenuUI : MonoBehaviour, CallBackInterface
         {
             buttons[0].gameObject.SetActive(false);
         }
-        
-        
+
     }
     private void OnDisable() {
 
@@ -59,9 +61,6 @@ public class MainMenuUI : MonoBehaviour, CallBackInterface
             if(SaveSystem.instance.saveSlotInfos[i].saveTime == "Empty") continue;
 
             DateTime dateTime = Convert.ToDateTime(SaveSystem.instance.saveSlotInfos[i].saveTime);
-
-            Debug.Log("SaveSystem.instance.saveSlotInfos[i].saveDate : " + dateTime);
-            Debug.Log("latestSaveTime : " + latestSaveTime);
             
             if(DateTime.Compare(dateTime, latestSaveTime) > 0)
             {
@@ -71,9 +70,7 @@ public class MainMenuUI : MonoBehaviour, CallBackInterface
         }
 
         continueNum = latestNum;
-    
-        Debug.Log("continueNum : " + continueNum);
-        
+            
     }
 
     private void OnClick(int n)

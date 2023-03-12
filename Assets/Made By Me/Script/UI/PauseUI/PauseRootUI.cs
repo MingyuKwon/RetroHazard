@@ -29,6 +29,12 @@ public class PauseRootUI : MonoBehaviour
         player.AddInputEventDelegate(RightClicked, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased, "MouseRightButton");
 
     }
+
+    private void OnDestroy() {
+        player.RemoveInputEventDelegate(LeftClicked);
+        player.RemoveInputEventDelegate(RightClicked);
+    }
+
     private void OnEnable() {
         GameMangerInput.instance.changePlayerInputRule(2);
         ui.MouseCursor(true);

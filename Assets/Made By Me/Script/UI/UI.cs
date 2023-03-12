@@ -41,10 +41,17 @@ public class UI : MonoBehaviour
 
     private void OnEnable() {
         SaveSystem.LoadEvent += TotalUIUpdate;
+        PauseMainUI.GotoMainMenuEvent += DestroyMyself;
     }
 
     private void OnDisable() {
         SaveSystem.LoadEvent -= TotalUIUpdate;
+        PauseMainUI.GotoMainMenuEvent -= DestroyMyself;
+    }
+
+    private void DestroyMyself()
+    {
+        Destroy(this.gameObject);
     }
 
     private void TotalUIUpdate()

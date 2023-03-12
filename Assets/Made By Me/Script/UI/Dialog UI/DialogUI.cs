@@ -48,6 +48,14 @@ public class DialogUI : MonoBehaviour
         Option = dialogPanel.GetComponentsInChildren<option>();
     }
 
+    private void OnDestroy() {
+        player.RemoveInputEventDelegate(EnterPressed);
+        player.RemoveInputEventDelegate(UpPressed);
+        player.RemoveInputEventDelegate(DownPressed);
+        player.RemoveInputEventDelegate(RightPressed);
+        player.RemoveInputEventDelegate(LeftPressed);
+    }
+
     // for question option select
     public void EnterPressed(InputActionEventData data)
     {

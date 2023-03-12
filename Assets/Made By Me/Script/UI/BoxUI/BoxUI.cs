@@ -96,6 +96,18 @@ public class BoxUI : MonoBehaviour, CallBackInterface
         playerItemUI = GetComponentInChildren<PlayerItemUI>();
     }
 
+    private void OnDestroy() {
+        player.RemoveInputEventDelegate(EnterPressed);
+        player.RemoveInputEventDelegate(BackPressed);
+        player.RemoveInputEventDelegate(UpPressed);
+        player.RemoveInputEventDelegate(DownPressed);
+        player.RemoveInputEventDelegate(RightPressed);
+        player.RemoveInputEventDelegate(LeftPressed);
+        player.RemoveInputEventDelegate(LeftTab);
+        player.RemoveInputEventDelegate(RightTab);
+
+    }
+
     public void LeftTab(InputActionEventData data)
     {
         if(currentWindowLayer == 1) return;

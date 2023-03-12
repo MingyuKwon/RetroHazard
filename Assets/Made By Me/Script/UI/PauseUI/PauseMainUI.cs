@@ -1,10 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class PauseMainUI : MonoBehaviour
+public class PauseMainUI : MonoBehaviour, CallBackInterface
 {
+
+    public static event Action GotoMainMenuEvent;
     Button[] buttons; // 0 : resume, 1 : load,  2 : option, 3 : go to main menu
     PauseRootUI rootUI;
 
@@ -40,6 +44,12 @@ public class PauseMainUI : MonoBehaviour
 
     private void MainMenu()
     {
+        AlertUI.instance.ShowAlert("Are you sure you want to go back to Main Menu? \n\n <b>(unsaved Data will be deleted)</b>", this);
+    }
 
+    public void CallBack()
+    {
+        SceneManager.LoadScene("Main Menu");
+        GotoMainMenuEvent.Invoke();
     }
 }

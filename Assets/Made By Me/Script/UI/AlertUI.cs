@@ -36,6 +36,11 @@ public class AlertUI : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
+    private void OnDestroy() {
+        player.RemoveInputEventDelegate(LeftClicked);
+        player.RemoveInputEventDelegate(RightClicked);
+    }
+
     private void OnEnable() {
         previousInputRule = GameMangerInput.instance.currentInputRule;
         GameMangerInput.instance.changePlayerInputRule(3);
@@ -45,6 +50,8 @@ public class AlertUI : MonoBehaviour
         GameMangerInput.instance.changePlayerInputRule(previousInputRule);
         CallbackScript = null;
     }
+
+
 
     public void ShowAlert(string dialog, CallBackInterface CallbackScript , string Yes = "yes", string No = "No")
     {   
