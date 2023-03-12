@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class SaveSlotInfo
 {
     public string saveTime = null;
-    public string saveLocation = null;
+    public string saveScene = null;
+    public Vector3 saveLocation = new Vector3(0,0,0);
+
     public string saveCurrentGoal = null;
 
 }

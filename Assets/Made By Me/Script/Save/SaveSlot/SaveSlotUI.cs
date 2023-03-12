@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class SaveSlotUI : MonoBehaviour, CallBackInterface
 {
-    public bool isSave;
+    public bool isSave = false;
     Button[] SaveSlots;
     Text[] SaveSlotsTexts;
 
@@ -34,7 +34,7 @@ public class SaveSlotUI : MonoBehaviour, CallBackInterface
                 SaveSlots[i].transform.GetChild(4).gameObject.SetActive(true);
 
                 SaveSlots[i].transform.GetChild(4).GetComponent<Text>().text = SaveSystem.instance.saveSlotInfos[i].saveTime;
-                SaveSlots[i].transform.GetChild(2).GetComponent<Text>().text = SaveSystem.instance.saveSlotInfos[i].saveLocation;
+                SaveSlots[i].transform.GetChild(2).GetComponent<Text>().text = SaveSystem.instance.saveSlotInfos[i].saveScene;
                 SaveSlots[i].transform.GetChild(3).GetComponent<Text>().text = SaveSystem.instance.saveSlotInfos[i].saveCurrentGoal;
             }
         }
@@ -115,7 +115,7 @@ public class SaveSlotUI : MonoBehaviour, CallBackInterface
                 SaveSlots[i].transform.GetChild(4).gameObject.SetActive(true);
 
                 SaveSlots[i].transform.GetChild(4).GetComponent<Text>().text = SaveSystem.instance.saveSlotInfos[i].saveTime;
-                SaveSlots[i].transform.GetChild(2).GetComponent<Text>().text = SaveSystem.instance.saveSlotInfos[i].saveLocation;
+                SaveSlots[i].transform.GetChild(2).GetComponent<Text>().text = SaveSystem.instance.saveSlotInfos[i].saveScene;
                 SaveSlots[i].transform.GetChild(3).GetComponent<Text>().text = SaveSystem.instance.saveSlotInfos[i].saveCurrentGoal;
             }
         }

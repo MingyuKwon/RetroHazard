@@ -30,7 +30,7 @@ public class SaveSystem : MonoBehaviour
     const int SaveSlotAmount = 10;
     public static string[] SaveDirectorys;
     public SaveSlotInfo[] saveSlotInfos;
-    public static int SaveSlotNum = 0; // modify right before player want to save in specific sloat
+    public static int SaveSlotNum = -1; // modify right before player want to save in specific sloat
 
     PlayerStatus status;
     PlayerInventory inventory;
@@ -48,10 +48,6 @@ public class SaveSystem : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-
-        status = FindObjectOfType<PlayerStatus>();
-        inventory = FindObjectOfType<PlayerInventory>();
-        itemBox = FindObjectOfType<PlayerItemBox>();
 
         SaveDirectorys = new string[SaveSlotAmount];
         saveSlotInfos = new SaveSlotInfo[SaveSlotAmount];
@@ -71,6 +67,8 @@ public class SaveSystem : MonoBehaviour
             {
                 string json = File.ReadAllText(Path.Combine(SaveDirectorys[i], "SaveSlotInfo.json"));
                 JsonUtility.FromJsonOverwrite(json , saveSlotInfos[i]);
+
+                Debug.Log(saveSlotInfos[i].saveTime);
             }else
             {
                 saveSlotInfos[i].saveTime = "Empty";
@@ -80,6 +78,8 @@ public class SaveSystem : MonoBehaviour
 
     private void SetPath()
     {
+        if(SaveSlotNum < 0) return;
+
         string LoadSlotPath = SaveDirectorys[SaveSlotNum];
 
         saveSlotInfoPath = Path.Combine(LoadSlotPath, "SaveSlotInfo.json");
@@ -88,39 +88,14 @@ public class SaveSystem : MonoBehaviour
         InventorySavePath = Path.Combine(LoadSlotPath, "InventorySaveData.json");
         ItemBoxSavePath = Path.Combine(LoadSlotPath, "ItemBoxSaveData.json");
     }
- 
-    private void Start() {
 
-        SetPath();
-        
-        if(File.Exists(stageSavePath))
-        {
-            Load(1);
-        }else
-        {
-           ActiveStageSaves = new StageSave[SceneManager.sceneCountInBuildSettings];
-           for(int i=0; i<ActiveStageSaves.Length; i++)
-           {
-                ActiveStageSaves[i] = new StageSave();
-           }
-        }
-
-        if(File.Exists(StatusSavePath))
-        {
-            Load(2);
-        }
-
-        if(File.Exists(InventorySavePath))
-        {
-            Load(3);
-        }
-
-        if(File.Exists(ItemBoxSavePath))
-        {
-            Load(4);
-        }
+    public void Initialize()
+    {
+        status = FindObjectOfType<PlayerStatus>();
+        inventory = FindObjectOfType<PlayerInventory>();
+        itemBox = FindObjectOfType<PlayerItemBox>();
     }
-
+ 
     [Button]
     public void Save(int flag)
     {
@@ -128,7 +103,9 @@ public class SaveSystem : MonoBehaviour
 
         SaveSlotInfo saveInfo = new SaveSlotInfo();
         saveInfo.saveTime = System.DateTime.Now.ToString("yyyy-MM-dd \nHH:mm:ss");
-        saveInfo.saveLocation = SceneManager.GetActiveScene().name;
+        saveInfo.saveScene = SceneManager.GetActiveScene().name;
+        saveInfo.saveLocation = FindObjectOfType<PlayerHealth>().transform.position;
+
 
         saveSlotInfos[SaveSlotNum] = saveInfo;
 
@@ -176,9 +153,33 @@ public class SaveSystem : MonoBehaviour
         
     }
 
+    public void LoadSaveSlot()
+    {
+
+    }
+
     public void Load(int flag)
     {
         SetPath();
+
+        if(File.Exists(saveSlotInfoPath)) 
+        {
+            string json = File.ReadAllText(saveSlotInfoPath);
+            SaveSlotInfo save = new SaveSlotInfo();
+            JsonUtility.FromJsonOverwrite(json , save);
+
+            saveSlotInfos[SaveSlotNum] = save;
+
+        }else
+        {
+            Debug.Log(ItemBoxSavePath + " doesnt have any saveSlotInfoPath json File");
+        }
+
+        if(SceneManager.GetActiveScene().name == "Main Menu")
+        {
+            SceneManager.LoadScene("SingleTon Make Room");
+            return;
+        }
 
         if(flag == 1 || flag == 0)
         {
@@ -191,7 +192,13 @@ public class SaveSystem : MonoBehaviour
                 ActiveStageSaves = wrapper.array;
             }else
             {
-                Debug.LogError(stageSavePath + " doesnt have any Stage save json File");
+                Debug.Log(stageSavePath + " doesnt have any Stage save json File");
+
+                ActiveStageSaves = new StageSave[SceneManager.sceneCountInBuildSettings];
+                for(int i=0; i<ActiveStageSaves.Length; i++)
+                {
+                    ActiveStageSaves[i] = new StageSave();
+                }
             }
             //StageSave
         }
@@ -207,7 +214,7 @@ public class SaveSystem : MonoBehaviour
                 status.LoadSave(save);
             }else
             {
-                Debug.LogError(StatusSavePath + " doesnt have any Status Save json File");
+                Debug.Log(StatusSavePath + " doesnt have any Status Save json File");
             }
             //StatusSave
         }
@@ -223,7 +230,7 @@ public class SaveSystem : MonoBehaviour
                 inventory.LoadSave(save);
             }else
             {
-                Debug.LogError(InventorySavePath + " doesnt have any Inventory Save json File");
+                Debug.Log(InventorySavePath + " doesnt have any Inventory Save json File");
             }
             
         //InventorySave
@@ -240,16 +247,23 @@ public class SaveSystem : MonoBehaviour
                 itemBox.LoadSave(save);
             }else
             {
-                Debug.LogError(ItemBoxSavePath + " doesnt have any Item Box Save json File");
+                Debug.Log(ItemBoxSavePath + " doesnt have any Item Box Save json File");
             }
             
         //ItemBoxSave
         }
 
+        if(SceneManager.GetActiveScene().name == "SingleTon Make Room" && SaveSystem.SaveSlotNum == -1)
+        {
+            SceneManager.LoadScene(2);
+            return;
+        }
+
         if(flag == 0)
         {
             GameManagerUI.instance.BlackOut(1.5f); 
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
+            SceneManager.LoadScene(saveSlotInfos[SaveSlotNum].saveScene, LoadSceneMode.Single);
+            FindObjectOfType<PlayerHealth>().transform.position = saveSlotInfos[SaveSlotNum].saveLocation;
             LoadEvent.Invoke();
         }
 

@@ -29,7 +29,7 @@ public class AlertUI : MonoBehaviour
 
         player = ReInput.players.GetPlayer(0);
         player.AddInputEventDelegate(LeftClicked, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "MouseLeftButton");
-        player.AddInputEventDelegate(RightClicked, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased, "MouseRightButton");
+        player.AddInputEventDelegate(RightClicked, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased, "AlertRightClick");
 
         texts = GetComponentsInChildren<Text>();
 
@@ -71,6 +71,7 @@ public class AlertUI : MonoBehaviour
     {
 
     }
+
 
     private void RightClicked(InputActionEventData data)
     {

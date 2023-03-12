@@ -6,10 +6,18 @@ using UnityEngine.SceneManagement;
 public class GameStart : MonoBehaviour
 {
     [SerializeField] WayPoint wayPoint;
+
+    private void Awake() {
+        SaveSystem.instance.Initialize();
+    }
     void Start()
     {
-        FindObjectOfType<PlayerHealth>().gameObject.transform.position = new Vector3(wayPoint.x, wayPoint.y, 0);
-        SceneManager.LoadScene(1);
+        SaveSystem.instance.Load(0);
+        
+        if(SaveSystem.SaveSlotNum == -1)
+        {
+            FindObjectOfType<PlayerHealth>().gameObject.transform.position = new Vector3(wayPoint.x, wayPoint.y, 0);
+        }
     }
 
 }

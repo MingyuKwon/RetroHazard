@@ -1059,7 +1059,7 @@ MonoBehaviour:
         _modifierKey2: 0
         _modifierKey3: 0
       - _actionCategoryId: 0
-        _actionId: 30
+        _actionId: 32
         _elementType: 1
         _elementIdentifierId: 4
         _axisRange: 0

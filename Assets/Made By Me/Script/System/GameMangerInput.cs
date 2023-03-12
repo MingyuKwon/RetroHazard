@@ -42,6 +42,13 @@ public class GameMangerInput : MonoBehaviour
     [Button]
     public void changePlayerInputRule(int ruleNum)
     {
+        StartCoroutine(DelayChangeRule(ruleNum));
+    }
+
+    IEnumerator DelayChangeRule(int ruleNum)
+    {
+        yield return new WaitForEndOfFrame();
+
         foreach(var rule in ruleSets)
         {
             rule.enabled = false;
