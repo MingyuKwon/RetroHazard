@@ -58,6 +58,23 @@ public class PlayerAnimation : MonoBehaviour
         player.AddInputEventDelegate(LeftJustReleased, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased,"Move Left");
     }
 
+    private void OnDestroy() {
+        player.RemoveInputEventDelegate(UPPressed);
+        player.RemoveInputEventDelegate(DownPressed);
+        player.RemoveInputEventDelegate(RightPressed);
+        player.RemoveInputEventDelegate(LeftPressed);
+
+        player.RemoveInputEventDelegate(UPJustPressed);
+        player.RemoveInputEventDelegate(DownJustPressed);
+        player.RemoveInputEventDelegate(RightJustPressed);
+        player.RemoveInputEventDelegate(LeftJustPressed);
+
+        player.RemoveInputEventDelegate(UPJustReleased);
+        player.RemoveInputEventDelegate(DownJustReleased);
+        player.RemoveInputEventDelegate(RightJustReleased);
+        player.RemoveInputEventDelegate(LeftJustReleased);
+    }
+
     private void OnEnable() {
         PlayerStatus.SheildCrashEvent += SetSheildCrash;
         PlayerStatus.SheildRecoveryEvent += SetSheildRecovery;
@@ -193,10 +210,6 @@ public class PlayerAnimation : MonoBehaviour
     }
 
     //Animation event
-
-    private void OnDestroy() {
-    }
-
 
      //input Aniamtion Event
 

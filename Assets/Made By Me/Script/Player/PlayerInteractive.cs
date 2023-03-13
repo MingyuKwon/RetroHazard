@@ -41,10 +41,11 @@ public class PlayerInteractive : MonoBehaviour
 
     }
 
-    private void Update() {
-        if(GameManager.instance.isPlayerPaused) return;
+    private void OnDestroy() {
+        player.RemoveInputEventDelegate(InteractivePressed);
+        player.RemoveInputEventDelegate(InteractiveReleased);
     }
-    
+
 // Normal Input event
     private void InteractivePressed(InputActionEventData data)
     {
@@ -80,10 +81,7 @@ public class PlayerInteractive : MonoBehaviour
     }
 // Normal Input event
 
-    private void OnDestroy() {
-        player.RemoveInputEventDelegate(InteractivePressed);
-        player.RemoveInputEventDelegate(InteractiveReleased);
-    }
+    
 
 
 

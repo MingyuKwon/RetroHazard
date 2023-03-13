@@ -94,8 +94,7 @@ public class SaveSystem : MonoBehaviour
         inventory = FindObjectOfType<PlayerInventory>();
         itemBox = FindObjectOfType<PlayerItemBox>();
     }
- 
-    [Button]
+
     public void Save(int flag)
     {
         SetPath();
@@ -152,27 +151,9 @@ public class SaveSystem : MonoBehaviour
         
     }
 
-    public void LoadSaveSlot()
-    {
-
-    }
-
     public void Load(int flag)
     {
         SetPath();
-
-        if(File.Exists(saveSlotInfoPath)) 
-        {
-            string json = File.ReadAllText(saveSlotInfoPath);
-            SaveSlotInfo save = new SaveSlotInfo();
-            JsonUtility.FromJsonOverwrite(json , save);
-
-            saveSlotInfos[SaveSlotNum] = save;
-
-        }else
-        {
-            Debug.Log(ItemBoxSavePath + " doesnt have any saveSlotInfoPath json File");
-        }
 
         if(SceneManager.GetActiveScene().name == "Main Menu")
         {
@@ -265,14 +246,13 @@ public class SaveSystem : MonoBehaviour
             FindObjectOfType<PlayerHealth>().transform.position = saveSlotInfos[SaveSlotNum].saveLocation;
             LoadEvent.Invoke();
         }
-
-        
-        
+    
     }
 
-    [Button]
     public void ClearSave(int flag)
     {
+        SetPath();
+
         if(flag == 1 || flag == 0)
         {
             File.Delete(stageSavePath);
@@ -292,8 +272,15 @@ public class SaveSystem : MonoBehaviour
         {
             File.Delete(ItemBoxSavePath);
         }
-        
-        
+
+        if(flag == 0)
+        {
+            File.Delete(saveSlotInfoPath);
+        }
+
+        saveSlotInfos[SaveSlotNum] = new SaveSlotInfo();
+        SaveEvent.Invoke();
+
     }
 
 }

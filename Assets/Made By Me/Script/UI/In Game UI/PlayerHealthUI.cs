@@ -11,8 +11,6 @@ public class PlayerHealthUI : MonoBehaviour
     UIStatBar healthBar;
 
     private void Awake() {
-        Debug.Log("Awake");
-        
         UItransform = GetComponent<RectTransform>();
         healthText = GetComponentInChildren<Text>();
         healthBar = GetComponentInChildren<UIStatBar>();

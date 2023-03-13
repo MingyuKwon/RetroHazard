@@ -23,6 +23,11 @@ public class PlayerEquipChange : MonoBehaviour
         inventory = GetComponentInChildren<PlayerInventory>();
     }
 
+    private void OnDestroy() {
+        player.RemoveInputEventDelegate(EnergyReloadStart);
+        player.RemoveInputEventDelegate(SheildReloadStart);
+    }
+
     void EnergyReloadStart(InputActionEventData data)
     {
         if(status.EnergyStore[status.Energy] == 0) return;

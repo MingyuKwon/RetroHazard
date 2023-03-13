@@ -13,6 +13,10 @@ public class PlayerAttack : MonoBehaviour
         player = ReInput.players.GetPlayer(0);
         player.AddInputEventDelegate(OnAttack, UpdateLoopType.Update, InputActionEventType.ButtonPressed , "Attack");
     }
+
+    private void OnDestroy() {
+        player.RemoveInputEventDelegate(OnAttack);
+    }
     // Update is called once per frame
     void Update()
     {
@@ -24,8 +28,5 @@ public class PlayerAttack : MonoBehaviour
         
     }
 
-    private void OnDestroy() {
-        player.RemoveInputEventDelegate(OnAttack);
-    }
 
 }

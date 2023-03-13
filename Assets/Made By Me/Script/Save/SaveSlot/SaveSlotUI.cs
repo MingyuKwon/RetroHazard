@@ -12,7 +12,11 @@ public class SaveSlotUI : MonoBehaviour, CallBackInterface
     int saveSlotNum;
 
     private void Awake() {
-        SaveSlots = GetComponentsInChildren<Button>();
+        SaveSlots = new Button[transform.childCount -3];
+        for(int i=0; i<transform.childCount -3; i++)
+        {
+            SaveSlots[i] = transform.GetChild(i+3).GetComponent<Button>();
+        }
 
         SaveSlotsTexts = new Text[SaveSlots.Length];
         for(int i=0; i<SaveSlotsTexts.Length; i++)
@@ -23,6 +27,7 @@ public class SaveSlotUI : MonoBehaviour, CallBackInterface
             SaveSlots[i].transform.GetChild(2).gameObject.SetActive(false); // Where
             SaveSlots[i].transform.GetChild(3).gameObject.SetActive(false); // Current Goal
             SaveSlots[i].transform.GetChild(4).gameObject.SetActive(false); // Date
+            SaveSlots[i].transform.GetChild(5).gameObject.SetActive(false);
         }
 
         for(int i=0; i<SaveSlotsTexts.Length; i++)
@@ -32,6 +37,7 @@ public class SaveSlotUI : MonoBehaviour, CallBackInterface
                 SaveSlots[i].transform.GetChild(2).gameObject.SetActive(true);
                 SaveSlots[i].transform.GetChild(3).gameObject.SetActive(true);
                 SaveSlots[i].transform.GetChild(4).gameObject.SetActive(true);
+                SaveSlots[i].transform.GetChild(5).gameObject.SetActive(true);
 
                 SaveSlots[i].transform.GetChild(4).GetComponent<Text>().text = SaveSystem.instance.saveSlotInfos[i].saveTime;
                 SaveSlots[i].transform.GetChild(2).GetComponent<Text>().text = SaveSystem.instance.saveSlotInfos[i].saveScene;
@@ -47,6 +53,7 @@ public class SaveSlotUI : MonoBehaviour, CallBackInterface
         {
             int temp = i;
             SaveSlots[i].onClick.AddListener(() => SlotClick(temp));
+            SaveSlots[i].transform.GetChild(5).GetComponent<Button>().onClick.AddListener(() => Delete(temp));
         }
         
     }
@@ -56,6 +63,7 @@ public class SaveSlotUI : MonoBehaviour, CallBackInterface
         for(int i=0; i<SaveSlots.Length; i++)
         {
             SaveSlots[i].onClick.RemoveAllListeners();
+            SaveSlots[i].transform.GetChild(5).GetComponent<Button>().onClick.RemoveAllListeners();
         }
     }
 
@@ -90,11 +98,39 @@ public class SaveSlotUI : MonoBehaviour, CallBackInterface
         
     }
 
+    private class DeleteCallbackClass : CallBackInterface
+    {
+        int deleteSlotNum;
+
+        public DeleteCallbackClass(int deleteSlotNum)
+        {
+            this.deleteSlotNum = deleteSlotNum;
+        }
+
+        public void CallBack()
+        {
+            OnClear(deleteSlotNum);
+        }
+
+        private void OnClear(int num)
+        {
+            SaveSystem.SaveSlotNum = num;
+            SaveSystem.instance.ClearSave(0);
+        }
+    }
+
+    public void Delete(int n)
+    {
+        AlertUI.instance.ShowAlert("Are you sure you want to Delete this save slot " + (saveSlotNum + 1) + " ?", new DeleteCallbackClass(n));
+    }
+
     private void OnSave(int num)
     {
         SaveSystem.SaveSlotNum = num;
         SaveSystem.instance.Save(0);
     }
+
+    
 
     private void OnLoad(int num)
     {
@@ -113,10 +149,17 @@ public class SaveSlotUI : MonoBehaviour, CallBackInterface
                 SaveSlots[i].transform.GetChild(2).gameObject.SetActive(true);
                 SaveSlots[i].transform.GetChild(3).gameObject.SetActive(true);
                 SaveSlots[i].transform.GetChild(4).gameObject.SetActive(true);
+                SaveSlots[i].transform.GetChild(5).gameObject.SetActive(true);
 
                 SaveSlots[i].transform.GetChild(4).GetComponent<Text>().text = SaveSystem.instance.saveSlotInfos[i].saveTime;
                 SaveSlots[i].transform.GetChild(2).GetComponent<Text>().text = SaveSystem.instance.saveSlotInfos[i].saveScene;
                 SaveSlots[i].transform.GetChild(3).GetComponent<Text>().text = SaveSystem.instance.saveSlotInfos[i].saveCurrentGoal;
+            }else
+            {
+                SaveSlots[i].transform.GetChild(2).gameObject.SetActive(false);
+                SaveSlots[i].transform.GetChild(3).gameObject.SetActive(false);
+                SaveSlots[i].transform.GetChild(4).gameObject.SetActive(false);
+                SaveSlots[i].transform.GetChild(5).gameObject.SetActive(false);
             }
         }
     }

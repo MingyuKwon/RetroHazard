@@ -50,6 +50,24 @@ public class PlayerMove : MonoBehaviour
         player.AddInputEventDelegate(RightJustReleased, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased,"Move Right");
         player.AddInputEventDelegate(LeftJustReleased, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased,"Move Left");
     }
+
+    private void OnDestroy() {
+        player.RemoveInputEventDelegate(UPPressed);
+        player.RemoveInputEventDelegate(DownPressed);
+        player.RemoveInputEventDelegate(RightPressed);
+        player.RemoveInputEventDelegate(LeftPressed);
+
+        player.RemoveInputEventDelegate(UPJustPressed);
+        player.RemoveInputEventDelegate(DownJustPressed);
+        player.RemoveInputEventDelegate(RightJustPressed);
+        player.RemoveInputEventDelegate(LeftJustPressed);
+
+        player.RemoveInputEventDelegate(UPJustReleased);
+        player.RemoveInputEventDelegate(DownJustReleased);
+        player.RemoveInputEventDelegate(RightJustReleased);
+        player.RemoveInputEventDelegate(LeftJustReleased);
+    }
+
     private void FixedUpdate() {
 
         if(canMove && !(GameManager.instance.isPlayerPaused))
