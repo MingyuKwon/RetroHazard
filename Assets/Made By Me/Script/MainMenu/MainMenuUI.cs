@@ -94,8 +94,19 @@ public class MainMenuUI : MonoBehaviour, CallBackInterface
             mainMenu.windowLayer_Change_Invoke();
         }else if(n == 4)
         {
-
+            Quit();
         }
+
         
+    }
+
+    public void Quit()
+    {
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #else
+            Application.Quit();
+        #endif
+            
     }
 }
