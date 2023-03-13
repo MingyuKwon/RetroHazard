@@ -103,7 +103,7 @@ public class SaveSystem : MonoBehaviour
         saveInfo.saveTime = System.DateTime.Now.ToString("yyyy-MM-dd \nHH:mm:ss");
         saveInfo.saveScene = SceneManager.GetActiveScene().name;
         saveInfo.saveLocation = FindObjectOfType<PlayerHealth>().transform.position;
-
+        saveInfo.saveCurrentGoalNum = PlayerGoalCollection.currentGoalIndex;
 
         saveSlotInfos[SaveSlotNum] = saveInfo;
 
@@ -244,6 +244,7 @@ public class SaveSystem : MonoBehaviour
             GameManagerUI.instance.BlackOut(1.5f); 
             SceneManager.LoadScene(saveSlotInfos[SaveSlotNum].saveScene, LoadSceneMode.Single);
             FindObjectOfType<PlayerHealth>().transform.position = saveSlotInfos[SaveSlotNum].saveLocation;
+            PlayerGoalCollection.currentGoalIndex = saveSlotInfos[SaveSlotNum].saveCurrentGoalNum;
             LoadEvent.Invoke();
         }
     

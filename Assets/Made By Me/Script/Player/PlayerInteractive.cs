@@ -68,6 +68,7 @@ public class PlayerInteractive : MonoBehaviour
                     GameManagerUI.instance.Visualize_SaveUI(true, true);
                 }else
                 {
+                    GameManager.EventManager.InvokeInteractEvent();
                     GameManagerUI.instance.Visualize_Tab_Interactive(true, nearInteract.dialog);
                 }
                 

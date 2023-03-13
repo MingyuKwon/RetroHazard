@@ -35,29 +35,10 @@ public class Interact : MonoBehaviour
         
     }
 
-    private void OnEnable() {
-        TabUI.Interact_KeyItem_Success_Event += interactSuccess;
+    public virtual void OnEnable() {
     }
 
-    private void OnDisable() {
-        TabUI.Interact_KeyItem_Success_Event -= interactSuccess;
-    }
-
-    private void interactSuccess(InteractiveDialog interactiveDialog, int n)
-    {
-        if(!(this is RealInteract)) return;
-
-        if(interactiveDialog.InteractCode == dialog.InteractCode)
-        {
-            if(check.activeInHierarchy)
-            {
-
-                Debug.Log("RealInteract");
-                SaveSystem.instance.ActiveStageSaves[SceneManager.GetActiveScene().buildIndex].is_Interact_Destroy[transform.GetSiblingIndex()] = true;
-                
-                this.transform.parent.gameObject.SetActive(false);
-            }
-        }
+    public virtual void OnDisable() {
     }
 
     public void SetCheckActive(bool flag)

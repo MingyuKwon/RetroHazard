@@ -327,7 +327,7 @@ TilemapRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0.03333336, y: 0.03333336, z: 0}
+  m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
@@ -15500,7 +15500,7 @@ TilemapRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0.03333336, y: 0.03333336, z: 0}
+  m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
@@ -19729,7 +19729,7 @@ TilemapRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0.03333336, y: 0.03333336, z: 0}
+  m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
@@ -21464,7 +21464,7 @@ TilemapRenderer:
   m_SortingLayer: 7
   m_SortingOrder: 3
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0.03333336, y: 0.03333336, z: 0}
+  m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
@@ -24272,7 +24272,7 @@ TilemapRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 2
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0.03333336, y: 0.03333336, z: 0}
+  m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
@@ -29542,6 +29542,26 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 7563513110423427547, guid: 2d5d778d693514240a67dc3a46888176, type: 3}
+      propertyPath: nextGoalIndex_Is
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7563513110423427547, guid: 2d5d778d693514240a67dc3a46888176, type: 3}
+      propertyPath: nextGoalIndex_Is_Success
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7563513110423427547, guid: 2d5d778d693514240a67dc3a46888176, type: 3}
+      propertyPath: nextGoalIndex_Is_Interact
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7563513110423427547, guid: 2d5d778d693514240a67dc3a46888176, type: 3}
+      propertyPath: if_CurrentGoalIndex_Is_Success
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7563513110423427547, guid: 2d5d778d693514240a67dc3a46888176, type: 3}
+      propertyPath: if_CurrentGoalIndex_Is_Interact
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d5d778d693514240a67dc3a46888176, type: 3}
 --- !u!4 &3083971999781087162 stripped
@@ -30042,6 +30062,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 39624783}
     m_Modifications:
+    - target: {fileID: 5680207660155545209, guid: e41f1106828d1a944bf6d5d8bdc1d6d4, type: 3}
+      propertyPath: m_ChunkCullingBounds.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5680207660155545209, guid: e41f1106828d1a944bf6d5d8bdc1d6d4, type: 3}
+      propertyPath: m_ChunkCullingBounds.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5680207660759676216, guid: e41f1106828d1a944bf6d5d8bdc1d6d4, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -30089,6 +30117,14 @@ PrefabInstance:
     - target: {fileID: 5680207660759676217, guid: e41f1106828d1a944bf6d5d8bdc1d6d4, type: 3}
       propertyPath: m_Name
       value: House
+      objectReference: {fileID: 0}
+    - target: {fileID: 5680207661392654427, guid: e41f1106828d1a944bf6d5d8bdc1d6d4, type: 3}
+      propertyPath: m_ChunkCullingBounds.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5680207661392654427, guid: e41f1106828d1a944bf6d5d8bdc1d6d4, type: 3}
+      propertyPath: m_ChunkCullingBounds.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8217499029232737066, guid: e41f1106828d1a944bf6d5d8bdc1d6d4, type: 3}
       propertyPath: m_Size.x

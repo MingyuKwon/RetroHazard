@@ -104,6 +104,9 @@ public class TabUI : MonoBehaviour, CallBackInterface
     public void UpdateTabUI()
     {
         itemUI.UpdateInventoryUI();
+
+        Debug.Log(PlayerGoalCollection.currentGoalIndex);
+        currentGoalUI.ChangeGoalText(PlayerGoalCollection.PlayerGoals[PlayerGoalCollection.currentGoalIndex]);
     }
 
     // for question option select

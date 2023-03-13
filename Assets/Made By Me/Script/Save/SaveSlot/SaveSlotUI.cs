@@ -41,7 +41,7 @@ public class SaveSlotUI : MonoBehaviour, CallBackInterface
 
                 SaveSlots[i].transform.GetChild(4).GetComponent<Text>().text = SaveSystem.instance.saveSlotInfos[i].saveTime;
                 SaveSlots[i].transform.GetChild(2).GetComponent<Text>().text = SaveSystem.instance.saveSlotInfos[i].saveScene;
-                SaveSlots[i].transform.GetChild(3).GetComponent<Text>().text = SaveSystem.instance.saveSlotInfos[i].saveCurrentGoal;
+                SaveSlots[i].transform.GetChild(3).GetComponent<Text>().text = PlayerGoalCollection.PlayerGoals[SaveSystem.instance.saveSlotInfos[i].saveCurrentGoalNum];
             }
         }
     }
@@ -55,8 +55,8 @@ public class SaveSlotUI : MonoBehaviour, CallBackInterface
             SaveSlots[i].onClick.AddListener(() => SlotClick(temp));
             SaveSlots[i].transform.GetChild(5).GetComponent<Button>().onClick.AddListener(() => Delete(temp));
         }
-        
     }
+
     private void OnDisable() {
         SaveSystem.SaveEvent -= UpdateSaveSlot;
 
@@ -153,7 +153,7 @@ public class SaveSlotUI : MonoBehaviour, CallBackInterface
 
                 SaveSlots[i].transform.GetChild(4).GetComponent<Text>().text = SaveSystem.instance.saveSlotInfos[i].saveTime;
                 SaveSlots[i].transform.GetChild(2).GetComponent<Text>().text = SaveSystem.instance.saveSlotInfos[i].saveScene;
-                SaveSlots[i].transform.GetChild(3).GetComponent<Text>().text = SaveSystem.instance.saveSlotInfos[i].saveCurrentGoal;
+                SaveSlots[i].transform.GetChild(3).GetComponent<Text>().text = PlayerGoalCollection.PlayerGoals[SaveSystem.instance.saveSlotInfos[i].saveCurrentGoalNum];
             }else
             {
                 SaveSlots[i].transform.GetChild(2).gameObject.SetActive(false);

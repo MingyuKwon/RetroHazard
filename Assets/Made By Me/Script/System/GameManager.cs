@@ -9,8 +9,26 @@ using DG.Tweening;
 
 public class GameManager : MonoBehaviour
 {
+    public class EventManager
+    {
+        public static event Action InteractEvent;
+        public static void InvokeInteractEvent()
+        {
+            InteractEvent?.Invoke();
+        }
+
+        public static event Action ItemUseEvent;
+        public static void InvokeItemUseEvent()
+        {
+            ItemUseEvent?.Invoke();
+        }
+
+
+    }
+
     public static GameManager instance = null;
-    public static event Action GameOver;
+
+    public static EventManager eventInstance = null;
 
     PlayerMove playerMove;
     PlayerAnimation playerAnimation;
@@ -40,6 +58,7 @@ public class GameManager : MonoBehaviour
         if(instance == null)
         {
             instance = this;
+            eventInstance = new EventManager();
             DontDestroyOnLoad(this.gameObject);
         }else
         {
@@ -60,7 +79,6 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable() {
         PlayerShield.Sheild_Durability_Reduce_Start_Event += Set_Sheild_Durability_Reducing;
-
         PauseMainUI.GotoMainMenuEvent += DestroyMyself;
     }
 
