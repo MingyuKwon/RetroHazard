@@ -55,6 +55,16 @@ public class SaveSlotUI : MonoBehaviour, CallBackInterface
             SaveSlots[i].onClick.AddListener(() => SlotClick(temp));
             SaveSlots[i].transform.GetChild(5).GetComponent<Button>().onClick.AddListener(() => Delete(temp));
         }
+
+        if(isSave)
+        {
+            transform.GetChild(2).GetChild(0).GetComponent<Text>().text = "Save";
+        }else
+        {
+            transform.GetChild(2).GetChild(0).GetComponent<Text>().text = "Load";
+        }
+
+        
     }
 
     private void OnDisable() {
@@ -65,6 +75,8 @@ public class SaveSlotUI : MonoBehaviour, CallBackInterface
             SaveSlots[i].onClick.RemoveAllListeners();
             SaveSlots[i].transform.GetChild(5).GetComponent<Button>().onClick.RemoveAllListeners();
         }
+
+        isSave = false;
     }
 
     public void CallBack()
