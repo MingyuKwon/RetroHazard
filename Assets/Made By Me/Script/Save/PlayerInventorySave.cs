@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 using System;
 
 public class PlayerInventorySave
 {
-    public ItemInformation[] items = new ItemInformation[16];
+    public String[] itemsPath = new String[16];
     public int[] itemsamount = new int[16];
     public bool[] isEquipped = new bool[16];
 
@@ -21,7 +22,10 @@ public class PlayerInventorySave
 
     public PlayerInventorySave(PlayerInventory inventory)
     {
-        Array.Copy( inventory.items , items, inventory.items.Length);
+        for(int i=0; i< inventory.items.Length; i++)
+        {
+            itemsPath[i] = AssetDatabase.GetAssetPath(inventory.items[i]);
+        }
         Array.Copy( inventory.itemsamount , itemsamount, inventory.itemsamount.Length);
         Array.Copy( inventory.isEquipped , isEquipped, inventory.isEquipped.Length);
 

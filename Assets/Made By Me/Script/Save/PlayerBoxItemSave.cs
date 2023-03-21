@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 using System;
 
 public class PlayerBoxItemSave 
 {
-    public ItemInformation[] items = new ItemInformation[16];
+    public String[] itemsPath = new String[16];
     public int[] itemsamount = new int[16];
 
     public bool isBoxfull;
@@ -17,7 +18,10 @@ public class PlayerBoxItemSave
 
     public PlayerBoxItemSave(PlayerItemBox itemBox)
     {
-        Array.Copy( itemBox.items , items, itemBox.items.Length);
+        for(int i=0; i< itemBox.items.Length; i++)
+        {
+            itemsPath[i] = AssetDatabase.GetAssetPath(itemBox.items[i]);
+        }
         Array.Copy( itemBox.itemsamount , itemsamount, itemBox.itemsamount.Length);
 
         isBoxfull = itemBox.isBoxfull;

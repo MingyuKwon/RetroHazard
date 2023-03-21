@@ -1,6 +1,7 @@
 using System.Collections;
 using System;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerItemBox : MonoBehaviour
@@ -41,7 +42,10 @@ public class PlayerItemBox : MonoBehaviour
 
     public void LoadSave(PlayerBoxItemSave save)
     {
-        Array.Copy( save.items , items, save.items.Length);
+        for(int i=0; i< save.itemsPath.Length; i++)
+        {
+            items[i] = AssetDatabase.LoadAssetAtPath<ItemInformation>(save.itemsPath[i]);
+        }
         Array.Copy( save.itemsamount , itemsamount, save.itemsamount.Length);
 
         isBoxfull = save.isBoxfull;

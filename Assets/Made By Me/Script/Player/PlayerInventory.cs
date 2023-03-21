@@ -2,6 +2,7 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class PlayerInventory : MonoBehaviour
 {
@@ -55,7 +56,10 @@ public class PlayerInventory : MonoBehaviour
 
     public void LoadSave(PlayerInventorySave save)
     {
-        Array.Copy( save.items , items, save.items.Length);
+        for(int i=0; i< save.itemsPath.Length; i++)
+        {
+            items[i] = AssetDatabase.LoadAssetAtPath<ItemInformation>(save.itemsPath[i]);
+        }
         Array.Copy( save.itemsamount , itemsamount, save.itemsamount.Length);
         Array.Copy( save.isEquipped , isEquipped, save.isEquipped.Length);
 
