@@ -41,6 +41,8 @@ public class PauseRootUI : MonoBehaviour
         GameManager.instance.SetPauseGame(true);
         CurrentWindowLayer = 0;
 
+        GameManagerUI.instance.Visualize_InGameUI(false);
+
         windowLayer_Change_Event += windowLayer_Check;
 
         windowLayer_Change_Event.Invoke();
@@ -51,6 +53,8 @@ public class PauseRootUI : MonoBehaviour
         ui.MouseCursor(false);
         GameManager.instance.SetPauseGame(false);
         CurrentWindowLayer = 0;
+
+        GameManagerUI.instance.Visualize_InGameUI(true);
 
         windowLayer_Change_Event -= windowLayer_Check;
     }

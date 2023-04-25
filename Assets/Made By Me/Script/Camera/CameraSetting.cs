@@ -11,9 +11,7 @@ public class CameraSetting : MonoBehaviour
     Vector3 maxLimit;
     Vector3 minLimit;
 
-    public int cameraHeight = -10;
-
-    float playerWidth = 2.3f;
+    float playerWidth = 2.5f;
 
     float cameraVerticalHalf;
     float cameraHorizontalHalf;
@@ -22,19 +20,27 @@ public class CameraSetting : MonoBehaviour
         pm = FindObjectOfType<PlayerHealth>().gameObject;
 
         ProCamera2D.Instance.AddCameraTarget(pm.transform);
+        
     }
 
     void Start() {
+        Debug.Log(tilemap.localBounds.max);
+        Debug.Log(tilemap.localBounds.min);
+
+        Debug.Log(Camera.main.orthographicSize);
+
         maxLimit = new Vector3(tilemap.localBounds.max.x-playerWidth, tilemap.localBounds.max.y-playerWidth, tilemap.localBounds.max.z) ;
         minLimit = new Vector3(tilemap.localBounds.min.x + playerWidth , tilemap.localBounds.min.y + playerWidth , tilemap.localBounds.max.z) ;
-        transform.position = new Vector3(transform.position.x, transform.position.y, cameraHeight );
-
-        cameraVerticalHalf = Camera.main.orthographicSize;
-        cameraHorizontalHalf = Camera.main.aspect * cameraVerticalHalf;
+        
+        maxLimit = tilemap.localBounds.max;
+        minLimit = tilemap.localBounds.min;
 
     }
 
     private void FixedUpdate() {
+
+        cameraVerticalHalf = Camera.main.orthographicSize;
+        cameraHorizontalHalf = Camera.main.aspect * cameraVerticalHalf;
 
         if(transform.position.x > maxLimit.x-cameraHorizontalHalf)
         {

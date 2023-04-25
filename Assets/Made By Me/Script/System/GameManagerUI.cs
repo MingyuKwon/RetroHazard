@@ -95,10 +95,14 @@ public class GameManagerUI : MonoBehaviour
         isInteractiveUIActive = interactiveUI.gameObject.activeInHierarchy;
     }
 
+    public void Visualize_InGameUI(bool flag)
+    {
+        inGameUI.gameObject.SetActive(flag);
+    }
+
     private void Visualize_PauseUI(bool flag)
     {
         PauseUI.gameObject.SetActive(flag);
-        inGameUI.gameObject.SetActive(!flag);
     }
 
     public void Visualize_PauseMainUI(bool flag)

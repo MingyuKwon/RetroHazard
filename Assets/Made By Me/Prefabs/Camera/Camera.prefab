@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 4729411675851341857}
   - component: {fileID: 4729411675851341856}
   - component: {fileID: 4729411675851341862}
-  - component: {fileID: 4729411676623602109}
+  - component: {fileID: 9138542111626444801}
+  - component: {fileID: 7909595742468675053}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -61,8 +62,8 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 8.5
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -98,9 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c80caeb124561a541946009a6ab255ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraHeight: -11
-  playerWidth: 1.5
---- !u!114 &4729411676623602109
+--- !u!114 &9138542111626444801
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -113,13 +112,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CameraTargets: []
-  CenterTargetOnStart: 1
+  CenterTargetOnStart: 0
   Axis: 0
   UpdateType: 1
   FollowHorizontal: 1
-  HorizontalFollowSmoothness: 0.2
+  HorizontalFollowSmoothness: 0
   FollowVertical: 1
-  VerticalFollowSmoothness: 0.2
+  VerticalFollowSmoothness: 0
   OffsetX: 0
   OffsetY: 0
   IsRelativeOffset: 1
@@ -131,3 +130,26 @@ MonoBehaviour:
   IsCameraPositionTopBounded: 0
   IsCameraPositionBottomBounded: 0
   GameCamera: {fileID: 4729411675851341857}
+--- !u!114 &7909595742468675053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4729411675851341858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37203e96e63794cd38c73c6c90eae460, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pc2D: {fileID: 9138542111626444801}
+  _serializedAxis: 0
+  UseTargetsPosition: 1
+  LimitTopCameraDistance: 1
+  MaxTopTargetDistance: 0.8
+  LimitBottomCameraDistance: 1
+  MaxBottomTargetDistance: 0.8
+  LimitLeftCameraDistance: 1
+  MaxLeftTargetDistance: 0.8
+  LimitRightCameraDistance: 1
+  MaxRightTargetDistance: 0.8
