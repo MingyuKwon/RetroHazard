@@ -432,16 +432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bda484821f80d2843824ef263f6cc910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 4
-  canMove: 1
-  InputOk: 0
-  UpInputBlock: 0
-  DownInputBlock: 0
-  RightInputBlock: 0
-  LeftInputBlock: 0
-  SpeedScholar: 0
-  HorizontalMoveSpeed: 0
-  VerticalMoveSpeed: 0
+  moveSpeed: 5
 --- !u!50 &6387553226888266267
 Rigidbody2D:
   serializedVersion: 4
@@ -476,12 +467,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  LastXInput: 0
-  LastYInput: -1
-  XInput: 0
-  YInput: 0
-  BeforePauseXInput: 0
-  BeforePauseYInput: 0
 --- !u!212 &3488315143066334263
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -40,15 +40,15 @@ public class EnemyStatus : MonoBehaviour
     }
 
     private void Start() {
-        MaxHP = EnemyStats[GameManager.instance.DEFCON].MaxHP;
-        CurrentHP = EnemyStats[GameManager.instance.DEFCON].CurrentHP;
-        Speed = EnemyStats[GameManager.instance.DEFCON].Speed;
+        MaxHP = EnemyStats[GameManager.DEFCON].MaxHP;
+        CurrentHP = EnemyStats[GameManager.DEFCON].CurrentHP;
+        Speed = EnemyStats[GameManager.DEFCON].Speed;
 
-        Attack = EnemyStats[GameManager.instance.DEFCON].Attack;
-        ArmorDefence = EnemyStats[GameManager.instance.DEFCON].ArmorDefence;
+        Attack = EnemyStats[GameManager.DEFCON].Attack;
+        ArmorDefence = EnemyStats[GameManager.DEFCON].ArmorDefence;
 
-        bodyDamageRatio = EnemyStats[GameManager.instance.DEFCON].bodyDamageRatio;
-        AttackDamageRatio = EnemyStats[GameManager.instance.DEFCON].AttackDamageRatio;
+        bodyDamageRatio = EnemyStats[GameManager.DEFCON].bodyDamageRatio;
+        AttackDamageRatio = EnemyStats[GameManager.DEFCON].AttackDamageRatio;
     }
 
     public void HealthChange(float damage)

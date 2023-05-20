@@ -200,7 +200,7 @@ public class PlayerStatus : MonoBehaviour
             SheildMaganize[Sheild] -= damage;
         }
         
-        GameManager.instance.Sheild_Durability_Reducing = false;
+        GameManager.Sheild_Durability_Reducing = false;
         SheildDurabilityChangeEvent?.Invoke(SheildMaganize[Sheild], Sheild);
         if(SheildMaganize[Sheild] <=0 )
         {

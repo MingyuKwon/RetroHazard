@@ -26,33 +26,33 @@ public class GameManager : MonoBehaviour, IFGameManager
 
     }
 
-    public static GameManager instance = null;
+    [Header("Flag field")]
+    static public bool isPlayerNearNPC = false;
+    static public bool isPlayerParry = false;
+    static public bool isPlayerSheilding = false;
+    static public bool Sheild_Durability_Reducing = false;
+    static public bool isPlayerPaused = false; // Every player script refer to this value 
+    static public bool isGamePaused = false; // Every player script refer to this value 
+    static public bool ObtainKeyItem = false;
 
+    public static GameManager instance = null;
     public static EventManager eventInstance = null;
+
+    [Header("Difficulty")]
+    static public int DEFCON = 0;
+
+    [Header("Slow Motion")]
+    static public bool isSlowMotion = false;
+
+    static public float defalutSlowScale = 0.3f;
+    static public float defaultSlowMotionTime = 0.8f;
+
+    static public float slowMotionTimer = 0f;
+    static public float slowMotionTime = 0.8f;
 
     PlayerMove playerMove;
     PlayerAnimation playerAnimation;
     private Player player;
-
-    [Header("Difficulty")]
-    public int DEFCON = 0;
-
-    [Header("Slow Motion")]
-    public bool isSlowMotion = false;
-    public const float defalutSlowScale = 0.3f;
-    public float slowMotionTimer = 0f;
-    public const float defaultSlowMotionTime = 0.8f;
-    public float slowMotionTime = 0.8f;
-
-    [Header("Flag field")]
-    public bool isPlayerNearNPC = false;
-    public bool isPlayerParry = false;
-    public bool isPlayerSheilding = false;
-    public bool Sheild_Durability_Reducing = false;
-    public bool isPlayerPaused = false; // Every player script refer to this value 
-    public bool isGamePaused = false; // Every player script refer to this value 
-
-    public bool ObtainKeyItem = false;
 
     void Awake() {
         if(instance == null)
@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviour, IFGameManager
                 Time.timeScale = 1f;
                 Time.fixedDeltaTime = Time.timeScale * 0.02f;
                 isSlowMotion = false;
-                GameManager.instance.isPlayerParry = false;
+                isPlayerParry = false;
             }
         }else
         {
@@ -121,7 +121,7 @@ public class GameManager : MonoBehaviour, IFGameManager
     // dont move position while doing another action
     public void SetPlayerMove(bool flag)
     {
-        playerMove.canMove = flag;
+        playerMove.SetPlayerMove(flag);
     }
 
 
@@ -148,15 +148,15 @@ public class GameManager : MonoBehaviour, IFGameManager
     {
         Time.timeScale = defalutSlowScale;
         Time.fixedDeltaTime = Time.timeScale * 0.02f;
-        this.slowMotionTime = defaultSlowMotionTime;
+        slowMotionTime = defaultSlowMotionTime;
         isSlowMotion = true;
     }
 
-    public void SlowMotion(float slowMotionTime)
+    public void SlowMotion(float _slowMotionTime)
     {
         Time.timeScale = defalutSlowScale;
         Time.fixedDeltaTime = Time.timeScale * 0.02f;
-        this.slowMotionTime = slowMotionTime;
+        slowMotionTime = _slowMotionTime;
         isSlowMotion = true;
     }
     //SlowMotion

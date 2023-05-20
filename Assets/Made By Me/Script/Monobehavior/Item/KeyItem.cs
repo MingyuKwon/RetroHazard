@@ -30,7 +30,7 @@ public class KeyItem : Item
 
     IEnumerator isDialogEnd()
     {
-        while(GameManager.instance.ObtainKeyItem)
+        while(GameManager.ObtainKeyItem)
         {
             yield return new WaitForEndOfFrame();
         }   

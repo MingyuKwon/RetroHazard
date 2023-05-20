@@ -35,12 +35,12 @@ public class PlayerShield : MonoBehaviour
                 {
                     playerAnimation.vfxAnimation.SetAnimationFlag("Trigger", "Parry");
                     status.parrySuccess = true;
-                    GameManager.instance.isPlayerParry = true;
+                    GameManager.isPlayerParry = true;
                     GameManager.instance.SlowMotion();
                 }else
                 {
                     animator.SetTrigger("Block");
-                    if(!GameManager.instance.Sheild_Durability_Reducing)
+                    if(!GameManager.Sheild_Durability_Reducing)
                     {
                         Sheild_Durability_Reduce_Start_Event.Invoke();
                     }
@@ -50,7 +50,7 @@ public class PlayerShield : MonoBehaviour
             else if(contactCollider.gameObject.layer == LayerMask.NameToLayer("Enemy Body"))
             {
                 animator.SetTrigger("Block");
-                if(!GameManager.instance.Sheild_Durability_Reducing)
+                if(!GameManager.Sheild_Durability_Reducing)
                 {
                     Sheild_Durability_Reduce_Start_Event.Invoke();
                 }
@@ -89,7 +89,7 @@ public class PlayerShield : MonoBehaviour
 
     public void ParryStart()
     {
-        if(!GameManager.instance.Sheild_Durability_Reducing)
+        if(!GameManager.Sheild_Durability_Reducing)
         {
             Sheild_Durability_Reduce_Start_Event.Invoke();
         }

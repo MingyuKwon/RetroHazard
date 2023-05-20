@@ -16,7 +16,7 @@ public class PlayerInteractive : MonoBehaviour
         if(other.tag == "NPC" )
         {
             nearNPC = other.GetComponent<NPCDialogScript>();
-            GameManager.instance.isPlayerNearNPC = true;
+            GameManager.isPlayerNearNPC = true;
         }else if(other.tag == "Interact")
         {
             nearInteract = other.GetComponent<Interact>();
@@ -26,7 +26,7 @@ public class PlayerInteractive : MonoBehaviour
     void OnTriggerExit2D(Collider2D other) {
         if(other.tag == "NPC" )
         {
-            GameManager.instance.isPlayerNearNPC = false;
+            GameManager.isPlayerNearNPC = false;
         }else if(other.tag == "Interact")
         {
             nearInteract = null;
@@ -49,11 +49,11 @@ public class PlayerInteractive : MonoBehaviour
 // Normal Input event
     private void InteractivePressed(InputActionEventData data)
     {
-        if(GameManager.instance.isPlayerNearNPC && !GameManager.instance.isPlayerSheilding)
+        if(GameManager.isPlayerNearNPC && !GameManager.isPlayerSheilding)
         {
             GameManager.instance.ResetPlayerAnimationState();
             nearNPC.showDialog();
-        }else if(nearInteract != null && !GameManager.instance.isPlayerSheilding)
+        }else if(nearInteract != null && !GameManager.isPlayerSheilding)
         {
             if(nearInteract.isItem)
             {

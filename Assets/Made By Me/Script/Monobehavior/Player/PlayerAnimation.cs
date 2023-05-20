@@ -83,9 +83,9 @@ public class PlayerAnimation : MonoBehaviour
 
     void Update()
     {
-        GameManager.instance.isPlayerSheilding = animationLogic.isSheilding;
+        GameManager.isPlayerSheilding = animationLogic.isSheilding;
         animationLogic.isWalkingPress = player.GetButton("Move Up") || player.GetButton("Move Down") || player.GetButton("Move Right") || player.GetButton("Move Left");
-        if(GameManager.instance.isPlayerPaused) return;
+        if(GameManager.isPlayerPaused) return;
         
         animationLogic.SetWalkAnimation();
         SetAttackAnimation();

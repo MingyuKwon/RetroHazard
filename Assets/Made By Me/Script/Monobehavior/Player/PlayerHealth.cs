@@ -103,7 +103,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void StunStart()
     {
-        if(GameManager.instance.Sheild_Durability_Reducing)
+        if(GameManager.Sheild_Durability_Reducing)
         {
             status.SheildDurabilityChange(1);
         }
