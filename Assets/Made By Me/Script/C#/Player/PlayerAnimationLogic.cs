@@ -1,4 +1,5 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
@@ -64,13 +65,60 @@ public class PlayerAnimationLogic
         gameManager.SetPlayerMove(true);
     }
 
-    public void ResetPlayerAnimationState()
+    public void ResetPlayerAnimationState() // called by animation
     {
         isAttacking = false;
         isParrying = false;
         isSheilding = false;
         animator.ResetTrigger("Block");
         animator.ResetTrigger("Parry");
+    }
+
+    public void ResetPlayerAnimationState_CalledByGameManager() // called by gamemanger (when talk with someone, you should stop and not walking on the spot)
+    {
+        ResetPlayerAnimationState();
+        XInput = 0f;
+        YInput = 0f;
+    }
+
+    IEnumerator TwoFrameSkip()
+    {
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+        if(isWalkingPress)
+        {
+            XInput = LastXInput;
+            animator.SetFloat("XInput", XInput);
+            YInput = LastYInput;
+            animator.SetFloat("YInput", YInput);
+        }else
+        {
+            LastXInput = BeforePauseXInput;
+            LastYInput = BeforePauseYInput;
+            animator.SetFloat("LastXInput", BeforePauseXInput);
+            animator.SetFloat("LastYInput", BeforePauseYInput);
+        }
+    }
+
+    public void SlashStart()
+    {
+        
+    }
+
+    public void SlashEnd()
+    {
+        isAttacking = false;
+        gameManager.SetPlayerMove(true);
+    }
+
+    public void StabStart()
+    {
+    }
+
+    public void StabEnd() 
+    {
+        isAttacking = false;
+        gameManager.SetPlayerMove(true);
     }
 
     ////////////////logical functions///////////////////////////////////

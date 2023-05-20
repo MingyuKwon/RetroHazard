@@ -5,6 +5,8 @@ using Rewired;
 using Sirenix.OdinInspector;
 using DG.Tweening;
 
+// ================ code cleaned by making PlayerAnimationLogic ==============================
+
 public class PlayerAnimation : MonoBehaviour
 {
     public Animator animator; // Player's animator
@@ -113,10 +115,7 @@ public class PlayerAnimation : MonoBehaviour
 
     public void ResetPlayerAnimationState_CalledByGameManager()
     {
-        ResetPlayerAnimationState();
-
-        animationLogic.XInput = 0f;
-        animationLogic.YInput = 0f;
+        animationLogic.ResetPlayerAnimationState_CalledByGameManager();
     }
 
 
@@ -180,23 +179,22 @@ public class PlayerAnimation : MonoBehaviour
     //Animation event
     public void SlashStart()
     {
-        
+        animationLogic.SlashStart();
     }
 
     public void SlashEnd()
     {
-        animationLogic.isAttacking = false;
-        GameManager.instance.SetPlayerMove(true);
+        animationLogic.SlashEnd();
     }
 
     public void StabStart()
     {
+        animationLogic.StabStart();
     }
 
     public void StabEnd() 
     {
-        animationLogic.isAttacking = false;
-        GameManager.instance.SetPlayerMove(true);
+        animationLogic.StabEnd();
     }
 
     //Animation event
