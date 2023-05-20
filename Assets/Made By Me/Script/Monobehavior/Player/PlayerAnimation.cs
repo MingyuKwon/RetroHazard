@@ -9,22 +9,58 @@ using DG.Tweening;
 
 public class PlayerAnimation : MonoBehaviour
 {
+    public class VFXAnimation
+    {
+        public Animator vfxAnimator;
+
+        public VFXAnimation(Animator _vfxAnimator)
+        {
+            vfxAnimator = _vfxAnimator;
+        }
+
+    public void SetAnimationFlag(string type ,string flag, float value = 0)
+    {
+        if(type == "Trigger")
+        {
+            vfxAnimator.SetTrigger(flag);
+        }else if(type == "Float")
+        {
+            vfxAnimator.SetFloat(flag, value);
+        }else if(type == "Int")
+        {
+            vfxAnimator.SetInteger(flag, (int)value);
+        }else if(type == "Bool")
+        {
+            if(value == 0)
+            {
+                vfxAnimator.SetBool(flag, false);
+            }else
+            {
+                vfxAnimator.SetBool(flag, true);
+            }
+        }
+    }
+    }
+
+
     public Animator animator; // Player's animator
-    private Animator vfxAnimator; // Player's vFx's animator
     private Rigidbody2D rb; // Player's rigidBody
     private PlayerStatus status; // Player's Status Script
 
     private Player player;
 
+    public VFXAnimation vfxAnimation;
     private PlayerAnimationLogic animationLogic;
 
+    
     private void Awake() {
         animator = GetComponent<Animator>();
-        vfxAnimator = GetComponentInChildren<VFX>().gameObject.GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         status = GetComponentInChildren<PlayerStatus>();
 
         player = ReInput.players.GetPlayer(0);
+
+        vfxAnimation = new VFXAnimation(GetComponentInChildren<VFX>().gameObject.GetComponent<Animator>());
 
         animationLogic = new PlayerAnimationLogic(player, animator, GameManager.instance);
 

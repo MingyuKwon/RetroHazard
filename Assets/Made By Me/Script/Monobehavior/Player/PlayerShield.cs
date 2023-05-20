@@ -15,13 +15,11 @@ public class PlayerShield : MonoBehaviour
     private Collider2D contactCollider;
     PlayerStatus status;
     PlayerAnimation playerAnimation;
-    private Animator vfxAnimator;
     private Animator animator;
 
     private void Awake() {
         animator = GetComponent<Animator>();
         playerAnimation = GetComponent<PlayerAnimation>();
-        vfxAnimator = GetComponentInChildren<VFX>().gameObject.GetComponent<Animator>();
         status = GetComponentInChildren<PlayerStatus>();
         playerBodyCollider = GetComponentInChildren<PlayerCollider>().gameObject.GetComponent<CapsuleCollider2D>();
     }
@@ -35,7 +33,7 @@ public class PlayerShield : MonoBehaviour
             {
                 if(contactCollider.tag == "Attack" && status.parryFrame)
                 {
-                    vfxAnimator.SetTrigger("Parry");
+                    playerAnimation.vfxAnimation.SetAnimationFlag("Trigger", "Parry");
                     status.parrySuccess = true;
                     GameManager.instance.isPlayerParry = true;
                     GameManager.instance.SlowMotion();

@@ -11,8 +11,8 @@ public class PlayerHealth : MonoBehaviour
     Rigidbody2D rb;
     PlayerStatus status;
     private CapsuleCollider2D playerBodyCollider;
-    private Animator animator;
-    private Animator vfxAnimator;
+    private PlayerAnimation playerAnimation;
+
 
     private Collider2D contactCollider;
     private GameObject contactObject;
@@ -36,8 +36,7 @@ public class PlayerHealth : MonoBehaviour
         }
 
         status = GetComponentInChildren<PlayerStatus>();
-        animator = GetComponent<Animator>();
-        vfxAnimator = GetComponentInChildren<VFX>().gameObject.GetComponent<Animator>();
+        playerAnimation = GetComponent<PlayerAnimation>();
         rb = GetComponent<Rigidbody2D>();
         playerBodyCollider = GetComponentInChildren<PlayerCollider>().gameObject.GetComponent<CapsuleCollider2D>();
     }
@@ -82,7 +81,7 @@ public class PlayerHealth : MonoBehaviour
                 DamageReDuce();
                 Debug.Log("player had damage : " + damage);
                 Reflect(damage);
-                animator.SetTrigger("Stun");
+                playerAnimation.SetAnimationFlag("Trigger","Stun");
                 status.HealthChange(damage);
                 damage = 0;
             }
@@ -113,7 +112,8 @@ public class PlayerHealth : MonoBehaviour
         GameManager.instance.ResetPlayerAnimationState();
         status.blockSuccessEnemy = null;
         playerBodyCollider.enabled = false;
-        vfxAnimator.SetTrigger("Stun");
+        playerAnimation.vfxAnimation.SetAnimationFlag("Trigger","Stun");
+
     }
 
     public void StunEnd()
