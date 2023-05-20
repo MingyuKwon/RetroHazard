@@ -100,10 +100,10 @@ public class PlayerShield : MonoBehaviour
 
     public void ParryEnd()
     {
-        playerAnimation.isParrying = false;
+        playerAnimation.SetAnimationFlag("Trigger", "Parry");
         
         status.blockSuccessEnemy = null;
-        GameManager.instance.SetPlayerFree();
+        GameManager.instance.ResetPlayerAnimationState();
         GameManager.instance.SetPlayerMove(true);
     }
 

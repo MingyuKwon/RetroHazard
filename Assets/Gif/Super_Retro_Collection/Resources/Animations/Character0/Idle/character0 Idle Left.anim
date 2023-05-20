@@ -192,7 +192,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: SetPlayerFree
+    functionName: ResetPlayerAnimationState
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

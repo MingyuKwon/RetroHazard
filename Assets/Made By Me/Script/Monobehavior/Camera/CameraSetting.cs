@@ -24,10 +24,6 @@ public class CameraSetting : MonoBehaviour
     }
 
     void Start() {
-        Debug.Log(tilemap.localBounds.max);
-        Debug.Log(tilemap.localBounds.min);
-
-        Debug.Log(Camera.main.orthographicSize);
 
         maxLimit = new Vector3(tilemap.localBounds.max.x-playerWidth, tilemap.localBounds.max.y-playerWidth, tilemap.localBounds.max.z) ;
         minLimit = new Vector3(tilemap.localBounds.min.x + playerWidth , tilemap.localBounds.min.y + playerWidth , tilemap.localBounds.max.z) ;

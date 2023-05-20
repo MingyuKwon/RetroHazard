@@ -7,7 +7,7 @@ using Rewired;
 using Sirenix.OdinInspector;
 using DG.Tweening;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour, IFGameManager
 {
     public class EventManager
     {
@@ -124,11 +124,6 @@ public class GameManager : MonoBehaviour
         playerMove.canMove = flag;
     }
 
-    public void SetPlayerAnimationIdle()
-    {
-        playerAnimation.SetPlayerAnimationIdle();
-
-    }
 
     public void SetPlayerAnimationObtainKeyItem(bool flag)
     {
@@ -137,45 +132,15 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void SetPlayerFree()
+    public void ResetPlayerAnimationState()
     {
-        playerAnimation.SetPlayerFree();
+        playerAnimation.ResetPlayerAnimationState_CalledByGameManager();
     }
 
     public void SetPausePlayer(bool flag)
     {
         isPlayerPaused = flag;
-        if(flag)
-        {
-            playerAnimation.BeforePauseXInput = playerAnimation.LastXInput;
-            playerAnimation.BeforePauseYInput = playerAnimation.LastYInput;
-            playerAnimation.XInput = 0;
-            playerAnimation.animator.SetFloat("XInput", 0);
-            playerAnimation.YInput = 0;
-            playerAnimation.animator.SetFloat("YInput", 0);
-        }else
-        {
-            StartCoroutine(TwoFrameSkip());
-        }
-    }
-
-    IEnumerator TwoFrameSkip()
-    {
-        yield return new WaitForEndOfFrame();
-        yield return new WaitForEndOfFrame();
-        if(playerAnimation.isWalkingPress)
-        {
-            playerAnimation.XInput = playerAnimation.LastXInput;
-            playerAnimation.animator.SetFloat("XInput", playerAnimation.XInput);
-            playerAnimation.YInput = playerAnimation.LastYInput;
-            playerAnimation.animator.SetFloat("YInput", playerAnimation.YInput);
-        }else
-        {
-            playerAnimation.LastXInput = playerAnimation.BeforePauseXInput;
-            playerAnimation.LastYInput = playerAnimation.BeforePauseYInput;
-            playerAnimation.animator.SetFloat("LastXInput", playerAnimation.BeforePauseXInput);
-            playerAnimation.animator.SetFloat("LastYInput", playerAnimation.BeforePauseYInput);
-        }
+        playerAnimation.SetPausePlayer(flag);
     }
 
     //SlowMotion

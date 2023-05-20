@@ -432,7 +432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bda484821f80d2843824ef263f6cc910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 4
   canMove: 1
   InputOk: 0
   UpInputBlock: 0
@@ -476,11 +476,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  sheildCrash: 0
-  isAttacking: 0
-  isSheilding: 0
-  isParrying: 0
-  isWalkingPress: 0
   LastXInput: 0
   LastYInput: -1
   XInput: 0

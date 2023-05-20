@@ -13,7 +13,7 @@ public class Interact : MonoBehaviour
     public bool isInventoryBox;
     public bool isSaveSpot;
 
-    public bool triggerCheckActive = true;
+    public bool triggerCheckActive = true; // for interactive check mark
 
     Item item = null;
 

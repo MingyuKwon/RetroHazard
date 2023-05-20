@@ -51,7 +51,7 @@ public class PlayerInteractive : MonoBehaviour
     {
         if(GameManager.instance.isPlayerNearNPC && !GameManager.instance.isPlayerSheilding)
         {
-            GameManager.instance.SetPlayerAnimationIdle();
+            GameManager.instance.ResetPlayerAnimationState();
             nearNPC.showDialog();
         }else if(nearInteract != null && !GameManager.instance.isPlayerSheilding)
         {

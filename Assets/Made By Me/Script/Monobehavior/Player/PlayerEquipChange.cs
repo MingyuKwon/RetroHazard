@@ -53,7 +53,7 @@ public class PlayerEquipChange : MonoBehaviour
     public void EnergyReloadEnd()
     {
         inventory.EnergyReload();
-        GameManager.instance.SetPlayerFree();
+        GameManager.instance.ResetPlayerAnimationState();
         GameManager.instance.SetPlayerMove(true);
         GameManager.instance.SetPausePlayer(false);
     }
@@ -61,7 +61,7 @@ public class PlayerEquipChange : MonoBehaviour
     public void SheildReloadEnd()
     {
         inventory.SheildReLoad();
-        GameManager.instance.SetPlayerFree();
+        GameManager.instance.ResetPlayerAnimationState();
         GameManager.instance.SetPlayerMove(true);
         GameManager.instance.SetPausePlayer(false);
     }
