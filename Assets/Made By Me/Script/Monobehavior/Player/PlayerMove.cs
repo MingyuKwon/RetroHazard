@@ -34,4 +34,17 @@ public class PlayerMove : MonoBehaviour
     {
         playerMoveLogic.canMove = flag;
     }
+
+    public void WhenPauseReleased()
+    {
+        StartCoroutine(checkWalkMove());
+    }
+
+    IEnumerator checkWalkMove()
+    {
+        yield return new WaitForEndOfFrame(); // wait for input system to be changed
+        yield return new WaitForEndOfFrame(); // wait for update will change value
+
+        playerMoveLogic.WhenPauseReleased();
+    }
 }

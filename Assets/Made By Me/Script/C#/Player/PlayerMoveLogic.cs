@@ -18,6 +18,9 @@ public class PlayerMoveLogic
     public bool RightInputBlock;
     public bool LeftInputBlock;
 
+    public bool isWalkingPress;
+
+
     public float HorizontalMoveSpeed;
     public float VerticalMoveSpeed;
 
@@ -38,7 +41,8 @@ public class PlayerMoveLogic
     ////////////////logical functions///////////////////////////////////
     public void FixedUpdate()
     {
-        
+        isWalkingPress = player.GetButton("Move Up") || player.GetButton("Move Down") || player.GetButton("Move Right") || player.GetButton("Move Left");
+
         if(canMove && !(GameManager.isPlayerPaused))
         {
             InputOk = true;
@@ -66,10 +70,57 @@ public class PlayerMoveLogic
             float VerticalMoveSpeedFinal =  VerticalMoveSpeed * moveSpeed * Time.fixedDeltaTime * moveForceSchloar;
             float HorizontalMoveSpeedFinal = HorizontalMoveSpeed * moveSpeed * Time.fixedDeltaTime * moveForceSchloar;
 
+            if( !(VerticalMoveSpeedFinal == 0 && HorizontalMoveSpeedFinal == 0))
+            {
+                
+                // Debug.Log("Move Up : " + player.GetButton("Move Up"));
+                // Debug.Log("Move Left : " + player.GetButton("Move Left"));
+                // Debug.Log("Move Down : " + player.GetButton("Move Down"));
+            }
+
             transform.position = new Vector2( transform.position.x + HorizontalMoveSpeedFinal , transform.position.y + VerticalMoveSpeedFinal);
         }else
         {
             InputOk = false;
+        }
+    }
+
+    public void WhenPauseReleased()
+    {
+
+        if(!isWalkingPress)
+        {
+            UpInputBlock = false;
+            DownInputBlock = false;
+            RightInputBlock = false;
+            LeftInputBlock = false;
+            
+        }else
+        {
+            if(player.GetButton("Move Up"))
+            {
+                UpInputBlock = false;
+                DownInputBlock = true;
+            }
+
+            if(player.GetButton("Move Down"))
+            {
+                DownInputBlock = false;
+                UpInputBlock = true;
+            }
+
+            if(player.GetButton("Move Right"))
+            {
+                RightInputBlock = false;
+                LeftInputBlock = true;
+            }
+
+            if(player.GetButton("Move Left"))
+            {
+                LeftInputBlock = false;
+                RightInputBlock = true;
+            }
+
         }
     }
 

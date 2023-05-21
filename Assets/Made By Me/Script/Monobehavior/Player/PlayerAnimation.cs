@@ -7,6 +7,9 @@ using DG.Tweening;
 
 // ================ code cleaned by making PlayerAnimationLogic ==============================
 
+// 원래는 여기에서만 inpnut을 받을 생각이었기 때문에 animation과 상관 없는 flag들이 많다.
+// 사실상 player에서 input을 받는 기능 + animation 기능 이렇게 설계가 되어있다 (잘못된 방법... 나중에 개선하자)
+
 public class PlayerAnimation : MonoBehaviour
 {
     public class VFXAnimation
@@ -93,6 +96,7 @@ public class PlayerAnimation : MonoBehaviour
         SetParryAnimation();
     }
 
+
     private void SetAttackAnimation()
     {
         if(status.EnergyMaganize[status.Energy] == 0) return;
@@ -143,6 +147,7 @@ public class PlayerAnimation : MonoBehaviour
         }
     }
 
+
     public void ResetPlayerAnimationState()
     {
         animationLogic.ResetPlayerAnimationState();
@@ -178,38 +183,17 @@ public class PlayerAnimation : MonoBehaviour
         }
     }
 
-    public void SetPausePlayer(bool flag)
+    public void WhenPauseReleased()
     {
-        if(flag)
-        {
-            animationLogic.BeforePauseXInput = animationLogic.LastXInput;
-            animationLogic.BeforePauseYInput = animationLogic.LastYInput;
-            animator.SetFloat("XInput", 0);
-            animationLogic.YInput = 0;
-            animator.SetFloat("YInput", 0);
-        }else
-        {
-            StartCoroutine(TwoFrameSkip());
-        }
+        StartCoroutine(checkWalkAnimation());
     }
 
-    IEnumerator TwoFrameSkip()
+    IEnumerator checkWalkAnimation()
     {
-        yield return new WaitForEndOfFrame();
-        yield return new WaitForEndOfFrame();
-        if(animationLogic.isWalkingPress)
-        {
-            animationLogic.XInput = animationLogic.LastXInput;
-            animator.SetFloat("XInput", animationLogic.XInput);
-            animationLogic.YInput = animationLogic.LastYInput;
-            animator.SetFloat("YInput", animationLogic.YInput);
-        }else
-        {
-            animationLogic.LastXInput = animationLogic.BeforePauseXInput;
-            animationLogic.LastYInput = animationLogic.BeforePauseYInput;
-            animator.SetFloat("LastXInput", animationLogic.BeforePauseXInput);
-            animator.SetFloat("LastYInput", animationLogic.BeforePauseYInput);
-        }
+        yield return new WaitForEndOfFrame(); // wait for input system to be changed
+        yield return new WaitForEndOfFrame(); // wait for update will change value
+
+        animationLogic.WhenPauseReleased();
     }
 
     //Animation event

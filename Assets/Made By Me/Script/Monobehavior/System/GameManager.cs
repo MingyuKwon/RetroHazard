@@ -140,7 +140,11 @@ public class GameManager : MonoBehaviour, IFGameManager
     public void SetPausePlayer(bool flag)
     {
         isPlayerPaused = flag;
-        playerAnimation.SetPausePlayer(flag);
+        if(flag)
+        {
+            playerAnimation.ResetPlayerAnimationState_CalledByGameManager();
+        }
+        
     }
 
     //SlowMotion
@@ -172,6 +176,8 @@ public class GameManager : MonoBehaviour, IFGameManager
         }
         else
         {
+            playerAnimation.WhenPauseReleased();
+            playerMove.WhenPauseReleased();
             Time.timeScale = 1f;
         }
         
@@ -186,13 +192,11 @@ public class GameManager : MonoBehaviour, IFGameManager
         {
             GameManagerUI.instance.isShowingESC = false;
             GameManagerUI.instance.Visualize_PauseMainUI(false);
-            SetPauseGame(false);
         }
         else if(Time.timeScale == 1f)
         {
             GameManagerUI.instance.isShowingESC = true;
             GameManagerUI.instance.Visualize_PauseMainUI(true);
-            SetPauseGame(true);
         }
         
     }

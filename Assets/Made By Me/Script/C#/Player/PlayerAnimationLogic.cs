@@ -17,7 +17,6 @@ public class PlayerAnimationLogic
 
     public bool isWalkingPress;
 
-
     public float LastXInput = 0f;
     public float LastYInput = -1f;
 
@@ -65,6 +64,54 @@ public class PlayerAnimationLogic
         gameManager.SetPlayerMove(true);
     }
 
+    public void WhenPauseReleased()
+    {
+        if(!isWalkingPress)
+        {
+            XInput = 0;
+            YInput = 0;
+        }else
+        {
+            if(player.GetButton("Move Up"))
+            {
+                if(XInput == 0 && YInput == -1)
+                {
+                    XInput = 0;
+                    YInput = 1;
+                }
+            }
+
+            if(player.GetButton("Move Down"))
+            {
+                if(XInput == 0 && YInput == 1)
+                {
+                    XInput = 0;
+                    YInput = -1;
+                }
+            }
+
+            if(player.GetButton("Move Right"))
+            {
+                if(XInput == -1 && YInput == 0)
+                {
+                    XInput = 1;
+                    YInput = 0;
+                }
+            }
+
+            if(player.GetButton("Move Left"))
+            {
+                if(XInput == 1 && YInput == 0)
+                {
+                    XInput = -1;
+                    YInput = 0;
+                }
+            }
+
+        }
+    }
+
+
     public void ResetPlayerAnimationState() // called by animation
     {
         isAttacking = false;
@@ -77,27 +124,8 @@ public class PlayerAnimationLogic
     public void ResetPlayerAnimationState_CalledByGameManager() // called by gamemanger (when talk with someone, you should stop and not walking on the spot)
     {
         ResetPlayerAnimationState();
-        XInput = 0f;
-        YInput = 0f;
-    }
-
-    IEnumerator TwoFrameSkip()
-    {
-        yield return new WaitForEndOfFrame();
-        yield return new WaitForEndOfFrame();
-        if(isWalkingPress)
-        {
-            XInput = LastXInput;
-            animator.SetFloat("XInput", XInput);
-            YInput = LastYInput;
-            animator.SetFloat("YInput", YInput);
-        }else
-        {
-            LastXInput = BeforePauseXInput;
-            LastYInput = BeforePauseYInput;
-            animator.SetFloat("LastXInput", BeforePauseXInput);
-            animator.SetFloat("LastYInput", BeforePauseYInput);
-        }
+        animator.SetFloat("XInput", 0);
+        animator.SetFloat("YInput", 0);
     }
 
     public void SlashStart()
