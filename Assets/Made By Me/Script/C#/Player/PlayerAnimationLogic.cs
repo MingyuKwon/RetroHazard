@@ -74,7 +74,7 @@ public class PlayerAnimationLogic
         {
             if(player.GetButton("Move Up"))
             {
-                if(XInput == 0 && YInput == -1)
+                if(!(XInput == 0 && YInput == 1))
                 {
                     XInput = 0;
                     YInput = 1;
@@ -83,7 +83,7 @@ public class PlayerAnimationLogic
 
             if(player.GetButton("Move Down"))
             {
-                if(XInput == 0 && YInput == 1)
+                if(!(XInput == 0 && YInput == -1))
                 {
                     XInput = 0;
                     YInput = -1;
@@ -92,7 +92,7 @@ public class PlayerAnimationLogic
 
             if(player.GetButton("Move Right"))
             {
-                if(XInput == -1 && YInput == 0)
+                if(!(XInput == 1 && YInput == 0))
                 {
                     XInput = 1;
                     YInput = 0;
@@ -101,7 +101,7 @@ public class PlayerAnimationLogic
 
             if(player.GetButton("Move Left"))
             {
-                if(XInput == 1 && YInput == 0)
+                if(!(XInput == -1 && YInput == 0))
                 {
                     XInput = -1;
                     YInput = 0;
