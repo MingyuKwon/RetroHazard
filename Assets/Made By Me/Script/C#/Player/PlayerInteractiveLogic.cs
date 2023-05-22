@@ -18,6 +18,7 @@ public class PlayerInteractiveLogic
 
     public void delegateInpuiFunctions()
     {
+        
         player.AddInputEventDelegate(InteractivePressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Interactive");
         player.AddInputEventDelegate(InteractiveReleased, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased, "Interactive");
     }
