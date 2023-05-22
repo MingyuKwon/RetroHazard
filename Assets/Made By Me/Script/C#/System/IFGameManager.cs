@@ -5,4 +5,7 @@ using UnityEngine;
 public interface IFGameManager
 {    
     void SetPlayerMove(bool flag);
+    void SetPausePlayer(bool flag);
+
+    void ResetPlayerAnimationState();
 }

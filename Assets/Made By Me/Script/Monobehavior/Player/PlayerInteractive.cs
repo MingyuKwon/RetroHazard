@@ -5,85 +5,31 @@ using Rewired;
 using Sirenix.OdinInspector;
 using DG.Tweening;
 
+// ================ code cleaned by making PlayerInteractiveLogic ==============================
+
 public class PlayerInteractive : MonoBehaviour
 {
     private Player player;
-    private NPCDialogScript nearNPC = null;
-    public Interact nearInteract = null;
+
+    private PlayerInteractiveLogic playerInteractiveLogic;
 
     void OnTriggerStay2D(Collider2D other) {
-
-        if(other.tag == "NPC" )
-        {
-            nearNPC = other.GetComponent<NPCDialogScript>();
-            GameManager.isPlayerNearNPC = true;
-        }else if(other.tag == "Interact")
-        {
-            nearInteract = other.GetComponent<Interact>();
-        }
+        playerInteractiveLogic.triggerStay2D(other);
     }
 
     void OnTriggerExit2D(Collider2D other) {
-        if(other.tag == "NPC" )
-        {
-            GameManager.isPlayerNearNPC = false;
-        }else if(other.tag == "Interact")
-        {
-            nearInteract = null;
-        }
+        playerInteractiveLogic.triggerExit2D(other);
     }
 
     private void Awake() {
         player = ReInput.players.GetPlayer(0);
+        playerInteractiveLogic = new PlayerInteractiveLogic(player);
 
-        player.AddInputEventDelegate(InteractivePressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Interactive");
-        player.AddInputEventDelegate(InteractiveReleased, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased, "Interactive");
-
+        playerInteractiveLogic.delegateInpuiFunctions();
     }
 
     private void OnDestroy() {
-        player.RemoveInputEventDelegate(InteractivePressed);
-        player.RemoveInputEventDelegate(InteractiveReleased);
+        playerInteractiveLogic.removeInpuiFunctions();
     }
-
-// Normal Input event
-    private void InteractivePressed(InputActionEventData data)
-    {
-        if(GameManager.isPlayerNearNPC && !GameManager.isPlayerSheilding)
-        {
-            GameManager.instance.ResetPlayerAnimationState();
-            nearNPC.showDialog();
-        }else if(nearInteract != null && !GameManager.isPlayerSheilding)
-        {
-            if(nearInteract.isItem)
-            {
-                nearInteract.ObtainItem();
-            }else
-            {   
-                if(nearInteract.isInventoryBox)
-                {
-                    GameManagerUI.instance.Visualize_BoxUI(true);
-                }else if(nearInteract.isSaveSpot)
-                {
-                    GameManagerUI.instance.Visualize_SaveUI(true, true);
-                }else
-                {
-                    GameManager.EventManager.InvokeInteractEvent();
-                    GameManagerUI.instance.Visualize_Tab_Interactive(true, nearInteract.dialog);
-                }
-                
-            }
-            
-        }
-    }
-    private void InteractiveReleased(InputActionEventData data)
-    {
-
-    }
-// Normal Input event
-
-    
-
-
 
 }

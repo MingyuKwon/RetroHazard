@@ -21,28 +21,33 @@ public class PlayerAnimation : MonoBehaviour
             vfxAnimator = _vfxAnimator;
         }
 
-    public void SetAnimationFlag(string type ,string flag, float value = 0)
-    {
-        if(type == "Trigger")
+        public void SetAnimationFlag(string type ,string flag, float value = 0)
         {
-            vfxAnimator.SetTrigger(flag);
-        }else if(type == "Float")
-        {
-            vfxAnimator.SetFloat(flag, value);
-        }else if(type == "Int")
-        {
-            vfxAnimator.SetInteger(flag, (int)value);
-        }else if(type == "Bool")
-        {
-            if(value == 0)
+            if(type == "Trigger")
             {
-                vfxAnimator.SetBool(flag, false);
-            }else
+                vfxAnimator.SetTrigger(flag);
+            }else if(type == "Float")
             {
-                vfxAnimator.SetBool(flag, true);
+                vfxAnimator.SetFloat(flag, value);
+            }else if(type == "Int")
+            {
+                vfxAnimator.SetInteger(flag, (int)value);
+            }else if(type == "Bool")
+            {
+                if(value == 0)
+                {
+                    vfxAnimator.SetBool(flag, false);
+                }else
+                {
+                    vfxAnimator.SetBool(flag, true);
+                }
             }
         }
-    }
+
+        public void StunAnimationStart()
+        {
+            vfxAnimator.SetTrigger("Stun");
+        }
     }
 
 
@@ -145,6 +150,11 @@ public class PlayerAnimation : MonoBehaviour
             animator.SetTrigger("Parry");
             animationLogic.isParrying = true;
         }
+    }
+
+    public void StunAnimationStart()
+    {
+        animationLogic.StunAnimationStart();
     }
 
 

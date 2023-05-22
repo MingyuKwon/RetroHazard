@@ -191,7 +191,7 @@ public class PlayerInventory : MonoBehaviour
 
     public void UsedPotionItem(int index, float damage)
     {
-        status.HealthChange(-damage);
+        status.HealthChangeDefaultMinus(-damage);
 
         DiscardItem(index);
         

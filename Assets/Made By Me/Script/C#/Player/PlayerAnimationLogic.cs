@@ -51,6 +51,11 @@ public class PlayerAnimationLogic
         animator.SetFloat("LastYInput", LastYInput);
     }
 
+    public void StunAnimationStart()
+    {
+        animator.SetTrigger("Stun");
+    }
+
     public void SetSheildCrash(bool ChangeSheild)
     {
         sheildCrash = true;

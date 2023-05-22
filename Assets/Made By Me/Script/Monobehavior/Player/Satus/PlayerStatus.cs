@@ -166,9 +166,12 @@ public class PlayerStatus : MonoBehaviour
         SheildDurabilityChange(0);
     }
 
-    public void HealthChange(float damage)
+    public void HealthChangeDefaultMinus(float damage)
     {
-        if(damage == 1)
+        if(damage == 0)
+            return;
+
+        if(damage == -1)
         {
             CurrentHP = MaxHP;
             UpdateIngameUI();

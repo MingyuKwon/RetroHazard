@@ -22,6 +22,7 @@ MonoBehaviour:
   KeyItemCode: 0
   NormalItemCode: 3
   combineItems: 
+  combinResultItems: []
   isSheild: 0
   isEnergy1: 0
   isEnergy2: 0
@@ -30,6 +31,6 @@ MonoBehaviour:
   isPotion: 1
   amount: 1
   expansionAmount: 0
-  healAmount: -1
+  healAmount: 1
   ItemDescription:
   - It will heal your HP to Max HP

@@ -57,8 +57,6 @@ public class PlayerShield : MonoBehaviour
                 status.blockSuccessEnemy = contactCollider.transform.parent.transform.parent.name;
             }
 
-            
-            
         }
         
     }

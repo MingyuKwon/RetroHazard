@@ -6,24 +6,21 @@ using Rewired;
 using Sirenix.OdinInspector;
 using DG.Tweening;
 
+// ================ code cleaned by making PlayerHealthLogic ==============================
+// 맣은 health 인데, 사실 상 충돌 및 스턴을 담당한다
+
+// Health가 player를 singleTon으로 만들고 있다
+// 오직 Health 에서만 rigidbody에 접근할 수 있다
 public class PlayerHealth : MonoBehaviour
 {
     Rigidbody2D rb;
     PlayerStatus status;
     private CapsuleCollider2D playerBodyCollider;
     private PlayerAnimation playerAnimation;
+    private PlayerHealthLogic playerHealthLogic;
 
-
-    private Collider2D contactCollider;
-    private GameObject contactObject;
-    private EnemyStatus contactEnemyStat;
-    private Vector2 ForceInput;
-
-    const float reflectForceScholar = 300f;
-    private float damage = 0f;
-    const float damageStandard = 10f;
-    
     public static PlayerHealth instance;
+
     private void Awake() {
 
         if(instance == null)
@@ -39,6 +36,8 @@ public class PlayerHealth : MonoBehaviour
         playerAnimation = GetComponent<PlayerAnimation>();
         rb = GetComponent<Rigidbody2D>();
         playerBodyCollider = GetComponentInChildren<PlayerCollider>().gameObject.GetComponent<CapsuleCollider2D>();
+
+        playerHealthLogic = new PlayerHealthLogic(rb, playerAnimation, playerBodyCollider);
     }
 
     private void OnEnable() {
@@ -55,71 +54,26 @@ public class PlayerHealth : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
-
-        contactCollider = other.GetContact(0).collider;
-
-        if(contactCollider.gameObject.layer == LayerMask.NameToLayer("Enemy Body") || contactCollider.gameObject.layer == LayerMask.NameToLayer("Enemy not Body"))
-        {
-            if(other.otherCollider.tag == "Player Body")
-            {
-                contactObject = contactCollider.transform.parent.transform.parent.gameObject;
-                contactEnemyStat = contactObject.GetComponentInChildren<EnemyStatus>();
-
-                if(status.blockSuccessEnemy == contactObject.name) return;
-
-
-                if(contactCollider.tag == "Enemy Body")
-                {
-                    damage = contactEnemyStat.Attack * contactEnemyStat.bodyDamageRatio;
-                }
-                else if(contactCollider.tag == "Attack")
-                {
-                    damage = contactEnemyStat.Attack * contactEnemyStat.AttackDamageRatio;
-                }
-
-                ForceInput = other.GetContact(0).normal;
-                DamageReDuce();
-                Debug.Log("player had damage : " + damage);
-                Reflect(damage);
-                playerAnimation.SetAnimationFlag("Trigger","Stun");
-                status.HealthChange(damage);
-                damage = 0;
-            }
-        }
+        float damage = playerHealthLogic.playerHealthCollisionEnter(other, status.blockSuccessEnemy);
+        status.HealthChangeDefaultMinus(damage);
     }
 
-    private void DamageReDuce()
-    {
-        damage = damage * ( (float)(100 - status.ArmorDefence) / 100 );
-    }
-
-    private void Reflect(float Damage)
-    {
-        Damage = Mathf.Log(Damage / damageStandard + 1);
-
-        rb.AddForce(ForceInput * reflectForceScholar * Damage);
-    }
-
-
+    // 구조가 맞으면 stun 애니매이션을 일으키고, 그 일으킨 애니매이션이 처음 이벤트로 이 함수를 실행 시키게 되어 있다
     public void StunStart()
     {
         if(GameManager.Sheild_Durability_Reducing)
         {
             status.SheildDurabilityChange(1);
         }
-        GameManager.instance.SetPausePlayer(true);
-        GameManager.instance.SetPlayerMove(true);
-        GameManager.instance.ResetPlayerAnimationState();
-        status.blockSuccessEnemy = null;
-        playerBodyCollider.enabled = false;
-        playerAnimation.vfxAnimation.SetAnimationFlag("Trigger","Stun");
 
+        status.blockSuccessEnemy = null;
+        playerHealthLogic.StunStart();
+        
     }
 
     public void StunEnd()
     {
-        GameManager.instance.SetPausePlayer(false);
-        playerBodyCollider.enabled = true;
+        playerHealthLogic.StunEnd();
     }
 
 }
