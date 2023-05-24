@@ -11,24 +11,26 @@ public class PlayerHealthLogic
     private Rigidbody2D rb;
     private CapsuleCollider2D playerBodyCollider;
     private PlayerAnimation playerAnimation;
+    private PlayerStatus status;
 
 
     private Vector2 ForceInput;
     const float reflectForceScholar = 300f;
     const float damageStandard = 10f;
 
-    public PlayerHealthLogic(Rigidbody2D rb, PlayerAnimation playerAnimation, CapsuleCollider2D playerBodyCollider)
+    public PlayerHealthLogic(Rigidbody2D rb, PlayerAnimation playerAnimation, CapsuleCollider2D playerBodyCollider, PlayerStatus status)
     {
         this.rb = rb;
         this.playerAnimation = playerAnimation;
         this.playerBodyCollider = playerBodyCollider;
+        this.status = status;
     }
 
     // 우선 layer로 전체 충돌을 감지 한 다음에, 세부적으로 충돌이 어느 부위와 일어 났는지는 tag로 확인한다
 
     // block success Enemy는 막아도 콜라이더 처리가 완벽하지 않아서 적 공격이 뚫고 들어오는 경우가 종종 있다
     // 따라서 아까 막은 공격이라면 그 공격의 연속적인 콜라이더에 대한 충돌을 그냥 없는 것 처리해 주기 위해서 받는 인수
-    public float playerHealthCollisionEnter(Collision2D other, string blockSuccessEnemy)
+    public float playerHealthCollisionEnter(Collision2D other)
     {
         Collider2D contactCollider = other.GetContact(0).collider;
 
@@ -42,7 +44,7 @@ public class PlayerHealthLogic
                 GameObject contactObject = contactCollider.transform.parent.transform.parent.gameObject;
                 EnemyStatus contactEnemyStat = contactObject.GetComponentInChildren<EnemyStatus>();
 
-                if(blockSuccessEnemy == contactObject.name) return 0;
+                if(status.blockSuccessEnemy == contactObject.name) return 0;
 
 
                 if(contactCollider.tag == "Enemy Body") // 몬스터의 몸에 부딪혔나?
@@ -58,6 +60,7 @@ public class PlayerHealthLogic
                 DamageReDuce();
                 Debug.Log("player had damage : " + damage);
                 Reflect(damage);
+                status.HealthChangeDefaultMinus(damage);
 
                 playerAnimation.StunAnimationStart();
             }

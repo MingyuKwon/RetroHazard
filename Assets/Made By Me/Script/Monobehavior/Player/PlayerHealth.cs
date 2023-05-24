@@ -37,7 +37,7 @@ public class PlayerHealth : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         playerBodyCollider = GetComponentInChildren<PlayerCollider>().gameObject.GetComponent<CapsuleCollider2D>();
 
-        playerHealthLogic = new PlayerHealthLogic(rb, playerAnimation, playerBodyCollider);
+        playerHealthLogic = new PlayerHealthLogic(rb, playerAnimation, playerBodyCollider, status);
     }
 
     private void OnEnable() {
@@ -54,8 +54,8 @@ public class PlayerHealth : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
-        float damage = playerHealthLogic.playerHealthCollisionEnter(other, status.blockSuccessEnemy);
-        status.HealthChangeDefaultMinus(damage);
+        float damage = playerHealthLogic.playerHealthCollisionEnter(other);
+        
     }
 
     // 구조가 맞으면 stun 애니매이션을 일으키고, 그 일으킨 애니매이션이 처음 이벤트로 이 함수를 실행 시키게 되어 있다

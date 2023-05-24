@@ -70,7 +70,7 @@ public class PlayerAnimation : MonoBehaviour
 
         vfxAnimation = new VFXAnimation(GetComponentInChildren<VFX>().gameObject.GetComponent<Animator>());
 
-        animationLogic = new PlayerAnimationLogic(player, animator, GameManager.instance);
+        animationLogic = new PlayerAnimationLogic(player, animator);
 
         animationLogic.delegateInpuiFunctions();
     }

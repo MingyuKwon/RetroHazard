@@ -31,13 +31,11 @@ public class PlayerAnimationLogic
     /////////references and constructor///////////////////////////////////
     Player player;
     Animator animator;
-    IFGameManager gameManager;
 
-    public PlayerAnimationLogic(Player _player, Animator _playerAnimator , IFGameManager _gameManager)
+    public PlayerAnimationLogic(Player _player, Animator _playerAnimator)
     {
         player = _player;
         animator = _playerAnimator;
-        gameManager = _gameManager;
     }
     
     /////////references and constructor///////////////////////////////////
@@ -66,7 +64,7 @@ public class PlayerAnimationLogic
     public void SetSheildRecovery(bool ChangeSheild)
     {
         sheildCrash = false;
-        gameManager.SetPlayerMove(true);
+        GameManager.instance.SetPlayerMove(true);
     }
 
     public void WhenPauseReleased()
@@ -141,7 +139,7 @@ public class PlayerAnimationLogic
     public void SlashEnd()
     {
         isAttacking = false;
-        gameManager.SetPlayerMove(true);
+        GameManager.instance.SetPlayerMove(true);
     }
 
     public void StabStart()
@@ -151,7 +149,7 @@ public class PlayerAnimationLogic
     public void StabEnd() 
     {
         isAttacking = false;
-        gameManager.SetPlayerMove(true);
+        GameManager.instance.SetPlayerMove(true);
     }
 
     ////////////////logical functions///////////////////////////////////

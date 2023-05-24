@@ -7,7 +7,7 @@ using Rewired;
 using Sirenix.OdinInspector;
 using DG.Tweening;
 
-public class GameManager : MonoBehaviour, IFGameManager
+public class GameManager : MonoBehaviour
 {
     public class EventManager
     {
@@ -23,6 +23,17 @@ public class GameManager : MonoBehaviour, IFGameManager
             ItemUseEvent?.Invoke();
         }
 
+        public static event Action Sheild_Durability_Reduce_Start_Event;
+        public static void Invoke_Sheild_Durability_Reduce_Start_Event()
+        {
+            Sheild_Durability_Reduce_Start_Event?.Invoke();
+        }
+
+        public static event Action Recovery_VFX_Start_Event;
+        public static void Invoke_Recovery_VFX_Start_Event()
+        {
+            Recovery_VFX_Start_Event?.Invoke();
+        }
 
     }
 
@@ -58,7 +69,7 @@ public class GameManager : MonoBehaviour, IFGameManager
         if(instance == null)
         {
             instance = this;
-            eventInstance = new EventManager();
+            //eventInstance = new EventManager();
             DontDestroyOnLoad(this.gameObject);
         }else
         {
@@ -78,7 +89,7 @@ public class GameManager : MonoBehaviour, IFGameManager
     }
 
     private void OnEnable() {
-        PlayerShield.Sheild_Durability_Reduce_Start_Event += Set_Sheild_Durability_Reducing;
+        EventManager.Sheild_Durability_Reduce_Start_Event += Set_Sheild_Durability_Reducing;
         PauseMainUI.GotoMainMenuEvent += DestroyMyself;
     }
 
