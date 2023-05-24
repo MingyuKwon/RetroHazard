@@ -33,11 +33,11 @@ public class PlayerItemBox : MonoBehaviour
     }
 
     private void OnEnable() {
-        BoxUI.BoxEvent += BoxInOut;
+        GameManager.EventManager.BoxEvent += BoxInOut;
     }
 
     private void OnDisable() {
-        BoxUI.BoxEvent -= BoxInOut;
+        GameManager.EventManager.BoxEvent -= BoxInOut;
     }
 
     public void LoadSave(PlayerBoxItemSave save)

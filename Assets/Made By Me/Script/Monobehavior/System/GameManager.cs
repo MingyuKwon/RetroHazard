@@ -35,6 +35,74 @@ public class GameManager : MonoBehaviour
             Recovery_VFX_Start_Event?.Invoke();
         }
 
+        public static event Action<ItemInformation, int> Obtain_bullet_Item_Event;
+        public static void Invoke_Obtain_bullet_Item_Event(ItemInformation information, int amount)
+        {
+            Obtain_bullet_Item_Event?.Invoke(information, amount);
+        }
+
+        public static event Action<ItemInformation> Obtain_Expansion_Item_Event;
+        public static void Invoke_Obtain_Expansion_Item_Event(ItemInformation information)
+        {
+            Obtain_Expansion_Item_Event?.Invoke(information);
+        }
+
+        public static event Action<ItemInformation> Obtain_RealKey_Item_Event;
+        public static void Invoke_Obtain_RealKey_Item_Event(ItemInformation information)
+        {
+            Obtain_RealKey_Item_Event?.Invoke(information);
+        }
+
+        public static event Action<ItemInformation, int> Obtain_Equip_Item_Event;
+        public static void Invoke_Obtain_Equip_Item_Event(ItemInformation information, int KeyItemCode)
+        {
+            Obtain_Equip_Item_Event?.Invoke(information, KeyItemCode);
+        }
+
+        public static event Action<ItemInformation> Obtain_potion_Item_Event;
+        public static void Invoke_Obtain_potion_Item_Event(ItemInformation information)
+        {
+            Obtain_potion_Item_Event?.Invoke(information);
+        }
+
+        static public event Action<int> discardItemEvent;
+        public static void Invoke_discardItemEvent(int discardTargetItemIndex)
+        {
+            discardItemEvent?.Invoke(discardTargetItemIndex);
+        }
+
+        // Combine start Item, combine start index, select Item, selected index
+        static public event Action<ItemInformation , int , ItemInformation, int> CombineEvent; 
+        public static void Invoke_CombineEvent(ItemInformation startItem, int startIndex, ItemInformation selectItem, int selectedIndex)
+        {
+            CombineEvent?.Invoke(startItem, startIndex, selectItem , selectedIndex);
+        }
+
+        // success dialog and delete item from inventory
+        static public event Action<InteractiveDialog, int> Interact_KeyItem_Success_Event;
+        public static void Invoke_Interact_KeyItem_Success_Event(InteractiveDialog dialog, int currentIndex)
+        {
+            Interact_KeyItem_Success_Event?.Invoke(dialog, currentIndex);
+        }
+
+        static public event Action<int, float> UsePotionEvent;
+        public static void Invoke_UsePotionEvent(int currentIndex, float healAmount)
+        {
+            UsePotionEvent?.Invoke(currentIndex, healAmount);
+        }
+
+        public static event Action inventoryExpandEvent;
+        public static void Invoke_inventoryExpandEvent()
+        {
+            inventoryExpandEvent?.Invoke();
+        }
+
+        // true : inventory -> box, false : box -> inventory
+        static public event Action<bool ,ItemInformation , int, int> BoxEvent; 
+        public static void Invoke_BoxEvent(bool flag, ItemInformation from, int fromAmount, int fromIndex)
+        {
+            BoxEvent?.Invoke(flag, from, fromAmount, fromIndex);
+        }
     }
 
     [Header("Flag field")]

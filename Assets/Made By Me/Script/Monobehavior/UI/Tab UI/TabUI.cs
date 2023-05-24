@@ -8,11 +8,6 @@ using Sirenix.OdinInspector;
 
 public class TabUI : MonoBehaviour, CallBackInterface
 {
-    static public event Action<int> discardItemEvent;
-    static public event Action<int, float> UsePotionEvent;
-    static public event Action<InteractiveDialog, int> Interact_KeyItem_Success_Event; // success dialog and delete item from inventory
-
-    static public event Action<ItemInformation , int , ItemInformation, int> CombineEvent; // Combine start Item, combine start index, select Item, selected index
     PlayerStatus status;
 
     public bool inputOk = false;
@@ -229,14 +224,15 @@ public class TabUI : MonoBehaviour, CallBackInterface
                     {
                         if(itemUI.playerInventory.items[itemUI.currentindex].isPotion)
                         {
-                            UsePotionEvent.Invoke(itemUI.currentindex, itemUI.playerInventory.items[itemUI.currentindex].healAmount);
+                            GameManager.EventManager.Invoke_UsePotionEvent(itemUI.currentindex, 
+                                                                        itemUI.playerInventory.items[itemUI.currentindex].healAmount);
                         }
 
                         // enable to enter use is this item can be used in this situation
                         if(isUseKeyItem)
                         {
                             inputOk = false;
-                            Interact_KeyItem_Success_Event.Invoke(interactiveDialog, itemUI.currentindex);
+                            GameManager.EventManager.Invoke_Interact_KeyItem_Success_Event(interactiveDialog, itemUI.currentindex);
                             GameManagerUI.instance.SetInteractiveDialogText(interactiveDialog.SucessDialog);
                             StartCoroutine(showInteractiveDialogDelay());
                             
@@ -261,7 +257,11 @@ public class TabUI : MonoBehaviour, CallBackInterface
             {
                 if(!itemUI.itemContainers[itemUI.currentindex].isCombineable) return;
 
-                CombineEvent.Invoke(combineStartItem, combineStartItemIndex, itemUI.playerInventory.items[itemUI.currentindex], itemUI.currentindex);
+                GameManager.EventManager.Invoke_CombineEvent(combineStartItem, 
+                                                                combineStartItemIndex, 
+                                                                itemUI.playerInventory.items[itemUI.currentindex], 
+                                                                itemUI.currentindex);
+
                 currentWindowLayer--;
                 currentWindowLayer--;
             }
@@ -272,7 +272,7 @@ public class TabUI : MonoBehaviour, CallBackInterface
 
     public void CallBack()
     {
-        discardItemEvent.Invoke(discardTargetItemIndex);
+        GameManager.EventManager.Invoke_discardItemEvent(discardTargetItemIndex);
         currentWindowLayer--;
         discardTargetItemIndex = -1;
     }

@@ -7,8 +7,6 @@ using UnityEngine;
 
 public class EquipItem : KeyItem
 {
-    public static event Action<ItemInformation, int> Obtain_Equip_Item_Event;
-
     private void Start() {
         if(SaveSystem.instance.ActiveStageSaves[SceneManager.GetActiveScene().buildIndex].is_EquipItem_Destroy[transform.GetSiblingIndex()])
         {
@@ -21,7 +19,7 @@ public class EquipItem : KeyItem
     public override void EventInvokeOverride()
     {
         SaveSystem.instance.ActiveStageSaves[SceneManager.GetActiveScene().buildIndex].is_EquipItem_Destroy[transform.GetSiblingIndex()] = true;
-        Obtain_Equip_Item_Event?.Invoke(information, information.KeyItemCode);
+        GameManager.EventManager.Invoke_Obtain_Equip_Item_Event(information, information.KeyItemCode);
         this.gameObject.SetActive(false);
     }
 }

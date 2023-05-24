@@ -9,10 +9,6 @@ using Sirenix.OdinInspector;
 
 public class BoxUI : MonoBehaviour, CallBackInterface
 {
-    static public event Action<int> discardItemEvent;
-    static public event Action<ItemInformation , int , ItemInformation, int> CombineEvent; // Combine start Item, combine start index, select Item, selected index
-    static public event Action<bool ,ItemInformation , int, int> BoxEvent; // true : inventory -> box, false : box -> inventory
-
     private Player player;
     PlayerStatus status;
 
@@ -181,7 +177,7 @@ public class BoxUI : MonoBehaviour, CallBackInterface
 
                 ItemInformation from = boxItemUI.playerItemBox.items[boxItemIndex];
                 int fromAmount = boxItemUI.playerItemBox.itemsamount[boxItemIndex];
-                BoxEvent.Invoke(false, from, fromAmount, boxItemIndex);
+                GameManager.EventManager.Invoke_BoxEvent(false, from, fromAmount, boxItemIndex);
                     
                 currentWindowLayer--;
             }
@@ -208,7 +204,7 @@ public class BoxUI : MonoBehaviour, CallBackInterface
                     }
                     ItemInformation from = playerItemUI.playerInventory.items[playerItemIndex];
                     int fromAmount = playerItemUI.playerInventory.itemsamount[playerItemIndex];
-                    BoxEvent.Invoke(true, from, fromAmount, playerItemIndex);
+                    GameManager.EventManager.Invoke_BoxEvent(true, from, fromAmount, playerItemIndex);
                     // move item from inventory to Box
                     
                     currentWindowLayer--;
@@ -229,7 +225,10 @@ public class BoxUI : MonoBehaviour, CallBackInterface
             {
                 if(!playerItemUI.itemContainers[playerItemUI.currentindex].isCombineable) return;
 
-                CombineEvent.Invoke(combineStartItem, combineStartItemIndex, playerItemUI.playerInventory.items[playerItemUI.currentindex], playerItemUI.currentindex);
+                GameManager.EventManager.Invoke_CombineEvent(combineStartItem, 
+                                                                combineStartItemIndex, 
+                                                                playerItemUI.playerInventory.items[playerItemUI.currentindex], 
+                                                                playerItemUI.currentindex);
                 currentWindowLayer--;
                 currentWindowLayer--;
             }
@@ -239,7 +238,7 @@ public class BoxUI : MonoBehaviour, CallBackInterface
 
     public void CallBack()
     {
-        discardItemEvent.Invoke(discardTargetItemIndex);
+        GameManager.EventManager.Invoke_discardItemEvent(discardTargetItemIndex);
         currentWindowLayer--;
         discardTargetItemIndex = -1;
     }

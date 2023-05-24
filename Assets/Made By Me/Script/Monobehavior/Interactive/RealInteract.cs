@@ -28,13 +28,13 @@ public class RealInteract : Interact
     public override void OnEnable() {
         base.OnEnable();
         GameManager.EventManager.InteractEvent += InteractiveWithReal;
-        TabUI.Interact_KeyItem_Success_Event += realInteractSuccess;
+        GameManager.EventManager.Interact_KeyItem_Success_Event += realInteractSuccess;
     }
 
     public override void OnDisable() {
         base.OnDisable();
         GameManager.EventManager.InteractEvent -= InteractiveWithReal;
-        TabUI.Interact_KeyItem_Success_Event -= realInteractSuccess;
+        GameManager.EventManager.Interact_KeyItem_Success_Event -= realInteractSuccess;
     }
 
     private void InteractiveWithReal()

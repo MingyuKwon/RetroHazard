@@ -7,8 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class ExpansionItem : KeyItem
 {
-    public static event Action<ItemInformation> Obtain_Expansion_Item_Event;
-
     private void Start() {
         if(SaveSystem.instance.ActiveStageSaves[SceneManager.GetActiveScene().buildIndex].is_ExpansionItem_Destroy[transform.GetSiblingIndex()])
         {
@@ -21,7 +19,7 @@ public class ExpansionItem : KeyItem
     public override void EventInvokeOverride()
     {
         SaveSystem.instance.ActiveStageSaves[SceneManager.GetActiveScene().buildIndex].is_ExpansionItem_Destroy[transform.GetSiblingIndex()] = true;
-        Obtain_Expansion_Item_Event?.Invoke(information);
+        GameManager.EventManager.Invoke_Obtain_Expansion_Item_Event(information);
         this.gameObject.SetActive(false);
     }
 }

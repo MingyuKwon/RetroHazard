@@ -7,8 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class PotionItem : Item
 {
-    public static event Action<ItemInformation> Obtain_potion_Item_Event;
-
     private void Awake() {
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
@@ -25,7 +23,7 @@ public class PotionItem : Item
     public void ObtainPotionItem()
     {      
         SaveSystem.instance.ActiveStageSaves[SceneManager.GetActiveScene().buildIndex].is_PotionItem_Destroy[transform.GetSiblingIndex()] = true;
-        Obtain_potion_Item_Event?.Invoke(information);
+        GameManager.EventManager.Invoke_Obtain_potion_Item_Event(information);
         this.gameObject.SetActive(false);
     }
 

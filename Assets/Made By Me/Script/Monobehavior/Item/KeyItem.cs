@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class KeyItem : Item
 {
-    public static event Action inventoryExpandEvent;
     Vector3 firstPosition;
     
     public Vector3 itemUp = new Vector3(0f,0.5f,0f);
@@ -38,7 +37,7 @@ public class KeyItem : Item
         if(information.KeyItemCode == 15)
         {
             this.gameObject.SetActive(false);
-            inventoryExpandEvent.Invoke();
+            GameManager.EventManager.Invoke_inventoryExpandEvent();
 
         }else
         {

@@ -6,8 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class InteractKeyItem : KeyItem
 {
-    public static event Action<ItemInformation> Obtain_RealKey_Item_Event;
-
     private void Start() {
         if(SaveSystem.instance.ActiveStageSaves[SceneManager.GetActiveScene().buildIndex].is_KeyItem_Destroy[transform.GetSiblingIndex()])
         {
@@ -19,7 +17,7 @@ public class InteractKeyItem : KeyItem
 
     public override void EventInvokeOverride()
     {
-        Obtain_RealKey_Item_Event?.Invoke(information);
+        GameManager.EventManager.Invoke_Obtain_RealKey_Item_Event(information);
         SaveSystem.instance.ActiveStageSaves[SceneManager.GetActiveScene().buildIndex].is_KeyItem_Destroy[transform.GetSiblingIndex()] = true;
         this.gameObject.SetActive(false);
     }

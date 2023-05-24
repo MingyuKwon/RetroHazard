@@ -11,12 +11,9 @@ using DG.Tweening;
 public class PlayerInventroyLogic 
 {
     private PlayerStatus status;
-
-
     public ItemUI itemUI;
     public BoxItemUI boxItemUI;
     public PlayerItemUI playerItemUI;
-
 
     private ItemInformation[] items;
     private int[] itemsamount;
@@ -541,42 +538,40 @@ public class PlayerInventroyLogic
 
     ///////////////// delegate Method ///////////////////
     public void delegateInpuiFunctions(){
-       bulletItem.Obtain_bullet_Item_Event += Obtain_bullet_Item;
-       ExpansionItem.Obtain_Expansion_Item_Event += Obtain_Expansion_Item;
-       InteractKeyItem.Obtain_RealKey_Item_Event += Obtain_RealKey_Item;
-       EquipItem.Obtain_Equip_Item_Event += Obtain_Equip_Item;
-       PotionItem.Obtain_potion_Item_Event += Obtain_Potion_Item;
+       GameManager.EventManager.Obtain_bullet_Item_Event += Obtain_bullet_Item;
+       GameManager.EventManager.Obtain_Expansion_Item_Event += Obtain_Expansion_Item;
+       GameManager.EventManager.Obtain_RealKey_Item_Event += Obtain_RealKey_Item;
+       GameManager.EventManager.Obtain_Equip_Item_Event += Obtain_Equip_Item;
+       GameManager.EventManager.Obtain_potion_Item_Event += Obtain_Potion_Item;
 
-       TabUI.discardItemEvent += DiscardItem;
-       BoxUI.discardItemEvent += DiscardItem;
-       TabUI.UsePotionEvent += UsedPotionItem;
-       TabUI.CombineEvent += UpgradeItem;
-       BoxUI.CombineEvent += UpgradeItem;
+       GameManager.EventManager.discardItemEvent += DiscardItem;
+       GameManager.EventManager.UsePotionEvent += UsedPotionItem;
+       GameManager.EventManager.CombineEvent += UpgradeItem;
 
-       TabUI.Interact_KeyItem_Success_Event += DiscardItem;
+       GameManager.EventManager.Interact_KeyItem_Success_Event += DiscardItem;
 
-       BoxUI.BoxEvent += BoxInOut;
+       GameManager.EventManager.BoxEvent += BoxInOut;
 
-       KeyItem.inventoryExpandEvent += inventoryExpand;
+       GameManager.EventManager.inventoryExpandEvent += inventoryExpand;
     }
 
     public void removeInpuiFunctions()
     {
-        bulletItem.Obtain_bullet_Item_Event -= Obtain_bullet_Item;
-        ExpansionItem.Obtain_Expansion_Item_Event -= Obtain_Expansion_Item;
-        InteractKeyItem.Obtain_RealKey_Item_Event -= Obtain_RealKey_Item;
-        PotionItem.Obtain_potion_Item_Event -= Obtain_Potion_Item;
+        GameManager.EventManager.Obtain_bullet_Item_Event -= Obtain_bullet_Item;
+        GameManager.EventManager.Obtain_Expansion_Item_Event -= Obtain_Expansion_Item;
+        GameManager.EventManager.Obtain_RealKey_Item_Event -= Obtain_RealKey_Item;
+        GameManager.EventManager.Obtain_Equip_Item_Event -= Obtain_Equip_Item;
+        GameManager.EventManager.Obtain_potion_Item_Event -= Obtain_Potion_Item;
 
-       TabUI.discardItemEvent -= DiscardItem;
-       BoxUI.discardItemEvent -= DiscardItem;
-       TabUI.UsePotionEvent -= UsedPotionItem;
-       TabUI.CombineEvent -= UpgradeItem;
-       BoxUI.CombineEvent -= UpgradeItem;
+        GameManager.EventManager.discardItemEvent -= DiscardItem;
+        GameManager.EventManager.UsePotionEvent -= UsedPotionItem;
+        GameManager.EventManager.CombineEvent -= UpgradeItem;
 
-       TabUI.Interact_KeyItem_Success_Event -= DiscardItem;
-       BoxUI.BoxEvent -= BoxInOut;
+        GameManager.EventManager.Interact_KeyItem_Success_Event -= DiscardItem;
 
-       KeyItem.inventoryExpandEvent -= inventoryExpand;
+        GameManager.EventManager.BoxEvent -= BoxInOut;
+
+        GameManager.EventManager.inventoryExpandEvent -= inventoryExpand;
     }
 
     ///////////////// delegate Method ///////////////////

@@ -7,8 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class bulletItem : Item
 {
-    public static event Action<ItemInformation, int> Obtain_bullet_Item_Event;
-
     private void Awake() {
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
@@ -24,7 +22,7 @@ public class bulletItem : Item
 
     public void ObtainBulletItem()
     {        
-        Obtain_bullet_Item_Event?.Invoke(information, information.amount);
+        GameManager.EventManager.Invoke_Obtain_bullet_Item_Event(information, information.amount);
         SaveSystem.instance.ActiveStageSaves[SceneManager.GetActiveScene().buildIndex].is_BulletItem_Destroy[transform.GetSiblingIndex()] = true;
         this.gameObject.SetActive(false);
     }
