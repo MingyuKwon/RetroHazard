@@ -31,12 +31,12 @@ public class VFX : MonoBehaviour
     }
 
     private void OnEnable() {
-        PlayerStatus.SheildCrashEvent += SheildCrash;
+        GameManager.EventManager.SheildCrashEvent += SheildCrash;
         GameManager.EventManager.Recovery_VFX_Start_Event += SheildRecovery;
     }
 
     private void OnDisable() {
-        PlayerStatus.SheildCrashEvent -= SheildCrash;
+        GameManager.EventManager.SheildCrashEvent -= SheildCrash;
         GameManager.EventManager.Recovery_VFX_Start_Event -= SheildRecovery;
     }
 

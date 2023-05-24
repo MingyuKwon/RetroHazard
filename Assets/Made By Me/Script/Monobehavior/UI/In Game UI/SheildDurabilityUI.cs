@@ -31,13 +31,13 @@ public class SheildDurabilityUI : MonoBehaviour
     //
     private void OnEnable() {
         PlayerStatus.SheildDurabilityChangeEvent += SetSheildDurabilityUI;
-        PlayerStatus.SheildCrashEvent += SetSheildCrash;
+        GameManager.EventManager.SheildCrashEvent += SetSheildCrash;
         GameManager.EventManager.Sheild_Durability_Reduce_Start_Event += Sheild_Durability_Reduce_Start;
     }
 
     private void OnDisable() {
         PlayerStatus.SheildDurabilityChangeEvent -= SetSheildDurabilityUI;
-        PlayerStatus.SheildCrashEvent -= SetSheildCrash;
+        GameManager.EventManager.SheildCrashEvent -= SetSheildCrash;
         GameManager.EventManager.Sheild_Durability_Reduce_Start_Event -= Sheild_Durability_Reduce_Start;
     }
 

@@ -18,13 +18,17 @@ public class PlayerHealthLogic
     const float reflectForceScholar = 300f;
     const float damageStandard = 10f;
 
-    public PlayerHealthLogic(Rigidbody2D rb, PlayerAnimation playerAnimation, CapsuleCollider2D playerBodyCollider, PlayerStatus status)
+    public PlayerHealthLogic(Rigidbody2D rb, PlayerAnimation playerAnimation, CapsuleCollider2D playerBodyCollider)
     {
         this.rb = rb;
         this.playerAnimation = playerAnimation;
         this.playerBodyCollider = playerBodyCollider;
-        this.status = status;
     }
+
+    public void Start() {
+        status = Player1.instance.playerStatus;
+    }
+
 
     // 우선 layer로 전체 충돌을 감지 한 다음에, 세부적으로 충돌이 어느 부위와 일어 났는지는 tag로 확인한다
 
@@ -86,6 +90,13 @@ public class PlayerHealthLogic
     /////////////////////animation event///////////////////////////
     public void StunStart()
     {
+        if(GameManager.Sheild_Durability_Reducing)
+        {
+            status.SheildDurabilityChange(1);
+        }
+
+        status.blockSuccessEnemy = null;
+
         GameManager.instance.SetPausePlayer(true);
         GameManager.instance.SetPlayerMove(true);
         GameManager.instance.ResetPlayerAnimationState();

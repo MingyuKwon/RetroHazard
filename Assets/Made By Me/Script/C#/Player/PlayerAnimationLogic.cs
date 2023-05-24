@@ -32,6 +32,8 @@ public class PlayerAnimationLogic
     Player player;
     Animator animator;
 
+    private PlayerStatus status;
+
     public PlayerAnimationLogic(Player _player, Animator _playerAnimator)
     {
         player = _player;
@@ -39,6 +41,38 @@ public class PlayerAnimationLogic
     }
     
     /////////references and constructor///////////////////////////////////
+
+    //monobehavior function//////////////////////////////////////////////////////////////////
+    public void Start() {
+        status = Player1.instance.playerStatus;
+    }
+
+    public void Update()
+    {
+        GameManager.isPlayerSheilding = isSheilding;
+        isWalkingPress = player.GetButton("Move Up") || player.GetButton("Move Down") || player.GetButton("Move Right") || player.GetButton("Move Left");
+        if(GameManager.isPlayerPaused) return;
+        
+        SetWalkAnimation();
+        SetAttackAnimation();
+        SetShieldAnimation();
+        SetParryAnimation();
+    }
+
+    public void delegateFunctions()
+    {
+        GameManager.EventManager.SheildCrashEvent += SetSheildCrash;
+        GameManager.EventManager.SheildRecoveryEvent += SetSheildRecovery;
+    }
+
+    public void removeFunctions()
+    {
+        GameManager.EventManager.SheildCrashEvent -= SetSheildCrash;
+        GameManager.EventManager.SheildRecoveryEvent -= SetSheildRecovery;
+    }
+
+
+     //monobehavior function//////////////////////////////////////////////////////////////////
 
     ////////////////logical functions///////////////////////////////////
     public void SetWalkAnimation()
@@ -48,6 +82,58 @@ public class PlayerAnimationLogic
         animator.SetFloat("LastXInput", LastXInput);
         animator.SetFloat("LastYInput", LastYInput);
     }
+
+    private void SetAttackAnimation()
+    {
+        if(status.EnergyMaganize[status.Energy] == 0) return;
+        if(player.GetButtonDown("Attack"))
+        {
+            if(isAttacking) return;
+            if(isSheilding) return;
+            if(isParrying) return;
+
+            animator.SetTrigger("Attack");
+            isAttacking = true;
+            GameManager.instance.SetPlayerMove(false);
+            animator.SetFloat("Energy", status.Energy);
+            status.EnergyUse(1, status.Energy);
+        }
+    }
+
+    private void SetShieldAnimation()
+    {
+        if(isParrying) return;
+
+        if(sheildCrash) return;
+
+        if(player.GetButtonUp("Shield"))
+        {
+            if(status.isBlocked) return;
+            GameManager.instance.SetPlayerMove(true);
+        }
+
+        if(player.GetButton("Shield"))
+        {
+            GameManager.instance.SetPlayerMove(false);
+            animator.SetFloat("Sheild Kind", status.Sheild);
+        }
+
+        isSheilding = player.GetButton("Shield");
+        animator.SetBool("Shield", isSheilding);
+    }
+
+    private void SetParryAnimation()
+    {
+        if(isParrying || sheildCrash) return;
+
+        if(player.GetButton("Shield") && player.GetButtonDown("Interactive") && status.Sheild != 2)
+        {
+            animator.SetTrigger("Parry");
+            isParrying = true;
+        }
+    }
+
+
 
     public void StunAnimationStart()
     {
@@ -122,6 +208,10 @@ public class PlayerAnimationLogic
         isSheilding = false;
         animator.ResetTrigger("Block");
         animator.ResetTrigger("Parry");
+
+        if(status == null) return;
+
+        status.parryFrame = false;
     }
 
     public void ResetPlayerAnimationState_CalledByGameManager() // called by gamemanger (when talk with someone, you should stop and not walking on the spot)

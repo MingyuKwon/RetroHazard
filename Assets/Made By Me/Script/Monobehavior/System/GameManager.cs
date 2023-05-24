@@ -9,6 +9,12 @@ using DG.Tweening;
 
 public class GameManager : MonoBehaviour
 {
+
+
+    ////// EventManager //////////////////////////////////////////////////////////////////////////////////
+    ////// EventManager //////////////////////////////////////////////////////////////////////////////////
+    ////// EventManager //////////////////////////////////////////////////////////////////////////////////
+
     public class EventManager
     {
         public static event Action InteractEvent;
@@ -103,7 +109,29 @@ public class GameManager : MonoBehaviour
         {
             BoxEvent?.Invoke(flag, from, fromAmount, fromIndex);
         }
+
+        public static event Action<bool> SheildCrashEvent;
+        public static void Invoke_SheildCrashEvent(bool flag)
+        {
+            SheildCrashEvent?.Invoke(flag);
+        }
+
+        public static event Action<bool> SheildRecoveryEvent;
+        public static void Invoke_SheildRecoveryEvent(bool flag)
+        {
+            SheildRecoveryEvent?.Invoke(flag);
+        }
     }
+    ////// EventManager //////////////////////////////////////////////////////////////////////////////////
+    ////// EventManager //////////////////////////////////////////////////////////////////////////////////
+    ////// EventManager //////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
 
     [Header("Flag field")]
     static public bool isPlayerNearNPC = false;

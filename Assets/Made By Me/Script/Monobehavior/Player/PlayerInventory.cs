@@ -6,7 +6,6 @@ using UnityEditor;
 
 public class PlayerInventory : MonoBehaviour
 {
-    public PlayerStatus status;
     public ItemInformation[] items; // items는 그대로 두고, logic에 이 객체 자체를 넘겨 줌으로 
                                     // logic에서 item을 변경 해도 곧바로 inventroy 상황에 반영 되도록 한다
     public int[] itemsamount;
@@ -67,13 +66,12 @@ public class PlayerInventory : MonoBehaviour
     }
 
     private void Awake() {
-        status = transform.parent.GetComponentInChildren<PlayerStatus>();
 
         items = new ItemInformation[16];
         itemsamount = new int[16];
         isEquipped = new bool[16];
 
-        playerInventroyLogic = new PlayerInventroyLogic(items , itemsamount, isEquipped, status);
+        playerInventroyLogic = new PlayerInventroyLogic(items , itemsamount, isEquipped);
         playerInventroyLogic.Awake();
     }
 
@@ -93,11 +91,11 @@ public class PlayerInventory : MonoBehaviour
     }
 
     private void OnEnable() {
-       playerInventroyLogic.delegateInpuiFunctions();
+       playerInventroyLogic.delegateFunctions();
     }
 
     private void OnDisable() {
-        playerInventroyLogic.removeInpuiFunctions();
+        playerInventroyLogic.removeFunctions();
     }
 
     public void EnergyReload()

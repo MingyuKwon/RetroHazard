@@ -11,11 +11,8 @@ public class PlayerStatus : MonoBehaviour
     public static event Action<float, int> SheildDurabilityChangeEvent;
     static public event Action<float,float, int, float, float , int, float, float, int, int> Update_IngameUI_Event; // Max HP, Current Hp, Energy, EnergyMaganize[Energy], EnergtStore[Energy] , Sheild, SheildMaganize[Sheild] , SheildStore , energyUpgrade
     public static event Action PlayerDeathEvent;
-    public static event Action<bool> SheildCrashEvent;
-    public static event Action<bool> SheildRecoveryEvent;
 
-    private Animator animator;
-    private PlayerInventory inventory;
+    private PlayerAnimation playerAnimation;
 
     [Header("Basic")]
     public float MaxHP = 100;
@@ -55,8 +52,7 @@ public class PlayerStatus : MonoBehaviour
 
     private void Awake() {
         Attack = EnergyDamage[Energy];
-        animator = transform.parent.gameObject.GetComponent<Animator>();
-        inventory = transform.parent.gameObject.GetComponentInChildren<PlayerInventory>();
+        playerAnimation = transform.parent.gameObject.GetComponent<PlayerAnimation>();
 
     }
 
@@ -104,7 +100,7 @@ public class PlayerStatus : MonoBehaviour
         Sheild = sheildKind;
 
         SheildDurabilityChange(0);
-        animator.SetFloat("Sheild Kind", Sheild);
+        playerAnimation.SetAnimationFlag("Float","Sheild Kind", Sheild);
         StartCoroutine(UpdateUIDelay());
         
     }
@@ -209,13 +205,13 @@ public class PlayerStatus : MonoBehaviour
         {
             SheildMaganize[Sheild] = 0;
             SheildCrash = true;
-            SheildCrashEvent?.Invoke(flag);
+            GameManager.EventManager.Invoke_SheildCrashEvent(flag);
         }else
         {
             if(SheildCrash)
             {
                 SheildCrash = false;
-                SheildRecoveryEvent?.Invoke(flag);
+                GameManager.EventManager.Invoke_SheildRecoveryEvent(flag);
             }
         }
         

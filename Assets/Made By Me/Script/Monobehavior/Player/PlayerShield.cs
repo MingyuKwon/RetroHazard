@@ -10,16 +10,17 @@ using DG.Tweening;
 
 public class PlayerShield : MonoBehaviour
 {
-    PlayerStatus status;
     PlayerAnimation playerAnimation;
 
     private PlayerSheildLogic playerSheildLogic;
 
     private void Awake() {
         playerAnimation = GetComponent<PlayerAnimation>();
-        status = GetComponentInChildren<PlayerStatus>();
+        playerSheildLogic = new PlayerSheildLogic(playerAnimation);
+    }
 
-        playerSheildLogic = new PlayerSheildLogic(playerAnimation, status);
+    private void Start() {
+        playerSheildLogic.Start();
     }
 
     private void OnCollisionEnter2D(Collision2D other) {

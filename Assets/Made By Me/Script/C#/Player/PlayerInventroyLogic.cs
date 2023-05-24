@@ -29,12 +29,11 @@ public class PlayerInventroyLogic
     public int Energy2BatteryLimit = 12;
     public int Energy3BatteryLimit = 9;
 
-    public PlayerInventroyLogic(ItemInformation[] items , int[] itemsamount, bool[] isEquipped , PlayerStatus status )
+    public PlayerInventroyLogic(ItemInformation[] items , int[] itemsamount, bool[] isEquipped )
     {
         this.items = items;
         this.itemsamount = itemsamount;
         this.isEquipped = isEquipped;
-        this.status = status;
     }
 
 /////////////////////// Logic Method /////////////////////////////////////////////////////////////////
@@ -528,6 +527,8 @@ public class PlayerInventroyLogic
         itemUI = UI.instance.tabUI.itemUI;
         boxItemUI = UI.instance.boxUI.boxItemUI;
         playerItemUI = UI.instance.boxUI.playerItemUI;
+
+        status = Player1.instance.playerStatus;
     }
 
     public void Update()
@@ -537,7 +538,7 @@ public class PlayerInventroyLogic
     }
 
     ///////////////// delegate Method ///////////////////
-    public void delegateInpuiFunctions(){
+    public void delegateFunctions(){
        GameManager.EventManager.Obtain_bullet_Item_Event += Obtain_bullet_Item;
        GameManager.EventManager.Obtain_Expansion_Item_Event += Obtain_Expansion_Item;
        GameManager.EventManager.Obtain_RealKey_Item_Event += Obtain_RealKey_Item;
@@ -555,7 +556,7 @@ public class PlayerInventroyLogic
        GameManager.EventManager.inventoryExpandEvent += inventoryExpand;
     }
 
-    public void removeInpuiFunctions()
+    public void removeFunctions()
     {
         GameManager.EventManager.Obtain_bullet_Item_Event -= Obtain_bullet_Item;
         GameManager.EventManager.Obtain_Expansion_Item_Event -= Obtain_Expansion_Item;

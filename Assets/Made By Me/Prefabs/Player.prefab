@@ -248,28 +248,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   status: {fileID: 0}
-  itemUI: {fileID: 0}
-  boxItemUI: {fileID: 0}
-  playerItemUI: {fileID: 0}
-  basicItems: []
-  EnergyUpgrade1Item:
-  - {fileID: 11400000, guid: 8294c9fe43e111f44b832f95471458ca, type: 2}
-  - {fileID: 11400000, guid: 6a6298047aedeaa40bfe85805d0c11de, type: 2}
-  - {fileID: 11400000, guid: e6ae5e565e87d05429a0c599d76df5f8, type: 2}
-  EnergyUpgrade2Item:
-  - {fileID: 11400000, guid: 27aee3ff5216c444a983a7847e2dd528, type: 2}
-  - {fileID: 11400000, guid: b143879346080ea4ebf163beea896f04, type: 2}
-  - {fileID: 11400000, guid: 112ca1b9ea3532046ac47b57cf3cf199, type: 2}
   items: []
   itemsamount: 
   isEquipped: 
-  StartContainer: 8
-  CurrentContainer: 0
-  isInventoryFull: 0
-  SheildBatteryLimit: 8
-  Energy1BatteryLimit: 30
-  Energy2BatteryLimit: 12
-  Energy3BatteryLimit: 9
 --- !u!1 &3210448023490803281
 GameObject:
   m_ObjectHideFlags: 0
@@ -383,6 +364,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6387553226888266341}
+  - component: {fileID: 700161104763574779}
   - component: {fileID: 6089768402828800010}
   - component: {fileID: 6387553226888266267}
   - component: {fileID: 7293342018351241486}
@@ -420,6 +402,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &700161104763574779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6387553226888266342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9ad2bfac323dc7478d4612b8f497332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6089768402828800010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -563,7 +557,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3acfe5e60fda0de4fb526df7e68f089b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nearInteract: {fileID: 0}
 --- !u!114 &7168993580999198587
 MonoBehaviour:
   m_ObjectHideFlags: 0

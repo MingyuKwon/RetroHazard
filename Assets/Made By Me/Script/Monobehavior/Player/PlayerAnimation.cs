@@ -50,11 +50,7 @@ public class PlayerAnimation : MonoBehaviour
         }
     }
 
-
     public Animator animator; // Player's animator
-    private Rigidbody2D rb; // Player's rigidBody
-    private PlayerStatus status; // Player's Status Script
-
     private Player player;
 
     public VFXAnimation vfxAnimation;
@@ -63,8 +59,6 @@ public class PlayerAnimation : MonoBehaviour
     
     private void Awake() {
         animator = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody2D>();
-        status = GetComponentInChildren<PlayerStatus>();
 
         player = ReInput.players.GetPlayer(0);
 
@@ -75,81 +69,25 @@ public class PlayerAnimation : MonoBehaviour
         animationLogic.delegateInpuiFunctions();
     }
 
+    private void Start() {
+        animationLogic.Start();
+    }
+
     private void OnDestroy() {
         animationLogic.delegateInpuiFunctions();
     }
 
     private void OnEnable() {
-        PlayerStatus.SheildCrashEvent += animationLogic.SetSheildCrash;
-        PlayerStatus.SheildRecoveryEvent += animationLogic.SetSheildRecovery;
+        animationLogic.delegateFunctions();
     }
 
     private void OnDisable() {
-        PlayerStatus.SheildCrashEvent -= animationLogic.SetSheildCrash;
-        PlayerStatus.SheildRecoveryEvent -= animationLogic.SetSheildRecovery;
+        animationLogic.removeFunctions();
     }
 
     void Update()
     {
-        GameManager.isPlayerSheilding = animationLogic.isSheilding;
-        animationLogic.isWalkingPress = player.GetButton("Move Up") || player.GetButton("Move Down") || player.GetButton("Move Right") || player.GetButton("Move Left");
-        if(GameManager.isPlayerPaused) return;
-        
-        animationLogic.SetWalkAnimation();
-        SetAttackAnimation();
-        SetShieldAnimation();
-        SetParryAnimation();
-    }
-
-
-    private void SetAttackAnimation()
-    {
-        if(status.EnergyMaganize[status.Energy] == 0) return;
-        if(player.GetButtonDown("Attack"))
-        {
-            if(animationLogic.isAttacking) return;
-            if(animationLogic.isSheilding) return;
-            if(animationLogic.isParrying) return;
-
-            animator.SetTrigger("Attack");
-            animationLogic.isAttacking = true;
-            GameManager.instance.SetPlayerMove(false);
-            animator.SetFloat("Energy", status.Energy);
-            status.EnergyUse(1, status.Energy);
-        }
-    }
-
-    private void SetShieldAnimation()
-    {
-        if(animationLogic.isParrying) return;
-
-        if(animationLogic.sheildCrash) return;
-
-        if(player.GetButtonUp("Shield"))
-        {
-            if(status.isBlocked) return;
-            GameManager.instance.SetPlayerMove(true);
-        }
-
-        if(player.GetButton("Shield"))
-        {
-            GameManager.instance.SetPlayerMove(false);
-            animator.SetFloat("Sheild Kind", status.Sheild);
-        }
-
-        animationLogic.isSheilding = player.GetButton("Shield");
-        animator.SetBool("Shield", animationLogic.isSheilding);
-    }
-
-    private void SetParryAnimation()
-    {
-        if(animationLogic.isParrying || animationLogic.sheildCrash) return;
-
-        if(player.GetButton("Shield") && player.GetButtonDown("Interactive") && status.Sheild != 2)
-        {
-            animator.SetTrigger("Parry");
-            animationLogic.isParrying = true;
-        }
+        animationLogic.Update();
     }
 
     public void StunAnimationStart()
@@ -157,18 +95,15 @@ public class PlayerAnimation : MonoBehaviour
         animationLogic.StunAnimationStart();
     }
 
-
     public void ResetPlayerAnimationState()
     {
         animationLogic.ResetPlayerAnimationState();
-        status.parryFrame = false;
     }
 
     public void ResetPlayerAnimationState_CalledByGameManager()
     {
         animationLogic.ResetPlayerAnimationState_CalledByGameManager();
     }
-
 
     public void SetAnimationFlag(string type ,string flag, float value = 0)
     {

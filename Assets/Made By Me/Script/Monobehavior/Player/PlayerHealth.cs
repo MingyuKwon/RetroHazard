@@ -14,30 +14,21 @@ using DG.Tweening;
 public class PlayerHealth : MonoBehaviour
 {
     Rigidbody2D rb;
-    PlayerStatus status;
+    
     private CapsuleCollider2D playerBodyCollider;
     private PlayerAnimation playerAnimation;
     private PlayerHealthLogic playerHealthLogic;
 
-    public static PlayerHealth instance;
-
     private void Awake() {
-
-        if(instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(this.gameObject);
-        }else
-        {
-            Destroy(this.gameObject);
-        }
-
-        status = GetComponentInChildren<PlayerStatus>();
         playerAnimation = GetComponent<PlayerAnimation>();
         rb = GetComponent<Rigidbody2D>();
         playerBodyCollider = GetComponentInChildren<PlayerCollider>().gameObject.GetComponent<CapsuleCollider2D>();
 
-        playerHealthLogic = new PlayerHealthLogic(rb, playerAnimation, playerBodyCollider, status);
+        playerHealthLogic = new PlayerHealthLogic(rb, playerAnimation, playerBodyCollider);
+    }
+
+    private void Start() {
+        playerHealthLogic.Start();
     }
 
     private void OnEnable() {
@@ -61,14 +52,7 @@ public class PlayerHealth : MonoBehaviour
     // 구조가 맞으면 stun 애니매이션을 일으키고, 그 일으킨 애니매이션이 처음 이벤트로 이 함수를 실행 시키게 되어 있다
     public void StunStart()
     {
-        if(GameManager.Sheild_Durability_Reducing)
-        {
-            status.SheildDurabilityChange(1);
-        }
-
-        status.blockSuccessEnemy = null;
         playerHealthLogic.StunStart();
-        
     }
 
     public void StunEnd()

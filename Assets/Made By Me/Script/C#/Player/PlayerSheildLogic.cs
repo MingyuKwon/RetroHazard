@@ -12,10 +12,9 @@ public class PlayerSheildLogic
     PlayerAnimation playerAnimation;
     PlayerStatus status;
 
-    public PlayerSheildLogic(PlayerAnimation playerAnimation, PlayerStatus status)
+    public PlayerSheildLogic(PlayerAnimation playerAnimation)
     {
         this.playerAnimation = playerAnimation;
-        this.status = status;
     }
 
     public void CollisionEnter2D(Collision2D other)
@@ -53,6 +52,10 @@ public class PlayerSheildLogic
             }
 
         }
+    }
+
+    public void Start() {
+        status = Player1.instance.playerStatus;
     }
 
     public void RecoveryVFXStart()
