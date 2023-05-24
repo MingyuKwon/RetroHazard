@@ -62,7 +62,7 @@ public class PlayerItemUI : MonoBehaviour
 
     private void ShowingInventory()
     {
-        for(int i=0; i<playerInventory.CurrentContainer; i++)
+        for(int i=0; i<playerInventory.CurrentContainerSize; i++)
         {
             itemContainers[i].gameObject.SetActive(true);
 
@@ -100,7 +100,7 @@ public class PlayerItemUI : MonoBehaviour
     {
         if(boxUI.currentWindowLayer == 1) return;
 
-        for(int i=0; i < playerInventory.CurrentContainer; i++)
+        for(int i=0; i < playerInventory.CurrentContainerSize; i++)
         {
             if(i == currentindex)
             {
@@ -125,7 +125,7 @@ public class PlayerItemUI : MonoBehaviour
 
     public void ItemContainerFocusDirect(int num)
     {
-        for(int i=0; i < playerInventory.CurrentContainer; i++)
+        for(int i=0; i < playerInventory.CurrentContainerSize; i++)
         {
             if(i == num)
             {

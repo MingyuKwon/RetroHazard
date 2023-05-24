@@ -11,7 +11,6 @@ public class UI : MonoBehaviour
     public static UI instance;
 
     public PlayerStatus status;
-
     public BoxUI boxUI;
     public InGameUI inGameUI;
     public TabUI tabUI;

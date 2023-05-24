@@ -113,8 +113,8 @@ public class PlayerStatus : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         Update_IngameUI_Event?.Invoke(MaxHP, CurrentHP, Energy, EnergyMaganize[Energy], EnergyStore[Energy] ,  Sheild, SheildMaganize[Sheild] , SheildStore, EnergyUpgrade[Energy], SheildUpgrade[Sheild]);
-        inventory.itemUI.UpdateInventoryUI();
-        inventory.playerItemUI.UpdateInventoryUI();
+        UI.instance.tabUI.itemUI.UpdateInventoryUI();
+        UI.instance.boxUI.playerItemUI.UpdateInventoryUI();
     }
 
     public void SetSheildEquip(int sheildKind, bool isObtain)

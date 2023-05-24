@@ -13,7 +13,6 @@ public class BoxUI : MonoBehaviour, CallBackInterface
     static public event Action<ItemInformation , int , ItemInformation, int> CombineEvent; // Combine start Item, combine start index, select Item, selected index
     static public event Action<bool ,ItemInformation , int, int> BoxEvent; // true : inventory -> box, false : box -> inventory
 
-
     private Player player;
     PlayerStatus status;
 
@@ -389,7 +388,7 @@ public class BoxUI : MonoBehaviour, CallBackInterface
             boxItemIndex = Mathf.Clamp(boxItemIndex, 0, 15);
         }else
         {
-            playerItemIndex = Mathf.Clamp(playerItemIndex, 0, GameManagerUI.instance.CurrentContainer-1);
+            playerItemIndex = Mathf.Clamp(playerItemIndex, 0, GameManagerUI.CurrentContainer-1);
         }
         
         

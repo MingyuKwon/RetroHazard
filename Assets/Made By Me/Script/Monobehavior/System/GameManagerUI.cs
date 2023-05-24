@@ -6,6 +6,7 @@ using Sirenix.OdinInspector;
 
 public class GameManagerUI : MonoBehaviour
 {
+    public static int CurrentContainer;
     public static GameManagerUI instance = null;
 
     blackOut blackoutUI;
@@ -32,7 +33,7 @@ public class GameManagerUI : MonoBehaviour
     public bool isShowingESC;
     // it is for GameManager not in GameNanagerUI
 
-    public int CurrentContainer;
+    
 
     void Awake() {
         if(instance == null)

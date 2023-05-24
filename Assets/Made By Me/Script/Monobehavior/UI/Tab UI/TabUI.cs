@@ -34,11 +34,11 @@ public class TabUI : MonoBehaviour, CallBackInterface
     public bool yesNoChoice = true;
 
     Image background;
-    ItemUI itemUI;
-    ItemExplainUI itemExplainUI;
-    CurrentGoalUI currentGoalUI;
-    InteractiveMessageUI interactiveMessageUI;
-    ItemObtainYesNoPanelUI itemObtainYesNoPanelUI;
+    public ItemUI itemUI;
+    public ItemExplainUI itemExplainUI;
+    public CurrentGoalUI currentGoalUI;
+    public InteractiveMessageUI interactiveMessageUI;
+    public ItemObtainYesNoPanelUI itemObtainYesNoPanelUI;
 
     bulletItem bulletItem;
     KeyItem keyItem;
@@ -111,7 +111,7 @@ public class TabUI : MonoBehaviour, CallBackInterface
 
     private void ContainerLimit()
     {
-        currentItemindex = Mathf.Clamp(currentItemindex, 0, GameManagerUI.instance.CurrentContainer-1);
+        currentItemindex = Mathf.Clamp(currentItemindex, 0, GameManagerUI.CurrentContainer-1);
     }
 
     IEnumerator showInteractiveDialogDelay()
