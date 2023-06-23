@@ -16,11 +16,11 @@ public class InGameUI : MonoBehaviour
     }
 
     private void OnEnable() {
-        PlayerStatus.Update_IngameUI_Event += Update_IngameUI;
+        GameManager.EventManager.Update_IngameUI_Event += Update_IngameUI;
     }
 
     private void OnDisable() {
-        PlayerStatus.Update_IngameUI_Event -= Update_IngameUI;
+        GameManager.EventManager.Update_IngameUI_Event -= Update_IngameUI;
     }
 
     public void Update_IngameUI(float MaxHP, float CurrentHP, int Energy, float EnergyMaganize, float EnergyStore , int Sheild, float SheildMaganize , float SheildStore, int EnergyUpgrade, int SheildUpgrade)

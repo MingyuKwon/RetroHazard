@@ -187,35 +187,35 @@ public class TabUI : MonoBehaviour, CallBackInterface
                         int KeyItemCode = itemUI.playerInventory.items[itemUI.currentindex].KeyItemCode;
                         if(KeyItemCode < 3 || (KeyItemCode > 8 && KeyItemCode < 12) || (KeyItemCode > 11 && KeyItemCode < 15))
                         {
-                            status.ChangeWeapon(0);
+                            Player1.instance.playerStatus.ChangeWeapon(0);
                             itemUI.itemContainers[itemUI.currentindex].focus.SetselectText(0, "Equip");
                         }else
                         {
-                            status.ChangeSheild(3);
+                            Player1.instance.playerStatus.ChangeSheild(3);
                             itemUI.itemContainers[itemUI.currentindex].focus.SetselectText(0, "Equip");
                         }
 
                     }else if(itemUI.itemContainers[itemUI.currentindex].focus.selectTexts[0].text == "Equip")
                     {
                         int KeyItemCode = itemUI.playerInventory.items[itemUI.currentindex].KeyItemCode;
-
                         if(KeyItemCode < 3)
                         {
-                            status.ChangeWeapon(KeyItemCode + 1);
+                            Player1.instance.playerStatus.ChangeWeapon(KeyItemCode + 1);
                             itemUI.itemContainers[itemUI.currentindex].focus.SetselectText(0, "DisArm");
                         }else if(KeyItemCode > 8 && KeyItemCode < 12)
                         {
-                            status.ChangeWeapon(KeyItemCode - 8);
+                            
+                            Player1.instance.playerStatus.ChangeWeapon(KeyItemCode - 8);
                             itemUI.itemContainers[itemUI.currentindex].focus.SetselectText(0, "DisArm");
                         }
                         else if(KeyItemCode > 11 && KeyItemCode < 15)
                         {
-                            status.ChangeWeapon(KeyItemCode - 11);
+                            Player1.instance.playerStatus.ChangeWeapon(KeyItemCode - 11);
                             itemUI.itemContainers[itemUI.currentindex].focus.SetselectText(0, "DisArm");
                         }
                         else if(KeyItemCode > 2 && KeyItemCode < 6)
                         {
-                            status.ChangeSheild(KeyItemCode - 3);
+                            Player1.instance.playerStatus.ChangeSheild(KeyItemCode - 3);
                             itemUI.itemContainers[itemUI.currentindex].focus.SetselectText(0, "DisArm");
                         }
 

@@ -233,7 +233,7 @@ public class ItemContainer : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             {
                 int KeyItemCode = itemUI.playerInventory.items[containerNum].KeyItemCode;
 
-                if(KeyItemCode + 1 == status.Energy || KeyItemCode - 3 == status.Sheild || KeyItemCode - 8 == status.Energy || KeyItemCode - 11 == status.Energy) // If that Item is now equipped
+                if(KeyItemCode + 1 == status.Energy || KeyItemCode - 3 == status.Sheild || KeyItemCode - 8 == status.Energy || (KeyItemCode - 11 == status.Energy && status.Energy != 0)) // If that Item is now equipped
                 {
                     focus.SetselectText(0, "DisArm"); // If you want to modify this String, you should also modify TabUI pressEnter code
                 }else

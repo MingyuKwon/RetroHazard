@@ -234,12 +234,29 @@ public class PlayerAnimationLogic
 
     public void StabStart()
     {
+        
     }
 
     public void StabEnd() 
     {
         isAttacking = false;
         GameManager.instance.SetPlayerMove(true);
+    }
+
+    public void EnergyReloadEnd()
+    {
+        Player1.instance.playerInventory.EnergyReload();
+        GameManager.instance.ResetPlayerAnimationState();
+        GameManager.instance.SetPlayerMove(true);
+        GameManager.instance.SetPausePlayer(false);
+    }
+
+    public void SheildReloadEnd()
+    {
+        Player1.instance.playerInventory.SheildReLoad();
+        GameManager.instance.ResetPlayerAnimationState();
+        GameManager.instance.SetPlayerMove(true);
+        GameManager.instance.SetPausePlayer(false);
     }
 
     ////////////////logical functions///////////////////////////////////

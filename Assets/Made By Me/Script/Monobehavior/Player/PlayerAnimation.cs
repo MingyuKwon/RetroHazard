@@ -162,6 +162,16 @@ public class PlayerAnimation : MonoBehaviour
         animationLogic.StabEnd();
     }
 
+    public void EnergyReloadEnd()
+    {
+        animationLogic.EnergyReloadEnd();
+    }
+
+    public void SheildReloadEnd()
+    {
+         animationLogic.SheildReloadEnd();
+    }
+
     //Animation event
 
 }

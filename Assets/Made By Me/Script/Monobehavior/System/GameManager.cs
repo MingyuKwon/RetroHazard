@@ -10,13 +10,19 @@ using DG.Tweening;
 public class GameManager : MonoBehaviour
 {
 
-
     ////// EventManager //////////////////////////////////////////////////////////////////////////////////
     ////// EventManager //////////////////////////////////////////////////////////////////////////////////
     ////// EventManager //////////////////////////////////////////////////////////////////////////////////
 
     public class EventManager
     {
+        public static event Action<float,float, int, float, float , int, float, float, int, int> Update_IngameUI_Event; 
+         //Max HP, Current Hp, Energy, EnergyMaganize[Energy], EnergtStore[Energy] , Sheild, SheildMaganize[Sheild] , SheildStore , energyUpgrade
+        public static void Invoke_Update_IngameUI_Event(float MaxHP, float CurrentHP, int Energy, float EnergyMaganize, float EnergyStore , int Sheild, float SheildMaganize , float SheildStore, int EnergyUpgrade, int SheildUpgrade)
+        {
+            Update_IngameUI_Event?.Invoke(MaxHP, CurrentHP, Energy, EnergyMaganize, EnergyStore ,  Sheild, SheildMaganize , SheildStore, EnergyUpgrade, SheildUpgrade);
+        }
+
         public static event Action InteractEvent;
         public static void InvokeInteractEvent()
         {
@@ -33,6 +39,24 @@ public class GameManager : MonoBehaviour
         public static void Invoke_Sheild_Durability_Reduce_Start_Event()
         {
             Sheild_Durability_Reduce_Start_Event?.Invoke();
+        }
+
+        public static event Action<float, int> Sheild_Durability_Change_Event;
+        public static void Invoke_Sheild_Durability_Change_Event(float SheildMaganize, int Sheild)
+        {
+            Sheild_Durability_Change_Event?.Invoke(SheildMaganize, Sheild );
+        }
+
+        public static event Action<bool> SheildCrashEvent;
+        public static void Invoke_SheildCrashEvent(bool flag)
+        {
+            SheildCrashEvent?.Invoke(flag);
+        }
+
+        public static event Action<bool> SheildRecoveryEvent;
+        public static void Invoke_SheildRecoveryEvent(bool flag)
+        {
+            SheildRecoveryEvent?.Invoke(flag);
         }
 
         public static event Action Recovery_VFX_Start_Event;
@@ -110,16 +134,10 @@ public class GameManager : MonoBehaviour
             BoxEvent?.Invoke(flag, from, fromAmount, fromIndex);
         }
 
-        public static event Action<bool> SheildCrashEvent;
-        public static void Invoke_SheildCrashEvent(bool flag)
+        public static event Action PlayerDeathEvent;
+        public static void Invoke_PlayerDeathEvent()
         {
-            SheildCrashEvent?.Invoke(flag);
-        }
-
-        public static event Action<bool> SheildRecoveryEvent;
-        public static void Invoke_SheildRecoveryEvent(bool flag)
-        {
-            SheildRecoveryEvent?.Invoke(flag);
+            PlayerDeathEvent?.Invoke();
         }
     }
     ////// EventManager //////////////////////////////////////////////////////////////////////////////////

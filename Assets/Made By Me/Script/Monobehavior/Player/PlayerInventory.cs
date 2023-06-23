@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+// ================ code cleaned by making PlayerInventoryLogic ==============================
+
 public class PlayerInventory : MonoBehaviour
 {
     public ItemInformation[] items; // items는 그대로 두고, logic에 이 객체 자체를 넘겨 줌으로 

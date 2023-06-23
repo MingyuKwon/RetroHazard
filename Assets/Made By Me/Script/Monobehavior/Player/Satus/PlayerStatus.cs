@@ -8,153 +8,241 @@ using DG.Tweening;
 
 public class PlayerStatus : MonoBehaviour
 {
-    public static event Action<float, int> SheildDurabilityChangeEvent;
-    static public event Action<float,float, int, float, float , int, float, float, int, int> Update_IngameUI_Event; // Max HP, Current Hp, Energy, EnergyMaganize[Energy], EnergtStore[Energy] , Sheild, SheildMaganize[Sheild] , SheildStore , energyUpgrade
-    public static event Action PlayerDeathEvent;
-
+    private PlayerStatusLogic playerStatusLogic;
     private PlayerAnimation playerAnimation;
 
-    [Header("Basic")]
-    public float MaxHP = 100;
-    public float CurrentHP = 100;
-    public float Speed;
+    ///"Basic"////
+    public float MaxHP{
+        get{
+            return playerStatusLogic.MaxHP;
+        }
 
-    [Header("Battle")]
-    public float Attack = 0;
-    public float ArmorDefence = 0;
-    public bool SheildCrash = false;
+        set{
+            playerStatusLogic.MaxHP = value;
+        }
+    }
+    public float CurrentHP {
+        get{
+            return playerStatusLogic.CurrentHP;
+        }
+
+        set{
+            playerStatusLogic.CurrentHP = value;
+        }
+    }
+    public float Speed{
+        get{
+            return playerStatusLogic.Speed;
+        }
+
+        set{
+            playerStatusLogic.Speed = value;
+        }
+    }
+
+    ///"Battle"////
+
+    public float Attack{
+        get{
+            return playerStatusLogic.Attack;
+        }
+
+        set{
+            playerStatusLogic.Attack = value;
+        }
+    }
+
+    public float ArmorDefence{
+        get{
+            return playerStatusLogic.ArmorDefence;
+        }
+
+        set{
+            playerStatusLogic.ArmorDefence = value;
+        }
+    }
+    public bool SheildCrash{
+        get{
+            return playerStatusLogic.SheildCrash;
+        }
+
+        set{
+            playerStatusLogic.SheildCrash = value;
+        }
+    }
     
 
-    [Header("Equipped")]
-    public int Energy = 0;
-    public int[] EnergyDamage = {8, 30 , 100, 80};
-    public int[] EnergyMaganize = {-1, 0 , 0, 0}; // Current sword Energy contain
-    public int[] EnergyMaganizeMaximum = {-1, 0 , 0, 0}; // Current sword Energy contain
-    public int[] EnergyUpgrade = {-1, 0 , 0, 0}; // Current sword Energy contain
+    ///"Equipped"////
+    public int Energy{
+        get{
+            return playerStatusLogic.Energy;
+        }
 
-    public int[] EnergyUPgradeUnit = {0, 5, 4, 3};
+        set{
+            playerStatusLogic.Energy = value;
+        }
+    }
 
-    public int Sheild = 0; // 0-> normal, 1-> parry, 2 -> big , 3-> none
-    public float[] SheildMaganize = {0f , 0f, 0f, -1f}; // Current Sheild Durability contain
-    public int[] SheildMaganizeMaximum = {0, 0, 0, 0}; 
-    public int[] SheildUpgrade = {0 ,0, 0, 0};
+    public int[] EnergyDamage{
+        get{
+            return playerStatusLogic.EnergyDamage;
+        }
+
+        set{
+            playerStatusLogic.EnergyDamage = value;
+        }
+    }
+
+    public int[] EnergyMaganize {
+        get{
+            return playerStatusLogic.EnergyMaganize;
+        }
+
+        set{
+            playerStatusLogic.EnergyMaganize = value;
+        }
+    }
+
+    public int[] EnergyMaganizeMaximum {
+        get{
+            return playerStatusLogic.EnergyMaganizeMaximum;
+        }
+
+        set{
+            playerStatusLogic.EnergyMaganizeMaximum = value;
+        }
+    }
     
-    [Header("Store")]
-    public int[] EnergyStore = {-1, 0 , 0, 0}; // Current sword Energy store in inventory
-    public int SheildStore = 0; // Current Sheild Durability store in inventory
-    
+    public int[] EnergyUpgrade {
+        get{
+            return playerStatusLogic.EnergyUpgrade;
+        }
 
-    [Header("InGame")]
-    public bool parryFrame = false;
-    public bool parrySuccess = false;
-    public bool isBlocked = false;
-    public string blockSuccessEnemy = null;
+        set{
+            playerStatusLogic.EnergyUpgrade = value;
+        }
+    }
+
+    public int[] EnergyUPgradeUnit {
+        get{
+            return playerStatusLogic.EnergyUPgradeUnit;
+        }
+
+        set{
+            playerStatusLogic.EnergyUPgradeUnit = value;
+        }
+    }
+
+    public int Sheild {
+        get{
+            return playerStatusLogic.Sheild;
+        }
+
+        set{
+            playerStatusLogic.Sheild = value;
+        }
+    }
+
+    public float[] SheildMaganize {
+        get{
+            return playerStatusLogic.SheildMaganize;
+        }
+
+        set{
+            playerStatusLogic.SheildMaganize = value;
+        }
+    }
+
+    public int[] SheildMaganizeMaximum {
+        get{
+            return playerStatusLogic.SheildMaganizeMaximum;
+        }
+
+        set{
+            playerStatusLogic.SheildMaganizeMaximum = value;
+        }
+    }
+
+    public int[] SheildUpgrade {
+        get{
+            return playerStatusLogic.SheildUpgrade;
+        }
+
+        set{
+            playerStatusLogic.SheildUpgrade = value;
+        }
+    }
+    
+    /////"Store"/////
+    public int[] EnergyStore {
+        get{
+            return playerStatusLogic.EnergyStore;
+        }
+
+        set{
+            playerStatusLogic.EnergyStore = value;
+        }
+    }
+
+    public int SheildStore {
+        get{
+            return playerStatusLogic.SheildStore;
+        }
+
+        set{
+            playerStatusLogic.SheildStore = value;
+        }
+    }
+    
+    /////"InGame"/////
+    public bool parryFrame {
+        get{
+            return playerStatusLogic.parryFrame;
+        }
+
+        set{
+            playerStatusLogic.parryFrame = value;
+        }
+    }
+
+    public bool parrySuccess {
+        get{
+            return playerStatusLogic.parrySuccess;
+        }
+
+        set{
+            playerStatusLogic.parrySuccess = value;
+        }
+    }
+
+    public bool isBlocked {
+        get{
+            return playerStatusLogic.isBlocked;
+        }
+
+        set{
+            playerStatusLogic.isBlocked = value;
+        }
+    }
+
+    public string blockSuccessEnemy {
+        get{
+            return playerStatusLogic.blockSuccessEnemy;
+        }
+
+        set{
+            playerStatusLogic.blockSuccessEnemy = value;
+        }
+    }
+
+    private Player player;
 
     private void Awake() {
-        Attack = EnergyDamage[Energy];
+        player = ReInput.players.GetPlayer(0);
         playerAnimation = transform.parent.gameObject.GetComponent<PlayerAnimation>();
+        playerStatusLogic = new PlayerStatusLogic(player, playerAnimation);
 
-    }
-
-    public void LoadSave(PlayerStatSave save)
-    {
-        MaxHP = save.MaxHP;
-        CurrentHP = save.CurrentHP;
-        Speed = save.Speed;
-
-        Attack = save.Attack;
-        ArmorDefence = save.ArmorDefence;
-        SheildCrash = save.SheildCrash;
-
-        Energy = save.Energy;
-        Array.Copy( save.EnergyDamage , EnergyDamage, save.EnergyDamage.Length);
-        Array.Copy( save.EnergyMaganize , EnergyMaganize, save.EnergyMaganize.Length);
-        Array.Copy( save.EnergyMaganizeMaximum , EnergyMaganizeMaximum, save.EnergyMaganizeMaximum.Length);
-        Array.Copy( save.EnergyUpgrade , EnergyUpgrade, save.EnergyUpgrade.Length);
-
-        Array.Copy( save.EnergyUPgradeUnit , EnergyUPgradeUnit, save.EnergyUPgradeUnit.Length);
-
-        Sheild = save.Sheild;
-        Array.Copy( save.SheildMaganize , SheildMaganize, save.SheildMaganize.Length);
-        Array.Copy( save.SheildMaganizeMaximum , SheildMaganizeMaximum, save.SheildMaganizeMaximum.Length);
-        Array.Copy( save.SheildUpgrade , SheildUpgrade, save.SheildUpgrade.Length);
-
-        Array.Copy( save.EnergyStore , EnergyStore, save.EnergyStore.Length);
-        SheildStore = save.SheildStore;
-    }
-
-    public void UpdateIngameUI()
-    {
-        StartCoroutine(UpdateUIDelay());
-    }
-
-    public void ChangeWeapon(int energy)
-    {
-        Energy = energy;
-        Attack = EnergyDamage[Energy];
-        StartCoroutine(UpdateUIDelay());
-    }
-
-    public void ChangeSheild(int sheildKind)
-    {
-        Sheild = sheildKind;
-
-        SheildDurabilityChange(0);
-        playerAnimation.SetAnimationFlag("Float","Sheild Kind", Sheild);
-        StartCoroutine(UpdateUIDelay());
-        
-    }
-
-    IEnumerator UpdateUIDelay()
-    {
-        yield return new WaitForEndOfFrame();
-        Update_IngameUI_Event?.Invoke(MaxHP, CurrentHP, Energy, EnergyMaganize[Energy], EnergyStore[Energy] ,  Sheild, SheildMaganize[Sheild] , SheildStore, EnergyUpgrade[Energy], SheildUpgrade[Sheild]);
-        UI.instance.tabUI.itemUI.UpdateInventoryUI();
-        UI.instance.boxUI.playerItemUI.UpdateInventoryUI();
-    }
-
-    public void SetSheildEquip(int sheildKind, bool isObtain)
-    {
-        if(sheildKind == 3) return;
-        if(isObtain)
-        {
-            SheildUpgrade[sheildKind] = 1;
-            
-            if(SheildMaganizeMaximum[sheildKind] == 0)
-            {
-                SheildMaganizeMaximum[sheildKind] = 4;
-            }
-        }else
-        {
-            SheildUpgrade[sheildKind] = 0;
-        }
-    }
-
-    public void SetEnergyEquipUpgrade(int energyKind,  bool isEquip, bool isObtain,  bool isFirst) 
-    {
-        if(isEquip) // weapon
-        {
-            if(!isObtain)
-            {
-                EnergyUpgrade[energyKind] = 0;
-            }else
-            {
-                if(isFirst)
-                {
-                    EnergyUpgrade[energyKind] = 1;
-                    EnergyMaganizeMaximum[energyKind] += EnergyUPgradeUnit[energyKind];
-                }else
-                {
-                    EnergyUpgrade[energyKind] = EnergyMaganizeMaximum[energyKind] / EnergyUPgradeUnit[energyKind];
-                }
-                
-            }
-            
-        }else // upgrade
-        {
-            EnergyUpgrade[energyKind]++;
-            EnergyMaganizeMaximum[energyKind] += EnergyUPgradeUnit[energyKind];
-        }
+        playerStatusLogic.delegateInpuiFunctions();
     }
 
     private void Start() {
@@ -162,65 +250,57 @@ public class PlayerStatus : MonoBehaviour
         SheildDurabilityChange(0);
     }
 
+    private void OnDestroy() {
+        playerStatusLogic.removeInpuiFunctions();
+    }
+
+    public void LoadSave(PlayerStatSave save)
+    {
+        playerStatusLogic.LoadSave(save);
+    }
+
+    public void UpdateIngameUI()
+    {
+        StartCoroutine(playerStatusLogic.UpdateUIDelay());
+    }
+
+    public void ChangeWeapon(int energy)
+    {
+        playerStatusLogic.ChangeWeapon(energy);
+        UpdateIngameUI();
+    }
+
+    public void ChangeSheild(int sheildKind)
+    {
+        playerStatusLogic.ChangeSheild(sheildKind);
+        UpdateIngameUI();
+    }
+
+    public void SetSheildEquip(int sheildKind, bool isObtain)
+    {
+        playerStatusLogic.SetSheildEquip(sheildKind, isObtain);
+    }
+
+    public void SetEnergyEquipUpgrade(int energyKind,  bool isEquip, bool isObtain,  bool isFirst) 
+    {
+        playerStatusLogic.SetEnergyEquipUpgrade(energyKind, isEquip, isObtain, isFirst);
+    }
+
     public void HealthChangeDefaultMinus(float damage)
     {
-        if(damage == 0)
-            return;
-
-        if(damage == -1)
-        {
-            CurrentHP = MaxHP;
-            UpdateIngameUI();
-            return;
-        }
-
-        CurrentHP -= damage;
-        if(CurrentHP <=0 )
-        {
-            CurrentHP = 0;
-            PlayerDeathEvent?.Invoke();
-        }else if(CurrentHP > MaxHP)
-        {
-            CurrentHP = MaxHP;
-        }
+        playerStatusLogic.HealthChangeDefaultMinus(damage);
         UpdateIngameUI();
     }
 
     public void SheildDurabilityChange(float damage)
     {
-        bool flag;
-        flag = (damage == 0f) ? true : false;
-
-        if(Sheild == 2 && damage > 0 )
-        {
-            SheildMaganize[Sheild] -= damage * 0.5f;
-        }else
-        {
-            SheildMaganize[Sheild] -= damage;
-        }
-        
-        GameManager.Sheild_Durability_Reducing = false;
-        SheildDurabilityChangeEvent?.Invoke(SheildMaganize[Sheild], Sheild);
-        if(SheildMaganize[Sheild] <=0 )
-        {
-            SheildMaganize[Sheild] = 0;
-            SheildCrash = true;
-            GameManager.EventManager.Invoke_SheildCrashEvent(flag);
-        }else
-        {
-            if(SheildCrash)
-            {
-                SheildCrash = false;
-                GameManager.EventManager.Invoke_SheildRecoveryEvent(flag);
-            }
-        }
-        
+        playerStatusLogic.SheildDurabilityChange(damage);
+        UpdateIngameUI();
     }
 
     public void EnergyUse(int energyUse, int energyKind)
     {
-        if(energyKind == 0) return;
-        EnergyMaganize[energyKind] -= energyUse;
+        playerStatusLogic.EnergyUse(energyUse, energyKind);
         UpdateIngameUI();
     }
 

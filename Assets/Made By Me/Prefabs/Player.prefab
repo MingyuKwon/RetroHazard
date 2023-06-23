@@ -247,7 +247,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84366b3c145bcaf429f9f46ee9da9779, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  status: {fileID: 0}
   items: []
   itemsamount: 
   isEquipped: 
@@ -374,7 +373,6 @@ GameObject:
   - component: {fileID: 5496397582843710029}
   - component: {fileID: 7168993580999198587}
   - component: {fileID: 6457469133992971984}
-  - component: {fileID: 3566777902539789972}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -414,6 +412,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9ad2bfac323dc7478d4612b8f497332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerStatus: {fileID: 0}
+  playerInventory: {fileID: 0}
+  playerItemBox: {fileID: 0}
 --- !u!114 &6089768402828800010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -579,18 +580,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a71ed12ab1efe7c448fbeb25f1d12847, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3566777902539789972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6387553226888266342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bbb9fbcdccfedf45a9cd10425c1332d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8443621313171552822
