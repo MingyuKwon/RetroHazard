@@ -10,9 +10,7 @@ public class PlayerMoveLogic
     public float moveSpeed = 1f;
     public bool canMove = true;
 
-
     public bool InputOk;
-
     public bool UpInputBlock;
     public bool DownInputBlock;
     public bool RightInputBlock;
@@ -26,12 +24,10 @@ public class PlayerMoveLogic
 
 
     /////////references and constructor///////////////////////////////////
-    private Player player;
     private Transform transform;
 
-    public PlayerMoveLogic(Player _player, Transform _transform, float movespeed)
+    public PlayerMoveLogic(Transform _transform, float movespeed)
     {
-        player = _player;
         transform = _transform;
         this.moveSpeed = movespeed;
     }
@@ -41,7 +37,8 @@ public class PlayerMoveLogic
     ////////////////logical functions///////////////////////////////////
     public void FixedUpdate()
     {
-        isWalkingPress = player.GetButton("Move Up") || player.GetButton("Move Down") || player.GetButton("Move Right") || player.GetButton("Move Left");
+        isWalkingPress = GameMangerInput.inputCheck.isPressingUP() || GameMangerInput.inputCheck.isPressingDown() 
+        || GameMangerInput.inputCheck.isPressingRight() || GameMangerInput.inputCheck.isPressingLeft();
 
         if(canMove && !(GameManager.isPlayerPaused))
         {
@@ -49,12 +46,12 @@ public class PlayerMoveLogic
 
             float moveForceSchloar = 0f;
 
-            if(!player.GetButton("Move Right") && !player.GetButton("Move Left"))
+            if(!GameMangerInput.inputCheck.isPressingRight() && !GameMangerInput.inputCheck.isPressingLeft())
             {
                 HorizontalMoveSpeed = 0f;
             }
 
-            if(!player.GetButton("Move Up") && !player.GetButton("Move Down"))
+            if(!GameMangerInput.inputCheck.isPressingUP() && !GameMangerInput.inputCheck.isPressingDown())
             {
                 VerticalMoveSpeed = 0f;
             }
@@ -73,9 +70,6 @@ public class PlayerMoveLogic
             if( !(VerticalMoveSpeedFinal == 0 && HorizontalMoveSpeedFinal == 0))
             {
                 
-                // Debug.Log("Move Up : " + player.GetButton("Move Up"));
-                // Debug.Log("Move Left : " + player.GetButton("Move Left"));
-                // Debug.Log("Move Down : " + player.GetButton("Move Down"));
             }
 
             transform.position = new Vector2( transform.position.x + HorizontalMoveSpeedFinal , transform.position.y + VerticalMoveSpeedFinal);
@@ -97,25 +91,25 @@ public class PlayerMoveLogic
             
         }else
         {
-            if(player.GetButton("Move Up"))
+            if(GameMangerInput.inputCheck.isPressingUP())
             {
                 UpInputBlock = false;
                 DownInputBlock = true;
             }
 
-            if(player.GetButton("Move Down"))
+            if(GameMangerInput.inputCheck.isPressingDown())
             {
                 DownInputBlock = false;
                 UpInputBlock = true;
             }
 
-            if(player.GetButton("Move Right"))
+            if(GameMangerInput.inputCheck.isPressingRight())
             {
                 RightInputBlock = false;
                 LeftInputBlock = true;
             }
 
-            if(player.GetButton("Move Left"))
+            if(GameMangerInput.inputCheck.isPressingLeft())
             {
                 LeftInputBlock = false;
                 RightInputBlock = true;
@@ -127,66 +121,65 @@ public class PlayerMoveLogic
     ////////////////logical functions///////////////////////////////////
 
     //////////////////////delegate player input functions///////////////////////////////////
-    public void delegateInpuiFunctions()
-    {
-        player.AddInputEventDelegate(UPPressed, UpdateLoopType.Update, InputActionEventType.ButtonPressed, "Move Up");
-        player.AddInputEventDelegate(DownPressed, UpdateLoopType.Update, InputActionEventType.ButtonPressed, "Move Down");
-        player.AddInputEventDelegate(RightPressed, UpdateLoopType.Update, InputActionEventType.ButtonPressed,"Move Right");
-        player.AddInputEventDelegate(LeftPressed, UpdateLoopType.Update, InputActionEventType.ButtonPressed,"Move Left");
 
-        player.AddInputEventDelegate(UPJustPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Move Up");
-        player.AddInputEventDelegate(DownJustPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Move Down");
-        player.AddInputEventDelegate(RightJustPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed,"Move Right");
-        player.AddInputEventDelegate(LeftJustPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed,"Move Left");
+    public void OnEnable() {
+        GameMangerInput.InputEvent.UPPressed += UPPressed;
+        GameMangerInput.InputEvent.DownPressed += DownPressed;
+        GameMangerInput.InputEvent.RightPressed += RightPressed;
+        GameMangerInput.InputEvent.LeftPressed += LeftPressed;
 
-        player.AddInputEventDelegate(UPJustReleased, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased, "Move Up");
-        player.AddInputEventDelegate(DownJustReleased, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased, "Move Down");
-        player.AddInputEventDelegate(RightJustReleased, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased,"Move Right");
-        player.AddInputEventDelegate(LeftJustReleased, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased,"Move Left");
+        GameMangerInput.InputEvent.UPJustPressed += UPJustPressed;
+        GameMangerInput.InputEvent.DownJustPressed += DownJustPressed;
+        GameMangerInput.InputEvent.RightJustPressed += RightJustPressed;
+        GameMangerInput.InputEvent.LeftJustPressed += LeftJustPressed;
+
+        GameMangerInput.InputEvent.UPJustReleased += UPJustReleased;
+        GameMangerInput.InputEvent.DownJustReleased += DownJustReleased;
+        GameMangerInput.InputEvent.RightJustReleased += RightJustReleased;
+        GameMangerInput.InputEvent.LeftJustReleased += LeftJustReleased;
     }
 
-    public void removeInpuiFunctions()
-    {
-        player.RemoveInputEventDelegate(UPPressed);
-        player.RemoveInputEventDelegate(DownPressed);
-        player.RemoveInputEventDelegate(RightPressed);
-        player.RemoveInputEventDelegate(LeftPressed);
+    public void OnDisable() {
+        GameMangerInput.InputEvent.UPPressed -= UPPressed;
+        GameMangerInput.InputEvent.DownPressed -= DownPressed;
+        GameMangerInput.InputEvent.RightPressed -= RightPressed;
+        GameMangerInput.InputEvent.LeftPressed -= LeftPressed;
 
-        player.RemoveInputEventDelegate(UPJustPressed);
-        player.RemoveInputEventDelegate(DownJustPressed);
-        player.RemoveInputEventDelegate(RightJustPressed);
-        player.RemoveInputEventDelegate(LeftJustPressed);
+        GameMangerInput.InputEvent.UPJustPressed -= UPJustPressed;
+        GameMangerInput.InputEvent.DownJustPressed -= DownJustPressed;
+        GameMangerInput.InputEvent.RightJustPressed -= RightJustPressed;
+        GameMangerInput.InputEvent.LeftJustPressed -= LeftJustPressed;
 
-        player.RemoveInputEventDelegate(UPJustReleased);
-        player.RemoveInputEventDelegate(DownJustReleased);
-        player.RemoveInputEventDelegate(RightJustReleased);
-        player.RemoveInputEventDelegate(LeftJustReleased);
+        GameMangerInput.InputEvent.UPJustReleased -= UPJustReleased;
+        GameMangerInput.InputEvent.DownJustReleased -= DownJustReleased;
+        GameMangerInput.InputEvent.RightJustReleased -= RightJustReleased;
+        GameMangerInput.InputEvent.LeftJustReleased -= LeftJustReleased;
     }
 
-
+    
     // keep presseing
-    void UPPressed(InputActionEventData data)
+    public void UPPressed()
     {
         if(!InputOk ) return;
         if(UpInputBlock) return;
         VerticalMoveSpeed = 1f;
     }
 
-    void DownPressed(InputActionEventData data)
+    public void DownPressed()
     {
         if(!InputOk ) return;
         if(DownInputBlock) return;
         VerticalMoveSpeed = -1f;
     }
 
-    void RightPressed(InputActionEventData data)
+    public void RightPressed()
     {
         if(!InputOk ) return;
         if(RightInputBlock) return;
         HorizontalMoveSpeed =  1f;
     }
 
-    void LeftPressed(InputActionEventData data)
+    public void LeftPressed()
     {
         if(!InputOk ) return;
         if(LeftInputBlock) return;
@@ -194,36 +187,36 @@ public class PlayerMoveLogic
     }
     // keep presseing
 
-    void UPJustPressed(InputActionEventData data)
+    public void UPJustPressed()
     {
-        if(player.GetButton("Move Down"))
+        if(GameMangerInput.inputCheck.isPressingDown())
         {
             DownInputBlock = true;
         }
         UpInputBlock = false;
     }
 
-    void DownJustPressed(InputActionEventData data)
+    public void DownJustPressed()
     {
-        if(player.GetButton("Move Up"))
+        if(GameMangerInput.inputCheck.isPressingUP())
         {
             UpInputBlock = true;
         } 
         DownInputBlock = false;
     }
 
-    void RightJustPressed(InputActionEventData data)
+    public void RightJustPressed()
     {
-        if(player.GetButton("Move Left"))
+        if(GameMangerInput.inputCheck.isPressingLeft())
         {
             LeftInputBlock = true;
         } 
         RightInputBlock = false;
     }
 
-    void LeftJustPressed(InputActionEventData data)
+    public void LeftJustPressed()
     {
-        if(player.GetButton("Move Right"))
+        if(GameMangerInput.inputCheck.isPressingRight())
         {
             RightInputBlock = true;
         } 
@@ -232,22 +225,22 @@ public class PlayerMoveLogic
 
 
     // just the time release the button
-    void UPJustReleased(InputActionEventData data)
+    public void UPJustReleased()
     {
         DownInputBlock = false;
     }
 
-    void DownJustReleased(InputActionEventData data)
+    public void DownJustReleased()
     {        
         UpInputBlock = false;
     }
 
-    void RightJustReleased(InputActionEventData data)
+    public void RightJustReleased()
     {        
         LeftInputBlock = false;
     }
 
-    void LeftJustReleased(InputActionEventData data)
+    public void LeftJustReleased()
     {        
         RightInputBlock = false;
     }

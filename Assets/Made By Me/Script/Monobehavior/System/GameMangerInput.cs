@@ -1,15 +1,124 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Rewired;
 using Sirenix.OdinInspector;
 using DG.Tweening;
 
 public class GameMangerInput : MonoBehaviour
 {
-    public static GameMangerInput instance = null;
-    private Player player;
+    public class InputEvent
+    {
+        public static event Action UPPressed;
+        public static void Invoke_UpPressed()
+        {
+            UPPressed.Invoke();
+        }
 
+        public static event Action DownPressed;
+        public static void Invoke_DownPressed()
+        {
+            DownPressed.Invoke();
+        }
+
+        public static event Action RightPressed;
+        public static void Invoke_RightPressed()
+        {
+            RightPressed.Invoke();
+        }
+
+        public static event Action LeftPressed;
+        public static void Invoke_LeftPressed()
+        {
+            LeftPressed.Invoke();
+        }
+
+        public static event Action UPJustPressed;
+        public static void Invoke_UPJustPressed()
+        {
+            UPJustPressed.Invoke();
+        }
+
+        public static event Action DownJustPressed;
+        public static void Invoke_DownJustPressed()
+        {
+            DownJustPressed.Invoke();
+        }
+
+        public static event Action RightJustPressed;
+        public static void Invoke_RightJustPressed()
+        {
+            RightJustPressed.Invoke();
+        }
+
+        public static event Action LeftJustPressed;
+        public static void Invoke_LeftJustPressed()
+        {
+            LeftJustPressed.Invoke();
+        }
+
+
+        public static event Action UPJustReleased;
+        public static void Invoke_UPJustReleased()
+        {
+            UPJustReleased.Invoke();
+        }
+
+        public static event Action DownJustReleased;
+        public static void Invoke_DownJustReleased()
+        {
+            DownJustReleased.Invoke();
+        }
+        
+        public static event Action RightJustReleased;
+        public static void Invoke_RightJustReleased()
+        {
+            RightJustReleased.Invoke();
+        }
+
+        public static event Action LeftJustReleased;
+        public static void Invoke_LeftJustReleased()
+        {
+            LeftJustReleased.Invoke();
+        }
+    }
+
+    public class InputCheck
+    {
+        private Player player;
+        public InputCheck(Player _player)
+        {
+            player = _player;
+        }
+
+        public bool isPressingUP()
+        {
+            return player.GetButton("Move Up");
+        }
+
+        public bool isPressingDown()
+        {
+            return player.GetButton("Move Down");
+        }
+
+        public bool isPressingRight()
+        {
+            return player.GetButton("Move Right");
+        }
+
+        public bool isPressingLeft()
+        {
+            return player.GetButton("Move Left");
+        }
+    }
+
+
+    public static GameMangerInput instance = null;
+    public static InputCheck inputCheck;
+
+    private Player player;
     private ControllerMapEnabler mapEnabler;
     private ControllerMapEnabler.RuleSet[] ruleSets;
     // 0 : normal State
@@ -32,11 +141,21 @@ public class GameMangerInput : MonoBehaviour
         player = ReInput.players.GetPlayer(0);
         mapEnabler = player.controllers.maps.mapEnabler;
 
+        inputCheck = new InputCheck(player);
+
         ruleSets = new ControllerMapEnabler.RuleSet[mapEnabler.ruleSets.Count];
         ruleSets[0] = mapEnabler.ruleSets.Find(x => x.tag == "NormalState");
         ruleSets[1] = mapEnabler.ruleSets.Find(x => x.tag == "TalkWithNPC");
         ruleSets[2] = mapEnabler.ruleSets.Find(x => x.tag == "UI");
         ruleSets[3] = mapEnabler.ruleSets.Find(x => x.tag == "Alert");
+    }
+
+    private void OnEnable() {
+        delegateInputFunctions();
+    }
+
+    private void OnDisable() {
+        removeInputFunctions();
     }
 
     [Button]
@@ -66,5 +185,106 @@ public class GameMangerInput : MonoBehaviour
         }
 
         mapEnabler.Apply();
+    }
+
+
+
+    public void delegateInputFunctions()
+    {
+        player.AddInputEventDelegate(UPPressed, UpdateLoopType.Update, InputActionEventType.ButtonPressed, "Move Up");
+        player.AddInputEventDelegate(DownPressed, UpdateLoopType.Update, InputActionEventType.ButtonPressed, "Move Down");
+        player.AddInputEventDelegate(RightPressed, UpdateLoopType.Update, InputActionEventType.ButtonPressed,"Move Right");
+        player.AddInputEventDelegate(LeftPressed, UpdateLoopType.Update, InputActionEventType.ButtonPressed,"Move Left");
+
+        player.AddInputEventDelegate(UPJustPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Move Up");
+        player.AddInputEventDelegate(DownJustPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Move Down");
+        player.AddInputEventDelegate(RightJustPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed,"Move Right");
+        player.AddInputEventDelegate(LeftJustPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed,"Move Left");
+
+        player.AddInputEventDelegate(UPJustReleased, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased, "Move Up");
+        player.AddInputEventDelegate(DownJustReleased, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased, "Move Down");
+        player.AddInputEventDelegate(RightJustReleased, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased,"Move Right");
+        player.AddInputEventDelegate(LeftJustReleased, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased,"Move Left");
+    }
+
+    public void removeInputFunctions()
+    {
+        player.RemoveInputEventDelegate(UPPressed);
+        player.RemoveInputEventDelegate(DownPressed);
+        player.RemoveInputEventDelegate(RightPressed);
+        player.RemoveInputEventDelegate(LeftPressed);
+
+        player.RemoveInputEventDelegate(UPJustPressed);
+        player.RemoveInputEventDelegate(DownJustPressed);
+        player.RemoveInputEventDelegate(RightJustPressed);
+        player.RemoveInputEventDelegate(LeftJustPressed);
+
+        player.RemoveInputEventDelegate(UPJustReleased);
+        player.RemoveInputEventDelegate(DownJustReleased);
+        player.RemoveInputEventDelegate(RightJustReleased);
+        player.RemoveInputEventDelegate(LeftJustReleased);
+    }
+
+    public void UPPressed(InputActionEventData data)
+    {
+        InputEvent.Invoke_UpPressed();
+    }
+
+    public void DownPressed(InputActionEventData data)
+    {
+        InputEvent.Invoke_DownPressed();
+    }
+
+    public void RightPressed(InputActionEventData data)
+    {
+        InputEvent.Invoke_RightPressed();
+    }
+
+    public void LeftPressed(InputActionEventData data)
+    {
+        InputEvent.Invoke_LeftPressed();
+    }
+    // keep presseing
+
+    public void UPJustPressed(InputActionEventData data)
+    {
+        InputEvent.Invoke_UPJustPressed();
+    }
+
+    public void DownJustPressed(InputActionEventData data)
+    {
+        InputEvent.Invoke_DownJustPressed();
+    }
+
+    public void RightJustPressed(InputActionEventData data)
+    {
+        InputEvent.Invoke_RightJustPressed();
+    }
+
+    public void LeftJustPressed(InputActionEventData data)
+    {
+        InputEvent.Invoke_LeftJustPressed();
+    }
+
+
+    // just the time release the button
+    public void UPJustReleased(InputActionEventData data)
+    {
+        InputEvent.Invoke_UPJustReleased();
+    }
+
+    public void DownJustReleased(InputActionEventData data)
+    {        
+        InputEvent.Invoke_DownJustReleased();
+    }
+
+    public void RightJustReleased(InputActionEventData data)
+    {        
+        InputEvent.Invoke_RightJustReleased();
+    }
+
+    public void LeftJustReleased(InputActionEventData data)
+    {        
+        InputEvent.Invoke_LeftJustReleased();
     }
 }
