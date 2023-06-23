@@ -1,33 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Rewired;
 using Sirenix.OdinInspector;
 using DG.Tweening;
 
 public class PlayerInteractiveLogic
 {
-    private Player player;
     private NPCDialogScript nearNPC = null;
     public Interact nearInteract = null;
 
-    public PlayerInteractiveLogic(Player player)
-    {
-        this.player = player;
-    }
-
-    public void delegateInpuiFunctions()
-    {
-        
-        player.AddInputEventDelegate(InteractivePressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Interactive");
-        player.AddInputEventDelegate(InteractiveReleased, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased, "Interactive");
-    }
-
-    public void removeInpuiFunctions()
-    {
-        player.RemoveInputEventDelegate(InteractivePressed);
-        player.RemoveInputEventDelegate(InteractiveReleased);
-    }
 
     public void triggerStay2D(Collider2D other)
     {
@@ -51,9 +32,19 @@ public class PlayerInteractiveLogic
         }
     }
 
+    public void OnEnable() {
+        GameMangerInput.InputEvent.InteractiveJustPressed += InteractivePressed;
+        GameMangerInput.InputEvent.InteractiveJustReleased += InteractiveReleased;
+    }
+
+    public void OnDisable() {
+        GameMangerInput.InputEvent.InteractiveJustPressed -= InteractivePressed;
+        GameMangerInput.InputEvent.InteractiveJustReleased -= InteractiveReleased;
+    }
+
 
     // Normal Input event
-    private void InteractivePressed(InputActionEventData data)
+    private void InteractivePressed()
     {
         if(GameManager.isPlayerNearNPC && !GameManager.isPlayerSheilding)
         {
@@ -82,7 +73,7 @@ public class PlayerInteractiveLogic
             
         }
     }
-    private void InteractiveReleased(InputActionEventData data)
+    private void InteractiveReleased()
     {
 
     }

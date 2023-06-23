@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Rewired;
 using Sirenix.OdinInspector;
 using DG.Tweening;
 
@@ -9,7 +8,6 @@ using DG.Tweening;
 
 public class PlayerInteractive : MonoBehaviour
 {
-    private Player player;
 
     private PlayerInteractiveLogic playerInteractiveLogic;
 
@@ -22,14 +20,17 @@ public class PlayerInteractive : MonoBehaviour
     }
 
     private void Awake() {
-        player = ReInput.players.GetPlayer(0);
-        playerInteractiveLogic = new PlayerInteractiveLogic(player);
-
-        playerInteractiveLogic.delegateInpuiFunctions();
+        playerInteractiveLogic = new PlayerInteractiveLogic();
     }
 
-    private void OnDestroy() {
-        playerInteractiveLogic.removeInpuiFunctions();
+    private void OnEnable() {
+        playerInteractiveLogic.OnEnable();
     }
+
+    private void OnDisable() {
+        playerInteractiveLogic.OnDisable();
+    }
+
+
 
 }

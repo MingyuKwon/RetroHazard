@@ -328,32 +328,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2444c3af47e6914c843d20603407701, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHP: 100
-  CurrentHP: 100
-  Speed: 0
-  Attack: 0
-  ArmorDefence: 0
-  SheildCrash: 0
-  Energy: 0
-  EnergyDamage: 1400000064000000c800000096000000
-  EnergyMaganize: ffffffff000000000000000000000000
-  EnergyMaganizeMaximum: ffffffff000000000000000000000000
-  EnergyUpgrade: ffffffff000000000000000000000000
-  EnergyUPgradeUnit: 00000000050000000400000003000000
-  Sheild: 3
-  SheildMaganize:
-  - 0
-  - 0
-  - 0
-  - 0
-  SheildMaganizeMaximum: 00000000000000000000000000000000
-  SheildUpgrade: 00000000000000000000000000000000
-  EnergyStore: ffffffff000000000000000000000000
-  SheildStore: 0
-  parryFrame: 0
-  parrySuccess: 0
-  isBlocked: 0
-  blockSuccessEnemy: 
 --- !u!1 &6387553226888266342
 GameObject:
   m_ObjectHideFlags: 0
@@ -371,7 +345,6 @@ GameObject:
   - component: {fileID: 8763340259208351857}
   - component: {fileID: 7175072744742119670}
   - component: {fileID: 5496397582843710029}
-  - component: {fileID: 7168993580999198587}
   - component: {fileID: 6457469133992971984}
   m_Layer: 0
   m_Name: Player
@@ -556,18 +529,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3acfe5e60fda0de4fb526df7e68f089b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &7168993580999198587
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6387553226888266342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aef0326d7e5f5724ebc7ef708e6298c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &6457469133992971984

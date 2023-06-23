@@ -97,6 +97,18 @@ public class GameMangerInput : MonoBehaviour
         }
 
 
+        public static event Action InteractiveJustPressed;
+        public static void Invoke_InteractiveJustPressed()
+        {
+            InteractiveJustPressed.Invoke();
+        }
+
+        public static event Action InteractiveJustReleased;
+        public static void Invoke_InteractiveJustReleased()
+        {
+            InteractiveJustReleased.Invoke();
+        }
+
     }
 
     public class InputCheck
@@ -137,7 +149,7 @@ public class GameMangerInput : MonoBehaviour
         {
             return player.GetButtonUp("Shield");
         }
-
+        
         public bool isInteractiveButtonDown()
         {
             return player.GetButtonDown("Interactive");
@@ -244,6 +256,9 @@ public class GameMangerInput : MonoBehaviour
     
         player.AddInputEventDelegate(EnergyReloadStart, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Energy Refill");
         player.AddInputEventDelegate(SheildReloadStart, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Sheild Refill");
+    
+        player.AddInputEventDelegate(InteractiveJustPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Interactive");
+        player.AddInputEventDelegate(InteractiveJustReleased, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased, "Interactive");
     }
 
     public void removeInputFunctions()
@@ -265,6 +280,19 @@ public class GameMangerInput : MonoBehaviour
 
         player.RemoveInputEventDelegate(EnergyReloadStart);
         player.RemoveInputEventDelegate(SheildReloadStart);
+
+        player.RemoveInputEventDelegate(InteractiveJustPressed);
+        player.RemoveInputEventDelegate(InteractiveJustReleased);
+    }
+
+    private void InteractiveJustPressed(InputActionEventData data)
+    {
+        InputEvent.Invoke_InteractiveJustPressed();
+    }
+
+    private void InteractiveJustReleased(InputActionEventData data)
+    {
+        InputEvent.Invoke_InteractiveJustReleased();
     }
 
     void EnergyReloadStart(InputActionEventData data)
