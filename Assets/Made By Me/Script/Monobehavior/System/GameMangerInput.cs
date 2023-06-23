@@ -83,6 +83,20 @@ public class GameMangerInput : MonoBehaviour
         {
             LeftJustReleased.Invoke();
         }
+
+        public static event Action EnergyReload;
+        public static void Invoke_EnergyReload()
+        {
+            EnergyReload.Invoke();
+        }
+
+        public static event Action SheildReload;
+        public static void Invoke_SheildReload()
+        {
+            SheildReload.Invoke();
+        }
+
+
     }
 
     public class InputCheck
@@ -112,6 +126,28 @@ public class GameMangerInput : MonoBehaviour
         {
             return player.GetButton("Move Left");
         }
+
+        public bool isPressingShield()
+        {
+            return player.GetButton("Shield");
+        }
+
+
+        public bool isShieldButtonUp()
+        {
+            return player.GetButtonUp("Shield");
+        }
+
+        public bool isInteractiveButtonDown()
+        {
+            return player.GetButtonDown("Interactive");
+        }
+
+        public bool isAttackButtonDown()
+        {
+            return player.GetButtonDown("Attack");
+        }
+
     }
 
 
@@ -205,6 +241,9 @@ public class GameMangerInput : MonoBehaviour
         player.AddInputEventDelegate(DownJustReleased, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased, "Move Down");
         player.AddInputEventDelegate(RightJustReleased, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased,"Move Right");
         player.AddInputEventDelegate(LeftJustReleased, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased,"Move Left");
+    
+        player.AddInputEventDelegate(EnergyReloadStart, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Energy Refill");
+        player.AddInputEventDelegate(SheildReloadStart, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Sheild Refill");
     }
 
     public void removeInputFunctions()
@@ -223,6 +262,19 @@ public class GameMangerInput : MonoBehaviour
         player.RemoveInputEventDelegate(DownJustReleased);
         player.RemoveInputEventDelegate(RightJustReleased);
         player.RemoveInputEventDelegate(LeftJustReleased);
+
+        player.RemoveInputEventDelegate(EnergyReloadStart);
+        player.RemoveInputEventDelegate(SheildReloadStart);
+    }
+
+    void EnergyReloadStart(InputActionEventData data)
+    {
+        InputEvent.Invoke_EnergyReload();
+    }
+
+    void SheildReloadStart(InputActionEventData data)
+    {
+        InputEvent.Invoke_SheildReload();
     }
 
     public void UPPressed(InputActionEventData data)

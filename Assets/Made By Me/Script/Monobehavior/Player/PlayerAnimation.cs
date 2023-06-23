@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Rewired;
 using Sirenix.OdinInspector;
 using DG.Tweening;
 
@@ -51,38 +50,27 @@ public class PlayerAnimation : MonoBehaviour
     }
 
     public Animator animator; // Player's animator
-    private Player player;
-
     public VFXAnimation vfxAnimation;
     private PlayerAnimationLogic animationLogic;
 
     
     private void Awake() {
         animator = GetComponent<Animator>();
-
-        player = ReInput.players.GetPlayer(0);
-
         vfxAnimation = new VFXAnimation(GetComponentInChildren<VFX>().gameObject.GetComponent<Animator>());
 
-        animationLogic = new PlayerAnimationLogic(player, animator);
+        animationLogic = new PlayerAnimationLogic(animator);
+    }
 
-        animationLogic.delegateInpuiFunctions();
+    private void OnEnable() {
+        animationLogic.OnEnable();
+    }
+
+    private void OnDisable() {
+        animationLogic.OnDisable();
     }
 
     private void Start() {
         animationLogic.Start();
-    }
-
-    private void OnDestroy() {
-        animationLogic.delegateInpuiFunctions();
-    }
-
-    private void OnEnable() {
-        animationLogic.delegateFunctions();
-    }
-
-    private void OnDisable() {
-        animationLogic.removeFunctions();
     }
 
     void Update()
@@ -169,7 +157,7 @@ public class PlayerAnimation : MonoBehaviour
 
     public void SheildReloadEnd()
     {
-         animationLogic.SheildReloadEnd();
+        animationLogic.SheildReloadEnd();
     }
 
     //Animation event

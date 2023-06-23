@@ -8,7 +8,6 @@ using DG.Tweening;
 
 public class PlayerStatusLogic 
 {
-    private Player player;
     private PlayerAnimation playerAnimation;
 
     [Header("Basic")]
@@ -47,9 +46,8 @@ public class PlayerStatusLogic
     public bool isBlocked = false;
     public string blockSuccessEnemy = null;
 
-    public PlayerStatusLogic(Player player, PlayerAnimation playerAnimation)
+    public PlayerStatusLogic(PlayerAnimation playerAnimation)
     {
-        this.player = player;
         this.playerAnimation = playerAnimation;
     }
 
@@ -210,22 +208,17 @@ public class PlayerStatusLogic
         UI.instance.boxUI.playerItemUI.UpdateInventoryUI();
     }
 
-
-
-
-    public void delegateInpuiFunctions()
-    {
-        player.AddInputEventDelegate(EnergyReloadStart, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Energy Refill");
-        player.AddInputEventDelegate(SheildReloadStart, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Sheild Refill");
+    public void OnEnable() {
+        GameMangerInput.InputEvent.EnergyReload += EnergyReloadStart;
+        GameMangerInput.InputEvent.SheildReload += SheildReloadStart;
     }
 
-    public void removeInpuiFunctions()
-    {
-        player.RemoveInputEventDelegate(EnergyReloadStart);
-        player.RemoveInputEventDelegate(SheildReloadStart);
+    public void OnDisable() {
+        GameMangerInput.InputEvent.EnergyReload -= EnergyReloadStart;
+        GameMangerInput.InputEvent.SheildReload -= SheildReloadStart;
     }
 
-    void EnergyReloadStart(InputActionEventData data)
+    void EnergyReloadStart()
     {
         if(EnergyStore[Energy] == 0) return;
         if(EnergyUpgrade[Energy] == 0) return;
@@ -238,7 +231,7 @@ public class PlayerStatusLogic
         GameManager.instance.SetPlayerMove(false);
     }
 
-    void SheildReloadStart(InputActionEventData data)
+    void SheildReloadStart()
     {
         if(SheildStore == 0) return;
         if(SheildUpgrade[Sheild] == 0) return;

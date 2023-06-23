@@ -29,14 +29,12 @@ public class PlayerAnimationLogic
 
 
     /////////references and constructor///////////////////////////////////
-    Player player;
     Animator animator;
 
     private PlayerStatus status;
 
-    public PlayerAnimationLogic(Player _player, Animator _playerAnimator)
+    public PlayerAnimationLogic(Animator _playerAnimator)
     {
-        player = _player;
         animator = _playerAnimator;
     }
     
@@ -50,7 +48,9 @@ public class PlayerAnimationLogic
     public void Update()
     {
         GameManager.isPlayerSheilding = isSheilding;
-        isWalkingPress = player.GetButton("Move Up") || player.GetButton("Move Down") || player.GetButton("Move Right") || player.GetButton("Move Left");
+        isWalkingPress = GameMangerInput.inputCheck.isPressingUP()|| GameMangerInput.inputCheck.isPressingDown() 
+        || GameMangerInput.inputCheck.isPressingRight() || GameMangerInput.inputCheck.isPressingLeft();
+
         if(GameManager.isPlayerPaused) return;
         
         SetWalkAnimation();
@@ -58,19 +58,6 @@ public class PlayerAnimationLogic
         SetShieldAnimation();
         SetParryAnimation();
     }
-
-    public void delegateFunctions()
-    {
-        GameManager.EventManager.SheildCrashEvent += SetSheildCrash;
-        GameManager.EventManager.SheildRecoveryEvent += SetSheildRecovery;
-    }
-
-    public void removeFunctions()
-    {
-        GameManager.EventManager.SheildCrashEvent -= SetSheildCrash;
-        GameManager.EventManager.SheildRecoveryEvent -= SetSheildRecovery;
-    }
-
 
      //monobehavior function//////////////////////////////////////////////////////////////////
 
@@ -86,7 +73,7 @@ public class PlayerAnimationLogic
     private void SetAttackAnimation()
     {
         if(status.EnergyMaganize[status.Energy] == 0) return;
-        if(player.GetButtonDown("Attack"))
+        if(GameMangerInput.inputCheck.isAttackButtonDown())
         {
             if(isAttacking) return;
             if(isSheilding) return;
@@ -106,19 +93,19 @@ public class PlayerAnimationLogic
 
         if(sheildCrash) return;
 
-        if(player.GetButtonUp("Shield"))
+        if(GameMangerInput.inputCheck.isShieldButtonUp())
         {
             if(status.isBlocked) return;
             GameManager.instance.SetPlayerMove(true);
         }
 
-        if(player.GetButton("Shield"))
+        if(GameMangerInput.inputCheck.isPressingShield())
         {
             GameManager.instance.SetPlayerMove(false);
             animator.SetFloat("Sheild Kind", status.Sheild);
         }
 
-        isSheilding = player.GetButton("Shield");
+        isSheilding = GameMangerInput.inputCheck.isPressingShield();
         animator.SetBool("Shield", isSheilding);
     }
 
@@ -126,7 +113,7 @@ public class PlayerAnimationLogic
     {
         if(isParrying || sheildCrash) return;
 
-        if(player.GetButton("Shield") && player.GetButtonDown("Interactive") && status.Sheild != 2)
+        if(GameMangerInput.inputCheck.isPressingShield() && GameMangerInput.inputCheck.isInteractiveButtonDown() && status.Sheild != 2)
         {
             animator.SetTrigger("Parry");
             isParrying = true;
@@ -161,7 +148,7 @@ public class PlayerAnimationLogic
             YInput = 0;
         }else
         {
-            if(player.GetButton("Move Up"))
+            if(GameMangerInput.inputCheck.isPressingUP())
             {
                 if(!(XInput == 0 && YInput == 1))
                 {
@@ -170,7 +157,7 @@ public class PlayerAnimationLogic
                 }
             }
 
-            if(player.GetButton("Move Down"))
+            if(GameMangerInput.inputCheck.isPressingDown())
             {
                 if(!(XInput == 0 && YInput == -1))
                 {
@@ -179,7 +166,7 @@ public class PlayerAnimationLogic
                 }
             }
 
-            if(player.GetButton("Move Right"))
+            if(GameMangerInput.inputCheck.isPressingRight())
             {
                 if(!(XInput == 1 && YInput == 0))
                 {
@@ -188,7 +175,7 @@ public class PlayerAnimationLogic
                 }
             }
 
-            if(player.GetButton("Move Left"))
+            if(GameMangerInput.inputCheck.isPressingLeft())
             {
                 if(!(XInput == -1 && YInput == 0))
                 {
@@ -263,66 +250,70 @@ public class PlayerAnimationLogic
 
 
     //////////////////////delegate player input functions///////////////////////////////////
-    public void delegateInpuiFunctions()
-    {
-        player.AddInputEventDelegate(UPPressed, UpdateLoopType.Update, InputActionEventType.ButtonPressed, "Move Up");
-        player.AddInputEventDelegate(DownPressed, UpdateLoopType.Update, InputActionEventType.ButtonPressed, "Move Down");
-        player.AddInputEventDelegate(RightPressed, UpdateLoopType.Update, InputActionEventType.ButtonPressed,"Move Right");
-        player.AddInputEventDelegate(LeftPressed, UpdateLoopType.Update, InputActionEventType.ButtonPressed,"Move Left");
+    public void OnEnable() {
+        GameMangerInput.InputEvent.UPPressed += UPPressed;
+        GameMangerInput.InputEvent.DownPressed += DownPressed;
+        GameMangerInput.InputEvent.RightPressed += RightPressed;
+        GameMangerInput.InputEvent.LeftPressed += LeftPressed;
 
-        player.AddInputEventDelegate(UPJustPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Move Up");
-        player.AddInputEventDelegate(DownJustPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Move Down");
-        player.AddInputEventDelegate(RightJustPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed,"Move Right");
-        player.AddInputEventDelegate(LeftJustPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed,"Move Left");
+        GameMangerInput.InputEvent.UPJustPressed += UPJustPressed;
+        GameMangerInput.InputEvent.DownJustPressed += DownJustPressed;
+        GameMangerInput.InputEvent.RightJustPressed += RightJustPressed;
+        GameMangerInput.InputEvent.LeftJustPressed += LeftJustPressed;
 
-        player.AddInputEventDelegate(UPJustReleased, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased, "Move Up");
-        player.AddInputEventDelegate(DownJustReleased, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased, "Move Down");
-        player.AddInputEventDelegate(RightJustReleased, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased,"Move Right");
-        player.AddInputEventDelegate(LeftJustReleased, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased,"Move Left");
+        GameMangerInput.InputEvent.UPJustReleased += UPJustReleased;
+        GameMangerInput.InputEvent.DownJustReleased += DownJustReleased;
+        GameMangerInput.InputEvent.RightJustReleased += RightJustReleased;
+        GameMangerInput.InputEvent.LeftJustReleased += LeftJustReleased;
+
+        GameManager.EventManager.SheildCrashEvent += SetSheildCrash;
+        GameManager.EventManager.SheildRecoveryEvent += SetSheildRecovery;
     }
 
-    public void removeInpuiFunctions()
-    {
-        player.RemoveInputEventDelegate(UPPressed);
-        player.RemoveInputEventDelegate(DownPressed);
-        player.RemoveInputEventDelegate(RightPressed);
-        player.RemoveInputEventDelegate(LeftPressed);
+    public void OnDisable() {
+        GameMangerInput.InputEvent.UPPressed -= UPPressed;
+        GameMangerInput.InputEvent.DownPressed -= DownPressed;
+        GameMangerInput.InputEvent.RightPressed -= RightPressed;
+        GameMangerInput.InputEvent.LeftPressed -= LeftPressed;
 
-        player.RemoveInputEventDelegate(UPJustPressed);
-        player.RemoveInputEventDelegate(DownJustPressed);
-        player.RemoveInputEventDelegate(RightJustPressed);
-        player.RemoveInputEventDelegate(LeftJustPressed);
+        GameMangerInput.InputEvent.UPJustPressed -= UPJustPressed;
+        GameMangerInput.InputEvent.DownJustPressed -= DownJustPressed;
+        GameMangerInput.InputEvent.RightJustPressed -= RightJustPressed;
+        GameMangerInput.InputEvent.LeftJustPressed -= LeftJustPressed;
 
-        player.RemoveInputEventDelegate(UPJustReleased);
-        player.RemoveInputEventDelegate(DownJustReleased);
-        player.RemoveInputEventDelegate(RightJustReleased);
-        player.RemoveInputEventDelegate(LeftJustReleased);
+        GameMangerInput.InputEvent.UPJustReleased -= UPJustReleased;
+        GameMangerInput.InputEvent.DownJustReleased -= DownJustReleased;
+        GameMangerInput.InputEvent.RightJustReleased -= RightJustReleased;
+        GameMangerInput.InputEvent.LeftJustReleased -= LeftJustReleased;
+
+        GameManager.EventManager.SheildCrashEvent -= SetSheildCrash;
+        GameManager.EventManager.SheildRecoveryEvent -= SetSheildRecovery;
     }
 
     //input Aniamtion Event
     // keep presseing
-    void UPPressed(InputActionEventData data)
+    void UPPressed()
     {
         if(isAttacking || isSheilding || isParrying ) return;
         LastXInput = 0f;
         LastYInput = 1f;
     }
 
-    void DownPressed(InputActionEventData data)
+    void DownPressed()
     {
         if(isAttacking || isSheilding || isParrying ) return;
         LastXInput = 0f;
         LastYInput = -1f;
     }
 
-    void RightPressed(InputActionEventData data)
+    void RightPressed()
     {
         if(isAttacking || isSheilding || isParrying ) return;
         LastXInput = 1f;
         LastYInput = 0f;
     }
 
-    void LeftPressed(InputActionEventData data)
+    void LeftPressed()
     {
         if(isAttacking || isSheilding || isParrying ) return;
         LastXInput = -1f;
@@ -332,25 +323,25 @@ public class PlayerAnimationLogic
 
 
     // just the time press the button
-    void UPJustPressed(InputActionEventData data)
+    void UPJustPressed()
     {
         XInput = 0f;
         YInput = 1f;
     }
 
-    void DownJustPressed(InputActionEventData data)
+    void DownJustPressed()
     {
         XInput = 0f;
         YInput = -1f;
     }
 
-    void RightJustPressed(InputActionEventData data)
+    void RightJustPressed()
     {
         XInput = 1f;
         YInput = 0f;
     }
 
-    void LeftJustPressed(InputActionEventData data)
+    void LeftJustPressed()
     {
         XInput = -1f;
         YInput = 0f;
@@ -358,17 +349,17 @@ public class PlayerAnimationLogic
     // just the time press the button
 
     // just the time release the button
-    void UPJustReleased(InputActionEventData data)
+    void UPJustReleased()
     {
-        if(player.GetButton("Move Right"))
+        if(GameMangerInput.inputCheck.isPressingRight())
         {
             XInput = 1f;
             YInput = 0f;
-        }else if(player.GetButton("Move Left"))
+        }else if(GameMangerInput.inputCheck.isPressingLeft())
         {
             XInput = -1f;
             YInput = 0f;
-        }else if(player.GetButton("Move Down"))
+        }else if(GameMangerInput.inputCheck.isPressingDown())
         {
             XInput = 0f;
             YInput = -1f;
@@ -380,17 +371,17 @@ public class PlayerAnimationLogic
         
     }
 
-    void DownJustReleased(InputActionEventData data)
+    void DownJustReleased()
     {        
-        if(player.GetButton("Move Right"))
+        if(GameMangerInput.inputCheck.isPressingRight())
         {
             XInput = 1f;
             YInput = 0f;
-        }else if(player.GetButton("Move Left"))
+        }else if(GameMangerInput.inputCheck.isPressingLeft())
         {
             XInput = -1f;
             YInput = 0f;
-        }else if(player.GetButton("Move Up"))
+        }else if(GameMangerInput.inputCheck.isPressingUP())
         {
             XInput = 0f;
             YInput = 1f;
@@ -401,17 +392,17 @@ public class PlayerAnimationLogic
         }
     }
 
-    void RightJustReleased(InputActionEventData data)
+    void RightJustReleased()
     {        
-        if(player.GetButton("Move Up"))
+        if(GameMangerInput.inputCheck.isPressingUP())
         {
             XInput = 0f;
             YInput = 1f;
-        }else if(player.GetButton("Move Down"))
+        }else if(GameMangerInput.inputCheck.isPressingDown())
         {
             XInput = 0f;
             YInput = -1f;
-        }else if(player.GetButton("Move Left"))
+        }else if(GameMangerInput.inputCheck.isPressingLeft())
         {
             XInput = -1f;
             YInput = 0f;
@@ -422,17 +413,17 @@ public class PlayerAnimationLogic
         }
     }
 
-    void LeftJustReleased(InputActionEventData data)
+    void LeftJustReleased()
     {        
-        if(player.GetButton("Move Up"))
+        if(GameMangerInput.inputCheck.isPressingUP())
         {
             XInput = 0f;
             YInput = 1f;
-        }else if(player.GetButton("Move Down"))
+        }else if(GameMangerInput.inputCheck.isPressingDown())
         {
             XInput = 0f;
             YInput = -1f;
-        }else if(player.GetButton("Move Right"))
+        }else if(GameMangerInput.inputCheck.isPressingRight())
         {
             XInput = 1f;
             YInput = 0f;

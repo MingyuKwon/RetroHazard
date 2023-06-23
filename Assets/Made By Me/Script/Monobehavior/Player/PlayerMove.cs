@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Rewired;
 using Sirenix.OdinInspector;
 using DG.Tweening;
 
@@ -46,71 +45,4 @@ public class PlayerMove : MonoBehaviour
         playerMoveLogic.WhenPauseReleased();
     }
 
-
-
-    // keep presseing
-    public void UPPressed()
-    {
-        playerMoveLogic.UPPressed();
-    }
-
-    public void DownPressed()
-    {
-        playerMoveLogic.DownPressed();
-    }
-
-    public void RightPressed()
-    {
-        playerMoveLogic.RightPressed();
-    }
-
-    public void LeftPressed()
-    {
-        playerMoveLogic.LeftPressed();
-    }
-    // keep presseing
-
-
-    public void UPJustPressed()
-    {
-        playerMoveLogic.UPJustPressed();
-    }
-
-    public void DownJustPressed()
-    {
-        playerMoveLogic.DownJustPressed();
-    }
-
-    public void RightJustPressed()
-    {
-        playerMoveLogic.RightJustPressed();
-    }
-
-    public void LeftJustPressed()
-    {
-        playerMoveLogic.LeftJustPressed();
-    }
-
-
-    // just the time release the button
-    public void UPJustReleased()
-    {
-        playerMoveLogic.UPJustReleased();
-    }
-
-    public void DownJustReleased()
-    {        
-        playerMoveLogic.DownJustReleased();
-    }
-
-    public void RightJustReleased()
-    {        
-        playerMoveLogic.RightJustReleased();
-    }
-
-    public void LeftJustReleased()
-    {        
-        playerMoveLogic.LeftJustReleased();
-    }
-    // just the time release the button
 }

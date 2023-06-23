@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Rewired;
 using Sirenix.OdinInspector;
 using DG.Tweening;
 
@@ -235,14 +234,10 @@ public class PlayerStatus : MonoBehaviour
         }
     }
 
-    private Player player;
 
     private void Awake() {
-        player = ReInput.players.GetPlayer(0);
         playerAnimation = transform.parent.gameObject.GetComponent<PlayerAnimation>();
-        playerStatusLogic = new PlayerStatusLogic(player, playerAnimation);
-
-        playerStatusLogic.delegateInpuiFunctions();
+        playerStatusLogic = new PlayerStatusLogic(playerAnimation);
     }
 
     private void Start() {
@@ -250,9 +245,14 @@ public class PlayerStatus : MonoBehaviour
         SheildDurabilityChange(0);
     }
 
-    private void OnDestroy() {
-        playerStatusLogic.removeInpuiFunctions();
+    private void OnEnable() {
+        playerStatusLogic.OnEnable();
     }
+
+    private void OnDisable() {
+        playerStatusLogic.OnDisable();
+    }
+
 
     public void LoadSave(PlayerStatSave save)
     {
