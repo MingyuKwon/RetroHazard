@@ -8,7 +8,6 @@ using DG.Tweening;
 
 public class PlayerInteractive : MonoBehaviour
 {
-
     private PlayerInteractiveLogic playerInteractiveLogic;
 
     void OnTriggerStay2D(Collider2D other) {

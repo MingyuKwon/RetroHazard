@@ -37,7 +37,7 @@ public class PauseRootUI : MonoBehaviour
 
     private void OnEnable() {
         GameMangerInput.instance.changePlayerInputRule(2);
-        ui.MouseCursor(true);
+        ui.SetMouseCursorActive(true);
         GameManager.instance.SetPauseGame(true);
         CurrentWindowLayer = 0;
 
@@ -50,7 +50,7 @@ public class PauseRootUI : MonoBehaviour
 
     private void OnDisable() { // have an error when game is closed ny force while pause Ui is opened
         GameMangerInput.instance.changePlayerInputRule(0);
-        ui.MouseCursor(false);
+        ui.SetMouseCursorActive(false);
         GameManager.instance.SetPauseGame(false);
         CurrentWindowLayer = 0;
 

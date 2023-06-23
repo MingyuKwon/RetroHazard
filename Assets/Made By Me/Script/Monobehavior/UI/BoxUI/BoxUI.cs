@@ -49,7 +49,7 @@ public class BoxUI : MonoBehaviour, CallBackInterface
         boxItemUI.backgroundPanel.color = boxItemUI.unSelectColor;
         playerItemUI.backgroundPanel.color = playerItemUI.selectColor;
 
-        transform.parent.GetComponent<UI>().MouseCursor(true);
+        transform.parent.GetComponent<UI>().SetMouseCursorActive(true);
     }
 
     private void OnDisable() {
@@ -57,7 +57,7 @@ public class BoxUI : MonoBehaviour, CallBackInterface
         currentWindowLayer = 0;
         discardTargetItemIndex = -1;
 
-        transform.parent.GetComponent<UI>().MouseCursor(false);
+        transform.parent.GetComponent<UI>().SetMouseCursorActive(false);
     }
     private void InputGetBack()
     {

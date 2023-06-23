@@ -109,10 +109,73 @@ public class GameMangerInput : MonoBehaviour
             InteractiveJustReleased.Invoke();
         }
 
+
+
+
+
+        public static event Action TabUIEnterPressed;
+        public static void Invoke_UIEnterPressed()
+        {
+            if(InputCheck.isNowTabUIInput)
+            {
+                TabUIEnterPressed.Invoke();
+            }
+            
+        }
+
+        public static event Action TabUIBackPressed;
+        public static void Invoke_UIBackPressed()
+        {
+            if(InputCheck.isNowTabUIInput){
+                TabUIBackPressed.Invoke();
+            }
+            
+        }
+
+        public static event Action TabUIUpPressed;
+        public static void Invoke_UIUpPressed()
+        {
+            if(InputCheck.isNowTabUIInput){
+                TabUIUpPressed.Invoke();
+            }
+        }
+
+        public static event Action TabUIDownPressed;
+        public static void Invoke_UIDownPressed()
+        {
+            if(InputCheck.isNowTabUIInput){
+                TabUIDownPressed.Invoke();
+            }
+        }
+
+        public static event Action TabUIRightPressed;
+        public static void Invoke_UIRightPressed()
+        {
+            if(InputCheck.isNowTabUIInput){
+                TabUIRightPressed.Invoke();
+            }
+        }
+
+        public static event Action TabUILeftPressed;
+        public static void Invoke_UILeftPressed()
+        {
+            if(InputCheck.isNowTabUIInput){
+                TabUILeftPressed.Invoke();
+            }
+            
+        }
     }
 
     public class InputCheck
     {
+        public static bool isNowFieldInput = false;
+        public static bool isNowInteractiveUIInput = false;
+        public static bool isNowTabUIInput = true;
+        public static bool isNowBoxUIInput = false;
+        public static bool isNowPauseUIInput = false;
+        public static bool isNowAlertUIInput = false;
+        public static bool isNowDialogtUIInput = false;
+
         private Player player;
         public InputCheck(Player _player)
         {
@@ -259,6 +322,19 @@ public class GameMangerInput : MonoBehaviour
     
         player.AddInputEventDelegate(InteractiveJustPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Interactive");
         player.AddInputEventDelegate(InteractiveJustReleased, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased, "Interactive");
+
+
+
+
+
+
+        player.AddInputEventDelegate(UIEnterPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Enter");
+        player.AddInputEventDelegate(UIBackPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Back");
+        player.AddInputEventDelegate(UIUpPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "SelectUp");
+        player.AddInputEventDelegate(UIDownPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "SelectDown");
+        player.AddInputEventDelegate(UIRightPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "SelectRight");
+        player.AddInputEventDelegate(UILeftPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "SelectLeft");
+
     }
 
     public void removeInputFunctions()
@@ -283,7 +359,26 @@ public class GameMangerInput : MonoBehaviour
 
         player.RemoveInputEventDelegate(InteractiveJustPressed);
         player.RemoveInputEventDelegate(InteractiveJustReleased);
+
+
+
+
+
+        player.RemoveInputEventDelegate(UIEnterPressed);
+        player.RemoveInputEventDelegate(UIBackPressed);
+        player.RemoveInputEventDelegate(UIUpPressed);
+        player.RemoveInputEventDelegate(UIDownPressed);
+        player.RemoveInputEventDelegate(UIRightPressed);
+        player.RemoveInputEventDelegate(UILeftPressed);
     }
+
+    //////////////////////////////// INGAME ///////////////////////////////////////////////
+    //////////////////////////////// INGAME ///////////////////////////////////////////////
+    //////////////////////////////// INGAME ///////////////////////////////////////////////
+    //////////////////////////////// INGAME ///////////////////////////////////////////////
+    //////////////////////////////// INGAME ///////////////////////////////////////////////
+    //////////////////////////////// INGAME ///////////////////////////////////////////////
+    //////////////////////////////// INGAME ///////////////////////////////////////////////
 
     private void InteractiveJustPressed(InputActionEventData data)
     {
@@ -367,4 +462,64 @@ public class GameMangerInput : MonoBehaviour
     {        
         InputEvent.Invoke_LeftJustReleased();
     }
+
+    //////////////////////////////// INGAME ///////////////////////////////////////////////
+    //////////////////////////////// INGAME ///////////////////////////////////////////////
+    //////////////////////////////// INGAME ///////////////////////////////////////////////
+    //////////////////////////////// INGAME ///////////////////////////////////////////////
+    //////////////////////////////// INGAME ///////////////////////////////////////////////
+    //////////////////////////////// INGAME ///////////////////////////////////////////////
+    //////////////////////////////// INGAME ///////////////////////////////////////////////
+
+
+
+    //////////////////////////////// UI ///////////////////////////////////////////////
+    //////////////////////////////// UI ///////////////////////////////////////////////
+    //////////////////////////////// UI ///////////////////////////////////////////////
+    //////////////////////////////// UI ///////////////////////////////////////////////
+    //////////////////////////////// UI ///////////////////////////////////////////////
+    //////////////////////////////// UI ///////////////////////////////////////////////
+    //////////////////////////////// UI ///////////////////////////////////////////////
+
+    public void UIEnterPressed(InputActionEventData data)
+    {
+        InputEvent.Invoke_UIEnterPressed();
+    }
+
+    public void UIBackPressed(InputActionEventData data)
+    {
+        InputEvent.Invoke_UIBackPressed();
+    }
+
+    public void UIUpPressed(InputActionEventData data)
+    {
+        InputEvent.Invoke_UIUpPressed();
+    }
+
+    public void UIDownPressed(InputActionEventData data)
+    {
+        InputEvent.Invoke_UIDownPressed();
+    }
+
+    public void UIRightPressed(InputActionEventData data)
+    {
+        InputEvent.Invoke_UIRightPressed();
+    }
+
+    public void UILeftPressed(InputActionEventData data)
+    {
+        InputEvent.Invoke_UILeftPressed();
+    }
+
+    
+
+
+
+    //////////////////////////////// UI ///////////////////////////////////////////////
+    //////////////////////////////// UI ///////////////////////////////////////////////
+    //////////////////////////////// UI ///////////////////////////////////////////////
+    //////////////////////////////// UI ///////////////////////////////////////////////
+    //////////////////////////////// UI ///////////////////////////////////////////////
+    //////////////////////////////// UI ///////////////////////////////////////////////
+    //////////////////////////////// UI ///////////////////////////////////////////////
 }

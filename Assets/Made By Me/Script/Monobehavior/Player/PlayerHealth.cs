@@ -15,15 +15,13 @@ public class PlayerHealth : MonoBehaviour
     Rigidbody2D rb;
     
     private CapsuleCollider2D playerBodyCollider;
-    private PlayerAnimation playerAnimation;
     private PlayerHealthLogic playerHealthLogic;
 
     private void Awake() {
-        playerAnimation = GetComponent<PlayerAnimation>();
         rb = GetComponent<Rigidbody2D>();
         playerBodyCollider = GetComponentInChildren<PlayerCollider>().gameObject.GetComponent<CapsuleCollider2D>();
 
-        playerHealthLogic = new PlayerHealthLogic(rb, playerAnimation, playerBodyCollider);
+        playerHealthLogic = new PlayerHealthLogic(rb, Player1.instance.playerAnimation, playerBodyCollider);
     }
 
     private void Start() {

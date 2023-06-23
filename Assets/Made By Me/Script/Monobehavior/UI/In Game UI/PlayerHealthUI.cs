@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using PixelsoftGames.PixelUI;
 
+////////// Cleared ///////////////
 public class PlayerHealthUI : MonoBehaviour
 {
     Text healthText;
@@ -16,7 +15,6 @@ public class PlayerHealthUI : MonoBehaviour
         healthBar = GetComponentInChildren<UIStatBar>();
     }
     
-
     public void SetPlayerHealthUI(float CurrentHP, float MaxHP)
     {
         healthText.text = CurrentHP.ToString() + " | " + MaxHP.ToString();

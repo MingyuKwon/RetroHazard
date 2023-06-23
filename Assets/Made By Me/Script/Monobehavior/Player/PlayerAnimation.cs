@@ -49,7 +49,7 @@ public class PlayerAnimation : MonoBehaviour
         }
     }
 
-    public Animator animator; // Player's animator
+    private Animator animator; // Player's animator
     public VFXAnimation vfxAnimation;
     private PlayerAnimationLogic animationLogic;
 

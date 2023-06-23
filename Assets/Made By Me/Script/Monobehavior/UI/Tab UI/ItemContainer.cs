@@ -78,6 +78,127 @@ public class ItemContainer : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         CheckContainerFull();
     }
 
+    private void CheckWindowLayer()
+    {
+        if(tabUI.currentWindowLayer == 0)
+        {
+            SetSelect(false);
+            backGround.color = new Color(1f, 1f, 1f, 1f);
+            if(tabUI.isUseKeyItem)
+            {
+                 if(isInteractive)
+                {
+                    fadeImage.color = new Color(0f, 0f, 0f, 0f);
+                }else
+                {
+                    fadeImage.color = new Color(0f, 0f, 0f, 0.5f);
+                }
+            }else
+            {
+                fadeImage.color = new Color(0f, 0f, 0f, 0f);
+            }
+           
+            
+            isPreviousEneterd = false;
+
+        }else if(tabUI.currentWindowLayer == 2)
+        {
+            SetSelect(false);
+            if(!isPreviousEneterd)
+            {
+                isPreviousEneterd = true;
+
+                bool flag = false;
+
+                if(itemUI.playerInventory.items[containerNum] != null)
+                {
+                    if(tabUI.combineStartItem.isKeyItem && itemUI.playerInventory.items[containerNum].isKeyItem)
+                    {
+                        if(itemUI.playerInventory.items[containerNum].combineItems == null)
+                        {
+                            Debug.Log(itemUI.playerInventory.items[containerNum].name + " doesnt have combineItems");
+                        }else
+                        {
+                            foreach(int itemCode in itemUI.playerInventory.items[containerNum].combineItems)
+                            {
+                                if(tabUI.combineStartItem.KeyItemCode == itemCode)
+                                {
+                                    isCombineable = true;
+                                    flag = true;
+                                    break;
+                                }
+
+                            }
+                        }
+
+                        
+                    }else if(!tabUI.combineStartItem.isKeyItem && !itemUI.playerInventory.items[containerNum].isKeyItem)
+                    {
+                        foreach(int itemCode in itemUI.playerInventory.items[containerNum].combineItems)
+                        {
+                            if(tabUI.combineStartItem.NormalItemCode == itemCode)
+                            {
+                                isCombineable = true;
+                                flag = true;
+                                break;
+                            }
+
+                        }
+                    }
+                 
+                }
+
+                if(!flag)
+                {
+                    isCombineable = false;
+                }
+
+                if(containerNum == tabUI.combineStartItemIndex)
+                {
+                    isCombineable = false;
+                }
+            }
+
+            if(isCombineable)
+            {
+                fadeImage.color = new Color(0f, 0f, 0f, 0f);
+            }else
+            {
+                fadeImage.color = new Color(0f, 0f, 0f, 0.5f);
+            }
+
+            
+        }else if(tabUI.currentWindowLayer == 1)
+        {
+            isPreviousEneterd = false;
+            if(isFocused)
+            {
+                SetSelect(true);
+                backGround.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+                focus.SetSelect(selectIndex); 
+            }else
+            {
+                SetSelect(false);
+                backGround.color = new Color(1f, 1f, 1f, 1f);
+            }
+
+            if(tabUI.isUseKeyItem)
+            {
+                 if(isInteractive)
+                {
+                    fadeImage.color = new Color(0f, 0f, 0f, 0f);
+                }else
+                {
+                    fadeImage.color = new Color(0f, 0f, 0f, 0.5f);
+                }
+            }else
+            {
+                fadeImage.color = new Color(0f, 0f, 0f, 0f);
+            }
+            
+        }
+    }
+
     private void CheckContainerFull()
     {
         if(itemUI.playerInventory == null) return;
@@ -123,8 +244,9 @@ public class ItemContainer : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             }
         }
         
-
     }
+
+    
 
     public void SetInteractFade()
     {
@@ -245,127 +367,6 @@ public class ItemContainer : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             {
                 focus.SetselectText(0, "Use"); // If you want to modify this String, you should also modify TabUI pressEnter code
             }
-    }
-
-    private void CheckWindowLayer()
-    {
-        if(tabUI.currentWindowLayer == 0)
-        {
-            SetSelect(false);
-            backGround.color = new Color(1f, 1f, 1f, 1f);
-            if(tabUI.isUseKeyItem)
-            {
-                 if(isInteractive)
-                {
-                    fadeImage.color = new Color(0f, 0f, 0f, 0f);
-                }else
-                {
-                    fadeImage.color = new Color(0f, 0f, 0f, 0.5f);
-                }
-            }else
-            {
-                fadeImage.color = new Color(0f, 0f, 0f, 0f);
-            }
-           
-            
-            isPreviousEneterd = false;
-
-        }else if(tabUI.currentWindowLayer == 2)
-        {
-            SetSelect(false);
-            if(!isPreviousEneterd)
-            {
-                isPreviousEneterd = true;
-
-                bool flag = false;
-
-                if(itemUI.playerInventory.items[containerNum] != null)
-                {
-                    if(tabUI.combineStartItem.isKeyItem && itemUI.playerInventory.items[containerNum].isKeyItem)
-                    {
-                        if(itemUI.playerInventory.items[containerNum].combineItems == null)
-                        {
-                            Debug.Log(itemUI.playerInventory.items[containerNum].name + " doesnt have combineItems");
-                        }else
-                        {
-                            foreach(int itemCode in itemUI.playerInventory.items[containerNum].combineItems)
-                            {
-                                if(tabUI.combineStartItem.KeyItemCode == itemCode)
-                                {
-                                    isCombineable = true;
-                                    flag = true;
-                                    break;
-                                }
-
-                            }
-                        }
-
-                        
-                    }else if(!tabUI.combineStartItem.isKeyItem && !itemUI.playerInventory.items[containerNum].isKeyItem)
-                    {
-                        foreach(int itemCode in itemUI.playerInventory.items[containerNum].combineItems)
-                        {
-                            if(tabUI.combineStartItem.NormalItemCode == itemCode)
-                            {
-                                isCombineable = true;
-                                flag = true;
-                                break;
-                            }
-
-                        }
-                    }
-                 
-                }
-
-                if(!flag)
-                {
-                    isCombineable = false;
-                }
-
-                if(containerNum == tabUI.combineStartItemIndex)
-                {
-                    isCombineable = false;
-                }
-            }
-
-            if(isCombineable)
-            {
-                fadeImage.color = new Color(0f, 0f, 0f, 0f);
-            }else
-            {
-                fadeImage.color = new Color(0f, 0f, 0f, 0.5f);
-            }
-
-            
-        }else if(tabUI.currentWindowLayer == 1)
-        {
-            isPreviousEneterd = false;
-            if(isFocused)
-            {
-                SetSelect(true);
-                backGround.color = new Color(0.5f, 0.5f, 0.5f, 1f);
-                focus.SetSelect(selectIndex); 
-            }else
-            {
-                SetSelect(false);
-                backGround.color = new Color(1f, 1f, 1f, 1f);
-            }
-
-            if(tabUI.isUseKeyItem)
-            {
-                 if(isInteractive)
-                {
-                    fadeImage.color = new Color(0f, 0f, 0f, 0f);
-                }else
-                {
-                    fadeImage.color = new Color(0f, 0f, 0f, 0.5f);
-                }
-            }else
-            {
-                fadeImage.color = new Color(0f, 0f, 0f, 0f);
-            }
-            
-        }
     }
 
     public void SetSelectIndex(int index)

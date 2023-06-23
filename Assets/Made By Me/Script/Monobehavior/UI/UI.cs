@@ -1,16 +1,10 @@
-using System.Collections;
-using System;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using Rewired;
-using Sirenix.OdinInspector;
 
+////////////////// Cleared //////////////////
 public class UI : MonoBehaviour
 {
     public static UI instance;
 
-    public PlayerStatus status;
     public BoxUI boxUI;
     public InGameUI inGameUI;
     public TabUI tabUI;
@@ -25,15 +19,13 @@ public class UI : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        status = FindObjectOfType<PlayerStatus>();
-
         boxUI = GetComponentInChildren<BoxUI>();
         inGameUI = GetComponentInChildren<InGameUI>();
         tabUI = GetComponentInChildren<TabUI>();
 
     }
 
-    public void MouseCursor(bool flag)
+    public void SetMouseCursorActive(bool flag)
     {
         transform.GetChild(6).transform.GetChild(0).gameObject.SetActive(flag);
     }
@@ -53,10 +45,10 @@ public class UI : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    private void TotalUIUpdate()
+    public void TotalUIUpdate()
     {
         boxUI.UpdateBoxUI();
-        status.UpdateIngameUI();
+        inGameUI.UpdateIngameUI();
         tabUI.UpdateTabUI();
     }
 }

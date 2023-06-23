@@ -76,7 +76,7 @@ public class PlayerSheildLogic
             status.SheildDurabilityChange(1);
         }else
         {
-            status.UpdateIngameUI();
+            UI.instance.inGameUI.UpdateIngameUI();
         }
         status.parrySuccess = false;
 

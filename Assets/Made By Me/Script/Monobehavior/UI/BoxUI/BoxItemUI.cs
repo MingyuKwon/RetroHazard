@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using Rewired;
 using Sirenix.OdinInspector;
 using DG.Tweening;
 

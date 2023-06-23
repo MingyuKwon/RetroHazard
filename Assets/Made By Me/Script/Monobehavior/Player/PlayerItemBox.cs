@@ -69,7 +69,7 @@ public class PlayerItemBox : MonoBehaviour
             removeItem(currentindex);
         }
 
-        status.UpdateIngameUI();
+        UI.instance.inGameUI.UpdateIngameUI();
         playerItemUI.UpdateInventoryUI();
         boxItemUI.UpdateBoxItemUI();
     }
@@ -79,7 +79,7 @@ public class PlayerItemBox : MonoBehaviour
         items[index] = null;
         itemsamount[index] = 0;
 
-        status.UpdateIngameUI();
+        UI.instance.inGameUI.UpdateIngameUI();
         playerItemUI.UpdateInventoryUI();
         boxItemUI.UpdateBoxItemUI();
     }

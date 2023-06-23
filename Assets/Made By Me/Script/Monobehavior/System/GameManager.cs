@@ -176,7 +176,6 @@ public class GameManager : MonoBehaviour
     static public float slowMotionTime = 0.8f;
 
     PlayerMove playerMove;
-    PlayerAnimation playerAnimation;
     private Player player;
 
     void Awake() {
@@ -194,7 +193,6 @@ public class GameManager : MonoBehaviour
         player.AddInputEventDelegate(SetPauseGameInput, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Pause");
         player.AddInputEventDelegate(SetTab, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Tab");
         playerMove = FindObjectOfType<PlayerMove>();
-        playerAnimation = FindObjectOfType<PlayerAnimation>();
     }
 
     private void OnDestroy() {
@@ -252,14 +250,14 @@ public class GameManager : MonoBehaviour
 
     public void SetPlayerAnimationObtainKeyItem(bool flag)
     {
-        playerAnimation.animator.SetBool("Obtain Key Item", flag);
+        Player1.instance.playerAnimation.SetAnimationFlag("Bool", "Obtain Key Item", flag ? 1 : 0);  
         ObtainKeyItem = flag;
 
     }
 
     public void ResetPlayerAnimationState()
     {
-        playerAnimation.ResetPlayerAnimationState_CalledByGameManager();
+        Player1.instance.playerAnimation.ResetPlayerAnimationState_CalledByGameManager();
     }
 
     public void SetPausePlayer(bool flag)
@@ -267,7 +265,7 @@ public class GameManager : MonoBehaviour
         isPlayerPaused = flag;
         if(flag)
         {
-            playerAnimation.ResetPlayerAnimationState_CalledByGameManager();
+            Player1.instance.playerAnimation.ResetPlayerAnimationState_CalledByGameManager();
         }
         
     }
@@ -301,7 +299,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            playerAnimation.WhenPauseReleased();
+            Player1.instance.playerAnimation.WhenPauseReleased();
             playerMove.WhenPauseReleased();
             Time.timeScale = 1f;
         }

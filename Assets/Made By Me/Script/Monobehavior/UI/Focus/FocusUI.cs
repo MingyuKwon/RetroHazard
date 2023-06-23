@@ -1,12 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public class FocusUI : MonoBehaviour
 {
-    
     Image image;
     public SelectButton[] selectButtons;
     public Text[] selectTexts;
@@ -21,7 +17,6 @@ public class FocusUI : MonoBehaviour
             Destroy(transform.GetChild(0).gameObject);
         }
     }
-
 
     public void SetFocus(bool flag)
     {

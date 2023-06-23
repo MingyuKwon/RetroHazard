@@ -241,7 +241,7 @@ public class PlayerStatus : MonoBehaviour
     }
 
     private void Start() {
-        UpdateIngameUI();
+        UI.instance.inGameUI.UpdateIngameUI();
         SheildDurabilityChange(0);
     }
 
@@ -259,21 +259,16 @@ public class PlayerStatus : MonoBehaviour
         playerStatusLogic.LoadSave(save);
     }
 
-    public void UpdateIngameUI()
-    {
-        StartCoroutine(playerStatusLogic.UpdateUIDelay());
-    }
-
     public void ChangeWeapon(int energy)
     {
         playerStatusLogic.ChangeWeapon(energy);
-        UpdateIngameUI();
+        UI.instance.inGameUI.UpdateIngameUI();
     }
 
     public void ChangeSheild(int sheildKind)
     {
         playerStatusLogic.ChangeSheild(sheildKind);
-        UpdateIngameUI();
+        UI.instance.inGameUI.UpdateIngameUI();
     }
 
     public void SetSheildEquip(int sheildKind, bool isObtain)
@@ -289,19 +284,19 @@ public class PlayerStatus : MonoBehaviour
     public void HealthChangeDefaultMinus(float damage)
     {
         playerStatusLogic.HealthChangeDefaultMinus(damage);
-        UpdateIngameUI();
+        UI.instance.inGameUI.UpdateIngameUI();
     }
 
     public void SheildDurabilityChange(float damage)
     {
         playerStatusLogic.SheildDurabilityChange(damage);
-        UpdateIngameUI();
+        UI.instance.inGameUI.UpdateIngameUI();
     }
 
     public void EnergyUse(int energyUse, int energyKind)
     {
         playerStatusLogic.EnergyUse(energyUse, energyKind);
-        UpdateIngameUI();
+        UI.instance.inGameUI.UpdateIngameUI();
     }
 
 }

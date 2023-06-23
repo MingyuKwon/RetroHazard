@@ -1,13 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//////// Cleared ////////////////
 public class EnergyUI : MonoBehaviour
 {
     Text[] EnergyText; // 0: now, 1 : store
     Image EnergyImage;
-    PlayerStatus status;
 
     int EnergyCurrent;
 
@@ -19,8 +17,6 @@ public class EnergyUI : MonoBehaviour
     private void Awake() {
         EnergyText = GetComponentsInChildren<Text>();
         EnergyImage = GetComponentInChildren<Image>();
-        status = FindObjectOfType<PlayerStatus>();
-        
     }
 
     public void SetEnergyUI(float EnergyAmount, int EnergyKind)
@@ -33,7 +29,7 @@ public class EnergyUI : MonoBehaviour
         }else
         {
             EnergyText[0].text = EnergyAmount.ToString();
-            if(EnergyAmount == status.EnergyMaganizeMaximum[EnergyKind])
+            if(EnergyAmount == Player1.instance.playerStatus.EnergyMaganizeMaximum[EnergyKind])
             {
                 EnergyText[0].color = Color.green;
             }else if(EnergyAmount == 0)

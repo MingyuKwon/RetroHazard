@@ -176,7 +176,7 @@ public class PlayerInventroyLogic
             }
         }
 
-        status.UpdateIngameUI();
+        UI.instance.inGameUI.UpdateIngameUI();
         itemUI.UpdateInventoryUI();
         playerItemUI.UpdateInventoryUI();
     }
@@ -224,7 +224,7 @@ public class PlayerInventroyLogic
             if(temp <= 0) break;
         }
 
-        status.UpdateIngameUI();
+        UI.instance.inGameUI.UpdateIngameUI();
         itemUI.UpdateInventoryUI();
         playerItemUI.UpdateInventoryUI();
     }
@@ -273,7 +273,7 @@ public class PlayerInventroyLogic
 
         }
 
-        status.UpdateIngameUI();
+        UI.instance.inGameUI.UpdateIngameUI();
         playerItemUI.UpdateInventoryUI();
         boxItemUI.UpdateBoxItemUI();
     }
@@ -370,7 +370,7 @@ public class PlayerInventroyLogic
             }
         }
         itemUI.UpdateInventoryUI();
-        status.UpdateIngameUI();
+        UI.instance.inGameUI.UpdateIngameUI();
         playerItemUI.UpdateInventoryUI();
     }
 
@@ -389,7 +389,7 @@ public class PlayerInventroyLogic
         }
 
         itemUI.UpdateInventoryUI();
-        status.UpdateIngameUI();
+        UI.instance.inGameUI.UpdateIngameUI();
         playerItemUI.UpdateInventoryUI();
     }
 
@@ -424,7 +424,7 @@ public class PlayerInventroyLogic
         }
         
         itemUI.UpdateInventoryUI();
-        status.UpdateIngameUI();
+        UI.instance.inGameUI.UpdateIngameUI();
         playerItemUI.UpdateInventoryUI();
         
     }
@@ -442,7 +442,7 @@ public class PlayerInventroyLogic
             }
         }
         itemUI.UpdateInventoryUI();
-        status.UpdateIngameUI();
+        UI.instance.inGameUI.UpdateIngameUI();
         playerItemUI.UpdateInventoryUI();
     }
 
@@ -459,7 +459,7 @@ public class PlayerInventroyLogic
             }
         }
         itemUI.UpdateInventoryUI();
-        status.UpdateIngameUI();
+        UI.instance.inGameUI.UpdateIngameUI();
         playerItemUI.UpdateInventoryUI();
     }
 
@@ -490,7 +490,7 @@ public class PlayerInventroyLogic
         }
         
         itemUI.UpdateInventoryUI();
-        status.UpdateIngameUI();
+        UI.instance.inGameUI.UpdateIngameUI();
         playerItemUI.UpdateInventoryUI();
     }
 

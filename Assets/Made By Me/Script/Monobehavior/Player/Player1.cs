@@ -11,6 +11,8 @@ public class Player1 : MonoBehaviour
     public PlayerInventory playerInventory;
     public PlayerItemBox playerItemBox;
 
+    public PlayerAnimation playerAnimation;
+
     private void Awake() {
 
         if(instance == null)
@@ -26,6 +28,6 @@ public class Player1 : MonoBehaviour
         playerInventory = GetComponentInChildren<PlayerInventory>();
         playerItemBox = GetComponentInChildren<PlayerItemBox>();
         
-
+        playerAnimation = GetComponent<PlayerAnimation>();
     }
 }
