@@ -223,8 +223,8 @@ public class DialogUILogic
         GameMangerInput.InputEvent.DialogUIEnterPressed += EnterPressed;
         GameMangerInput.InputEvent.DialogUIUpPressed += UpPressed;
         GameMangerInput.InputEvent.DialogUIDownPressed += DownPressed;
-        GameMangerInput.InputEvent.DialogURightPressed += RightPressed;
-        GameMangerInput.InputEvent.DialogULeftPressed += LeftPressed;
+        GameMangerInput.InputEvent.DialogUIRightPressed += RightPressed;
+        GameMangerInput.InputEvent.DialogUILeftPressed += LeftPressed;
     }
     public void OnDisable() {
         UI.instance.SetMouseCursorActive(false);
@@ -239,8 +239,8 @@ public class DialogUILogic
         GameMangerInput.InputEvent.DialogUIEnterPressed -= EnterPressed;
         GameMangerInput.InputEvent.DialogUIUpPressed -= UpPressed;
         GameMangerInput.InputEvent.DialogUIDownPressed -= DownPressed;
-        GameMangerInput.InputEvent.DialogURightPressed -= RightPressed;
-        GameMangerInput.InputEvent.DialogULeftPressed -= LeftPressed;
+        GameMangerInput.InputEvent.DialogUIRightPressed -= RightPressed;
+        GameMangerInput.InputEvent.DialogUILeftPressed -= LeftPressed;
     }
 
     public void EnterPressed()

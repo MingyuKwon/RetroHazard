@@ -63,14 +63,6 @@ public class TabUILogic : CallBackInterface
             GameMangerInput.instance.changePlayerInputRule(0);
         }
 
-        if(flag)
-        {
-            GameMangerInput.getInput(InputType.TabUIInput);
-        }else
-        {
-            GameMangerInput.releaseInput(InputType.TabUIInput);
-        }
-
         GameManager.instance.SetPauseGame(flag);
     }
 
@@ -208,6 +200,8 @@ public class TabUILogic : CallBackInterface
     }
 
     public void OnEnable() {
+        GameMangerInput.getInput(InputType.TabUIInput);
+
         currentWindowLayer = 0;
         UI.instance.SetMouseCursorActive(true);
         discardTargetItemIndex = -1;
@@ -221,6 +215,8 @@ public class TabUILogic : CallBackInterface
     }
 
     public void OnDisable() {
+        GameMangerInput.releaseInput(InputType.TabUIInput);
+        
         currentWindowLayer = 0;
         UI.instance.SetMouseCursorActive(false);
         isUseKeyItem = false;
