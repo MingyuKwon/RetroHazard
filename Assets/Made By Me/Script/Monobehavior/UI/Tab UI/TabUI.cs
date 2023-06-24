@@ -1,10 +1,5 @@
-using System.Collections;
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Rewired;
-using Sirenix.OdinInspector;
 
 public class TabUI : MonoBehaviour
 {

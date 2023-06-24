@@ -34,7 +34,7 @@ public class KeyItem : Item
             yield return new WaitForEndOfFrame();
         }   
 
-        if(information.KeyItemCode == 15)
+        if(information.KeyItemCode == 15) // 먹은게 가방인 경우
         {
             this.gameObject.SetActive(false);
             GameManager.EventManager.Invoke_inventoryExpandEvent();

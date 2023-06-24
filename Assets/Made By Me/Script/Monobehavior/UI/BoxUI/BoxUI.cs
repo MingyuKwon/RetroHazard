@@ -39,7 +39,6 @@ public class BoxUI : MonoBehaviour, CallBackInterface
     public int discardTargetItemIndex;
 
     private void OnEnable() {
-        IinteractiveUI.interact_Input_Rlease_Event += InputGetBack;
         boxItemIndex = -1;
         playerItemIndex = 0;
         discardTargetItemIndex = -1;
@@ -53,16 +52,10 @@ public class BoxUI : MonoBehaviour, CallBackInterface
     }
 
     private void OnDisable() {
-        IinteractiveUI.interact_Input_Rlease_Event -= InputGetBack;
         currentWindowLayer = 0;
         discardTargetItemIndex = -1;
 
         transform.parent.GetComponent<UI>().SetMouseCursorActive(false);
-    }
-    private void InputGetBack()
-    {
-        if(this.gameObject.activeInHierarchy != true) return;
-        inputOk = true;
     }
 
     public void UpdateBoxUI()

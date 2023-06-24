@@ -5,6 +5,11 @@ public class UI : MonoBehaviour
 {
     public static UI instance;
 
+    public blackOut blackoutUI;
+    public DialogUI dialogUI;
+    public IinteractiveUI interactiveUI;
+    public PauseRootUI PauseUI;
+
     public BoxUI boxUI;
     public InGameUI inGameUI;
     public TabUI tabUI;
@@ -22,6 +27,11 @@ public class UI : MonoBehaviour
         boxUI = GetComponentInChildren<BoxUI>();
         inGameUI = GetComponentInChildren<InGameUI>();
         tabUI = GetComponentInChildren<TabUI>();
+
+        blackoutUI = GetComponentInChildren<blackOut>();
+        dialogUI = GetComponentInChildren<DialogUI>();
+        interactiveUI = GetComponentInChildren<IinteractiveUI>();
+        PauseUI = GetComponentInChildren<PauseRootUI>();
 
     }
 
@@ -47,8 +57,20 @@ public class UI : MonoBehaviour
 
     public void TotalUIUpdate()
     {
-        boxUI.UpdateBoxUI();
-        inGameUI.UpdateIngameUI();
-        tabUI.UpdateTabUI();
+        if(boxUI.gameObject.activeInHierarchy)
+        {
+            boxUI.UpdateBoxUI();
+        }
+
+        if(inGameUI.gameObject.activeInHierarchy)
+        {
+            inGameUI.UpdateIngameUI();
+        }
+
+        if(tabUI.gameObject.activeInHierarchy)
+        {
+            tabUI.UpdateTabUI();
+        }
+        
     }
 }

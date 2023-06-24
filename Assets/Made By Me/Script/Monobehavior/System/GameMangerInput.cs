@@ -24,6 +24,18 @@ public class GameMangerInput : MonoBehaviour
 {
     public class InputEvent
     {
+        static bool currentInput(InputType type)
+        {
+            bool flag = false;
+
+            if(GameMangerInput.inputControlStack.Peek() == type)
+            {
+                flag = true;
+            }
+
+            return flag;
+        }
+
         public static event Action UPPressed;
         public static void Invoke_UpPressed()
         {
@@ -124,11 +136,15 @@ public class GameMangerInput : MonoBehaviour
 
 
         public static event Action TabUIEnterPressed;
+        public static event Action InteractiveUIEnterPressed;
         public static void Invoke_UIEnterPressed()
         {
-            if(isNowInputAvailable[(int)InputType.TabUIInput])
+            if(currentInput(InputType.TabUIInput))
             {
                 TabUIEnterPressed.Invoke();
+            }else if( currentInput(InputType.InteractiveUIInput))
+            {
+                InteractiveUIEnterPressed.Invoke();
             }
             
         }
@@ -136,16 +152,17 @@ public class GameMangerInput : MonoBehaviour
         public static event Action TabUIBackPressed;
         public static void Invoke_UIBackPressed()
         {
-            if(isNowInputAvailable[(int)InputType.TabUIInput]){
+            if(currentInput(InputType.TabUIInput))
+            {
                 TabUIBackPressed.Invoke();
             }
-            
         }
 
         public static event Action TabUIUpPressed;
         public static void Invoke_UIUpPressed()
         {
-            if(isNowInputAvailable[(int)InputType.TabUIInput]){
+            if(currentInput(InputType.TabUIInput))
+            {
                 TabUIUpPressed.Invoke();
             }
         }
@@ -153,7 +170,8 @@ public class GameMangerInput : MonoBehaviour
         public static event Action TabUIDownPressed;
         public static void Invoke_UIDownPressed()
         {
-            if(isNowInputAvailable[(int)InputType.TabUIInput]){
+            if(currentInput(InputType.TabUIInput))
+            {
                 TabUIDownPressed.Invoke();
             }
         }
@@ -161,7 +179,8 @@ public class GameMangerInput : MonoBehaviour
         public static event Action TabUIRightPressed;
         public static void Invoke_UIRightPressed()
         {
-            if(isNowInputAvailable[(int)InputType.TabUIInput]){
+            if(currentInput(InputType.TabUIInput))
+            {
                 TabUIRightPressed.Invoke();
             }
         }
@@ -169,11 +188,10 @@ public class GameMangerInput : MonoBehaviour
         public static event Action TabUILeftPressed;
         public static void Invoke_UILeftPressed()
         {
-            if(isNowInputAvailable[(int)InputType.TabUIInput]){
+            if(currentInput(InputType.TabUIInput))
+            {
                 TabUILeftPressed.Invoke();
             }
-
-            
         }
     }
 
@@ -232,21 +250,27 @@ public class GameMangerInput : MonoBehaviour
     public static GameMangerInput instance = null;
     public static InputCheck inputCheck;
 
-    public static bool[] isNowInputAvailable = new bool[Enum.GetNames(typeof(InputType)).Length];
-        
+    public static Stack<InputType> inputControlStack = new Stack<InputType>();
+
     public static void getInput(InputType type)
     {
-        for(int i=0; i<isNowInputAvailable.Length; i++)
+        if(inputControlStack.Count != 0 && inputControlStack.Peek() == type)
         {
-                isNowInputAvailable[i] = false;
+            return;
         }
 
-            isNowInputAvailable[(int)type] = true;
+        inputControlStack.Push(type);
     }
 
     public static void releaseInput(InputType type)
     {
-        isNowInputAvailable[(int)type] = false;
+        if(inputControlStack.Peek() != type)
+        {
+            Debug.Log("Current Peek : " + inputControlStack.Peek() + " request pop : " + type);
+            return;
+        }
+
+        inputControlStack.Pop();
     }
 
     private Player player;
@@ -276,7 +300,7 @@ public class GameMangerInput : MonoBehaviour
 
         ruleSets = new ControllerMapEnabler.RuleSet[mapEnabler.ruleSets.Count];
         ruleSets[0] = mapEnabler.ruleSets.Find(x => x.tag == "NormalState");
-        ruleSets[1] = mapEnabler.ruleSets.Find(x => x.tag == "TalkWithNPC");
+        ruleSets[1] = mapEnabler.ruleSets.Find(x => x.tag == "TalkWithNPC"); // 이 부분이 그냥 엔터만 받아서 넘기는 부분 총괄
         ruleSets[2] = mapEnabler.ruleSets.Find(x => x.tag == "UI");
         ruleSets[3] = mapEnabler.ruleSets.Find(x => x.tag == "Alert");
     }
@@ -287,6 +311,7 @@ public class GameMangerInput : MonoBehaviour
     }
 
     private void OnDisable() {
+        releaseInput(InputType.FieldInput);
         removeInputFunctions();
     }
 

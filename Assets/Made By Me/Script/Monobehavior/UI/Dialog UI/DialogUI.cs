@@ -89,21 +89,13 @@ public class DialogUI : MonoBehaviour
     }
     // for question option select
     private void OnEnable() {
-        IinteractiveUI.interact_Input_Rlease_Event += InputGetBack;
         transform.parent.GetComponent<UI>().SetMouseCursorActive(true);
     }
     private void OnDisable() {
-        IinteractiveUI.interact_Input_Rlease_Event -= InputGetBack;
         transform.parent.GetComponent<UI>().SetMouseCursorActive(false);
     }
 
-    private void InputGetBack()
-    {
-        Debug.Log(this.gameObject.transform.parent.GetInstanceID() + "sdfsf");
 
-        if(this.gameObject.activeInHierarchy != true) return;
-        inputOk = true;
-    }
 
     void Start() {
         dialogText.text = "dialog";

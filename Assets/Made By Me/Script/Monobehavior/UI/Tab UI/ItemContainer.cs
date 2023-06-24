@@ -1,18 +1,13 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Rewired;
-using Sirenix.OdinInspector;
-using DG.Tweening;
 using UnityEngine.EventSystems;
+
+// find나 getComponent를 이용한 참조를 최대한 없앰
 
 public class ItemContainer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] int containerNum;
-
-    PlayerStatus status;
 
     Image backGround;
     Image fadeImage;
@@ -20,9 +15,6 @@ public class ItemContainer : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public Text itemAmount;
     public Image EquipImage;
     public FocusUI focus;
-
-    TabUI tabUI;
-    ItemUI itemUI;
 
     public GameObject focusSelectPanel;
 
@@ -40,32 +32,27 @@ public class ItemContainer : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public bool isPreviousEneterd;
     //for Code Struct
 
+    
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if(tabUI.isOpenedItem) return;
-        tabUI.currentItemindex = containerNum;
+        if(UI.instance.tabUI.isOpenedItem) return;
+        UI.instance.tabUI.currentItemindex = containerNum;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if(tabUI.isOpenedItem) return;
-        tabUI.currentItemindex = -1;
+        if(UI.instance.tabUI.isOpenedItem) return;
+        UI.instance.tabUI.currentItemindex = -1;
     }
 
 
-
     private void Awake() {
-        status = FindObjectOfType<PlayerStatus>();
-
         backGround = GetComponent<Image>();
         itemImage = transform.GetChild(0).GetComponent<Image>();
         itemAmount = transform.GetChild(1).GetComponentInChildren<Text>();
         EquipImage = transform.GetChild(2).GetComponent<Image>();
         fadeImage = transform.GetChild(3).GetComponent<Image>();
         focus = transform.GetChild(4).GetComponent<FocusUI>();
-
-        tabUI = transform.parent.transform.parent.GetComponent<TabUI>();
-        itemUI = GetComponentInParent<ItemUI>();
 
         transform.GetChild(1).gameObject.SetActive(false);
 
@@ -80,11 +67,11 @@ public class ItemContainer : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     private void CheckWindowLayer()
     {
-        if(tabUI.currentWindowLayer == 0)
+        if(UI.instance.tabUI.currentWindowLayer == 0)
         {
             SetSelect(false);
             backGround.color = new Color(1f, 1f, 1f, 1f);
-            if(tabUI.isUseKeyItem)
+            if(UI.instance.tabUI.isUseKeyItem)
             {
                  if(isInteractive)
                 {
@@ -101,7 +88,7 @@ public class ItemContainer : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             
             isPreviousEneterd = false;
 
-        }else if(tabUI.currentWindowLayer == 2)
+        }else if(UI.instance.tabUI.currentWindowLayer == 2)
         {
             SetSelect(false);
             if(!isPreviousEneterd)
@@ -110,18 +97,19 @@ public class ItemContainer : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
                 bool flag = false;
 
-                if(itemUI.playerInventory.items[containerNum] != null)
+                if(Player1.instance.playerInventory.items[containerNum] != null)
                 {
-                    if(tabUI.combineStartItem.isKeyItem && itemUI.playerInventory.items[containerNum].isKeyItem)
+                    if(UI.instance.tabUI.combineStartItem.isKeyItem 
+                    && Player1.instance.playerInventory.items[containerNum].isKeyItem)
                     {
-                        if(itemUI.playerInventory.items[containerNum].combineItems == null)
+                        if(Player1.instance.playerInventory.items[containerNum].combineItems == null)
                         {
-                            Debug.Log(itemUI.playerInventory.items[containerNum].name + " doesnt have combineItems");
+                            Debug.Log(Player1.instance.playerInventory.items[containerNum].name + " doesnt have combineItems");
                         }else
                         {
-                            foreach(int itemCode in itemUI.playerInventory.items[containerNum].combineItems)
+                            foreach(int itemCode in Player1.instance.playerInventory.items[containerNum].combineItems)
                             {
-                                if(tabUI.combineStartItem.KeyItemCode == itemCode)
+                                if(UI.instance.tabUI.combineStartItem.KeyItemCode == itemCode)
                                 {
                                     isCombineable = true;
                                     flag = true;
@@ -132,11 +120,11 @@ public class ItemContainer : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
                         }
 
                         
-                    }else if(!tabUI.combineStartItem.isKeyItem && !itemUI.playerInventory.items[containerNum].isKeyItem)
+                    }else if(!UI.instance.tabUI.combineStartItem.isKeyItem && !Player1.instance.playerInventory.items[containerNum].isKeyItem)
                     {
-                        foreach(int itemCode in itemUI.playerInventory.items[containerNum].combineItems)
+                        foreach(int itemCode in Player1.instance.playerInventory.items[containerNum].combineItems)
                         {
-                            if(tabUI.combineStartItem.NormalItemCode == itemCode)
+                            if(UI.instance.tabUI.combineStartItem.NormalItemCode == itemCode)
                             {
                                 isCombineable = true;
                                 flag = true;
@@ -153,7 +141,7 @@ public class ItemContainer : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
                     isCombineable = false;
                 }
 
-                if(containerNum == tabUI.combineStartItemIndex)
+                if(containerNum == UI.instance.tabUI.combineStartItemIndex)
                 {
                     isCombineable = false;
                 }
@@ -168,7 +156,7 @@ public class ItemContainer : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             }
 
             
-        }else if(tabUI.currentWindowLayer == 1)
+        }else if(UI.instance.tabUI.currentWindowLayer == 1)
         {
             isPreviousEneterd = false;
             if(isFocused)
@@ -182,7 +170,7 @@ public class ItemContainer : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
                 backGround.color = new Color(1f, 1f, 1f, 1f);
             }
 
-            if(tabUI.isUseKeyItem)
+            if(UI.instance.tabUI.isUseKeyItem)
             {
                  if(isInteractive)
                 {
@@ -201,31 +189,21 @@ public class ItemContainer : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     private void CheckContainerFull()
     {
-        if(itemUI.playerInventory == null) return;
-        if(itemUI.playerInventory.items[containerNum] == null) return;
+        if(Player1.instance.playerInventory == null) return;
+        if(Player1.instance.playerInventory.items[containerNum] == null) return;
 
-        if(itemUI.playerInventory.items[containerNum].isEnergy1)
+        if(Player1.instance.playerInventory.items[containerNum].isEnergy1)
         {
-            if(itemUI.playerInventory.itemsamount[containerNum] == itemUI.playerInventory.Energy1BatteryLimit)
+            if(Player1.instance.playerInventory.itemsamount[containerNum] == Player1.instance.playerInventory.Energy1BatteryLimit)
             {
                 itemAmount.color = Color.green;
             }else
             {
                 itemAmount.color = Color.white;
             }
-        }else if(itemUI.playerInventory.items[containerNum].isEnergy2)
+        }else if(Player1.instance.playerInventory.items[containerNum].isEnergy2)
         {
-            if(itemUI.playerInventory.itemsamount[containerNum] == itemUI.playerInventory.Energy2BatteryLimit)
-            {
-                itemAmount.color = Color.green;
-            }else
-            {
-                itemAmount.color = Color.white;
-            }
-
-        }else if(itemUI.playerInventory.items[containerNum].isEnergy3)
-        {
-            if(itemUI.playerInventory.itemsamount[containerNum] == itemUI.playerInventory.Energy3BatteryLimit)
+            if(Player1.instance.playerInventory.itemsamount[containerNum] == Player1.instance.playerInventory.Energy2BatteryLimit)
             {
                 itemAmount.color = Color.green;
             }else
@@ -233,9 +211,19 @@ public class ItemContainer : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
                 itemAmount.color = Color.white;
             }
 
-        }else if(itemUI.playerInventory.items[containerNum].isSheild)
+        }else if(Player1.instance.playerInventory.items[containerNum].isEnergy3)
         {
-            if(itemUI.playerInventory.itemsamount[containerNum] == itemUI.playerInventory.SheildBatteryLimit)
+            if(Player1.instance.playerInventory.itemsamount[containerNum] == Player1.instance.playerInventory.Energy3BatteryLimit)
+            {
+                itemAmount.color = Color.green;
+            }else
+            {
+                itemAmount.color = Color.white;
+            }
+
+        }else if(Player1.instance.playerInventory.items[containerNum].isSheild)
+        {
+            if(Player1.instance.playerInventory.itemsamount[containerNum] == Player1.instance.playerInventory.SheildBatteryLimit)
             {
                 itemAmount.color = Color.green;
             }else
@@ -246,20 +234,18 @@ public class ItemContainer : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         
     }
 
-    
-
     public void SetInteractFade()
     {
-        if(itemUI.playerInventory == null) return;
-        if(itemUI.playerInventory.items[containerNum] == null) return;
-        if(!tabUI.isUseKeyItem) return;
+        if(Player1.instance.playerInventory == null) return;
+        if(Player1.instance.playerInventory.items[containerNum] == null) return;
+        if(!UI.instance.tabUI.isUseKeyItem) return;
 
-            if(itemUI.playerInventory.items[containerNum].isKeyItem)
+            if(Player1.instance.playerInventory.items[containerNum].isKeyItem)
             {
                 bool flag = false;
-                foreach(int n in tabUI.neededKeyItemCode)
+                foreach(int n in UI.instance.tabUI.neededKeyItemCode)
                 {
-                    if(n == itemUI.playerInventory.items[containerNum].KeyItemCode)
+                    if(n == Player1.instance.playerInventory.items[containerNum].KeyItemCode)
                     {
                         
                         flag = true;
@@ -282,32 +268,32 @@ public class ItemContainer : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     }
 
     private void OnEnable() {
-        if(itemUI != null)
+        if(UI.instance.tabUI.itemUI != null)
         {
-            if(itemUI.playerInventory == null) return;
+            if(Player1.instance.playerInventory == null) return;
 
-            if(itemUI.playerInventory.items[containerNum] == null) return;
+            if(Player1.instance.playerInventory.items[containerNum] == null) return;
 
             SetSelectText();
 
 
-            if(itemUI.playerInventory.items[containerNum].isKeyItem)
+            if(Player1.instance.playerInventory.items[containerNum].isKeyItem)
             {
-                if(tabUI.isInteractive && !itemUI.playerInventory.items[containerNum].isEquipItem )
+                if(UI.instance.tabUI.isInteractive && !Player1.instance.playerInventory.items[containerNum].isEquipItem )
                 {
                     indexLimitMin = 0;
                     focus.selectButtons[0].gameObject.SetActive(true);
                     
-                }else if(tabUI.isInteractive && itemUI.playerInventory.items[containerNum].isEquipItem)
+                }else if(UI.instance.tabUI.isInteractive && Player1.instance.playerInventory.items[containerNum].isEquipItem)
                 {
                     indexLimitMin = 1;
                     focus.selectButtons[0].gameObject.SetActive(false);
                 }
-                else if(!tabUI.isInteractive && itemUI.playerInventory.items[containerNum].isEquipItem)
+                else if(!UI.instance.tabUI.isInteractive && Player1.instance.playerInventory.items[containerNum].isEquipItem)
                 {
                     indexLimitMin = 0;
                     focus.selectButtons[0].gameObject.SetActive(true);
-                }else if(!tabUI.isInteractive && !itemUI.playerInventory.items[containerNum].isEquipItem)
+                }else if(!UI.instance.tabUI.isInteractive && !Player1.instance.playerInventory.items[containerNum].isEquipItem)
                 {
                     indexLimitMin = 1;
                     focus.selectButtons[0].gameObject.SetActive(false);
@@ -317,7 +303,7 @@ public class ItemContainer : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
                 focus.selectButtons[2].gameObject.SetActive(false);
             }else
             {
-                if(tabUI.isInteractive)
+                if(UI.instance.tabUI.isInteractive)
                 {
                     indexLimitMin = 1;
                     focus.selectButtons[0].gameObject.SetActive(false);
@@ -325,7 +311,7 @@ public class ItemContainer : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
                     focus.selectButtons[2].gameObject.SetActive(false);
                 }else
                 {
-                    if(itemUI.playerInventory.items[containerNum].isBullet)
+                    if(Player1.instance.playerInventory.items[containerNum].isBullet)
                     {
                         indexLimitMin = 1;
                         focus.selectButtons[0].gameObject.SetActive(false);
@@ -351,11 +337,14 @@ public class ItemContainer : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     private void SetSelectText()
     {
-            if(itemUI.playerInventory.items[containerNum].isEquipItem)
+            if(Player1.instance.playerInventory.items[containerNum].isEquipItem)
             {
-                int KeyItemCode = itemUI.playerInventory.items[containerNum].KeyItemCode;
+                int KeyItemCode = Player1.instance.playerInventory.items[containerNum].KeyItemCode;
 
-                if(KeyItemCode + 1 == status.Energy || KeyItemCode - 3 == status.Sheild || KeyItemCode - 8 == status.Energy || (KeyItemCode - 11 == status.Energy && status.Energy != 0)) // If that Item is now equipped
+                if(KeyItemCode + 1 == Player1.instance.playerStatus.Energy || 
+                KeyItemCode - 3 == Player1.instance.playerStatus.Sheild ||
+                KeyItemCode - 8 == Player1.instance.playerStatus.Energy || 
+                (KeyItemCode - 11 == Player1.instance.playerStatus.Energy && Player1.instance.playerStatus.Energy != 0)) // If that Item is now equipped
                 {
                     focus.SetselectText(0, "DisArm"); // If you want to modify this String, you should also modify TabUI pressEnter code
                 }else

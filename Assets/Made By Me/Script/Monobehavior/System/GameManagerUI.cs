@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Rewired;
-using Sirenix.OdinInspector;
 
 public class GameManagerUI : MonoBehaviour
 {
@@ -17,11 +13,37 @@ public class GameManagerUI : MonoBehaviour
     IinteractiveUI interactiveUI;
     PauseRootUI PauseUI;
 
-    public bool isDialogUIActive;
-    public bool isTabUIActive;
-    public bool isinGameUIActive;
-    public bool isInteractiveUIActive;
-    public bool isBoxUIActive;
+
+    public bool isDialogUIActive{
+        get
+        {
+            return dialogUI.gameObject.activeInHierarchy;
+        }
+    }
+    public bool isTabUIActive{
+        get
+        {
+            return tabUI.gameObject.activeInHierarchy;
+        }
+    }
+    public bool isinGameUIActive{
+        get
+        {
+            return inGameUI.gameObject.activeInHierarchy;
+        }
+    }
+    public bool isInteractiveUIActive{
+        get
+        {
+            return interactiveUI.gameObject.activeInHierarchy;
+        }
+    }
+    public bool isBoxUIActive{
+        get
+        {
+            return boxUI.gameObject.activeInHierarchy;
+        }
+    }
 
 
     // it is for GameManager not in GameNanagerUI
@@ -34,7 +56,6 @@ public class GameManagerUI : MonoBehaviour
     // it is for GameManager not in GameNanagerUI
 
     
-
     void Awake() {
         if(instance == null)
         {
@@ -46,15 +67,16 @@ public class GameManagerUI : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        blackoutUI = FindObjectOfType<blackOut>();
-        dialogUI = FindObjectOfType<DialogUI>();
-        tabUI = FindObjectOfType<TabUI>();
-        boxUI = FindObjectOfType<BoxUI>();
-        inGameUI = FindObjectOfType<InGameUI>();
-        interactiveUI = FindObjectOfType<IinteractiveUI>();
-        PauseUI = FindObjectOfType<PauseRootUI>();
-        
+        blackoutUI = UI.instance.blackoutUI;
+        dialogUI = UI.instance.dialogUI;
+        tabUI = UI.instance.tabUI;
+        boxUI = UI.instance.boxUI;
+        inGameUI = UI.instance.inGameUI;
+        interactiveUI = UI.instance.interactiveUI;
+        PauseUI = UI.instance.PauseUI;
     }
+
+
     private void OnEnable() {
         PauseMainUI.GotoMainMenuEvent += DestroyMyself;
     }
@@ -67,8 +89,6 @@ public class GameManagerUI : MonoBehaviour
     {
         Destroy(this.gameObject);
     }
-
-
 
     private void Start() {
         dialogUI.gameObject.SetActive(false);
@@ -86,14 +106,6 @@ public class GameManagerUI : MonoBehaviour
 
         Cursor.visible = false;
         
-    }
-
-    private void Update() {
-        isDialogUIActive = dialogUI.gameObject.activeInHierarchy;
-        isTabUIActive = tabUI.gameObject.activeInHierarchy;
-        isBoxUIActive = boxUI.gameObject.activeInHierarchy;
-        isinGameUIActive = inGameUI.gameObject.activeInHierarchy;
-        isInteractiveUIActive = interactiveUI.gameObject.activeInHierarchy;
     }
 
     public void Visualize_InGameUI(bool flag)
@@ -276,7 +288,6 @@ public class GameManagerUI : MonoBehaviour
     //////////////////SetTExt///////////////////////////////////////
 
 
-
     public void showOptionUI(bool flag)
     {
         dialogUI.showOptionUI(flag);
@@ -290,21 +301,18 @@ public class GameManagerUI : MonoBehaviour
         dialogUI.SetDialogPanelUI(flag);
     }
 
-
-
-    /////////////////Override////////////////////////
-    public void VisualizeInteractiveUI(bool flag)
+    public void VisualizeInteractiveUI(bool flag, string ItemName = "")
     {
         interactiveUI.gameObject.SetActive(flag);
-        interactiveUI.VisualizeInteractiveUI(flag);
+        if(ItemName == "")
+        {
+            interactiveUI.VisualizeInteractiveUI(flag);
+        }else
+        {   
+            interactiveUI.VisualizeInteractiveUI(flag,ItemName);
+        }
+        
     }
-    public void VisualizeInteractiveUI(bool flag, string ItemName)
-    {
-        interactiveUI.gameObject.SetActive(flag);
-        interactiveUI.VisualizeInteractiveUI(flag,ItemName);
-    }
-    /////////////////Override////////////////////////
-
 
 
     //////////////////////////////////////////////////

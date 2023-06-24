@@ -142,8 +142,6 @@ public class TabUILogic : CallBackInterface
 
     }
 
-
-
     public void Visualize_Tab_Obtain(bool flag)
     {
         if(isShowing && flag) return;
@@ -281,7 +279,7 @@ public class TabUILogic : CallBackInterface
         }else
         {
             if(itemUI.currentindex < 0) return;
-            if(itemUI.playerInventory.items[itemUI.currentindex] == null) return;
+            if(Player1.instance.playerInventory.items[itemUI.currentindex] == null) return;
                         
             if(currentWindowLayer == 0)
             {
@@ -303,7 +301,7 @@ public class TabUILogic : CallBackInterface
                 {
                     if(itemUI.itemContainers[itemUI.currentindex].focus.selectTexts[0].text == "DisArm")
                     {
-                        int KeyItemCode = itemUI.playerInventory.items[itemUI.currentindex].KeyItemCode;
+                        int KeyItemCode = Player1.instance.playerInventory.items[itemUI.currentindex].KeyItemCode;
                         if(KeyItemCode < 3 || (KeyItemCode > 8 && KeyItemCode < 12) || (KeyItemCode > 11 && KeyItemCode < 15))
                         {
                             Player1.instance.playerStatus.ChangeWeapon(0);
@@ -316,7 +314,7 @@ public class TabUILogic : CallBackInterface
 
                     }else if(itemUI.itemContainers[itemUI.currentindex].focus.selectTexts[0].text == "Equip")
                     {
-                        int KeyItemCode = itemUI.playerInventory.items[itemUI.currentindex].KeyItemCode;
+                        int KeyItemCode = Player1.instance.playerInventory.items[itemUI.currentindex].KeyItemCode;
                         if(KeyItemCode < 3)
                         {
                             Player1.instance.playerStatus.ChangeWeapon(KeyItemCode + 1);
@@ -342,10 +340,10 @@ public class TabUILogic : CallBackInterface
                     }else if(itemUI.itemContainers[itemUI.currentindex].focus.selectTexts[0].text == "Use")
                     {
                         // 포션을 사용한 경우
-                        if(itemUI.playerInventory.items[itemUI.currentindex].isPotion)
+                        if(Player1.instance.playerInventory.items[itemUI.currentindex].isPotion)
                         {
                             GameManager.EventManager.Invoke_UsePotionEvent(itemUI.currentindex, 
-                                                                        itemUI.playerInventory.items[itemUI.currentindex].healAmount);
+                                                                        Player1.instance.playerInventory.items[itemUI.currentindex].healAmount);
                         }
 
                         // 상호작용 창에서 키 아이템을 사용한 경우
@@ -362,7 +360,7 @@ public class TabUILogic : CallBackInterface
 
                 }else if(itemUI.itemContainers[itemUI.currentindex].selectIndex == 1) // combine
                 {
-                    combineStartItem = itemUI.playerInventory.items[itemUI.currentindex];
+                    combineStartItem = Player1.instance.playerInventory.items[itemUI.currentindex];
                     combineStartItemIndex = itemUI.currentindex;
                     previousItemindex = combineStartItemIndex;
                     currentWindowLayer++;
@@ -378,7 +376,7 @@ public class TabUILogic : CallBackInterface
 
                 GameManager.EventManager.Invoke_CombineEvent(combineStartItem, 
                                                                 combineStartItemIndex, 
-                                                                itemUI.playerInventory.items[itemUI.currentindex], 
+                                                                Player1.instance.playerInventory.items[itemUI.currentindex], 
                                                                 itemUI.currentindex);
 
                 currentWindowLayer--;
