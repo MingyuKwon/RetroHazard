@@ -1,11 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using System;
 using UnityEngine;
 using UnityEngine.UI;
-using Rewired;
-using Sirenix.OdinInspector;
 
+///////////// Cleared //////////////////////////
 public class IinteractiveUI : MonoBehaviour
 {
     InteractiveUILogic interactiveUILogic;

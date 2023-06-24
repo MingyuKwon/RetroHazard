@@ -262,43 +262,12 @@ public class GameManagerUI : MonoBehaviour
 // Dialog UI
     public void VisualizeDialogUI(bool flag)
     {
-        dialogUI.gameObject.SetActive(flag);
         dialogUI.VisualizeDialogUI(flag);
     }
 
-
-
-    //////////////////SetTExt/////////////////////////////////////
-    public void SetDialogText(string text)
-    {
-        dialogUI.SetDialogText(text);
-    }
-    public void SetSpeakerText(string text)
-    {
-        dialogUI.SetSpeakerText(text);
-    }
     public void SetInteractiveDialogText(string[] texts)
     {
         interactiveUI.SetInteractiveDialogText(texts);
-    }
-    public void SetOptionsText(string[] texts)
-    {
-        dialogUI.SetOptionsText(texts);
-    }
-    //////////////////SetTExt///////////////////////////////////////
-
-
-    public void showOptionUI(bool flag)
-    {
-        dialogUI.showOptionUI(flag);
-    }
-    public void showSpeakerPanelUI(bool flag)
-    {
-        dialogUI.SetSpeakerPanelUI(flag);
-    }
-    public void showDialogPanelUI(bool flag)
-    {
-        dialogUI.SetDialogPanelUI(flag);
     }
 
     public void VisualizeInteractiveUI(bool flag, string ItemName = "")
@@ -314,19 +283,9 @@ public class GameManagerUI : MonoBehaviour
         
     }
 
-
-    //////////////////////////////////////////////////
     public void showTalkNPCDialog(bool visited , Dialog dialog)
     {
-        dialogUI.gameObject.SetActive(true);
         dialogUI.showTalkNPCDialog(visited,dialog);
-    }
-    //////////////////////////////////////////////////
-
-
-    public void SelectOption(int index)
-    {
-        dialogUI.SelectOption(index);
     }
 
     // Dialog UI

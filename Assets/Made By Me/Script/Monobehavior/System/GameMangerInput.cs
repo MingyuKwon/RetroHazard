@@ -13,7 +13,7 @@ public enum InputType
     InteractiveUIInput = 1,
     TabUIInput = 2,
     BoxUIInput = 3,
-    DialogtUIInpu = 4,
+    DialogtUIInput = 4,
     PauseUIInput = 5,
     SaveSlotUIInput = 6,
     OptionUIInput = 7,
@@ -137,14 +137,18 @@ public class GameMangerInput : MonoBehaviour
 
         public static event Action TabUIEnterPressed;
         public static event Action InteractiveUIEnterPressed;
+        public static event Action DialogUIEnterPressed;
         public static void Invoke_UIEnterPressed()
         {
             if(currentInput(InputType.TabUIInput))
             {
                 TabUIEnterPressed.Invoke();
-            }else if( currentInput(InputType.InteractiveUIInput))
+            }else if(currentInput(InputType.InteractiveUIInput))
             {
                 InteractiveUIEnterPressed.Invoke();
+            }else if(currentInput(InputType.DialogtUIInput))
+            {
+                DialogUIEnterPressed.Invoke();
             }
             
         }
@@ -159,38 +163,54 @@ public class GameMangerInput : MonoBehaviour
         }
 
         public static event Action TabUIUpPressed;
+        public static event Action DialogUIUpPressed;
         public static void Invoke_UIUpPressed()
         {
             if(currentInput(InputType.TabUIInput))
             {
                 TabUIUpPressed.Invoke();
+            }else if(currentInput(InputType.DialogtUIInput))
+            {
+                DialogUIUpPressed.Invoke();
             }
         }
 
         public static event Action TabUIDownPressed;
+        public static event Action DialogUIDownPressed;
         public static void Invoke_UIDownPressed()
         {
             if(currentInput(InputType.TabUIInput))
             {
                 TabUIDownPressed.Invoke();
+            }else if(currentInput(InputType.DialogtUIInput))
+            {
+                DialogUIDownPressed.Invoke();
             }
         }
 
         public static event Action TabUIRightPressed;
+        public static event Action DialogURightPressed;
         public static void Invoke_UIRightPressed()
         {
             if(currentInput(InputType.TabUIInput))
             {
                 TabUIRightPressed.Invoke();
+            }else if(currentInput(InputType.DialogtUIInput))
+            {
+                DialogURightPressed.Invoke();
             }
         }
 
         public static event Action TabUILeftPressed;
+        public static event Action DialogULeftPressed;
         public static void Invoke_UILeftPressed()
         {
             if(currentInput(InputType.TabUIInput))
             {
                 TabUILeftPressed.Invoke();
+            }else if(currentInput(InputType.DialogtUIInput))
+            {
+                DialogULeftPressed.Invoke();
             }
         }
     }
