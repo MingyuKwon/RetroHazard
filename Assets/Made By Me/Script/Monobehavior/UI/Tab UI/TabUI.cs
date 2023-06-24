@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+/////////////////// Cleared ///////////////////////
 public class TabUI : MonoBehaviour
 {
     public bool isShowing{
@@ -110,7 +111,6 @@ public class TabUI : MonoBehaviour
     public ItemObtainYesNoPanelUI itemObtainYesNoPanelUI;
 
 
-    
     public int combineStartItemIndex{
         get{
             return tabUILogic.combineStartItemIndex;
@@ -149,18 +149,8 @@ public class TabUI : MonoBehaviour
 
     public void UpdateTabUI()
     {
-        itemUI.UpdateInventoryUI();
-        currentGoalUI.ChangeGoalText(PlayerGoalCollection.PlayerGoals[PlayerGoalCollection.currentGoalIndex]);
+        tabUILogic.UpdateTabUI();
     }
-    // for question option select
-
-    public void CallBack()
-    {
-        GameManager.EventManager.Invoke_discardItemEvent(discardTargetItemIndex);
-        currentWindowLayer--;
-        discardTargetItemIndex = -1;
-    }
-    // for question option select
 
     ////////////// override start /////////////////////////////
 

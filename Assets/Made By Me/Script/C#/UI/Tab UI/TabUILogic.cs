@@ -240,9 +240,8 @@ public class TabUILogic : CallBackInterface
         {
             if(yesNoChoice)
             {
-                if(itemUI.isInventoryFull)
+                if(Player1.instance.playerInventory.isInventoryFull)
                 {
-                    GameMangerInput.releaseInput(InputType.TabUIInput);
                     GameManagerUI.instance.SetInteractiveDialogText(new string[] {"<b><color=red>Your inventory is full!</color></b> \n\n\nCan't get this item"});
                     GameManagerUI.instance.VisualizeInteractiveUI(true);
                     return;
@@ -278,14 +277,14 @@ public class TabUILogic : CallBackInterface
             potionItem = null;
         }else
         {
-            if(itemUI.currentindex < 0) return;
-            if(Player1.instance.playerInventory.items[itemUI.currentindex] == null) return;
+            if(currentItemindex < 0) return;
+            if(Player1.instance.playerInventory.items[currentItemindex] == null) return;
                         
             if(currentWindowLayer == 0)
             {
                 if(isUseKeyItem)
                 {
-                    if(itemUI.itemContainers[itemUI.currentindex].isInteractive)
+                    if(itemUI.itemContainers[currentItemindex].isInteractive)
                     {
                         currentWindowLayer++;
                     }
@@ -297,60 +296,59 @@ public class TabUILogic : CallBackInterface
             }
             else if(currentWindowLayer == 1)
             {
-                if(itemUI.itemContainers[itemUI.currentindex].selectIndex == 0) // use
+                if(itemUI.itemContainers[currentItemindex].selectIndex == 0) // use
                 {
-                    if(itemUI.itemContainers[itemUI.currentindex].focus.selectTexts[0].text == "DisArm")
+                    if(itemUI.itemContainers[currentItemindex].focus.selectTexts[0].text == "DisArm")
                     {
-                        int KeyItemCode = Player1.instance.playerInventory.items[itemUI.currentindex].KeyItemCode;
+                        int KeyItemCode = Player1.instance.playerInventory.items[currentItemindex].KeyItemCode;
                         if(KeyItemCode < 3 || (KeyItemCode > 8 && KeyItemCode < 12) || (KeyItemCode > 11 && KeyItemCode < 15))
                         {
                             Player1.instance.playerStatus.ChangeWeapon(0);
-                            itemUI.itemContainers[itemUI.currentindex].focus.SetselectText(0, "Equip");
+                            itemUI.itemContainers[currentItemindex].focus.SetselectText(0, "Equip");
                         }else
                         {
                             Player1.instance.playerStatus.ChangeSheild(3);
-                            itemUI.itemContainers[itemUI.currentindex].focus.SetselectText(0, "Equip");
+                            itemUI.itemContainers[currentItemindex].focus.SetselectText(0, "Equip");
                         }
 
-                    }else if(itemUI.itemContainers[itemUI.currentindex].focus.selectTexts[0].text == "Equip")
+                    }else if(itemUI.itemContainers[currentItemindex].focus.selectTexts[0].text == "Equip")
                     {
-                        int KeyItemCode = Player1.instance.playerInventory.items[itemUI.currentindex].KeyItemCode;
+                        int KeyItemCode = Player1.instance.playerInventory.items[currentItemindex].KeyItemCode;
                         if(KeyItemCode < 3)
                         {
                             Player1.instance.playerStatus.ChangeWeapon(KeyItemCode + 1);
-                            itemUI.itemContainers[itemUI.currentindex].focus.SetselectText(0, "DisArm");
+                            itemUI.itemContainers[currentItemindex].focus.SetselectText(0, "DisArm");
                         }else if(KeyItemCode > 8 && KeyItemCode < 12)
                         {
                             
                             Player1.instance.playerStatus.ChangeWeapon(KeyItemCode - 8);
-                            itemUI.itemContainers[itemUI.currentindex].focus.SetselectText(0, "DisArm");
+                            itemUI.itemContainers[currentItemindex].focus.SetselectText(0, "DisArm");
                         }
                         else if(KeyItemCode > 11 && KeyItemCode < 15)
                         {
                             Player1.instance.playerStatus.ChangeWeapon(KeyItemCode - 11);
-                            itemUI.itemContainers[itemUI.currentindex].focus.SetselectText(0, "DisArm");
+                            itemUI.itemContainers[currentItemindex].focus.SetselectText(0, "DisArm");
                         }
                         else if(KeyItemCode > 2 && KeyItemCode < 6)
                         {
                             Player1.instance.playerStatus.ChangeSheild(KeyItemCode - 3);
-                            itemUI.itemContainers[itemUI.currentindex].focus.SetselectText(0, "DisArm");
+                            itemUI.itemContainers[currentItemindex].focus.SetselectText(0, "DisArm");
                         }
 
                         
-                    }else if(itemUI.itemContainers[itemUI.currentindex].focus.selectTexts[0].text == "Use")
+                    }else if(itemUI.itemContainers[currentItemindex].focus.selectTexts[0].text == "Use")
                     {
                         // 포션을 사용한 경우
-                        if(Player1.instance.playerInventory.items[itemUI.currentindex].isPotion)
+                        if(Player1.instance.playerInventory.items[currentItemindex].isPotion)
                         {
-                            GameManager.EventManager.Invoke_UsePotionEvent(itemUI.currentindex, 
-                                                                        Player1.instance.playerInventory.items[itemUI.currentindex].healAmount);
+                            GameManager.EventManager.Invoke_UsePotionEvent(currentItemindex, 
+                                                                        Player1.instance.playerInventory.items[currentItemindex].healAmount);
                         }
 
                         // 상호작용 창에서 키 아이템을 사용한 경우
                         if(isUseKeyItem)
                         {
-                            GameMangerInput.releaseInput(InputType.TabUIInput);
-                            GameManager.EventManager.Invoke_Interact_KeyItem_Success_Event(interactiveDialog, itemUI.currentindex);
+                            GameManager.EventManager.Invoke_Interact_KeyItem_Success_Event(interactiveDialog, currentItemindex);
                             GameManagerUI.instance.SetInteractiveDialogText(interactiveDialog.SucessDialog);
                             monoBehavior.StartCoroutine(showInteractiveDialogDelay());
                         }
@@ -358,26 +356,26 @@ public class TabUILogic : CallBackInterface
 
                     currentWindowLayer--;
 
-                }else if(itemUI.itemContainers[itemUI.currentindex].selectIndex == 1) // combine
+                }else if(itemUI.itemContainers[currentItemindex].selectIndex == 1) // combine
                 {
-                    combineStartItem = Player1.instance.playerInventory.items[itemUI.currentindex];
-                    combineStartItemIndex = itemUI.currentindex;
+                    combineStartItem = Player1.instance.playerInventory.items[currentItemindex];
+                    combineStartItemIndex = currentItemindex;
                     previousItemindex = combineStartItemIndex;
                     currentWindowLayer++;
-                }else if(itemUI.itemContainers[itemUI.currentindex].selectIndex == 2) // discard
+                }else if(itemUI.itemContainers[currentItemindex].selectIndex == 2) // discard
                 {
-                    discardTargetItemIndex = itemUI.currentindex;
+                    discardTargetItemIndex = currentItemindex;
                     AlertUI.instance.ShowAlert("Are you sure to Discard this Item? \n\n <i>(discarded Item cannot be restored)</i>", this);
                 }
             }
             else if(currentWindowLayer == 2)
             {
-                if(!itemUI.itemContainers[itemUI.currentindex].isCombineable) return;
+                if(!itemUI.itemContainers[currentItemindex].isCombineable) return;
 
                 GameManager.EventManager.Invoke_CombineEvent(combineStartItem, 
                                                                 combineStartItemIndex, 
-                                                                Player1.instance.playerInventory.items[itemUI.currentindex], 
-                                                                itemUI.currentindex);
+                                                                Player1.instance.playerInventory.items[currentItemindex], 
+                                                                currentItemindex);
 
                 currentWindowLayer--;
                 currentWindowLayer--;
@@ -397,6 +395,12 @@ public class TabUILogic : CallBackInterface
         GameManager.EventManager.Invoke_discardItemEvent(discardTargetItemIndex);
         currentWindowLayer--;
         discardTargetItemIndex = -1;
+    }
+
+    public void UpdateTabUI()
+    {
+        itemUI.UpdateInventoryUI();
+        currentGoalUI.ChangeGoalText(PlayerGoalCollection.PlayerGoals[PlayerGoalCollection.currentGoalIndex]);
     }
 
 
@@ -452,9 +456,9 @@ public class TabUILogic : CallBackInterface
             ContainerLimit();
         }else if(currentWindowLayer == 1)
         {
-            int n = itemUI.itemContainers[itemUI.currentindex].selectIndex;
+            int n = itemUI.itemContainers[currentItemindex].selectIndex;
             n--;
-            itemUI.itemContainers[itemUI.currentindex].SetSelectIndex(Mathf.Clamp(n, 0, 2));
+            itemUI.itemContainers[currentItemindex].SetSelectIndex(Mathf.Clamp(n, 0, 2));
         }else  if(currentWindowLayer == 2)
         {
             currentItemindex -= 4;
@@ -472,9 +476,9 @@ public class TabUILogic : CallBackInterface
             ContainerLimit();
         }else if(currentWindowLayer == 1)
         {
-            int n = itemUI.itemContainers[itemUI.currentindex].selectIndex;
+            int n = itemUI.itemContainers[currentItemindex].selectIndex;
             n++;
-            itemUI.itemContainers[itemUI.currentindex].SetSelectIndex(Mathf.Clamp(n, 0, 2));
+            itemUI.itemContainers[currentItemindex].SetSelectIndex(Mathf.Clamp(n, 0, 2));
         }else  if(currentWindowLayer == 2)
         {
             currentItemindex += 4;

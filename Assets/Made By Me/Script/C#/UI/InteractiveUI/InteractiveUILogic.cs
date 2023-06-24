@@ -89,9 +89,7 @@ public class InteractiveUILogic
     // 여기 코드가 엔터를 받을 때 마다 텍스트가 바뀌는 것을 구현햐였다
     IEnumerator InteractiveDialog(string ItemName = "")
     {
-        bool flag;
-        Debug.Log("InteractiveDialog " + "ItemName : " + ItemName);
-        
+        bool flag;        
 
         if(ItemName == "")
         {

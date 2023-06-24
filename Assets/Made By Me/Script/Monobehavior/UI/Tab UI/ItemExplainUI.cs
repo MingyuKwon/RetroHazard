@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public class ItemExplainUI : MonoBehaviour
 {
     Text[] itemExplainText; // 0: name, 1 : explain

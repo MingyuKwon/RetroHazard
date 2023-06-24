@@ -263,9 +263,7 @@ public class GameMangerInput : MonoBehaviour
         {
             return player.GetButtonDown("Attack");
         }
-
     }
-
 
     public static GameMangerInput instance = null;
     public static InputCheck inputCheck;
@@ -290,7 +288,7 @@ public class GameMangerInput : MonoBehaviour
             return;
         }
 
-        inputControlStack.Pop();
+        InputType result =  inputControlStack.Pop();
     }
 
     private Player player;

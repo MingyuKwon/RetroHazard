@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Sirenix.OdinInspector;
-using DG.Tweening;
 
+////////// Cleared ////////////////
 public class DialogUI : MonoBehaviour
 {
     DialogUILogic dialogUILogic;

@@ -1,29 +1,26 @@
-using System;
 using UnityEngine;
 
-// find나 getComponent를 이용한 참조를 최대한 없앰
-
+/////////////// Cleared ///////////////////////
 public class ItemUI : MonoBehaviour
 {
+    ItemUILogic itemUILogic;
     [SerializeField] Sprite nullSprite;
-
-    public ItemContainer[] itemContainers;
+    public ItemContainer[] itemContainers{
+        get{
+            return itemUILogic.itemContainers;
+        }
+        set{
+            itemUILogic.itemContainers = value;
+        }
+    }
     
-    public int currentindex = 0;
-    public bool isInventoryFull;
-
     private void Awake() {
-        itemContainers = GetComponentsInChildren<ItemContainer>();
-        Array.Reverse(itemContainers);
+        itemUILogic = new ItemUILogic(nullSprite, GetComponentsInChildren<ItemContainer>());
     }
 
     public void UpdateInventoryUI()
     {
-        foreach(ItemContainer itemContainer in itemContainers)
-        {
-            itemContainer.gameObject.SetActive(false);
-        }
-        ShowingInventory();
+        itemUILogic.UpdateInventoryUI();
     }
 
     private void Start() {
@@ -31,103 +28,18 @@ public class ItemUI : MonoBehaviour
     }
 
     private void Update() {
-
-        currentindex = UI.instance.tabUI.currentItemindex;
-        ItemContainerFocus();
-        isInventoryFull = Player1.instance.playerInventory.isInventoryFull;
-    }
-
-    private void ItemContainerFocus()
-    {
-        if(UI.instance.tabUI.currentWindowLayer == 1) return;
-
-        for(int i=0; i < Player1.instance.playerInventory.CurrentContainerSize; i++)
-        {
-            if(i == currentindex)
-            {
-                itemContainers[i].SetFocus(true);
-                if(Player1.instance.playerInventory.items[i] != null)
-                {
-                    UI.instance.tabUI.itemExplainUI.SetItemExplain(Player1.instance.playerInventory.items[i].ItemDescription[0]);
-                    UI.instance.tabUI.itemExplainUI.SetItemName(Player1.instance.playerInventory.items[i].ItemName);
-                }else
-                {
-                    UI.instance.tabUI.itemExplainUI.SetItemExplain(" ");
-                    UI.instance.tabUI.itemExplainUI.SetItemName(" ");
-                }
-                
-            }else
-            {
-                itemContainers[i].SetFocus(false);
-            }
-        }
+        itemUILogic.ItemContainerFocus();
     }
 
     public void ItemContainerFocusDirect(int num)
     {
-        for(int i=0; i < Player1.instance.playerInventory.CurrentContainerSize; i++)
-        {
-            if(i == num)
-            {
-                itemContainers[i].SetFocus(true);
-                if(Player1.instance.playerInventory.items[i] != null)
-                {
-                    UI.instance.tabUI.itemExplainUI.SetItemExplain(Player1.instance.playerInventory.items[i].ItemDescription[0]);
-                    UI.instance.tabUI.itemExplainUI.SetItemName(Player1.instance.playerInventory.items[i].ItemName);
-                }else
-                {
-                    UI.instance.tabUI.itemExplainUI.SetItemExplain(" ");
-                    UI.instance.tabUI.itemExplainUI.SetItemName(" ");
-                }
-                
-            }else
-            {
-                itemContainers[i].SetFocus(false);
-            }
-            
-        }
+        itemUILogic.ItemContainerFocusDirect(num);
     }
 
     public void SetInteractFade()
     {
-        foreach(ItemContainer itemContainer in itemContainers)
-        {
-            itemContainer.SetInteractFade();
-        }
+        itemUILogic.SetInteractFade();
     }
 
-    private void ShowingInventory()
-    {
-        for(int i=0; i<Player1.instance.playerInventory.CurrentContainerSize; i++)
-        {
-            itemContainers[i].gameObject.SetActive(true);
-
-            if(Player1.instance.playerInventory.isEquipped[i])
-            {
-                itemContainers[i].EquipImage.gameObject.SetActive(true);
-            }else
-            {
-                itemContainers[i].EquipImage.gameObject.SetActive(false);
-            }
-
-            if(Player1.instance.playerInventory.items[i] != null)
-            {
-                itemContainers[i].itemImage.sprite = Player1.instance.playerInventory.items[i].ItemImage;
-
-            }else
-            {
-                itemContainers[i].itemImage.sprite = nullSprite;
-            }
-
-            if(Player1.instance.playerInventory.itemsamount[i] > 1)
-            {
-                itemContainers[i].SetItemAmountUI(true);
-                itemContainers[i].SetItemAmountText(Player1.instance.playerInventory.itemsamount[i].ToString());
-            }else
-            {
-                itemContainers[i].SetItemAmountUI(false);
-            }
-            
-        }
-    }
+    
 }
