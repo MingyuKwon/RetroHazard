@@ -23,7 +23,11 @@ public class InGameUI : MonoBehaviour
 
     public void UpdateIngameUI()
     {
-        StartCoroutine(UpdateUIDelay());
+        if(this.gameObject.activeInHierarchy)
+        {
+            StartCoroutine(UpdateUIDelay());
+        }
+        
     }
 
     public IEnumerator UpdateUIDelay()

@@ -8,16 +8,6 @@ using Sirenix.OdinInspector;
 
 public class TabUI : MonoBehaviour
 {
-    public bool inputOk{
-        get{
-            return tabUILogic.inputOk;
-        }
-
-        set{
-            tabUILogic.inputOk = value;
-        }
-    }
-
     public bool isShowing{
         get{
             return tabUILogic.isShowing;

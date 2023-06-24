@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class TabUILogic : CallBackInterface
 {
-    public bool inputOk = false;
     public bool isShowing = false;
     public bool isInteractive = false; 
     // true -> open when get item, interact with object , false -> open with menu
@@ -64,7 +63,13 @@ public class TabUILogic : CallBackInterface
             GameMangerInput.instance.changePlayerInputRule(0);
         }
 
-        inputOk = flag;
+        if(flag)
+        {
+            GameMangerInput.getInput(InputType.TabUIInput);
+        }else
+        {
+            GameMangerInput.releaseInput(InputType.TabUIInput);
+        }
 
         GameManager.instance.SetPauseGame(flag);
     }
@@ -205,7 +210,6 @@ public class TabUILogic : CallBackInterface
     }
 
     public void OnEnable() {
-        IinteractiveUI.interact_Input_Rlease_Event += InputGetBack;
         currentWindowLayer = 0;
         UI.instance.SetMouseCursorActive(true);
         discardTargetItemIndex = -1;
@@ -219,7 +223,6 @@ public class TabUILogic : CallBackInterface
     }
 
     public void OnDisable() {
-        IinteractiveUI.interact_Input_Rlease_Event -= InputGetBack;
         currentWindowLayer = 0;
         UI.instance.SetMouseCursorActive(false);
         isUseKeyItem = false;
@@ -233,24 +236,15 @@ public class TabUILogic : CallBackInterface
         GameMangerInput.InputEvent.TabUILeftPressed -= UILeftPressed;
     }
 
-    private void InputGetBack()
-    {
-        if(monoBehavior.gameObject.activeInHierarchy != true) return;
-        inputOk = true;
-    }
-
-
     public void UIEnterPressed()
     {
-        if(!inputOk) return;
-
         if(isOpenedItem)
         {
             if(yesNoChoice)
             {
                 if(itemUI.isInventoryFull)
                 {
-                    inputOk = false;
+                    GameMangerInput.releaseInput(InputType.TabUIInput);
                     GameManagerUI.instance.SetInteractiveDialogText(new string[] {"<b><color=red>Your inventory is full!</color></b> \n\n\nCan't get this item"});
                     GameManagerUI.instance.VisualizeInteractiveUI(true);
                     return;
@@ -357,7 +351,7 @@ public class TabUILogic : CallBackInterface
                         // 상호작용 창에서 키 아이템을 사용한 경우
                         if(isUseKeyItem)
                         {
-                            inputOk = false;
+                            GameMangerInput.releaseInput(InputType.TabUIInput);
                             GameManager.EventManager.Invoke_Interact_KeyItem_Success_Event(interactiveDialog, itemUI.currentindex);
                             GameManagerUI.instance.SetInteractiveDialogText(interactiveDialog.SucessDialog);
                             monoBehavior.StartCoroutine(showInteractiveDialogDelay());
@@ -416,8 +410,6 @@ public class TabUILogic : CallBackInterface
 
     public void UIBackPressed()
     {
-        if(!inputOk) return;
-
         currentWindowLayer--;
 
         if(currentWindowLayer == 1)
@@ -454,8 +446,6 @@ public class TabUILogic : CallBackInterface
     }
     public void UIUpPressed()
     {
-        if(!inputOk) return;
-
         if(isOpenedItem) return;
 
         if(currentWindowLayer == 0)
@@ -476,8 +466,6 @@ public class TabUILogic : CallBackInterface
     }
     public void UIDownPressed()
     {
-        if(!inputOk) return;
-
         if(isOpenedItem) return;
 
         if(currentWindowLayer == 0)
@@ -498,8 +486,6 @@ public class TabUILogic : CallBackInterface
     }
     public void UIRightPressed()
     {
-        if(!inputOk) return;
-
         if(isOpenedItem)
         {
             yesNoChoice = false;
@@ -522,8 +508,6 @@ public class TabUILogic : CallBackInterface
     }
     public void UILeftPressed()
     {
-        if(!inputOk) return;
-
         if(isOpenedItem)
         {
             yesNoChoice = true;
@@ -543,6 +527,5 @@ public class TabUILogic : CallBackInterface
             ContainerLimit();
         }
     }
-
 
 }

@@ -7,6 +7,19 @@ using Rewired;
 using Sirenix.OdinInspector;
 using DG.Tweening;
 
+public enum InputType
+{
+    FieldInput = 0,
+    InteractiveUIInput = 1,
+    TabUIInput = 2,
+    BoxUIInput = 3,
+    DialogtUIInpu = 4,
+    PauseUIInput = 5,
+    SaveSlotUIInput = 6,
+    OptionUIInput = 7,
+    AlertUIInput = 8
+}
+
 public class GameMangerInput : MonoBehaviour
 {
     public class InputEvent
@@ -110,13 +123,10 @@ public class GameMangerInput : MonoBehaviour
         }
 
 
-
-
-
         public static event Action TabUIEnterPressed;
         public static void Invoke_UIEnterPressed()
         {
-            if(InputCheck.isNowTabUIInput)
+            if(isNowInputAvailable[(int)InputType.TabUIInput])
             {
                 TabUIEnterPressed.Invoke();
             }
@@ -126,7 +136,7 @@ public class GameMangerInput : MonoBehaviour
         public static event Action TabUIBackPressed;
         public static void Invoke_UIBackPressed()
         {
-            if(InputCheck.isNowTabUIInput){
+            if(isNowInputAvailable[(int)InputType.TabUIInput]){
                 TabUIBackPressed.Invoke();
             }
             
@@ -135,7 +145,7 @@ public class GameMangerInput : MonoBehaviour
         public static event Action TabUIUpPressed;
         public static void Invoke_UIUpPressed()
         {
-            if(InputCheck.isNowTabUIInput){
+            if(isNowInputAvailable[(int)InputType.TabUIInput]){
                 TabUIUpPressed.Invoke();
             }
         }
@@ -143,7 +153,7 @@ public class GameMangerInput : MonoBehaviour
         public static event Action TabUIDownPressed;
         public static void Invoke_UIDownPressed()
         {
-            if(InputCheck.isNowTabUIInput){
+            if(isNowInputAvailable[(int)InputType.TabUIInput]){
                 TabUIDownPressed.Invoke();
             }
         }
@@ -151,7 +161,7 @@ public class GameMangerInput : MonoBehaviour
         public static event Action TabUIRightPressed;
         public static void Invoke_UIRightPressed()
         {
-            if(InputCheck.isNowTabUIInput){
+            if(isNowInputAvailable[(int)InputType.TabUIInput]){
                 TabUIRightPressed.Invoke();
             }
         }
@@ -159,23 +169,16 @@ public class GameMangerInput : MonoBehaviour
         public static event Action TabUILeftPressed;
         public static void Invoke_UILeftPressed()
         {
-            if(InputCheck.isNowTabUIInput){
+            if(isNowInputAvailable[(int)InputType.TabUIInput]){
                 TabUILeftPressed.Invoke();
             }
+
             
         }
     }
 
     public class InputCheck
     {
-        public static bool isNowFieldInput = false;
-        public static bool isNowInteractiveUIInput = false;
-        public static bool isNowTabUIInput = true;
-        public static bool isNowBoxUIInput = false;
-        public static bool isNowPauseUIInput = false;
-        public static bool isNowAlertUIInput = false;
-        public static bool isNowDialogtUIInput = false;
-
         private Player player;
         public InputCheck(Player _player)
         {
@@ -229,6 +232,23 @@ public class GameMangerInput : MonoBehaviour
     public static GameMangerInput instance = null;
     public static InputCheck inputCheck;
 
+    public static bool[] isNowInputAvailable = new bool[Enum.GetNames(typeof(InputType)).Length];
+        
+    public static void getInput(InputType type)
+    {
+        for(int i=0; i<isNowInputAvailable.Length; i++)
+        {
+                isNowInputAvailable[i] = false;
+        }
+
+            isNowInputAvailable[(int)type] = true;
+    }
+
+    public static void releaseInput(InputType type)
+    {
+        isNowInputAvailable[(int)type] = false;
+    }
+
     private Player player;
     private ControllerMapEnabler mapEnabler;
     private ControllerMapEnabler.RuleSet[] ruleSets;
@@ -262,6 +282,7 @@ public class GameMangerInput : MonoBehaviour
     }
 
     private void OnEnable() {
+        getInput(InputType.FieldInput);
         delegateInputFunctions();
     }
 
