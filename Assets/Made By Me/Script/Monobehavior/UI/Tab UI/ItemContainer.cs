@@ -66,7 +66,7 @@ public class ItemContainer : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     int indexLimitMin{
         get{
-            return itemContainerLogic.indexLimitMax;
+            return itemContainerLogic.indexLimitMin;
         }
 
         set{
@@ -119,7 +119,7 @@ public class ItemContainer : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     }
 
     private void Update() {
-        itemContainerLogic.Update();
+        itemContainerLogic.UpdateInventoryItemContainer();
     }
 
     public void SetInteractFade()
@@ -128,7 +128,7 @@ public class ItemContainer : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     }
 
     private void OnEnable() {
-        itemContainerLogic.OnEnable();
+        itemContainerLogic.OnEnableInventoryContainer();
     }
 
     private void OnDisable() {

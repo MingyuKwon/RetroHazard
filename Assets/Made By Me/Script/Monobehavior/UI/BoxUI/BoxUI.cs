@@ -1,9 +1,7 @@
-using System.Collections;
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+////////////////// Cleared ///////////////////////
 public class BoxUI : MonoBehaviour
 {
     BoxUILogic boxUILogic;

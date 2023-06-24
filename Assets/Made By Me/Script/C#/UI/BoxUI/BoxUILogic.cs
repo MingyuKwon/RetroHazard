@@ -4,9 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-
-///////////// 가득 찼을 때 어떻게 나오는지 보자 ////////////////////
-
 public class BoxUILogic : CallBackInterface
 {
     public bool isShowing = false;
@@ -137,7 +134,7 @@ public class BoxUILogic : CallBackInterface
         currentWindowLayer = 0;
         discardTargetItemIndex = -1;
 
-        UI.instance.tabUI.UpdateTabUI();
+        UI.instance.TotalUIUpdate();
 
         GameMangerInput.InputEvent.BoxUIEnterPressed -= EnterPressed;
         GameMangerInput.InputEvent.BoxUIBackPressed -= BackPressed;
@@ -154,8 +151,8 @@ public class BoxUILogic : CallBackInterface
     {
         if(isBox)
         {
-            if(boxItemUI.currentindex < 0) return;
-            if(boxItemUI.playerItemBox.items[boxItemUI.currentindex] == null) return;
+            if(UI.instance.boxUI.boxItemIndex < 0) return;
+            if(Player1.instance.playerItemBox.items[UI.instance.boxUI.boxItemIndex] == null) return;
 
             if(currentWindowLayer == 0)
             {
@@ -163,7 +160,7 @@ public class BoxUILogic : CallBackInterface
             }
             else if(currentWindowLayer == 1)
             {
-                if(playerItemUI.isInventoryFull)
+                if(Player1.instance.playerInventory.isInventoryFull)
                 {
                     GameManagerUI.instance.SetInteractiveDialogText(new string[] {"<b><color=red>Your inventory is full!</color></b> \n\n\nCan't move this item from box to inventory"});
                     GameManagerUI.instance.VisualizeInteractiveUI(true);
@@ -171,16 +168,16 @@ public class BoxUILogic : CallBackInterface
                     return;
                 }
 
-                ItemInformation from = boxItemUI.playerItemBox.items[boxItemIndex];
-                int fromAmount = boxItemUI.playerItemBox.itemsamount[boxItemIndex];
+                ItemInformation from = Player1.instance.playerItemBox.items[boxItemIndex];
+                int fromAmount = Player1.instance.playerItemBox.itemsamount[boxItemIndex];
                 GameManager.EventManager.Invoke_BoxEvent(false, from, fromAmount, boxItemIndex);
                     
                 currentWindowLayer--;
             }
         }else
         {
-            if(playerItemUI.currentindex < 0) return;
-            if(playerItemUI.playerInventory.items[playerItemUI.currentindex] == null) return;
+            if(UI.instance.boxUI.playerItemIndex < 0) return;
+            if(Player1.instance.playerInventory.items[UI.instance.boxUI.playerItemIndex] == null) return;
 
             if(currentWindowLayer == 0)
             {
@@ -188,9 +185,9 @@ public class BoxUILogic : CallBackInterface
             }
             else if(currentWindowLayer == 1)
             {
-                if(playerItemUI.itemContainers[playerItemUI.currentindex].selectIndex == 0)
+                if(playerItemUI.itemContainers[UI.instance.boxUI.playerItemIndex].selectIndex == 0)
                 {
-                    if(boxItemUI.isBoxFull)
+                    if(Player1.instance.playerItemBox.isBoxfull)
                     {
 
                         GameManagerUI.instance.SetInteractiveDialogText(new string[] {"<b><color=red>Your Box is full!</color></b> \n\n\nCan't move this item from inventory to box"});
@@ -198,33 +195,33 @@ public class BoxUILogic : CallBackInterface
                         currentWindowLayer--;
                         return;
                     }
-                    ItemInformation from = playerItemUI.playerInventory.items[playerItemIndex];
-                    int fromAmount = playerItemUI.playerInventory.itemsamount[playerItemIndex];
+                    ItemInformation from = Player1.instance.playerInventory.items[playerItemIndex];
+                    int fromAmount = Player1.instance.playerInventory.itemsamount[playerItemIndex];
                     GameManager.EventManager.Invoke_BoxEvent(true, from, fromAmount, playerItemIndex);
                     // move item from inventory to Box
                     
                     currentWindowLayer--;
 
-                }else if(playerItemUI.itemContainers[playerItemUI.currentindex].selectIndex == 1) // combine
+                }else if(playerItemUI.itemContainers[UI.instance.boxUI.playerItemIndex].selectIndex == 1) // combine
                 {
-                    combineStartItem = playerItemUI.playerInventory.items[playerItemUI.currentindex];
-                    combineStartItemIndex = playerItemUI.currentindex;
+                    combineStartItem = Player1.instance.playerInventory.items[UI.instance.boxUI.playerItemIndex];
+                    combineStartItemIndex = UI.instance.boxUI.playerItemIndex;
                     previousPlayerItemIndex = combineStartItemIndex;
                     currentWindowLayer++;
-                }else if(playerItemUI.itemContainers[playerItemUI.currentindex].selectIndex == 2) // discard
+                }else if(playerItemUI.itemContainers[UI.instance.boxUI.playerItemIndex].selectIndex == 2) // discard
                 {
-                    discardTargetItemIndex = playerItemUI.currentindex;
+                    discardTargetItemIndex = UI.instance.boxUI.playerItemIndex;
                     AlertUI.instance.ShowAlert("Are you sure to Discard this Item? \n\n <i>(discarded Item cannot be restored)</i>", this);
                 }
             }
             else if(currentWindowLayer == 2)
             {
-                if(!playerItemUI.itemContainers[playerItemUI.currentindex].isCombineable) return;
+                if(!playerItemUI.itemContainers[UI.instance.boxUI.playerItemIndex].isCombineable) return;
 
                 GameManager.EventManager.Invoke_CombineEvent(combineStartItem, 
                                                                 combineStartItemIndex, 
-                                                                playerItemUI.playerInventory.items[playerItemUI.currentindex], 
-                                                                playerItemUI.currentindex);
+                                                                Player1.instance.playerInventory.items[UI.instance.boxUI.playerItemIndex], 
+                                                                UI.instance.boxUI.playerItemIndex);
                 currentWindowLayer--;
                 currentWindowLayer--;
             }
@@ -276,9 +273,9 @@ public class BoxUILogic : CallBackInterface
             }
             else if(currentWindowLayer == 1)
             {
-                int n = boxItemUI.itemContainers[boxItemUI.currentindex].selectIndex;
+                int n = boxItemUI.itemContainers[UI.instance.boxUI.boxItemIndex].selectIndex;
                 n--;
-                boxItemUI.itemContainers[boxItemUI.currentindex].SetSelectIndex(Mathf.Clamp(n, 0, 2));
+                boxItemUI.itemContainers[UI.instance.boxUI.boxItemIndex].SetSelectIndex(Mathf.Clamp(n, 0, 2));
             }
         }else
         {
@@ -289,9 +286,9 @@ public class BoxUILogic : CallBackInterface
             }
             else if(currentWindowLayer == 1)
             {
-                int n = playerItemUI.itemContainers[playerItemUI.currentindex].selectIndex;
+                int n = playerItemUI.itemContainers[UI.instance.boxUI.playerItemIndex].selectIndex;
                 n--;
-                playerItemUI.itemContainers[playerItemUI.currentindex].SetSelectIndex(Mathf.Clamp(n, 0, 2));
+                playerItemUI.itemContainers[UI.instance.boxUI.playerItemIndex].SetSelectIndex(Mathf.Clamp(n, 0, 2));
             }
         }
         
@@ -308,9 +305,9 @@ public class BoxUILogic : CallBackInterface
             }
             else if(currentWindowLayer == 1)
             {
-                int n = boxItemUI.itemContainers[boxItemUI.currentindex].selectIndex;
+                int n = boxItemUI.itemContainers[UI.instance.boxUI.boxItemIndex].selectIndex;
                 n++;
-                boxItemUI.itemContainers[boxItemUI.currentindex].SetSelectIndex(Mathf.Clamp(n, 0, 2));
+                boxItemUI.itemContainers[UI.instance.boxUI.boxItemIndex].SetSelectIndex(Mathf.Clamp(n, 0, 2));
             }
         }else
         {
@@ -321,9 +318,9 @@ public class BoxUILogic : CallBackInterface
             }
             else if(currentWindowLayer == 1)
             {
-                int n = playerItemUI.itemContainers[playerItemUI.currentindex].selectIndex;
+                int n = playerItemUI.itemContainers[UI.instance.boxUI.playerItemIndex].selectIndex;
                 n++;
-                playerItemUI.itemContainers[playerItemUI.currentindex].SetSelectIndex(Mathf.Clamp(n, 0, 2));
+                playerItemUI.itemContainers[UI.instance.boxUI.playerItemIndex].SetSelectIndex(Mathf.Clamp(n, 0, 2));
             }
         }
 

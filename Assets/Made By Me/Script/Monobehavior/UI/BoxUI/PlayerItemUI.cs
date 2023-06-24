@@ -1,40 +1,23 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using Rewired;
-using Sirenix.OdinInspector;
-using DG.Tweening;
 
+///////////// Cleared ////////////////////////
 public class PlayerItemUI : MonoBehaviour
 {
     [SerializeField] Sprite nullSprite;
 
     public PlayerItemContainer[] itemContainers;
-    public PlayerInventory playerInventory;
-    ItemExplainUI itemExplainUI;
-
-    BoxUI boxUI = null;
-
     public Image backgroundPanel;
  
     public Color selectColor = new Color(0.8f,0.8f,0.8f,1);
     public Color unSelectColor = new Color(0.5f,0.5f,0.5f,1);
 
-    public int currentindex = 0;
-    public bool isInventoryFull;
-
     private void Awake() {
         itemContainers = GetComponentsInChildren<PlayerItemContainer>();
         Array.Reverse(itemContainers);
 
-        playerInventory = FindObjectOfType<PlayerInventory>();
-        itemExplainUI = transform.parent.GetComponentInChildren<ItemExplainUI>();
         backgroundPanel = transform.GetChild(0).GetComponent<Image>();
-
-        boxUI = transform.parent.gameObject.GetComponent<BoxUI>();
     }
 
     private void Start() {
@@ -46,9 +29,7 @@ public class PlayerItemUI : MonoBehaviour
     }
 
     private void Update() {
-        currentindex = boxUI.playerItemIndex;
         ItemContainerFocus();
-        isInventoryFull = playerInventory.isInventoryFull;
     }
 
     public void UpdateInventoryUI()
@@ -60,13 +41,13 @@ public class PlayerItemUI : MonoBehaviour
         ShowingInventory();
     }
 
-    private void ShowingInventory()
+    public void ShowingInventory()
     {
-        for(int i=0; i<playerInventory.CurrentContainerSize; i++)
+        for(int i=0; i<Player1.instance.playerInventory.CurrentContainerSize; i++)
         {
             itemContainers[i].gameObject.SetActive(true);
 
-            if(playerInventory.isEquipped[i])
+            if(Player1.instance.playerInventory.isEquipped[i])
             {
                 itemContainers[i].EquipImage.gameObject.SetActive(true);
             }else
@@ -74,20 +55,19 @@ public class PlayerItemUI : MonoBehaviour
                 itemContainers[i].EquipImage.gameObject.SetActive(false);
             }
 
-
-            if(playerInventory.items[i] != null)
+            if(Player1.instance.playerInventory.items[i] != null)
             {
-                itemContainers[i].itemImage.sprite = playerInventory.items[i].ItemImage;
+                itemContainers[i].itemImage.sprite = Player1.instance.playerInventory.items[i].ItemImage;
 
             }else
             {
                 itemContainers[i].itemImage.sprite = nullSprite;
             }
 
-            if(playerInventory.itemsamount[i] > 1)
+            if(Player1.instance.playerInventory.itemsamount[i] > 1)
             {
                 itemContainers[i].SetItemAmountUI(true);
-                itemContainers[i].SetItemAmountText(playerInventory.itemsamount[i].ToString());
+                itemContainers[i].SetItemAmountText(Player1.instance.playerInventory.itemsamount[i].ToString());
             }else
             {
                 itemContainers[i].SetItemAmountUI(false);
@@ -98,46 +78,45 @@ public class PlayerItemUI : MonoBehaviour
 
     private void ItemContainerFocus()
     {
-        if(boxUI.currentWindowLayer == 1) return;
+        if(UI.instance.boxUI.currentWindowLayer == 1) return;
 
-        for(int i=0; i < playerInventory.CurrentContainerSize; i++)
+        for(int i=0; i < Player1.instance.playerInventory.CurrentContainerSize; i++)
         {
-            if(i == currentindex)
+            if(i == UI.instance.boxUI.playerItemIndex)
             {
                 itemContainers[i].SetFocus(true);
-                if(playerInventory.items[i] != null)
+                if(Player1.instance.playerInventory.items[i] != null)
                 {
-                    itemExplainUI.SetItemExplain(playerInventory.items[i].ItemDescription[0]);
-                    itemExplainUI.SetItemName(playerInventory.items[i].ItemName);
+                    UI.instance.boxUI.boxitemExplainUI.SetItemExplain(Player1.instance.playerInventory.items[i].ItemDescription[0]);
+                    UI.instance.boxUI.boxitemExplainUI.SetItemName(Player1.instance.playerInventory.items[i].ItemName);
                 }else
                 {
-                    itemExplainUI.SetItemExplain(" ");
-                    itemExplainUI.SetItemName(" ");
+                    UI.instance.boxUI.boxitemExplainUI.SetItemExplain(" ");
+                    UI.instance.boxUI.boxitemExplainUI.SetItemName(" ");
                 }
                 
             }else
             {
                 itemContainers[i].SetFocus(false);
             }
-            
         }
     }
 
     public void ItemContainerFocusDirect(int num)
     {
-        for(int i=0; i < playerInventory.CurrentContainerSize; i++)
+        for(int i=0; i < Player1.instance.playerInventory.CurrentContainerSize; i++)
         {
             if(i == num)
             {
                 itemContainers[i].SetFocus(true);
-                if(playerInventory.items[i] != null)
+                if(Player1.instance.playerInventory.items[i] != null)
                 {
-                    itemExplainUI.SetItemExplain(playerInventory.items[i].ItemDescription[0]);
-                    itemExplainUI.SetItemName(playerInventory.items[i].ItemName);
+                    UI.instance.boxUI.boxitemExplainUI.SetItemExplain(Player1.instance.playerInventory.items[i].ItemDescription[0]);
+                    UI.instance.boxUI.boxitemExplainUI.SetItemName(Player1.instance.playerInventory.items[i].ItemName);
                 }else
                 {
-                    itemExplainUI.SetItemExplain(" ");
-                    itemExplainUI.SetItemName(" ");
+                    UI.instance.boxUI.boxitemExplainUI.SetItemExplain(" ");
+                    UI.instance.boxUI.boxitemExplainUI.SetItemName(" ");
                 }
                 
             }else

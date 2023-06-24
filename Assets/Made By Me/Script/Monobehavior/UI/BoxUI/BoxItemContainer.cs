@@ -1,69 +1,92 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Sirenix.OdinInspector;
-using DG.Tweening;
 using UnityEngine.EventSystems;
-
 
 public class BoxItemContainer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    ItemContainerLogic itemContainerLogic;
     [SerializeField] int containerNum;
-    public PlayerItemBox playerItemBox;
 
-    Image backGround;
-    Image fadeImage;
-    public Image itemImage;
-    public Text itemAmount;
-    public Image EquipImage;
-    public FocusUI focus;
+     public Image itemImage{
+        get{
+            return itemContainerLogic.itemImage;
+        }
+        set{
+            itemContainerLogic.itemImage = value;
+        }
+    }
+    
+    public Image EquipImage{
+        get{
+            return itemContainerLogic.EquipImage;
+        }
+        set{
+            itemContainerLogic.EquipImage = value;
+        }
+    }
 
-    BoxUI boxUI;
-    BoxItemUI boxItemUI;
+    public FocusUI focus{
+        get{
+            return itemContainerLogic.focus;
+        }
+        set{
+            itemContainerLogic.focus = value;
+        }
+    }
 
-    public GameObject focusSelectPanel;
-    public bool isFocused = false;
+    public bool isFocused{
+        get{
+            return itemContainerLogic.isFocused;
+        }
+        set{
+            itemContainerLogic.isFocused = value;
+        }
+    }
 
-    public int selectIndex = 0;
+    public int selectIndex{
+        get{
+            return itemContainerLogic.selectIndex;
+        }
+
+        set{
+            itemContainerLogic.selectIndex = value;
+        }
+    }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        boxUI.boxItemIndex = containerNum;
+        UI.instance.boxUI.boxItemIndex = containerNum;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        boxUI.boxItemIndex = -1;
+        UI.instance.boxUI.boxItemIndex = -1;
     }
 
     private void Awake() {
-        playerItemBox = FindObjectOfType<PlayerItemBox>();
+        Image _backGround = GetComponent<Image>();
+        Image _itemImage = transform.GetChild(0).GetComponent<Image>();
+        Text _itemAmountText = transform.GetChild(1).GetComponentInChildren<Text>();
+        GameObject _itemAmount =  transform.GetChild(1).gameObject;
+        Image _EquipImage = transform.GetChild(2).GetComponent<Image>();
+        Image _fadeImage = transform.GetChild(3).GetComponent<Image>();
+        FocusUI _focus = transform.GetChild(4).GetComponent<FocusUI>();
 
-        backGround = GetComponent<Image>();
-        itemImage = transform.GetChild(0).GetComponent<Image>();
-        itemAmount = transform.GetChild(1).GetComponentInChildren<Text>();
-        EquipImage = transform.GetChild(2).GetComponent<Image>();
-        fadeImage = transform.GetChild(3).GetComponent<Image>();
-        focus = transform.GetChild(4).GetComponent<FocusUI>();
+        GameObject _focusSelectPanel = _focus.gameObject.transform.GetChild(0).gameObject;
 
-        boxUI = transform.parent.transform.parent.GetComponent<BoxUI>();
-        boxItemUI = GetComponentInParent<BoxItemUI>();
+        itemContainerLogic = new ItemContainerLogic(containerNum, _backGround, _itemImage, _EquipImage,
+        _itemAmount,_itemAmountText, _fadeImage,_focus,_focusSelectPanel);
 
-        transform.GetChild(1).gameObject.SetActive(false);
-
-        focusSelectPanel = focus.gameObject.transform.GetChild(0).gameObject;
-        focusSelectPanel.SetActive(false);
         EquipImage.gameObject.SetActive(false);
-
-        
     }    
 
     private void OnEnable() {
-        if(boxItemUI.playerItemBox == null) return;
-        if(boxItemUI.playerItemBox.items[containerNum] == null) return;
-        selectIndex = 0;
+        itemContainerLogic.OnEnableBoxContainer();
+    }
+
+    private void OnDisable() {
+        itemContainerLogic.OnDisable();
     }
 
     private void Start() {
@@ -72,107 +95,27 @@ public class BoxItemContainer : MonoBehaviour, IPointerEnterHandler, IPointerExi
         focus.SetselectText(2, "");
     }
 
-
     private void Update() {
-        CheckWindowLayer();
-        CheckContainerFull();
-    }
-
-    private void CheckContainerFull()
-    {
-        if(boxItemUI.playerItemBox == null) return;
-        if(boxItemUI.playerItemBox.items[containerNum] == null) return;
-
-        if(boxItemUI.playerItemBox.items[containerNum].isEnergy1)
-        {
-            if(boxItemUI.playerItemBox.itemsamount[containerNum] == boxItemUI.playerItemBox.Energy1BatteryLimit)
-            {
-                itemAmount.color = Color.green;
-            }else
-            {
-                itemAmount.color = Color.white;
-            }
-        }else if(boxItemUI.playerItemBox.items[containerNum].isEnergy2)
-        {
-            if(boxItemUI.playerItemBox.itemsamount[containerNum] == boxItemUI.playerItemBox.Energy2BatteryLimit)
-            {
-                itemAmount.color = Color.green;
-            }else
-            {
-                itemAmount.color = Color.white;
-            }
-
-        }else if(boxItemUI.playerItemBox.items[containerNum].isEnergy3)
-        {
-            if(boxItemUI.playerItemBox.itemsamount[containerNum] == boxItemUI.playerItemBox.Energy3BatteryLimit)
-            {
-                itemAmount.color = Color.green;
-            }else
-            {
-                itemAmount.color = Color.white;
-            }
-
-        }else if(boxItemUI.playerItemBox.items[containerNum].isSheild)
-        {
-            if(boxItemUI.playerItemBox.itemsamount[containerNum] == boxItemUI.playerItemBox.SheildBatteryLimit)
-            {
-                itemAmount.color = Color.green;
-            }else
-            {
-                itemAmount.color = Color.white;
-            }
-        }
-    }
-
-    private void CheckWindowLayer()
-    {
-        if(boxUI.currentWindowLayer == 0)
-        {
-            SetSelect(false);
-            backGround.color = new Color(1f, 1f, 1f, 1f);
-            fadeImage.color = new Color(0f, 0f, 0f, 0f);
-
-        }else if(boxUI.currentWindowLayer == 1)
-        {
-            if(isFocused && boxUI.isBox)
-            {
-                SetSelect(true);
-                backGround.color = new Color(0.5f, 0.5f, 0.5f, 1f);
-                fadeImage.color = new Color(0f, 0f, 0f, 0f);
-                focus.SetSelect(selectIndex); 
-            }else
-            {
-                SetSelect(false);
-                backGround.color = new Color(1f, 1f, 1f, 1f);
-                fadeImage.color = new Color(0f, 0f, 0f, 0f);
-            }
-        }
+        itemContainerLogic.UpdateBoxItemContainer();
     }
 
     public void SetSelectIndex(int index)
     {
-        selectIndex = 0;
+        itemContainerLogic.SetSelectIndex(index);
     }
-
 
     public void SetItemAmountUI(bool flag)
     {
-        transform.GetChild(1).gameObject.SetActive(flag);
+        itemContainerLogic.SetItemAmountUI(flag);
     }
 
     public void SetItemAmountText(String str)
     {
-        itemAmount.text = str;
-    }
-
-    private void SetSelect(bool flag)
-    {
-        focusSelectPanel.SetActive(flag);
+        itemContainerLogic.SetItemAmountText(str);
     }
 
     public void SetFocus(bool flag)
     {
-        focus.SetFocus(flag);
-        isFocused = flag;
+        itemContainerLogic.SetFocus(flag);
     }
 }

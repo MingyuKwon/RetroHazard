@@ -14,10 +14,10 @@ public class ItemContainerLogic
     public bool isInteractive = false;
 
 
-    Image backGround;
+    public Image backGround;
     public Image itemImage;
     public Image EquipImage;
-    Image fadeImage;
+    public Image fadeImage;
 
     public GameObject itemAmount;
     public Text itemAmountText;
@@ -64,12 +64,22 @@ public class ItemContainerLogic
         UI.instance.tabUI.currentItemindex = -1;
     }
 
-    public void Update() {
-        CheckWindowLayer();
-        CheckContainerFull();
+    public void UpdateInventoryItemContainer() {
+        CheckTabWindowLayer();
+        CheckInventoryContainerFull();
+    }
+    
+    public void UpdatePlayerItemContainer() {
+        CheckBoxPlayerWindowLayer();
+        CheckInventoryContainerFull();
     }
 
-    public void OnEnable() {
+    public void UpdateBoxItemContainer() {
+        CheckBoxBoxWindowLayer();
+        CheckBoxContainerFull();
+    }
+
+    public void OnEnableInventoryContainer() {
         if(UI.instance.tabUI.itemUI != null)
         {
             if(Player1.instance.playerInventory == null) return;
@@ -132,6 +142,43 @@ public class ItemContainerLogic
         selectIndex = indexLimitMin;
     }
 
+    public void OnEnablePlayerContainer() {
+        if(UI.instance.boxUI.playerItemUI != null)
+        {
+            if(Player1.instance.playerInventory == null) return;
+            if(Player1.instance.playerInventory.items[containerNum] == null) return;
+
+            if(Player1.instance.playerInventory.items[containerNum].isKeyItem)
+            {
+                focus.SetselectText(2, "");
+                indexLimitMax = 1;
+            }else
+            {
+                focus.SetselectText(2, "Discard");
+                indexLimitMax = 2;
+            }
+
+            if(Player1.instance.playerInventory.isEquipped[containerNum])
+            {
+                focus.SetselectText(0, "");
+                indexLimitMin = 1;
+            }else
+            {
+                focus.SetselectText(0, "Put item");
+                indexLimitMin = 0;
+            }
+        }
+
+        selectIndex = indexLimitMin;
+    }
+
+    public void OnEnableBoxContainer() {
+        if(Player1.instance.playerItemBox == null) return;
+        if(Player1.instance.playerItemBox.items[containerNum] == null) return;
+
+        selectIndex = 0;
+    }
+
     private void SetSelectText()
     {
         if(Player1.instance.playerInventory.items[containerNum].isEquipItem)
@@ -160,7 +207,7 @@ public class ItemContainerLogic
         fadeImage.color = new Color(0f, 0f, 0f, 0f);
     }
 
-    private void CheckWindowLayer()
+    private void CheckTabWindowLayer()
     {
         if(UI.instance.tabUI.currentWindowLayer == 0)
         {
@@ -280,7 +327,121 @@ public class ItemContainerLogic
         }
     }
 
-    private void CheckContainerFull()
+    private void CheckBoxPlayerWindowLayer()
+    {
+        if(UI.instance.boxUI.currentWindowLayer == 0)
+        {
+            SetSelect(false);
+            backGround.color = new Color(1f, 1f, 1f, 1f);
+            fadeImage.color = new Color(0f, 0f, 0f, 0f);
+            isPreviousEneterd = false;
+
+        }else if(UI.instance.boxUI.currentWindowLayer == 2)
+        {
+            SetSelect(false);
+            if(!isPreviousEneterd)
+            {
+                isPreviousEneterd = true;
+
+                bool flag = false;
+
+                if(Player1.instance.playerInventory.items[containerNum] != null)
+                {
+                    if(UI.instance.boxUI.combineStartItem.isKeyItem && Player1.instance.playerInventory.items[containerNum].isKeyItem)
+                    {
+                        foreach(int itemCode in Player1.instance.playerInventory.items[containerNum].combineItems)
+                        {
+                            if(UI.instance.boxUI.combineStartItem.KeyItemCode == itemCode)
+                            {
+                                isCombineable = true;
+                                flag = true;
+                                break;
+                            }
+
+                        }
+                    }else if(!UI.instance.boxUI.combineStartItem.isKeyItem && !Player1.instance.playerInventory.items[containerNum].isKeyItem)
+                    {
+                        foreach(int itemCode in Player1.instance.playerInventory.items[containerNum].combineItems)
+                        {
+                            if(UI.instance.boxUI.combineStartItem.NormalItemCode == itemCode)
+                            {
+                                isCombineable = true;
+                                flag = true;
+                                break;
+                            }
+
+                        }
+                    }
+                 
+                }
+
+                if(!flag)
+                {
+                    isCombineable = false;
+                }
+
+                if(containerNum == UI.instance.boxUI.combineStartItemIndex)
+                {
+                    isCombineable = false;
+                }
+            }
+
+            if(isCombineable)
+            {
+                fadeImage.color = new Color(0f, 0f, 0f, 0f);
+            }else
+            {
+                fadeImage.color = new Color(0f, 0f, 0f, 0.5f);
+            }
+
+            
+        }else if(UI.instance.boxUI.currentWindowLayer == 1)
+        {
+            isPreviousEneterd = false;
+            if(isFocused)
+            {
+                SetSelect(true);
+                backGround.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+                fadeImage.color = new Color(0f, 0f, 0f, 0f);
+                focus.SetSelect(selectIndex); 
+            }else
+            {
+                SetSelect(false);
+                backGround.color = new Color(1f, 1f, 1f, 1f);
+                fadeImage.color = new Color(0f, 0f, 0f, 0f);
+            }
+            
+        }
+    }
+
+
+
+    private void CheckBoxBoxWindowLayer()
+    {
+        if(UI.instance.boxUI.currentWindowLayer == 0)
+        {
+            SetSelect(false);
+            backGround.color = new Color(1f, 1f, 1f, 1f);
+            fadeImage.color = new Color(0f, 0f, 0f, 0f);
+
+        }else if(UI.instance.boxUI.currentWindowLayer == 1)
+        {
+            if(isFocused && UI.instance.boxUI.isBox)
+            {
+                SetSelect(true);
+                backGround.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+                fadeImage.color = new Color(0f, 0f, 0f, 0f);
+                focus.SetSelect(selectIndex); 
+            }else
+            {
+                SetSelect(false);
+                backGround.color = new Color(1f, 1f, 1f, 1f);
+                fadeImage.color = new Color(0f, 0f, 0f, 0f);
+            }
+        }
+    }
+
+    public void CheckInventoryContainerFull()
     {
         if(Player1.instance.playerInventory == null) return;
         if(Player1.instance.playerInventory.items[containerNum] == null) return;
@@ -317,6 +478,52 @@ public class ItemContainerLogic
         }else if(Player1.instance.playerInventory.items[containerNum].isSheild)
         {
             if(Player1.instance.playerInventory.itemsamount[containerNum] == Player1.instance.playerInventory.SheildBatteryLimit)
+            {
+                itemAmountText.color = Color.green;
+            }else
+            {
+                itemAmountText.color = Color.white;
+            }
+        }
+    }
+
+    public void CheckBoxContainerFull()
+    {
+        if(Player1.instance.playerItemBox == null) return;
+        if(Player1.instance.playerItemBox.items[containerNum] == null) return;
+
+        if(Player1.instance.playerItemBox.items[containerNum].isEnergy1)
+        {
+            if(Player1.instance.playerItemBox.itemsamount[containerNum] == Player1.instance.playerItemBox.Energy1BatteryLimit)
+            {
+                itemAmountText.color = Color.green;
+            }else
+            {
+                itemAmountText.color = Color.white;
+            }
+        }else if(Player1.instance.playerItemBox.items[containerNum].isEnergy2)
+        {
+            if(Player1.instance.playerItemBox.itemsamount[containerNum] == Player1.instance.playerItemBox.Energy2BatteryLimit)
+            {
+                itemAmountText.color = Color.green;
+            }else
+            {
+                itemAmountText.color = Color.white;
+            }
+
+        }else if(Player1.instance.playerItemBox.items[containerNum].isEnergy3)
+        {
+            if(Player1.instance.playerItemBox.itemsamount[containerNum] == Player1.instance.playerItemBox.Energy3BatteryLimit)
+            {
+                itemAmountText.color = Color.green;
+            }else
+            {
+                itemAmountText.color = Color.white;
+            }
+
+        }else if(Player1.instance.playerItemBox.items[containerNum].isSheild)
+        {
+            if(Player1.instance.playerItemBox.itemsamount[containerNum] == Player1.instance.playerItemBox.SheildBatteryLimit)
             {
                 itemAmountText.color = Color.green;
             }else
@@ -375,7 +582,7 @@ public class ItemContainerLogic
         itemAmountText.text = str;
     }
 
-    private void SetSelect(bool flag)
+    public void SetSelect(bool flag)
     {
         focusSelectPanel.SetActive(flag);
     }

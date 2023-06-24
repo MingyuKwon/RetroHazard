@@ -1,265 +1,107 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Rewired;
-using Sirenix.OdinInspector;
-using DG.Tweening;
 using UnityEngine.EventSystems;
 
+////////////// ItemContainerLogic 를 이용해서 커스터 마이징 정리 완료 ///////////////////
 public class PlayerItemContainer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    ItemContainerLogic itemContainerLogic;
     [SerializeField] int containerNum;
 
-    PlayerStatus status;
+    public Image itemImage{
+        get{
+            return itemContainerLogic.itemImage;
+        }
+        set{
+            itemContainerLogic.itemImage = value;
+        }
+    }
+    
+    public Image EquipImage{
+        get{
+            return itemContainerLogic.EquipImage;
+        }
+        set{
+            itemContainerLogic.EquipImage = value;
+        }
+    }
 
-    Image backGround;
-    Image fadeImage;
-    public Image itemImage;
-    public Text itemAmount;
-    public Image EquipImage;
-    public FocusUI focus;
+    public bool isCombineable{
+        get{
+            return itemContainerLogic.isCombineable;
+        }
 
-    BoxUI boxUI;
-    PlayerItemUI playerItemUI;
+        set{
+            itemContainerLogic.isCombineable = value;
+        }
+    }
 
-    public GameObject focusSelectPanel;
+    public int selectIndex{
+        get{
+            return itemContainerLogic.selectIndex;
+        }
 
-    public bool isFocused = false;
-    public bool isCombineable = false;
-
-    public int indexLimitMin = 0;
-    public int indexLimitMax = 2;
-
-    public int selectIndex = 0;
-
-    //for Code Struct
-    public bool isPreviousEneterd;
-    //for Code Struct
+        set{
+            itemContainerLogic.selectIndex = value;
+        }
+    }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        boxUI.playerItemIndex = containerNum;
+        UI.instance.boxUI.playerItemIndex = containerNum;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        boxUI.playerItemIndex = -1;
+        UI.instance.boxUI.playerItemIndex = -1;
     }
 
     private void Awake() {
-        status = FindObjectOfType<PlayerStatus>();
+        Image _backGround = GetComponent<Image>();
+        Image _itemImage = transform.GetChild(0).GetComponent<Image>();
+        Text _itemAmountText = transform.GetChild(1).GetComponentInChildren<Text>();
+        GameObject _itemAmount =  transform.GetChild(1).gameObject;
+        Image _EquipImage = transform.GetChild(2).GetComponent<Image>();
+        Image _fadeImage = transform.GetChild(3).GetComponent<Image>();
+        FocusUI _focus = transform.GetChild(4).GetComponent<FocusUI>();
 
-        backGround = GetComponent<Image>();
-        itemImage = transform.GetChild(0).GetComponent<Image>();
-        itemAmount = transform.GetChild(1).GetComponentInChildren<Text>();
-        EquipImage = transform.GetChild(2).GetComponent<Image>();
-        fadeImage = transform.GetChild(3).GetComponent<Image>();
-        focus = transform.GetChild(4).GetComponent<FocusUI>();
+        GameObject _focusSelectPanel = _focus.gameObject.transform.GetChild(0).gameObject;
 
-        boxUI = transform.parent.transform.parent.GetComponent<BoxUI>();
-        playerItemUI = GetComponentInParent<PlayerItemUI>();
-
-        transform.GetChild(1).gameObject.SetActive(false);
-
-        focusSelectPanel = focus.gameObject.transform.GetChild(0).gameObject;
-        focusSelectPanel.SetActive(false);
+        itemContainerLogic = new ItemContainerLogic(containerNum, _backGround, _itemImage, _EquipImage,
+        _itemAmount,_itemAmountText, _fadeImage,_focus,_focusSelectPanel);
 
     }
 
     private void OnEnable() {
-        if(playerItemUI != null)
-        {
-            if(playerItemUI.playerInventory == null) return;
-            if(playerItemUI.playerInventory.items[containerNum] == null) return;
+        itemContainerLogic.OnEnablePlayerContainer();
+    }
 
-            if(playerItemUI.playerInventory.items[containerNum].isKeyItem)
-            {
-                focus.SetselectText(2, "");
-                indexLimitMax = 1;
-            }else
-            {
-                focus.SetselectText(2, "Discard");
-                indexLimitMax = 2;
-            }
-
-            if(playerItemUI.playerInventory.isEquipped[containerNum])
-            {
-                focus.SetselectText(0, "");
-                indexLimitMin = 1;
-            }else
-            {
-                focus.SetselectText(0, "Put item");
-                indexLimitMin = 0;
-            }
-        }
-
-        selectIndex = indexLimitMin;
+    private void OnDisable() {
+        itemContainerLogic.OnDisable();
     }
 
     private void Update() {
-        CheckWindowLayer();
-        CheckContainerFull();
-    }
-
-    private void CheckContainerFull()
-    {
-        if(playerItemUI.playerInventory == null) return;
-        if(playerItemUI.playerInventory.items[containerNum] == null) return;
-
-        if(playerItemUI.playerInventory.items[containerNum].isEnergy1)
-        {
-            if(playerItemUI.playerInventory.itemsamount[containerNum] == playerItemUI.playerInventory.Energy1BatteryLimit)
-            {
-                itemAmount.color = Color.green;
-            }else
-            {
-                itemAmount.color = Color.white;
-            }
-        }else if(playerItemUI.playerInventory.items[containerNum].isEnergy2)
-        {
-            if(playerItemUI.playerInventory.itemsamount[containerNum] == playerItemUI.playerInventory.Energy2BatteryLimit)
-            {
-                itemAmount.color = Color.green;
-            }else
-            {
-                itemAmount.color = Color.white;
-            }
-
-        }else if(playerItemUI.playerInventory.items[containerNum].isEnergy3)
-        {
-            if(playerItemUI.playerInventory.itemsamount[containerNum] == playerItemUI.playerInventory.Energy3BatteryLimit)
-            {
-                itemAmount.color = Color.green;
-            }else
-            {
-                itemAmount.color = Color.white;
-            }
-
-        }else if(playerItemUI.playerInventory.items[containerNum].isSheild)
-        {
-            if(playerItemUI.playerInventory.itemsamount[containerNum] == playerItemUI.playerInventory.SheildBatteryLimit)
-            {
-                itemAmount.color = Color.green;
-            }else
-            {
-                itemAmount.color = Color.white;
-            }
-        }
-    }
-
-    private void CheckWindowLayer()
-    {
-        if(boxUI.currentWindowLayer == 0)
-        {
-            SetSelect(false);
-            backGround.color = new Color(1f, 1f, 1f, 1f);
-            fadeImage.color = new Color(0f, 0f, 0f, 0f);
-            isPreviousEneterd = false;
-
-        }else if(boxUI.currentWindowLayer == 2)
-        {
-            SetSelect(false);
-            if(!isPreviousEneterd)
-            {
-                isPreviousEneterd = true;
-
-                bool flag = false;
-
-                if(playerItemUI.playerInventory.items[containerNum] != null)
-                {
-                    if(boxUI.combineStartItem.isKeyItem && playerItemUI.playerInventory.items[containerNum].isKeyItem)
-                    {
-                        foreach(int itemCode in playerItemUI.playerInventory.items[containerNum].combineItems)
-                        {
-                            if(boxUI.combineStartItem.KeyItemCode == itemCode)
-                            {
-                                isCombineable = true;
-                                flag = true;
-                                break;
-                            }
-
-                        }
-                    }else if(!boxUI.combineStartItem.isKeyItem && !playerItemUI.playerInventory.items[containerNum].isKeyItem)
-                    {
-                        foreach(int itemCode in playerItemUI.playerInventory.items[containerNum].combineItems)
-                        {
-                            if(boxUI.combineStartItem.NormalItemCode == itemCode)
-                            {
-                                isCombineable = true;
-                                flag = true;
-                                break;
-                            }
-
-                        }
-                    }
-                 
-                }
-
-                if(!flag)
-                {
-                    isCombineable = false;
-                }
-
-                if(containerNum == boxUI.combineStartItemIndex)
-                {
-                    isCombineable = false;
-                }
-            }
-
-            if(isCombineable)
-            {
-                fadeImage.color = new Color(0f, 0f, 0f, 0f);
-            }else
-            {
-                fadeImage.color = new Color(0f, 0f, 0f, 0.5f);
-            }
-
-            
-        }else if(boxUI.currentWindowLayer == 1)
-        {
-            isPreviousEneterd = false;
-            if(isFocused)
-            {
-                SetSelect(true);
-                backGround.color = new Color(0.5f, 0.5f, 0.5f, 1f);
-                fadeImage.color = new Color(0f, 0f, 0f, 0f);
-                focus.SetSelect(selectIndex); 
-            }else
-            {
-                SetSelect(false);
-                backGround.color = new Color(1f, 1f, 1f, 1f);
-                fadeImage.color = new Color(0f, 0f, 0f, 0f);
-            }
-            
-        }
+        itemContainerLogic.UpdatePlayerItemContainer();
     }
 
     public void SetSelectIndex(int index)
     {
-        selectIndex = Mathf.Clamp(index, indexLimitMin, indexLimitMax);
+        itemContainerLogic.SetSelectIndex(index);
     }
-
 
     public void SetItemAmountUI(bool flag)
     {
-        transform.GetChild(1).gameObject.SetActive(flag);
+        itemContainerLogic.SetItemAmountUI(flag);
     }
 
     public void SetItemAmountText(String str)
     {
-        itemAmount.text = str;
-    }
-
-    private void SetSelect(bool flag)
-    {
-        focusSelectPanel.SetActive(flag);
+        itemContainerLogic.SetItemAmountText(str);
     }
 
     public void SetFocus(bool flag)
     {
-        focus.SetFocus(flag);
-        isFocused = flag;
+        itemContainerLogic.SetFocus(flag);
     }
 }

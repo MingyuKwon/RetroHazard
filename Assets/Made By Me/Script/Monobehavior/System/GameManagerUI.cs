@@ -152,32 +152,24 @@ public class GameManagerUI : MonoBehaviour
 
 // Tab UI
 
-///////////////// override start ////////////////////
-    public void Visualize_Tab_Interactive(bool flag, InteractiveDialog dialog)
+    public void Visualize_Tab_Interactive(bool flag, InteractiveDialog dialog = null)
     {
         if(isShowingTab && flag) return;
         inGameUI.gameObject.SetActive(!flag);
         tabUI.gameObject.SetActive(flag);
-        tabUI.Visualize_Tab_Interactive(flag, dialog);
-        isShowingTab = flag;
-
-        dialogUI.gameObject.SetActive(false);
-        boxUI.gameObject.SetActive(false);
-    }
-
-    public void Visualize_Tab_Interactive(bool flag)
-    {
-        if(isShowingTab && flag) return;
-        inGameUI.gameObject.SetActive(!flag);
-        tabUI.Visualize_Tab_Interactive(flag);
-        tabUI.gameObject.SetActive(flag);
+        if(dialog == null)
+        {
+            tabUI.Visualize_Tab_Interactive(flag);
+        }else
+        {
+            tabUI.Visualize_Tab_Interactive(flag, dialog);
+        }
         
         isShowingTab = flag;
 
         dialogUI.gameObject.SetActive(false);
         boxUI.gameObject.SetActive(false);
     }
-///////////////// override end ////////////////////
 
     public void Visualize_Tab_Menu(bool flag)
     {
@@ -265,6 +257,14 @@ public class GameManagerUI : MonoBehaviour
         dialogUI.VisualizeDialogUI(flag);
     }
 
+    public void showTalkNPCDialog(bool visited , Dialog dialog)
+    {
+        dialogUI.showTalkNPCDialog(visited,dialog);
+    }
+
+// Dialog UI
+
+// Interactive UI
     public void SetInteractiveDialogText(string[] texts)
     {
         interactiveUI.SetInteractiveDialogText(texts);
@@ -283,10 +283,5 @@ public class GameManagerUI : MonoBehaviour
         
     }
 
-    public void showTalkNPCDialog(bool visited , Dialog dialog)
-    {
-        dialogUI.showTalkNPCDialog(visited,dialog);
-    }
-
-    // Dialog UI
+// Interactive UI
 }
