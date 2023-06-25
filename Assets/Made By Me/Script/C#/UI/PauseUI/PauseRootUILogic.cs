@@ -31,7 +31,7 @@ public class PauseRootUILogic
 
         CurrentWindowLayer = 0;
 
-        GameManager.EventManager.windowLayer_Change_Event += windowLayer_Check;
+        GameManager.EventManager.PauseWindowLayer_Change_Event += windowLayer_Check;
         GameMangerInput.InputEvent.PauseUIEnterPressed += Enter_Clicked_Pressed;
         GameMangerInput.InputEvent.PauseUIBackPressed += Back_Clicked_Pressed;
         GameMangerInput.InputEvent.PauseUIUpPressed += Up_Pressed;
@@ -39,7 +39,7 @@ public class PauseRootUILogic
         GameMangerInput.InputEvent.PauseUIRightPressed += Right_Pressed;
         GameMangerInput.InputEvent.PauseUILefttPressed += Left_Pressed;
 
-        GameManager.EventManager.Invoke_windowLayer_Change_Event();
+        GameManager.EventManager.Invoke_PauseWindowLayer_Change_Event();
     }
 
     public void OnDisable() {
@@ -51,7 +51,7 @@ public class PauseRootUILogic
 
         GameManagerUI.instance.Visualize_InGameUI(true);
 
-        GameManager.EventManager.windowLayer_Change_Event -= windowLayer_Check;
+        GameManager.EventManager.PauseWindowLayer_Change_Event -= windowLayer_Check;
         GameMangerInput.InputEvent.PauseUIEnterPressed -= Enter_Clicked_Pressed;
         GameMangerInput.InputEvent.PauseUIBackPressed -= Back_Clicked_Pressed;
         GameMangerInput.InputEvent.PauseUIUpPressed -= Up_Pressed;
@@ -62,7 +62,36 @@ public class PauseRootUILogic
 
     private void Enter_Clicked_Pressed()
     {
+        if(UI.instance.PauseUI.pauseMainUI.gameObject.activeInHierarchy)
+        {
+            switch (UI.instance.PauseUI.pauseMainUI.currentIndex)
+            {
+                case 0 :
+                    UI.instance.PauseUI.CurrentWindowLayer = -1;
+                    break;
 
+                case 1 :
+                    UI.instance.PauseUI.CurrentWindowLayer = 1;
+                    break;
+
+                case 2 :
+                    UI.instance.PauseUI.CurrentWindowLayer = 2;
+                    break;
+
+                case 3 :
+                    UI.instance.PauseUI.pauseMainUI.MainMenu();
+                    break;
+            }
+
+            GameManager.EventManager.Invoke_PauseWindowLayer_Change_Event();
+                
+        }else if(UI.instance.PauseUI.saveSlotUI.gameObject.activeInHierarchy)
+        {
+
+        }else if(UI.instance.PauseUI.optionUI.gameObject.activeInHierarchy)
+        {
+
+        }
     }
 
     private void Back_Clicked_Pressed()
@@ -75,28 +104,76 @@ public class PauseRootUILogic
             CurrentWindowLayer = 0;
         }
         
-        GameManager.EventManager.Invoke_windowLayer_Change_Event();
+        GameManager.EventManager.Invoke_PauseWindowLayer_Change_Event();
         
     }
 
     private void Up_Pressed()
     {
-        
+        if(UI.instance.PauseUI.pauseMainUI.gameObject.activeInHierarchy)
+        {
+            int value = UI.instance.PauseUI.pauseMainUI.currentIndex;
+            value--;
+
+            UI.instance.PauseUI.pauseMainUI.currentIndex = Mathf.Clamp(value, 0, 3);
+
+            GameManager.EventManager.Invoke_PauseWindowLayer_Change_Event();
+            
+        }else if(UI.instance.PauseUI.saveSlotUI.gameObject.activeInHierarchy)
+        {
+
+        }else if(UI.instance.PauseUI.optionUI.gameObject.activeInHierarchy)
+        {
+
+        }
     }
 
     private void Down_Pressed()
     {
-        
+        if(UI.instance.PauseUI.pauseMainUI.gameObject.activeInHierarchy)
+        {
+            int value = UI.instance.PauseUI.pauseMainUI.currentIndex;
+            value++;
+
+            UI.instance.PauseUI.pauseMainUI.currentIndex = Mathf.Clamp(value, 0, 3);
+
+            GameManager.EventManager.Invoke_PauseWindowLayer_Change_Event();
+
+        }else if(UI.instance.PauseUI.saveSlotUI.gameObject.activeInHierarchy)
+        {
+
+        }else if(UI.instance.PauseUI.optionUI.gameObject.activeInHierarchy)
+        {
+
+        }
     }
 
     private void Right_Pressed()
     {
-        
+        if(UI.instance.PauseUI.pauseMainUI.gameObject.activeInHierarchy)
+        {
+
+        }else if(UI.instance.PauseUI.saveSlotUI.gameObject.activeInHierarchy)
+        {
+
+        }else if(UI.instance.PauseUI.optionUI.gameObject.activeInHierarchy)
+        {
+
+        }
     }
 
     private void Left_Pressed()
     {
-        
+        if(UI.instance.PauseUI.pauseMainUI.gameObject.activeInHierarchy)
+        {
+
+        }else if(UI.instance.PauseUI.saveSlotUI.gameObject.activeInHierarchy)
+        {
+
+        }else if(UI.instance.PauseUI.optionUI.gameObject.activeInHierarchy)
+        {
+
+        }
     }
 
 

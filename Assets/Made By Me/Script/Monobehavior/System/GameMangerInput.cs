@@ -638,6 +638,7 @@ public class GameMangerInput : MonoBehaviour
 
     public void UIDownPressed(InputActionEventData data)
     {
+
         InputEvent.Invoke_UIDownPressed();
     }
 

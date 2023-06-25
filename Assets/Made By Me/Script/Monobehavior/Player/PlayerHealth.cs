@@ -29,11 +29,11 @@ public class PlayerHealth : MonoBehaviour
     }
 
     private void OnEnable() {
-        PauseMainUI.GotoMainMenuEvent += DestroyMyself;
+        GameManager.EventManager.CloseGame_GotoMainMenuEvent += DestroyMyself;
     }
 
     private void OnDisable() {
-        PauseMainUI.GotoMainMenuEvent -= DestroyMyself;
+        GameManager.EventManager.CloseGame_GotoMainMenuEvent -= DestroyMyself;
     }
 
     private void DestroyMyself()

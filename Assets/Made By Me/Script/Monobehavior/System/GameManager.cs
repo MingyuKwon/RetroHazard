@@ -140,18 +140,22 @@ public class GameManager : MonoBehaviour
             PlayerDeathEvent?.Invoke();
         }
 
+        
 
 
 
+        public static event Action CloseGame_GotoMainMenuEvent;
 
-
-
-
-
-        public static event Action windowLayer_Change_Event;
-        public static void Invoke_windowLayer_Change_Event()
+        public static void Invoke_CloseGame_GotoMainMenuEvent()
         {
-            windowLayer_Change_Event?.Invoke();
+            CloseGame_GotoMainMenuEvent?.Invoke();
+        }
+
+
+        public static event Action PauseWindowLayer_Change_Event;
+        public static void Invoke_PauseWindowLayer_Change_Event()
+        {
+            PauseWindowLayer_Change_Event?.Invoke();
         }
     }
     ////// EventManager //////////////////////////////////////////////////////////////////////////////////
@@ -216,11 +220,11 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable() {
         EventManager.Sheild_Durability_Reduce_Start_Event += Set_Sheild_Durability_Reducing;
-        PauseMainUI.GotoMainMenuEvent += DestroyMyself;
+        GameManager.EventManager.CloseGame_GotoMainMenuEvent += DestroyMyself;
     }
 
     private void OnDisable() {
-        PauseMainUI.GotoMainMenuEvent -= DestroyMyself;
+        GameManager.EventManager.CloseGame_GotoMainMenuEvent -= DestroyMyself;
     }
 
     private void DestroyMyself()

@@ -7,41 +7,48 @@ using UnityEngine.UI;
 
 public class PauseMainUI : MonoBehaviour, CallBackInterface
 {
-    public static event Action GotoMainMenuEvent;
-    Button[] buttons; // 0 : resume, 1 : load,  2 : option, 3 : go to main menu
-    PauseRootUI rootUI;
+    public int currentIndex{
+        get{
+            return _currentIndex;
+        }
+
+        set{
+            _currentIndex = value;
+
+            if(_currentIndex == -1)
+            {
+                for(int i=0; i<4; i++)
+                {
+                    buttons[i].SetFocus(false);
+                }
+            }else
+            {
+                for(int i=0; i<4; i++)
+                {
+                    buttons[i].SetFocus(false);
+                }
+
+                buttons[_currentIndex].SetFocus(true);
+            }
+        }
+    }
+    int _currentIndex;
+
+    UIButton[] buttons; // 0 : resume, 1 : load,  2 : option, 3 : go to main menu
 
     private void Awake() {
-        buttons = GetComponentsInChildren<Button>();
-        rootUI = GetComponentInParent<PauseRootUI>();
+        buttons = GetComponentsInChildren<UIButton>();
     }
 
-    private void Start() {
-        buttons[0].onClick.AddListener(Resume);
-        buttons[1].onClick.AddListener(Load);
-        buttons[2].onClick.AddListener(Option);
-        buttons[3].onClick.AddListener(MainMenu);
+    private void OnEnable() {
+        currentIndex = 0;
     }
 
-    private void Resume()
-    {
-        rootUI.CurrentWindowLayer = -1;
-        GameManager.EventManager.Invoke_windowLayer_Change_Event();
+    private void OnDisable() {
+        
     }
 
-    private void Load()
-    {
-        rootUI.CurrentWindowLayer = 1;
-        GameManager.EventManager.Invoke_windowLayer_Change_Event();
-    }
-
-    private void Option()
-    {
-        rootUI.CurrentWindowLayer = 2;
-        GameManager.EventManager.Invoke_windowLayer_Change_Event();
-    }
-
-    private void MainMenu()
+    public void MainMenu()
     {
         AlertUI.instance.ShowAlert("Are you sure you want to go back to Main Menu? \n\n <b>(unsaved Data will be deleted)</b>", this);
     }
@@ -49,6 +56,6 @@ public class PauseMainUI : MonoBehaviour, CallBackInterface
     public void CallBack()
     {
         SceneManager.LoadScene("Main Menu");
-        GotoMainMenuEvent.Invoke();
+        GameManager.EventManager.Invoke_CloseGame_GotoMainMenuEvent();
     }
 }

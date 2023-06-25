@@ -42,12 +42,12 @@ public class UI : MonoBehaviour
 
     private void OnEnable() {
         SaveSystem.LoadEvent += TotalUIUpdate;
-        PauseMainUI.GotoMainMenuEvent += DestroyMyself;
+        GameManager.EventManager.CloseGame_GotoMainMenuEvent += DestroyMyself;
     }
 
     private void OnDisable() {
         SaveSystem.LoadEvent -= TotalUIUpdate;
-        PauseMainUI.GotoMainMenuEvent -= DestroyMyself;
+        GameManager.EventManager.CloseGame_GotoMainMenuEvent -= DestroyMyself;
     }
 
     private void DestroyMyself()
