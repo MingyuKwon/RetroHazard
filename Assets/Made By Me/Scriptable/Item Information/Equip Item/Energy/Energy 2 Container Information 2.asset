@@ -25,7 +25,7 @@ MonoBehaviour:
   combinResultItems: []
   isSheild: 0
   isEnergy1: 0
-  isEnergy2: 0
+  isEnergy2: 1
   isEnergy3: 0
   isBullet: 0
   isPotion: 0

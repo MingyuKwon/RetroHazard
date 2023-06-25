@@ -26,7 +26,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6a6298047aedeaa40bfe85805d0c11de, type: 2}
   isSheild: 0
   isEnergy1: 0
-  isEnergy2: 0
+  isEnergy2: 1
   isEnergy3: 0
   isBullet: 0
   isPotion: 0

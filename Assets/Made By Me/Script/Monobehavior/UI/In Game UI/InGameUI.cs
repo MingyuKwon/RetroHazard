@@ -15,6 +15,7 @@ public class InGameUI : MonoBehaviour
 
     private void OnEnable() {
         GameManager.EventManager.Update_IngameUI_Event += Update_IngameUI;
+        UpdateIngameUI();
     }
 
     private void OnDisable() {

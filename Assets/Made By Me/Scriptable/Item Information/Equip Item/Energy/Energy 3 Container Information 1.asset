@@ -27,7 +27,7 @@ MonoBehaviour:
   isSheild: 0
   isEnergy1: 0
   isEnergy2: 0
-  isEnergy3: 0
+  isEnergy3: 1
   isBullet: 0
   isPotion: 0
   amount: 1

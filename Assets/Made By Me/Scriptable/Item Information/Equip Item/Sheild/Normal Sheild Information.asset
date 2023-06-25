@@ -20,7 +20,10 @@ MonoBehaviour:
   isInteractiveItem: 0
   isExpansionItem: 0
   KeyItemCode: 3
-  isSheild: 0
+  NormalItemCode: 0
+  combineItems: 
+  combinResultItems: []
+  isSheild: 1
   isEnergy1: 0
   isEnergy2: 0
   isEnergy3: 0
@@ -28,5 +31,6 @@ MonoBehaviour:
   isPotion: 0
   amount: 1
   expansionAmount: 0
+  healAmount: 0
   ItemDescription:
   - Can Block or Parry Enemy Attack
