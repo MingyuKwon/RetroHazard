@@ -20,7 +20,6 @@ public class PlayerStatusLogic
     public float ArmorDefence = 0;
     public bool SheildCrash = false;
     
-
     [Header("Equipped")]
     public int Energy = 0;
     public int[] EnergyDamage = {8, 30 , 100, 80};
@@ -38,6 +37,12 @@ public class PlayerStatusLogic
     [Header("Store")]
     public int[] EnergyStore = {-1, 0 , 0, 0}; // Current sword Energy store in inventory
     public int SheildStore = 0; // Current Sheild Durability store in inventory
+
+    [Header("Limit")]
+    public int SheildBatteryLimit = 8;
+    public int Energy1BatteryLimit = 30;
+    public int Energy2BatteryLimit = 12;
+    public int Energy3BatteryLimit = 9;
     
 
     [Header("InGame")]

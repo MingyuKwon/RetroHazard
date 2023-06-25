@@ -501,7 +501,8 @@ public class ItemContainerLogic
 
         if(Player1.instance.playerItemBox.items[containerNum].isEnergy1)
         {
-            if(Player1.instance.playerItemBox.itemsamount[containerNum] == Player1.instance.playerItemBox.Energy1BatteryLimit)
+            if(Player1.instance.playerItemBox.itemsamount[containerNum] == 
+            Player1.instance.playerStatus.Energy1BatteryLimit)
             {
                 itemAmountText.color = Color.green;
             }else
@@ -510,7 +511,8 @@ public class ItemContainerLogic
             }
         }else if(Player1.instance.playerItemBox.items[containerNum].isEnergy2)
         {
-            if(Player1.instance.playerItemBox.itemsamount[containerNum] == Player1.instance.playerItemBox.Energy2BatteryLimit)
+            if(Player1.instance.playerItemBox.itemsamount[containerNum] == 
+            Player1.instance.playerStatus.Energy2BatteryLimit)
             {
                 itemAmountText.color = Color.green;
             }else
@@ -520,7 +522,8 @@ public class ItemContainerLogic
 
         }else if(Player1.instance.playerItemBox.items[containerNum].isEnergy3)
         {
-            if(Player1.instance.playerItemBox.itemsamount[containerNum] == Player1.instance.playerItemBox.Energy3BatteryLimit)
+            if(Player1.instance.playerItemBox.itemsamount[containerNum] == 
+            Player1.instance.playerStatus.Energy3BatteryLimit)
             {
                 itemAmountText.color = Color.green;
             }else
@@ -530,7 +533,8 @@ public class ItemContainerLogic
 
         }else if(Player1.instance.playerItemBox.items[containerNum].isSheild)
         {
-            if(Player1.instance.playerItemBox.itemsamount[containerNum] == Player1.instance.playerItemBox.SheildBatteryLimit)
+            if(Player1.instance.playerItemBox.itemsamount[containerNum] == 
+            Player1.instance.playerStatus.SheildBatteryLimit)
             {
                 itemAmountText.color = Color.green;
             }else

@@ -192,7 +192,47 @@ public class PlayerStatus : MonoBehaviour
             playerStatusLogic.SheildStore = value;
         }
     }
+
+    /////"Limit"/////
+    public int SheildBatteryLimit{
+        get{
+            return playerStatusLogic.SheildBatteryLimit;
+        }
+
+        set{
+            playerStatusLogic.SheildBatteryLimit = value;
+        }
+    }
+    public int Energy1BatteryLimit{
+        get{
+            return playerStatusLogic.Energy1BatteryLimit;
+        }
+
+        set{
+            playerStatusLogic.Energy1BatteryLimit = value;
+        }
+    }
+    public int Energy2BatteryLimit{
+        get{
+            return playerStatusLogic.Energy2BatteryLimit;
+        }
+
+        set{
+            playerStatusLogic.Energy2BatteryLimit = value;
+        }
+    }
+    public int Energy3BatteryLimit{
+        get{
+            return playerStatusLogic.Energy3BatteryLimit;
+        }
+
+        set{
+            playerStatusLogic.Energy3BatteryLimit = value;
+        }
+    }
     
+
+
     /////"InGame"/////
     public bool parryFrame {
         get{
