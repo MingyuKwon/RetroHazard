@@ -139,6 +139,7 @@ public class GameMangerInput : MonoBehaviour
         public static event Action InteractiveUIEnterPressed;
         public static event Action DialogUIEnterPressed;
         public static event Action BoxUIEnterPressed;
+        public static event Action PauseUIEnterPressed;
         public static void Invoke_UIEnterPressed()
         {
             if(currentInput(InputType.TabUIInput))
@@ -153,12 +154,16 @@ public class GameMangerInput : MonoBehaviour
             }else if(currentInput(InputType.BoxUIInput))
             {
                 BoxUIEnterPressed.Invoke();
+            }else if(currentInput(InputType.PauseUIInput))
+            {
+                PauseUIEnterPressed.Invoke();
             }
             
         }
 
         public static event Action TabUIBackPressed;
         public static event Action BoxUIBackPressed;
+        public static event Action PauseUIBackPressed;
         public static void Invoke_UIBackPressed()
         {
             if(currentInput(InputType.TabUIInput))
@@ -167,12 +172,16 @@ public class GameMangerInput : MonoBehaviour
             }else if(currentInput(InputType.BoxUIInput))
             {
                 BoxUIBackPressed.Invoke();
+            }else if(currentInput(InputType.PauseUIInput))
+            {
+                PauseUIBackPressed.Invoke();
             }
         }
 
         public static event Action TabUIUpPressed;
         public static event Action DialogUIUpPressed;
         public static event Action BoxUIUpPressed;
+        public static event Action PauseUIUpPressed;
         public static void Invoke_UIUpPressed()
         {
             if(currentInput(InputType.TabUIInput))
@@ -184,12 +193,16 @@ public class GameMangerInput : MonoBehaviour
             }else if(currentInput(InputType.BoxUIInput))
             {
                 BoxUIUpPressed.Invoke();
+            }else if(currentInput(InputType.PauseUIInput))
+            {
+                PauseUIUpPressed.Invoke();
             }
         }
 
         public static event Action TabUIDownPressed;
         public static event Action DialogUIDownPressed;
         public static event Action BoxUIDownPressed;
+        public static event Action PauseUIDownPressed;
         public static void Invoke_UIDownPressed()
         {
             if(currentInput(InputType.TabUIInput))
@@ -201,12 +214,16 @@ public class GameMangerInput : MonoBehaviour
             }else if(currentInput(InputType.BoxUIInput))
             {
                 BoxUIDownPressed.Invoke();
+            }else if(currentInput(InputType.PauseUIInput))
+            {
+                PauseUIDownPressed.Invoke();
             }
         }
 
         public static event Action TabUIRightPressed;
         public static event Action DialogUIRightPressed;
         public static event Action BoxUIRightPressed;
+        public static event Action PauseUIRightPressed;
         public static void Invoke_UIRightPressed()
         {
             if(currentInput(InputType.TabUIInput))
@@ -218,12 +235,16 @@ public class GameMangerInput : MonoBehaviour
             }else if(currentInput(InputType.BoxUIInput))
             {
                 BoxUIRightPressed.Invoke();
+            }else if(currentInput(InputType.PauseUIInput))
+            {
+                PauseUIRightPressed.Invoke();
             }
         }
 
         public static event Action TabUILeftPressed;
         public static event Action DialogUILeftPressed;
         public static event Action BoxUILeftPressed;
+        public static event Action PauseUILefttPressed;
         public static void Invoke_UILeftPressed()
         {
             if(currentInput(InputType.TabUIInput))
@@ -235,6 +256,9 @@ public class GameMangerInput : MonoBehaviour
             }else if(currentInput(InputType.BoxUIInput))
             {
                 BoxUILeftPressed.Invoke();
+            }else if(currentInput(InputType.PauseUIInput))
+            {
+                PauseUILefttPressed.Invoke();
             }
         }
 
@@ -328,7 +352,7 @@ public class GameMangerInput : MonoBehaviour
     {
         if(inputControlStack.Peek() != type)
         {
-            Debug.Log("Current Peek : " + inputControlStack.Peek() + " request pop : " + type);
+            Debug.Log("Pop Denied \n Current Peek : " + inputControlStack.Peek() + " request pop : " + type);
             return;
         }
 
@@ -447,6 +471,8 @@ public class GameMangerInput : MonoBehaviour
         player.AddInputEventDelegate(LeftTab, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Move to Left Tab");
         player.AddInputEventDelegate(RightTab, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Move to Right Tab");
 
+        player.AddInputEventDelegate(LeftClicked, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "MouseLeftButton");
+        player.AddInputEventDelegate(RightClicked, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased, "MouseRightButton");
     }
 
     public void removeInputFunctions()
@@ -472,8 +498,7 @@ public class GameMangerInput : MonoBehaviour
         player.RemoveInputEventDelegate(InteractiveJustPressed);
         player.RemoveInputEventDelegate(InteractiveJustReleased);
 
-
-
+        
 
 
         player.RemoveInputEventDelegate(UIEnterPressed);
@@ -482,6 +507,9 @@ public class GameMangerInput : MonoBehaviour
         player.RemoveInputEventDelegate(UIDownPressed);
         player.RemoveInputEventDelegate(UIRightPressed);
         player.RemoveInputEventDelegate(UILeftPressed);
+
+        player.RemoveInputEventDelegate(LeftClicked);
+        player.RemoveInputEventDelegate(RightClicked);
     }
 
     //////////////////////////////// INGAME ///////////////////////////////////////////////
@@ -631,6 +659,15 @@ public class GameMangerInput : MonoBehaviour
     public void RightTab(InputActionEventData data)
     {        
         InputEvent.Invoke_UIRightTabPressed();
+    }
+
+    private void LeftClicked(InputActionEventData data)
+    {
+        InputEvent.Invoke_UIEnterPressed();
+    }
+    private void RightClicked(InputActionEventData data)
+    {
+        InputEvent.Invoke_UIBackPressed();
     }
 
 

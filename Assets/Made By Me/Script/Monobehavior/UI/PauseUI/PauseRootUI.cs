@@ -2,112 +2,42 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Rewired;
 using Sirenix.OdinInspector;
 using DG.Tweening;
 
 public class PauseRootUI : MonoBehaviour
 {
-    public static event Action windowLayer_Change_Event;
-    private Player player;
-    UI ui;
+    PauseRootUILogic pauseRootUILogic;
+    
     public PauseMainUI pauseMainUI;
     public SaveSlotUI saveSlotUI;
     public OptionUI optionUI;
 
-    public int CurrentWindowLayer = 0;
+    public int CurrentWindowLayer{
+        get{
+            return pauseRootUILogic.CurrentWindowLayer;
+        }
+
+        set{
+            pauseRootUILogic.CurrentWindowLayer = value;
+        }
+    }
 
     private void Awake() {
-        player = ReInput.players.GetPlayer(0);
-
-        ui = GetComponentInParent<UI>();
         pauseMainUI = GetComponentInChildren<PauseMainUI>();
         saveSlotUI = GetComponentInChildren<SaveSlotUI>();
         optionUI = GetComponentInChildren<OptionUI>();
 
-        player.AddInputEventDelegate(LeftClicked, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "MouseLeftButton");
-        player.AddInputEventDelegate(RightClicked, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased, "MouseRightButton");
-
-    }
-
-    private void OnDestroy() {
-        player.RemoveInputEventDelegate(LeftClicked);
-        player.RemoveInputEventDelegate(RightClicked);
+        pauseRootUILogic = new PauseRootUILogic(this);
     }
 
     private void OnEnable() {
-        GameMangerInput.instance.changePlayerInputRule(2);
-        ui.SetMouseCursorActive(true);
-        GameManager.instance.SetPauseGame(true);
-        CurrentWindowLayer = 0;
-
-        GameManagerUI.instance.Visualize_InGameUI(false);
-
-        windowLayer_Change_Event += windowLayer_Check;
-
-        windowLayer_Change_Event.Invoke();
+        pauseRootUILogic.OnEnable();
     }
 
     private void OnDisable() { // have an error when game is closed ny force while pause Ui is opened
-        GameMangerInput.instance.changePlayerInputRule(0);
-        ui.SetMouseCursorActive(false);
-        GameManager.instance.SetPauseGame(false);
-        CurrentWindowLayer = 0;
-
-        GameManagerUI.instance.Visualize_InGameUI(true);
-
-        windowLayer_Change_Event -= windowLayer_Check;
+        pauseRootUILogic.OnDisable();
     }
 
-    private void LeftClicked(InputActionEventData data)
-    {
-
-    }
-    private void RightClicked(InputActionEventData data)
-    {
-        if(CurrentWindowLayer == 0 )
-        {
-            CurrentWindowLayer--;
-        }else
-        {
-            CurrentWindowLayer = 0;
-        }
-        
-        windowLayer_Change_Event.Invoke();
-        
-    }
-
-    public void windowLayer_Change_Invoke()
-    {
-        windowLayer_Change_Event.Invoke();
-    }
-
-    private void windowLayer_Check()
-    {
-        if(CurrentWindowLayer < 0)
-        {
-            this.gameObject.SetActive(false);
-        }
-
-        if(CurrentWindowLayer == 0)
-        {
-            pauseMainUI.gameObject.SetActive(true);
-            saveSlotUI.gameObject.SetActive(false);
-            optionUI.gameObject.SetActive(false);
-        }
-
-        if(CurrentWindowLayer == 1)
-        {
-           pauseMainUI.gameObject.SetActive(false);
-           saveSlotUI.gameObject.SetActive(true);
-           optionUI.gameObject.SetActive(false);
-        }
-
-        if(CurrentWindowLayer == 2)
-        {
-           pauseMainUI.gameObject.SetActive(false);
-           saveSlotUI.gameObject.SetActive(false);
-           optionUI.gameObject.SetActive(true);
-        }
-    }
+    // 현재 입력은 좌클릭은 그냥 Onclick으로 떄우고 우클릭 했을 때 밖으로 나가는 형식이다
 }

@@ -258,7 +258,6 @@ public class PlayerInventroyLogic
 
     private void BoxInOut(bool flag, ItemInformation information, int amount, int currentindex)
     {
-        Debug.Log("BoxInOut : " + flag);
         if(flag) // 인벤토리에서 박스로 나감
         {
             DiscardItem(currentindex);

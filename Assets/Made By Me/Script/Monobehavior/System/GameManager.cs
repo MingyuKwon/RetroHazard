@@ -139,6 +139,20 @@ public class GameManager : MonoBehaviour
         {
             PlayerDeathEvent?.Invoke();
         }
+
+
+
+
+
+
+
+
+
+        public static event Action windowLayer_Change_Event;
+        public static void Invoke_windowLayer_Change_Event()
+        {
+            windowLayer_Change_Event?.Invoke();
+        }
     }
     ////// EventManager //////////////////////////////////////////////////////////////////////////////////
     ////// EventManager //////////////////////////////////////////////////////////////////////////////////

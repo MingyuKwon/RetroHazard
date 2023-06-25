@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class PauseMainUI : MonoBehaviour, CallBackInterface
 {
-
     public static event Action GotoMainMenuEvent;
     Button[] buttons; // 0 : resume, 1 : load,  2 : option, 3 : go to main menu
     PauseRootUI rootUI;
@@ -27,19 +26,19 @@ public class PauseMainUI : MonoBehaviour, CallBackInterface
     private void Resume()
     {
         rootUI.CurrentWindowLayer = -1;
-        rootUI.windowLayer_Change_Invoke();
+        GameManager.EventManager.Invoke_windowLayer_Change_Event();
     }
 
     private void Load()
     {
         rootUI.CurrentWindowLayer = 1;
-        rootUI.windowLayer_Change_Invoke();
+        GameManager.EventManager.Invoke_windowLayer_Change_Event();
     }
 
     private void Option()
     {
         rootUI.CurrentWindowLayer = 2;
-        rootUI.windowLayer_Change_Invoke();
+        GameManager.EventManager.Invoke_windowLayer_Change_Event();
     }
 
     private void MainMenu()
