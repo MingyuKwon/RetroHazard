@@ -152,20 +152,24 @@ public class ItemContainerLogic
             {
                 focus.SetselectText(2, "");
                 indexLimitMax = 1;
+                focus.selectButtons[2].gameObject.SetActive(false);
             }else
             {
                 focus.SetselectText(2, "Discard");
                 indexLimitMax = 2;
+                focus.selectButtons[2].gameObject.SetActive(true);
             }
 
             if(Player1.instance.playerInventory.isEquipped[containerNum])
             {
                 focus.SetselectText(0, "");
                 indexLimitMin = 1;
+                focus.selectButtons[0].gameObject.SetActive(false);
             }else
             {
                 focus.SetselectText(0, "Put item");
                 indexLimitMin = 0;
+                focus.selectButtons[0].gameObject.SetActive(true);
             }
         }
 
@@ -175,7 +179,10 @@ public class ItemContainerLogic
     public void OnEnableBoxContainer() {
         if(Player1.instance.playerItemBox == null) return;
         if(Player1.instance.playerItemBox.items[containerNum] == null) return;
-
+        indexLimitMax = 0;
+        indexLimitMin = 0;
+        focus.selectButtons[1].gameObject.SetActive(false);
+        focus.selectButtons[2].gameObject.SetActive(false);
         selectIndex = 0;
     }
 
