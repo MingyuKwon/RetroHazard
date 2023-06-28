@@ -3,19 +3,40 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Rewired;
 using Sirenix.OdinInspector;
 
 public class AlertUI : MonoBehaviour
 {
-    private Player player;
-    Text[] texts; // 0 : dialog, 1 : yes, 2 : no 
-
-    public int previousInputRule;
-
+    AlertUILogic alertUILogic;
     public static AlertUI instance;
 
-    CallBackInterface CallbackScript;
+    public int alertIndex{
+        get{
+            return alertUILogic.alertIndex;
+        }
+
+        set{
+            alertUILogic.alertIndex = value;
+
+            if(alertUILogic.alertIndex == -1)
+            {
+                for(int i=0; i<2; i++)
+                {
+                    buttons[i].SetFocus(false);
+                }
+            }else
+            {
+                for(int i=0; i<2; i++)
+                {
+                    buttons[i].SetFocus(false);
+                }
+
+                buttons[alertUILogic.alertIndex].SetFocus(true);
+            }
+        }
+    }
+
+    UIButton[] buttons; // 0 : Yes, 1 : No
 
     private void Awake() {
         if(instance == null)
@@ -26,62 +47,26 @@ public class AlertUI : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        buttons = GetComponentsInChildren<UIButton>();
 
-        player = ReInput.players.GetPlayer(0);
-        player.AddInputEventDelegate(LeftClicked, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "MouseLeftButton");
-        player.AddInputEventDelegate(RightClicked, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased, "AlertRightClick");
-
-        texts = GetComponentsInChildren<Text>();
-
+        alertUILogic = new AlertUILogic(this, GetComponentsInChildren<Text>());
         this.gameObject.SetActive(false);
-    }
 
-    private void OnDestroy() {
-        player.RemoveInputEventDelegate(LeftClicked);
-        player.RemoveInputEventDelegate(RightClicked);
+        
     }
 
     private void OnEnable() {
-        previousInputRule = GameMangerInput.instance.currentInputRule;
-        GameMangerInput.instance.changePlayerInputRule(3);
+        alertUILogic.OnEnable();
     }
 
     private void OnDisable() {
-        GameMangerInput.instance.changePlayerInputRule(previousInputRule);
-        CallbackScript = null;
+        alertUILogic.OnDisable();
     }
-
-
 
     public void ShowAlert(string dialog, CallBackInterface CallbackScript , string Yes = "yes", string No = "No")
     {   
-        this.gameObject.SetActive(true);
-        texts[0].text =  dialog;
-        texts[1].text =  Yes;
-        texts[2].text =  No;
-
-        this.CallbackScript = CallbackScript;
-    }
-
-    public void CloseAlert()
-    {
-        this.gameObject.SetActive(false);
-    }
-
-    public void ActiveCallback()
-    {
-        CallbackScript.CallBack();
-        CloseAlert();
-    }
-
-    private void LeftClicked(InputActionEventData data)
-    {
-
+        alertUILogic.ShowAlert(dialog, CallbackScript , Yes, No);
     }
 
 
-    private void RightClicked(InputActionEventData data)
-    {
-        CloseAlert();
-    }
 }

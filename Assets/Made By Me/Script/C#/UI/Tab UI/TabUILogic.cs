@@ -53,25 +53,12 @@ public class TabUILogic : CallBackInterface
         this.background = background;
     }
 
-    private void Tab_Menu_ChangeInput_PauseGame(bool flag)
-    {
-        if(flag)
-        {
-            GameMangerInput.instance.changePlayerInputRule(1);
-        }else
-        {
-            GameMangerInput.instance.changePlayerInputRule(0);
-        }
-
-        GameManager.instance.SetPauseGame(flag);
-    }
-
 
     public void Visualize_Tab_Menu(bool flag)
     {
         if(isShowing && flag) return;
 
-        Tab_Menu_ChangeInput_PauseGame(flag);
+        GameManager.instance.SetPauseGame(flag);
 
         isInteractive = false;
         isShowing = flag;
@@ -93,7 +80,7 @@ public class TabUILogic : CallBackInterface
             
         }else
         {
-            Tab_Menu_ChangeInput_PauseGame(flag);
+            GameManager.instance.SetPauseGame(flag);
         }
         
         isUseKeyItem = flag;
@@ -138,7 +125,7 @@ public class TabUILogic : CallBackInterface
     {
         if(isShowing && flag) return;
 
-        Tab_Menu_ChangeInput_PauseGame(flag);
+        GameManager.instance.SetPauseGame(flag);
 
         interactiveMessageUI.images[0].gameObject.SetActive(true);
 
@@ -452,6 +439,11 @@ public class TabUILogic : CallBackInterface
             ContainerLimit();
         }else if(currentWindowLayer == 1)
         {
+            if(currentItemindex < 0)
+            {
+                currentItemindex = 0;
+            }
+
             int n = itemUI.itemContainers[currentItemindex].selectIndex;
             n--;
             itemUI.itemContainers[currentItemindex].SetSelectIndex(Mathf.Clamp(n, 0, 2));
@@ -472,6 +464,10 @@ public class TabUILogic : CallBackInterface
             ContainerLimit();
         }else if(currentWindowLayer == 1)
         {
+            if(currentItemindex < 0)
+            {
+                currentItemindex = 0;
+            }
             int n = itemUI.itemContainers[currentItemindex].selectIndex;
             n++;
             itemUI.itemContainers[currentItemindex].SetSelectIndex(Mathf.Clamp(n, 0, 2));

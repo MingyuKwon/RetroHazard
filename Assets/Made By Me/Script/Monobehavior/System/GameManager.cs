@@ -219,11 +219,13 @@ public class GameManager : MonoBehaviour
     }
 
     private void OnEnable() {
+        GameMangerInput.getInput(InputType.FieldInput);
         EventManager.Sheild_Durability_Reduce_Start_Event += Set_Sheild_Durability_Reducing;
         GameManager.EventManager.CloseGame_GotoMainMenuEvent += DestroyMyself;
     }
 
     private void OnDisable() {
+        GameMangerInput.releaseInput(InputType.FieldInput);
         GameManager.EventManager.CloseGame_GotoMainMenuEvent -= DestroyMyself;
     }
 

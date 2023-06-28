@@ -22,7 +22,6 @@ public class PauseRootUILogic
     }
 
     public void OnEnable() {
-        GameMangerInput.instance.changePlayerInputRule(2);
         GameMangerInput.getInput(InputType.PauseUIInput);
 
         UI.instance.SetMouseCursorActive(true);
@@ -37,13 +36,12 @@ public class PauseRootUILogic
         GameMangerInput.InputEvent.PauseUIUpPressed += Up_Pressed;
         GameMangerInput.InputEvent.PauseUIDownPressed += Down_Pressed;
         GameMangerInput.InputEvent.PauseUIRightPressed += Right_Pressed;
-        GameMangerInput.InputEvent.PauseUILefttPressed += Left_Pressed;
+        GameMangerInput.InputEvent.PauseUILeftPressed += Left_Pressed;
 
         GameManager.EventManager.Invoke_PauseWindowLayer_Change_Event();
     }
 
     public void OnDisable() {
-        GameMangerInput.instance.changePlayerInputRule(0);
         GameMangerInput.releaseInput(InputType.PauseUIInput);
         UI.instance.SetMouseCursorActive(false);
         GameManager.instance.SetPauseGame(false);
@@ -57,7 +55,7 @@ public class PauseRootUILogic
         GameMangerInput.InputEvent.PauseUIUpPressed -= Up_Pressed;
         GameMangerInput.InputEvent.PauseUIDownPressed -= Down_Pressed;
         GameMangerInput.InputEvent.PauseUIRightPressed -= Right_Pressed;
-        GameMangerInput.InputEvent.PauseUILefttPressed -= Left_Pressed;
+        GameMangerInput.InputEvent.PauseUILeftPressed -= Left_Pressed;
     }
 
     private void Enter_Clicked_Pressed()

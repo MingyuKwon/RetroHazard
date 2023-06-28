@@ -55,12 +55,14 @@ public class ItemContainerLogic
     public void OnPointerEnter()
     {
         if(UI.instance.tabUI.isOpenedItem) return;
+        if(UI.instance.tabUI.currentWindowLayer != 0) return;
         UI.instance.tabUI.currentItemindex = containerNum;
     }
 
     public void OnPointerExit()
     {
         if(UI.instance.tabUI.isOpenedItem) return;
+        if(UI.instance.tabUI.currentWindowLayer != 0) return;
         UI.instance.tabUI.currentItemindex = -1;
     }
 

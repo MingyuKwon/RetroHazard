@@ -86,7 +86,6 @@ public class SaveSlotUI : MonoBehaviour, CallBackInterface
             OnSave(saveSlotNum);
         }else
         {
-            AlertUI.instance.previousInputRule = 0;
             OnLoad(saveSlotNum);
         }
     }

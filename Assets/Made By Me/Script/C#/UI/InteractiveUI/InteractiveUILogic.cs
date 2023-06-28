@@ -60,31 +60,8 @@ public class InteractiveUILogic
             monoBehavior.gameObject.SetActive(false);
         }
 
-        Interactive_ChangeInput_PauseGame(flag);
-    }
-
-
-    private void Interactive_ChangeInput_PauseGame(bool flag) // 입력 룰을 바꿔주고 게임을 멈춘다
-    {
-        if(flag)
-        {
-            GameMangerInput.instance.changePlayerInputRule(1);
-        }else
-        {
-            if(GameManagerUI.instance.isDialogUIActive || GameManagerUI.instance.isTabUIActive 
-            || GameManagerUI.instance.isBoxUIActive)
-            {
-
-            }else
-            {
-                GameMangerInput.instance.changePlayerInputRule(0);
-            }
-            
-        }
-
         GameManager.instance.SetPauseGame(flag);
     }
-
 
     // 여기 코드가 엔터를 받을 때 마다 텍스트가 바뀌는 것을 구현햐였다
     IEnumerator InteractiveDialog(string ItemName = "")
