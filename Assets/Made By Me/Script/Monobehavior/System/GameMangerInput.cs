@@ -17,7 +17,8 @@ public enum InputType
     PauseUIInput = 5,
     SaveSlotUIInput = 6,
     OptionUIInput = 7,
-    AlertUIInput = 8
+    AlertUIInput = 8,
+    MainMenuUIInput = 9
 }
 
 public class GameMangerInput : MonoBehaviour
@@ -366,6 +367,7 @@ public class GameMangerInput : MonoBehaviour
         }
 
         inputControlStack.Push(type);
+        changePlayerInputRule();
         Debug.Log("Current Peek : " + inputControlStack.Peek());
     }
 
@@ -376,13 +378,64 @@ public class GameMangerInput : MonoBehaviour
             return;
         }
 
-        if(inputControlStack.Peek() != type)
+        if(inputControlStack.Peek() != type) // 만약 요청 했는데 최 상단이 아니라면 밑에 깔려 있는것
+                                                // 주로 초기 실행에서 마구잡이로 요청이 들어오고 나오는 과정에서 쓰임
         {
-            Debug.Log("Pop Denied \n Current Peek : " + inputControlStack.Peek() + " request pop : " + type);
+            Stack<InputType> stack = new Stack<InputType>();
+            bool flag = false;
+            while(inputControlStack.Count != 0 )
+            {
+                InputType temp = inputControlStack.Pop();
+                if(temp == type)
+                {
+                    flag = true;
+                    break;
+                }
+                stack.Push(temp);
+            }
+
+            if(!flag)
+            {
+                Debug.Log("Your Requset : " + type + " does not exist in Stack");
+            }
+
+            while(stack.Count != 0 )
+            {
+                inputControlStack.Push(stack.Pop());
+            }
+
+            Debug.Log("POP inside : " + type+ " Current Peek : " + inputControlStack.Peek());
+
             return;
         }
 
-        InputType result =  inputControlStack.Pop();
+        inputControlStack.Pop();
+        changePlayerInputRule();
+        Debug.Log("POP outside : " + type);
+    }
+
+    private void Update() {
+        CheckStack();
+    }
+
+    private void CheckStack() {
+        String str = "Current Stack State : \n";
+
+        Stack<InputType> stack = new Stack<InputType>();
+            while(inputControlStack.Count != 0 )
+            {
+                InputType temp = inputControlStack.Pop();
+                str += " " + temp + "\n";
+                stack.Push(temp);
+            }
+
+            while(stack.Count != 0 )
+            {
+                inputControlStack.Push(stack.Pop());
+            }
+
+        Debug.Log(str);
+
     }
 
     public static void clearInputControlStack()
@@ -391,14 +444,14 @@ public class GameMangerInput : MonoBehaviour
     }
 
     private Player player;
-    private ControllerMapEnabler mapEnabler;
-    private ControllerMapEnabler.RuleSet[] ruleSets;
+    private static ControllerMapEnabler mapEnabler;
+    private static ControllerMapEnabler.RuleSet[] ruleSets;
     // 0 : normal State
     // 1 : talk with NPC State
     // 2 : UI
     // 3 : Alert
 
-    public int currentInputRule = 0;
+    public static int currentInputRule = 0;
 
     void Awake() {
         if(instance == null)
@@ -427,12 +480,47 @@ public class GameMangerInput : MonoBehaviour
     }
 
     private void OnDisable() {
-        releaseInput(InputType.FieldInput);
         removeInputFunctions();
     }
 
+    private static void changePlayerInputRule()
+    {
+        if(inputControlStack.Count == 0)
+        {
+            return;
+        }
+
+        switch(inputControlStack.Peek())
+        {
+            case InputType.FieldInput :
+                changePlayerInputRule(0);
+                break;
+            case InputType.InteractiveUIInput :
+                changePlayerInputRule(1);
+                break;
+            case InputType.BoxUIInput :
+                changePlayerInputRule(1);
+                break;
+            case InputType.DialogtUIInput :
+                changePlayerInputRule(1);
+                break;
+            case InputType.TabUIInput :
+                changePlayerInputRule(1);
+                break;
+            case InputType.PauseUIInput :
+                changePlayerInputRule(2);
+                break;
+            case InputType.MainMenuUIInput :
+                changePlayerInputRule(2);
+                break;
+            case InputType.AlertUIInput :
+                changePlayerInputRule(3);
+                break;
+        }
+    }
+
     [Button]
-    public void changePlayerInputRule(int ruleNum)
+    private static void changePlayerInputRule(int ruleNum)
     {
         foreach(var rule in ruleSets)
         {

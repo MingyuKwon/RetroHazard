@@ -4,27 +4,30 @@ using UnityEngine.UI;
 
 using UnityEngine;
 
-public class AlertUILogic : MonoBehaviour
+public class AlertUILogic
 {
+    AlertUI monoBehaviour;
     Text[] texts;
     CallBackInterface CallbackScript;
 
-    public AlertUILogic(Text[] texts)
+    public AlertUILogic(AlertUI monoBehaviour, Text[] texts)
     {
         this.texts = texts;
+        this.monoBehaviour = monoBehaviour;
     }
 
     public void OnEnable() {
-        
+        GameMangerInput.getInput(InputType.AlertUIInput);
     }
 
     public void OnDisable() {
-        
+        GameMangerInput.releaseInput(InputType.AlertUIInput);
+        CallbackScript = null;
     }
 
     public void ShowAlert(string dialog, CallBackInterface CallbackScript , string Yes = "yes", string No = "No")
     {   
-        this.gameObject.SetActive(true);
+        monoBehaviour.gameObject.SetActive(true);
         texts[0].text =  dialog;
         texts[1].text =  Yes;
         texts[2].text =  No;
@@ -40,6 +43,6 @@ public class AlertUILogic : MonoBehaviour
 
     public void CloseAlert()
     {
-        this.gameObject.SetActive(false);
+        monoBehaviour.gameObject.SetActive(false);
     }
 }

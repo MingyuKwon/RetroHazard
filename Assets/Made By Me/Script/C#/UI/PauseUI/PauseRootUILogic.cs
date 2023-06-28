@@ -22,7 +22,6 @@ public class PauseRootUILogic
     }
 
     public void OnEnable() {
-        GameMangerInput.instance.changePlayerInputRule(2);
         GameMangerInput.getInput(InputType.PauseUIInput);
 
         UI.instance.SetMouseCursorActive(true);
@@ -43,7 +42,6 @@ public class PauseRootUILogic
     }
 
     public void OnDisable() {
-        GameMangerInput.instance.changePlayerInputRule(0);
         GameMangerInput.releaseInput(InputType.PauseUIInput);
         UI.instance.SetMouseCursorActive(false);
         GameManager.instance.SetPauseGame(false);

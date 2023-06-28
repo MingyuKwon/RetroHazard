@@ -27,13 +27,6 @@ public class DialogUILogic
     public void VisualizeDialogUI(bool flag)
     {
         GameManager.instance.SetPauseGame(flag);
-        if(flag)
-        {
-            GameMangerInput.instance.changePlayerInputRule(1);
-        }else
-        {
-            GameMangerInput.instance.changePlayerInputRule(0);
-        }
 
         monoBehavior.gameObject.SetActive(flag);
     }

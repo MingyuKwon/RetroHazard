@@ -42,7 +42,7 @@ public class BoxUILogic : CallBackInterface
     {
         if(isShowing && flag) return;
 
-        Box_ChangeInput_PauseGame(flag);
+        GameManager.instance.SetPauseGame(flag);
 
         isShowing = flag;
 
@@ -81,19 +81,6 @@ public class BoxUILogic : CallBackInterface
 
         boxItemUI.backgroundPanel.color = boxItemUI.unSelectColor;
         playerItemUI.backgroundPanel.color = playerItemUI.selectColor;
-    }
-
-    public void Box_ChangeInput_PauseGame(bool flag)
-    {
-        if(flag)
-        {
-            GameMangerInput.instance.changePlayerInputRule(1);
-        }else
-        {
-            GameMangerInput.instance.changePlayerInputRule(0);
-        }
-
-        GameManager.instance.SetPauseGame(flag);
     }
 
     public void UpdateBoxUI()

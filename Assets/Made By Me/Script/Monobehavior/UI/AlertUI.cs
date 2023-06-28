@@ -8,8 +8,6 @@ using Sirenix.OdinInspector;
 public class AlertUI : MonoBehaviour
 {
     AlertUILogic alertUILogic;
-    public int previousInputRule;
-
     public static AlertUI instance;
 
     
@@ -22,24 +20,19 @@ public class AlertUI : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-
-
+        alertUILogic = new AlertUILogic(this, GetComponentsInChildren<Text>());
         this.gameObject.SetActive(false);
 
-        alertUILogic = new AlertUILogic(GetComponentsInChildren<Text>());
+        
     }
 
     private void OnEnable() {
-        previousInputRule = GameMangerInput.instance.currentInputRule;
-        GameMangerInput.instance.changePlayerInputRule(3);
+        alertUILogic.OnEnable();
     }
 
     private void OnDisable() {
-        GameMangerInput.instance.changePlayerInputRule(previousInputRule);
-        CallbackScript = null;
+        alertUILogic.OnDisable();
     }
-
-
 
     public void ShowAlert(string dialog, CallBackInterface CallbackScript , string Yes = "yes", string No = "No")
     {   
@@ -47,17 +40,4 @@ public class AlertUI : MonoBehaviour
     }
 
 
-
-    
-
-    private void LeftClicked(InputActionEventData data)
-    {
-
-    }
-
-
-    private void RightClicked(InputActionEventData data)
-    {
-        CloseAlert();
-    }
 }
