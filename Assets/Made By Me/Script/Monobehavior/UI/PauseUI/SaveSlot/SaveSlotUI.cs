@@ -16,6 +16,16 @@ public class SaveSlotUI : MonoBehaviour
         }
     }
 
+    public bool isDelete{
+        get{
+            return saveSlotUILogic.isDelete;
+        }
+
+        set{
+            saveSlotUILogic.isDelete = value;
+        }
+    }
+
     public bool isSave{
         get{
             return saveSlotUILogic.isSave;

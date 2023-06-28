@@ -217,9 +217,8 @@ public class MainMenuLogic
     {
         if(MainMenu.instance.saveSlotUI.gameObject.activeInHierarchy)
         {
-
-
+            MainMenu.instance.saveSlotUI.Delete(MainMenu.instance.saveSlotUI.saveSlotIndex);
         }
-       // MainMenu.instance.saveSlotUI.Delete();
+        
     }
 }

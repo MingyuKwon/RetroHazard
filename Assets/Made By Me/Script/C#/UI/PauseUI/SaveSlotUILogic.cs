@@ -52,6 +52,8 @@ public class SaveSlotUILogic : CallBackInterface
 
     int _saveSlotIndex = 0;
 
+    public bool isDelete = false;
+
 
 
     public bool isSave = false;
@@ -104,13 +106,6 @@ public class SaveSlotUILogic : CallBackInterface
     public void OnEnable() {
         SaveSystem.SaveEvent += UpdateSaveSlot;
 
-        for(int i=0; i<SaveSlots.Length; i++)
-        {
-            int temp = i;
-            SaveSlots[i].onClick.AddListener(() => SlotClick(temp));
-            SaveSlots[i].transform.GetChild(5).GetComponent<Button>().onClick.AddListener(() => Delete(temp));
-        }
-
         if(isSave)
         {
             monobehaviour.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = "Save";
@@ -146,6 +141,12 @@ public class SaveSlotUILogic : CallBackInterface
     public void SlotClick(int n)
     {
         saveSlotNum = n;
+
+        if(isDelete)
+        {
+            Delete(n);
+            return;
+        }
 
         if(isSave)
         {
