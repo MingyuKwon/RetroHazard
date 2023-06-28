@@ -15,7 +15,7 @@ public class SaveSlotContainer : MonoBehaviour, IPointerEnterHandler, IPointerEx
     {
         if(SceneManager.GetActiveScene().name == "Main Menu")
         {
-            Debug.Log("Main Menu" + index);
+            MainMenu.instance.saveSlotUI.saveSlotIndex = index;
         }else
         {
             UI.instance.PauseUI.saveSlotUI.saveSlotIndex = index;
@@ -26,7 +26,7 @@ public class SaveSlotContainer : MonoBehaviour, IPointerEnterHandler, IPointerEx
     {
         if(SceneManager.GetActiveScene().name == "Main Menu")
         {
-
+            MainMenu.instance.saveSlotUI.saveSlotIndex = -1;
         }else
         {
             UI.instance.PauseUI.saveSlotUI.saveSlotIndex = -1;

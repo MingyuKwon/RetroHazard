@@ -103,7 +103,10 @@ public class MainMenuLogic
                 
         }else if(MainMenu.instance.saveSlotUI.gameObject.activeInHierarchy)
         {
-
+            if(MainMenu.instance.saveSlotUI.saveSlotIndex >= 0)
+            {
+                MainMenu.instance.saveSlotUI.SlotClick(MainMenu.instance.saveSlotUI.saveSlotIndex);
+            }
 
         }else if(MainMenu.instance.optionUI.gameObject.activeInHierarchy)
         {
@@ -124,7 +127,10 @@ public class MainMenuLogic
                 
         }else if(MainMenu.instance.saveSlotUI.gameObject.activeInHierarchy)
         {
+            int value = MainMenu.instance.saveSlotUI.saveSlotIndex;
+            value -= 1;
 
+            MainMenu.instance.saveSlotUI.saveSlotIndex = Mathf.Clamp(value, 0,9);
 
         }else if(MainMenu.instance.optionUI.gameObject.activeInHierarchy)
         {
@@ -140,7 +146,10 @@ public class MainMenuLogic
                 
         }else if(MainMenu.instance.saveSlotUI.gameObject.activeInHierarchy)
         {
+            int value = MainMenu.instance.saveSlotUI.saveSlotIndex;
+            value += 1;
 
+            MainMenu.instance.saveSlotUI.saveSlotIndex = Mathf.Clamp(value, 0,9);
 
         }else if(MainMenu.instance.optionUI.gameObject.activeInHierarchy)
         {
@@ -165,7 +174,10 @@ public class MainMenuLogic
             
         }else if(MainMenu.instance.saveSlotUI.gameObject.activeInHierarchy)
         {
+            int value = MainMenu.instance.saveSlotUI.saveSlotIndex;
+            value -= 2;
 
+            MainMenu.instance.saveSlotUI.saveSlotIndex = Mathf.Clamp(value, 0,9);
 
         }else if(MainMenu.instance.optionUI.gameObject.activeInHierarchy)
         {
@@ -190,7 +202,10 @@ public class MainMenuLogic
                 
         }else if(MainMenu.instance.saveSlotUI.gameObject.activeInHierarchy)
         {
+            int value = MainMenu.instance.saveSlotUI.saveSlotIndex;
+            value += 2;
 
+            MainMenu.instance.saveSlotUI.saveSlotIndex = Mathf.Clamp(value, 0,9);
 
         }else if(MainMenu.instance.optionUI.gameObject.activeInHierarchy)
         {
