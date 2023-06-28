@@ -163,6 +163,13 @@ public class SaveSlotUILogic : CallBackInterface
 
     public void Delete(int n)
     {
+        saveSlotNum = n;
+
+        if(SaveSystem.instance.saveSlotInfos[saveSlotNum].saveTime == "Empty")
+        {
+            return;
+        }
+
         AlertUI.instance.ShowAlert("Are you sure you want to Delete this save slot " + (saveSlotNum + 1) + " ?", new DeleteCallbackClass(n));
     }
 

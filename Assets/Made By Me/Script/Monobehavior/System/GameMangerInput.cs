@@ -300,6 +300,15 @@ public class GameMangerInput : MonoBehaviour
             }
         }
 
+        public static event Action RemoveSaveSlot;
+        public static void Invoke_RemoveSaveSlot()
+        {
+            if(currentInput(InputType.MenuUIInput))
+            {
+                RemoveSaveSlot.Invoke();
+            }
+        }
+
 
     }
 
@@ -571,6 +580,8 @@ public class GameMangerInput : MonoBehaviour
         player.AddInputEventDelegate(UIRightPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "SelectRight");
         player.AddInputEventDelegate(UILeftPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "SelectLeft");
 
+        player.AddInputEventDelegate(RemoveSaveSlot, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Remove");
+
 
         player.AddInputEventDelegate(LeftTab, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Move to Left Tab");
         player.AddInputEventDelegate(RightTab, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Move to Right Tab");
@@ -769,6 +780,10 @@ public class GameMangerInput : MonoBehaviour
         InputEvent.Invoke_UIRightTabPressed();
     }
 
+    public void RemoveSaveSlot(InputActionEventData data)
+    {        
+        InputEvent.Invoke_RemoveSaveSlot();
+    }
 
 
     //////////////////////////////// UI ///////////////////////////////////////////////

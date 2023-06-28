@@ -38,6 +38,8 @@ public class PauseRootUILogic
         GameMangerInput.InputEvent.MenuUIRightPressed += Right_Pressed;
         GameMangerInput.InputEvent.MenuUILeftPressed += Left_Pressed;
 
+        GameMangerInput.InputEvent.RemoveSaveSlot += RemoveSaveSlot;
+
         GameManager.EventManager.Invoke_PauseWindowLayer_Change_Event();
     }
 
@@ -56,6 +58,13 @@ public class PauseRootUILogic
         GameMangerInput.InputEvent.MenuUIDownPressed -= Down_Pressed;
         GameMangerInput.InputEvent.MenuUIRightPressed -= Right_Pressed;
         GameMangerInput.InputEvent.MenuUILeftPressed -= Left_Pressed;
+
+        GameMangerInput.InputEvent.RemoveSaveSlot -= RemoveSaveSlot;
+    }
+
+    private void RemoveSaveSlot()
+    {
+        UI.instance.PauseUI.saveSlotUI.Delete(UI.instance.PauseUI.saveSlotUI.saveSlotIndex);
     }
 
     private void Enter_Clicked_Pressed()
@@ -85,6 +94,10 @@ public class PauseRootUILogic
                 
         }else if(UI.instance.PauseUI.saveSlotUI.gameObject.activeInHierarchy)
         {
+            if(UI.instance.PauseUI.saveSlotUI.saveSlotIndex >= 0)
+            {
+                UI.instance.PauseUI.saveSlotUI.SlotClick(UI.instance.PauseUI.saveSlotUI.saveSlotIndex);
+            }
 
         }else if(UI.instance.PauseUI.optionUI.gameObject.activeInHierarchy)
         {

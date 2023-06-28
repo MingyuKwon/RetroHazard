@@ -38,4 +38,14 @@ public class SaveSlotUI : MonoBehaviour
         saveSlotUILogic.OnDisable();
     }
 
+    public void SlotClick(int n)
+    {
+        saveSlotUILogic.SlotClick(n);
+    }
+
+    public void Delete(int n)
+    {
+        saveSlotUILogic.Delete(n);
+    }
+
 }
