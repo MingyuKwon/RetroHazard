@@ -28,6 +28,11 @@ public class GameMangerInput : MonoBehaviour
         {
             bool flag = false;
 
+            if(GameMangerInput.inputControlStack.Count == 0)
+            {
+                return flag;
+            }
+
             if(GameMangerInput.inputControlStack.Peek() == type)
             {
                 flag = true;
@@ -140,6 +145,7 @@ public class GameMangerInput : MonoBehaviour
         public static event Action DialogUIEnterPressed;
         public static event Action BoxUIEnterPressed;
         public static event Action PauseUIEnterPressed;
+        public static event Action AlertUIEnterPressed;
         public static void Invoke_UIEnterPressed()
         {
             if(currentInput(InputType.TabUIInput))
@@ -157,13 +163,16 @@ public class GameMangerInput : MonoBehaviour
             }else if(currentInput(InputType.PauseUIInput))
             {
                 PauseUIEnterPressed.Invoke();
+            }else if(currentInput(InputType.AlertUIInput))
+            {
+                AlertUIEnterPressed.Invoke();
             }
-            
         }
 
         public static event Action TabUIBackPressed;
         public static event Action BoxUIBackPressed;
         public static event Action PauseUIBackPressed;
+        public static event Action AlertUIBackPressed;
         public static void Invoke_UIBackPressed()
         {
             if(currentInput(InputType.TabUIInput))
@@ -175,6 +184,9 @@ public class GameMangerInput : MonoBehaviour
             }else if(currentInput(InputType.PauseUIInput))
             {
                 PauseUIBackPressed.Invoke();
+            }else if(currentInput(InputType.AlertUIInput))
+            {
+                AlertUIBackPressed.Invoke();
             }
         }
 
@@ -224,6 +236,7 @@ public class GameMangerInput : MonoBehaviour
         public static event Action DialogUIRightPressed;
         public static event Action BoxUIRightPressed;
         public static event Action PauseUIRightPressed;
+        public static event Action AlertUIRightPressed;
         public static void Invoke_UIRightPressed()
         {
             if(currentInput(InputType.TabUIInput))
@@ -238,13 +251,17 @@ public class GameMangerInput : MonoBehaviour
             }else if(currentInput(InputType.PauseUIInput))
             {
                 PauseUIRightPressed.Invoke();
+            }else if(currentInput(InputType.AlertUIInput))
+            {
+                AlertUIRightPressed.Invoke();
             }
         }
 
         public static event Action TabUILeftPressed;
         public static event Action DialogUILeftPressed;
         public static event Action BoxUILeftPressed;
-        public static event Action PauseUILefttPressed;
+        public static event Action PauseUILeftPressed;
+        public static event Action AlertUILeftPressed;
         public static void Invoke_UILeftPressed()
         {
             if(currentInput(InputType.TabUIInput))
@@ -258,7 +275,10 @@ public class GameMangerInput : MonoBehaviour
                 BoxUILeftPressed.Invoke();
             }else if(currentInput(InputType.PauseUIInput))
             {
-                PauseUILefttPressed.Invoke();
+                PauseUILeftPressed.Invoke();
+            }else if(currentInput(InputType.AlertUIInput))
+            {
+                AlertUILeftPressed.Invoke();
             }
         }
 
@@ -346,10 +366,16 @@ public class GameMangerInput : MonoBehaviour
         }
 
         inputControlStack.Push(type);
+        Debug.Log("Current Peek : " + inputControlStack.Peek());
     }
 
     public static void releaseInput(InputType type)
     {
+        if(inputControlStack.Count == 0)
+        {
+            return;
+        }
+
         if(inputControlStack.Peek() != type)
         {
             Debug.Log("Pop Denied \n Current Peek : " + inputControlStack.Peek() + " request pop : " + type);
@@ -357,6 +383,11 @@ public class GameMangerInput : MonoBehaviour
         }
 
         InputType result =  inputControlStack.Pop();
+    }
+
+    public static void clearInputControlStack()
+    {
+        inputControlStack.Clear();
     }
 
     private Player player;
@@ -392,7 +423,6 @@ public class GameMangerInput : MonoBehaviour
     }
 
     private void OnEnable() {
-        getInput(InputType.FieldInput);
         delegateInputFunctions();
     }
 
@@ -404,13 +434,6 @@ public class GameMangerInput : MonoBehaviour
     [Button]
     public void changePlayerInputRule(int ruleNum)
     {
-        StartCoroutine(DelayChangeRule(ruleNum));
-    }
-
-    IEnumerator DelayChangeRule(int ruleNum)
-    {
-        yield return new WaitForEndOfFrame();
-
         foreach(var rule in ruleSets)
         {
             rule.enabled = false;
@@ -429,7 +452,6 @@ public class GameMangerInput : MonoBehaviour
 
         mapEnabler.Apply();
     }
-
 
 
     public void delegateInputFunctions()
@@ -471,8 +493,14 @@ public class GameMangerInput : MonoBehaviour
         player.AddInputEventDelegate(LeftTab, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Move to Left Tab");
         player.AddInputEventDelegate(RightTab, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Move to Right Tab");
 
-        player.AddInputEventDelegate(LeftClicked, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "MouseLeftButton");
-        player.AddInputEventDelegate(RightClicked, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased, "MouseRightButton");
+        player.AddInputEventDelegate(UIEnterPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "MouseLeftButton");
+        player.AddInputEventDelegate(UIBackPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased, "MouseRightButton");
+    
+        player.AddInputEventDelegate(UIEnterPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "AlertLeftClick");
+        player.AddInputEventDelegate(UIBackPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "AlertRightClick");
+
+        player.AddInputEventDelegate(UILeftPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "AlertLeftPressed");
+        player.AddInputEventDelegate(UIRightPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased, "AlertRightPressed");
     }
 
     public void removeInputFunctions()
@@ -507,9 +535,6 @@ public class GameMangerInput : MonoBehaviour
         player.RemoveInputEventDelegate(UIDownPressed);
         player.RemoveInputEventDelegate(UIRightPressed);
         player.RemoveInputEventDelegate(UILeftPressed);
-
-        player.RemoveInputEventDelegate(LeftClicked);
-        player.RemoveInputEventDelegate(RightClicked);
     }
 
     //////////////////////////////// INGAME ///////////////////////////////////////////////
@@ -623,6 +648,7 @@ public class GameMangerInput : MonoBehaviour
 
     public void UIEnterPressed(InputActionEventData data)
     {
+        Debug.Log("UIEnterPressed");
         InputEvent.Invoke_UIEnterPressed();
     }
 
@@ -660,15 +686,6 @@ public class GameMangerInput : MonoBehaviour
     public void RightTab(InputActionEventData data)
     {        
         InputEvent.Invoke_UIRightTabPressed();
-    }
-
-    private void LeftClicked(InputActionEventData data)
-    {
-        InputEvent.Invoke_UIEnterPressed();
-    }
-    private void RightClicked(InputActionEventData data)
-    {
-        InputEvent.Invoke_UIBackPressed();
     }
 
 
