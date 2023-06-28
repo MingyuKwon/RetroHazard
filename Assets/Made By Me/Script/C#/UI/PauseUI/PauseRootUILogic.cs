@@ -22,7 +22,7 @@ public class PauseRootUILogic
     }
 
     public void OnEnable() {
-        GameMangerInput.getInput(InputType.PauseUIInput);
+        GameMangerInput.getInput(InputType.MenuUIInput);
 
         UI.instance.SetMouseCursorActive(true);
         GameManager.instance.SetPauseGame(true);
@@ -31,18 +31,18 @@ public class PauseRootUILogic
         CurrentWindowLayer = 0;
 
         GameManager.EventManager.PauseWindowLayer_Change_Event += windowLayer_Check;
-        GameMangerInput.InputEvent.PauseUIEnterPressed += Enter_Clicked_Pressed;
-        GameMangerInput.InputEvent.PauseUIBackPressed += Back_Clicked_Pressed;
-        GameMangerInput.InputEvent.PauseUIUpPressed += Up_Pressed;
-        GameMangerInput.InputEvent.PauseUIDownPressed += Down_Pressed;
-        GameMangerInput.InputEvent.PauseUIRightPressed += Right_Pressed;
-        GameMangerInput.InputEvent.PauseUILeftPressed += Left_Pressed;
+        GameMangerInput.InputEvent.MenuUIEnterPressed += Enter_Clicked_Pressed;
+        GameMangerInput.InputEvent.MenuUIBackPressed += Back_Clicked_Pressed;
+        GameMangerInput.InputEvent.MenuUIUpPressed += Up_Pressed;
+        GameMangerInput.InputEvent.MenuUIDownPressed += Down_Pressed;
+        GameMangerInput.InputEvent.MenuUIRightPressed += Right_Pressed;
+        GameMangerInput.InputEvent.MenuUILeftPressed += Left_Pressed;
 
         GameManager.EventManager.Invoke_PauseWindowLayer_Change_Event();
     }
 
     public void OnDisable() {
-        GameMangerInput.releaseInput(InputType.PauseUIInput);
+        GameMangerInput.releaseInput(InputType.MenuUIInput);
         UI.instance.SetMouseCursorActive(false);
         GameManager.instance.SetPauseGame(false);
         CurrentWindowLayer = 0;
@@ -50,12 +50,12 @@ public class PauseRootUILogic
         GameManagerUI.instance.Visualize_InGameUI(true);
 
         GameManager.EventManager.PauseWindowLayer_Change_Event -= windowLayer_Check;
-        GameMangerInput.InputEvent.PauseUIEnterPressed -= Enter_Clicked_Pressed;
-        GameMangerInput.InputEvent.PauseUIBackPressed -= Back_Clicked_Pressed;
-        GameMangerInput.InputEvent.PauseUIUpPressed -= Up_Pressed;
-        GameMangerInput.InputEvent.PauseUIDownPressed -= Down_Pressed;
-        GameMangerInput.InputEvent.PauseUIRightPressed -= Right_Pressed;
-        GameMangerInput.InputEvent.PauseUILeftPressed -= Left_Pressed;
+        GameMangerInput.InputEvent.MenuUIEnterPressed -= Enter_Clicked_Pressed;
+        GameMangerInput.InputEvent.MenuUIBackPressed -= Back_Clicked_Pressed;
+        GameMangerInput.InputEvent.MenuUIUpPressed -= Up_Pressed;
+        GameMangerInput.InputEvent.MenuUIDownPressed -= Down_Pressed;
+        GameMangerInput.InputEvent.MenuUIRightPressed -= Right_Pressed;
+        GameMangerInput.InputEvent.MenuUILeftPressed -= Left_Pressed;
     }
 
     private void Enter_Clicked_Pressed()
@@ -119,6 +119,10 @@ public class PauseRootUILogic
             
         }else if(UI.instance.PauseUI.saveSlotUI.gameObject.activeInHierarchy)
         {
+            int value = UI.instance.PauseUI.saveSlotUI.saveSlotIndex;
+            value -= 2;
+
+            UI.instance.PauseUI.saveSlotUI.saveSlotIndex = Mathf.Clamp(value, 0,9);
 
         }else if(UI.instance.PauseUI.optionUI.gameObject.activeInHierarchy)
         {
@@ -139,7 +143,10 @@ public class PauseRootUILogic
 
         }else if(UI.instance.PauseUI.saveSlotUI.gameObject.activeInHierarchy)
         {
+            int value = UI.instance.PauseUI.saveSlotUI.saveSlotIndex;
+            value += 2;
 
+            UI.instance.PauseUI.saveSlotUI.saveSlotIndex = Mathf.Clamp(value, 0,9);
         }else if(UI.instance.PauseUI.optionUI.gameObject.activeInHierarchy)
         {
 
@@ -153,7 +160,10 @@ public class PauseRootUILogic
 
         }else if(UI.instance.PauseUI.saveSlotUI.gameObject.activeInHierarchy)
         {
+            int value = UI.instance.PauseUI.saveSlotUI.saveSlotIndex;
+            value += 1;
 
+            UI.instance.PauseUI.saveSlotUI.saveSlotIndex = Mathf.Clamp(value, 0,9);
         }else if(UI.instance.PauseUI.optionUI.gameObject.activeInHierarchy)
         {
 
@@ -167,7 +177,10 @@ public class PauseRootUILogic
 
         }else if(UI.instance.PauseUI.saveSlotUI.gameObject.activeInHierarchy)
         {
+            int value = UI.instance.PauseUI.saveSlotUI.saveSlotIndex;
+            value -= 1;
 
+            UI.instance.PauseUI.saveSlotUI.saveSlotIndex = Mathf.Clamp(value, 0,9);
         }else if(UI.instance.PauseUI.optionUI.gameObject.activeInHierarchy)
         {
 

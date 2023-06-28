@@ -28,6 +28,32 @@ public class SaveSlotUILogic : CallBackInterface
 
     SaveSlotUI monobehaviour;
 
+    public int saveSlotIndex {
+        get{
+            return _saveSlotIndex;
+        }
+
+        set{
+            _saveSlotIndex = value;
+            for(int i=0; i<SaveSlots.Length; i++)
+            {
+                SaveSlots[i].transform.GetChild(6).gameObject.SetActive(false);
+            }
+
+            if(_saveSlotIndex < 0)
+            {
+
+            }else
+            {
+                SaveSlots[_saveSlotIndex].transform.GetChild(6).gameObject.SetActive(true);
+            }
+        }
+    }
+
+    int _saveSlotIndex = 0;
+
+
+
     public bool isSave = false;
     Button[] SaveSlots;
     Text[] SaveSlotsTexts;

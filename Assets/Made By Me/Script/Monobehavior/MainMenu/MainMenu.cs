@@ -29,12 +29,12 @@ public class MainMenu : MonoBehaviour
     }
 
     private void OnEnable() {
-        GameMangerInput.getInput(InputType.MainMenuUIInput);
+        GameMangerInput.getInput(InputType.MenuUIInput);
         windowLayer_Change_Event += windowLayer_Check;
     }
 
     private void OnDisable() {
-        GameMangerInput.releaseInput(InputType.MainMenuUIInput);
+        GameMangerInput.releaseInput(InputType.MenuUIInput);
         windowLayer_Change_Event -= windowLayer_Check;
     }
 

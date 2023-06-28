@@ -14,11 +14,10 @@ public enum InputType
     TabUIInput = 2,
     BoxUIInput = 3,
     DialogtUIInput = 4,
-    PauseUIInput = 5,
+    MenuUIInput = 5,
     SaveSlotUIInput = 6,
     OptionUIInput = 7,
     AlertUIInput = 8,
-    MainMenuUIInput = 9
 }
 
 public class GameMangerInput : MonoBehaviour
@@ -145,7 +144,7 @@ public class GameMangerInput : MonoBehaviour
         public static event Action InteractiveUIEnterPressed;
         public static event Action DialogUIEnterPressed;
         public static event Action BoxUIEnterPressed;
-        public static event Action PauseUIEnterPressed;
+        public static event Action MenuUIEnterPressed;
         public static event Action AlertUIEnterPressed;
         public static void Invoke_UIEnterPressed()
         {
@@ -161,9 +160,9 @@ public class GameMangerInput : MonoBehaviour
             }else if(currentInput(InputType.BoxUIInput))
             {
                 BoxUIEnterPressed.Invoke();
-            }else if(currentInput(InputType.PauseUIInput))
+            }else if(currentInput(InputType.MenuUIInput))
             {
-                PauseUIEnterPressed.Invoke();
+                MenuUIEnterPressed.Invoke();
             }else if(currentInput(InputType.AlertUIInput))
             {
                 AlertUIEnterPressed.Invoke();
@@ -172,7 +171,7 @@ public class GameMangerInput : MonoBehaviour
 
         public static event Action TabUIBackPressed;
         public static event Action BoxUIBackPressed;
-        public static event Action PauseUIBackPressed;
+        public static event Action MenuUIBackPressed;
         public static event Action AlertUIBackPressed;
         public static void Invoke_UIBackPressed()
         {
@@ -182,9 +181,9 @@ public class GameMangerInput : MonoBehaviour
             }else if(currentInput(InputType.BoxUIInput))
             {
                 BoxUIBackPressed.Invoke();
-            }else if(currentInput(InputType.PauseUIInput))
+            }else if(currentInput(InputType.MenuUIInput))
             {
-                PauseUIBackPressed.Invoke();
+                MenuUIBackPressed.Invoke();
             }else if(currentInput(InputType.AlertUIInput))
             {
                 AlertUIBackPressed.Invoke();
@@ -194,7 +193,7 @@ public class GameMangerInput : MonoBehaviour
         public static event Action TabUIUpPressed;
         public static event Action DialogUIUpPressed;
         public static event Action BoxUIUpPressed;
-        public static event Action PauseUIUpPressed;
+        public static event Action MenuUIUpPressed;
         public static void Invoke_UIUpPressed()
         {
             if(currentInput(InputType.TabUIInput))
@@ -206,16 +205,16 @@ public class GameMangerInput : MonoBehaviour
             }else if(currentInput(InputType.BoxUIInput))
             {
                 BoxUIUpPressed.Invoke();
-            }else if(currentInput(InputType.PauseUIInput))
+            }else if(currentInput(InputType.MenuUIInput))
             {
-                PauseUIUpPressed.Invoke();
+                MenuUIUpPressed.Invoke();
             }
         }
 
         public static event Action TabUIDownPressed;
         public static event Action DialogUIDownPressed;
         public static event Action BoxUIDownPressed;
-        public static event Action PauseUIDownPressed;
+        public static event Action MenuUIDownPressed;
         public static void Invoke_UIDownPressed()
         {
             if(currentInput(InputType.TabUIInput))
@@ -227,16 +226,16 @@ public class GameMangerInput : MonoBehaviour
             }else if(currentInput(InputType.BoxUIInput))
             {
                 BoxUIDownPressed.Invoke();
-            }else if(currentInput(InputType.PauseUIInput))
+            }else if(currentInput(InputType.MenuUIInput))
             {
-                PauseUIDownPressed.Invoke();
+                MenuUIDownPressed.Invoke();
             }
         }
 
         public static event Action TabUIRightPressed;
         public static event Action DialogUIRightPressed;
         public static event Action BoxUIRightPressed;
-        public static event Action PauseUIRightPressed;
+        public static event Action MenuUIRightPressed;
         public static event Action AlertUIRightPressed;
         public static void Invoke_UIRightPressed()
         {
@@ -249,9 +248,9 @@ public class GameMangerInput : MonoBehaviour
             }else if(currentInput(InputType.BoxUIInput))
             {
                 BoxUIRightPressed.Invoke();
-            }else if(currentInput(InputType.PauseUIInput))
+            }else if(currentInput(InputType.MenuUIInput))
             {
-                PauseUIRightPressed.Invoke();
+                MenuUIRightPressed.Invoke();
             }else if(currentInput(InputType.AlertUIInput))
             {
                 AlertUIRightPressed.Invoke();
@@ -261,7 +260,7 @@ public class GameMangerInput : MonoBehaviour
         public static event Action TabUILeftPressed;
         public static event Action DialogUILeftPressed;
         public static event Action BoxUILeftPressed;
-        public static event Action PauseUILeftPressed;
+        public static event Action MenuUILeftPressed;
         public static event Action AlertUILeftPressed;
         public static void Invoke_UILeftPressed()
         {
@@ -274,9 +273,9 @@ public class GameMangerInput : MonoBehaviour
             }else if(currentInput(InputType.BoxUIInput))
             {
                 BoxUILeftPressed.Invoke();
-            }else if(currentInput(InputType.PauseUIInput))
+            }else if(currentInput(InputType.MenuUIInput))
             {
-                PauseUILeftPressed.Invoke();
+                MenuUILeftPressed.Invoke();
             }else if(currentInput(InputType.AlertUIInput))
             {
                 AlertUILeftPressed.Invoke();
@@ -505,10 +504,7 @@ public class GameMangerInput : MonoBehaviour
             case InputType.TabUIInput :
                 changePlayerInputRule(1);
                 break;
-            case InputType.PauseUIInput :
-                changePlayerInputRule(2);
-                break;
-            case InputType.MainMenuUIInput :
+            case InputType.MenuUIInput :
                 changePlayerInputRule(2);
                 break;
             case InputType.AlertUIInput :

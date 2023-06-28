@@ -6,6 +6,16 @@ using UnityEngine.UI;
 public class SaveSlotUI : MonoBehaviour
 {
     SaveSlotUILogic saveSlotUILogic;
+
+    public int saveSlotIndex{
+        get{
+            return saveSlotUILogic.saveSlotIndex;
+        }
+        set{
+            saveSlotUILogic.saveSlotIndex = value;
+        }
+    }
+
     public bool isSave{
         get{
             return saveSlotUILogic.isSave;
@@ -15,7 +25,7 @@ public class SaveSlotUI : MonoBehaviour
             saveSlotUILogic.isSave = value;
         }
     }
-    
+
     private void Awake() { 
         saveSlotUILogic = new SaveSlotUILogic(this);
     }
