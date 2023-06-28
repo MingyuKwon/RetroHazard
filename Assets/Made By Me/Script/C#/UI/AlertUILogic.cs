@@ -10,6 +10,8 @@ public class AlertUILogic
     Text[] texts;
     CallBackInterface CallbackScript;
 
+    public  int alertIndex = 0;
+
     public AlertUILogic(AlertUI monoBehaviour, Text[] texts)
     {
         this.texts = texts;
@@ -20,6 +22,7 @@ public class AlertUILogic
         GameMangerInput.InputEvent.AlertUIEnterPressed += ActiveCallback;
         GameMangerInput.InputEvent.AlertUIBackPressed += CloseAlert;
         GameMangerInput.getInput(InputType.AlertUIInput);
+        AlertUI.instance.alertIndex = 0;
 
     }
 
@@ -28,6 +31,7 @@ public class AlertUILogic
         GameMangerInput.InputEvent.AlertUIEnterPressed -= ActiveCallback;
         GameMangerInput.InputEvent.AlertUIBackPressed -= CloseAlert;
         CallbackScript = null;
+        AlertUI.instance.alertIndex = 0;
     }
 
     public void ShowAlert(string dialog, CallBackInterface CallbackScript , string Yes = "yes", string No = "No")
@@ -42,8 +46,15 @@ public class AlertUILogic
 
     public void ActiveCallback() // 이건 버튼에서 yes를 눌렀을 때 실행 될 것
     {
-        CallbackScript.CallBack();
-        CloseAlert();
+        if(AlertUI.instance.alertIndex == 0)
+        {
+            CallbackScript.CallBack();
+            CloseAlert();
+        }else if(AlertUI.instance.alertIndex == 1)
+        {
+            CloseAlert();
+        }
+        
     }
 
     public void CloseAlert()

@@ -10,7 +10,34 @@ public class AlertUI : MonoBehaviour
     AlertUILogic alertUILogic;
     public static AlertUI instance;
 
-    
+    public int alertIndex{
+        get{
+            return alertUILogic.alertIndex;
+        }
+
+        set{
+            alertUILogic.alertIndex = value;
+
+            if(alertUILogic.alertIndex == -1)
+            {
+                for(int i=0; i<2; i++)
+                {
+                    buttons[i].SetFocus(false);
+                }
+            }else
+            {
+                for(int i=0; i<2; i++)
+                {
+                    buttons[i].SetFocus(false);
+                }
+
+                buttons[alertUILogic.alertIndex].SetFocus(true);
+            }
+        }
+    }
+
+    UIButton[] buttons; // 0 : Yes, 1 : No
+
     private void Awake() {
         if(instance == null)
         {
@@ -20,6 +47,8 @@ public class AlertUI : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        buttons = GetComponentsInChildren<UIButton>();
+
         alertUILogic = new AlertUILogic(this, GetComponentsInChildren<Text>());
         this.gameObject.SetActive(false);
 

@@ -16,7 +16,10 @@ public class UIButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if(UI.instance.PauseUI.pauseMainUI.gameObject.activeInHierarchy)
+        if(AlertUI.instance.gameObject.activeInHierarchy)
+        {
+            AlertUI.instance.alertIndex = index;
+        }else if(UI.instance.PauseUI.pauseMainUI.gameObject.activeInHierarchy)
         {
             UI.instance.PauseUI.pauseMainUI.currentIndex = index;
         }else if(UI.instance.PauseUI.saveSlotUI.gameObject.activeInHierarchy)
@@ -30,7 +33,11 @@ public class UIButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if(UI.instance.PauseUI.pauseMainUI.gameObject.activeInHierarchy)
+        if(AlertUI.instance.gameObject.activeInHierarchy)
+        {
+            AlertUI.instance.alertIndex = -1;
+        }
+        else if(UI.instance.PauseUI.pauseMainUI.gameObject.activeInHierarchy)
         {
             UI.instance.PauseUI.pauseMainUI.currentIndex = -1;
         }else if(UI.instance.PauseUI.saveSlotUI.gameObject.activeInHierarchy)
