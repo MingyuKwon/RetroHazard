@@ -21,6 +21,8 @@ public class AlertUILogic
     public void OnEnable() {
         GameMangerInput.InputEvent.AlertUIEnterPressed += ActiveCallback;
         GameMangerInput.InputEvent.AlertUIBackPressed += CloseAlert;
+        GameMangerInput.InputEvent.AlertUILeftPressed += LeftPressed;
+        GameMangerInput.InputEvent.AlertUIRightPressed += RightPressed;
         GameMangerInput.getInput(InputType.AlertUIInput);
         AlertUI.instance.alertIndex = 0;
 
@@ -30,6 +32,8 @@ public class AlertUILogic
         GameMangerInput.releaseInput(InputType.AlertUIInput);
         GameMangerInput.InputEvent.AlertUIEnterPressed -= ActiveCallback;
         GameMangerInput.InputEvent.AlertUIBackPressed -= CloseAlert;
+        GameMangerInput.InputEvent.AlertUILeftPressed -= LeftPressed;
+        GameMangerInput.InputEvent.AlertUIRightPressed -= RightPressed;
         CallbackScript = null;
         AlertUI.instance.alertIndex = 0;
     }
@@ -60,5 +64,19 @@ public class AlertUILogic
     public void CloseAlert()
     {
         monoBehaviour.gameObject.SetActive(false);
+    }
+
+    public void LeftPressed()
+    {
+       int value = AlertUI.instance.alertIndex;
+       value--;
+       AlertUI.instance.alertIndex = Mathf.Clamp(value, 0 , 1);
+    }
+
+    public void RightPressed()
+    {
+       int value = AlertUI.instance.alertIndex;
+       value++;
+       AlertUI.instance.alertIndex = Mathf.Clamp(value, 0 , 1);
     }
 }

@@ -368,7 +368,6 @@ public class GameMangerInput : MonoBehaviour
 
         inputControlStack.Push(type);
         changePlayerInputRule();
-        Debug.Log("Current Peek : " + inputControlStack.Peek());
     }
 
     public static void releaseInput(InputType type)
@@ -411,7 +410,6 @@ public class GameMangerInput : MonoBehaviour
 
         inputControlStack.Pop();
         changePlayerInputRule();
-        Debug.Log("POP outside : " + type);
     }
 
     private void Update() {

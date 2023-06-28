@@ -439,6 +439,11 @@ public class TabUILogic : CallBackInterface
             ContainerLimit();
         }else if(currentWindowLayer == 1)
         {
+            if(currentItemindex < 0)
+            {
+                currentItemindex = 0;
+            }
+
             int n = itemUI.itemContainers[currentItemindex].selectIndex;
             n--;
             itemUI.itemContainers[currentItemindex].SetSelectIndex(Mathf.Clamp(n, 0, 2));
@@ -459,6 +464,10 @@ public class TabUILogic : CallBackInterface
             ContainerLimit();
         }else if(currentWindowLayer == 1)
         {
+            if(currentItemindex < 0)
+            {
+                currentItemindex = 0;
+            }
             int n = itemUI.itemContainers[currentItemindex].selectIndex;
             n++;
             itemUI.itemContainers[currentItemindex].SetSelectIndex(Mathf.Clamp(n, 0, 2));
