@@ -49,12 +49,12 @@ public class PlayerItemContainer : MonoBehaviour, IPointerEnterHandler, IPointer
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        UI.instance.boxUI.playerItemIndex = containerNum;
+        itemContainerLogic.OnPlayerPointerEnter();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        UI.instance.boxUI.playerItemIndex = -1;
+        itemContainerLogic.OnPlayerPointerExit();
     }
 
     private void Awake() {

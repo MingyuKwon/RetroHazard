@@ -95,12 +95,12 @@ public class ItemContainer : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        itemContainerLogic.OnPointerEnter();
+        itemContainerLogic.OnInventoryPointerEnter();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        itemContainerLogic.OnPointerExit();
+        itemContainerLogic.OnInventoryPointerExit();
     }
 
     private void Awake() {

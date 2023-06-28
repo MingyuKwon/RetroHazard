@@ -52,18 +52,44 @@ public class ItemContainerLogic
         this.focusSelectPanel.SetActive(false);
     }
 
-    public void OnPointerEnter()
+    public void OnInventoryPointerEnter()
     {
         if(UI.instance.tabUI.isOpenedItem) return;
         if(UI.instance.tabUI.currentWindowLayer != 0) return;
         UI.instance.tabUI.currentItemindex = containerNum;
     }
 
-    public void OnPointerExit()
+    public void OnInventoryPointerExit()
     {
         if(UI.instance.tabUI.isOpenedItem) return;
         if(UI.instance.tabUI.currentWindowLayer != 0) return;
         UI.instance.tabUI.currentItemindex = -1;
+    }
+
+
+    public void OnBoxPointerEnter()
+    {
+        if(UI.instance.boxUI.currentWindowLayer != 0) return;
+        UI.instance.boxUI.boxItemIndex = containerNum;
+    }
+
+    public void OnBoxPointerExit()
+    {
+        if(UI.instance.boxUI.currentWindowLayer != 0) return;
+        UI.instance.boxUI.boxItemIndex = -1;
+    }
+
+
+    public void OnPlayerPointerEnter()
+    {
+        if(UI.instance.boxUI.currentWindowLayer != 0) return;
+        UI.instance.boxUI.playerItemIndex = containerNum;
+    }
+
+    public void OnPlayerPointerExit()
+    {
+        if(UI.instance.boxUI.currentWindowLayer != 0) return;
+        UI.instance.boxUI.playerItemIndex = -1;
     }
 
     public void UpdateInventoryItemContainer() {

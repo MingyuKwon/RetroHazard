@@ -56,12 +56,12 @@ public class BoxItemContainer : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        UI.instance.boxUI.boxItemIndex = containerNum;
+        itemContainerLogic.OnBoxPointerEnter();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        UI.instance.boxUI.boxItemIndex = -1;
+        itemContainerLogic.OnBoxPointerExit();
     }
 
     private void Awake() {
