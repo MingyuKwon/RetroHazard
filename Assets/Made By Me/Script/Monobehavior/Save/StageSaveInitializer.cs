@@ -23,6 +23,7 @@ public class StageSaveInitializer : MonoBehaviour
             temp.is_KeyItem_Destroy = new bool[n];
 
             n = FindObjectsOfType<ExpansionItem>().Length;
+            Debug.Log("ExpansionItem length " + n );
             temp.is_ExpansionItem_Destroy = new bool[n];
 
             n = FindObjectsOfType<EquipItem>().Length;

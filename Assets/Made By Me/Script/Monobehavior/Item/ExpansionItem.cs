@@ -19,7 +19,10 @@ public class ExpansionItem : KeyItem
     public override void EventInvokeOverride()
     {
         SaveSystem.instance.ActiveStageSaves[SceneManager.GetActiveScene().buildIndex].is_ExpansionItem_Destroy[transform.GetSiblingIndex()] = true;
-        GameManager.EventManager.Invoke_Obtain_Expansion_Item_Event(information);
+        if(information.KeyItemCode != 15)
+        {
+            GameManager.EventManager.Invoke_Obtain_Expansion_Item_Event(information);
+        }
         this.gameObject.SetActive(false);
     }
 }

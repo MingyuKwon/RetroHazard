@@ -39,7 +39,6 @@ public class SaveSystem : MonoBehaviour
     
 
     private void Awake() {
-        Debug.Log("Save System awake");
         if(instance == null)
         {
             instance = this;

@@ -37,6 +37,7 @@ public class KeyItem : Item
         if(information.KeyItemCode == 15) // 먹은게 가방인 경우
         {
             this.gameObject.SetActive(false);
+            ((ExpansionItem)this).EventInvokeOverride();
             GameManager.EventManager.Invoke_inventoryExpandEvent();
 
         }else
