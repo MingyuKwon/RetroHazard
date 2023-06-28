@@ -17,11 +17,16 @@ public class AlertUILogic
     }
 
     public void OnEnable() {
+        GameMangerInput.InputEvent.AlertUIEnterPressed += ActiveCallback;
+        GameMangerInput.InputEvent.AlertUIBackPressed += CloseAlert;
         GameMangerInput.getInput(InputType.AlertUIInput);
+
     }
 
     public void OnDisable() {
         GameMangerInput.releaseInput(InputType.AlertUIInput);
+        GameMangerInput.InputEvent.AlertUIEnterPressed -= ActiveCallback;
+        GameMangerInput.InputEvent.AlertUIBackPressed -= CloseAlert;
         CallbackScript = null;
     }
 

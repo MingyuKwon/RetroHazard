@@ -419,7 +419,7 @@ public class GameMangerInput : MonoBehaviour
     }
 
     private void CheckStack() {
-        String str = "Current Stack State : \n";
+        String str = "Current Stack State : Count "+ inputControlStack.Count + " \n";
 
         Stack<InputType> stack = new Stack<InputType>();
             while(inputControlStack.Count != 0 )
@@ -736,7 +736,6 @@ public class GameMangerInput : MonoBehaviour
 
     public void UIEnterPressed(InputActionEventData data)
     {
-        Debug.Log("UIEnterPressed");
         InputEvent.Invoke_UIEnterPressed();
     }
 
