@@ -6,25 +6,35 @@ using System;
 
 public class MainMenuUI : MonoBehaviour, CallBackInterface
 {
+    public int selectIndex{
+        get{
+            return _selectIndex;
+        }
+
+        set{
+            _selectIndex = value;
+            for(int i=0; i < buttons.Length; i++)
+            {
+                buttons[i].transform.GetChild(1).gameObject.SetActive(false);
+            }
+
+            if(_selectIndex >= 0)
+            {
+                buttons[_selectIndex].transform.GetChild(1).gameObject.SetActive(true);
+            }
+        }
+    }
+
+    int _selectIndex;
     Button[] buttons;
-    MainMenu mainMenu;
-    MouseUI mouseUI;
-    int continueNum;
+    public int continueNum; // continue 눌렀을 때 시작할 세이브 슬롯 번호
 
     private void Awake() {
         buttons = GetComponentsInChildren<Button>();
-        mainMenu = transform.parent.GetComponent<MainMenu>();
-        
-
     }
     
     private void OnEnable() {
-
-        for(int i=0; i<buttons.Length; i++)
-        {
-            int temp = i;
-            buttons[i].onClick.AddListener(() => OnClick(temp));
-        }
+        selectIndex = 0;
 
         FindContinueSlot();
 
@@ -68,12 +78,10 @@ public class MainMenuUI : MonoBehaviour, CallBackInterface
                 latestNum = i;
             }
         }
-
         continueNum = latestNum;
-            
     }
 
-    private void OnClick(int n)
+    public void OnClick(int n)
     {
         if(n == 0)
         {
@@ -86,18 +94,16 @@ public class MainMenuUI : MonoBehaviour, CallBackInterface
 
         }else if(n == 2)
         {
-            mainMenu.CurrentWindowLayer = 1;
-            mainMenu.windowLayer_Change_Invoke();
+            MainMenu.instance.CurrentWindowLayer = 1;
+            GameManager.EventManager.Invoke_MainMenuWindowLayer_Change_Event();
         }else if(n == 3)
         {
-            mainMenu.CurrentWindowLayer = 2;
-            mainMenu.windowLayer_Change_Invoke();
+            MainMenu.instance.CurrentWindowLayer = 2;
+            GameManager.EventManager.Invoke_MainMenuWindowLayer_Change_Event();
         }else if(n == 4)
         {
             Quit();
         }
-
-        
     }
 
     public void Quit()

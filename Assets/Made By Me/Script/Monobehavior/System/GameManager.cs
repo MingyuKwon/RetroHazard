@@ -157,6 +157,12 @@ public class GameManager : MonoBehaviour
         {
             PauseWindowLayer_Change_Event?.Invoke();
         }
+
+        public static event Action MainMenuWindowLayer_Change_Event;
+        public static void Invoke_MainMenuWindowLayer_Change_Event()
+        {
+            MainMenuWindowLayer_Change_Event?.Invoke();
+        }
     }
     ////// EventManager //////////////////////////////////////////////////////////////////////////////////
     ////// EventManager //////////////////////////////////////////////////////////////////////////////////
