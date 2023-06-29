@@ -38,6 +38,7 @@ public class TabUILogic : CallBackInterface
     public InteractiveMessageUI interactiveMessageUI;
     public ItemObtainYesNoPanelUI itemObtainYesNoPanelUI;
     public MiniMap miniMap;
+    public GameObject showingTabPanel;
 
 
     Color selectColor = new Color(1.0f,1.0f,1.0f,1);
@@ -98,8 +99,10 @@ public class TabUILogic : CallBackInterface
 
         this.background = background;
 
-        showingTabItemImage = tabUI.gameObject.transform.GetChild(7).GetChild(0).GetComponent<Image>();
-        showingTabMinimapImage = tabUI.gameObject.transform.GetChild(7).GetChild(1).GetComponent<Image>();
+        showingTabPanel = tabUI.gameObject.transform.GetChild(7).gameObject;
+        showingTabItemImage = showingTabPanel.transform.GetChild(0).GetComponent<Image>();
+        showingTabMinimapImage = showingTabPanel.transform.GetChild(1).GetComponent<Image>();
+        
     }
 
 
@@ -116,6 +119,7 @@ public class TabUILogic : CallBackInterface
         itemUI.gameObject.SetActive(flag);
         itemExplainUI.gameObject.SetActive(flag);
         currentGoalUI.gameObject.SetActive(flag);
+        showingTabPanel.gameObject.SetActive(flag);
         interactiveMessageUI.gameObject.SetActive(false);
         itemObtainYesNoPanelUI.gameObject.SetActive(false);
     }
@@ -146,6 +150,7 @@ public class TabUILogic : CallBackInterface
         interactiveMessageUI.gameObject.SetActive(flag);
         currentGoalUI.gameObject.SetActive(false);
         itemObtainYesNoPanelUI.gameObject.SetActive(false);
+        showingTabPanel.gameObject.SetActive(false);
 
     }
 
@@ -198,6 +203,7 @@ public class TabUILogic : CallBackInterface
         itemUI.gameObject.SetActive(flag);
         itemExplainUI.gameObject.SetActive(false);
         currentGoalUI.gameObject.SetActive(false);
+        showingTabPanel.gameObject.SetActive(false);
         
     }
 
