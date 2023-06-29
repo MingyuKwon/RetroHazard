@@ -36,10 +36,48 @@ public class TabUILogic : CallBackInterface
     public CurrentGoalUI currentGoalUI;
     public InteractiveMessageUI interactiveMessageUI;
     public ItemObtainYesNoPanelUI itemObtainYesNoPanelUI;
+    public MiniMap miniMap;
+
+
+    Color selectColor = new Color(1.0f,1.0f,1.0f,1);
+    Color unSelectColor = new Color(0.5f,0.5f,0.5f,0.5f); 
 
     TabUI monoBehavior;
 
     Image background;
+
+    public int showingTabIndex{
+        get{
+            return _showingTabIndex;
+        }
+
+        set{
+            _showingTabIndex = value;
+            if(_showingTabIndex == 0)
+            {
+                showingTabItemImage.color = selectColor;
+                showingTabMinimapImage.color = unSelectColor;
+
+                itemUI.gameObject.SetActive(true);
+                itemExplainUI.gameObject.SetActive(true);
+                miniMap.gameObject.SetActive(false);
+            }else if(_showingTabIndex == 1)
+            {
+                showingTabItemImage.color = unSelectColor;
+                showingTabMinimapImage.color = selectColor;
+
+                itemUI.gameObject.SetActive(false);
+                itemExplainUI.gameObject.SetActive(false);
+                miniMap.gameObject.SetActive(true);
+            }
+        }
+    }
+
+    int _showingTabIndex = 0;
+
+    Image showingTabItemImage;
+    Image showingTabMinimapImage;
+
     public TabUILogic(Image background, TabUI tabUI)
     {
         itemUI = UI.instance.tabUI.itemUI;
@@ -47,10 +85,14 @@ public class TabUILogic : CallBackInterface
         currentGoalUI = UI.instance.tabUI.currentGoalUI;
         interactiveMessageUI = UI.instance.tabUI.interactiveMessageUI;
         itemObtainYesNoPanelUI = UI.instance.tabUI.itemObtainYesNoPanelUI;
+        miniMap = UI.instance.tabUI.miniMap;
 
         monoBehavior = tabUI;
 
         this.background = background;
+
+        showingTabItemImage = tabUI.gameObject.transform.GetChild(7).GetChild(0).GetComponent<Image>();
+        showingTabMinimapImage = tabUI.gameObject.transform.GetChild(7).GetChild(1).GetComponent<Image>();
     }
 
 
@@ -193,12 +235,19 @@ public class TabUILogic : CallBackInterface
         UI.instance.SetMouseCursorActive(true);
         discardTargetItemIndex = -1;
 
+        //////////////////////
+        showingTabIndex = 0;
+        //////////////////////////////////////////
+
         GameMangerInput.InputEvent.TabUIEnterPressed += UIEnterPressed;
         GameMangerInput.InputEvent.TabUIBackPressed += UIBackPressed;
         GameMangerInput.InputEvent.TabUIUpPressed += UIUpPressed;
         GameMangerInput.InputEvent.TabUIDownPressed += UIDownPressed;
         GameMangerInput.InputEvent.TabUIRightPressed += UIRightPressed;
         GameMangerInput.InputEvent.TabUILeftPressed += UILeftPressed;
+
+        GameMangerInput.InputEvent.TabUILeftTabPressed += TabUILeftTabPressed;
+        GameMangerInput.InputEvent.TabUIRightTabPressed += TabUIRightTabPressed;
 
         GameManager.EventManager.InvokeShowNotice("TabUI", "<i><b>-Input-</b></i>\n\n<b>ENTER</b> : \nspace\n\n<b>BACK</b> : \nbackSpace" , 200 ,250);
 
@@ -211,6 +260,8 @@ public class TabUILogic : CallBackInterface
         UI.instance.SetMouseCursorActive(false);
         isUseKeyItem = false;
         discardTargetItemIndex = -1;
+
+        showingTabIndex = 0;
         
         GameMangerInput.InputEvent.TabUIEnterPressed -= UIEnterPressed;
         GameMangerInput.InputEvent.TabUIBackPressed -= UIBackPressed;
@@ -219,7 +270,20 @@ public class TabUILogic : CallBackInterface
         GameMangerInput.InputEvent.TabUIRightPressed -= UIRightPressed;
         GameMangerInput.InputEvent.TabUILeftPressed -= UILeftPressed;
 
+        GameMangerInput.InputEvent.TabUILeftTabPressed -= TabUILeftTabPressed;
+        GameMangerInput.InputEvent.TabUIRightTabPressed -= TabUIRightTabPressed;
+
         GameManager.EventManager.InvokeShowNotice("TabUI");
+    }
+
+    public void TabUILeftTabPressed()
+    {
+        showingTabIndex = 0;
+    }
+
+    public void TabUIRightTabPressed()
+    {
+        showingTabIndex = 1;
     }
 
     public void UIEnterPressed()

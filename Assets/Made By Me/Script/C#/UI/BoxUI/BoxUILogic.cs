@@ -225,7 +225,6 @@ public class BoxUILogic : CallBackInterface
 
     public void BackPressed()
     {
-
         currentWindowLayer--;
 
         if(currentWindowLayer == 0)
@@ -278,8 +277,6 @@ public class BoxUILogic : CallBackInterface
                 playerItemUI.itemContainers[UI.instance.boxUI.playerItemIndex].SetSelectIndex(Mathf.Clamp(n, 0, 2));
             }
         }
-        
-        
     }
     public void DownPressed()
     {

@@ -282,19 +282,27 @@ public class GameMangerInput : MonoBehaviour
             }
         }
 
+        public static event Action TabUILeftTabPressed;
         public static event Action BoxUILeftTabPressed;
         public static void Invoke_UILeftTabPressed()
         {
-            if(currentInput(InputType.BoxUIInput))
+            if(currentInput(InputType.TabUIInput))
+            {
+                TabUILeftTabPressed.Invoke();
+            }else if(currentInput(InputType.BoxUIInput))
             {
                 BoxUILeftTabPressed.Invoke();
             }
         }
 
+        public static event Action TabUIRightTabPressed;
         public static event Action BoxUIRightTabPressed;
         public static void Invoke_UIRightTabPressed()
         {
-            if(currentInput(InputType.BoxUIInput))
+            if(currentInput(InputType.TabUIInput))
+            {
+                TabUIRightTabPressed.Invoke();
+            }else if(currentInput(InputType.BoxUIInput))
             {
                 BoxUIRightTabPressed.Invoke();
             }

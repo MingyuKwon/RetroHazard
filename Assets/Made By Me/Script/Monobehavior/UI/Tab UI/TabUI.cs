@@ -109,6 +109,7 @@ public class TabUI : MonoBehaviour
     public CurrentGoalUI currentGoalUI;
     public InteractiveMessageUI interactiveMessageUI;
     public ItemObtainYesNoPanelUI itemObtainYesNoPanelUI;
+    public MiniMap miniMap;
 
 
     public int combineStartItemIndex{
@@ -135,6 +136,7 @@ public class TabUI : MonoBehaviour
         currentGoalUI = GetComponentInChildren<CurrentGoalUI>();
         interactiveMessageUI = GetComponentInChildren<InteractiveMessageUI>();
         itemObtainYesNoPanelUI = GetComponentInChildren<ItemObtainYesNoPanelUI>();
+        miniMap = GetComponentInChildren<MiniMap>();
 
         tabUILogic = new TabUILogic(transform.GetChild(0).GetComponent<Image>(), this);
     }
