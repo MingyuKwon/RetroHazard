@@ -28,10 +28,4 @@ public class NoticeUI : MonoBehaviour
     private void OnDisable() {
         noticeUILogic.OnDisable();
     }
-
-    [Button]
-    public void showNotice(string text = null, int panelWidth = 400, int panelHeight = 100)
-    {
-        noticeUILogic.showNotice(text, panelWidth, panelHeight);
-    }
 }

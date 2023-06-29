@@ -21,14 +21,17 @@ public class NoticeUILogic
         
     }
 
-
-    public void showNotice(string text, int panelWidth, int panelHeight)
+    string showingUI;
+    public void showNotice(string showingUI ,string text, int panelWidth, int panelHeight)
     {
         if(text == null) // 이건 Notice를 닫기를 원할 떄
         {
+            if(this.showingUI != showingUI) return;
             monoBehaviour.gameObject.SetActive(false);
         }else
         {
+            this.showingUI = showingUI;
+
             monoBehaviour.gameObject.SetActive(true);
             GameObject noticePanel = monoBehaviour.transform.GetChild(0).gameObject;
             RectTransform rectTransform = noticePanel.GetComponent<RectTransform>();

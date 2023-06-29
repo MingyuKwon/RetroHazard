@@ -113,6 +113,9 @@ public class SaveSlotUILogic : CallBackInterface
         {
             monobehaviour.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = "Load";
         }
+
+        GameManager.EventManager.InvokeShowNotice("SaveSlotUI", "<i><b>-Input-</b></i>\n\n<b>ENTER</b> : \nspace\n\n<b>BACK</b> : \nbackSpace\n\n<b>REMOVE</b> :\n R" , 200 ,350);
+
     }
 
     public void OnDisable() {
@@ -125,6 +128,9 @@ public class SaveSlotUILogic : CallBackInterface
         }
 
         isSave = false;
+
+        GameManager.EventManager.InvokeShowNotice("SaveSlotUI");
+
     }
 
     public void CallBack()
