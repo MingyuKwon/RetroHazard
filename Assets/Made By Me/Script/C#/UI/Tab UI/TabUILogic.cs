@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class TabUILogic : CallBackInterface
 {
@@ -61,6 +62,9 @@ public class TabUILogic : CallBackInterface
                 itemUI.gameObject.SetActive(true);
                 itemExplainUI.gameObject.SetActive(true);
                 miniMap.gameObject.SetActive(false);
+
+                GameManager.EventManager.InvokeShowNotice("TabUI", "<i><b>-Input-</b></i>\n\n<b>ENTER</b> : \nspace\n\n<b>BACK</b> : \nbackSpace" , 200 ,250);
+
             }else if(_showingTabIndex == 1)
             {
                 showingTabItemImage.color = unSelectColor;
@@ -69,6 +73,9 @@ public class TabUILogic : CallBackInterface
                 itemUI.gameObject.SetActive(false);
                 itemExplainUI.gameObject.SetActive(false);
                 miniMap.gameObject.SetActive(true);
+
+                GameManager.EventManager.InvokeShowNotice("TabUI", "<i><b>-Input-</b></i>\n\n<b>BACK</b> : \nbackSpace" , 200 ,250);
+
             }
         }
     }
@@ -248,14 +255,11 @@ public class TabUILogic : CallBackInterface
 
         GameMangerInput.InputEvent.TabUILeftTabPressed += TabUILeftTabPressed;
         GameMangerInput.InputEvent.TabUIRightTabPressed += TabUIRightTabPressed;
-
-        GameManager.EventManager.InvokeShowNotice("TabUI", "<i><b>-Input-</b></i>\n\n<b>ENTER</b> : \nspace\n\n<b>BACK</b> : \nbackSpace" , 200 ,250);
-
     }
 
     public void OnDisable() {
         GameMangerInput.releaseInput(InputType.TabUIInput);
-        
+
         currentWindowLayer = 0;
         UI.instance.SetMouseCursorActive(false);
         isUseKeyItem = false;
@@ -273,6 +277,12 @@ public class TabUILogic : CallBackInterface
         GameMangerInput.InputEvent.TabUILeftTabPressed -= TabUILeftTabPressed;
         GameMangerInput.InputEvent.TabUIRightTabPressed -= TabUIRightTabPressed;
 
+        Button button1 = showingTabItemImage.gameObject.GetComponent<Button>();
+        button1.onClick.RemoveAllListeners();
+
+        Button button2 = showingTabMinimapImage.gameObject.GetComponent<Button>();
+        button2.onClick.RemoveAllListeners();
+
         GameManager.EventManager.InvokeShowNotice("TabUI");
     }
 
@@ -286,8 +296,16 @@ public class TabUILogic : CallBackInterface
         showingTabIndex = 1;
     }
 
+    public int isMouseOnshowingTabIndex = -1;
+
     public void UIEnterPressed()
     {
+        if(isMouseOnshowingTabIndex != -1)
+        {
+            showingTabIndex = isMouseOnshowingTabIndex;
+            return;
+        }
+
         if(isOpenedItem)
         {
             if(yesNoChoice)

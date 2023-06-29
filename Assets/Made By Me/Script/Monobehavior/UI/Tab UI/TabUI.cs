@@ -102,6 +102,15 @@ public class TabUI : MonoBehaviour
         }
     }
 
+    public int isMouseOnshowingTabIndex{
+        get{
+            return tabUILogic.isMouseOnshowingTabIndex;
+        }
+        set{
+            tabUILogic.isMouseOnshowingTabIndex = value;
+        }
+    }
+
     private TabUILogic tabUILogic;
 
     public ItemUI itemUI;
