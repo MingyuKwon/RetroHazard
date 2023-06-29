@@ -306,6 +306,16 @@ public class TabUILogic : CallBackInterface
             return;
         }
 
+        if(UI.instance.tabUI.miniMap.gameObject.activeInHierarchy) // 현재 미니맵 보기 모드인 경우
+        {
+            return;
+        }
+
+        if(!UI.instance.tabUI.itemUI.gameObject.activeInHierarchy) // 만약 아이템 UI가 활성화가 되어 있지 않다면 아래 내용 수행 X
+        {
+            return;
+        }
+
         if(isOpenedItem)
         {
             if(yesNoChoice)
@@ -473,8 +483,6 @@ public class TabUILogic : CallBackInterface
         currentGoalUI.ChangeGoalText(PlayerGoalCollection.PlayerGoals[PlayerGoalCollection.currentGoalIndex]);
     }
 
-
-
     private void ContainerLimit()
     {
         currentItemindex = Mathf.Clamp(currentItemindex, 0, GameManagerUI.CurrentContainer-1);
@@ -520,6 +528,16 @@ public class TabUILogic : CallBackInterface
     {
         if(isOpenedItem) return;
 
+        if(UI.instance.tabUI.miniMap.gameObject.activeInHierarchy) // 현재 미니맵 보기 모드인 경우
+        {
+            return;
+        }
+
+        if(!UI.instance.tabUI.itemUI.gameObject.activeInHierarchy) // 만약 아이템 UI가 활성화가 되어 있지 않다면 아래 내용 수행 X
+        {
+            return;
+        }
+
         if(currentWindowLayer == 0)
         {
             currentItemindex -= 4;
@@ -544,6 +562,16 @@ public class TabUILogic : CallBackInterface
     public void UIDownPressed()
     {
         if(isOpenedItem) return;
+
+        if(UI.instance.tabUI.miniMap.gameObject.activeInHierarchy) // 현재 미니맵 보기 모드인 경우
+        {
+            return;
+        }
+
+        if(!UI.instance.tabUI.itemUI.gameObject.activeInHierarchy) // 만약 아이템 UI가 활성화가 되어 있지 않다면 아래 내용 수행 X
+        {
+            return;
+        }
 
         if(currentWindowLayer == 0)
         {
@@ -573,6 +601,16 @@ public class TabUILogic : CallBackInterface
             return;
         }
 
+        if(UI.instance.tabUI.miniMap.gameObject.activeInHierarchy) // 현재 미니맵 보기 모드인 경우
+        {
+            return;
+        }
+
+        if(!UI.instance.tabUI.itemUI.gameObject.activeInHierarchy) // 만약 아이템 UI가 활성화가 되어 있지 않다면 아래 내용 수행 X
+        {
+            return;
+        }
+
         if(currentWindowLayer == 0)
         {
             currentItemindex++;
@@ -592,6 +630,16 @@ public class TabUILogic : CallBackInterface
         if(isOpenedItem)
         {
             yesNoChoice = true;
+            return;
+        }
+
+        if(UI.instance.tabUI.miniMap.gameObject.activeInHierarchy) // 현재 미니맵 보기 모드인 경우
+        {
+            return;
+        }
+
+        if(!UI.instance.tabUI.itemUI.gameObject.activeInHierarchy) // 만약 아이템 UI가 활성화가 되어 있지 않다면 아래 내용 수행 X
+        {
             return;
         }
 
