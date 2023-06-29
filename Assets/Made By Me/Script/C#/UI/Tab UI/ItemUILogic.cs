@@ -50,6 +50,8 @@ public class ItemUILogic
 
     public void ItemContainerFocusDirect(int num)
     {
+        UI.instance.tabUI.currentItemindex = num;
+
         for(int i=0; i < Player1.instance.playerInventory.CurrentContainerSize; i++)
         {
             if(i == num)

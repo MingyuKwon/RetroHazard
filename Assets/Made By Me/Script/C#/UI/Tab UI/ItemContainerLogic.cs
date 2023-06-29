@@ -250,7 +250,7 @@ public class ItemContainerLogic
             backGround.color = new Color(1f, 1f, 1f, 1f);
             if(UI.instance.tabUI.isUseKeyItem)
             {
-                 if(isInteractive)
+                if(isInteractive)
                 {
                     fadeImage.color = new Color(0f, 0f, 0f, 0f);
                 }else
