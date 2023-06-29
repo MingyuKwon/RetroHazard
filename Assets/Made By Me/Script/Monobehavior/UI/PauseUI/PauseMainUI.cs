@@ -41,11 +41,13 @@ public class PauseMainUI : MonoBehaviour, CallBackInterface
     }
 
     private void OnEnable() {
+        GameManager.EventManager.InvokeShowNotice("PauseUI", "<i><b>-Input-</b></i>\n\n<b>ENTER</b> : \nspace\n\n<b>BACK</b> : \nbackSpace" , 200 ,250);
         currentIndex = 0;
     }
 
     private void OnDisable() {
-        
+        GameManager.EventManager.InvokeShowNotice("PauseUI");
+
     }
 
     public void MainMenu()

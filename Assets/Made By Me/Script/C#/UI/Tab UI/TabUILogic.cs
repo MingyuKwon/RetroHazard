@@ -199,6 +199,9 @@ public class TabUILogic : CallBackInterface
         GameMangerInput.InputEvent.TabUIDownPressed += UIDownPressed;
         GameMangerInput.InputEvent.TabUIRightPressed += UIRightPressed;
         GameMangerInput.InputEvent.TabUILeftPressed += UILeftPressed;
+
+        GameManager.EventManager.InvokeShowNotice("TabUI", "<i><b>-Input-</b></i>\n\n<b>ENTER</b> : \nspace\n\n<b>BACK</b> : \nbackSpace" , 200 ,250);
+
     }
 
     public void OnDisable() {
@@ -215,6 +218,8 @@ public class TabUILogic : CallBackInterface
         GameMangerInput.InputEvent.TabUIDownPressed -= UIDownPressed;
         GameMangerInput.InputEvent.TabUIRightPressed -= UIRightPressed;
         GameMangerInput.InputEvent.TabUILeftPressed -= UILeftPressed;
+
+        GameManager.EventManager.InvokeShowNotice("TabUI");
     }
 
     public void UIEnterPressed()
