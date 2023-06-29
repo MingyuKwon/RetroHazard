@@ -102,6 +102,9 @@ public class BoxUILogic : CallBackInterface
         boxItemUI.backgroundPanel.color = boxItemUI.unSelectColor;
         playerItemUI.backgroundPanel.color = playerItemUI.selectColor;
 
+        GameManager.EventManager.InvokeShowNotice("BoxUI", "<i><b>-Input-</b></i>\n\n<b>ENTER</b> : space  <b>BACK</b> : backSpace  <b>Box</b> : J    <b>Inventory</b> : K" , 900 ,150);
+
+
         GameMangerInput.InputEvent.BoxUIEnterPressed += EnterPressed;
         GameMangerInput.InputEvent.BoxUIBackPressed += BackPressed;
         GameMangerInput.InputEvent.BoxUIUpPressed += UpPressed;
@@ -122,6 +125,8 @@ public class BoxUILogic : CallBackInterface
         discardTargetItemIndex = -1;
 
         UI.instance.TotalUIUpdate();
+
+        GameManager.EventManager.InvokeShowNotice("BoxUI");
 
         GameMangerInput.InputEvent.BoxUIEnterPressed -= EnterPressed;
         GameMangerInput.InputEvent.BoxUIBackPressed -= BackPressed;

@@ -63,7 +63,7 @@ public class TabUILogic : CallBackInterface
                 itemExplainUI.gameObject.SetActive(true);
                 miniMap.gameObject.SetActive(false);
 
-                GameManager.EventManager.InvokeShowNotice("TabUI", "<i><b>-Input-</b></i>\n\n<b>ENTER</b> : \nspace\n\n<b>BACK</b> : \nbackSpace" , 200 ,250);
+                GameManager.EventManager.InvokeShowNotice("TabUI", "<i><b>-Input-</b></i>\n\n<b>ENTER</b> : \nspace\n\n<b>BACK</b> : \nbackSpace\n\n<b>ItemTab</b> : \nJ\n\n<b>MiniMap</b> : \nK" , 200 ,440);
 
             }else if(_showingTabIndex == 1)
             {
@@ -74,7 +74,7 @@ public class TabUILogic : CallBackInterface
                 itemExplainUI.gameObject.SetActive(false);
                 miniMap.gameObject.SetActive(true);
 
-                GameManager.EventManager.InvokeShowNotice("TabUI", "<i><b>-Input-</b></i>\n\n<b>BACK</b> : \nbackSpace" , 200 ,250);
+                GameManager.EventManager.InvokeShowNotice("TabUI", "<i><b>-Input-</b></i>\n\n<b>BACK</b> : \nbackSpace\n\n<b>ItemTab</b> : \nJ\n\n<b>MiniMap</b> : \nK" , 200 ,440);
 
             }
         }
