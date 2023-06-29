@@ -16,6 +16,13 @@ public class GameManager : MonoBehaviour
 
     public class EventManager
     {
+        public static event Action<string, int, int> showNotice;
+        public static void InvokeShowNotice(string text = null, int panelWidth = 400, int panelHeight = 100)
+        {
+            // 아무 인수 없이 호출시에, notice를 닫는 것
+            showNotice?.Invoke(text, panelWidth, panelHeight);
+        }
+
         public static event Action<float,float, int, float, float , int, float, float, int, int> Update_IngameUI_Event; 
          //Max HP, Current Hp, Energy, EnergyMaganize[Energy], EnergtStore[Energy] , Sheild, SheildMaganize[Sheild] , SheildStore , energyUpgrade
         public static void Invoke_Update_IngameUI_Event(float MaxHP, float CurrentHP, int Energy, float EnergyMaganize, float EnergyStore , int Sheild, float SheildMaganize , float SheildStore, int EnergyUpgrade, int SheildUpgrade)
@@ -167,9 +174,6 @@ public class GameManager : MonoBehaviour
     ////// EventManager //////////////////////////////////////////////////////////////////////////////////
     ////// EventManager //////////////////////////////////////////////////////////////////////////////////
     ////// EventManager //////////////////////////////////////////////////////////////////////////////////
-
-
-
 
 
 
@@ -369,7 +373,6 @@ public class GameManager : MonoBehaviour
         }
         
     }
-
     //Pause
 
     //Tab

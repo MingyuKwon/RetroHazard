@@ -37,6 +37,8 @@ public class MainMenuLogic
 
         GameMangerInput.InputEvent.RemoveSaveSlot += RemoveSaveSlot;
 
+        GameManager.EventManager.InvokeShowNotice("enter : space   back : backSpace" , 500 , 200);
+
     }
 
     public void OnDisable() {
@@ -51,6 +53,8 @@ public class MainMenuLogic
         GameMangerInput.InputEvent.MenuUILeftPressed -= LeftPressed;
 
         GameMangerInput.InputEvent.RemoveSaveSlot -= RemoveSaveSlot;
+
+        GameManager.EventManager.InvokeShowNotice();
     }
 
     private void windowLayer_Check()
