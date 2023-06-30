@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "wayPoint" , menuName ="createWayPoint")]
 public class WayPoint : ScriptableObject
 {
-    public int toIndexNum;
+    public string toSceneName;
     public float x = 0;
     public float y = 0;
 

@@ -1,5 +1,1 @@
 옵션 관련
-
-컴바인 해제 했을 때 index를 잘 설정하자
-
-container Lock을 걸자

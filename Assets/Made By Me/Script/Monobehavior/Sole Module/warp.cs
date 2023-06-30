@@ -19,7 +19,7 @@ public class warp : MonoBehaviour
         if(other.gameObject.layer == LayerMask.NameToLayer("Player Body"))
         {
             cameraSetting.gameObject.SetActive(false);
-            GameManagerUI.instance.BlackOut(wayPoint.toIndexNum);
+            GameManagerUI.instance.BlackOut(wayPoint.toSceneName);
             other.transform.parent.transform.parent.transform.position = new Vector3(wayPoint.x, wayPoint.y, other.gameObject.transform.position.z);
         }
         

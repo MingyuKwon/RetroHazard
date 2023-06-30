@@ -12,17 +12,17 @@ public class blackOut : MonoBehaviour
     float delayTime = 1.5f;
     [SerializeField] Image image;
 
-    public void BlackOut(int index)
+    public void BlackOut(string sceneName)
     {
-        StartCoroutine(blackout(index));
+        StartCoroutine(blackout(sceneName));
     }
 
-    public void BlackOut(float time)
+    public void BlackOutSpeed(float time)
     {
         StartCoroutine(blackout(time));
     }
 
-    IEnumerator blackout(int index)
+    IEnumerator blackout(string sceneName)
     {
         GameManager.instance.SetPausePlayer(true);
         while(image.color.a < 1f)
@@ -30,7 +30,7 @@ public class blackOut : MonoBehaviour
             image.color = new Color(image.color.r, image.color.g, image.color.b, Mathf.MoveTowards(image.color.a, 1f, delayTime * Time.deltaTime));
             yield return new WaitForEndOfFrame();
         }
-        SceneManager.LoadScene(index);
+        SceneManager.LoadScene(sceneName);
         while(image.color.a > 0f)
         {
             image.color = new Color(image.color.r, image.color.g, image.color.b, Mathf.MoveTowards(image.color.a, 0f, delayTime * Time.deltaTime));
