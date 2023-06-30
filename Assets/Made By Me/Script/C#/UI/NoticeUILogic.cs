@@ -58,19 +58,27 @@ public class NoticeUILogic
         }
     }
 
+    bool isTextFinished;
+
     IEnumerator Typing(string text)
     {
         GameMangerInput.getInput(InputType.NoticeUIInput);
         GameMangerInput.InputEvent.NoticeCloseEvent += NoticeClose;
+        isTextFinished = false;
 
         yield return str.DOText(text, 2f).WaitForCompletion();
-
-        GameMangerInput.InputEvent.NoticeCloseEvent -= NoticeClose;
-        GameMangerInput.releaseInput(InputType.NoticeUIInput);
+        
+        isTextFinished = true;
     }
 
     private void NoticeClose()
     {
         Debug.Log("Typing Start");
+
+        if(!isTextFinished) return; // 아직 텍스트 치는거 안끝났으면 이 이후는 받지 않음
+
+        GameMangerInput.InputEvent.NoticeCloseEvent -= NoticeClose;
+        GameMangerInput.releaseInput(InputType.NoticeUIInput);
+        showNotice(this.showingUI, null, false, 100, 100);
     }
 }
