@@ -2,14 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class NoticeUILogic
 {
     NoticeUI monoBehaviour;
 
+    Text str;
+    GameObject noticePanel;
+    RectTransform rectTransform;
+
     public NoticeUILogic(NoticeUI monoBehaviour)
     {
         this.monoBehaviour = monoBehaviour;
+        
+        noticePanel = monoBehaviour.transform.GetChild(0).gameObject;
+        rectTransform = noticePanel.GetComponent<RectTransform>();
+        str = noticePanel.transform.GetChild(0).gameObject.GetComponent<Text>();
+
         GameManager.EventManager.showNotice += showNotice;
     }
 
@@ -22,7 +32,7 @@ public class NoticeUILogic
     }
 
     string showingUI;
-    public void showNotice(string showingUI ,string text, int panelWidth, int panelHeight)
+    public void showNotice(string showingUI ,string text, bool isTyping, int panelWidth, int panelHeight)
     {
         if(text == null) // 이건 Notice를 닫기를 원할 떄
         {
@@ -33,13 +43,18 @@ public class NoticeUILogic
             this.showingUI = showingUI;
 
             monoBehaviour.gameObject.SetActive(true);
-            GameObject noticePanel = monoBehaviour.transform.GetChild(0).gameObject;
-            RectTransform rectTransform = noticePanel.GetComponent<RectTransform>();
-            Text str = noticePanel.transform.GetChild(0).gameObject.GetComponent<Text>();
 
             rectTransform.sizeDelta = new Vector2(panelWidth, panelHeight);
-            str.text = text;
+
+            if(isTyping)
+            {
+                str.text = "";
+                str.DOText(text, 1f);
+            }else
+            {
+                str.text = text;
+            }
+            
         }
-        
     }
 }

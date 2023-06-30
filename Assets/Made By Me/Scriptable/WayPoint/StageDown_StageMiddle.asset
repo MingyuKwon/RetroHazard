@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 938615d2b6938124fadadc4c2df8839c, type: 3}
   m_Name: StageDown_StageMiddle
   m_EditorClassIdentifier: 
-  toIndexNum: 3
+  toSceneName: Stage Middle
   x: -15.5
   y: -20
