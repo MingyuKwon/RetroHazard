@@ -49,12 +49,22 @@ public class NoticeUILogic
             if(isTyping)
             {
                 str.text = "";
-                str.DOText(text, 1f);
+                monoBehaviour.StartCoroutine(Typing(text));
             }else
             {
                 str.text = text;
             }
             
         }
+    }
+
+    IEnumerator Typing(string text)
+    {
+        Debug.Log("Typing Start");
+    
+        yield return str.DOText(text, 1f).WaitForCompletion();
+
+        Debug.Log("Typing End");
+
     }
 }
