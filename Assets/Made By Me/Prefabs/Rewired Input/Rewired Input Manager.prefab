@@ -223,6 +223,9 @@ MonoBehaviour:
       - _enabled: 1
         _categoryId: 4
         _layoutId: 1
+      - _enabled: 0
+        _categoryId: 5
+        _layoutId: 1
       _defaultKeyboardMaps:
       - _enabled: 1
         _categoryId: 1
@@ -235,6 +238,9 @@ MonoBehaviour:
         _layoutId: 1
       - _enabled: 1
         _categoryId: 4
+        _layoutId: 1
+      - _enabled: 1
+        _categoryId: 5
         _layoutId: 1
       _defaultCustomControllerMaps: []
       _startingCustomControllers: []
@@ -256,6 +262,8 @@ MonoBehaviour:
           _id: 2
         - _enabled: 0
           _id: 3
+        - _enabled: 0
+          _id: 4
     actions:
     - _id: 0
       _name: Move Up
@@ -1346,6 +1354,19 @@ MonoBehaviour:
           _deviceInstanceGuidString: 
           _customControllerSourceId: -1
           _controllerId: -1
+      - _tag: 
+        _enable: 0
+        _categoryIds: 05000000
+        _layoutIds: 
+        _controllerSetSelector:
+          _type: 0
+          _controllerType: 0
+          _hardwareTypeGuidString: 00000000-0000-0000-0000-000000000000
+          _hardwareIdentifier: 
+          _controllerTemplateTypeGuidString: 
+          _deviceInstanceGuidString: 
+          _customControllerSourceId: -1
+          _controllerId: -1
     - _id: 1
       _name: NormalState
       _tag: NormalState
@@ -1392,6 +1413,19 @@ MonoBehaviour:
       - _tag: 
         _enable: 0
         _categoryIds: 04000000
+        _layoutIds: 
+        _controllerSetSelector:
+          _type: 0
+          _controllerType: 0
+          _hardwareTypeGuidString: 00000000-0000-0000-0000-000000000000
+          _hardwareIdentifier: 
+          _controllerTemplateTypeGuidString: 
+          _deviceInstanceGuidString: 
+          _customControllerSourceId: -1
+          _controllerId: -1
+      - _tag: 
+        _enable: 0
+        _categoryIds: 05000000
         _layoutIds: 
         _controllerSetSelector:
           _type: 0
@@ -1458,12 +1492,107 @@ MonoBehaviour:
           _deviceInstanceGuidString: 
           _customControllerSourceId: -1
           _controllerId: -1
+      - _tag: 
+        _enable: 0
+        _categoryIds: 05000000
+        _layoutIds: 
+        _controllerSetSelector:
+          _type: 0
+          _controllerType: 0
+          _hardwareTypeGuidString: 00000000-0000-0000-0000-000000000000
+          _hardwareIdentifier: 
+          _controllerTemplateTypeGuidString: 
+          _deviceInstanceGuidString: 
+          _customControllerSourceId: -1
+          _controllerId: -1
     - _id: 3
       _name: Alert
       _tag: Alert
       _rules:
       - _tag: 
         _enable: 1
+        _categoryIds: 04000000
+        _layoutIds: 
+        _controllerSetSelector:
+          _type: 0
+          _controllerType: 0
+          _hardwareTypeGuidString: 00000000-0000-0000-0000-000000000000
+          _hardwareIdentifier: 
+          _controllerTemplateTypeGuidString: 
+          _deviceInstanceGuidString: 
+          _customControllerSourceId: -1
+          _controllerId: -1
+      - _tag: 
+        _enable: 0
+        _categoryIds: 01000000
+        _layoutIds: 
+        _controllerSetSelector:
+          _type: 0
+          _controllerType: 0
+          _hardwareTypeGuidString: 00000000-0000-0000-0000-000000000000
+          _hardwareIdentifier: 
+          _controllerTemplateTypeGuidString: 
+          _deviceInstanceGuidString: 
+          _customControllerSourceId: -1
+          _controllerId: -1
+      - _tag: 
+        _enable: 0
+        _categoryIds: 02000000
+        _layoutIds: 
+        _controllerSetSelector:
+          _type: 0
+          _controllerType: 0
+          _hardwareTypeGuidString: 00000000-0000-0000-0000-000000000000
+          _hardwareIdentifier: 
+          _controllerTemplateTypeGuidString: 
+          _deviceInstanceGuidString: 
+          _customControllerSourceId: -1
+          _controllerId: -1
+      - _tag: 
+        _enable: 0
+        _categoryIds: 03000000
+        _layoutIds: 
+        _controllerSetSelector:
+          _type: 0
+          _controllerType: 0
+          _hardwareTypeGuidString: 00000000-0000-0000-0000-000000000000
+          _hardwareIdentifier: 
+          _controllerTemplateTypeGuidString: 
+          _deviceInstanceGuidString: 
+          _customControllerSourceId: -1
+          _controllerId: -1
+      - _tag: 
+        _enable: 0
+        _categoryIds: 05000000
+        _layoutIds: 
+        _controllerSetSelector:
+          _type: 0
+          _controllerType: 0
+          _hardwareTypeGuidString: 00000000-0000-0000-0000-000000000000
+          _hardwareIdentifier: 
+          _controllerTemplateTypeGuidString: 
+          _deviceInstanceGuidString: 
+          _customControllerSourceId: -1
+          _controllerId: -1
+    - _id: 4
+      _name: Notice
+      _tag: Notice
+      _rules:
+      - _tag: 
+        _enable: 1
+        _categoryIds: 05000000
+        _layoutIds: 
+        _controllerSetSelector:
+          _type: 0
+          _controllerType: 0
+          _hardwareTypeGuidString: 00000000-0000-0000-0000-000000000000
+          _hardwareIdentifier: 
+          _controllerTemplateTypeGuidString: 
+          _deviceInstanceGuidString: 
+          _customControllerSourceId: -1
+          _controllerId: -1
+      - _tag: 
+        _enable: 0
         _categoryIds: 04000000
         _layoutIds: 
         _controllerSetSelector:
@@ -1529,5 +1658,5 @@ MonoBehaviour:
     customControllerMapIdCounter: 0
     customControllerIdCounter: 0
     controllerMapLayoutManagerSetIdCounter: 0
-    controllerMapEnablerSetIdCounter: 4
+    controllerMapEnablerSetIdCounter: 5
   _controllerDataFiles: {fileID: 11400000, guid: d21d2b20df8369642b76aafbb2576ba7, type: 2}

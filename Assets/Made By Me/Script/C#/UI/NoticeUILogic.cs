@@ -60,11 +60,17 @@ public class NoticeUILogic
 
     IEnumerator Typing(string text)
     {
+        GameMangerInput.getInput(InputType.NoticeUIInput);
+        GameMangerInput.InputEvent.NoticeCloseEvent += NoticeClose;
+
+        yield return str.DOText(text, 2f).WaitForCompletion();
+
+        GameMangerInput.InputEvent.NoticeCloseEvent -= NoticeClose;
+        GameMangerInput.releaseInput(InputType.NoticeUIInput);
+    }
+
+    private void NoticeClose()
+    {
         Debug.Log("Typing Start");
-    
-        yield return str.DOText(text, 1f).WaitForCompletion();
-
-        Debug.Log("Typing End");
-
     }
 }

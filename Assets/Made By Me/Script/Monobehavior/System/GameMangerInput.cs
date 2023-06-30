@@ -18,6 +18,7 @@ public enum InputType
     SaveSlotUIInput = 6,
     OptionUIInput = 7,
     AlertUIInput = 8,
+    NoticeUIInput = 9,
 }
 
 public class GameMangerInput : MonoBehaviour
@@ -139,6 +140,11 @@ public class GameMangerInput : MonoBehaviour
             InteractiveJustReleased.Invoke();
         }
 
+        public static event Action NoticeCloseEvent;
+        public static void Invoke_NoticeCloseEvent()
+        {
+            NoticeCloseEvent.Invoke();
+        }
 
         public static event Action TabUIEnterPressed;
         public static event Action InteractiveUIEnterPressed;
@@ -487,6 +493,7 @@ public class GameMangerInput : MonoBehaviour
         ruleSets[1] = mapEnabler.ruleSets.Find(x => x.tag == "TalkWithNPC"); // 이 부분이 그냥 엔터만 받아서 넘기는 부분 총괄
         ruleSets[2] = mapEnabler.ruleSets.Find(x => x.tag == "UI");
         ruleSets[3] = mapEnabler.ruleSets.Find(x => x.tag == "Alert");
+        ruleSets[4] = mapEnabler.ruleSets.Find(x => x.tag == "Notice");
     }
 
     private void OnEnable() {
@@ -526,6 +533,9 @@ public class GameMangerInput : MonoBehaviour
                 break;
             case InputType.AlertUIInput :
                 changePlayerInputRule(3);
+                break;
+            case InputType.NoticeUIInput :
+                changePlayerInputRule(4);
                 break;
         }
     }
@@ -577,8 +587,8 @@ public class GameMangerInput : MonoBehaviour
         player.AddInputEventDelegate(InteractiveJustReleased, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased, "Interactive");
 
 
-
-
+        
+        player.AddInputEventDelegate(NoticeClose, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "NoticeClose");
 
 
         player.AddInputEventDelegate(UIEnterPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Enter");
@@ -627,7 +637,7 @@ public class GameMangerInput : MonoBehaviour
         player.RemoveInputEventDelegate(InteractiveJustPressed);
         player.RemoveInputEventDelegate(InteractiveJustReleased);
 
-        
+        player.RemoveInputEventDelegate(NoticeClose);
 
 
         player.RemoveInputEventDelegate(UIEnterPressed);
@@ -636,6 +646,11 @@ public class GameMangerInput : MonoBehaviour
         player.RemoveInputEventDelegate(UIDownPressed);
         player.RemoveInputEventDelegate(UIRightPressed);
         player.RemoveInputEventDelegate(UILeftPressed);
+    }
+
+    private void NoticeClose(InputActionEventData data)
+    {
+        InputEvent.Invoke_NoticeCloseEvent();
     }
 
     //////////////////////////////// INGAME ///////////////////////////////////////////////
