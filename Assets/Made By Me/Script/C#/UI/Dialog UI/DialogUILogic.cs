@@ -1,9 +1,12 @@
+using System;
+
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class DialogUILogic 
 {
+
     /// talk with NPC /////////
     public int callCount = 0;
     Dialog dialog;
@@ -213,6 +216,9 @@ public class DialogUILogic
 
         GameMangerInput.getInput(InputType.DialogtUIInput);
 
+        DialogInteract.isTalking = true;
+
+
         GameMangerInput.InputEvent.DialogUIEnterPressed += EnterPressed;
         GameMangerInput.InputEvent.DialogUIUpPressed += UpPressed;
         GameMangerInput.InputEvent.DialogUIDownPressed += DownPressed;
@@ -224,10 +230,13 @@ public class DialogUILogic
 
         GameMangerInput.releaseInput(InputType.DialogtUIInput);
 
+        DialogInteract.isTalking = false;
+
         callCount = 0;
         showOptionUI(false);
         isShowingOption = false;
         SelectOptionindex = 0;
+
 
         GameMangerInput.InputEvent.DialogUIEnterPressed -= EnterPressed;
         GameMangerInput.InputEvent.DialogUIUpPressed -= UpPressed;
