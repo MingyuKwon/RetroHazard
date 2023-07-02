@@ -11,6 +11,8 @@ public class CameraSetting : MonoBehaviour
     Vector3 maxLimit;
     Vector3 minLimit;
 
+    [SerializeField] int cameraHeight = -5;
+
     float playerWidth = 2.5f;
 
     float cameraVerticalHalf;
@@ -24,6 +26,7 @@ public class CameraSetting : MonoBehaviour
     }
 
     void Start() {
+        transform.position = new Vector3(transform.position.x, transform.position.y, cameraHeight);
 
         maxLimit = new Vector3(tilemap.localBounds.max.x-playerWidth, tilemap.localBounds.max.y-playerWidth, tilemap.localBounds.max.z) ;
         minLimit = new Vector3(tilemap.localBounds.min.x + playerWidth , tilemap.localBounds.min.y + playerWidth , tilemap.localBounds.max.z) ;
