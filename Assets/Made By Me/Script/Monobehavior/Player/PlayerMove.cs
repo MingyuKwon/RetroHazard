@@ -9,10 +9,38 @@ public class PlayerMove : MonoBehaviour
 {
     private PlayerMoveLogic playerMoveLogic;
 
-    [SerializeField] float moveSpeed = 5f;
+    public Vector2 playerDirection{
+        get{
+            return playerMoveLogic.playerDirection;
+        }
+
+        set{
+            playerMoveLogic.playerDirection = value;
+        }
+    }
+
+    public float moveSpeed{
+        get{
+            return playerMoveLogic.moveSpeed;
+        }
+
+        set{
+            playerMoveLogic.moveSpeed = value;
+        }
+    }
+
+    public float moveSpeedScholar{
+        get{
+            return playerMoveLogic.moveSpeedScholar;
+        }
+
+        set{
+            playerMoveLogic.moveSpeedScholar = value;
+        }
+    }
 
     private void Awake() {
-        playerMoveLogic = new PlayerMoveLogic(GetComponent<Transform>(), moveSpeed);
+        playerMoveLogic = new PlayerMoveLogic(GetComponent<Transform>());
     }
 
     private void OnEnable() {

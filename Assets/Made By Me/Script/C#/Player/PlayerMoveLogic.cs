@@ -7,7 +7,9 @@ using Sirenix.OdinInspector;
 using DG.Tweening;
 public class PlayerMoveLogic
 {
-    public float moveSpeed = 1f;
+    public float moveSpeed = 5f;
+    public float moveSpeedScholar = 1f;
+
     public bool canMove = true;
 
     public bool InputOk;
@@ -18,18 +20,18 @@ public class PlayerMoveLogic
 
     public bool isWalkingPress;
 
+    float HorizontalMoveSpeed;
+    float VerticalMoveSpeed;
 
-    public float HorizontalMoveSpeed;
-    public float VerticalMoveSpeed;
+    public Vector2 playerDirection;
 
 
     /////////references and constructor///////////////////////////////////
     private Transform transform;
 
-    public PlayerMoveLogic(Transform _transform, float movespeed)
+    public PlayerMoveLogic(Transform _transform)
     {
         transform = _transform;
-        this.moveSpeed = movespeed;
     }
 
     /////////references and constructor///////////////////////////////////
@@ -44,8 +46,6 @@ public class PlayerMoveLogic
         {
             InputOk = true;
 
-            float moveForceSchloar = 0f;
-
             if(!GameMangerInput.inputCheck.isPressingRight() && !GameMangerInput.inputCheck.isPressingLeft())
             {
                 HorizontalMoveSpeed = 0f;
@@ -56,23 +56,15 @@ public class PlayerMoveLogic
                 VerticalMoveSpeed = 0f;
             }
 
-            if(VerticalMoveSpeed != 0f && HorizontalMoveSpeed != 0f)
-            {
-                moveForceSchloar = 1 / Mathf.Sqrt(HorizontalMoveSpeed * HorizontalMoveSpeed + VerticalMoveSpeed * VerticalMoveSpeed);
-            }else
-            {
-                moveForceSchloar = 1f;
-            }
-            
-            float VerticalMoveSpeedFinal =  VerticalMoveSpeed * moveSpeed * Time.fixedDeltaTime * moveForceSchloar;
-            float HorizontalMoveSpeedFinal = HorizontalMoveSpeed * moveSpeed * Time.fixedDeltaTime * moveForceSchloar;
+            playerDirection = new Vector2(HorizontalMoveSpeed, VerticalMoveSpeed).normalized;
+            playerDirection = playerDirection * moveSpeed * Time.fixedDeltaTime * moveSpeedScholar;
 
-            if( !(VerticalMoveSpeedFinal == 0 && HorizontalMoveSpeedFinal == 0))
+            if( !(playerDirection.x == 0 && playerDirection.y == 0))
             {
                 
             }
 
-            transform.position = new Vector2( transform.position.x + HorizontalMoveSpeedFinal , transform.position.y + VerticalMoveSpeedFinal);
+            transform.position += (Vector3)playerDirection;
         }else
         {
             InputOk = false;
