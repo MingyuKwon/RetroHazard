@@ -8,11 +8,13 @@ using UnityEngine;
 public class InteractiveDialog : ScriptableObject
 {
     public string Interactive_name;
-    [InfoBox("[InteractCode]\n0 : Medium key-hole Door\n200 : Tutorial Rock Pile")]
+    [InfoBox("[Standard InteractCode]\n0 : Medium key-hole Door")]
+    [InfoBox("[Tutorial InteractCode]\n200 : Tutorial Rock Pile\n201 : Historic Site Gate")]
     public int InteractCode;
 
 
-    [InfoBox("[Interactive Item]\n100 : medium key\n200 : Nitroglycerin")]
+    [InfoBox("[Standard Interactive Item]\n100 : medium key")]
+    [InfoBox("[Tutorial Interactive Item]\n200 : Nitroglycerin\n201 : Historic Gate Key")]
     public int[] InteractKeyItems;
 
     [TextArea]
