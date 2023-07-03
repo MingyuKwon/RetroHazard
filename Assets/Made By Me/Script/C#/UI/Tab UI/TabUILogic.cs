@@ -115,6 +115,8 @@ public class TabUILogic : CallBackInterface
         isInteractive = false;
         isShowing = flag;
 
+        monoBehavior.gameObject.SetActive(flag);
+
         background.gameObject.SetActive(flag);
         itemUI.gameObject.SetActive(flag);
         itemExplainUI.gameObject.SetActive(flag);
@@ -142,8 +144,11 @@ public class TabUILogic : CallBackInterface
         interactiveMessageUI.gameObject.GetComponent<Image>().color = new Color(100f / 255f, 150f/ 255f, 200f/ 255f, 220f/ 255f);
         
 
-        isInteractive = true;
+        isInteractive = flag;
         isShowing = flag;
+
+        monoBehavior.gameObject.SetActive(flag);
+        
         background.gameObject.SetActive(flag);
         itemUI.gameObject.SetActive(flag);
         itemExplainUI.gameObject.SetActive(flag);
@@ -193,9 +198,11 @@ public class TabUILogic : CallBackInterface
             currentItemindex = 0;
         }
 
-        isInteractive = true;
+        isInteractive = flag;
         isOpenedItem = flag;
         isShowing = flag;
+
+        monoBehavior.gameObject.SetActive(flag);
 
         background.gameObject.SetActive(flag);
         interactiveMessageUI.gameObject.SetActive(flag);

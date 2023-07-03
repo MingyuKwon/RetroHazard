@@ -156,7 +156,6 @@ public class GameManagerUI : MonoBehaviour
     {
         if(isShowingTab && flag) return;
         inGameUI.gameObject.SetActive(!flag);
-        tabUI.gameObject.SetActive(flag);
         if(dialog == null)
         {
             tabUI.Visualize_Tab_Interactive(flag);
@@ -175,7 +174,6 @@ public class GameManagerUI : MonoBehaviour
     {
         if(isShowingTab && flag) return;
         inGameUI.gameObject.SetActive(true);
-        tabUI.gameObject.SetActive(flag);
         tabUI.Visualize_Tab_Menu(flag);
         isShowingTab = flag;
 
@@ -188,7 +186,6 @@ public class GameManagerUI : MonoBehaviour
     {
         if(isShowingTab && flag) return;
         inGameUI.gameObject.SetActive(!flag);
-        tabUI.gameObject.SetActive(flag);
         tabUI.Visualize_Tab_Obtain(flag);
         isShowingTab = flag;
 
@@ -200,7 +197,6 @@ public class GameManagerUI : MonoBehaviour
     {
         if(isShowingTab && flag) return;
         inGameUI.gameObject.SetActive(!flag);
-        tabUI.gameObject.SetActive(flag);
         tabUI.Visualize_Tab_Obtain(flag , item);
         isShowingTab = flag;
 
@@ -212,7 +208,6 @@ public class GameManagerUI : MonoBehaviour
     {
         if(isShowingTab && flag) return;
         inGameUI.gameObject.SetActive(!flag);
-        tabUI.gameObject.SetActive(flag);
         tabUI.Visualize_Tab_Obtain(flag , item);
         isShowingTab = flag;
 
@@ -224,7 +219,6 @@ public class GameManagerUI : MonoBehaviour
     {
         if(isShowingTab && flag) return;
         inGameUI.gameObject.SetActive(!flag);
-        tabUI.gameObject.SetActive(flag);
         tabUI.Visualize_Tab_Obtain(flag , item);
         isShowingTab = flag;
 

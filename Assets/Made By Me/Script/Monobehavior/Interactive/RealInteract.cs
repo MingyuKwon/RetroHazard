@@ -6,16 +6,16 @@ using UnityEngine.SceneManagement;
 public class RealInteract : Interact
 {
     [Tooltip("Current goal that you will check every simple interact with real interact")]
-    [SerializeField] int if_CurrentGoalIndex_Is_Interact = -1;
+    [SerializeField] int if_CurrentGoalIndex_Is_Interact = 0;
 
     [Tooltip("goal that you will change after the simple interact")]
-    [SerializeField] int nextGoalIndex_Is_Interact = -1;
+    [SerializeField] int nextGoalIndex_Is_Interact = 1;
 
     [Tooltip("Current goal that you will check when real interact success")]
-    [SerializeField] int if_CurrentGoalIndex_Is_Success = -1;
+    [SerializeField] int if_CurrentGoalIndex_Is_Success = 1;
 
     [Tooltip("goal that you will change after the real interact success")]
-    [SerializeField] int nextGoalIndex_Is_Success = -1;
+    [SerializeField] int nextGoalIndex_Is_Success = 2;
 
     private void Start() {
         Debug.Log("Real Interact name : " + this.gameObject.name);

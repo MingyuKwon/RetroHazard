@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 610cd96129616a742947f51acbf0e357, type: 3}
+  m_Name: Interact RockPile
+  m_EditorClassIdentifier: 
+  Interactive_name: Rock Pile
+  InteractCode: 200
+  InteractKeyItems: c8000000
+  Interactive_Situation: "The exit to the historic site is blocked by stones. \n\nSomething
+    is needed to clear the stones from the path"
+  SucessDialog:
+  - Boom!
+  - " the stones have been cleared, \n"
