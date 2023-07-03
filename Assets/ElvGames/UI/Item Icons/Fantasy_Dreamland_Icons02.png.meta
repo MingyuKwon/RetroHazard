@@ -3,7 +3,7 @@ guid: 502d1b54f4ef2d5439e4fe5aa28dc965
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -63,6 +63,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -6211,7 +6212,6 @@ TextureImporter:
       Fantasy_Dreamland_Icons02_73: 1253000417
       Fantasy_Dreamland_Icons02_24: -240160423
       Fantasy_Dreamland_Icons02_197: 1776115979
-      Fantasy_Dreamland_Icons02_254: -910605075
       Fantasy_Dreamland_Icons02_282: 1389108034
       Fantasy_Dreamland_Icons02_108: 1592329073
       Fantasy_Dreamland_Icons02_71: 2008387861
@@ -6219,11 +6219,12 @@ TextureImporter:
       Fantasy_Dreamland_Icons02_234: -26922854
       Fantasy_Dreamland_Icons02_4: -122390565
       Fantasy_Dreamland_Icons02_237: 1431600026
-      Fantasy_Dreamland_Icons02_281: -1055010742
+      Fantasy_Dreamland_Icons02_254: -910605075
       Fantasy_Dreamland_Icons02_270: -686829010
       Fantasy_Dreamland_Icons02_13: 895406699
       Fantasy_Dreamland_Icons02_92: -1988396817
       Fantasy_Dreamland_Icons02_44: 408238020
+      Fantasy_Dreamland_Icons02_281: -1055010742
       Fantasy_Dreamland_Icons02_249: -1038947701
       Fantasy_Dreamland_Icons02_189: 80020082
       Fantasy_Dreamland_Icons02_185: -2132776728
@@ -6303,34 +6304,34 @@ TextureImporter:
       Fantasy_Dreamland_Icons02_55: 166758913
       Fantasy_Dreamland_Icons02_67: 1082026253
       Fantasy_Dreamland_Icons02_114: 605269094
-      Fantasy_Dreamland_Icons02_213: -759501237
+      Fantasy_Dreamland_Icons02_271: 1550900529
       Fantasy_Dreamland_Icons02_268: -1186493801
       Fantasy_Dreamland_Icons02_106: -981361911
       Fantasy_Dreamland_Icons02_33: 769486397
+      Fantasy_Dreamland_Icons02_213: -759501237
       Fantasy_Dreamland_Icons02_66: -604032944
       Fantasy_Dreamland_Icons02_25: -893218424
       Fantasy_Dreamland_Icons02_242: -458051373
       Fantasy_Dreamland_Icons02_192: 1404469492
       Fantasy_Dreamland_Icons02_170: 908146308
-      Fantasy_Dreamland_Icons02_147: -113330780
+      Fantasy_Dreamland_Icons02_261: 229801410
       Fantasy_Dreamland_Icons02_123: 276673709
       Fantasy_Dreamland_Icons02_80: -1053647192
       Fantasy_Dreamland_Icons02_146: 1643410017
       Fantasy_Dreamland_Icons02_195: 67564746
       Fantasy_Dreamland_Icons02_1: -1960348162
-      Fantasy_Dreamland_Icons02_218: 279928921
+      Fantasy_Dreamland_Icons02_147: -113330780
       Fantasy_Dreamland_Icons02_152: 100699903
       Fantasy_Dreamland_Icons02_221: 751503056
+      Fantasy_Dreamland_Icons02_218: 279928921
       Fantasy_Dreamland_Icons02_64: -1019583931
       Fantasy_Dreamland_Icons02_273: -889655566
       Fantasy_Dreamland_Icons02_272: -1265151983
       Fantasy_Dreamland_Icons02_216: -260453514
       Fantasy_Dreamland_Icons02_15: -295479910
       Fantasy_Dreamland_Icons02_125: 295090035
-      Fantasy_Dreamland_Icons02_261: 229801410
       Fantasy_Dreamland_Icons02_14: -210782566
       Fantasy_Dreamland_Icons02_91: -90903099
-      Fantasy_Dreamland_Icons02_271: 1550900529
       Fantasy_Dreamland_Icons02_156: 1324367437
       Fantasy_Dreamland_Icons02_231: -2014810350
       Fantasy_Dreamland_Icons02_144: -108851542
@@ -6340,10 +6341,10 @@ TextureImporter:
       Fantasy_Dreamland_Icons02_178: 1052635662
       Fantasy_Dreamland_Icons02_220: -701916160
       Fantasy_Dreamland_Icons02_253: -1176848486
-      Fantasy_Dreamland_Icons02_240: 1509927643
       Fantasy_Dreamland_Icons02_259: -1088458911
       Fantasy_Dreamland_Icons02_85: 933158295
       Fantasy_Dreamland_Icons02_209: -1521223236
+      Fantasy_Dreamland_Icons02_240: 1509927643
       Fantasy_Dreamland_Icons02_97: -172825605
       Fantasy_Dreamland_Icons02_48: -1673589670
       Fantasy_Dreamland_Icons02_74: -892401807

@@ -3,7 +3,7 @@ guid: f057a6b35284b2b479cdab8979f9b4ae
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -63,6 +63,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -6176,7 +6177,6 @@ TextureImporter:
     nameFileIdTable:
       Fantasy_Dreamland_Icons03_182: 2043723094
       Fantasy_Dreamland_Icons03_268: -1660581573
-      Fantasy_Dreamland_Icons03_286: 942207021
       Fantasy_Dreamland_Icons03_209: -167361077
       Fantasy_Dreamland_Icons03_112: 703625148
       Fantasy_Dreamland_Icons03_186: 499434259
@@ -6209,8 +6209,8 @@ TextureImporter:
       Fantasy_Dreamland_Icons03_103: 817618261
       Fantasy_Dreamland_Icons03_44: 2118862644
       Fantasy_Dreamland_Icons03_83: -184873441
-      Fantasy_Dreamland_Icons03_113: 1500925699
       Fantasy_Dreamland_Icons03_277: -657525064
+      Fantasy_Dreamland_Icons03_113: 1500925699
       Fantasy_Dreamland_Icons03_88: -1443659390
       Fantasy_Dreamland_Icons03_77: 1600609589
       Fantasy_Dreamland_Icons03_222: 736585027
@@ -6343,12 +6343,12 @@ TextureImporter:
       Fantasy_Dreamland_Icons03_192: 1659079103
       Fantasy_Dreamland_Icons03_53: 936628727
       Fantasy_Dreamland_Icons03_52: 30559100
-      Fantasy_Dreamland_Icons03_80: 1353029356
       Fantasy_Dreamland_Icons03_174: 171976827
+      Fantasy_Dreamland_Icons03_80: 1353029356
       Fantasy_Dreamland_Icons03_105: 937158390
       Fantasy_Dreamland_Icons03_38: -1068225189
-      Fantasy_Dreamland_Icons03_122: -1196798759
       Fantasy_Dreamland_Icons03_94: -713248768
+      Fantasy_Dreamland_Icons03_122: -1196798759
       Fantasy_Dreamland_Icons03_74: 2116590297
       Fantasy_Dreamland_Icons03_39: 1339886224
       Fantasy_Dreamland_Icons03_72: -1508867038
@@ -6460,6 +6460,7 @@ TextureImporter:
       Fantasy_Dreamland_Icons03_267: 871372362
       Fantasy_Dreamland_Icons03_206: -330858567
       Fantasy_Dreamland_Icons03_57: 446169667
+      Fantasy_Dreamland_Icons03_286: 942207021
       Fantasy_Dreamland_Icons03_164: -135312869
       Fantasy_Dreamland_Icons03_237: -52903905
   spritePackingTag: 

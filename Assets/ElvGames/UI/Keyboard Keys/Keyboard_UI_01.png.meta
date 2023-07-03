@@ -3,7 +3,7 @@ guid: d37202d2ebe95ae44abeed50747f9a4a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -63,6 +63,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -1809,7 +1810,6 @@ TextureImporter:
       Keyboard_UI_01_43: -1577460330
       Keyboard_UI_01_38: 750765644
       Keyboard_UI_01_78: -1330075145
-      Keyboard_UI_01_70: -1947836860
       Keyboard_UI_01_46: -267370597
       Keyboard_UI_01_61: -949594900
       Keyboard_UI_01_30: -1645808651
@@ -1841,12 +1841,12 @@ TextureImporter:
       Keyboard_UI_01_40: 1408475517
       Keyboard_UI_01_29: 585334152
       Keyboard_UI_01_27: 477382436
+      Keyboard_UI_01_57: -1073619341
       Keyboard_UI_01_34: 1728623167
-      Keyboard_UI_01_48: 1432488203
       Keyboard_UI_01_26: -237958811
+      Keyboard_UI_01_48: 1432488203
       Keyboard_UI_01_9: -151184507
       Keyboard_UI_01_49: 488029019
-      Keyboard_UI_01_57: -1073619341
       Keyboard_UI_01_23: -620225175
       Keyboard_UI_01_36: 230120169
       Keyboard_UI_01_0: 1920330885
@@ -1874,6 +1874,7 @@ TextureImporter:
       Keyboard_UI_01_4: -1471437122
       Keyboard_UI_01_65: 1791503463
       Keyboard_UI_01_45: -2121697464
+      Keyboard_UI_01_70: -1947836860
       Keyboard_UI_01_15: 943065554
       Keyboard_UI_01_11: -2033995241
       Keyboard_UI_01_7: -1305971899

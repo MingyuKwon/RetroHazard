@@ -3,7 +3,7 @@ guid: 10f662f1857ccf444b809d1358c2a44e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -63,6 +63,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -1807,10 +1808,10 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       Keyboard_UI_02_16: 246136799
-      Keyboard_UI_02_52: 921420147
+      Keyboard_UI_02_54: -1523362663
       Keyboard_UI_02_11: 933597280
       Keyboard_UI_02_75: -736486177
-      Keyboard_UI_02_54: -1523362663
+      Keyboard_UI_02_52: 921420147
       Keyboard_UI_02_72: -1420401500
       Keyboard_UI_02_2: 1537478783
       Keyboard_UI_02_21: 1264899076

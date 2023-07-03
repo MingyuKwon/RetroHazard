@@ -234,7 +234,7 @@ public class SaveSystem : MonoBehaviour
 
         if(SceneManager.GetActiveScene().name == "SingleTon Make Room" && SaveSystem.SaveSlotNum == -1)
         {
-            SceneManager.LoadScene("Stage Middle");
+            SceneManager.LoadScene("Tutorial");
             return;
         }
 
