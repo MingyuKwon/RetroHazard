@@ -379,6 +379,8 @@ public class GameMangerInput : MonoBehaviour
     public static GameMangerInput instance = null;
     public static InputCheck inputCheck;
 
+    public static bool mouseCliking = false;
+
     public static Stack<InputType> inputControlStack = new Stack<InputType>();
 
     public static void getInput(InputType type)
@@ -605,10 +607,10 @@ public class GameMangerInput : MonoBehaviour
         player.AddInputEventDelegate(RightTab, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Move to Right Tab");
 
         player.AddInputEventDelegate(UIEnterPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "MouseLeftButton");
-        player.AddInputEventDelegate(UIBackPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased, "MouseRightButton");
+        player.AddInputEventDelegate(UIMouseBackPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased, "MouseRightButton");
     
         player.AddInputEventDelegate(UIEnterPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "AlertLeftClick");
-        player.AddInputEventDelegate(UIBackPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "AlertRightClick");
+        player.AddInputEventDelegate(UIMouseBackPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "AlertRightClick");
 
         player.AddInputEventDelegate(UILeftPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "AlertLeftPressed");
         player.AddInputEventDelegate(UIRightPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased, "AlertRightPressed");
@@ -642,6 +644,7 @@ public class GameMangerInput : MonoBehaviour
 
         player.RemoveInputEventDelegate(UIEnterPressed);
         player.RemoveInputEventDelegate(UIBackPressed);
+        player.RemoveInputEventDelegate(UIMouseBackPressed);
         player.RemoveInputEventDelegate(UIUpPressed);
         player.RemoveInputEventDelegate(UIDownPressed);
         player.RemoveInputEventDelegate(UIRightPressed);
@@ -770,6 +773,28 @@ public class GameMangerInput : MonoBehaviour
     public void UIBackPressed(InputActionEventData data)
     {
         InputEvent.Invoke_UIBackPressed();
+    }
+
+    public void UIMouseBackPressed(InputActionEventData data)
+    {
+        Debug.Log("UIMouseBackPressed : mouseCliking " + mouseCliking);
+
+        if(AlertUI.instance.gameObject.activeInHierarchy)
+        {
+            mouseCliking = true; // true가 입력 막는 flag인데, true를 설정 하는 놈이 alert 밖에 없다
+            InputEvent.Invoke_UIBackPressed();
+        }else
+        {
+            if(!mouseCliking)
+            {   
+                InputEvent.Invoke_UIBackPressed();
+            }else
+            {
+                mouseCliking = false;
+            }
+        }
+        
+         
     }
 
     public void UIUpPressed(InputActionEventData data)
