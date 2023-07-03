@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Ann's Dialog
   m_EditorClassIdentifier: 
   NPCname: Ann
+  hasFirstEncounterDialog: 1
   hasChoiceDialog: 1
   ChoiceQuestionQuantity: 2
   FirstEnCountDialogs:

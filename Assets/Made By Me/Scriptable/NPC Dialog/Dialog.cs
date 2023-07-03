@@ -7,6 +7,7 @@ public class Dialog : ScriptableObject
 {
     public string NPCname;
 
+    public bool hasFirstEncounterDialog;
     public bool hasChoiceDialog;
     public int ChoiceQuestionQuantity;
 

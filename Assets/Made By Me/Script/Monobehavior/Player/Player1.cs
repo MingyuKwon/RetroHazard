@@ -6,7 +6,6 @@ using UnityEngine;
 public class Player1 : MonoBehaviour
 {
     public static Player1 instance;
-
     public PlayerStatus playerStatus;
     public PlayerInventory playerInventory;
     public PlayerItemBox playerItemBox;

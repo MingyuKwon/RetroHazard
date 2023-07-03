@@ -39,7 +39,7 @@ public class DialogUILogic
         VisualizeDialogUI(true);
         this.dialog = dialog;
         SetSpeakerText(dialog.NPCname);
-        if(visited == false)
+        if(visited == false && dialog.hasFirstEncounterDialog)
         {
             monoBehavior.StartCoroutine(showFirstEncountDialog());
         }else
