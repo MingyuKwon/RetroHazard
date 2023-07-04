@@ -3,9 +3,7 @@
 
 현재 지도멱명의 위치를 보여주는 (포켓몬 식) 보여주기 ui를 만들자
 
-interact 끝나고 notice 띄우는 걸로 만들어보기
-
-아예 처음으로 하면 어떻게 하지? -> 만약 처음부터 성공이라면 notice 없애기
+아이템 컨테이너 하나 잘못 반짝임 이거 isinteractive ondisable이나 onenable에서 조져야 할 듯
 
 현재 goal index 저장하기
 

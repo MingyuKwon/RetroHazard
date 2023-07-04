@@ -116,6 +116,8 @@ public class ItemContainerLogic
 
             SetSelectText();
 
+            isInteractive = false;
+
 
             if(Player1.instance.playerInventory.items[containerNum].isKeyItem)
             {
@@ -240,6 +242,8 @@ public class ItemContainerLogic
 
     public void OnDisable() {
         fadeImage.color = new Color(0f, 0f, 0f, 0f);
+        isInteractive = false;
+
     }
 
     private void CheckTabWindowLayer()

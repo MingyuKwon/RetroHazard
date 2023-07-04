@@ -21,6 +21,10 @@ public class NoticeInteract : MonoBehaviour
         GameManager.EventManager.InteractNoticeEvent += AwakeNoticeInteract;
     }
 
+    private void OnDestroy() {
+        GameManager.EventManager.InteractNoticeEvent -= AwakeNoticeInteract;
+    }
+
     private void Start() {
         if(SaveSystem.instance.ActiveStageSaves[SceneManager.GetActiveScene().buildIndex].is_Notice_Destroy[transform.GetSiblingIndex()])
         {
@@ -41,7 +45,6 @@ public class NoticeInteract : MonoBehaviour
     {
         if(isSquare)
         {
-            Debug.Log("index : " + index);
             if(index == isSquareIndex)
             {
                 if(isCreate)
@@ -52,6 +55,13 @@ public class NoticeInteract : MonoBehaviour
                 {
                     isAlive = false;
                     gameObject.SetActive(false);
+
+                    BoxCollider2D boxCollider2D = GetComponent<BoxCollider2D>();
+
+                    if(boxCollider2D != null)
+                    {
+                        Destroy(boxCollider2D);
+                    }
                 }
                 
             }
