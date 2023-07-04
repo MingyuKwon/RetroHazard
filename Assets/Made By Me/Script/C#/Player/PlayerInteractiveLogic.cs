@@ -69,15 +69,14 @@ public class PlayerInteractiveLogic
                     GameManagerUI.instance.Visualize_SaveUI(true, true);
                 }else
                 {
-                    GameManager.EventManager.InvokeInteractEvent(); // RealInteract 발생
-
                     if(nearInteract is OneWayDoor)
                     {
                         ((OneWayDoor)nearInteract).OneWayDoorInteract(monoBehaviour.transform);
+                        GameManager.EventManager.InvokeInteractEvent(false); 
                     }else if(nearInteract is RealInteract)
                     {
                         GameManagerUI.instance.Visualize_Tab_Interactive(true, nearInteract.dialog);
-
+                        GameManager.EventManager.InvokeInteractEvent(true); // RealInteract 발생
                     }
                 }
                 

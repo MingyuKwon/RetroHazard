@@ -13,11 +13,9 @@ public class OneWayDoor : RealInteract
     string[] texts = new string[1];
 
     public override void OnEnable() {
-        base.OnEnable();
     }
 
     public override void OnDisable() {
-        base.OnDisable();
     }
 
     // 우선 InteractUI 띄우는 것만 구현해 보자
@@ -92,7 +90,7 @@ public class OneWayDoor : RealInteract
 
                 if(noticeIndex_ifExist != 0)
                 {
-                    GameManager.EventManager.InvokeInteractNoticeEvent(noticeIndex_ifExist);
+                    GameManager.EventManager.InvokeInteractNoticeEvent(noticeIndex_ifExist, true);
                 }
             
             }

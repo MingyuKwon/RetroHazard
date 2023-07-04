@@ -5,6 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class RealInteract : Interact
 {
+    [Header("In RealInteract, choose one when Notice Show event will occur")]
+    [SerializeField] bool justInteractNotice;
+    [SerializeField] bool SuccessInteractNotice;
+
+    [Header("Goal index. ")]
     [Tooltip("Current goal that you will check every simple interact with real interact")]  // interact 할 때 정해져 있어야 할 목표
     [SerializeField] int if_CurrentGoalIndex_Is_Interact = -1;
 
@@ -52,14 +57,24 @@ public class RealInteract : Interact
         GameManager.EventManager.Interact_KeyItem_Success_Event -= realInteractSuccess;
     }
 
-    private void InteractiveWithReal() // 이건 실제 아이템으로 성공하지 않고 그냥 interact만 했을 때 뜨는 창을 띄우는거
+    private void InteractiveWithReal(bool isRealInteract) // 이건 실제 아이템으로 성공하지 않고 그냥 interact만 했을 때 뜨는 창을 띄우는거
     {
-        if(if_CurrentGoalIndex_Is_Interact == -1) return;
-
-
-        if(if_CurrentGoalIndex_Is_Interact == PlayerGoalCollection.currentGoalIndex)
+        if(isRealInteract)
         {
-            PlayerGoalCollection.currentGoalIndex = nextGoalIndex_Is_Interact;
+            if(if_CurrentGoalIndex_Is_Interact == -1) return;
+
+            if(if_CurrentGoalIndex_Is_Interact == PlayerGoalCollection.currentGoalIndex)
+            {
+                PlayerGoalCollection.currentGoalIndex = nextGoalIndex_Is_Interact;
+            }
+
+            if(justInteractNotice)
+            {
+                if(noticeIndex_ifExist != 0)
+                {
+                    GameManager.EventManager.InvokeInteractNoticeEvent(noticeIndex_ifExist, true);
+                }
+            }
         }
     }
 
@@ -80,11 +95,17 @@ public class RealInteract : Interact
                 {
                     Destroy(boxCollider2D);
                 }
-
-                if(noticeIndex_ifExist != 0)
+                if(SuccessInteractNotice)
                 {
-                    GameManager.EventManager.InvokeInteractNoticeEvent(noticeIndex_ifExist);
+                    if(noticeIndex_ifExist != 0)
+                    {
+                        GameManager.EventManager.InvokeInteractNoticeEvent(noticeIndex_ifExist, true);
+                    }
+                }else
+                {
+                    GameManager.EventManager.InvokeInteractNoticeEvent(noticeIndex_ifExist, false);
                 }
+                
             
             }
         }

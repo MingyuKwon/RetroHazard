@@ -28,7 +28,7 @@ public class bulletItem : Item
 
         if(noticeIndex_ifExist != 0)
         {
-            GameManager.EventManager.InvokeInteractNoticeEvent(noticeIndex_ifExist);
+            GameManager.EventManager.InvokeInteractNoticeEvent(noticeIndex_ifExist, true);
         }
     }
 }

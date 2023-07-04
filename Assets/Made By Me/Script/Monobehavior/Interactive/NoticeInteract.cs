@@ -37,14 +37,23 @@ public class NoticeInteract : MonoBehaviour
     }
 
     [Button]
-    private void AwakeNoticeInteract(int index)
+    private void AwakeNoticeInteract(int index, bool isCreate)
     {
         if(isSquare)
         {
+            Debug.Log("index : " + index);
             if(index == isSquareIndex)
             {
-                isAlive = true;
-                gameObject.SetActive(true);
+                if(isCreate)
+                {
+                    isAlive = true;
+                    gameObject.SetActive(true);
+                }else
+                {
+                    isAlive = false;
+                    gameObject.SetActive(false);
+                }
+                
             }
         }
     }
@@ -59,6 +68,13 @@ public class NoticeInteract : MonoBehaviour
                 SaveSystem.instance.ActiveStageSaves[SceneManager.GetActiveScene().buildIndex].is_Notice_Destroy[transform.GetSiblingIndex()] = true;
                 isAlive = false;
                 gameObject.SetActive(false);
+
+                BoxCollider2D boxCollider2D = GetComponent<BoxCollider2D>();
+
+                if(boxCollider2D != null)
+                {
+                    Destroy(boxCollider2D);
+                }
             }
 
         
