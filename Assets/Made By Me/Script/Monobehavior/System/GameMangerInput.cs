@@ -456,7 +456,7 @@ public class GameMangerInput : MonoBehaviour
                 inputControlStack.Push(stack.Pop());
             }
 
-//        Debug.Log(str);
+        //Debug.Log(str);
 
     }
 
