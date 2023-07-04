@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 486b7894a4590d345b90e6f003c46405, type: 3}
+  m_Name: Notice Obtain Sheild
+  m_EditorClassIdentifier: 
+  noticeDialog:
+  - You've picked up the shield I mentioned
+  - "To give you a brief explanation, when you equip that shield, \n\nyou'll be able
+    to defend against enemy attacks."
+  - "However, you can't use it continuously. \n\nYou can only use it as many times
+    as the number of shield batteries you have, \nso if you use it thoughtlessly,
+    you may find yourself in a difficult situation."
+  - If you run out of batteries, you can reload the shield using the shield reload
+    button.

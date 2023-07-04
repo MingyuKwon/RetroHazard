@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Interact : MonoBehaviour
+public class Interact : ForNoticeBroadCast
 {
     public GameObject check;
     public InteractiveDialog dialog;

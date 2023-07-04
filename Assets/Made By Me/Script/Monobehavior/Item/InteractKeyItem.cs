@@ -20,5 +20,10 @@ public class InteractKeyItem : KeyItem
         GameManager.EventManager.Invoke_Obtain_RealKey_Item_Event(information);
         SaveSystem.instance.ActiveStageSaves[SceneManager.GetActiveScene().buildIndex].is_KeyItem_Destroy[transform.GetSiblingIndex()] = true;
         this.gameObject.SetActive(false);
+
+        if(noticeIndex_ifExist != 0)
+        {
+            GameManager.EventManager.InvokeInteractNoticeEvent(noticeIndex_ifExist);
+        }
     }
 }

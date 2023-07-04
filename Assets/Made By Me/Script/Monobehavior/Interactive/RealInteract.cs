@@ -76,12 +76,17 @@ public class RealInteract : Interact
                 transform.GetChild(1).gameObject.SetActive(false);
                 transform.GetChild(2).gameObject.SetActive(true);
 
-            BoxCollider2D boxCollider2D = GetComponent<BoxCollider2D>();
+                BoxCollider2D boxCollider2D = GetComponent<BoxCollider2D>();
 
-            if (boxCollider2D != null)
-            {
-                Destroy(boxCollider2D);
-            }
+                if(boxCollider2D != null)
+                {
+                    Destroy(boxCollider2D);
+                }
+
+                if(noticeIndex_ifExist != 0)
+                {
+                    GameManager.EventManager.InvokeInteractNoticeEvent(noticeIndex_ifExist);
+                }
             
             }
         }

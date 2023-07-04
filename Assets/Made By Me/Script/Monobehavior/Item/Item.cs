@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Item : MonoBehaviour
+public class Item : ForNoticeBroadCast
 {
     public ItemInformation information;
     public SpriteRenderer spriteRenderer;

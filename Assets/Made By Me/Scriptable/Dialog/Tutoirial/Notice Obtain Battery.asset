@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 486b7894a4590d345b90e6f003c46405, type: 3}
+  m_Name: Notice Obtain Battery
+  m_EditorClassIdentifier: 
+  noticeDialog:
+  - 'You''ve taken the Energy Container I mentioned!
+
+
+    That''s the most common
+    model, so it should be easy to find batteries for it.'
+  - To give you a brief explanation, equipping that Energy Container will enhance
+    your attack damage.
+  - "However, keep in mind you can't use it indefinitely. \n\nYou can only use it
+    as many times as the number of batteries you have, so if you use it thoughtlessly,
+    you may find yourself in a difficult situation."
+  - If you run out of batteries, you can reload energy using the energy reload button."

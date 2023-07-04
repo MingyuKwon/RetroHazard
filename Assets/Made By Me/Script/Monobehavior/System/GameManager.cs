@@ -30,6 +30,12 @@ public class GameManager : MonoBehaviour
             Update_IngameUI_Event?.Invoke(MaxHP, CurrentHP, Energy, EnergyMaganize, EnergyStore ,  Sheild, SheildMaganize , SheildStore, EnergyUpgrade, SheildUpgrade);
         }
 
+        public static event Action<int> InteractNoticeEvent;
+        public static void InvokeInteractNoticeEvent(int index)
+        {
+            InteractNoticeEvent?.Invoke(index);
+        }
+
         public static event Action InteractEvent;
         public static void InvokeInteractEvent()
         {

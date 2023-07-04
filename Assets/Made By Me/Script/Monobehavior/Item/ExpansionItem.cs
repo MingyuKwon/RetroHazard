@@ -24,5 +24,10 @@ public class ExpansionItem : KeyItem
             GameManager.EventManager.Invoke_Obtain_Expansion_Item_Event(information);
         }
         this.gameObject.SetActive(false);
+
+        if(noticeIndex_ifExist != 0)
+        {
+            GameManager.EventManager.InvokeInteractNoticeEvent(noticeIndex_ifExist);
+        }
     }
 }

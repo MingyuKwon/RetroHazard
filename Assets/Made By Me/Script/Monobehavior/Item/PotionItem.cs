@@ -25,6 +25,11 @@ public class PotionItem : Item
         SaveSystem.instance.ActiveStageSaves[SceneManager.GetActiveScene().buildIndex].is_PotionItem_Destroy[transform.GetSiblingIndex()] = true;
         GameManager.EventManager.Invoke_Obtain_potion_Item_Event(information);
         this.gameObject.SetActive(false);
+
+        if(noticeIndex_ifExist != 0)
+        {
+            GameManager.EventManager.InvokeInteractNoticeEvent(noticeIndex_ifExist);
+        }
     }
 
 }
