@@ -19,7 +19,7 @@ public class PlayerInteractive : MonoBehaviour
     }
 
     private void Awake() {
-        playerInteractiveLogic = new PlayerInteractiveLogic();
+        playerInteractiveLogic = new PlayerInteractiveLogic(this);
     }
 
     private void OnEnable() {

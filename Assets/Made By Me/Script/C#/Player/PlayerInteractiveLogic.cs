@@ -8,8 +8,12 @@ public class PlayerInteractiveLogic
 {
     private NPCDialogScript nearNPC = null;
     public Interact nearInteract = null;
+    PlayerInteractive monoBehaviour;
 
-
+    public PlayerInteractiveLogic(PlayerInteractive monoBehaviour)
+    {
+        this.monoBehaviour = monoBehaviour;
+    }
     public void triggerStay2D(Collider2D other)
     {
         if(other.tag == "NPC" )
@@ -65,8 +69,16 @@ public class PlayerInteractiveLogic
                     GameManagerUI.instance.Visualize_SaveUI(true, true);
                 }else
                 {
-                    GameManager.EventManager.InvokeInteractEvent();
-                    GameManagerUI.instance.Visualize_Tab_Interactive(true, nearInteract.dialog);
+                    GameManager.EventManager.InvokeInteractEvent(); // RealInteract 발생
+
+                    if(nearInteract is OneWayDoor)
+                    {
+                        ((OneWayDoor)nearInteract).OneWayDoorInteract(monoBehaviour.transform);
+                    }else if(nearInteract is RealInteract)
+                    {
+                        GameManagerUI.instance.Visualize_Tab_Interactive(true, nearInteract.dialog);
+
+                    }
                 }
                 
             }

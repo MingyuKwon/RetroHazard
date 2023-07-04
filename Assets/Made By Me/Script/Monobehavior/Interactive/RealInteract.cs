@@ -6,16 +6,16 @@ using UnityEngine.SceneManagement;
 public class RealInteract : Interact
 {
     [Tooltip("Current goal that you will check every simple interact with real interact")]
-    [SerializeField] int if_CurrentGoalIndex_Is_Interact = 0;
+    [SerializeField] int if_CurrentGoalIndex_Is_Interact = -1;
 
     [Tooltip("goal that you will change after the simple interact")]
-    [SerializeField] int nextGoalIndex_Is_Interact = 1;
+    [SerializeField] int nextGoalIndex_Is_Interact = -1;
 
     [Tooltip("Current goal that you will check when real interact success")]
-    [SerializeField] int if_CurrentGoalIndex_Is_Success = 1;
+    [SerializeField] int if_CurrentGoalIndex_Is_Success = -1;
 
     [Tooltip("goal that you will change after the real interact success")]
-    [SerializeField] int nextGoalIndex_Is_Success = 2;
+    [SerializeField] int nextGoalIndex_Is_Success = -1;
 
     private void Start() {
         Debug.Log("Real Interact name : " + this.gameObject.name);
@@ -38,8 +38,6 @@ public class RealInteract : Interact
             transform.GetChild(1).gameObject.SetActive(true);
             transform.GetChild(2).gameObject.SetActive(false);
         }
-
-
     }
 
     public override void OnEnable() {
@@ -54,7 +52,7 @@ public class RealInteract : Interact
         GameManager.EventManager.Interact_KeyItem_Success_Event -= realInteractSuccess;
     }
 
-    private void InteractiveWithReal()
+    private void InteractiveWithReal() // 이건 실제 아이템으로 성공하지 않고 그냥 interact만 했을 때 뜨는 창을 띄우는거
     {
         if(if_CurrentGoalIndex_Is_Interact == -1) return;
 
@@ -65,7 +63,7 @@ public class RealInteract : Interact
         }
     }
 
-    private void realInteractSuccess(InteractiveDialog interactiveDialog, int n)
+    private void realInteractSuccess(InteractiveDialog interactiveDialog, int n) // 이게 성공
     {
         if(interactiveDialog.InteractCode == dialog.InteractCode)
         {
