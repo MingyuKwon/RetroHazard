@@ -16,11 +16,11 @@ public class GameManager : MonoBehaviour
 
     public class EventManager
     {
-        public static event Action<string, string, bool ,int, int> showNotice;
-        public static void InvokeShowNotice(string showingUI ,string text = null, bool isTyping = false ,int panelWidth = 400, int panelHeight = 100)
+        public static event Action<string, string[], bool ,int, int> showNotice;
+        public static void InvokeShowNotice(string showingUI ,string[] texts = null, bool isTyping = false ,int panelWidth = 400, int panelHeight = 100)
         {
             // 아무 인수 없이 호출시에, notice를 닫는 것
-            showNotice?.Invoke(showingUI, text,isTyping, panelWidth, panelHeight);
+            showNotice?.Invoke(showingUI, texts,isTyping, panelWidth, panelHeight);
         }
 
         public static event Action<float,float, int, float, float , int, float, float, int, int> Update_IngameUI_Event; 

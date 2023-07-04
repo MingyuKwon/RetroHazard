@@ -43,7 +43,11 @@ public class MainMenuUI : MonoBehaviour, CallBackInterface
             buttons[0].gameObject.SetActive(false);
         }
 
-        GameManager.EventManager.InvokeShowNotice("MainMenuUI", "<i><b>-Input-</b></i>\n\n<b>ENTER</b> : \nspace\n\n<b>BACK</b> : \nbackSpace" , false, 200 ,250);
+        String[] texts = {
+            "<i><b>-Input-</b></i>\n\n<b>ENTER</b> : \nspace\n\n<b>BACK</b> : \nbackSpace"
+        };
+
+        GameManager.EventManager.InvokeShowNotice("MainMenuUI", texts , false, 200 ,250);
     }
     private void OnDisable() {
         for(int i=0; i<buttons.Length; i++)
