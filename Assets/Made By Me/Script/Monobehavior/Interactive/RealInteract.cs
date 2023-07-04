@@ -5,16 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class RealInteract : Interact
 {
-    [Tooltip("Current goal that you will check every simple interact with real interact")]
+    [Tooltip("Current goal that you will check every simple interact with real interact")]  // interact 할 때 정해져 있어야 할 목표
     [SerializeField] int if_CurrentGoalIndex_Is_Interact = -1;
 
-    [Tooltip("goal that you will change after the simple interact")]
+    [Tooltip("goal that you will change after the simple interact")] // interact만 하면 바뀔 목표
     [SerializeField] int nextGoalIndex_Is_Interact = -1;
 
-    [Tooltip("Current goal that you will check when real interact success")]
+    [Tooltip("Current goal that you will check when real interact success")] // interact에 성공했을 때 현재 설정 되어 있어야 할 목표
     [SerializeField] int if_CurrentGoalIndex_Is_Success = -1;
 
-    [Tooltip("goal that you will change after the real interact success")]
+    [Tooltip("goal that you will change after the real interact success")] // interact에 성공했을 때 다음으로 설정 되어야 할 목표
     [SerializeField] int nextGoalIndex_Is_Success = -1;
 
     private void Start() {
