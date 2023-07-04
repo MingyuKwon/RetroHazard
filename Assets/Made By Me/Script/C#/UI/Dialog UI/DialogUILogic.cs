@@ -14,6 +14,8 @@ public class DialogUILogic
     public int SelectOptionindex = 0;
     public bool isShowingOption = false;
 
+    bool isNowTalking = false;
+
     option[] Option;
     Text dialogText;
     Text speakerText;
@@ -85,10 +87,18 @@ public class DialogUILogic
     {
         string[] FirstEncountDialog = dialog.FirstEnCountDialogs;
         int strCount = FirstEncountDialog.Length;
+        int previousCallcount;
+
         while(strCount > callCount)
         {
-            SetDialogText(FirstEncountDialog[callCount]);
-            yield return new WaitForEndOfFrame();
+            previousCallcount = callCount;
+            isNowTalking = true;
+            yield return monoBehavior.StartCoroutine(TypeTextAnimation(FirstEncountDialog[callCount], 1.5f));
+            isNowTalking = false;
+            while(previousCallcount == callCount)
+            {
+                yield return new WaitForEndOfFrame();
+            }
         }
 
         VisualizeDialogUI(false);
@@ -103,7 +113,9 @@ public class DialogUILogic
         while(strCount > callCount)
         {
             previousCallcount = callCount;
+            isNowTalking = true;
             yield return monoBehavior.StartCoroutine(TypeTextAnimation(RepeatingDialog[callCount], 1.5f));
+            isNowTalking = false;
             while(previousCallcount == callCount)
             {
                 yield return new WaitForEndOfFrame();
@@ -117,7 +129,8 @@ public class DialogUILogic
         //각 프레임이 1/프레임 의 시간동안 지속이 된다
         // 그럼 원하는 시간동안 되도록 프레임을 이용한 방법으로 시간을 맞추기 위해서는
 
-        float timePerChar = time / message.Length / Time.deltaTime;
+        float timePerChar = time / 50 / Time.unscaledDeltaTime;
+
         Stack<Char> stack = new Stack<Char>();
 
         dialogText.text = "";
@@ -176,6 +189,7 @@ public class DialogUILogic
             {
                 yield return new WaitForEndOfFrame();
             }
+
         }
     }
 
@@ -202,10 +216,18 @@ public class DialogUILogic
             index++;
         }
 
+        int previousCallcount;
+
         while(ChoiceQuestionQuantity-1 > callCount)
         {
-            SetDialogText(question[callCount]);
-            yield return new WaitForEndOfFrame();
+            previousCallcount = callCount;
+            isNowTalking = true;
+            yield return monoBehavior.StartCoroutine(TypeTextAnimation(question[callCount], 1.5f));
+            isNowTalking = false;
+            while(previousCallcount == callCount)
+            {
+                yield return new WaitForEndOfFrame();
+            }
         }
 
         SetDialogText(question[callCount]);
@@ -255,10 +277,18 @@ public class DialogUILogic
         }
 
         int strCount = OptionDialog.Length;
+        int previousCallcount;
+
         while(strCount > callCount)
         {
-            SetDialogText(OptionDialog[callCount]);
-            yield return new WaitForEndOfFrame();
+            previousCallcount = callCount;
+            isNowTalking = true;
+            yield return monoBehavior.StartCoroutine(TypeTextAnimation(OptionDialog[callCount], 1.5f));
+            isNowTalking = false;
+            while(previousCallcount == callCount)
+            {
+                yield return new WaitForEndOfFrame();
+            }
         }
 
         VisualizeDialogUI(false);
@@ -321,7 +351,10 @@ public class DialogUILogic
 
     public void EnterPressed()
     {
-        callCount++;
+        if(!isNowTalking)
+        {
+            callCount++;
+        }
     }
     public void UpPressed()
     {
