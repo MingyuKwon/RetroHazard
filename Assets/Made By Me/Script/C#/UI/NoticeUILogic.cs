@@ -32,6 +32,10 @@ public class NoticeUILogic
 
     public void OnDisable() {
         callCount = 0;
+
+        GameMangerInput.InputEvent.NoticeCloseEvent -= EnterPressed;
+        GameMangerInput.releaseInput(InputType.NoticeUIInput);
+        showNotice(this.showingUI, null, false, 100, 100);
     }
 
     string showingUI;
@@ -65,6 +69,10 @@ public class NoticeUILogic
 
     IEnumerator Typing(string[] texts)
     {
+        if((GameMangerInput.inputControlStack.Count != 0) && GameMangerInput.inputControlStack.Peek() == InputType.FieldInput)
+        {
+            GameManager.instance.SetPauseGame(true);
+        }
         GameMangerInput.getInput(InputType.NoticeUIInput);
         GameMangerInput.InputEvent.NoticeCloseEvent += EnterPressed;
 
@@ -86,7 +94,7 @@ public class NoticeUILogic
 
     private void EnterPressed()
     {
-        if(!isNowTalking) return; // 아직 텍스트 치는거 안끝났으면 이 이후는 받지 않음
+        if(isNowTalking) return; // 아직 텍스트 치는거 안끝났으면 이 이후는 받지 않음
 
         callCount++;
 
@@ -94,6 +102,10 @@ public class NoticeUILogic
         {
             GameMangerInput.InputEvent.NoticeCloseEvent -= EnterPressed;
             GameMangerInput.releaseInput(InputType.NoticeUIInput);
+            if((GameMangerInput.inputControlStack.Count != 0) && GameMangerInput.inputControlStack.Peek() == InputType.FieldInput)
+            {
+                GameManager.instance.SetPauseGame(false);
+            }
             showNotice(this.showingUI, null, false, 100, 100);
         }
         

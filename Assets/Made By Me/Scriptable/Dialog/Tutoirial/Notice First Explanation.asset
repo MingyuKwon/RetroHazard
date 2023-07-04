@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 486b7894a4590d345b90e6f003c46405, type: 3}
+  m_Name: Notice First Explanation
+  m_EditorClassIdentifier: 
+  noticeDialog:
+  - Ah ah ah, can you hear me?
+  - If you're near the coast now, it probably means we've successfully smuggled ourselves
+    in.
+  - Let's reiterate our objective once again, it is to steal the most expensive artifact
+    from the "Okera" region.
+  - "In the center of the \"Okera\" region lies the tomb of the \"Noshuc\" dynasty.
+    \n\nOur goal is to enter there, steal the sword made of jewels belonging to the
+    founding king, and successfully escape.\""
+  - "\"You should be able to see the archaeological site as you go down, and you
+    can enter the village through there. \n\nGood luck.\""

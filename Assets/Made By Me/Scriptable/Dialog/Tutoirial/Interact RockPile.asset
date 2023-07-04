@@ -15,8 +15,8 @@ MonoBehaviour:
   Interactive_name: Rock Pile
   InteractCode: 200
   InteractKeyItems: c8000000
-  Interactive_Situation: "The exit to the historic site is blocked by stones. \n\nSomething
-    is needed to clear the stones from the path"
+  Interactive_Situation: "The exit to the archaeological site is blocked by stones.
+    \n\nSomething is needed to clear the stones from the path"
   SucessDialog:
   - Boom!
   - " the stones have been cleared, \n"

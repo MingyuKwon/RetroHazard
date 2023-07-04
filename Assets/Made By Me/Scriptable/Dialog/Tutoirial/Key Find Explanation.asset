@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 486b7894a4590d345b90e6f003c46405, type: 3}
+  m_Name: Key Find Explanation
+  m_EditorClassIdentifier: 
+  noticeDialog:
+  - Ah! I almost forgot to mention something.
+  - The door leading to the archaeological site is locked, but I've managed to secure
+    the key that opens it.
+  - I've hidden it at the upper part of the beach, so all you need to do is find
+    it and use it to unlock the door.
+  - I've also hidden a shield and a battery there, so make sure to take those with
+    you.
+  - "Especially the battery - I highly recommend taking it. No matter how confident
+    you are with the mission, \n\nI've never seen anyone complete it without a battery."
+  - 'In any case, make sure to gather everything you need so you can proceed.
+
+
+    Good
+    luck.'

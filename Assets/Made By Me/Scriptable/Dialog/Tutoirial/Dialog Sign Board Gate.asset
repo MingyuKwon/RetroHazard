@@ -22,8 +22,8 @@ MonoBehaviour:
   - Go left if you want to buy something
   - I can Level up you
   ReapeatingDialogs:
-  - "<b>NOTICE</b>\n \nIn order to prevent the imminent risk of our historical site
-    being destroyed by the roaming monsters, we are closing this gate."
+  - "<b>NOTICE</b>\n \nIn order to prevent the imminent risk of our archaeological
+    site being destroyed by the roaming monsters, we are closing this gate."
   EventDialogs: []
   ChoiceDialog:
   - What do you want?

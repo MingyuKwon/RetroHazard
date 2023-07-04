@@ -115,7 +115,7 @@ public class SaveSlotUILogic : CallBackInterface
         }
 
         string[] texts = {
-            "<i><b>-Input-</b></i>\n\n<b>ENTER</b> : \nspace\n\n<b>BACK</b> : \nbackSpace\n\n<b>REMOVE</b> :\n R"
+            "<i><b>-Input-</b></i>\n\n<b>ENTER</b> : \nspace\n\n<b>BACK</b> : \nbackSpace\n\n<b>REMOVE</b> :\n R",
         };
 
         GameManager.EventManager.InvokeShowNotice("SaveSlotUI", texts , false, 200 ,350);

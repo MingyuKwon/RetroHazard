@@ -23,8 +23,8 @@ MonoBehaviour:
   - I can Level up you
   ReapeatingDialogs:
   - "<b>NOTICE</b>\n \nWe've tried our best to prevent monsters from appearing within
-    the historical site, but unfortunately, we failed.\r\n\r\nIn order to at least
-    block the monsters from infiltrating our village, we have sealed this entrance
+    the archaeological site, but unfortunately, we failed.\r\n\r\nIn order to at
+    least block the monsters from infiltrating our village, we have sealed this entrance
     with stone."
   EventDialogs: []
   ChoiceDialog:
