@@ -28,8 +28,7 @@ public class NoticeInteract : MonoBehaviour
     private void Start() {
         if(SaveSystem.instance.ActiveStageSaves[SceneManager.GetActiveScene().buildIndex].is_Notice_Destroy[transform.GetSiblingIndex()])
         {
-            isAlive = false;
-            this.gameObject.SetActive(false);
+            removePermenantly();
         }
 
         if(isSquare)
@@ -38,6 +37,19 @@ public class NoticeInteract : MonoBehaviour
             this.gameObject.SetActive(false);
         }
 
+    }
+
+    private void removePermenantly()
+    {
+        isAlive = false;
+        gameObject.SetActive(false);
+
+        BoxCollider2D boxCollider2D = GetComponent<BoxCollider2D>();
+
+        if(boxCollider2D != null)
+        {
+            Destroy(boxCollider2D);
+        }
     }
 
     [Button]
@@ -53,15 +65,7 @@ public class NoticeInteract : MonoBehaviour
                     gameObject.SetActive(true);
                 }else
                 {
-                    isAlive = false;
-                    gameObject.SetActive(false);
-
-                    BoxCollider2D boxCollider2D = GetComponent<BoxCollider2D>();
-
-                    if(boxCollider2D != null)
-                    {
-                        Destroy(boxCollider2D);
-                    }
+                    removePermenantly();
                 }
                 
             }
@@ -76,18 +80,8 @@ public class NoticeInteract : MonoBehaviour
                 GameManager.EventManager.InvokeShowNotice("Field", dialog.noticeDialog , true, 900 ,250);
             
                 SaveSystem.instance.ActiveStageSaves[SceneManager.GetActiveScene().buildIndex].is_Notice_Destroy[transform.GetSiblingIndex()] = true;
-                isAlive = false;
-                gameObject.SetActive(false);
-
-                BoxCollider2D boxCollider2D = GetComponent<BoxCollider2D>();
-
-                if(boxCollider2D != null)
-                {
-                    Destroy(boxCollider2D);
-                }
+                removePermenantly();
             }
-
-        
     }
 
 }

@@ -116,8 +116,7 @@ public class ItemContainerLogic
 
             SetSelectText();
 
-            isInteractive = false;
-
+            SetInteractFade();
 
             if(Player1.instance.playerInventory.items[containerNum].isKeyItem)
             {
@@ -209,6 +208,7 @@ public class ItemContainerLogic
     public void OnEnableBoxContainer() {
         if(Player1.instance.playerItemBox == null) return;
         if(Player1.instance.playerItemBox.items[containerNum] == null) return;
+
         indexLimitMax = 0;
         indexLimitMin = 0;
         focus.selectButtons[1].gameObject.SetActive(false);
@@ -589,9 +589,8 @@ public class ItemContainerLogic
             {
                 if(n == Player1.instance.playerInventory.items[containerNum].KeyItemCode)
                 {
-                        
                     flag = true;
-                     break;
+                    break;
                 }
             }
 

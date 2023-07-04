@@ -163,22 +163,18 @@ public class TabUI : MonoBehaviour
         tabUILogic.UpdateTabUI();
     }
 
-    ////////////// override start /////////////////////////////
-
-    public void Visualize_Tab_Interactive(bool flag)
+    public void Visualize_Tab_Interactive(bool flag, InteractiveDialog dialog = null)
     {
-        tabUILogic.Visualize_Tab_Interactive(flag);
-
+        if(dialog == null)
+        {
+            tabUILogic.Visualize_Tab_Interactive(flag);
+        }else
+        {
+            tabUILogic.Visualize_Tab_Interactive(flag, dialog);
+        }
+        
     }
-
-    public void Visualize_Tab_Interactive(bool flag , InteractiveDialog dialog)
-    {
-        tabUILogic.Visualize_Tab_Interactive(flag, dialog);
-
-    }
-
-    ////////////// override end /////////////////////////////
-
+    
     public void Visualize_Tab_Menu(bool flag)
     {
         tabUILogic.Visualize_Tab_Menu(flag);

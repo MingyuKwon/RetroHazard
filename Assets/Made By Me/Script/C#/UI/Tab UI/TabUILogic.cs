@@ -132,7 +132,7 @@ public class TabUILogic : CallBackInterface
         itemObtainYesNoPanelUI.gameObject.SetActive(false);
     }
 
-    public void Visualize_Tab_Interactive(bool flag)
+    public void Visualize_Tab_Interactive(bool flag , InteractiveDialog dialog = null)
     {
         if(isShowing && flag) return;
 
@@ -153,6 +153,22 @@ public class TabUILogic : CallBackInterface
         isInteractive = flag;
         isShowing = flag;
 
+        if(dialog != null)
+        {
+            if(flag)
+            {
+                neededKeyItemCode = dialog.InteractKeyItems;
+                interactiveDialog = dialog;
+            }else
+            {
+                neededKeyItemCode = null;
+                interactiveDialog = null;
+            }
+
+            interactiveMessageUI.SetInteractiveName(dialog.Interactive_name);
+            interactiveMessageUI.SetInteractiveSituation(dialog.Interactive_Situation);
+        }
+
         monoBehavior.gameObject.SetActive(flag);
         
         background.gameObject.SetActive(flag);
@@ -165,26 +181,6 @@ public class TabUILogic : CallBackInterface
 
     }
 
-    public void Visualize_Tab_Interactive(bool flag , InteractiveDialog dialog)
-    {
-        Visualize_Tab_Interactive(flag);
-
-        if(flag)
-        {
-            neededKeyItemCode = dialog.InteractKeyItems;
-            interactiveDialog = dialog;
-        }else
-        {
-            neededKeyItemCode = null;
-            interactiveDialog = null;
-        }
-
-        itemUI.SetInteractFade();
-
-        interactiveMessageUI.SetInteractiveName(dialog.Interactive_name);
-        interactiveMessageUI.SetInteractiveSituation(dialog.Interactive_Situation);
-
-    }
 
     public void Visualize_Tab_Obtain(bool flag)
     {
@@ -263,6 +259,7 @@ public class TabUILogic : CallBackInterface
 
         //////////////////////
         showingTabIndex = 0;
+
         //////////////////////////////////////////
 
         GameMangerInput.InputEvent.TabUIEnterPressed += UIEnterPressed;
