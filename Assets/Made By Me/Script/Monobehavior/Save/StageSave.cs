@@ -15,8 +15,7 @@ public class StageSave
     public bool[] is_EquipItem_Destroy;
 
     public bool[] is_Interact_Destroy;
-
-    //public bool[] is_Box_Destroy;
+    public bool[] is_Notice_Destroy;
 
     public StageSave()
     {
@@ -31,6 +30,7 @@ public class StageSave
         is_ExpansionItem_Destroy = new bool[stageSave.is_ExpansionItem_Destroy.Length];
         is_EquipItem_Destroy = new bool[stageSave.is_EquipItem_Destroy.Length];
         is_Interact_Destroy = new bool[stageSave.is_Interact_Destroy.Length];
+        is_Notice_Destroy = new bool[stageSave.is_Notice_Destroy.Length];
 
         for(int i=0; i<stageSave.is_BulletItem_Destroy.Length; i++)
         {
@@ -57,10 +57,17 @@ public class StageSave
             is_EquipItem_Destroy[i] = stageSave.is_EquipItem_Destroy[i];
         }
 
-        for(int i=0; i<stageSave.is_BulletItem_Destroy.Length; i++)
+        for(int i=0; i<stageSave.is_Interact_Destroy.Length; i++)
         {
             is_Interact_Destroy[i] = stageSave.is_Interact_Destroy[i];
         }
+
+        for(int i=0; i<stageSave.is_Notice_Destroy.Length; i++)
+        {
+            is_Notice_Destroy[i] = stageSave.is_Notice_Destroy[i];
+        }
+
+        
     }
 
     

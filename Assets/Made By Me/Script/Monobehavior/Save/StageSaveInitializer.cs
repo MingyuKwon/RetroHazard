@@ -32,6 +32,9 @@ public class StageSaveInitializer : MonoBehaviour
             n = FindObjectsOfType<RealInteract>().Length;
             temp.is_Interact_Destroy = new bool[n];
 
+            n = FindObjectsOfType<NoticeInteract>().Length;
+            temp.is_Notice_Destroy = new bool[n];
+
             SaveSystem.instance.ActiveStageSaves[SceneManager.GetActiveScene().buildIndex] = temp;
         }
     }
