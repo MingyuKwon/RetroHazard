@@ -266,7 +266,6 @@ public class GameManagerUI : MonoBehaviour
 
     public void VisualizeInteractiveUI(bool flag, string ItemName = "")
     {
-        interactiveUI.gameObject.SetActive(flag);
         if(ItemName == "")
         {
             interactiveUI.VisualizeInteractiveUI(flag);
