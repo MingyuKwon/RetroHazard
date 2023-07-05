@@ -57,19 +57,19 @@ public class MapShowInteract : MonoBehaviour
                 {
                     if(enterVector == Vector2.up)
                     {
-                        Debug.Log(MapNameCollection.getMapNameArray((int)sceneName)[inPlus]);
+                        UI.instance.inGameUI.ShowMapShowPanel(MapNameCollection.getMapNameArray((int)sceneName)[inPlus]);
                     }else if(enterVector == Vector2.down)
                     {
-                        Debug.Log(MapNameCollection.getMapNameArray((int)sceneName)[inMinus]);
+                        UI.instance.inGameUI.ShowMapShowPanel(MapNameCollection.getMapNameArray((int)sceneName)[inMinus]);
                     }
                 }else
                 {
                     if(enterVector == Vector2.right)
                     {
-                        Debug.Log(MapNameCollection.getMapNameArray((int)sceneName)[inPlus]);
+                        UI.instance.inGameUI.ShowMapShowPanel(MapNameCollection.getMapNameArray((int)sceneName)[inPlus]);
                     }else if(enterVector == Vector2.left)
                     {
-                        Debug.Log(MapNameCollection.getMapNameArray((int)sceneName)[inMinus]);
+                        UI.instance.inGameUI.ShowMapShowPanel(MapNameCollection.getMapNameArray((int)sceneName)[inMinus]);
                     }
                 }
 

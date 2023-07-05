@@ -59,6 +59,7 @@ public class InGameUI : MonoBehaviour
     [Button]
     public void ShowMapShowPanel(string mapName)
     {
+        if(!UI.instance.inGameUI.gameObject.activeInHierarchy) return;
         if(!canStartCoroutine) return;
 
         canStartCoroutine = false;
@@ -67,32 +68,31 @@ public class InGameUI : MonoBehaviour
         StartCoroutine(ShowMapShowPanelCoroutine());
     }
 
-    public IEnumerator ShowMapShowPanelCoroutine()
+    IEnumerator ShowMapShowPanelCoroutine()
     {
-        float fullShowTimeScholar = 0.3f;
+        float fullShowTimeScholar = 0.6f;
 
-        float showingTimeHalf = (showingTime * (1 - fullShowTimeScholar) / 2) / Time.unscaledDeltaTime;
-        float fullShowingTime = showingTime * fullShowTimeScholar / Time.unscaledDeltaTime;
+        float showingTimeHalf = (showingTime * (1 - fullShowTimeScholar) / 2);
+        float fullShowingTime = showingTime * fullShowTimeScholar;
 
-        saveYPosition = new float[Mathf.FloorToInt(showingTimeHalf) + 2];
+        int frames = 70;
         
-        saveYPosition[0] = mapShowPanelRecTransform.anchoredPosition.y;
+        saveYPosition = new float[frames + 2];
+        
+        saveYPosition[0] = invisiblePosition.y;
 
-        for(int i=0; i<Mathf.FloorToInt(showingTimeHalf)+1; i++)
+        for(int i=0; i<frames + 1; i++)
         {
             MoveShowMapShowPanel(0.1f, i, true);
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForSeconds(showingTimeHalf / frames);
         }
 
-        for(int i=0; i<Mathf.FloorToInt(fullShowingTime); i++)
-        {
-            yield return new WaitForEndOfFrame();
-        }
+        yield return new WaitForSeconds(fullShowingTime);
 
-        for(int i=0; i<Mathf.FloorToInt(showingTimeHalf)+2; i++)
+        for(int i=0; i<frames + 2; i++)
         {
             MoveShowMapShowPanel(0.1f, i, false);
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForSeconds(showingTimeHalf / frames);
         }
 
         saveYPosition = null;
