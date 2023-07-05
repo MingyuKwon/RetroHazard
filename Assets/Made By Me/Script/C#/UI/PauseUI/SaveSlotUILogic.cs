@@ -62,6 +62,16 @@ public class SaveSlotUILogic : CallBackInterface
 
     int saveSlotNum;
 
+    string[] FirstSaveSlotUINoticeText = {
+                "The way to save is simple",
+                "Just press the slot you want to save in!",
+                "If you want to delete, you can press the remove button or click the red X button with the mouse",
+                };
+
+    string[] SaveSlotUIText = {
+            "<i><b>-Input-</b></i>\n\n<b>ENTER</b> : \nspace\n\n<b>BACK</b> : \nbackSpace\n\n<b>REMOVE</b> :\n R",
+                };
+
     public SaveSlotUILogic(SaveSlotUI monobehaviour)
     {
         this.monobehaviour = monobehaviour;
@@ -109,17 +119,20 @@ public class SaveSlotUILogic : CallBackInterface
         if(isSave)
         {
             monobehaviour.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = "Save";
+
+            if(!GameManager.TutorialCheck.isSaveSlotUITutorialDone)
+            {
+                GameManager.EventManager.InvokeShowNotice("SaveSlotUI", FirstSaveSlotUINoticeText , true ,500 ,300);
+                GameManager.TutorialCheck.isSaveSlotUITutorialDone = true;
+            }else
+            {
+                GameManager.EventManager.InvokeShowNotice("SaveSlotUI", SaveSlotUIText , false,200 ,350);
+            }
         }else
         {
             monobehaviour.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = "Load";
+            GameManager.EventManager.InvokeShowNotice("SaveSlotUI", SaveSlotUIText , false,200 ,350);
         }
-
-        string[] texts = {
-            "<i><b>-Input-</b></i>\n\n<b>ENTER</b> : \nspace\n\n<b>BACK</b> : \nbackSpace\n\n<b>REMOVE</b> :\n R",
-        };
-
-        GameManager.EventManager.InvokeShowNotice("SaveSlotUI", texts , false, 200 ,350);
-
     }
 
     public void OnDisable() {
