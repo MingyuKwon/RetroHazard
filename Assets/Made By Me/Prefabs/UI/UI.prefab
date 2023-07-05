@@ -891,6 +891,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: In Game UI
       objectReference: {fileID: 0}
+    - target: {fileID: 6247385540434465172, guid: c4bb388f41a408846aefd1cb2998844c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 69
+      objectReference: {fileID: 0}
     - target: {fileID: 6815081024173656422, guid: c4bb388f41a408846aefd1cb2998844c, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
