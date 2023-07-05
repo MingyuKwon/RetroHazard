@@ -233,7 +233,6 @@ public class GameManagerUI : MonoBehaviour
     {
         if(isShowingTab && flag) return;
         
-        boxUI.gameObject.SetActive(flag);
         boxUI.Visualize_BoxUI(flag);
         inGameUI.gameObject.SetActive(!flag);
         isShowingBox = flag;

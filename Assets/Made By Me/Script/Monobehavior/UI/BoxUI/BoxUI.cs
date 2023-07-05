@@ -91,7 +91,7 @@ public class BoxUI : MonoBehaviour
         boxItemUI = GetComponentInChildren<BoxItemUI>();
         playerItemUI = GetComponentInChildren<PlayerItemUI>();
 
-        boxUILogic = new BoxUILogic(transform.GetChild(0).GetComponent<Image>());
+        boxUILogic = new BoxUILogic(this,transform.GetChild(0).GetComponent<Image>());
     }
 
     public void GotoBox()

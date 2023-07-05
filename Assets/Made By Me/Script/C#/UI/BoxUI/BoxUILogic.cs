@@ -29,18 +29,46 @@ public class BoxUILogic : CallBackInterface
     BoxItemUI boxItemUI;
     PlayerItemUI playerItemUI;
     ItemExplainUI boxitemExplainUI;
+    BoxUI monoBehaviour;
 
-    public BoxUILogic(Image background)
+    string[] FirstBoxUINoticeText = {
+                "I'll explain how to use the item box.",
+                "On the right are the items currently in your inventory, and on the left are the items in the box.",
+                "If you want to move something from one side to the other, just click on the item and select 'Move'.",
+                "You can combine or discard items that are in the inventory side.",
+                "Although the box size is also limited, it will be a great help in organizing your inventory!",
+                };
+
+    string[] BoxUINoticeText = {
+            "<i><b>-Input-</b></i>\n\n<b>ENTER</b> : space  <b>BACK</b> : backSpace  <b>Box</b> : J    <b>Inventory</b> : K"
+            };
+
+    public BoxUILogic(BoxUI monoBehaviour, Image background)
     {
         this.background = background;
         boxItemUI = UI.instance.boxUI.boxItemUI;
         playerItemUI = UI.instance.boxUI.playerItemUI;
         boxitemExplainUI = UI.instance.boxUI.boxitemExplainUI;
+        this.monoBehaviour = monoBehaviour;
     }
 
     public void Visualize_BoxUI(bool flag)
     {
         if(isShowing && flag) return;
+        
+        monoBehaviour.gameObject.SetActive(flag);
+
+        if(flag)
+        {
+            if(!GameManager.TutorialCheck.isBoxUITutorialDone)
+            {
+                GameManager.EventManager.InvokeShowNotice("BoxUI", FirstBoxUINoticeText , true ,900 ,150);
+                GameManager.TutorialCheck.isBoxUITutorialDone = true;
+            }else
+            {
+                GameManager.EventManager.InvokeShowNotice("BoxUI", BoxUINoticeText , false, 900 ,150);
+            }
+        }
 
         GameManager.instance.SetPauseGame(flag);
 
@@ -101,13 +129,6 @@ public class BoxUILogic : CallBackInterface
 
         boxItemUI.backgroundPanel.color = boxItemUI.unSelectColor;
         playerItemUI.backgroundPanel.color = playerItemUI.selectColor;
-
-        string[] texts = {
-            "<i><b>-Input-</b></i>\n\n<b>ENTER</b> : space  <b>BACK</b> : backSpace  <b>Box</b> : J    <b>Inventory</b> : K"
-        };
-
-        GameManager.EventManager.InvokeShowNotice("BoxUI", texts , false, 900 ,150);
-
 
         GameMangerInput.InputEvent.BoxUIEnterPressed += EnterPressed;
         GameMangerInput.InputEvent.BoxUIBackPressed += BackPressed;

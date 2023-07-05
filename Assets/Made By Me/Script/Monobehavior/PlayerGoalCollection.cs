@@ -34,11 +34,11 @@ public class PlayerGoalCollection : MonoBehaviour
     }
 
     public static string[] PlayerGoals = {
-        "Entered the Okera region crossing through the archaeological site",
+        "Entering the Okera region",
         "Find the key to unlock the locked gate",
-        "Entered the Okera region crossing through the archaeological site",
+        "Get out of the archaeological site",
         "Find something that can remove the pile of rocks.",
-        "Entered the Okera region crossing through the archaeological site",
+        "Entering the Open Passage by Removing the Stones",
     };
 
 }
