@@ -116,7 +116,7 @@ public class NoticeUILogic
         //각 프레임이 1/프레임 의 시간동안 지속이 된다
         // 그럼 원하는 시간동안 되도록 프레임을 이용한 방법으로 시간을 맞추기 위해서는
 
-        float timePerChar = time / 60 / Time.unscaledDeltaTime;
+        float timePerChar = time / 70;
 
         Stack<Char> stack = new Stack<Char>();
 
@@ -171,12 +171,7 @@ public class NoticeUILogic
             {
                 str.text += letter;
             }
-
-            for(int i=0; i<timePerChar; i++ )
-            {
-                yield return new WaitForEndOfFrame();
-            }
-
+            yield return new WaitForSecondsRealtime(timePerChar);
         }
     }
 }

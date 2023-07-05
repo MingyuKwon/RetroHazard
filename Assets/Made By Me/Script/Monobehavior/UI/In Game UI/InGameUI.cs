@@ -11,7 +11,7 @@ public class InGameUI : MonoBehaviour
     EnergyUI energyUI;
     MapShowPanel mapShowPanel;
 
-    float showingTime = 1f;
+    float showingTime = 1.3f;
 
     Vector2 invisiblePosition = new Vector2(200, 70);
     Vector2 fullVisiblePosition = new Vector2(200, -10);
