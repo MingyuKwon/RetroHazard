@@ -9,6 +9,14 @@ using DG.Tweening;
 
 public class GameManager : MonoBehaviour
 {
+    public class TutorialCheck{
+        public static bool isItemUITutorialDone = false;
+        public static bool isMiniMapTutorialDone = false;
+        public static bool isBoxUITutorialDone = false;
+        public static bool isSaveSlotUITutorialDone = false;
+
+    }
+
 
     ////// EventManager //////////////////////////////////////////////////////////////////////////////////
     ////// EventManager //////////////////////////////////////////////////////////////////////////////////

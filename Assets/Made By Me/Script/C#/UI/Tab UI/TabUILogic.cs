@@ -48,6 +48,31 @@ public class TabUILogic : CallBackInterface
 
     Image background;
 
+
+    string[] FirstItemUINoticeText = {
+                "I will explain about the item window",
+                "When you select an item, a menu window pops up, and you can choose the option you want from it.",
+                "The choices vary depending on the type of item",
+                "Consumable items like batteries and potions can be discarded, but equipment items or important items cannot be discarded.",
+                "And it's also possible to combine items to create new ones.",
+                "The slots in the inventory are limited, so be sure to manage your items efficiently!",
+                };
+
+    string[] FirstMinimapUINoticeText = {
+                "I'll explain how to read the map.",
+                "The brightest spot on the overall map indicates your current location",
+                "the moderately bright spots represent the places you've visited before \n and the dark spots are the places you've never visited",
+                "When you're in danger or planning a strategy, the map can be a great aid, so make good use of it!",
+                };
+
+    string[] ItemUINoticeText = {
+                    "<i><b>-Input-</b></i>\n\n<b>ENTER</b> : \nspace\n\n<b>BACK</b> : \nbackSpace\n\n<b>ItemTab</b> : \nJ\n\n<b>MiniMap</b> : \nK"
+                };
+
+    string[] MiniMapUINoticeText = {
+                    "<i><b>-Input-</b></i>\n\n<b>BACK</b> : \nbackSpace\n\n<b>ItemTab</b> : \nJ\n\n<b>MiniMap</b> : \nK"               
+                };
+
     public int showingTabIndex{
         get{
             return _showingTabIndex;
@@ -64,11 +89,14 @@ public class TabUILogic : CallBackInterface
                 itemExplainUI.gameObject.SetActive(true);
                 miniMap.gameObject.SetActive(false);
 
-                string[] texts = {
-                    "<i><b>-Input-</b></i>\n\n<b>ENTER</b> : \nspace\n\n<b>BACK</b> : \nbackSpace\n\n<b>ItemTab</b> : \nJ\n\n<b>MiniMap</b> : \nK"
-                };
-
-                GameManager.EventManager.InvokeShowNotice("TabUI", texts , false,200 ,440);
+                if(!GameManager.TutorialCheck.isItemUITutorialDone)
+                {
+                    GameManager.EventManager.InvokeShowNotice("TabUI", FirstItemUINoticeText , true ,500 ,300);
+                    GameManager.TutorialCheck.isItemUITutorialDone = true;
+                }else
+                {
+                    GameManager.EventManager.InvokeShowNotice("TabUI", ItemUINoticeText , false,200 ,440);
+                }
 
             }else if(_showingTabIndex == 1)
             {
@@ -79,9 +107,13 @@ public class TabUILogic : CallBackInterface
                 itemExplainUI.gameObject.SetActive(false);
                 miniMap.gameObject.SetActive(true);
 
-                string[] texts = {
-                    "<i><b>-Input-</b></i>\n\n<b>BACK</b> : \nbackSpace\n\n<b>ItemTab</b> : \nJ\n\n<b>MiniMap</b> : \nK"                };
-                GameManager.EventManager.InvokeShowNotice("TabUI", texts, false , 200 ,440);
+                if(!GameManager.TutorialCheck.isMiniMapTutorialDone)
+                {
+                    GameManager.EventManager.InvokeShowNotice("TabUI", FirstMinimapUINoticeText , true ,500 ,300);
+                    GameManager.TutorialCheck.isMiniMapTutorialDone = true;
+                }else{
+                    GameManager.EventManager.InvokeShowNotice("TabUI", MiniMapUINoticeText, false , 200 ,440);
+                }
 
             }
         }
@@ -115,7 +147,6 @@ public class TabUILogic : CallBackInterface
     public void Visualize_Tab_Menu(bool flag)
     {
         if(isShowing && flag) return;
-
         GameManager.instance.SetPauseGame(flag);
 
         isInteractive = false;

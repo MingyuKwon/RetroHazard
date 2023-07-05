@@ -10,4 +10,9 @@ public class SaveSlotInfo
     public Vector3 saveLocation = new Vector3(0,0,0);
     public int saveCurrentGoalNum = 0;
 
+    public bool isItemUITutorialDone = false;
+    public bool isMiniMapTutorialDone = false;
+    public bool isBoxUITutorialDone = false;
+    public bool isSaveSlotUITutorialDone = false;
+
 }

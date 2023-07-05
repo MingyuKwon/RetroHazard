@@ -3,11 +3,11 @@
 
 현재 지도멱명의 위치를 보여주는 (포켓몬 식) 보여주기 ui를 만들자
 
-아이템 컨테이너 하나 잘못 반짝임 이거 isinteractive ondisable이나 onenable에서 조져야 할 듯
 
-현재 goal index 저장하기
+탭을 처음 열었을 때 설명을 해주는 notice를 띄우기
 
-현재 씬에서 Load를 하면 NoticeInteract에서 null을 참조한다고 오류를 띄운다
+적을 만들어서 방해 및 패링 연습 공격 연습 가능하게 하기
+
 
 오디오 매니저 만들어서 이제 음악도 넣자
 
