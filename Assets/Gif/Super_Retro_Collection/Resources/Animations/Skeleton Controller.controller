@@ -425,7 +425,7 @@ BlendTree:
   m_Name: Idle
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: b02d9036accf3d74983c06ae1b924362, type: 2}
+    m_Motion: {fileID: 7400000, guid: 83c74ed7650ceb64fb485c6de8c9cc1a, type: 2}
     m_Threshold: 0
     m_Position: {x: 0, y: -1}
     m_TimeScale: 1
@@ -433,7 +433,7 @@ BlendTree:
     m_DirectBlendParameter: X
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: a7d79bfdfc0e39c4c8118045a0effa6a, type: 2}
+    m_Motion: {fileID: 7400000, guid: b909665e3ddf0504c93530e125d59cce, type: 2}
     m_Threshold: 0.33333334
     m_Position: {x: -1, y: 0}
     m_TimeScale: 1
@@ -441,7 +441,7 @@ BlendTree:
     m_DirectBlendParameter: X
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 433fca46444815240a27de16144cf122, type: 2}
+    m_Motion: {fileID: 7400000, guid: 47c34457a363ff04d9df0bda2b9e98cf, type: 2}
     m_Threshold: 0.6666667
     m_Position: {x: 1, y: 0}
     m_TimeScale: 1
@@ -449,7 +449,7 @@ BlendTree:
     m_DirectBlendParameter: X
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: ab28061e14a6dc443b43bed759ecefd9, type: 2}
+    m_Motion: {fileID: 7400000, guid: deda66aacfa1baf4da3e1b545ac6c260, type: 2}
     m_Threshold: 1
     m_Position: {x: 0, y: 1}
     m_TimeScale: 1
@@ -497,7 +497,7 @@ BlendTree:
   m_Name: Walk
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 25e729e4b11714a49bcbd510f8002295, type: 2}
+    m_Motion: {fileID: 7400000, guid: 2fbf48d148181a24d9eb1614b0de4a83, type: 2}
     m_Threshold: 0
     m_Position: {x: 0, y: -1}
     m_TimeScale: 1
@@ -505,7 +505,7 @@ BlendTree:
     m_DirectBlendParameter: X
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: ec766219cfcd73e4da6533ecc3fb099c, type: 2}
+    m_Motion: {fileID: 7400000, guid: c9154aeddefba38498b80559356baf25, type: 2}
     m_Threshold: 0.33333334
     m_Position: {x: -1, y: 0}
     m_TimeScale: 1
@@ -513,7 +513,7 @@ BlendTree:
     m_DirectBlendParameter: X
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: f535947a10318f440ae1737e7241aef2, type: 2}
+    m_Motion: {fileID: 7400000, guid: d774a7c57650bb142b7ee4d780db5cd7, type: 2}
     m_Threshold: 0.6666667
     m_Position: {x: 1, y: 0}
     m_TimeScale: 1
@@ -521,7 +521,7 @@ BlendTree:
     m_DirectBlendParameter: X
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: bc4f10fc20c7be549a2c60aa2a6a6853, type: 2}
+    m_Motion: {fileID: 7400000, guid: 04fa2b09e28cf8a4ca10aa9382af54d2, type: 2}
     m_Threshold: 1
     m_Position: {x: 0, y: 1}
     m_TimeScale: 1
@@ -683,7 +683,7 @@ BlendTree:
   m_Name: Stagger
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: c5b32db2c9796724bba229a63971ffd0, type: 2}
+    m_Motion: {fileID: 7400000, guid: d9b4a0849ee18c94282dd7db76b4a8b4, type: 2}
     m_Threshold: 0
     m_Position: {x: 0, y: -1}
     m_TimeScale: 1
@@ -691,7 +691,7 @@ BlendTree:
     m_DirectBlendParameter: X
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: bf7b9dbd22bdb6242a1f4ec1ad79832e, type: 2}
+    m_Motion: {fileID: 7400000, guid: bd38bb05c93a4ac439fffa5543ad011c, type: 2}
     m_Threshold: 0.33333334
     m_Position: {x: -1, y: 0}
     m_TimeScale: 1
@@ -699,7 +699,7 @@ BlendTree:
     m_DirectBlendParameter: X
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 3d5568c4ef3359b408c7fa33034c7c66, type: 2}
+    m_Motion: {fileID: 7400000, guid: dd4328b5a47fc4b489411bc83780335b, type: 2}
     m_Threshold: 0.6666667
     m_Position: {x: 1, y: 0}
     m_TimeScale: 1
@@ -707,7 +707,7 @@ BlendTree:
     m_DirectBlendParameter: X
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 3c58bb344ef82ec43bfb1311efbe87b1, type: 2}
+    m_Motion: {fileID: 7400000, guid: 4639a0e6f079de14c85aec8b2f357acb, type: 2}
     m_Threshold: 1
     m_Position: {x: 0, y: 1}
     m_TimeScale: 1
