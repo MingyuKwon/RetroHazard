@@ -52,4 +52,29 @@ public class EnemyAnimation : MonoBehaviour
         enemyManager.EnemyMoveStopDirect(false);
     }
 
+    public void PlayerLockOn(bool flag)
+    {
+        if(!flag) return;
+
+        enemyManager.enemyFollowingPlayer.detectMark.SetActive(true);
+        StartCoroutine(EnemyIdleTime());
+        animator.Play("Idle");
+    }
+
+    IEnumerator EnemyIdleTime()
+    {
+        if(!isCurrentAnimationEnd())
+        {
+            yield return null;
+        }
+        enemyManager.enemyFollowingPlayer.detectMark.SetActive(false);
+        // 여기에 달리는 애니매이션 시작
+    }
+
+    public bool isCurrentAnimationEnd()
+    {
+        return animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1.0f;
+    }
+
+
 }
