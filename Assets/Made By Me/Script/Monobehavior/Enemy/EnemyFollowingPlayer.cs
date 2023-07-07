@@ -46,27 +46,24 @@ public class EnemyFollowingPlayer : MonoBehaviour
         Vector3 towardPlayerDirection =  BetweenVector.normalized;
         enemyManager.SetXYAnimation(towardPlayerDirection);
 
-        float distanceToTarget = BetweenVector.magnitude;
-
-        if (distanceToTarget < chaseRange && enemyManager.isLockedOnPlayer) 
-        // 플레이어와의 거리가 chaseRange 미만이면 일단 추적 사정거리 안에 있음
-        // 그 상태에서 지금 플레이어를 추적하고 있는 상황이어야지만 따라감
+        if(enemyManager.isLockedOnPlayer)
         {
-            enemyManager.destinationSetter.target = target;
-        }
-        else // 추적 사정거리 안에 있지도 않음. 무조건 랜덤 이동
-        {
-            if(enemyManager.isLockedOnPlayer)
+            if (enemyManager.aiPath.remainingDistance > chaseRange) 
             {
                 enemyManager.PlayerLockOn(false);
+                setRandomPosition();
+            }else
+            {
+                enemyManager.destinationSetter.target = target;
             }
-            
+
+        }else
+        {
             if(enemyManager.aiPath.reachedEndOfPath)
             {
                 setRandomPosition();
-            }            
+            }  
         }
-
     }
 
     private void setRandomPosition()
