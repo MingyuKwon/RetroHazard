@@ -9,12 +9,15 @@ using Pathfinding;
 
 public class EnemyFollowingPlayer : MonoBehaviour
 {
-    private Transform target; // 플레이어의 위치
+    public Transform target; // 플레이어의 위치
     private Vector3 randomPosition; // 랜덤한 위치
 
-    private Transform randomTransform;
+    public Transform randomTransform;
 
-    public float chaseRange = 10f; // 쫓아갈 거리
+    public float randomSpeed = 2f; // 방황할 속도
+
+    public float chaseRange = 15f; // 쫓아갈 거리
+    public float chaseSpeed = 4f; // 쫓아갈 속도
 
 
     public GameObject detectMark;
@@ -34,31 +37,27 @@ public class EnemyFollowingPlayer : MonoBehaviour
 
     private void Update() { // 그냥 계속 사이 거리는 구한다
 
-        if(enemyManager.MoveStop || enemyManager.isEnemyPaused)
+        if(!enemyManager.canMove || enemyManager.isEnemyPaused)
         {
             return;
         }
-
-        Vector3 BetweenVector = new Vector3(target.position.x - transform.position.x,
-             target.position.y - transform.position.y, 
-             target.position.z - transform.position.z);
-
-        Vector3 towardPlayerDirection =  BetweenVector.normalized;
-        enemyManager.SetXYAnimation(towardPlayerDirection);
 
         if(enemyManager.isLockedOnPlayer)
         {
             if (enemyManager.aiPath.remainingDistance > chaseRange) 
             {
                 enemyManager.PlayerLockOn(false);
+                enemyManager.enemyAnimation.animator.speed = 1.0f;
                 setRandomPosition();
             }else
             {
-                enemyManager.destinationSetter.target = target;
+                enemyManager.aiPath.maxSpeed = chaseSpeed;
+                enemyManager.enemyAnimation.animator.speed = 1.2f;
             }
 
         }else
         {
+            enemyManager.enemyAnimation.animator.speed = 1.0f;
             if(enemyManager.aiPath.reachedEndOfPath)
             {
                 setRandomPosition();
@@ -72,8 +71,8 @@ public class EnemyFollowingPlayer : MonoBehaviour
         float randomY = Random.Range(enemyManager.enemyMoveBoundMin.y, enemyManager.enemyMoveBoundMax.y);
         randomPosition = new Vector2(randomX, randomY);
 
-
         randomTransform.position = randomPosition;
+        enemyManager.aiPath.maxSpeed = randomSpeed;
         enemyManager.destinationSetter.target = randomTransform;
     }
 

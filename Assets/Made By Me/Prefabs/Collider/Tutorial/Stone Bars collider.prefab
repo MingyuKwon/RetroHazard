@@ -43,7 +43,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8710965249680801717}
   - component: {fileID: 6006590146589655529}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Stone Bar collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8003075924218326756}
   - component: {fileID: 8499333460557307035}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Stone Bar collider (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

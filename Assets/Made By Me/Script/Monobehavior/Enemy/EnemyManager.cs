@@ -9,7 +9,15 @@ public class EnemyManager : MonoBehaviour
     private Animator animator;
     public bool isEnemyPaused = false;
     public bool isParried = false;
-    public bool MoveStop = false;
+    public bool canMove{
+        get{
+            return aiPath.canMove;
+        }
+
+        set{
+            aiPath.canMove = value;
+        }
+    }
 
     public bool isLockedOnPlayer = false;
 
@@ -72,6 +80,8 @@ public class EnemyManager : MonoBehaviour
         enemyMoveBoundMin = boxCollider2D.bounds.min;
         enemyMoveBoundMax = boxCollider2D.bounds.max;
 
+        Destroy(boxCollider2D);
+
         enemyFollowingPlayer.enabled = true;
     }
 
@@ -89,6 +99,7 @@ public class EnemyManager : MonoBehaviour
     }
 
     private void Update() {
+        SetXYAnimation(aiPath.velocity.normalized);
         CheckRotate();
     }
 
@@ -157,7 +168,7 @@ public class EnemyManager : MonoBehaviour
     {
         isParried = flag;
         isEnemyPaused = flag;
-        EnemyMoveStopDirect(flag);
+        canMove = !flag;
     }
 
     public void KillEnemy()
@@ -166,30 +177,16 @@ public class EnemyManager : MonoBehaviour
         vfxAnimator.SetTrigger("Die");
     }
 
-    public void EnemyMoveStop(float delay)
+    public void PlayerLockOn(bool flag) 
     {
-        if(delay < 0)
+        if(flag)
         {
-            Debug.LogError("Delay time must be longer than 0");
-            return;
+            destinationSetter.target = enemyFollowingPlayer.target;
+        }else
+        {
+            destinationSetter.target = enemyFollowingPlayer.randomTransform;
         }
-        EnemyMoveStopDirect(true);
-        StartCoroutine(Delay(delay));
-    }
-    IEnumerator Delay(float delay)
-    {   
-        yield return new WaitForSeconds(delay);
-        EnemyMoveStopDirect(false);
-    }
-
-    public void EnemyMoveStopDirect(bool flag)
-    {
-        MoveStop = flag;
-        StopAllCoroutines();
-    }
-
-    public void PlayerLockOn(bool flag)
-    {
+        
         isLockedOnPlayer = flag;
 
         // 플레이어는 이미 찾았으니 찾는 콜라이더 없애고 공격 할지 말지 정하는 콜라이더 활성화

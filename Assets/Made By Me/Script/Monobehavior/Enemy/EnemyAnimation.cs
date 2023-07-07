@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyAnimation : MonoBehaviour
 {
-    private Animator animator;
+    public Animator animator;
     private Rigidbody2D rb;
     private EnemyManager enemyManager;
     private float AttackKind;
@@ -16,25 +16,18 @@ public class EnemyAnimation : MonoBehaviour
     }
 
     private void Start() {
-    
+        animator.Play("Walk");
     }
-
 
     private void Update() {
         if(enemyManager.isEnemyPaused) return;
         SetXYAnimation();
-        SetWalkAnimation();
     }
 
     private void SetXYAnimation()
     {
         animator.SetFloat("X", enemyManager.animationX);
         animator.SetFloat("Y", enemyManager.animationY);
-    }
-
-    private void SetWalkAnimation()
-    {
-        animator.SetBool("Walk", true);
     }
 
     private void SetAttackAnimation()
@@ -44,12 +37,12 @@ public class EnemyAnimation : MonoBehaviour
 
     public void AttackStart()
     {
-        enemyManager.EnemyMoveStopDirect(true);
+        enemyManager.canMove = false;
     }
 
     public void AttackEnd()
     {
-        enemyManager.EnemyMoveStopDirect(false);
+        enemyManager.canMove = true;
     }
 
     public void PlayerLockOn(bool flag)
@@ -58,16 +51,20 @@ public class EnemyAnimation : MonoBehaviour
 
         enemyManager.enemyFollowingPlayer.detectMark.SetActive(true);
         StartCoroutine(EnemyIdleTime());
-        animator.Play("Idle");
     }
 
     IEnumerator EnemyIdleTime()
     {
-        if(!isCurrentAnimationEnd())
+        animator.Play("Idle");
+        enemyManager.canMove = false;
+        yield return new WaitForEndOfFrame();
+        while(!isCurrentAnimationEnd())
         {
-            yield return null;
+            yield return new WaitForEndOfFrame();
         }
         enemyManager.enemyFollowingPlayer.detectMark.SetActive(false);
+        enemyManager.canMove = true;
+        animator.Play("Walk");
         // 여기에 달리는 애니매이션 시작
     }
 

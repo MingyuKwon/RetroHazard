@@ -69,16 +69,22 @@ public class EnemyCollide : MonoBehaviour
         {
             if(other.otherCollider.tag == "Enemy Body")
             {
-                enemyManager.EnemyMoveStop(damageAndStopDelay);
+                StartCoroutine(DamageAndStopDelay());
             }
         }
+    }
 
+    IEnumerator DamageAndStopDelay()
+    {
+        enemyManager.canMove = false;
+        yield return new WaitForSeconds(damageAndStopDelay);
+        enemyManager.canMove = true;
     }
 
     public void StunStart()
     {
         status.ParriedWithParrySheild = false;
-        enemyManager.EnemyMoveStopDirect(false);
+        enemyManager.canMove = false;
         enemyManager.isEnemyPaused = true;
         EnemyBodyCollider.enabled = false;
     }
