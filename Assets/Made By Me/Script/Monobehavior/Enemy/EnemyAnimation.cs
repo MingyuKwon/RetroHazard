@@ -20,7 +20,7 @@ public class EnemyAnimation : MonoBehaviour
     }
 
     private void Update() {
-        if(enemyManager.isEnemyPaused) return;
+        if(enemyManager.isEnemyStunned) return;
         SetXYAnimation();
     }
 
@@ -30,15 +30,19 @@ public class EnemyAnimation : MonoBehaviour
         animator.SetFloat("Y", enemyManager.animationY);
     }
 
-    public void Attack()
+    public void Stun()
     {
-        if(enemyManager.isEnemyPaused) return;
-        StartCoroutine(EnemyAttackTime());
+        if(enemyManager.isEnemyStunned) return;
+
+        enemyManager.enemyStatus.ParriedWithParrySheild = false;
+        enemyManager.isEnemyStunned = true;
+        enemyManager.enemyBodyCollider.enabled = false;
+        StartCoroutine(EnemyStunTime());
     }
 
-    IEnumerator EnemyAttackTime()
+    IEnumerator EnemyStunTime()
     {
-        animator.Play("Attack");
+        animator.Play("Stun");
         enemyManager.canMove = false;
         yield return new WaitForEndOfFrame();
         while(!isCurrentAnimationEnd())
@@ -46,13 +50,36 @@ public class EnemyAnimation : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         enemyManager.canMove = true;
+        enemyManager.isEnemyStunned = false;
+        enemyManager.enemyBodyCollider.enabled = true;
+        animator.Play("Walk");
+    }
+
+    public void Attack()
+    {
+        if(enemyManager.isEnemyStunned) return;
+        StartCoroutine(EnemyAttackTime());
+    }
+
+    IEnumerator EnemyAttackTime()
+    {
+        animator.Play("Attack");
+        enemyManager.enemyBodyCollider.enabled = false;
+        enemyManager.canMove = false;
+        yield return new WaitForEndOfFrame();
+        while(!isCurrentAnimationEnd())
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        enemyManager.canMove = true;
+        enemyManager.enemyBodyCollider.enabled = true;
         animator.Play("Walk");
     }
 
     public void PlayerLockOn(bool flag)
     {
         if(!flag) return;
-        if(enemyManager.isEnemyPaused) return;
+        if(enemyManager.isEnemyStunned) return;
 
         enemyManager.enemyFollowingPlayer.detectMark.SetActive(true);
         StartCoroutine(EnemyIdleTime());

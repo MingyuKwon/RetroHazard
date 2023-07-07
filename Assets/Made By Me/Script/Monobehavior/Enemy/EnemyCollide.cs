@@ -4,28 +4,20 @@ using UnityEngine;
 
 public class EnemyCollide : MonoBehaviour
 {
-    Rigidbody2D rb;
-    EnemyStatus status;
-    private CapsuleCollider2D EnemyBodyCollider;
     private EnemyManager enemyManager;
-    private Animator animator;
 
     private Collider2D contactCollider;
     private GameObject contactObject;
     private PlayerStatus contactPlayerStat;
     private Vector2 ForceInput;
 
-    const float reflectForceScholar = 10f;
+    const float reflectForceScholar = 15f;
     const float damageAndStopDelay = 0.7f;
     private float damage = 0f;
     const float damageStandard = 20f;
     
     private void Awake() {
-        status = GetComponentInChildren<EnemyStatus>();
-        animator = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody2D>();
         enemyManager = GetComponent<EnemyManager>();
-        EnemyBodyCollider = GetComponentInChildren<EnemyCollider>().gameObject.GetComponent<CapsuleCollider2D>();
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
@@ -42,15 +34,15 @@ public class EnemyCollide : MonoBehaviour
                 if(contactCollider.tag == "Attack") // 공격 맞은 경직
                 {
                     damage = contactPlayerStat.Attack; 
-                    animator.SetTrigger("Stun");
+                    enemyManager.enemyAnimation.Stun();
                 }
 
                 ForceInput = other.GetContact(0).normal;
                 DamageReDuce();
-                damage = damage * (float)(status.ParriedWithParrySheild ? 1.5 : 1);
+                damage = damage * (float)(enemyManager.enemyStatus.ParriedWithParrySheild ? 1.5 : 1);
                 Debug.Log("Enemy had damage : " + damage);
                 Reflect(damage);
-                status.HealthChange(damage);
+                enemyManager.enemyStatus.HealthChange(damage);
                 damage = 0;
             
             }
@@ -60,7 +52,7 @@ public class EnemyCollide : MonoBehaviour
                 {
                     if(contactPlayerStat.parryFrame && !enemyManager.isParried) // 그리고 그 실드가 패링중이라면
                     {
-                        if(contactPlayerStat.Sheild == 1) status.ParriedWithParrySheild = true;
+                        if(contactPlayerStat.Sheild == 1) enemyManager.enemyStatus.ParriedWithParrySheild = true;
                         enemyManager.TriggerEnemyParriedAnimation();
                     }
                 }
@@ -81,35 +73,18 @@ public class EnemyCollide : MonoBehaviour
         enemyManager.canMove = true;
     }
 
-    public void StunStart()
-    {
-        status.ParriedWithParrySheild = false;
-        enemyManager.canMove = false;
-        enemyManager.isEnemyPaused = true;
-        EnemyBodyCollider.enabled = false;
-    }
-
-    public void StunEnd()
-    {
-        enemyManager.isEnemyPaused = false;
-        EnemyBodyCollider.enabled = true;
-
-        if(enemyManager.isParried)
-        {
-            enemyManager.SetEnemyParried(false);
-        }
-    }
-
     private void Reflect(float Damage)
     {
         Damage = Mathf.Log(Damage / damageStandard + 1);
+        ForceInput = ForceInput * reflectForceScholar * Damage;
 
-        rb.AddForce(ForceInput * reflectForceScholar * Damage);
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        rb.AddForce(ForceInput);
     }
 
     private void DamageReDuce()
     {
-        damage = damage * ( (float)(100 - status.ArmorDefence) / 100 );
+        damage = damage * ( (float)(100 - enemyManager.enemyStatus.ArmorDefence) / 100 );
     }
 
     public void ParreidStart()
@@ -119,7 +94,7 @@ public class EnemyCollide : MonoBehaviour
 
     public void ParriedEnd()
     {
-        status.ParriedWithParrySheild = false;
+        enemyManager.enemyStatus.ParriedWithParrySheild = false;
         enemyManager.SetEnemyParried(false);
     }
 }

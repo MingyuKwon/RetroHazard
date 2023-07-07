@@ -200,7 +200,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.03827524, y: -0.501729}
+  m_Offset: {x: 0, y: -0.4}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -211,7 +211,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6450815, y: 0.4489298}
+  m_Size: {x: 1.1, y: 0.6}
   m_EdgeRadius: 0
 --- !u!1 &5907384939025840980
 GameObject:
@@ -676,7 +676,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70fccd71e7732fe4bbeef1a3fd45c84c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEnemyPaused: 0
+  isEnemyStunned: 0
   isParried: 0
   isLockedOnPlayer: 0
   enemySpeed: 3
@@ -692,13 +692,14 @@ MonoBehaviour:
   aiPath: {fileID: 0}
   destinationSetter: {fileID: 0}
   seeker: {fileID: 0}
+  enemyBodyCollider: {fileID: 0}
   PlayerDetect: {fileID: 0}
   AttackDecide: {fileID: 0}
   detectTime: 0.5
   randomSpeed: 2
   chaseRange: 15
   chaseSpeed: 4
-  attackSpeed: 0.1
+  attackSpeed: 0.15
 --- !u!114 &8855339012748659490
 MonoBehaviour:
   m_ObjectHideFlags: 0

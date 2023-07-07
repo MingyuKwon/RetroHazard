@@ -281,7 +281,6 @@ public class PlayerStatus : MonoBehaviour
     }
 
     private void Start() {
-        Debug.Log("Start");
         UI.instance.inGameUI.UpdateIngameUI();
         SheildDurabilityChange(0);
     }
@@ -295,7 +294,6 @@ public class PlayerStatus : MonoBehaviour
     }
     public void LoadSave(PlayerStatSave save)
     {
-        Debug.Log("LoadSave");
         playerStatusLogic.LoadSave(save);
     }
 

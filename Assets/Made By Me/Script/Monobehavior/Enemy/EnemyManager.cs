@@ -7,7 +7,7 @@ using Pathfinding;
 public class EnemyManager : MonoBehaviour
 {
     private Animator animator;
-    public bool isEnemyPaused = false;
+    public bool isEnemyStunned = false;
     public bool isParried = false;
     public bool canMove{
         get{
@@ -48,6 +48,7 @@ public class EnemyManager : MonoBehaviour
     private Animator vfxAnimator;
     private SpriteRenderer spriteRenderer;
 
+    public CapsuleCollider2D enemyBodyCollider;
     public PolygonCollider2D PlayerDetect;
     public BoxCollider2D AttackDecide;
 
@@ -65,7 +66,7 @@ public class EnemyManager : MonoBehaviour
     public float chaseSpeed = 4f; // 쫓아갈 속도
 
     [Header("\nAnimation")]
-    public float attackSpeed = 0.1f; // 쫓아갈 속도
+    public float attackSpeed = 0.12f; // 몸통박치기 시에 순간 대시할 속도
 
     private void Awake() {
         animator = GetComponent<Animator>();
@@ -84,6 +85,8 @@ public class EnemyManager : MonoBehaviour
 
         PlayerDetect = transform.GetChild(1).GetComponentInChildren<PolygonCollider2D>();
         AttackDecide = transform.GetChild(1).GetComponentInChildren<BoxCollider2D>();
+        enemyBodyCollider = GetComponentInChildren<EnemyCollider>().gameObject.GetComponent<CapsuleCollider2D>();
+
 
         BoxCollider2D boxCollider2D = transform.GetChild(5).GetComponent<BoxCollider2D>();
         enemyMoveBoundMin = boxCollider2D.bounds.min;
@@ -171,7 +174,7 @@ public class EnemyManager : MonoBehaviour
     public void SetEnemyParried(bool flag)
     {
         isParried = flag;
-        isEnemyPaused = flag;
+        isEnemyStunned = flag;
         canMove = !flag;
     }
 

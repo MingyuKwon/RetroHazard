@@ -31,7 +31,7 @@ public class EnemyFollowingPlayer : MonoBehaviour
 
     private void Update() { // 그냥 계속 사이 거리는 구한다
 
-        if(!enemyManager.canMove || enemyManager.isEnemyPaused)
+        if(!enemyManager.canMove || enemyManager.isEnemyStunned)
         {
             return;
         }
