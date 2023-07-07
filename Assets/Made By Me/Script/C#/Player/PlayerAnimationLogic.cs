@@ -43,6 +43,7 @@ public class PlayerAnimationLogic
     //monobehavior function//////////////////////////////////////////////////////////////////
     public void Start() {
         status = Player1.instance.playerStatus;
+        
     }
 
     public void Update()
@@ -90,9 +91,7 @@ public class PlayerAnimationLogic
     private void SetShieldAnimation()
     {
         if(isParrying) return;
-
         if(sheildCrash) return;
-
         if(GameMangerInput.inputCheck.isShieldButtonUp())
         {
             if(status.isBlocked) return;
@@ -104,7 +103,6 @@ public class PlayerAnimationLogic
             GameManager.instance.SetPlayerMove(false);
             animator.SetFloat("Sheild Kind", status.Sheild);
         }
-
         isSheilding = GameMangerInput.inputCheck.isPressingShield();
         animator.SetBool("Shield", isSheilding);
     }

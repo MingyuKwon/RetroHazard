@@ -15,7 +15,7 @@ public class PlayerHealthLogic
 
 
     private Vector2 ForceInput;
-    const float reflectForceScholar = 300f;
+    const float reflectForceScholar = 400f;
     const float damageStandard = 10f;
 
     public PlayerHealthLogic(Rigidbody2D rb, PlayerAnimation playerAnimation, CapsuleCollider2D playerBodyCollider)

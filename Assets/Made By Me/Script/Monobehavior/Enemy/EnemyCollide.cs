@@ -32,16 +32,16 @@ public class EnemyCollide : MonoBehaviour
 
         contactCollider = other.GetContact(0).collider;
         
-        if(contactCollider.gameObject.layer == LayerMask.NameToLayer("Player not Body"))
+        if(contactCollider.gameObject.layer == LayerMask.NameToLayer("Player not Body")) // 만약 플레이어의 몸이 아닌 곳에 맞았다면
         {
             contactObject = contactCollider.transform.parent.transform.parent.gameObject;
             contactPlayerStat = contactObject.GetComponentInChildren<PlayerStatus>();
 
-            if(other.otherCollider.tag == "Enemy Body" && contactCollider.tag != "Sheild")
+            if(other.otherCollider.tag == "Enemy Body" && contactCollider.tag != "Sheild") // 방패에 맞은게 아니라면? -> 공격에 맞은거
             {
-                if(contactCollider.tag == "Attack")
+                if(contactCollider.tag == "Attack") // 공격 맞은 경직
                 {
-                    damage = contactPlayerStat.Attack;
+                    damage = contactPlayerStat.Attack; 
                     animator.SetTrigger("Stun");
                 }
 
@@ -54,22 +54,22 @@ public class EnemyCollide : MonoBehaviour
                 damage = 0;
             
             }
-            else if(other.otherCollider.tag == "Attack")
+            else if(other.otherCollider.tag == "Attack") // 만약 적이 공격 했는데
             {
-                if(contactCollider.tag == "Sheild")
+                if(contactCollider.tag == "Sheild") // 실드로 막았다면
                 {
-                    if(contactPlayerStat.parryFrame && !enemyManager.isParried)
+                    if(contactPlayerStat.parryFrame && !enemyManager.isParried) // 그리고 그 실드가 패링중이라면
                     {
                         if(contactPlayerStat.Sheild == 1) status.ParriedWithParrySheild = true;
                         enemyManager.TriggerEnemyParriedAnimation();
                     }
                 }
             }
-        }else if(contactCollider.gameObject.layer == LayerMask.NameToLayer("Player Body"))
+        }else if(contactCollider.gameObject.layer == LayerMask.NameToLayer("Player Body")) // 만약 플레이어 몸이랑 맞았다면
         {
-            if(other.otherCollider.tag == "Enemy Body")
+            if(other.otherCollider.tag == "Enemy Body") // 내 몸이랑 맞았다면
             {
-                StartCoroutine(DamageAndStopDelay());
+                StartCoroutine(DamageAndStopDelay()); // 데미지 주고 잠시 대기
             }
         }
     }

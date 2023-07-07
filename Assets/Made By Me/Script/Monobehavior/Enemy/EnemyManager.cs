@@ -58,6 +58,15 @@ public class EnemyManager : MonoBehaviour
      // 이건 플레이어 발견했을 때 관련
 
 
+
+    [Header("Following Move")]
+    public float randomSpeed = 2f; // 방황할 속도
+    public float chaseRange = 15f; // 쫓아갈 거리
+    public float chaseSpeed = 4f; // 쫓아갈 속도
+
+    [Header("\nAnimation")]
+    public float attackSpeed = 0.1f; // 쫓아갈 속도
+
     private void Awake() {
         animator = GetComponent<Animator>();
         enemyStatus = GetComponentInChildren<EnemyStatus>();
@@ -88,12 +97,12 @@ public class EnemyManager : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.layer == LayerMask.NameToLayer("Player Body"))
         {
-            if(isLockedOnPlayer)
-            {
-                Attack();
-            }else
+            if(PlayerDetect.enabled) // 걸렸을 때 탐지 콜라이더에 걸리면 랜덤 이동이고
             {
                 PlayerLockOn(true);
+            }else // 그게 아니라면 록온 하다가 공격 결정 콜라이더에 닿은거다
+            {
+                enemyAnimation.Attack();
             }
         }
     }
@@ -151,11 +160,6 @@ public class EnemyManager : MonoBehaviour
             }
             animationX = 0;
         }
-    }
-
-    public void Attack()
-    {
-        animator.SetTrigger("Attack");
     }
 
     public void TriggerEnemyParriedAnimation()

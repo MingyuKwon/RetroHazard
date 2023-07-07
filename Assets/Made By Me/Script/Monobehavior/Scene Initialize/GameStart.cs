@@ -9,11 +9,10 @@ public class GameStart : MonoBehaviour
 
     private void Awake() {
         SaveSystem.instance.Initialize();
+        SaveSystem.instance.Load(0);
     }
     void Start()
     {
-        SaveSystem.instance.Load(0);
-        
         if(SaveSystem.SaveSlotNum == -1)
         {
             FindObjectOfType<PlayerHealth>().gameObject.transform.position = new Vector3(wayPoint.x, wayPoint.y, 0);

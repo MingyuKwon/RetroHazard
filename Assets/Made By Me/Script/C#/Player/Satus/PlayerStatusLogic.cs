@@ -123,6 +123,8 @@ public class PlayerStatusLogic
         GameManager.EventManager.Invoke_Sheild_Durability_Change_Event(SheildMaganize[Sheild], Sheild);
         if(SheildMaganize[Sheild] <=0 )
         {
+            Debug.Log("Sheild : " + Sheild);
+            Debug.Log("SheildMaganize[Sheild] : " + SheildMaganize[Sheild]);
             SheildMaganize[Sheild] = 0;
             SheildCrash = true;
             GameManager.EventManager.Invoke_SheildCrashEvent(flag);

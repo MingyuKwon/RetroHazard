@@ -14,12 +14,6 @@ public class EnemyFollowingPlayer : MonoBehaviour
 
     public Transform randomTransform;
 
-    public float randomSpeed = 2f; // 방황할 속도
-
-    public float chaseRange = 15f; // 쫓아갈 거리
-    public float chaseSpeed = 4f; // 쫓아갈 속도
-
-
     public GameObject detectMark;
 
 
@@ -44,14 +38,14 @@ public class EnemyFollowingPlayer : MonoBehaviour
 
         if(enemyManager.isLockedOnPlayer)
         {
-            if (enemyManager.aiPath.remainingDistance > chaseRange) 
+            if (enemyManager.aiPath.remainingDistance > enemyManager.chaseRange) 
             {
                 enemyManager.PlayerLockOn(false);
                 enemyManager.enemyAnimation.animator.speed = 1.0f;
                 setRandomPosition();
             }else
             {
-                enemyManager.aiPath.maxSpeed = chaseSpeed;
+                enemyManager.aiPath.maxSpeed = enemyManager.chaseSpeed;
                 enemyManager.enemyAnimation.animator.speed = 1.2f;
             }
 
@@ -72,7 +66,7 @@ public class EnemyFollowingPlayer : MonoBehaviour
         randomPosition = new Vector2(randomX, randomY);
 
         randomTransform.position = randomPosition;
-        enemyManager.aiPath.maxSpeed = randomSpeed;
+        enemyManager.aiPath.maxSpeed = enemyManager.randomSpeed;
         enemyManager.destinationSetter.target = randomTransform;
     }
 

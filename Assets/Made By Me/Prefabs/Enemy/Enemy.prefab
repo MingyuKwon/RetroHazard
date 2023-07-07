@@ -142,7 +142,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.15}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -153,7 +153,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.1, y: 0.7}
   m_EdgeRadius: 0
 --- !u!1 &3245911918687099666
 GameObject:
@@ -460,8 +460,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.6, y: 1.1}
+  m_Offset: {x: -0.0010700226, y: 0.09766042}
+  m_Size: {x: 0.90906906, y: 0.9580841}
   m_Direction: 0
 --- !u!114 &3164822848763403932
 MonoBehaviour:
@@ -650,9 +650,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   randomTransform: {fileID: 0}
-  randomSpeed: 2
-  chaseRange: 10
-  chaseSpeed: 4
   detectMark: {fileID: 5907384939025840980}
 --- !u!114 &7219668730155347237
 MonoBehaviour:
@@ -698,6 +695,10 @@ MonoBehaviour:
   PlayerDetect: {fileID: 0}
   AttackDecide: {fileID: 0}
   detectTime: 0.5
+  randomSpeed: 2
+  chaseRange: 15
+  chaseSpeed: 4
+  attackSpeed: 0.1
 --- !u!114 &8855339012748659490
 MonoBehaviour:
   m_ObjectHideFlags: 0
