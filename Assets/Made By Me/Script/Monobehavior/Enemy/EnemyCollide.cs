@@ -15,7 +15,7 @@ public class EnemyCollide : MonoBehaviour
     private PlayerStatus contactPlayerStat;
     private Vector2 ForceInput;
 
-    const float reflectForceScholar = 1200f;
+    const float reflectForceScholar = 10f;
     const float damageAndStopDelay = 0.7f;
     private float damage = 0f;
     const float damageStandard = 20f;
