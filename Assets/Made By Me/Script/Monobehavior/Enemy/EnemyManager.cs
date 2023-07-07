@@ -34,6 +34,7 @@ public class EnemyManager : MonoBehaviour
 
     public AIPath aiPath; // AIPath 컴포넌트
     public AIDestinationSetter destinationSetter; // AIDestinationSetter 컴포넌트
+    public Seeker seeker;
 
 
     private Animator vfxAnimator;
@@ -62,6 +63,7 @@ public class EnemyManager : MonoBehaviour
 
         aiPath = GetComponent<AIPath>();
         destinationSetter = GetComponent<AIDestinationSetter>();
+        seeker = GetComponent<Seeker>();
 
         PlayerDetect = transform.GetChild(1).GetComponentInChildren<PolygonCollider2D>();
         AttackDecide = transform.GetChild(1).GetComponentInChildren<BoxCollider2D>();
@@ -70,8 +72,7 @@ public class EnemyManager : MonoBehaviour
         enemyMoveBoundMin = boxCollider2D.bounds.min;
         enemyMoveBoundMax = boxCollider2D.bounds.max;
 
-        Debug.Log("enemyMoveBoundMin : " + enemyMoveBoundMin);
-        Debug.Log("enemyMoveBoundMax : " + enemyMoveBoundMax);
+        enemyFollowingPlayer.enabled = true;
     }
 
     private void OnTriggerEnter2D(Collider2D other) {

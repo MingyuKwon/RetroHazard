@@ -12,6 +12,8 @@ public class EnemyFollowingPlayer : MonoBehaviour
     private Transform target; // 플레이어의 위치
     private Vector3 randomPosition; // 랜덤한 위치
 
+    private Transform randomTransform;
+
     public float chaseRange = 10f; // 쫓아갈 거리
 
 
@@ -24,16 +26,13 @@ public class EnemyFollowingPlayer : MonoBehaviour
         enemyManager = GetComponent<EnemyManager>();
 
         target = Player1.instance.playerStatus.transform;
+        randomTransform = transform.parent.GetChild(1).transform;
 
-        // 지금 Transform 하나만 계속 쫓을 거고, 그 transform의 위치를 바꿔가며 따라 갈거다.
-        // 근데 Transform은 생성이 안되서 이미 있는 거 써야 하는데, status가 위치에 상관없기 떄문에 status의 transform을 썼다
-        enemyManager.destinationSetter.target = enemyManager.enemyStatus.transform;
         setRandomPosition();
+        enemyManager.destinationSetter.target = randomTransform;
     }
 
     private void Update() { // 그냥 계속 사이 거리는 구한다
-
-        Debug.Log("Target Position : " + enemyManager.destinationSetter.target.position + " randomPosition " + randomPosition);
 
         if(enemyManager.MoveStop || enemyManager.isEnemyPaused)
         {
@@ -53,7 +52,7 @@ public class EnemyFollowingPlayer : MonoBehaviour
         // 플레이어와의 거리가 chaseRange 미만이면 일단 추적 사정거리 안에 있음
         // 그 상태에서 지금 플레이어를 추적하고 있는 상황이어야지만 따라감
         {
-            enemyManager.destinationSetter.target.position = target.position; // 목표 위치를 플레이어의 위치로 설정
+            enemyManager.destinationSetter.target = target;
         }
         else // 추적 사정거리 안에 있지도 않음. 무조건 랜덤 이동
         {
@@ -62,10 +61,10 @@ public class EnemyFollowingPlayer : MonoBehaviour
                 enemyManager.PlayerLockOn(false);
             }
             
-            
-            Debug.Log("RandomMoving");
-            enemyManager.destinationSetter.target.position = randomPosition; 
-            
+            if(enemyManager.aiPath.reachedEndOfPath)
+            {
+                setRandomPosition();
+            }            
         }
 
     }
@@ -75,6 +74,10 @@ public class EnemyFollowingPlayer : MonoBehaviour
         float randomX = Random.Range(enemyManager.enemyMoveBoundMin.x, enemyManager.enemyMoveBoundMax.x);
         float randomY = Random.Range(enemyManager.enemyMoveBoundMin.y, enemyManager.enemyMoveBoundMax.y);
         randomPosition = new Vector2(randomX, randomY);
+
+
+        randomTransform.position = randomPosition;
+        enemyManager.destinationSetter.target = randomTransform;
     }
 
 }
