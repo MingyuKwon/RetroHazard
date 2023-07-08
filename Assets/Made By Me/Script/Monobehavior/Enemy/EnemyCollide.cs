@@ -53,7 +53,7 @@ public class EnemyCollide : MonoBehaviour
                     if(contactPlayerStat.parryFrame && !enemyManager.isParried) // 그리고 그 실드가 패링중이라면
                     {
                         if(contactPlayerStat.Sheild == 1) enemyManager.enemyStatus.ParriedWithParrySheild = true;
-                        enemyManager.TriggerEnemyParriedAnimation();
+                        enemyManager.enemyAnimation.Parreid();
                     }
                 }
             }
@@ -87,14 +87,4 @@ public class EnemyCollide : MonoBehaviour
         damage = damage * ( (float)(100 - enemyManager.enemyStatus.ArmorDefence) / 100 );
     }
 
-    public void ParreidStart()
-    {
-        enemyManager.SetEnemyParried(true);
-    }
-
-    public void ParriedEnd()
-    {
-        enemyManager.enemyStatus.ParriedWithParrySheild = false;
-        enemyManager.SetEnemyParried(false);
-    }
 }

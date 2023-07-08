@@ -45,7 +45,7 @@ public class EnemyManager : MonoBehaviour
     public Seeker seeker;
 
 
-    private Animator vfxAnimator;
+    public Animator vfxAnimator;
     private SpriteRenderer spriteRenderer;
 
     public CapsuleCollider2D enemyBodyCollider;
@@ -163,19 +163,6 @@ public class EnemyManager : MonoBehaviour
             }
             animationX = 0;
         }
-    }
-
-    public void TriggerEnemyParriedAnimation()
-    {
-        vfxAnimator.SetTrigger("Parried");
-        animator.SetTrigger("Stagger");
-    }
-
-    public void SetEnemyParried(bool flag)
-    {
-        isParried = flag;
-        isEnemyStunned = flag;
-        canMove = !flag;
     }
 
     public void KillEnemy()
