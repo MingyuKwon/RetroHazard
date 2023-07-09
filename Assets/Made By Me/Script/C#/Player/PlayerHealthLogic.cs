@@ -17,7 +17,7 @@ public class PlayerHealthLogic
 
 
     private Vector2 ForceInput;
-    const float reflectForceScholar = 0.5f;
+    const float reflectForceScholar = 50f;
     const float damageStandard = 10f;
 
     public PlayerHealthLogic(PlayerHealth monoBehaviour, Rigidbody2D rb, PlayerAnimation playerAnimation, CapsuleCollider2D playerBodyCollider)
@@ -92,38 +92,49 @@ public class PlayerHealthLogic
         float frictionReduce = 1f;
         while(timeElapsed < 0.5f)
         {
-            float vectorC = 0;
-            float temp = 0;
-            if((temp = checkObstacleBehind(ForceInput)) > -1)
+            float movableDistance = 0;
+
+            Vector2 collisionRay = checkObstacleBehind(ForceInput,out movableDistance);
+            float vectorC = Mathf.Min(ForceInput.magnitude * frictionReduce * Time.fixedDeltaTime , movableDistance);
+            if(movableDistance > -1)
             {
-                vectorC = Mathf.Min(ForceInput.magnitude * frictionReduce , temp);
+                if(movableDistance <= 0f)
+                {
+                    rb.MovePosition(collisionRay);     
+                }else
+                {
+                    rb.MovePosition((Vector2)monoBehaviour.transform.position + ForceInput.normalized * vectorC);     
+                }
             }else
             {
-                vectorC = ForceInput.magnitude * frictionReduce;
+                rb.MovePosition((Vector2)monoBehaviour.transform.position + ForceInput.normalized * vectorC );     
             }
 
-            rb.MovePosition((Vector2)monoBehaviour.transform.position + ForceInput.normalized * vectorC);     
-            yield return new WaitForSeconds(0.02f);
-            timeElapsed += 0.02f;
-            frictionReduce = Mathf.Lerp(frictionReduce , 0 , 0.3f);
+            yield return new WaitForFixedUpdate();
+            timeElapsed += Time.fixedDeltaTime;
+            frictionReduce = Mathf.Lerp(frictionReduce , 0 , 0.2f);
         }
 
+        rb.velocity = Vector2.zero;
+        rb.angularVelocity = 0f;
     }
 
-    private float checkObstacleBehind(Vector2 forceInput)
+    private Vector2 checkObstacleBehind(Vector2 forceInput, out float movableDistance)
     {
         int layerMaskNum = 1 << LayerMask.NameToLayer("Environment");
 
-        float checkDistance = 50;
+        float checkDistance = 1;
         // Raycast
         RaycastHit2D hit = Physics2D.Raycast(monoBehaviour.transform.position, forceInput, checkDistance, layerMaskNum);
-
         // hit.collider 가 null 이 아니라면, 무언가에 부딪혔다는 의미입니다.
         if (hit.collider != null)
         {
-            return hit.distance;
+            movableDistance = hit.distance;
+            return hit.point;
         }
-        return -1;
+
+        movableDistance = 100; // 그냥 존나 크게 해서 선택 안되게
+        return Vector2.zero;
     }
 
 

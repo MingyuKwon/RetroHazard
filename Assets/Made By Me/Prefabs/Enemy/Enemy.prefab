@@ -676,7 +676,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70fccd71e7732fe4bbeef1a3fd45c84c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEnemyStunned: 0
+  isEnemyPaused: 0
   isParried: 0
   isLockedOnPlayer: 0
   enemySpeed: 3
@@ -701,7 +701,7 @@ MonoBehaviour:
   randomSpeed: 2
   chaseRange: 15
   chaseSpeed: 4
-  attackSpeed: 0.25
+  attackSpeed: 0.5
 --- !u!114 &8855339012748659490
 MonoBehaviour:
   m_ObjectHideFlags: 0

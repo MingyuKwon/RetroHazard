@@ -11,7 +11,7 @@ public class EnemyCollide : MonoBehaviour
     private PlayerStatus contactPlayerStat;
     private Vector2 ForceInput;
 
-    const float reflectForceScholar = 0.5f;
+    const float reflectForceScholar = 50f;
     private float damage = 0f;
     const float damageStandard = 20f;
     
@@ -37,7 +37,6 @@ public class EnemyCollide : MonoBehaviour
                 }
 
                 ForceInput = other.GetContact(0).normal;
-                DamageReDuce();
                 damage = damage * (float)(enemyManager.enemyStatus.ParriedWithParrySheild ? 1.5 : 1);
                 Debug.Log("Enemy had damage : " + damage);
                 Reflect(damage);
@@ -60,11 +59,11 @@ public class EnemyCollide : MonoBehaviour
         {
             if(other.otherCollider.tag == "Enemy Body") // 내 몸이랑 맞았다면
             {
-                enemyManager.DamageAndStop(0.5f);
+                enemyManager.DamageAndStop(0.8f);
             }
             else if(other.otherCollider.tag == "Attack") // 공격 맞은 경직
             {
-                enemyManager.DamageAndStop(0.5f);
+                enemyManager.DamageAndStop(0.8f);
             }
         }
     }
@@ -84,43 +83,49 @@ public class EnemyCollide : MonoBehaviour
         float frictionReduce = 1f;
         while(timeElapsed < 0.5f)
         {
-            float vectorC = 0;
-            float temp = 0;
-            if((temp = checkObstacleBehind(ForceInput)) > -1)
+            float movableDistance = 0;
+
+            Vector2 collisionRay = checkObstacleBehind(ForceInput,out movableDistance);
+            float vectorC = Mathf.Min(ForceInput.magnitude * frictionReduce * Time.fixedDeltaTime , movableDistance);
+            if(movableDistance > -1)
             {
-                vectorC = Mathf.Min(ForceInput.magnitude * frictionReduce , temp);
+                if(movableDistance <= 0f)
+                {
+                    enemyManager.enemyRigidbody2D.MovePosition(collisionRay);     
+                }else
+                {
+                    enemyManager.enemyRigidbody2D.MovePosition((Vector2)transform.position + ForceInput.normalized * vectorC);     
+                }
             }else
             {
-                vectorC = ForceInput.magnitude * frictionReduce;
+                enemyManager.enemyRigidbody2D.MovePosition((Vector2)transform.position + ForceInput.normalized * vectorC );     
             }
 
-            enemyManager.enemyRigidbody2D.MovePosition((Vector2)transform.position + ForceInput.normalized * vectorC);     
-            yield return new WaitForSeconds(0.02f);
-            timeElapsed += 0.02f;
-            frictionReduce = Mathf.Lerp(frictionReduce , 0 , 0.3f);
+            yield return new WaitForFixedUpdate();
+            timeElapsed += Time.fixedDeltaTime;
+            frictionReduce = Mathf.Lerp(frictionReduce , 0 , 0.2f);
         }
 
+        enemyManager.enemyRigidbody2D.velocity = Vector2.zero;
+        enemyManager.enemyRigidbody2D.angularVelocity = 0f;
     }
 
-    private float checkObstacleBehind(Vector2 forceInput)
+    private Vector2 checkObstacleBehind(Vector2 forceInput, out float movableDistance)
     {
         int layerMaskNum = 1 << LayerMask.NameToLayer("Environment");
 
-        float checkDistance = 50;
+        float checkDistance = 1;
         // Raycast
         RaycastHit2D hit = Physics2D.Raycast(transform.position, forceInput, checkDistance, layerMaskNum);
-
         // hit.collider 가 null 이 아니라면, 무언가에 부딪혔다는 의미입니다.
         if (hit.collider != null)
         {
-            return hit.distance;
+            movableDistance = hit.distance;
+            return hit.point;
         }
-        return -1;
-    }
 
-    private void DamageReDuce()
-    {
-        damage = damage * ( (float)(100 - enemyManager.enemyStatus.ArmorDefence) / 100 );
+        movableDistance = 100; // 그냥 존나 크게 해서 선택 안되게
+        return Vector2.zero;
     }
 
 }

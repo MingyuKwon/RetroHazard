@@ -143,8 +143,6 @@ public class EnemyAnimation : MonoBehaviour
 
     bool isNowTransforming = false;
 
-    Vector2 startPosition;
-
     // Down left right up
     // 0     1    2     3
     public void Animation_BodyAttack(int direction) 
@@ -160,33 +158,61 @@ public class EnemyAnimation : MonoBehaviour
 
     IEnumerator TransformMove(int direction)
     {
-        Vector2 destinationPosition = startPosition;
+        Vector2 destinationPosition = transform.position;
         enemyManager.enemyBodyCollider.enabled = false;
-            startPosition = transform.position;
+
+        Vector2 ForceInput = Vector2.up;
 
             switch(direction)
             {
                 case 0 :
-                    destinationPosition = new Vector2(transform.position.x, transform.position.y - enemyManager.attackSpeed * 10);
+                    ForceInput = Vector2.down;
                     break;
                 case 1 :
-                    destinationPosition = new Vector2(transform.position.x-enemyManager.attackSpeed* 10, transform.position.y);
+                    ForceInput = Vector2.left;
                     break;
                 case 2 :
-                    destinationPosition = new Vector2(transform.position.x + enemyManager.attackSpeed* 10, transform.position.y);
+                    ForceInput = Vector2.right;
                     break;
                 case 3 :
-                    destinationPosition = new Vector2(transform.position.x, transform.position.y + enemyManager.attackSpeed* 10);
+                    ForceInput = Vector2.up;
                     break;
             }
 
+        float frictionReduce = 1f;
 
         while(isNowTransforming)
         {
-            enemyManager.enemyRigidbody2D.MovePosition((Vector2)transform.position + (destinationPosition - (Vector2)transform.position).normalized * enemyManager.attackSpeed );
+            float vectorC = 0;
+            float temp = 0;
+            if((temp = checkObstacleBehind(ForceInput)) > -1)
+            {
+                vectorC = Mathf.Min(ForceInput.magnitude * frictionReduce , temp);
+            }else
+            {
+                vectorC = ForceInput.magnitude * frictionReduce;
+            }
+            enemyManager.enemyRigidbody2D.MovePosition((Vector2)transform.position + ForceInput.normalized * vectorC * enemyManager.attackSpeed );
             yield return new WaitForSeconds(0.02f);
+            frictionReduce = Mathf.Lerp(frictionReduce , 0 , 0.3f);
         }
         enemyManager.enemyBodyCollider.enabled = true;
+    }
+
+    private float checkObstacleBehind(Vector2 forceInput)
+    {
+        int layerMaskNum = 1 << LayerMask.NameToLayer("Environment");
+
+        float checkDistance = 50;
+        // Raycast
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, forceInput, checkDistance, layerMaskNum);
+
+        // hit.collider 가 null 이 아니라면, 무언가에 부딪혔다는 의미입니다.
+        if (hit.collider != null)
+        {
+            return hit.distance;
+        }
+        return -1;
     }
 
 
