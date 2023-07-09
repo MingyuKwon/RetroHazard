@@ -35,6 +35,7 @@ public class EnemyAnimation : MonoBehaviour
         if(enemyManager.isEnemyStunned) return;
         enemyManager.vfxAnimator.SetTrigger("Parried");
         StopAllCoroutines();
+        isAttacking = false;
 
         StartCoroutine(ParreidTime());
     }
@@ -63,11 +64,13 @@ public class EnemyAnimation : MonoBehaviour
 
     public void Stun()
     {
-        if(enemyManager.isEnemyStunned) return;
-
+        enemyManager.vfxAnimator.SetTrigger("Stun");
         enemyManager.enemyStatus.ParriedWithParrySheild = false;
         enemyManager.isEnemyStunned = true;
         enemyManager.enemyBodyCollider.enabled = false;
+        StopAllCoroutines();
+
+        isAttacking = false;
         StartCoroutine(EnemyStunTime());
     }
 
@@ -142,11 +145,15 @@ public class EnemyAnimation : MonoBehaviour
 
     bool isNowTransforming = false;
 
+    bool isAttacking = false;
+    Vector2 startPosition;
+
     // Down left right up
     // 0     1    2     3
     public void Animation_BodyAttack(int direction) 
     {
         isNowTransforming = true;
+        isAttacking = !isAttacking;
         StartCoroutine(TransformMove(direction));
     }
 
@@ -157,25 +164,33 @@ public class EnemyAnimation : MonoBehaviour
 
     IEnumerator TransformMove(int direction)
     {
+        Vector2 destinationPosition = startPosition;
         enemyManager.enemyBodyCollider.enabled = false;
-        while(isNowTransforming)
+        if(isAttacking)
         {
+            startPosition = transform.position;
+
             switch(direction)
             {
                 case 0 :
-                    enemyManager.enemyRigidbody2D.MovePosition(new Vector2(transform.position.x, transform.position.y-enemyManager.attackSpeed));
+                    destinationPosition = new Vector2(transform.position.x, transform.position.y - enemyManager.attackSpeed * 10);
                     break;
                 case 1 :
-                    enemyManager.enemyRigidbody2D.MovePosition(new Vector2(transform.position.x-enemyManager.attackSpeed, transform.position.y));
+                    destinationPosition = new Vector2(transform.position.x-enemyManager.attackSpeed* 10, transform.position.y);
                     break;
                 case 2 :
-                    enemyManager.enemyRigidbody2D.MovePosition(new Vector2(transform.position.x + enemyManager.attackSpeed, transform.position.y));
+                    destinationPosition = new Vector2(transform.position.x + enemyManager.attackSpeed* 10, transform.position.y);
                     break;
                 case 3 :
-                    enemyManager.enemyRigidbody2D.MovePosition(new Vector2(transform.position.x, transform.position.y + enemyManager.attackSpeed));
+                    destinationPosition = new Vector2(transform.position.x, transform.position.y + enemyManager.attackSpeed* 10);
                     break;
             }
-            
+
+        }
+
+        while(isNowTransforming)
+        {
+            enemyManager.enemyRigidbody2D.MovePosition((Vector2)transform.position + (destinationPosition - (Vector2)transform.position).normalized * enemyManager.attackSpeed );
             yield return new WaitForSeconds(0.02f);
         }
         enemyManager.enemyBodyCollider.enabled = true;

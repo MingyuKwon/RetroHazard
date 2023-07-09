@@ -693,6 +693,7 @@ MonoBehaviour:
   destinationSetter: {fileID: 0}
   seeker: {fileID: 0}
   vfxAnimator: {fileID: 0}
+  enemyRigidbody2D: {fileID: 0}
   enemyBodyCollider: {fileID: 0}
   PlayerDetect: {fileID: 0}
   AttackDecide: {fileID: 0}
@@ -700,7 +701,7 @@ MonoBehaviour:
   randomSpeed: 2
   chaseRange: 15
   chaseSpeed: 4
-  attackSpeed: 0.15
+  attackSpeed: 0.25
 --- !u!114 &8855339012748659490
 MonoBehaviour:
   m_ObjectHideFlags: 0

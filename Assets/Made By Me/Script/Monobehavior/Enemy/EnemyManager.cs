@@ -68,7 +68,7 @@ public class EnemyManager : MonoBehaviour
     public float chaseSpeed = 4f; // 쫓아갈 속도
 
     [Header("\nAnimation")]
-    public float attackSpeed = 0.2f; // 몸통박치기 시에 순간 대시할 속도
+    public float attackSpeed = 0.4f; // 몸통박치기 시에 순간 대시할 속도
 
     private void Awake() {
         animator = GetComponent<Animator>();
