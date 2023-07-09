@@ -21,7 +21,7 @@ public class PlayerHealth : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         playerBodyCollider = GetComponentInChildren<PlayerCollider>().gameObject.GetComponent<CapsuleCollider2D>();
 
-        playerHealthLogic = new PlayerHealthLogic(rb, Player1.instance.playerAnimation, playerBodyCollider);
+        playerHealthLogic = new PlayerHealthLogic(this,rb, Player1.instance.playerAnimation, playerBodyCollider);
     }
 
     private void Start() {

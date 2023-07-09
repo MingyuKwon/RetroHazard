@@ -48,6 +48,8 @@ public class EnemyManager : MonoBehaviour
     public Animator vfxAnimator;
     private SpriteRenderer spriteRenderer;
 
+    public Rigidbody2D enemyRigidbody2D;
+
     public CapsuleCollider2D enemyBodyCollider;
     public PolygonCollider2D PlayerDetect;
     public BoxCollider2D AttackDecide;
@@ -66,7 +68,7 @@ public class EnemyManager : MonoBehaviour
     public float chaseSpeed = 4f; // 쫓아갈 속도
 
     [Header("\nAnimation")]
-    public float attackSpeed = 0.12f; // 몸통박치기 시에 순간 대시할 속도
+    public float attackSpeed = 0.2f; // 몸통박치기 시에 순간 대시할 속도
 
     private void Awake() {
         animator = GetComponent<Animator>();
@@ -87,6 +89,7 @@ public class EnemyManager : MonoBehaviour
         AttackDecide = transform.GetChild(1).GetComponentInChildren<BoxCollider2D>();
         enemyBodyCollider = GetComponentInChildren<EnemyCollider>().gameObject.GetComponent<CapsuleCollider2D>();
 
+        enemyRigidbody2D = GetComponent<Rigidbody2D>();
 
         BoxCollider2D boxCollider2D = transform.GetChild(5).GetComponent<BoxCollider2D>();
         enemyMoveBoundMin = boxCollider2D.bounds.min;

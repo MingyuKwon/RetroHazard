@@ -13,16 +13,19 @@ public class PlayerHealthLogic
     private PlayerAnimation playerAnimation;
     private PlayerStatus status;
 
+    PlayerHealth monoBehaviour;
+
 
     private Vector2 ForceInput;
-    const float reflectForceScholar = 400f;
+    const float reflectForceScholar = 0.5f;
     const float damageStandard = 10f;
 
-    public PlayerHealthLogic(Rigidbody2D rb, PlayerAnimation playerAnimation, CapsuleCollider2D playerBodyCollider)
+    public PlayerHealthLogic(PlayerHealth monoBehaviour, Rigidbody2D rb, PlayerAnimation playerAnimation, CapsuleCollider2D playerBodyCollider)
     {
         this.rb = rb;
         this.playerAnimation = playerAnimation;
         this.playerBodyCollider = playerBodyCollider;
+        this.monoBehaviour = monoBehaviour;
     }
 
     public void Start() {
@@ -61,7 +64,6 @@ public class PlayerHealthLogic
                 }
 
                 ForceInput = other.GetContact(0).normal;
-                DamageReDuce();
                 Debug.Log("player had damage : " + damage);
                 Reflect(damage);
                 status.HealthChangeDefaultMinus(damage);
@@ -75,15 +77,53 @@ public class PlayerHealthLogic
         // 반환 값에 맞춰 하면 된다
     }   
 
-    private void DamageReDuce()
-    {
-        //damage = damage * ( (float)(100 - status.ArmorDefence) / 100 );
-    }
-
     private void Reflect(float Damage)
     {
         Damage = Mathf.Log(Damage / damageStandard + 1);
-        rb.AddForce(ForceInput * reflectForceScholar * Damage);
+        ForceInput = ForceInput * reflectForceScholar * Damage;
+
+        monoBehaviour.StartCoroutine(reflectCoroutine(ForceInput));
+
+    }
+
+    IEnumerator reflectCoroutine(Vector2 ForceInput)
+    {
+        float timeElapsed = 0;
+        float frictionReduce = 1f;
+        while(timeElapsed < 0.5f)
+        {
+            float vectorC = 0;
+            float temp = 0;
+            if((temp = checkObstacleBehind(ForceInput)) > -1)
+            {
+                vectorC = Mathf.Min(ForceInput.magnitude * frictionReduce , temp);
+            }else
+            {
+                vectorC = ForceInput.magnitude * frictionReduce;
+            }
+
+            rb.MovePosition((Vector2)monoBehaviour.transform.position + ForceInput.normalized * vectorC);     
+            yield return new WaitForSeconds(0.02f);
+            timeElapsed += 0.02f;
+            frictionReduce = Mathf.Lerp(frictionReduce , 0 , 0.3f);
+        }
+
+    }
+
+    private float checkObstacleBehind(Vector2 forceInput)
+    {
+        int layerMaskNum = 1 << LayerMask.NameToLayer("Environment");
+
+        float checkDistance = 50;
+        // Raycast
+        RaycastHit2D hit = Physics2D.Raycast(monoBehaviour.transform.position, forceInput, checkDistance, layerMaskNum);
+
+        // hit.collider 가 null 이 아니라면, 무언가에 부딪혔다는 의미입니다.
+        if (hit.collider != null)
+        {
+            return hit.distance;
+        }
+        return -1;
     }
 
 

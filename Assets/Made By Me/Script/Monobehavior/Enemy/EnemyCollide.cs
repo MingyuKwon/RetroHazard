@@ -11,7 +11,7 @@ public class EnemyCollide : MonoBehaviour
     private PlayerStatus contactPlayerStat;
     private Vector2 ForceInput;
 
-    const float reflectForceScholar = 15f;
+    const float reflectForceScholar = 0.5f;
     const float damageAndStopDelay = 0.7f;
     private float damage = 0f;
     const float damageStandard = 20f;
@@ -78,8 +78,48 @@ public class EnemyCollide : MonoBehaviour
         Damage = Mathf.Log(Damage / damageStandard + 1);
         ForceInput = ForceInput * reflectForceScholar * Damage;
 
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        rb.AddForce(ForceInput);
+        StartCoroutine(reflectCoroutine(ForceInput));
+
+    }
+
+    IEnumerator reflectCoroutine(Vector2 ForceInput)
+    {
+        float timeElapsed = 0;
+        float frictionReduce = 1f;
+        while(timeElapsed < 0.5f)
+        {
+            float vectorC = 0;
+            float temp = 0;
+            if((temp = checkObstacleBehind(ForceInput)) > -1)
+            {
+                vectorC = Mathf.Min(ForceInput.magnitude * frictionReduce , temp);
+            }else
+            {
+                vectorC = ForceInput.magnitude * frictionReduce;
+            }
+
+            enemyManager.enemyRigidbody2D.MovePosition((Vector2)transform.position + ForceInput.normalized * vectorC);     
+            yield return new WaitForSeconds(0.02f);
+            timeElapsed += 0.02f;
+            frictionReduce = Mathf.Lerp(frictionReduce , 0 , 0.3f);
+        }
+
+    }
+
+    private float checkObstacleBehind(Vector2 forceInput)
+    {
+        int layerMaskNum = 1 << LayerMask.NameToLayer("Environment");
+
+        float checkDistance = 50;
+        // Raycast
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, forceInput, checkDistance, layerMaskNum);
+
+        // hit.collider 가 null 이 아니라면, 무언가에 부딪혔다는 의미입니다.
+        if (hit.collider != null)
+        {
+            return hit.distance;
+        }
+        return -1;
     }
 
     private void DamageReDuce()

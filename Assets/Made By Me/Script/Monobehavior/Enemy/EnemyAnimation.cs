@@ -163,20 +163,20 @@ public class EnemyAnimation : MonoBehaviour
             switch(direction)
             {
                 case 0 :
-                    transform.Translate(new Vector3(0f, -enemyManager.attackSpeed, 0f));
+                    enemyManager.enemyRigidbody2D.MovePosition(new Vector2(transform.position.x, transform.position.y-enemyManager.attackSpeed));
                     break;
                 case 1 :
-                    transform.Translate(new Vector3(-enemyManager.attackSpeed, 0f, 0f));
+                    enemyManager.enemyRigidbody2D.MovePosition(new Vector2(transform.position.x-enemyManager.attackSpeed, transform.position.y));
                     break;
                 case 2 :
-                    transform.Translate(new Vector3(enemyManager.attackSpeed, 0f, 0f));
+                    enemyManager.enemyRigidbody2D.MovePosition(new Vector2(transform.position.x + enemyManager.attackSpeed, transform.position.y));
                     break;
                 case 3 :
-                    transform.Translate(new Vector3(0f, enemyManager.attackSpeed, 0f));
+                    enemyManager.enemyRigidbody2D.MovePosition(new Vector2(transform.position.x, transform.position.y + enemyManager.attackSpeed));
                     break;
             }
             
-            yield return new WaitForSeconds(0.01f);
+            yield return new WaitForSeconds(0.02f);
         }
         enemyManager.enemyBodyCollider.enabled = true;
     }
