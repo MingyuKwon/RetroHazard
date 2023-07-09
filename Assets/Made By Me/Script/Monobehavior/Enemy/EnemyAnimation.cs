@@ -35,7 +35,6 @@ public class EnemyAnimation : MonoBehaviour
         if(enemyManager.isEnemyStunned) return;
         enemyManager.vfxAnimator.SetTrigger("Parried");
         StopAllCoroutines();
-        isAttacking = false;
 
         StartCoroutine(ParreidTime());
     }
@@ -70,7 +69,6 @@ public class EnemyAnimation : MonoBehaviour
         enemyManager.enemyBodyCollider.enabled = false;
         StopAllCoroutines();
 
-        isAttacking = false;
         StartCoroutine(EnemyStunTime());
     }
 
@@ -145,7 +143,6 @@ public class EnemyAnimation : MonoBehaviour
 
     bool isNowTransforming = false;
 
-    bool isAttacking = false;
     Vector2 startPosition;
 
     // Down left right up
@@ -153,7 +150,6 @@ public class EnemyAnimation : MonoBehaviour
     public void Animation_BodyAttack(int direction) 
     {
         isNowTransforming = true;
-        isAttacking = !isAttacking;
         StartCoroutine(TransformMove(direction));
     }
 
@@ -166,8 +162,6 @@ public class EnemyAnimation : MonoBehaviour
     {
         Vector2 destinationPosition = startPosition;
         enemyManager.enemyBodyCollider.enabled = false;
-        if(isAttacking)
-        {
             startPosition = transform.position;
 
             switch(direction)
@@ -186,7 +180,6 @@ public class EnemyAnimation : MonoBehaviour
                     break;
             }
 
-        }
 
         while(isNowTransforming)
         {

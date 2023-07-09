@@ -12,7 +12,6 @@ public class EnemyCollide : MonoBehaviour
     private Vector2 ForceInput;
 
     const float reflectForceScholar = 0.5f;
-    const float damageAndStopDelay = 0.7f;
     private float damage = 0f;
     const float damageStandard = 20f;
     
@@ -61,16 +60,13 @@ public class EnemyCollide : MonoBehaviour
         {
             if(other.otherCollider.tag == "Enemy Body") // 내 몸이랑 맞았다면
             {
-                StartCoroutine(DamageAndStopDelay()); // 데미지 주고 잠시 대기
+                enemyManager.DamageAndStop(0.5f);
+            }
+            else if(other.otherCollider.tag == "Attack") // 공격 맞은 경직
+            {
+                enemyManager.DamageAndStop(0.5f);
             }
         }
-    }
-
-    IEnumerator DamageAndStopDelay()
-    {
-        enemyManager.canMove = false;
-        yield return new WaitForSeconds(damageAndStopDelay);
-        enemyManager.canMove = true;
     }
 
     private void Reflect(float Damage)

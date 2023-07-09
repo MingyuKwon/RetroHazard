@@ -7,7 +7,16 @@ using Pathfinding;
 public class EnemyManager : MonoBehaviour
 {
     private Animator animator;
-    public bool isEnemyStunned = false;
+    public bool isEnemyStunned{
+        get{
+            return isEnemyPaused;
+        }
+        set{
+            aiPath.canMove = !value;
+            isEnemyPaused = value;
+        }
+    }
+    public bool isEnemyPaused = false;
     public bool isParried = false;
     public bool canMove{
         get{
@@ -15,11 +24,15 @@ public class EnemyManager : MonoBehaviour
         }
 
         set{
-            aiPath.canMove = value;
+            if(!isEnemyStunned)
+            {
+                aiPath.canMove = value;
+            }
         }
     }
 
     public bool isLockedOnPlayer = false;
+
 
     //Move
     public float enemySpeed = 3f;
@@ -191,6 +204,20 @@ public class EnemyManager : MonoBehaviour
         AttackDecide.enabled = flag;
 
         enemyAnimation.PlayerLockOn(flag);
+    }
+
+    public void DamageAndStop(float damageAndStopDelay)
+    {
+        StartCoroutine(DamageAndStopDelay(damageAndStopDelay));
+    }
+
+    IEnumerator DamageAndStopDelay(float damageAndStopDelay)
+    {
+        Debug.Log("DamageAndStopDelay Start");
+        isEnemyStunned = true;
+        yield return new WaitForSeconds(damageAndStopDelay);
+        isEnemyStunned = false;
+        Debug.Log("DamageAndStopDelay End");
     }
 
 }
