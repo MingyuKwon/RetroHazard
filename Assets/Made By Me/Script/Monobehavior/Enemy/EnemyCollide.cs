@@ -72,42 +72,30 @@ public class EnemyCollide : MonoBehaviour
     {
         Damage = Mathf.Log(Damage / damageStandard + 1);
         ForceInput = ForceInput * reflectForceScholar * Damage;
-
+        enemyManager.enemyRigidbody2D.AddForce(ForceInput);
         StartCoroutine(reflectCoroutine(ForceInput));
-
     }
 
     IEnumerator reflectCoroutine(Vector2 ForceInput)
     {
         float timeElapsed = 0;
-        float frictionReduce = 1f;
         while(timeElapsed < 0.5f)
         {
             float movableDistance = 0;
+            checkObstacleBehind(ForceInput,out movableDistance);
 
-            Vector2 collisionRay = checkObstacleBehind(ForceInput,out movableDistance);
-            float vectorC = Mathf.Min(ForceInput.magnitude * frictionReduce * Time.fixedDeltaTime , movableDistance);
-            if(movableDistance > -1)
+            if(movableDistance <= 0f)
             {
-                if(movableDistance <= 0f)
-                {
-                    enemyManager.enemyRigidbody2D.MovePosition(collisionRay);     
-                }else
-                {
-                    enemyManager.enemyRigidbody2D.MovePosition((Vector2)transform.position + ForceInput.normalized * vectorC);     
-                }
-            }else
-            {
-                enemyManager.enemyRigidbody2D.MovePosition((Vector2)transform.position + ForceInput.normalized * vectorC );     
+                enemyManager.enemyRigidbody2D.velocity = Vector2.zero;
+                enemyManager.enemyRigidbody2D.angularVelocity = 0f;   
             }
-
+            
             yield return new WaitForFixedUpdate();
             timeElapsed += Time.fixedDeltaTime;
-            frictionReduce = Mathf.Lerp(frictionReduce , 0 , 0.2f);
         }
 
         enemyManager.enemyRigidbody2D.velocity = Vector2.zero;
-        enemyManager.enemyRigidbody2D.angularVelocity = 0f;
+        enemyManager.enemyRigidbody2D.angularVelocity = 0f;  
     }
 
     private Vector2 checkObstacleBehind(Vector2 forceInput, out float movableDistance)

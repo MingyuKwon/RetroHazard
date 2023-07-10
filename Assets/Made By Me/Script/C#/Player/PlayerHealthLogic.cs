@@ -17,7 +17,7 @@ public class PlayerHealthLogic
 
 
     private Vector2 ForceInput;
-    const float reflectForceScholar = 50f;
+    const float reflectForceScholar = 500f;
     const float damageStandard = 10f;
 
     public PlayerHealthLogic(PlayerHealth monoBehaviour, Rigidbody2D rb, PlayerAnimation playerAnimation, CapsuleCollider2D playerBodyCollider)
@@ -81,42 +81,31 @@ public class PlayerHealthLogic
     {
         Damage = Mathf.Log(Damage / damageStandard + 1);
         ForceInput = ForceInput * reflectForceScholar * Damage;
-
+        rb.AddForce(ForceInput);
         monoBehaviour.StartCoroutine(reflectCoroutine(ForceInput));
-
     }
 
     IEnumerator reflectCoroutine(Vector2 ForceInput)
     {
         float timeElapsed = 0;
-        float frictionReduce = 1f;
         while(timeElapsed < 0.5f)
         {
             float movableDistance = 0;
+            checkObstacleBehind(ForceInput,out movableDistance);
 
-            Vector2 collisionRay = checkObstacleBehind(ForceInput,out movableDistance);
-            float vectorC = Mathf.Min(ForceInput.magnitude * frictionReduce * Time.fixedDeltaTime , movableDistance);
-            if(movableDistance > -1)
+            if(movableDistance <= 0f)
             {
-                if(movableDistance <= 0f)
-                {
-                    rb.MovePosition(collisionRay);     
-                }else
-                {
-                    rb.MovePosition((Vector2)monoBehaviour.transform.position + ForceInput.normalized * vectorC);     
-                }
-            }else
-            {
-                rb.MovePosition((Vector2)monoBehaviour.transform.position + ForceInput.normalized * vectorC );     
+                rb.velocity = Vector2.zero;
+                rb.angularVelocity = 0f;   
             }
-
+            
             yield return new WaitForFixedUpdate();
             timeElapsed += Time.fixedDeltaTime;
-            frictionReduce = Mathf.Lerp(frictionReduce , 0 , 0.2f);
         }
 
         rb.velocity = Vector2.zero;
-        rb.angularVelocity = 0f;
+        rb.angularVelocity = 0f;   
+
     }
 
     private Vector2 checkObstacleBehind(Vector2 forceInput, out float movableDistance)

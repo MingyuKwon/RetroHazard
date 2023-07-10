@@ -213,11 +213,9 @@ public class EnemyManager : MonoBehaviour
 
     IEnumerator DamageAndStopDelay(float damageAndStopDelay)
     {
-        Debug.Log("DamageAndStopDelay Start");
         isEnemyStunned = true;
         yield return new WaitForSeconds(damageAndStopDelay);
         isEnemyStunned = false;
-        Debug.Log("DamageAndStopDelay End");
     }
 
 }
