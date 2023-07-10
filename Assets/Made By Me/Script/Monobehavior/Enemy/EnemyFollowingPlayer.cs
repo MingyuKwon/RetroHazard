@@ -36,10 +36,13 @@ public class EnemyFollowingPlayer : MonoBehaviour
                 setRandomPosition();
             }  
         }else
-        {
-            float distance = Vector3.Distance(transform.position, target.position);
-            if(distance > enemyManager.chaseRange)
+        {            
+            if(transform.position.x > enemyManager.enemyMoveBoundMax.x || 
+            transform.position.x < enemyManager.enemyMoveBoundMin.x || 
+            transform.position.y > enemyManager.enemyMoveBoundMax.y|| 
+            transform.position.y < enemyManager.enemyMoveBoundMin.y)
             {
+                Debug.Log("Out of Bound");
                 enemyManager.isLockedOnPlayer = false;
             }
         }

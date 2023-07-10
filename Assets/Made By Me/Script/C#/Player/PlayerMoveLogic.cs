@@ -7,7 +7,7 @@ using Sirenix.OdinInspector;
 using DG.Tweening;
 public class PlayerMoveLogic
 {
-    public float moveSpeed = 5f;
+    public float moveSpeed = 4f;
     public float moveSpeedScholar = 1f;
 
     public bool canMove = true;

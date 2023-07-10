@@ -358,8 +358,8 @@ PolygonCollider2D:
       - {x: -0.4, y: 1.4}
       - {x: 0.4, y: 1.4}
       - {x: 1, y: 1.2}
-      - {x: 2.1, y: -4}
-      - {x: -2.1, y: -4}
+      - {x: 2.1, y: -2}
+      - {x: -2.1, y: -2}
 --- !u!1 &6463129297277267133
 GameObject:
   m_ObjectHideFlags: 0
@@ -510,7 +510,7 @@ Transform:
   m_GameObject: {fileID: 6730699321470691001}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -36.11, y: 37.96, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.9, y: 0.9, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6730699321813164446}
@@ -648,7 +648,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9049aa17a751c34393839e8da39db20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   randomTransform: {fileID: 0}
   detectMark: {fileID: 5907384939025840980}
 --- !u!114 &7219668730155347237
@@ -678,6 +677,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEnemyPaused: 0
   isParried: 0
+  lockOnMutex: 0
   enemySpeed: 3
   animationX: 0
   animationY: -1
@@ -696,11 +696,9 @@ MonoBehaviour:
   enemyBodyCollider: {fileID: 0}
   PlayerDetect: {fileID: 0}
   AttackDecide: {fileID: 0}
-  detectTime: 0.5
-  randomSpeed: 2
-  chaseRange: 10
-  chaseSpeed: 4
-  attackSpeed: 0.75
+  randomSpeed: 1
+  chaseSpeed: 2
+  attackSpeed: 0.6
 --- !u!114 &8855339012748659490
 MonoBehaviour:
   m_ObjectHideFlags: 0

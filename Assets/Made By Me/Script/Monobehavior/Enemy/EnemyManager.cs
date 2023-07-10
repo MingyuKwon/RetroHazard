@@ -57,6 +57,8 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
+    public bool lockOnMutex = false;
+
 
     //Move
     public float enemySpeed = 3f;
@@ -93,15 +95,8 @@ public class EnemyManager : MonoBehaviour
 
 
 
-    // 이건 플레이어 발견했을 때 관련
-    public float detectTime = 0.5f;
-     // 이건 플레이어 발견했을 때 관련
-
-
-
     [Header("Following Move")]
     public float randomSpeed = 2f; // 방황할 속도
-    public float chaseRange = 10f; // 쫓아갈 거리
     public float chaseSpeed = 4f; // 쫓아갈 속도
 
     [Header("Animation")]
@@ -142,12 +137,10 @@ public class EnemyManager : MonoBehaviour
         {
             if(!isLockedOnPlayer) // 플레이어에게 록온 되어 있는데 trigger 닿았다면 그건 공격 신호
             {
-                Debug.Log("1111111111");
                 isLockedOnPlayer = true;
 
             }else // 플레이어에게 록온 안되었는데 trigger 닿았다면 그건 탐색 완료 신호
             {
-                Debug.Log("22222222222222");
                 enemyAnimation.Attack();
             }
         }
