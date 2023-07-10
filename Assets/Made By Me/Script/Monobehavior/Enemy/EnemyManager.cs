@@ -31,7 +31,31 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    public bool isLockedOnPlayer = false;
+    private bool _isLockedOnPlayer = false;
+    public bool isLockedOnPlayer{
+        get{
+            return _isLockedOnPlayer;
+        }
+
+        set{
+            _isLockedOnPlayer = value;
+            if(_isLockedOnPlayer)
+            {
+                enemyAnimation.animator.speed = 1.2f;
+                enemyFollowingPlayer.setPlayerPosition();
+            }else
+            {
+                enemyAnimation.animator.speed = 1.0f;
+                enemyFollowingPlayer.setRandomPosition();
+            }
+
+            PlayerDetect.enabled = !_isLockedOnPlayer;
+            AttackDecide.enabled = _isLockedOnPlayer;
+
+            enemyAnimation.PlayerLockOn(_isLockedOnPlayer);
+
+        }
+    }
 
 
     //Move
@@ -77,11 +101,11 @@ public class EnemyManager : MonoBehaviour
 
     [Header("Following Move")]
     public float randomSpeed = 2f; // 방황할 속도
-    public float chaseRange = 15f; // 쫓아갈 거리
+    public float chaseRange = 10f; // 쫓아갈 거리
     public float chaseSpeed = 4f; // 쫓아갈 속도
 
-    [Header("\nAnimation")]
-    public float attackSpeed = 1.5f; // 몸통박치기 시에 순간 대시할 속도
+    [Header("Animation")]
+    public float attackSpeed = 1.8f; // 몸통박치기 시에 순간 대시할 속도
 
     private void Awake() {
         animator = GetComponent<Animator>();
@@ -116,11 +140,14 @@ public class EnemyManager : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.layer == LayerMask.NameToLayer("Player Body"))
         {
-            if(PlayerDetect.enabled) // 걸렸을 때 탐지 콜라이더에 걸리면 랜덤 이동이고
+            if(!isLockedOnPlayer) // 플레이어에게 록온 되어 있는데 trigger 닿았다면 그건 공격 신호
             {
-                PlayerLockOn(true);
-            }else // 그게 아니라면 록온 하다가 공격 결정 콜라이더에 닿은거다
+                Debug.Log("1111111111");
+                isLockedOnPlayer = true;
+
+            }else // 플레이어에게 록온 안되었는데 trigger 닿았다면 그건 탐색 완료 신호
             {
+                Debug.Log("22222222222222");
                 enemyAnimation.Attack();
             }
         }
@@ -185,25 +212,6 @@ public class EnemyManager : MonoBehaviour
     {
         animator.SetTrigger("Die");
         vfxAnimator.SetTrigger("Die");
-    }
-
-    public void PlayerLockOn(bool flag) 
-    {
-        if(flag)
-        {
-            destinationSetter.target = enemyFollowingPlayer.target;
-        }else
-        {
-            destinationSetter.target = enemyFollowingPlayer.randomTransform;
-        }
-        
-        isLockedOnPlayer = flag;
-
-        // 플레이어는 이미 찾았으니 찾는 콜라이더 없애고 공격 할지 말지 정하는 콜라이더 활성화
-        PlayerDetect.enabled = !flag;
-        AttackDecide.enabled = flag;
-
-        enemyAnimation.PlayerLockOn(flag);
     }
 
     public void DamageAndStop(float damageAndStopDelay)

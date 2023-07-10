@@ -678,7 +678,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEnemyPaused: 0
   isParried: 0
-  isLockedOnPlayer: 0
   enemySpeed: 3
   animationX: 0
   animationY: -1
@@ -699,9 +698,9 @@ MonoBehaviour:
   AttackDecide: {fileID: 0}
   detectTime: 0.5
   randomSpeed: 2
-  chaseRange: 15
+  chaseRange: 10
   chaseSpeed: 4
-  attackSpeed: 0.5
+  attackSpeed: 0.75
 --- !u!114 &8855339012748659490
 MonoBehaviour:
   m_ObjectHideFlags: 0

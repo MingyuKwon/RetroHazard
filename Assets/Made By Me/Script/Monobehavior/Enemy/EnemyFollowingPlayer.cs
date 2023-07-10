@@ -9,7 +9,7 @@ using Pathfinding;
 
 public class EnemyFollowingPlayer : MonoBehaviour
 {
-    public Transform target; // 플레이어의 위치
+    private Transform target; // 플레이어의 위치
     private Vector3 randomPosition; // 랜덤한 위치
 
     public Transform randomTransform;
@@ -26,35 +26,26 @@ public class EnemyFollowingPlayer : MonoBehaviour
         randomTransform = transform.parent.GetChild(1).transform;
 
         setRandomPosition();
-        enemyManager.destinationSetter.target = randomTransform;
     }
 
-    private void Update() { // 그냥 계속 사이 거리는 구한다
-
-        if(enemyManager.isLockedOnPlayer)
+    private void Update() { 
+        if(!enemyManager.isLockedOnPlayer)
         {
-            if (enemyManager.aiPath.remainingDistance > enemyManager.chaseRange) 
-            {
-                enemyManager.PlayerLockOn(false);
-                enemyManager.enemyAnimation.animator.speed = 1.0f;
-                setRandomPosition();
-            }else
-            {
-                enemyManager.aiPath.maxSpeed = enemyManager.chaseSpeed;
-                enemyManager.enemyAnimation.animator.speed = 1.2f;
-            }
-
-        }else
-        {
-            enemyManager.enemyAnimation.animator.speed = 1.0f;
             if(enemyManager.aiPath.reachedEndOfPath)
             {
                 setRandomPosition();
             }  
+        }else
+        {
+            float distance = Vector3.Distance(transform.position, target.position);
+            if(distance > enemyManager.chaseRange)
+            {
+                enemyManager.isLockedOnPlayer = false;
+            }
         }
     }
 
-    private void setRandomPosition()
+    public void setRandomPosition()
     {
         float randomX = Random.Range(enemyManager.enemyMoveBoundMin.x, enemyManager.enemyMoveBoundMax.x);
         float randomY = Random.Range(enemyManager.enemyMoveBoundMin.y, enemyManager.enemyMoveBoundMax.y);
@@ -63,6 +54,12 @@ public class EnemyFollowingPlayer : MonoBehaviour
         randomTransform.position = randomPosition;
         enemyManager.aiPath.maxSpeed = enemyManager.randomSpeed;
         enemyManager.destinationSetter.target = randomTransform;
+    }
+
+    public void setPlayerPosition()
+    {
+        enemyManager.aiPath.maxSpeed = enemyManager.chaseSpeed;
+        enemyManager.destinationSetter.target = target;
     }
 
 }

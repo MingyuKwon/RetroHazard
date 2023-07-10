@@ -30,11 +30,17 @@ public class EnemyAnimation : MonoBehaviour
         animator.SetFloat("Y", enemyManager.animationY);
     }
 
+    public void Animation_StopAllCoroutine()
+    {
+        StopAllCoroutines();
+        enemyManager.enemyFollowingPlayer.detectMark.SetActive(false);
+    }
+
     public void Parreid()
     {
         if(enemyManager.isEnemyStunned) return;
         enemyManager.vfxAnimator.SetTrigger("Parried");
-        StopAllCoroutines();
+        Animation_StopAllCoroutine();
 
         StartCoroutine(ParreidTime());
     }
@@ -67,7 +73,7 @@ public class EnemyAnimation : MonoBehaviour
         enemyManager.enemyStatus.ParriedWithParrySheild = false;
         enemyManager.isEnemyStunned = true;
         enemyManager.enemyBodyCollider.enabled = false;
-        StopAllCoroutines();
+        Animation_StopAllCoroutine();
 
         StartCoroutine(EnemyStunTime());
     }
