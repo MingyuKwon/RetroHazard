@@ -220,8 +220,4 @@ public class EnemyAnimation : MonoBehaviour
         }
         return -1;
     }
-
-
-
-
 }

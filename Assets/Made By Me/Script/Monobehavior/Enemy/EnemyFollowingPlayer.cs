@@ -16,6 +16,15 @@ public class EnemyFollowingPlayer : MonoBehaviour
 
     public GameObject detectMark;
 
+    GridGraph currentMovingGraph; // Assuming we are using a GridGraph
+
+    float minBoundX;
+    float minBoundY;
+
+    float maxBoundX;
+    float maxBoundY;
+
+
 
     private EnemyManager enemyManager;
 
@@ -24,6 +33,16 @@ public class EnemyFollowingPlayer : MonoBehaviour
 
         target = Player1.instance.playerStatus.transform;
         randomTransform = transform.parent.GetChild(1).transform;
+    }
+
+    private void Start() {
+        currentMovingGraph = AstarPath.active.data.graphs[enemyManager.graphNum] as GridGraph;
+
+        minBoundX = currentMovingGraph.center.x - currentMovingGraph.size.x;
+        minBoundY = currentMovingGraph.center.y - currentMovingGraph.size.y;
+
+        maxBoundX = currentMovingGraph.center.x + currentMovingGraph.size.x;
+        maxBoundY = currentMovingGraph.center.y + currentMovingGraph.size.y;
 
         setRandomPosition();
     }
@@ -35,12 +54,12 @@ public class EnemyFollowingPlayer : MonoBehaviour
             {
                 setRandomPosition();
             }  
-        }else
+        }else 
         {            
-            if(transform.position.x > enemyManager.enemyMoveBoundMax.x || 
-            transform.position.x < enemyManager.enemyMoveBoundMin.x || 
-            transform.position.y > enemyManager.enemyMoveBoundMax.y|| 
-            transform.position.y < enemyManager.enemyMoveBoundMin.y)
+            if(transform.position.x > maxBoundX || 
+            transform.position.x < minBoundX || 
+            transform.position.y > maxBoundY || 
+            transform.position.y < minBoundY)
             {
                 Debug.Log("Out of Bound");
                 enemyManager.isLockedOnPlayer = false;
@@ -50,13 +69,26 @@ public class EnemyFollowingPlayer : MonoBehaviour
 
     public void setRandomPosition()
     {
-        float randomX = Random.Range(enemyManager.enemyMoveBoundMin.x, enemyManager.enemyMoveBoundMax.x);
-        float randomY = Random.Range(enemyManager.enemyMoveBoundMin.y, enemyManager.enemyMoveBoundMax.y);
-        randomPosition = new Vector2(randomX, randomY);
-
-        randomTransform.position = randomPosition;
+        randomTransform.position = GetRandomPointInSpecificGraph();
         enemyManager.aiPath.maxSpeed = enemyManager.randomSpeed;
         enemyManager.destinationSetter.target = randomTransform;
+    }
+
+    Vector3 GetRandomPointInSpecificGraph()
+    {
+        GraphNode node;
+        Vector3 randomPoint;
+
+    // Keep trying until a walkable node is found
+        do
+        {
+            int randomX = Random.Range(0, currentMovingGraph.width); // Get random x coordinate
+            int randomZ = Random.Range(0, currentMovingGraph.depth); // Get random z coordinate
+            node = currentMovingGraph.GetNode(randomX, randomZ);
+            randomPoint = (Vector3)node.position;
+        } while (!node.Walkable);
+
+        return randomPoint;
     }
 
     public void setPlayerPosition()

@@ -50,7 +50,11 @@ public class PlayerInteractiveLogic
     // Normal Input event
     private void InteractivePressed()
     {
-        if(GameManager.isPlayerNearNPC && !GameManager.isPlayerSheilding)
+        if(GameManager.isPlayerNearStageWarp)
+        {
+            GameManager.EventManager.Invoke_InStageWarpEvent();
+        }
+        else if(GameManager.isPlayerNearNPC && !GameManager.isPlayerSheilding)
         {
             GameManager.instance.ResetPlayerAnimationState();
             nearNPC.showDialog();

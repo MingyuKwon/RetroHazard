@@ -6,6 +6,9 @@ using Pathfinding;
 
 public class EnemyManager : MonoBehaviour
 {
+    [Header("Used in randomMove graph Finding")]
+   public int graphNum = 0;
+
     private Animator animator;
     public bool isEnemyStunned{
         get{
@@ -75,9 +78,6 @@ public class EnemyManager : MonoBehaviour
     public EnemyStatus enemyStatus;
     public EnemyFollowingPlayer enemyFollowingPlayer;
     public EnemyAnimation enemyAnimation;
-    
-    public Vector2 enemyMoveBoundMin;
-    public Vector2 enemyMoveBoundMax;
 
     public AIPath aiPath; // AIPath 컴포넌트
     public AIDestinationSetter destinationSetter; // AIDestinationSetter 컴포넌트
@@ -123,18 +123,14 @@ public class EnemyManager : MonoBehaviour
 
         enemyRigidbody2D = GetComponent<Rigidbody2D>();
 
-        BoxCollider2D boxCollider2D = transform.GetChild(5).GetComponent<BoxCollider2D>();
-        enemyMoveBoundMin = boxCollider2D.bounds.min;
-        enemyMoveBoundMax = boxCollider2D.bounds.max;
-
-        Destroy(boxCollider2D);
-
         enemyFollowingPlayer.enabled = true;
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.layer == LayerMask.NameToLayer("Player Body"))
         {
+            if(CheckObstacleBetween(other.transform.position - transform.position)) return;
+
             if(!isLockedOnPlayer) // 플레이어에게 록온 되어 있는데 trigger 닿았다면 그건 공격 신호
             {
                 isLockedOnPlayer = true;
@@ -144,6 +140,30 @@ public class EnemyManager : MonoBehaviour
                 enemyAnimation.Attack();
             }
         }
+    }
+
+    private bool CheckObstacleBetween(Vector2 rayDirection)
+    {
+        int targetMask = 1 << LayerMask.NameToLayer("Player Body");
+
+        int obstacleMask = 1 << LayerMask.NameToLayer("Environment");
+
+        float checkDistance = 10;
+        // Raycast
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, rayDirection, checkDistance, obstacleMask | targetMask);
+
+        // hit.collider 가 null 이 아니라면, 무언가에 부딪혔다는 의미입니다.
+        if (hit.collider != null)
+        {
+            if(hit.collider.gameObject.layer == LayerMask.NameToLayer("Player Body"))
+            {
+                return false;
+            }else if(hit.collider.gameObject.layer == LayerMask.NameToLayer("Environment"))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void Update() {

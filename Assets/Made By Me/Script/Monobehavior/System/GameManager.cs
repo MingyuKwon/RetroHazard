@@ -24,6 +24,13 @@ public class GameManager : MonoBehaviour
 
     public class EventManager
     {
+        public static event Action InStageWarpEvent;
+        public static void Invoke_InStageWarpEvent()
+        {
+            // 아무 인수 없이 호출시에, notice를 닫는 것
+            InStageWarpEvent?.Invoke();
+        }
+
         public static event Action<string, string[], bool ,int, int> showNotice;
         public static void InvokeShowNotice(string showingUI ,string[] texts = null, bool isTyping = false ,int panelWidth = 400, int panelHeight = 100)
         {
@@ -201,6 +208,8 @@ public class GameManager : MonoBehaviour
     static public bool isPlayerPaused = false; // Every player script refer to this value 
     static public bool isGamePaused = false; // Every player script refer to this value 
     static public bool ObtainKeyItem = false;
+
+    static public bool isPlayerNearStageWarp = false;
 
     public static GameManager instance = null;
     public static EventManager eventInstance = null;

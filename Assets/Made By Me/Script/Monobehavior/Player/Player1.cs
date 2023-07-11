@@ -13,6 +13,9 @@ public class Player1 : MonoBehaviour
 
     public PlayerAnimation playerAnimation;
 
+    public Rigidbody2D playerRigidBody2D;
+    public SpriteRenderer playerSprite;
+
     private void Awake() {
 
         if(instance == null)
@@ -30,5 +33,8 @@ public class Player1 : MonoBehaviour
         
         playerAnimation = GetComponent<PlayerAnimation>();
         playerMove = GetComponent<PlayerMove>();
+
+        playerRigidBody2D = GetComponent<Rigidbody2D>();
+        playerSprite = GetComponent<SpriteRenderer>();
     }
 }

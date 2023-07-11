@@ -564,6 +564,7 @@ public class GameMangerInput : MonoBehaviour
         mapEnabler.Apply();
     }
 
+    public static bool blockAllInput = false;
 
     public void delegateInputFunctions()
     {
@@ -666,62 +667,74 @@ public class GameMangerInput : MonoBehaviour
 
     private void InteractiveJustPressed(InputActionEventData data)
     {
+        if(blockAllInput) return;
         InputEvent.Invoke_InteractiveJustPressed();
     }
 
     private void InteractiveJustReleased(InputActionEventData data)
     {
+        if(blockAllInput) return;
         InputEvent.Invoke_InteractiveJustReleased();
     }
 
     void EnergyReloadStart(InputActionEventData data)
     {
+        if(blockAllInput) return;
         InputEvent.Invoke_EnergyReload();
     }
 
     void SheildReloadStart(InputActionEventData data)
     {
+        if(blockAllInput) return;
         InputEvent.Invoke_SheildReload();
     }
 
     public void UPPressed(InputActionEventData data)
     {
+        if(blockAllInput) return;
         InputEvent.Invoke_UpPressed();
     }
 
     public void DownPressed(InputActionEventData data)
     {
+        if(blockAllInput) return;
         InputEvent.Invoke_DownPressed();
     }
 
     public void RightPressed(InputActionEventData data)
     {
+        if(blockAllInput) return;
         InputEvent.Invoke_RightPressed();
     }
 
     public void LeftPressed(InputActionEventData data)
     {
+        if(blockAllInput) return;
         InputEvent.Invoke_LeftPressed();
     }
     // keep presseing
 
     public void UPJustPressed(InputActionEventData data)
     {
+        if(blockAllInput) return;
         InputEvent.Invoke_UPJustPressed();
     }
 
     public void DownJustPressed(InputActionEventData data)
     {
+        if(blockAllInput) return;
         InputEvent.Invoke_DownJustPressed();
     }
 
     public void RightJustPressed(InputActionEventData data)
     {
+        if(blockAllInput) return;
         InputEvent.Invoke_RightJustPressed();
     }
 
     public void LeftJustPressed(InputActionEventData data)
     {
+        if(blockAllInput) return;
         InputEvent.Invoke_LeftJustPressed();
     }
 
@@ -729,21 +742,25 @@ public class GameMangerInput : MonoBehaviour
     // just the time release the button
     public void UPJustReleased(InputActionEventData data)
     {
+        if(blockAllInput) return;
         InputEvent.Invoke_UPJustReleased();
     }
 
     public void DownJustReleased(InputActionEventData data)
     {        
+        if(blockAllInput) return;
         InputEvent.Invoke_DownJustReleased();
     }
 
     public void RightJustReleased(InputActionEventData data)
     {        
+        if(blockAllInput) return;
         InputEvent.Invoke_RightJustReleased();
     }
 
     public void LeftJustReleased(InputActionEventData data)
     {        
+        if(blockAllInput) return;
         InputEvent.Invoke_LeftJustReleased();
     }
 
@@ -767,17 +784,19 @@ public class GameMangerInput : MonoBehaviour
 
     public void UIEnterPressed(InputActionEventData data)
     {
+        if(blockAllInput) return;
         InputEvent.Invoke_UIEnterPressed();
     }
 
     public void UIBackPressed(InputActionEventData data)
     {
+        if(blockAllInput) return;
         InputEvent.Invoke_UIBackPressed();
     }
 
     public void UIMouseBackPressed(InputActionEventData data)
     {
-        Debug.Log("UIMouseBackPressed : mouseCliking " + mouseCliking);
+        if(blockAllInput) return;
 
         if(AlertUI.instance.gameObject.activeInHierarchy)
         {
@@ -799,37 +818,43 @@ public class GameMangerInput : MonoBehaviour
 
     public void UIUpPressed(InputActionEventData data)
     {
+        if(blockAllInput) return;
         InputEvent.Invoke_UIUpPressed();
     }
 
     public void UIDownPressed(InputActionEventData data)
     {
-
+        if(blockAllInput) return;
         InputEvent.Invoke_UIDownPressed();
     }
 
     public void UIRightPressed(InputActionEventData data)
     {
+        if(blockAllInput) return;
         InputEvent.Invoke_UIRightPressed();
     }
 
     public void UILeftPressed(InputActionEventData data)
     {
+        if(blockAllInput) return;
         InputEvent.Invoke_UILeftPressed();
     }
 
     public void LeftTab(InputActionEventData data)
-    {        
+    {     
+        if(blockAllInput) return;   
         InputEvent.Invoke_UILeftTabPressed();
     }
 
     public void RightTab(InputActionEventData data)
     {        
+        if(blockAllInput) return;
         InputEvent.Invoke_UIRightTabPressed();
     }
 
     public void RemoveSaveSlot(InputActionEventData data)
     {        
+        if(blockAllInput) return;
         InputEvent.Invoke_RemoveSaveSlot();
     }
 
