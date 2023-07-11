@@ -78,6 +78,8 @@ public class InStageWarp : MonoBehaviour
         Player1.instance.playerSprite.sortingOrder = 2;
         Player1.instance.playerRigidBody2D.bodyType = RigidbodyType2D.Kinematic;
 
+        Player1.instance.playerRigidBody2D.velocity = Vector2.zero;
+
         while(isCurrentWarpActive)
         {
             Player1.instance.playerMove.transform.Translate(moveDirection.normalized * Time.fixedDeltaTime * 2);
@@ -91,6 +93,22 @@ public class InStageWarp : MonoBehaviour
         {
             GameMangerInput.InputEvent.Invoke_DownJustReleased();
         }
+
+            if(GameMangerInput.inputCheck.isPressingUP())
+            {
+                GameMangerInput.InputEvent.Invoke_UPJustPressed();
+
+            }else if(GameMangerInput.inputCheck.isPressingRight())
+            {
+                GameMangerInput.InputEvent.Invoke_RightJustPressed();
+            }else if(GameMangerInput.inputCheck.isPressingLeft())
+            {
+                GameMangerInput.InputEvent.Invoke_LeftJustPressed();
+
+            }else if(GameMangerInput.inputCheck.isPressingDown())
+            {
+                GameMangerInput.InputEvent.Invoke_DownJustPressed();
+            }
 
         Player1.instance.playerRigidBody2D.bodyType = RigidbodyType2D.Dynamic;
         Player1.instance.playerSprite.sortingLayerName = "Player";
@@ -119,6 +137,9 @@ public class InStageWarp : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other) {
 
         isCurrentWarpActive = false;
+        Player1.instance.playerRigidBody2D.bodyType = RigidbodyType2D.Dynamic;
+        Player1.instance.playerRigidBody2D.velocity = Vector2.zero;
+
         GameManager.isPlayerNearStageWarp = false;
         GameMangerInput.blockAllInput = false;
         downInteract.SetActive(false);

@@ -40,7 +40,7 @@ public class PlayerMove : MonoBehaviour
     }
 
     private void Awake() {
-        playerMoveLogic = new PlayerMoveLogic(GetComponent<Transform>());
+        playerMoveLogic = new PlayerMoveLogic(this);
     }
 
     private void OnEnable() {

@@ -7,6 +7,8 @@ using Sirenix.OdinInspector;
 using DG.Tweening;
 public class PlayerMoveLogic
 {
+    PlayerMove monoBehaviour;
+
     public float moveSpeed = 4f;
     public float moveSpeedScholar = 1f;
 
@@ -25,13 +27,14 @@ public class PlayerMoveLogic
 
     public Vector2 playerDirection;
 
+    private Rigidbody2D rb;
+
 
     /////////references and constructor///////////////////////////////////
-    private Transform transform;
-
-    public PlayerMoveLogic(Transform _transform)
+    public PlayerMoveLogic(PlayerMove monoBehaviour)
     {
-        transform = _transform;
+        this.monoBehaviour = monoBehaviour;
+        rb = monoBehaviour.GetComponent<Rigidbody2D>();
     }
 
     /////////references and constructor///////////////////////////////////
@@ -64,7 +67,8 @@ public class PlayerMoveLogic
                 
             }
 
-            transform.position += (Vector3)playerDirection;
+            if(GameMangerInput.blockAllInput) return;
+            rb.MovePosition(monoBehaviour.transform.position + (Vector3)playerDirection);
         }else
         {
             InputOk = false;
