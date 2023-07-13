@@ -150,6 +150,24 @@ public class PlayerAnimationLogic
         animator.SetFloat("YInput", YInput);
         animator.SetFloat("LastXInput", LastXInput);
         animator.SetFloat("LastYInput", LastYInput);
+
+        if((!animator.GetCurrentAnimatorStateInfo(0).IsName("Walk") &&
+        !animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))) return;
+
+        if(
+            GameMangerInput.inputCheck.isPressingUP() ||
+            GameMangerInput.inputCheck.isPressingDown() ||
+            GameMangerInput.inputCheck.isPressingRight() ||
+            GameMangerInput.inputCheck.isPressingLeft() )
+        {
+            animator.Play("Walk");
+        }else
+        {
+            if(animator.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
+            {
+                animator.Play("Idle");
+            }   
+        }
     }
 
     private void SetAttackAnimation()
@@ -226,6 +244,44 @@ public class PlayerAnimationLogic
     {
         sheildCrash = false;
         GameManager.instance.SetPlayerMove(true);
+    }
+
+    void EnergyReloadStart()
+    {
+        if(status.EnergyStore[status.Energy] == 0) return;
+        if(status.EnergyUpgrade[status.Energy] == 0) return;
+        if(status.EnergyMaganize[status.Energy] == status.EnergyMaganizeMaximum[status.Energy]) return;
+
+        SetAnimationFlag("Float","ReloadEnergy", 1f);
+        monoBehaviour.StartCoroutine(ReloadStart());
+    }
+
+    void SheildReloadStart()
+    {
+        if(status.SheildStore == 0) return;
+        if(status.SheildUpgrade[status.Sheild] == 0) return;
+        if(status.SheildMaganize[status.Sheild] == status.SheildMaganizeMaximum[status.Sheild]) return;
+
+        SetAnimationFlag("Float","ReloadEnergy", 0f);
+        monoBehaviour.StartCoroutine(ReloadStart());
+    }
+
+    IEnumerator ReloadStart()
+    {
+        GameManager.instance.SetPausePlayer(true);
+        GameManager.instance.SetPlayerMove(false);
+        animator.Play("Reload");
+
+        yield return new WaitForEndOfFrame();
+        while(!isCurrentAnimationEnd())
+        {
+            yield return new WaitForEndOfFrame();
+        }
+
+        GameManager.instance.ResetPlayerAnimationState();
+        GameManager.instance.SetPausePlayer(false);
+        GameManager.instance.SetPlayerMove(true);
+        animator.Play("Idle");
     }
 
     public void WhenPauseReleased()
@@ -327,6 +383,7 @@ public class PlayerAnimationLogic
 
         status.blockSuccessEnemy = null;
 
+        monoBehaviour.StopAllCoroutines();
         GameManager.instance.SetPausePlayer(true);
         GameManager.instance.SetPlayerMove(true);
         GameManager.instance.ResetPlayerAnimationState();
@@ -379,17 +436,11 @@ public class PlayerAnimationLogic
     public void EnergyReloadEnd()
     {
         Player1.instance.playerInventory.EnergyReload();
-        GameManager.instance.ResetPlayerAnimationState();
-        GameManager.instance.SetPlayerMove(true);
-        GameManager.instance.SetPausePlayer(false);
     }
 
     public void SheildReloadEnd()
     {
         Player1.instance.playerInventory.SheildReLoad();
-        GameManager.instance.ResetPlayerAnimationState();
-        GameManager.instance.SetPlayerMove(true);
-        GameManager.instance.SetPausePlayer(false);
     }
 
     public void SheildColliderEnable(bool flag)
@@ -430,6 +481,9 @@ public class PlayerAnimationLogic
 
         GameManager.EventManager.SheildCrashEvent += SetSheildCrash;
         GameManager.EventManager.SheildRecoveryEvent += SetSheildRecovery;
+
+        GameMangerInput.InputEvent.EnergyReload += EnergyReloadStart;
+        GameMangerInput.InputEvent.SheildReload += SheildReloadStart;
     }
 
     public void OnDisable() {
@@ -450,6 +504,9 @@ public class PlayerAnimationLogic
 
         GameManager.EventManager.SheildCrashEvent -= SetSheildCrash;
         GameManager.EventManager.SheildRecoveryEvent -= SetSheildRecovery;
+
+        GameMangerInput.InputEvent.EnergyReload -= EnergyReloadStart;
+        GameMangerInput.InputEvent.SheildReload -= SheildReloadStart;
     }
 
     //input Aniamtion Event

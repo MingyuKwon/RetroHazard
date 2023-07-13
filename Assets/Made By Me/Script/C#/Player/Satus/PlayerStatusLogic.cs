@@ -206,37 +206,10 @@ public class PlayerStatusLogic
     }
 
     public void OnEnable() {
-        GameMangerInput.InputEvent.EnergyReload += EnergyReloadStart;
-        GameMangerInput.InputEvent.SheildReload += SheildReloadStart;
     }
 
     public void OnDisable() {
-        GameMangerInput.InputEvent.EnergyReload -= EnergyReloadStart;
-        GameMangerInput.InputEvent.SheildReload -= SheildReloadStart;
     }
 
-    void EnergyReloadStart()
-    {
-        if(EnergyStore[Energy] == 0) return;
-        if(EnergyUpgrade[Energy] == 0) return;
-        if(EnergyMaganize[Energy] == EnergyMaganizeMaximum[Energy]) return;
-        GameManager.instance.SetPausePlayer(true);
 
-        playerAnimation.SetAnimationFlag("Trigger","Reload");
-        playerAnimation.SetAnimationFlag("Float","ReloadEnergy", 1f);
-        
-        GameManager.instance.SetPlayerMove(false);
-    }
-
-    void SheildReloadStart()
-    {
-        if(SheildStore == 0) return;
-        if(SheildUpgrade[Sheild] == 0) return;
-        if(SheildMaganize[Sheild] == SheildMaganizeMaximum[Sheild]) return;
-        GameManager.instance.SetPausePlayer(true);
-                
-        playerAnimation.SetAnimationFlag("Trigger","Reload");
-        playerAnimation.SetAnimationFlag("Float","ReloadEnergy", 0f);
-        GameManager.instance.SetPlayerMove(false);
-    }
 }
