@@ -12,6 +12,11 @@ public class bulletItem : Item
     }
 
     private void Start() {
+        if(HiddenInteract.nowYouSeeInTabisHidden)
+        {
+            return;
+        }
+
         if(SaveSystem.instance.ActiveStageSaves[SceneManager.GetActiveScene().buildIndex].is_BulletItem_Destroy[transform.GetSiblingIndex()])
         {
             this.gameObject.SetActive(false);
@@ -23,6 +28,15 @@ public class bulletItem : Item
     public void ObtainBulletItem()
     {        
         GameManager.EventManager.Invoke_Obtain_bullet_Item_Event(information, information.amount);
+        
+        if(HiddenInteract.nowYouSeeInTabisHidden)
+        {
+            HiddenInteract.instance.RemoveHiddenInteract();
+            HiddenInteract.instance = null;
+            Destroy(this);
+            return;
+        }
+
         SaveSystem.instance.ActiveStageSaves[SceneManager.GetActiveScene().buildIndex].is_BulletItem_Destroy[transform.GetSiblingIndex()] = true;
         this.gameObject.SetActive(false);
 

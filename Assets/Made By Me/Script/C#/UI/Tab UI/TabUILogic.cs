@@ -312,6 +312,10 @@ public class TabUILogic : CallBackInterface
         isUseKeyItem = false;
         discardTargetItemIndex = -1;
 
+        HiddenInteract.nowYouSeeInTabisHidden = false;
+        HiddenInteract.instance = null;
+
+
         showingTabIndex = 0;
         
         GameMangerInput.InputEvent.TabUIEnterPressed -= UIEnterPressed;
@@ -374,8 +378,6 @@ public class TabUILogic : CallBackInterface
                     return;
                 }
 
-                GameManagerUI.instance.Visualize_Tab_Obtain(false);
-
                 if(bulletItem != null)
                 {
                     bulletItem.ObtainBulletItem();
@@ -387,11 +389,12 @@ public class TabUILogic : CallBackInterface
                     keyItem.EventInvokeOverride();
                 }
 
-                
+                GameManagerUI.instance.Visualize_Tab_Obtain(false);
+
             }else
             {
                 yesNoChoice = true;
-                if(keyItem != null)
+                if(keyItem != null && !HiddenInteract.nowYouSeeInTabisHidden)
                 {
                     keyItem.SetSpriteSortNoraml();
                     keyItem.interact.SetCheckActive(true);

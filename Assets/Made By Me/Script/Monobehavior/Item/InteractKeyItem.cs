@@ -7,6 +7,12 @@ using UnityEngine.SceneManagement;
 public class InteractKeyItem : KeyItem
 {
     private void Start() {
+
+        if(HiddenInteract.nowYouSeeInTabisHidden)
+        {
+            return;
+        }
+
         if(SaveSystem.instance.ActiveStageSaves[SceneManager.GetActiveScene().buildIndex].is_KeyItem_Destroy[transform.GetSiblingIndex()])
         {
             this.gameObject.SetActive(false);
@@ -18,6 +24,14 @@ public class InteractKeyItem : KeyItem
     public override void EventInvokeOverride()
     {
         GameManager.EventManager.Invoke_Obtain_RealKey_Item_Event(information);
+        if(HiddenInteract.nowYouSeeInTabisHidden)
+        {
+            HiddenInteract.instance.RemoveHiddenInteract();
+            HiddenInteract.instance = null;
+            Destroy(this);
+            return;
+        }
+
         SaveSystem.instance.ActiveStageSaves[SceneManager.GetActiveScene().buildIndex].is_KeyItem_Destroy[transform.GetSiblingIndex()] = true;
         this.gameObject.SetActive(false);
 

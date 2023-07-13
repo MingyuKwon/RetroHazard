@@ -11,12 +11,5 @@ public class GameStart : MonoBehaviour
         SaveSystem.instance.Initialize();
         SaveSystem.instance.Load(0);
     }
-    void Start()
-    {
-        if(SaveSystem.SaveSlotNum == -1)
-        {
-            FindObjectOfType<PlayerHealth>().gameObject.transform.position = new Vector3(wayPoint.x, wayPoint.y, 0);
-        }
-    }
 
 }

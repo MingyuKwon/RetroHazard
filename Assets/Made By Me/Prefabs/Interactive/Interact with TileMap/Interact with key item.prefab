@@ -104,7 +104,7 @@ SpriteRenderer:
   m_SortingLayerID: -873447751
   m_SortingLayer: 8
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 29a200812a636494aba4f5a36cd62bc4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b4590b5ebecc0cc4d94e10ca2b6ac6d6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -189,6 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3030421d029d41343b9982a7bdaa07de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  noticeIndex_ifExist: 0
   check: {fileID: 3054877796577506306}
   dialog: {fileID: 11400000, guid: c2a363aba7dbc304cad5871a6d1efe4c, type: 2}
   isItem: 0
@@ -196,6 +197,8 @@ MonoBehaviour:
   isInventoryBox: 0
   isSaveSpot: 0
   triggerCheckActive: 1
+  justInteractNotice: 0
+  SuccessInteractNotice: 0
   if_CurrentGoalIndex_Is_Interact: -1
   nextGoalIndex_Is_Interact: -1
   if_CurrentGoalIndex_Is_Success: -1

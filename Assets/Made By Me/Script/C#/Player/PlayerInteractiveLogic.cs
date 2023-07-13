@@ -73,7 +73,10 @@ public class PlayerInteractiveLogic
                     GameManagerUI.instance.Visualize_SaveUI(true, true);
                 }else
                 {
-                    if(nearInteract is OneWayDoor)
+                    if(nearInteract is HiddenInteract)
+                    {
+                        ((HiddenInteract)nearInteract).Hidden_Interact();
+                    }else if(nearInteract is OneWayDoor)
                     {
                         ((OneWayDoor)nearInteract).OneWayDoorInteract(monoBehaviour.transform);
                         GameManager.EventManager.InvokeInteractEvent(false); 

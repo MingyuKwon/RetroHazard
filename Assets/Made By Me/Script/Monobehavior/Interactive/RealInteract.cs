@@ -23,7 +23,6 @@ public class RealInteract : Interact
     [SerializeField] int nextGoalIndex_Is_Success = -1;
 
     private void Start() {
-        Debug.Log("Real Interact name : " + this.gameObject.name);
         if(SaveSystem.instance.ActiveStageSaves[SceneManager.GetActiveScene().buildIndex].is_Interact_Destroy[transform.GetSiblingIndex()])
         {
             transform.GetChild(0).gameObject.SetActive(false);
@@ -39,6 +38,8 @@ public class RealInteract : Interact
 
         }else
         {
+            Debug.Log("Real Interact name : " + this.gameObject.name);
+
             transform.GetChild(0).gameObject.SetActive(false);
             transform.GetChild(1).gameObject.SetActive(true);
             transform.GetChild(2).gameObject.SetActive(false);

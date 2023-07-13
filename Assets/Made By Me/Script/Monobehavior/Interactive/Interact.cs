@@ -9,13 +9,11 @@ public class Interact : ForNoticeBroadCast
     public InteractiveDialog dialog;
     public bool isItem;
     public bool isKeyItem;
-
     public bool isInventoryBox;
     public bool isSaveSpot;
-
     public bool triggerCheckActive = true; // for interactive check mark
 
-    Item item = null;
+    protected Item item = null;
 
     Collider2D playerCollider2D;
 
@@ -27,6 +25,7 @@ public class Interact : ForNoticeBroadCast
         if(item == null)
         {
             isItem = false;
+            item = transform.GetComponent<Item>();
         }else
         {
             isItem = true;

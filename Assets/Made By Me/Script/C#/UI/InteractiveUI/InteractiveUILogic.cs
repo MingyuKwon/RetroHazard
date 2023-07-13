@@ -106,7 +106,7 @@ public class InteractiveUILogic
             }
         }
 
-        
+        if(HiddenInteract.nowHiddenInteracting) HiddenInteract.nowHiddenInteracting = false;
         VisualizeInteractiveUI(false);
 
         if(!flag) yield return null;

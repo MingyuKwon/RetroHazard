@@ -12,6 +12,11 @@ public class PotionItem : Item
     }
 
     private void Start() {
+        if(HiddenInteract.nowYouSeeInTabisHidden)
+        {
+            return;
+        }
+
         if(SaveSystem.instance.ActiveStageSaves[SceneManager.GetActiveScene().buildIndex].is_PotionItem_Destroy[transform.GetSiblingIndex()])
         {
             this.gameObject.SetActive(false);
@@ -22,8 +27,17 @@ public class PotionItem : Item
 
     public void ObtainPotionItem()
     {      
-        SaveSystem.instance.ActiveStageSaves[SceneManager.GetActiveScene().buildIndex].is_PotionItem_Destroy[transform.GetSiblingIndex()] = true;
         GameManager.EventManager.Invoke_Obtain_potion_Item_Event(information);
+
+        if(HiddenInteract.nowYouSeeInTabisHidden)
+        {
+            HiddenInteract.instance.RemoveHiddenInteract();
+            HiddenInteract.instance = null;
+            Destroy(this);
+            return;
+        }
+
+        SaveSystem.instance.ActiveStageSaves[SceneManager.GetActiveScene().buildIndex].is_PotionItem_Destroy[transform.GetSiblingIndex()] = true;
         this.gameObject.SetActive(false);
 
         if(noticeIndex_ifExist != 0)
