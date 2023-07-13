@@ -115,6 +115,10 @@ public class PlayerAnimationLogic
 
 
     ////////////////logical functions///////////////////////////////////
+    public bool isCurrentAnimationEnd()
+    {
+        return animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1.0f;
+    }
 
     public void SetAnimationFlag(string type ,string flag, float value = 0)
     {
@@ -168,20 +172,29 @@ public class PlayerAnimationLogic
     private void SetShieldAnimation()
     {
         if(isParrying) return;
+        if(status.isBlocked) return;
         if(sheildCrash) return;
-        if(GameMangerInput.inputCheck.isShieldButtonUp())
-        {
-            if(status.isBlocked) return;
-            GameManager.instance.SetPlayerMove(true);
-        }
 
-        if(GameMangerInput.inputCheck.isPressingShield())
+        if(isSheilding = GameMangerInput.inputCheck.isPressingShield())
         {
             GameManager.instance.SetPlayerMove(false);
             animator.SetFloat("Sheild Kind", status.Sheild);
+            SheildColliderEnable(true);
+            animator.Play("Shield");
+        }else
+        {
+            PutSheildBack();
         }
-        isSheilding = GameMangerInput.inputCheck.isPressingShield();
-        animator.SetBool("Shield", isSheilding);
+    }
+
+    private void PutSheildBack()
+    {
+        if(animator.GetCurrentAnimatorStateInfo(0).IsName("Shield"))
+        {
+            GameManager.instance.SetPlayerMove(true);
+            SheildColliderEnable(false);
+            animator.Play("Idle");
+        }
     }
 
     private void SetParryAnimation()
@@ -206,7 +219,7 @@ public class PlayerAnimationLogic
     {
         sheildCrash = true;
         isSheilding = false;
-        animator.SetBool("Shield", isSheilding);
+        PutSheildBack();
     }
 
     public void SetSheildRecovery(bool ChangeSheild)
