@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class InStageWarp : MonoBehaviour
 {
+    static public bool isInStageWarpingNow = false;
     GameObject downInteract;
     GameObject upInteract;
 
@@ -54,9 +55,19 @@ public class InStageWarp : MonoBehaviour
         }
     }
 
+    public void EnemyCollideIngnore(bool flag)
+    {
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player Body"), LayerMask.NameToLayer("Enemy Body"), flag);
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player Body"), LayerMask.NameToLayer("Enemy not Body"), flag);
+    }
+
     IEnumerator moveDirect(Vector2 moveDirection)
     {
+        isInStageWarpingNow = true;
+
         bool isGoingUp = false;
+
+        EnemyCollideIngnore(true);
 
         if(moveDirection == Vector2.up)
         {
@@ -109,10 +120,13 @@ public class InStageWarp : MonoBehaviour
             {
                 GameMangerInput.InputEvent.Invoke_DownJustPressed();
             }
-
+            
+        EnemyCollideIngnore(false);
         Player1.instance.playerRigidBody2D.bodyType = RigidbodyType2D.Dynamic;
         Player1.instance.playerSprite.sortingLayerName = "Player";
         Player1.instance.playerSprite.sortingOrder = 1;
+
+        isInStageWarpingNow = false;
     }
 
 

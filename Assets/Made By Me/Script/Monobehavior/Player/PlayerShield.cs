@@ -32,15 +32,4 @@ public class PlayerShield : MonoBehaviour
         playerSheildLogic.RecoveryVFXStart();
     }
 
-    public void ParryFrameStart()
-    {
-        playerSheildLogic.ParryFrameStart();
-    }
-
-    public void ParryFrameEnd()
-    {
-       playerSheildLogic.ParryFrameEnd();
-    }
-
-
 }

@@ -63,23 +63,5 @@ public class PlayerSheildLogic
         GameManager.EventManager.Invoke_Recovery_VFX_Start_Event();
     }
 
-    public void ParryFrameStart()
-    {
-        status.parryFrame = true;
-    }
-
-    public void ParryFrameEnd()
-    {
-        status.parryFrame = false;
-        if(!status.parrySuccess)
-        {
-            status.SheildDurabilityChange(1);
-        }else
-        {
-            UI.instance.inGameUI.UpdateIngameUI();
-        }
-        status.parrySuccess = false;
-
-    }
-
+    
 }

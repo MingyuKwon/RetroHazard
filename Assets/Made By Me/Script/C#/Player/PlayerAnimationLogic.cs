@@ -154,7 +154,10 @@ public class PlayerAnimationLogic
         if((!animator.GetCurrentAnimatorStateInfo(0).IsName("Walk") &&
         !animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))) return;
 
-        if(
+        if(InStageWarp.isInStageWarpingNow)
+        {
+            animator.Play("Walk");
+        }else if(
             GameMangerInput.inputCheck.isPressingUP() ||
             GameMangerInput.inputCheck.isPressingDown() ||
             GameMangerInput.inputCheck.isPressingRight() ||
@@ -207,7 +210,8 @@ public class PlayerAnimationLogic
 
     private void PutSheildBack()
     {
-        if(animator.GetCurrentAnimatorStateInfo(0).IsName("Shield"))
+        if(animator.GetCurrentAnimatorStateInfo(0).IsName("Shield") || 
+        animator.GetCurrentAnimatorStateInfo(0).IsName("Parry"))
         {
             GameManager.instance.SetPlayerMove(true);
             SheildColliderEnable(false);
@@ -409,13 +413,31 @@ public class PlayerAnimationLogic
     }
 
     public void ParryEnd()
-    {
-        SetAnimationFlag("Trigger", "Parry");
-        
+    {        
         status.blockSuccessEnemy = null;
         GameManager.instance.ResetPlayerAnimationState();
-        GameManager.instance.SetPlayerMove(true);
     }
+
+    public void ParryFrameStart()
+    {
+        status.parryFrame = true;
+        SheildColliderEnable(true);
+    }
+
+    public void ParryFrameEnd()
+    {
+        status.parryFrame = false;
+        if(!status.parrySuccess)
+        {
+            status.SheildDurabilityChange(1);
+        }else
+        {
+            UI.instance.inGameUI.UpdateIngameUI();
+        }
+        status.parrySuccess = false;
+        SheildColliderEnable(false);
+    }
+
 
 
     public void BlockStart()
