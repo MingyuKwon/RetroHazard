@@ -38,11 +38,11 @@ public class EnemyFollowingPlayer : MonoBehaviour
     private void Start() {
         currentMovingGraph = AstarPath.active.data.graphs[enemyManager.graphNum] as GridGraph;
 
-        minBoundX = currentMovingGraph.center.x - currentMovingGraph.size.x;
-        minBoundY = currentMovingGraph.center.y - currentMovingGraph.size.y;
+        minBoundX = currentMovingGraph.center.x - currentMovingGraph.size.x / 2;
+        minBoundY = currentMovingGraph.center.y - currentMovingGraph.size.y / 2;
 
-        maxBoundX = currentMovingGraph.center.x + currentMovingGraph.size.x;
-        maxBoundY = currentMovingGraph.center.y + currentMovingGraph.size.y;
+        maxBoundX = currentMovingGraph.center.x + currentMovingGraph.size.x / 2;
+        maxBoundY = currentMovingGraph.center.y + currentMovingGraph.size.y / 2;
 
         setRandomPosition();
     }
@@ -56,10 +56,10 @@ public class EnemyFollowingPlayer : MonoBehaviour
             }  
         }else 
         {            
-            if(transform.position.x > maxBoundX || 
-            transform.position.x < minBoundX || 
-            transform.position.y > maxBoundY || 
-            transform.position.y < minBoundY)
+            if(target.position.x > maxBoundX || 
+            target.position.x < minBoundX || 
+            target.position.y > maxBoundY || 
+            target.position.y < minBoundY)
             {
                 Debug.Log("Out of Bound");
                 enemyManager.isLockedOnPlayer = false;

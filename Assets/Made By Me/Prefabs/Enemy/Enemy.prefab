@@ -358,8 +358,8 @@ PolygonCollider2D:
       - {x: -0.4, y: 1.4}
       - {x: 0.4, y: 1.4}
       - {x: 1, y: 1.2}
-      - {x: 2.1, y: -2}
-      - {x: -2.1, y: -2}
+      - {x: 2.1, y: -4}
+      - {x: -2.1, y: -4}
 --- !u!1 &6463129297277267133
 GameObject:
   m_ObjectHideFlags: 0
@@ -686,14 +686,11 @@ MonoBehaviour:
   enemyStatus: {fileID: 0}
   enemyFollowingPlayer: {fileID: 0}
   enemyAnimation: {fileID: 0}
-  enemyMoveBoundMin: {x: 0, y: 0}
-  enemyMoveBoundMax: {x: 0, y: 0}
   aiPath: {fileID: 0}
   destinationSetter: {fileID: 0}
   seeker: {fileID: 0}
   vfxAnimator: {fileID: 0}
   enemyRigidbody2D: {fileID: 0}
-  enemyBodyCollider: {fileID: 0}
   PlayerDetect: {fileID: 0}
   AttackDecide: {fileID: 0}
   randomSpeed: 1
