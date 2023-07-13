@@ -50,9 +50,6 @@ public class PlayerHealthLogic
                 GameObject contactObject = contactCollider.transform.parent.transform.parent.gameObject;
                 EnemyStatus contactEnemyStat = contactObject.GetComponentInChildren<EnemyStatus>();
 
-                if(status.blockSuccessEnemy == contactObject.name) return 0;
-
-
                 if(contactCollider.tag == "Enemy Body") // 몬스터의 몸에 부딪혔나?
                 {
                     damage = contactEnemyStat.Attack * contactEnemyStat.bodyDamageRatio;

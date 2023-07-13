@@ -49,7 +49,6 @@ public class PlayerStatusLogic
     public bool parryFrame = false;
     public bool parrySuccess = false;
     public bool isBlocked = false;
-    public string blockSuccessEnemy = null;
 
     public PlayerStatusLogic(PlayerAnimation playerAnimation)
     {

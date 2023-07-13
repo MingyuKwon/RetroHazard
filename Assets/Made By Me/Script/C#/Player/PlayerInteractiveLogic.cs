@@ -50,7 +50,7 @@ public class PlayerInteractiveLogic
     // Normal Input event
     private void InteractivePressed()
     {
-        if(GameManager.isPlayerNearStageWarp)
+        if(GameManager.isPlayerNearStageWarp && !GameManager.isPlayerSheilding)
         {
             GameManager.EventManager.Invoke_InStageWarpEvent();
         }

@@ -38,7 +38,6 @@ public class PlayerSheildLogic
                     {
                         GameManager.EventManager.Invoke_Sheild_Durability_Reduce_Start_Event();
                     }
-                    status.blockSuccessEnemy = contactCollider.transform.parent.transform.parent.name;
                 }
             }
             else if(contactCollider.gameObject.layer == LayerMask.NameToLayer("Enemy Body"))
@@ -48,7 +47,6 @@ public class PlayerSheildLogic
                 {
                     GameManager.EventManager.Invoke_Sheild_Durability_Reduce_Start_Event();
                 }
-                status.blockSuccessEnemy = contactCollider.transform.parent.transform.parent.name;
             }
 
         }

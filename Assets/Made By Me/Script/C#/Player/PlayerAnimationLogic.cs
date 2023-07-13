@@ -385,8 +385,6 @@ public class PlayerAnimationLogic
             status.SheildDurabilityChange(1);
         }
 
-        status.blockSuccessEnemy = null;
-
         monoBehaviour.StopAllCoroutines();
         GameManager.instance.SetPausePlayer(true);
         GameManager.instance.SetPlayerMove(true);
@@ -414,7 +412,6 @@ public class PlayerAnimationLogic
 
     public void ParryEnd()
     {        
-        status.blockSuccessEnemy = null;
         GameManager.instance.ResetPlayerAnimationState();
     }
 
@@ -451,7 +448,6 @@ public class PlayerAnimationLogic
         status.SheildDurabilityChange(1);
         GameManager.instance.SetPlayerMove(true);
         status.isBlocked = false;
-        status.blockSuccessEnemy = null;
     }
 
 

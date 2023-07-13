@@ -264,17 +264,6 @@ public class PlayerStatus : MonoBehaviour
         }
     }
 
-    public string blockSuccessEnemy {
-        get{
-            return playerStatusLogic.blockSuccessEnemy;
-        }
-
-        set{
-            playerStatusLogic.blockSuccessEnemy = value;
-        }
-    }
-
-
     private void Awake() {
         playerAnimation = transform.parent.gameObject.GetComponent<PlayerAnimation>();
         playerStatusLogic = new PlayerStatusLogic(playerAnimation);
