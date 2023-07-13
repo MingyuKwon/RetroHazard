@@ -8,6 +8,49 @@ using DG.Tweening;
 
 public class PlayerAnimationLogic
 {
+    public class VFXAnimation
+    {
+        public Animator vfxAnimator;
+
+        public VFXAnimation(Animator _vfxAnimator)
+        {
+            vfxAnimator = _vfxAnimator;
+        }
+
+        public void SetAnimationFlag(string type ,string flag, float value = 0)
+        {
+            if(type == "Trigger")
+            {
+                vfxAnimator.SetTrigger(flag);
+            }else if(type == "Float")
+            {
+                vfxAnimator.SetFloat(flag, value);
+            }else if(type == "Int")
+            {
+                vfxAnimator.SetInteger(flag, (int)value);
+            }else if(type == "Bool")
+            {
+                if(value == 0)
+                {
+                    vfxAnimator.SetBool(flag, false);
+                }else
+                {
+                    vfxAnimator.SetBool(flag, true);
+                }
+            }
+        }
+
+        public void StunAnimationStart()
+        {
+            vfxAnimator.SetTrigger("Stun");
+        }
+    }
+
+    PlayerAnimation monoBehaviour;
+
+    BoxCollider2D sheildCollider;
+    BoxCollider2D attckCollider;
+
     //flags and values///////////////////////////////////
     public bool sheildCrash; // is Sheild is broken and cannot use
 
@@ -30,12 +73,19 @@ public class PlayerAnimationLogic
 
     /////////references and constructor///////////////////////////////////
     Animator animator;
+    public VFXAnimation vfxAnimation;
 
     private PlayerStatus status;
 
-    public PlayerAnimationLogic(Animator _playerAnimator)
+    public PlayerAnimationLogic(PlayerAnimation monoBehaviour)
     {
-        animator = _playerAnimator;
+        this.monoBehaviour = monoBehaviour;
+        animator = monoBehaviour.GetComponent<Animator>();
+        vfxAnimation = new VFXAnimation(monoBehaviour.GetComponentInChildren<VFX>().gameObject.GetComponent<Animator>());
+
+
+        sheildCollider = monoBehaviour.transform.GetChild(0).GetChild(2).gameObject.GetComponent<BoxCollider2D>();
+        attckCollider = monoBehaviour.transform.GetChild(0).GetChild(1).gameObject.GetComponent<BoxCollider2D>();
     }
     
     /////////references and constructor///////////////////////////////////
@@ -62,7 +112,34 @@ public class PlayerAnimationLogic
 
      //monobehavior function//////////////////////////////////////////////////////////////////
 
+
+
     ////////////////logical functions///////////////////////////////////
+
+    public void SetAnimationFlag(string type ,string flag, float value = 0)
+    {
+        if(type == "Trigger")
+        {
+            animator.SetTrigger(flag);
+        }else if(type == "Float")
+        {
+            animator.SetFloat(flag, value);
+        }else if(type == "Int")
+        {
+            animator.SetInteger(flag, (int)value);
+        }else if(type == "Bool")
+        {
+            if(value == 0)
+            {
+                animator.SetBool(flag, false);
+            }else
+            {
+                animator.SetBool(flag, true);
+            }
+        }
+    }
+
+    
     public void SetWalkAnimation()
     {
         animator.SetFloat("XInput", XInput);
@@ -228,6 +305,64 @@ public class PlayerAnimationLogic
         GameManager.instance.SetPlayerMove(true);
     }
 
+    public void StunStart()
+    {
+        if(GameManager.Sheild_Durability_Reducing)
+        {
+            status.SheildDurabilityChange(1);
+        }
+
+        status.blockSuccessEnemy = null;
+
+        GameManager.instance.SetPausePlayer(true);
+        GameManager.instance.SetPlayerMove(true);
+        GameManager.instance.ResetPlayerAnimationState();
+        EnemyCollideIngnore(true);
+        SheildColliderEnable(false);
+        vfxAnimation.StunAnimationStart();
+    }
+
+    public void StunEnd()
+    {
+        GameManager.instance.SetPausePlayer(false);
+        EnemyCollideIngnore(false);
+    }
+
+
+    public void ParryStart()
+    {
+        if(!GameManager.Sheild_Durability_Reducing)
+        {
+            GameManager.EventManager.Invoke_Sheild_Durability_Reduce_Start_Event();
+        }
+        GameManager.instance.SetPlayerMove(false);
+    }
+
+    public void ParryEnd()
+    {
+        SetAnimationFlag("Trigger", "Parry");
+        
+        status.blockSuccessEnemy = null;
+        GameManager.instance.ResetPlayerAnimationState();
+        GameManager.instance.SetPlayerMove(true);
+    }
+
+
+    public void BlockStart()
+    {
+        GameManager.instance.SetPlayerMove(false);
+        status.isBlocked = true;
+    }
+
+    public void BlockEnd()
+    {
+        status.SheildDurabilityChange(1);
+        GameManager.instance.SetPlayerMove(true);
+        status.isBlocked = false;
+        status.blockSuccessEnemy = null;
+    }
+
+
     public void EnergyReloadEnd()
     {
         Player1.instance.playerInventory.EnergyReload();
@@ -242,6 +377,22 @@ public class PlayerAnimationLogic
         GameManager.instance.ResetPlayerAnimationState();
         GameManager.instance.SetPlayerMove(true);
         GameManager.instance.SetPausePlayer(false);
+    }
+
+    public void SheildColliderEnable(bool flag)
+    {
+        sheildCollider.enabled = flag;
+    }
+
+    public void AttackColliderEnable(bool flag)
+    {
+        attckCollider.enabled = flag;
+    }
+
+    public void EnemyCollideIngnore(bool flag)
+    {
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player Body"), LayerMask.NameToLayer("Enemy Body"), flag);
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player Body"), LayerMask.NameToLayer("Enemy not Body"), flag);
     }
 
     ////////////////logical functions///////////////////////////////////
@@ -431,6 +582,7 @@ public class PlayerAnimationLogic
             YInput = 0f;
         }
     }
+    
     // just the time release the button
 
     //input Aniamtion Event

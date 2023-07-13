@@ -9,7 +9,6 @@ using DG.Tweening;
 public class PlayerHealthLogic 
 {
     private Rigidbody2D rb;
-    private CapsuleCollider2D playerBodyCollider;
     private PlayerAnimation playerAnimation;
     private PlayerStatus status;
 
@@ -17,15 +16,15 @@ public class PlayerHealthLogic
 
 
     private Vector2 ForceInput;
-    const float reflectForceScholar = 300f;
+    const float reflectForceScholar = 500f;
     const float damageStandard = 10f;
 
-    public PlayerHealthLogic(PlayerHealth monoBehaviour, Rigidbody2D rb, PlayerAnimation playerAnimation, CapsuleCollider2D playerBodyCollider)
+    public PlayerHealthLogic(PlayerHealth monoBehaviour, PlayerAnimation playerAnimation)
     {
-        this.rb = rb;
-        this.playerAnimation = playerAnimation;
-        this.playerBodyCollider = playerBodyCollider;
         this.monoBehaviour = monoBehaviour;
+        this.rb = monoBehaviour.GetComponent<Rigidbody2D>();
+        this.playerAnimation = playerAnimation;
+        
     }
 
     public void Start() {
@@ -93,7 +92,7 @@ public class PlayerHealthLogic
             float movableDistance = 0;
             checkObstacleBehind(ForceInput,out movableDistance);
 
-            if(movableDistance <= 0f)
+            if(movableDistance <= 0.1f)
             {
                 rb.velocity = Vector2.zero;
                 rb.angularVelocity = 0f;   
@@ -125,30 +124,4 @@ public class PlayerHealthLogic
         movableDistance = 100; // 그냥 존나 크게 해서 선택 안되게
         return Vector2.zero;
     }
-
-
-    /////////////////////animation event///////////////////////////
-    public void StunStart()
-    {
-        if(GameManager.Sheild_Durability_Reducing)
-        {
-            status.SheildDurabilityChange(1);
-        }
-
-        status.blockSuccessEnemy = null;
-
-        GameManager.instance.SetPausePlayer(true);
-        GameManager.instance.SetPlayerMove(true);
-        GameManager.instance.ResetPlayerAnimationState();
-        playerBodyCollider.enabled = false;
-        playerAnimation.vfxAnimation.StunAnimationStart();
-    }
-
-    public void StunEnd()
-    {
-        GameManager.instance.SetPausePlayer(false);
-        playerBodyCollider.enabled = true;
-    }
-
-    /////////////////////animation event///////////////////////////
 }

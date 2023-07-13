@@ -11,54 +11,17 @@ using DG.Tweening;
 
 public class PlayerAnimation : MonoBehaviour
 {
-    public class VFXAnimation
-    {
-        public Animator vfxAnimator;
-
-        public VFXAnimation(Animator _vfxAnimator)
-        {
-            vfxAnimator = _vfxAnimator;
-        }
-
-        public void SetAnimationFlag(string type ,string flag, float value = 0)
-        {
-            if(type == "Trigger")
-            {
-                vfxAnimator.SetTrigger(flag);
-            }else if(type == "Float")
-            {
-                vfxAnimator.SetFloat(flag, value);
-            }else if(type == "Int")
-            {
-                vfxAnimator.SetInteger(flag, (int)value);
-            }else if(type == "Bool")
-            {
-                if(value == 0)
-                {
-                    vfxAnimator.SetBool(flag, false);
-                }else
-                {
-                    vfxAnimator.SetBool(flag, true);
-                }
-            }
-        }
-
-        public void StunAnimationStart()
-        {
-            vfxAnimator.SetTrigger("Stun");
+    public PlayerAnimationLogic.VFXAnimation vfxAnimation{
+        get{
+            return animationLogic.vfxAnimation;
         }
     }
-
-    private Animator animator; // Player's animator
-    public VFXAnimation vfxAnimation;
     private PlayerAnimationLogic animationLogic;
 
     
     private void Awake() {
-        animator = GetComponent<Animator>();
-        vfxAnimation = new VFXAnimation(GetComponentInChildren<VFX>().gameObject.GetComponent<Animator>());
 
-        animationLogic = new PlayerAnimationLogic(animator);
+        animationLogic = new PlayerAnimationLogic(this);
     }
 
     private void OnEnable() {
@@ -95,25 +58,7 @@ public class PlayerAnimation : MonoBehaviour
 
     public void SetAnimationFlag(string type ,string flag, float value = 0)
     {
-        if(type == "Trigger")
-        {
-            animator.SetTrigger(flag);
-        }else if(type == "Float")
-        {
-            animator.SetFloat(flag, value);
-        }else if(type == "Int")
-        {
-            animator.SetInteger(flag, (int)value);
-        }else if(type == "Bool")
-        {
-            if(value == 0)
-            {
-                animator.SetBool(flag, false);
-            }else
-            {
-                animator.SetBool(flag, true);
-            }
-        }
+        animationLogic.SetAnimationFlag(type, flag, value);
     }
 
     public void WhenPauseReleased()
@@ -150,6 +95,37 @@ public class PlayerAnimation : MonoBehaviour
         animationLogic.StabEnd();
     }
 
+    public void StunStart()
+    {
+        animationLogic.StunStart();
+    }
+
+    public void StunEnd()
+    {
+        animationLogic.StunEnd();
+    }
+
+    public void ParryStart()
+    {
+        animationLogic.ParryStart();
+    }
+
+    public void ParryEnd()
+    {
+        animationLogic.ParryEnd();
+    }
+
+
+    public void BlockStart()
+    {
+        animationLogic.BlockStart();
+    }
+
+    public void BlockEnd()
+    {
+        animationLogic.BlockEnd();
+    }
+
     public void EnergyReloadEnd()
     {
         animationLogic.EnergyReloadEnd();
@@ -158,6 +134,21 @@ public class PlayerAnimation : MonoBehaviour
     public void SheildReloadEnd()
     {
         animationLogic.SheildReloadEnd();
+    }
+
+
+    public void SheildColliderEnable(bool flag)
+    {
+        animationLogic.SheildColliderEnable(flag);
+    }
+    public void AttackColliderEnable(bool flag)
+    {
+        animationLogic.AttackColliderEnable(flag);
+    }
+
+    public void BodyColliderEnable(bool flag)
+    {
+        animationLogic.EnemyCollideIngnore(flag);
     }
 
     //Animation event

@@ -42,24 +42,5 @@ public class PlayerShield : MonoBehaviour
        playerSheildLogic.ParryFrameEnd();
     }
 
-    public void ParryStart()
-    {
-        playerSheildLogic.ParryStart();
-    }
 
-    public void ParryEnd()
-    {
-        playerSheildLogic.ParryEnd();
-    }
-
-
-    public void BlockStart()
-    {
-        playerSheildLogic.BlockStart();
-    }
-
-    public void BlockEnd()
-    {
-        playerSheildLogic.BlockEnd();
-    }
 }

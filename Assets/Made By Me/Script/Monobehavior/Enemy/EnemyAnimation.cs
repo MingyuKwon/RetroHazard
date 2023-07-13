@@ -45,6 +45,16 @@ public class EnemyAnimation : MonoBehaviour
         StartCoroutine(ParreidTime());
     }
 
+    public void PlayerAttackIngnore(bool flag)
+    {
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemy Body"), LayerMask.NameToLayer("Player not Body"), flag);
+    }
+
+    public void PlayerBodyIngnore(bool flag)
+    {
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemy Body"), LayerMask.NameToLayer("Player Body"), flag);
+    }
+
     IEnumerator ParreidTime()
     {
         animator.Play("Stagger");
@@ -52,7 +62,6 @@ public class EnemyAnimation : MonoBehaviour
         enemyManager.isParried = true;
         enemyManager.isEnemyStunned = true;
         enemyManager.canMove = false;
-        enemyManager.enemyBodyCollider.enabled = true;
 
         yield return new WaitForEndOfFrame();
         while(!isCurrentAnimationEnd())
@@ -72,7 +81,7 @@ public class EnemyAnimation : MonoBehaviour
         enemyManager.vfxAnimator.SetTrigger("Stun");
         enemyManager.enemyStatus.ParriedWithParrySheild = false;
         enemyManager.isEnemyStunned = true;
-        enemyManager.enemyBodyCollider.enabled = false;
+        PlayerAttackIngnore(true);
         Animation_StopAllCoroutine();
 
         StartCoroutine(EnemyStunTime());
@@ -89,7 +98,7 @@ public class EnemyAnimation : MonoBehaviour
         }
         enemyManager.canMove = true;
         enemyManager.isEnemyStunned = false;
-        enemyManager.enemyBodyCollider.enabled = true;
+        PlayerAttackIngnore(false);
         animator.Play("Walk");
     }
 
@@ -101,6 +110,7 @@ public class EnemyAnimation : MonoBehaviour
 
     IEnumerator EnemyAttackTime()
     {
+        PlayerBodyIngnore(true);
         animator.Play("Attack");
         enemyManager.canMove = false;
         yield return new WaitForEndOfFrame();
@@ -109,7 +119,7 @@ public class EnemyAnimation : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         enemyManager.canMove = true;
-        enemyManager.enemyBodyCollider.enabled = true;
+        PlayerBodyIngnore(false);
         animator.Play("Walk");
     }
 
@@ -165,7 +175,6 @@ public class EnemyAnimation : MonoBehaviour
     IEnumerator TransformMove(int direction)
     {
         Vector2 destinationPosition = transform.position;
-        enemyManager.enemyBodyCollider.enabled = false;
 
         Vector2 ForceInput = Vector2.up;
 
@@ -202,7 +211,6 @@ public class EnemyAnimation : MonoBehaviour
             yield return new WaitForSeconds(0.02f);
             frictionReduce = Mathf.Lerp(frictionReduce , 0 , 0.3f);
         }
-        enemyManager.enemyBodyCollider.enabled = true;
     }
 
     private float checkObstacleBehind(Vector2 forceInput)

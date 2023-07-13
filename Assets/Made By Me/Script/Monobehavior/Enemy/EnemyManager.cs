@@ -89,7 +89,6 @@ public class EnemyManager : MonoBehaviour
 
     public Rigidbody2D enemyRigidbody2D;
 
-    public CapsuleCollider2D enemyBodyCollider;
     public PolygonCollider2D PlayerDetect;
     public BoxCollider2D AttackDecide;
 
@@ -119,7 +118,6 @@ public class EnemyManager : MonoBehaviour
 
         PlayerDetect = transform.GetChild(1).GetComponentInChildren<PolygonCollider2D>();
         AttackDecide = transform.GetChild(1).GetComponentInChildren<BoxCollider2D>();
-        enemyBodyCollider = GetComponentInChildren<EnemyCollider>().gameObject.GetComponent<CapsuleCollider2D>();
 
         enemyRigidbody2D = GetComponent<Rigidbody2D>();
 

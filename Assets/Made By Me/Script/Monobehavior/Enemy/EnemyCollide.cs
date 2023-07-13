@@ -59,11 +59,11 @@ public class EnemyCollide : MonoBehaviour
         {
             if(other.otherCollider.tag == "Enemy Body") // 내 몸이랑 맞았다면
             {
-                enemyManager.DamageAndStop(0.8f);
+                enemyManager.DamageAndStop(1f);
             }
             else if(other.otherCollider.tag == "Attack") // 공격 맞은 경직
             {
-                enemyManager.DamageAndStop(0.8f);
+                enemyManager.DamageAndStop(1f);
             }
         }
     }
@@ -84,7 +84,7 @@ public class EnemyCollide : MonoBehaviour
             float movableDistance = 0;
             checkObstacleBehind(ForceInput,out movableDistance);
 
-            if(movableDistance <= 0f)
+            if(movableDistance <= 0.1f)
             {
                 enemyManager.enemyRigidbody2D.velocity = Vector2.zero;
                 enemyManager.enemyRigidbody2D.angularVelocity = 0f;   

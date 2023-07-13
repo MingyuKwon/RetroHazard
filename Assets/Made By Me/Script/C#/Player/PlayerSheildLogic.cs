@@ -82,36 +82,4 @@ public class PlayerSheildLogic
 
     }
 
-    public void ParryStart()
-    {
-        if(!GameManager.Sheild_Durability_Reducing)
-        {
-            GameManager.EventManager.Invoke_Sheild_Durability_Reduce_Start_Event();
-        }
-        GameManager.instance.SetPlayerMove(false);
-    }
-
-    public void ParryEnd()
-    {
-        playerAnimation.SetAnimationFlag("Trigger", "Parry");
-        
-        status.blockSuccessEnemy = null;
-        GameManager.instance.ResetPlayerAnimationState();
-        GameManager.instance.SetPlayerMove(true);
-    }
-
-
-    public void BlockStart()
-    {
-        GameManager.instance.SetPlayerMove(false);
-        status.isBlocked = true;
-    }
-
-    public void BlockEnd()
-    {
-        status.SheildDurabilityChange(1);
-        GameManager.instance.SetPlayerMove(true);
-        status.isBlocked = false;
-        status.blockSuccessEnemy = null;
-    }
 }
