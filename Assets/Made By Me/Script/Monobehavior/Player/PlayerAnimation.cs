@@ -61,6 +61,11 @@ public class PlayerAnimation : MonoBehaviour
         animationLogic.SetAnimationFlag(type, flag, value);
     }
 
+    public void SetPlayerAnimationObtainKeyItem(bool flag)
+    {
+        animationLogic.SetPlayerAnimationObtainKeyItem(flag);
+    }
+
     public void WhenPauseReleased()
     {
         StartCoroutine(checkWalkAnimation());
@@ -154,11 +159,6 @@ public class PlayerAnimation : MonoBehaviour
     public void AttackColliderEnable(bool flag)
     {
         animationLogic.AttackColliderEnable(flag);
-    }
-
-    public void BodyColliderEnable(bool flag)
-    {
-        animationLogic.EnemyCollideIngnore(flag);
     }
 
     //Animation event

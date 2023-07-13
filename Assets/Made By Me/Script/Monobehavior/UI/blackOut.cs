@@ -9,12 +9,15 @@ using DG.Tweening;
 
 public class blackOut : MonoBehaviour
 {
-    float delayTime = 1.5f;
+    float delayTime = 2;
     [SerializeField] Image image;
 
-    public void BlackOut(string sceneName)
+    Vector3 destination;
+
+    public void BlackOut(string sceneName, Vector3 destination)
     {
         StartCoroutine(blackout(sceneName));
+        this.destination = destination;
     }
 
     public void BlackOutSpeed(float time)
@@ -24,19 +27,26 @@ public class blackOut : MonoBehaviour
 
     IEnumerator blackout(string sceneName)
     {
+        GameManager.instance.EnemyCollideIgnore(true);
         GameManager.instance.SetPausePlayer(true);
         while(image.color.a < 1f)
         {
             image.color = new Color(image.color.r, image.color.g, image.color.b, Mathf.MoveTowards(image.color.a, 1f, delayTime * Time.deltaTime));
             yield return new WaitForEndOfFrame();
         }
+
         SceneManager.LoadScene(sceneName);
+        Player1.instance.playerMove.transform.position = destination;
+
+        GameManager.instance.SetPausePlayer(false);
+
         while(image.color.a > 0f)
         {
             image.color = new Color(image.color.r, image.color.g, image.color.b, Mathf.MoveTowards(image.color.a, 0f, delayTime * Time.deltaTime));
             yield return new WaitForEndOfFrame(); 
         }
-        GameManager.instance.SetPausePlayer(false);
+
+        GameManager.instance.EnemyCollideIgnore(false);
     }
 
     IEnumerator blackout(float speed)
@@ -50,5 +60,6 @@ public class blackOut : MonoBehaviour
             yield return new WaitForEndOfFrame(); 
         }
         GameManager.instance.SetPausePlayer(false);
+        
     }
 }

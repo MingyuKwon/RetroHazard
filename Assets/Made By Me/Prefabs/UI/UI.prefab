@@ -887,9 +887,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3958444026421541574, guid: c4bb388f41a408846aefd1cb2998844c, type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3958444026421541574, guid: c4bb388f41a408846aefd1cb2998844c, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3958444026421541574, guid: c4bb388f41a408846aefd1cb2998844c, type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4467842925691044118, guid: c4bb388f41a408846aefd1cb2998844c, type: 3}
       propertyPath: m_Name
       value: In Game UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247385540434465172, guid: c4bb388f41a408846aefd1cb2998844c, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 650
       objectReference: {fileID: 0}
     - target: {fileID: 6247385540434465172, guid: c4bb388f41a408846aefd1cb2998844c, type: 3}
       propertyPath: m_AnchoredPosition.y

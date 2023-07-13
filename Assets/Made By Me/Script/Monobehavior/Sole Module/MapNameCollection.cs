@@ -23,5 +23,7 @@ public class MapNameCollection
     public static string[] tutorialMapName = {
         "Adeenhau beach",
         "Noshuc archaeological site",
+        "archaeologists' accommodations",
+        "excavation leader's accommodations",
     };
 }

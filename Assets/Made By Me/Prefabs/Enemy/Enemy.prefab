@@ -693,8 +693,8 @@ MonoBehaviour:
   enemyRigidbody2D: {fileID: 0}
   PlayerDetect: {fileID: 0}
   AttackDecide: {fileID: 0}
-  randomSpeed: 1
-  chaseSpeed: 2
+  randomSpeed: 2
+  chaseSpeed: 3
   attackSpeed: 0.6
 --- !u!114 &8855339012748659490
 MonoBehaviour:

@@ -139,9 +139,9 @@ public class GameManagerUI : MonoBehaviour
     }
 
 // BlackOut UI
-    public void BlackOut(string sceneName)
+    public void BlackOut(string sceneName, Vector3 destination)
     {
-        blackoutUI.BlackOut(sceneName);
+        blackoutUI.BlackOut(sceneName, destination);
     }
     
     public void BlackOut(float speed)

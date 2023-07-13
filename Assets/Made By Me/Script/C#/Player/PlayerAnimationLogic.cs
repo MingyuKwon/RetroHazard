@@ -63,8 +63,8 @@ public class PlayerAnimationLogic
     public float LastXInput = 0f;
     public float LastYInput = -1f;
 
-     public float XInput = 0f;
-     public float YInput = 0f;
+    public float XInput = 0f;
+    public float YInput = 0f;
 
      public float BeforePauseXInput = 0f;
      public float BeforePauseYInput = 0f;
@@ -122,24 +122,23 @@ public class PlayerAnimationLogic
 
     public void SetAnimationFlag(string type ,string flag, float value = 0)
     {
-        if(type == "Trigger")
-        {
-            animator.SetTrigger(flag);
-        }else if(type == "Float")
+        if(type == "Float")
         {
             animator.SetFloat(flag, value);
         }else if(type == "Int")
         {
             animator.SetInteger(flag, (int)value);
-        }else if(type == "Bool")
+        }
+    }
+
+    public void SetPlayerAnimationObtainKeyItem(bool flag)
+    {
+        if(flag)
         {
-            if(value == 0)
-            {
-                animator.SetBool(flag, false);
-            }else
-            {
-                animator.SetBool(flag, true);
-            }
+            animator.Play("chara_obtain_key_Item");
+        }else
+        {
+            animator.Play("Idle");
         }
     }
 
@@ -153,6 +152,8 @@ public class PlayerAnimationLogic
 
         if((!animator.GetCurrentAnimatorStateInfo(0).IsName("Walk") &&
         !animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))) return;
+
+        
 
         if(InStageWarp.isInStageWarpingNow)
         {
@@ -389,7 +390,7 @@ public class PlayerAnimationLogic
         GameManager.instance.SetPausePlayer(true);
         GameManager.instance.SetPlayerMove(true);
         GameManager.instance.ResetPlayerAnimationState();
-        EnemyCollideIngnore(true);
+        GameManager.instance.EnemyCollideIgnore(true);
         SheildColliderEnable(false);
         vfxAnimation.StunAnimationStart();
     }
@@ -397,7 +398,7 @@ public class PlayerAnimationLogic
     public void StunEnd()
     {
         GameManager.instance.SetPausePlayer(false);
-        EnemyCollideIngnore(false);
+        GameManager.instance.EnemyCollideIgnore(false);
     }
 
 
@@ -469,12 +470,6 @@ public class PlayerAnimationLogic
     public void AttackColliderEnable(bool flag)
     {
         attckCollider.enabled = flag;
-    }
-
-    public void EnemyCollideIngnore(bool flag)
-    {
-        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player Body"), LayerMask.NameToLayer("Enemy Body"), flag);
-        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player Body"), LayerMask.NameToLayer("Enemy not Body"), flag);
     }
 
     ////////////////logical functions///////////////////////////////////

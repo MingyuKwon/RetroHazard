@@ -267,6 +267,12 @@ public class GameManager : MonoBehaviour
         Destroy(this.gameObject);
     }
 
+    public void EnemyCollideIgnore(bool flag)
+    {
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player Body"), LayerMask.NameToLayer("Enemy Body"), flag);
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player Body"), LayerMask.NameToLayer("Enemy not Body"), flag);
+    }
+
     private void Set_Sheild_Durability_Reducing()
     {
         Sheild_Durability_Reducing = true;
@@ -303,7 +309,7 @@ public class GameManager : MonoBehaviour
 
     public void SetPlayerAnimationObtainKeyItem(bool flag)
     {
-        Player1.instance.playerAnimation.SetAnimationFlag("Bool", "Obtain Key Item", flag ? 1 : 0);  
+        Player1.instance.playerAnimation.SetPlayerAnimationObtainKeyItem(flag);  
         ObtainKeyItem = flag;
 
     }
