@@ -22,13 +22,14 @@ MonoBehaviour:
   KeyItemCode: 0
   NormalItemCode: 4
   combineItems: 04000000
+  combinResultItems: []
   isSheild: 0
   isEnergy1: 1
   isEnergy2: 0
   isEnergy3: 0
   isBullet: 1
   isPotion: 0
-  amount: 5
+  amount: 3
   expansionAmount: 0
   healAmount: 0
   ItemDescription:

@@ -67,17 +67,17 @@ public class HiddenInteract : RealInteract
         if(item.information.isBullet)
         {
             bulletItem tempbulletItem = tempObject.AddComponent<bulletItem>();
-            tempbulletItem.information = item.information;
+            tempbulletItem.Init(item.information, item.itemAmount);
             GameManagerUI.instance.Visualize_Tab_Obtain(true , tempbulletItem);
         }else if(item.information.isPotion)
         {
             PotionItem tempPotionItem = tempObject.AddComponent<PotionItem>();
-            tempPotionItem.information = item.information;
+            tempPotionItem.Init(item.information, item.itemAmount);
             GameManagerUI.instance.Visualize_Tab_Obtain(true , tempPotionItem );
         }else if(item.information.isInteractiveItem)
         {
             InteractKeyItem tempKeyItem = tempObject.AddComponent<InteractKeyItem>();
-            tempKeyItem.information = item.information;
+            tempKeyItem.Init(item.information, item.itemAmount);
             GameManagerUI.instance.Visualize_Tab_Obtain(true , tempKeyItem);
         }
     }

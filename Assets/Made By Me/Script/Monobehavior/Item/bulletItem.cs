@@ -9,6 +9,10 @@ public class bulletItem : Item
 {
     private void Awake() {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        if(information != null)
+        {
+            Init(information, itemAmount);
+        }
     }
 
     private void Start() {
