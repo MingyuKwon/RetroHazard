@@ -316,7 +316,7 @@ public class GameManager : MonoBehaviour
 
     public void ResetPlayerAnimationState()
     {
-        Player1.instance.playerAnimation.ResetPlayerAnimationState_CalledByGameManager();
+        Player1.instance.playerAnimation.ResetPlayerAnimationState();
     }
 
     public void SetPausePlayer(bool flag)
@@ -324,7 +324,7 @@ public class GameManager : MonoBehaviour
         isPlayerPaused = flag;
         if(flag)
         {
-            Player1.instance.playerAnimation.ResetPlayerAnimationState_CalledByGameManager();
+            Player1.instance.playerAnimation.ResetPlayerAnimationState();
         }
         
     }

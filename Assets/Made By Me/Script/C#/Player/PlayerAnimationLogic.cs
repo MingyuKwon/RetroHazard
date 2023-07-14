@@ -350,12 +350,6 @@ public class PlayerAnimationLogic
         status.parryFrame = false;
     }
 
-    public void ResetPlayerAnimationState_CalledByGameManager() // called by gamemanger (when talk with someone, you should stop and not walking on the spot)
-    {
-        ResetPlayerAnimationState();
-        animator.SetFloat("XInput", 0);
-        animator.SetFloat("YInput", 0);
-    }
 
     public void SlashStart()
     {

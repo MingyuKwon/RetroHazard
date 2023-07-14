@@ -51,11 +51,6 @@ public class PlayerAnimation : MonoBehaviour
         animationLogic.ResetPlayerAnimationState();
     }
 
-    public void ResetPlayerAnimationState_CalledByGameManager()
-    {
-        animationLogic.ResetPlayerAnimationState_CalledByGameManager();
-    }
-
     public void SetAnimationFlag(string type ,string flag, float value = 0)
     {
         animationLogic.SetAnimationFlag(type, flag, value);
