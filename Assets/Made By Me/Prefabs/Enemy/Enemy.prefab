@@ -406,7 +406,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyStats:
   - {fileID: 11400000, guid: ab02fb00083bad448860f96b0ba6b9c6, type: 2}
-  MaxHP: 100
+  MaxHP: 50
   CurrentHP: 50
   Speed: 0
   Attack: 0

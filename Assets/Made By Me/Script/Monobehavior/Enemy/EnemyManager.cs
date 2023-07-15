@@ -95,11 +95,26 @@ public class EnemyManager : MonoBehaviour
 
 
     [Header("Following Move")]
-    public float randomSpeed = 2f; // 방황할 속도
-    public float chaseSpeed = 4f; // 쫓아갈 속도
+    [SerializeField] float randomSpeed = 2f; // 방황할 속도
+    public float finalRandomSpeed {
+        get{
+            return randomSpeed * enemyStatus.Speed;
+        }
+    } // 최종 방황할 속도
+    [SerializeField] float chaseSpeed = 3f; // 쫓아갈 속도
+    public float finalChaseSpeed {
+        get{
+            return chaseSpeed * enemyStatus.Speed;
+        }
+    } // 최종 쫓아갈 속도
 
     [Header("Animation")]
-    public float attackSpeed = 1.8f; // 몸통박치기 시에 순간 대시할 속도
+    [SerializeField] float attackSpeed = 1.8f; // 몸통박치기 시에 순간 대시할 속도
+    public float finalAttackSpeed {
+        get{
+            return attackSpeed * enemyStatus.Speed;
+        }
+    } // 최종 공격할 속도
 
     private void Awake() {
         animator = GetComponent<Animator>();
@@ -222,7 +237,9 @@ public class EnemyManager : MonoBehaviour
     public void KillEnemy()
     {
         animator.SetTrigger("Die");
+        animator.speed = 0;
         vfxAnimator.SetTrigger("Die");
+        canMove = false;
     }
 
     public void DamageAndStop(float damageAndStopDelay)

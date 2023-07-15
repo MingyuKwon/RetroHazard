@@ -207,7 +207,7 @@ public class EnemyAnimation : MonoBehaviour
             {
                 vectorC = ForceInput.magnitude * frictionReduce;
             }
-            enemyManager.enemyRigidbody2D.MovePosition((Vector2)transform.position + ForceInput.normalized * vectorC * enemyManager.attackSpeed );
+            enemyManager.enemyRigidbody2D.MovePosition((Vector2)transform.position + ForceInput.normalized * vectorC * enemyManager.finalAttackSpeed );
             yield return new WaitForSeconds(0.02f);
             frictionReduce = Mathf.Lerp(frictionReduce , 0 , 0.3f);
         }

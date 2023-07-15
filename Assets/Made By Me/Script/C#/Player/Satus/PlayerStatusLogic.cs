@@ -22,7 +22,7 @@ public class PlayerStatusLogic
     
     [Header("Equipped")]
     public int Energy = 0;
-    public int[] EnergyDamage = {8, 30 , 100, 80};
+    public int[] EnergyDamage = {10, 40 , 100, 80};
     public int[] EnergyMaganize = {-1, 0 , 0, 0}; // Current sword Energy contain
     public int[] EnergyMaganizeMaximum = {-1, 0 , 0, 0}; // Current sword Energy contain
     public int[] EnergyUpgrade = {-1, 0 , 0, 0}; // Current sword Energy contain
@@ -61,7 +61,6 @@ public class PlayerStatusLogic
         CurrentHP = save.CurrentHP;
         Speed = save.Speed;
 
-        Attack = save.Attack;
         ArmorDefence = save.ArmorDefence;
         SheildCrash = save.SheildCrash;
 
@@ -73,13 +72,16 @@ public class PlayerStatusLogic
 
         Array.Copy( save.EnergyUPgradeUnit , EnergyUPgradeUnit, save.EnergyUPgradeUnit.Length);
 
-        Sheild = save.Sheild;
         Array.Copy( save.SheildMaganize , SheildMaganize, save.SheildMaganize.Length);
         Array.Copy( save.SheildMaganizeMaximum , SheildMaganizeMaximum, save.SheildMaganizeMaximum.Length);
         Array.Copy( save.SheildUpgrade , SheildUpgrade, save.SheildUpgrade.Length);
 
         Array.Copy( save.EnergyStore , EnergyStore, save.EnergyStore.Length);
+        
+        Sheild = save.Sheild;
         SheildStore = save.SheildStore;
+        Attack = EnergyDamage[Energy];
+
     }
 
 

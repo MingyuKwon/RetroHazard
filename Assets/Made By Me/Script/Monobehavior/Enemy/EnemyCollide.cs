@@ -38,7 +38,6 @@ public class EnemyCollide : MonoBehaviour
 
                 ForceInput = other.GetContact(0).normal;
                 damage = damage * (float)(enemyManager.enemyStatus.ParriedWithParrySheild ? 1.5 : 1);
-                Debug.Log("Enemy had damage : " + damage);
                 Reflect(damage);
                 enemyManager.enemyStatus.HealthChange(damage);
                 damage = 0;

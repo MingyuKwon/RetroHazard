@@ -54,16 +54,18 @@ public class EnemyStatus : MonoBehaviour
     public void HealthChange(float damage)
     {
         CurrentHP -= damage;
+        Debug.Log("Enemy had damage : " + damage + "\n Current HP : " + enemyManager.enemyStatus.CurrentHP);
+
         EnemyHealthChange?.Invoke();
         if(CurrentHP <=0 )
         {
-            EnemyDeath?.Invoke(transform.parent.transform.GetSiblingIndex());
+            EnemyDeath?.Invoke(transform.parent.transform.parent.transform.GetSiblingIndex());
         }
     }
 
     private void DestroySelf(int index)
     {
-        if(index != transform.parent.transform.GetSiblingIndex()) return;
+        if(index != transform.parent.transform.parent.transform.GetSiblingIndex()) return;
         
         enemyManager.KillEnemy();
     }

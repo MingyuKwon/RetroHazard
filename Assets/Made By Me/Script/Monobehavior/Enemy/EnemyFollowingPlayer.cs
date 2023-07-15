@@ -70,7 +70,7 @@ public class EnemyFollowingPlayer : MonoBehaviour
     public void setRandomPosition()
     {
         randomTransform.position = GetRandomPointInSpecificGraph();
-        enemyManager.aiPath.maxSpeed = enemyManager.randomSpeed;
+        enemyManager.aiPath.maxSpeed = enemyManager.finalRandomSpeed;
         enemyManager.destinationSetter.target = randomTransform;
     }
 
@@ -93,7 +93,7 @@ public class EnemyFollowingPlayer : MonoBehaviour
 
     public void setPlayerPosition()
     {
-        enemyManager.aiPath.maxSpeed = enemyManager.chaseSpeed;
+        enemyManager.aiPath.maxSpeed = enemyManager.finalChaseSpeed;
         enemyManager.destinationSetter.target = target;
     }
 
