@@ -117,8 +117,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.057426035}
-  m_Size: {x: 0.65, y: 1.0034171}
+  m_Offset: {x: 0, y: 0.03}
+  m_Size: {x: 0.65, y: 0.95}
   m_Direction: 0
 --- !u!114 &889347581037089616
 MonoBehaviour:
@@ -390,6 +390,8 @@ MonoBehaviour:
   playerInventory: {fileID: 0}
   playerItemBox: {fileID: 0}
   playerAnimation: {fileID: 0}
+  playerRigidBody2D: {fileID: 0}
+  playerSprite: {fileID: 0}
 --- !u!114 &6089768402828800010
 MonoBehaviour:
   m_ObjectHideFlags: 0
