@@ -8,6 +8,9 @@ public class InStageWarp : MonoBehaviour
     GameObject downInteract;
     GameObject upInteract;
 
+    GameObject beforeOpen;
+    GameObject afterOpen;
+
     bool isCurrentWarpActive = false;
     bool isDownActive = false;
 
@@ -18,9 +21,13 @@ public class InStageWarp : MonoBehaviour
 
         downInteract = transform.GetChild(0).gameObject;
         upInteract = transform.GetChild(1).gameObject;
+        beforeOpen = transform.GetChild(2).gameObject;
+        afterOpen = transform.GetChild(3).gameObject;
 
         downInteract.SetActive(false);
         upInteract.SetActive(false);
+        beforeOpen.SetActive(true);
+        afterOpen.SetActive(false);
     }
 
     private void OnEnable() {
@@ -36,6 +43,8 @@ public class InStageWarp : MonoBehaviour
         if(!isCurrentWarpActive) return;
 
         GameMangerInput.blockAllInput = true;
+        beforeOpen.SetActive(false);
+        afterOpen.SetActive(true);
 
         if(isDownActive)
         {
@@ -126,6 +135,8 @@ public class InStageWarp : MonoBehaviour
         Player1.instance.playerSprite.sortingLayerName = "Player";
         Player1.instance.playerSprite.sortingOrder = 1;
 
+        beforeOpen.SetActive(true);
+        afterOpen.SetActive(false);
         isInStageWarpingNow = false;
     }
 
