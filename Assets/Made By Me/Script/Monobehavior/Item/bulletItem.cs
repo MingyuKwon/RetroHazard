@@ -11,7 +11,7 @@ public class bulletItem : Item
         spriteRenderer = GetComponent<SpriteRenderer>();
         if(information != null)
         {
-            Init(information, itemAmount);
+            Init(information);
         }
     }
 
