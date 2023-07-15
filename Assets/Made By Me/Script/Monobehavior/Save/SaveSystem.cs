@@ -240,7 +240,7 @@ public class SaveSystem : MonoBehaviour
 
         if(SceneManager.GetActiveScene().name == "SingleTon Make Room" && SaveSystem.SaveSlotNum == -1)
         {
-            SceneManager.LoadScene("Tutorial");
+            SceneManager.LoadScene("Adeenhau beach");
             Player1.instance.playerRigidBody2D.transform.position = new Vector3(0, 0, 0);
 
             return;
