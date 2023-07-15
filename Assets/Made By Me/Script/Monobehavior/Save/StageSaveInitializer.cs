@@ -8,7 +8,7 @@ public class StageSaveInitializer : MonoBehaviour
     private void Awake() {
         if(!SaveSystem.instance.ActiveStageSaves[SceneManager.GetActiveScene().buildIndex].isVisited) // first initialize
         {
-            Debug.Log("Initialize");
+            Debug.Log("StageSave Initialize");
             StageSave temp = new StageSave();
 
             temp.isVisited = true;
@@ -23,7 +23,6 @@ public class StageSaveInitializer : MonoBehaviour
             temp.is_KeyItem_Destroy = new bool[n];
 
             n = FindObjectsOfType<ExpansionItem>().Length;
-            Debug.Log("ExpansionItem length " + n );
             temp.is_ExpansionItem_Destroy = new bool[n];
 
             n = FindObjectsOfType<EquipItem>().Length;
@@ -34,6 +33,9 @@ public class StageSaveInitializer : MonoBehaviour
 
             n = FindObjectsOfType<NoticeInteract>().Length;
             temp.is_Notice_Destroy = new bool[n];
+
+            n = FindObjectsOfType<EnemyManager>().Length;
+            temp.is_Enemy_Destroy = new bool[n];
 
             SaveSystem.instance.ActiveStageSaves[SceneManager.GetActiveScene().buildIndex] = temp;
         }

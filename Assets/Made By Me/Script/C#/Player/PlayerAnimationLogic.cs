@@ -403,6 +403,7 @@ public class PlayerAnimationLogic
             GameManager.EventManager.Invoke_Sheild_Durability_Reduce_Start_Event();
         }
         GameManager.instance.SetPlayerMove(false);
+        SheildColliderEnable(false);
     }
 
     public void ParryEnd()
@@ -418,6 +419,7 @@ public class PlayerAnimationLogic
 
     public void ParryFrameEnd()
     {
+        SheildColliderEnable(false);
         status.parryFrame = false;
         if(!status.parrySuccess)
         {
@@ -426,8 +428,6 @@ public class PlayerAnimationLogic
         {
             UI.instance.inGameUI.UpdateIngameUI();
         }
-        status.parrySuccess = false;
-        SheildColliderEnable(false);
     }
 
 

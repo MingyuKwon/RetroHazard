@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+using UnityEngine.SceneManagement;
+
 
 
 public class EnemyManager : MonoBehaviour
@@ -139,6 +141,13 @@ public class EnemyManager : MonoBehaviour
         enemyFollowingPlayer.enabled = true;
     }
 
+    private void Start() {
+        if(SaveSystem.instance.ActiveStageSaves[SceneManager.GetActiveScene().buildIndex].is_Enemy_Destroy[transform.parent.GetSiblingIndex()])
+        {
+            Destroy(transform.parent.gameObject);
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.layer == LayerMask.NameToLayer("Player Body"))
         {
@@ -240,6 +249,7 @@ public class EnemyManager : MonoBehaviour
         animator.speed = 0;
         vfxAnimator.SetTrigger("Die");
         canMove = false;
+        SaveSystem.instance.ActiveStageSaves[SceneManager.GetActiveScene().buildIndex].is_Enemy_Destroy[transform.parent.GetSiblingIndex()] = true;
     }
 
     public void DamageAndStop(float damageAndStopDelay)

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 486b7894a4590d345b90e6f003c46405, type: 3}
+  m_Name: Notice Parry Explanation
+  m_EditorClassIdentifier: 
+  noticeDialog:
+  - If you have a shield, try to parry!
+  - You can only parry an attack when the enemy is not just wandering around, but
+    attacking.
+  - 'When you attempt to parry, one shield gauge is used up, but if you succeed in
+    parrying, you can get that gauge back! '
+  - However, be careful, if you fail to parry and your shield turns white, you'll
+    be defenseless as your shield won't function!
