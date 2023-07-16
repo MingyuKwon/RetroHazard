@@ -177,6 +177,7 @@ public class GameManager : MonoBehaviour
         public static void Invoke_CloseGame_GotoMainMenuEvent()
         {
             CloseGame_GotoMainMenuEvent?.Invoke();
+            SaveSystem.instance.ClearPath();
         }
 
 

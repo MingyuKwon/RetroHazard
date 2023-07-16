@@ -87,6 +87,15 @@ public class SaveSystem : MonoBehaviour
         ItemBoxSavePath = Path.Combine(LoadSlotPath, "ItemBoxSaveData.json");
     }
 
+    public void ClearPath()
+    {
+        saveSlotInfoPath = null;
+        stageSavePath = null;
+        StatusSavePath = null;
+        InventorySavePath = null;
+        ItemBoxSavePath = null;
+    }
+
     public void Initialize()
     {
         status = FindObjectOfType<PlayerStatus>();
