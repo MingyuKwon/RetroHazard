@@ -17,30 +17,104 @@ public enum BackGroundAudioType{
 public class GameAudioManager : MonoBehaviour
 {
     static public GameAudioManager instance;
+    static public float currentBackGroundVolume = 0.5f;
+    static public float currentSFXVolume = 0.5f;
+    static public float currentUIVolume = 0.5f;
 
-    static AudioSource[] backGroundSources;
-    static AudioSource[] sfxSource;
-    static AudioSource[] UISource;
+    public AudioClip[] backGroundAudioClip;
+    public AudioClip[] sfxAudioClip;
+    public AudioClip[] UIAudioClip;
 
-    static AudioSource CurrentBackGroundSources;
+    bool isNowChanging = false;
+    AudioSource BackGroundSources1 = null; // 이 2개 옮겨 다니면서 연속적인 배경음악 바꾸기를 할 것이다
+    AudioSource BackGroundSources2 = null;
 
-    static AudioSource BackGroundSources1 = null;
-    static AudioSource BackGroundSources2 = null;
+    AudioSource CurrentSfxSource;
+    AudioSource CurrentUISource;
 
-    static AudioSource CurrentSfxSource;
-    static AudioSource CurrentUISource;
+    static Stack<AudioClip> playRequestStack;
 
-    public static void PlayBackGroundMusic(BackGroundAudioType audioType)
+    public void PlayBackGroundMusic(BackGroundAudioType audioType)
     {
-        backGroundSources[(int)audioType]
+        AudioClip targetAudioClip = backGroundAudioClip[(int)audioType];
+        playRequestStack.Push(targetAudioClip);
+
+        Debug.Log("PlayBackGroundMusic");
+
+        if(isNowChanging){
+            return;
+        }
+
+        playBackGroundMusic();
+
     }
 
-    public static void PlaySFXMusic()
+    private void playBackGroundMusic()
+    {
+        isNowChanging = true;
+
+        AudioClip targetAudioClip = playRequestStack.Pop();
+        playRequestStack.Clear();
+        if(BackGroundSources1.isPlaying) // 현재 1번창을 틀고 있고, 이제 2번으로 바꿔야 할 차례
+        {
+            Debug.Log("BackGroundSources1.isPlaying");
+            StartCoroutine(musicChange(BackGroundSources1 , BackGroundSources2, targetAudioClip));
+        }else if(BackGroundSources2.isPlaying)
+        {
+            Debug.Log("BackGroundSources2.isPlaying");
+            StartCoroutine(musicChange(BackGroundSources2 , BackGroundSources1, targetAudioClip));
+        }else // 제일 초기 상태
+        {
+            Debug.Log("else");
+            BackGroundSources1.clip = targetAudioClip;
+            BackGroundSources1.volume = currentBackGroundVolume;
+            BackGroundSources1.Play();
+            isNowChanging = false;
+        }    
+    }
+
+    private void Update() {
+        if(isNowChanging)
+        {
+            return;
+        }
+
+        if(playRequestStack.Count == 0)
+        {
+            return;
+        }
+
+        playBackGroundMusic();
+    }
+
+    IEnumerator musicChange(AudioSource beforeAudioSource , AudioSource afterAudioSource, AudioClip targetAudioClip)
+    {
+        isNowChanging = true;
+
+        afterAudioSource.clip = targetAudioClip;
+        afterAudioSource.volume = 0;
+        afterAudioSource.Play();
+
+        float timeElaped = 0;
+        while(timeElaped < 1f)
+        {
+            beforeAudioSource.volume = currentBackGroundVolume * Mathf.Cos(Mathf.PI * 0.5f * timeElaped);
+            afterAudioSource.volume += currentBackGroundVolume * Mathf.Sin(Mathf.PI * 0.5f * timeElaped);
+            yield return new WaitForSecondsRealtime(0.05f);
+            timeElaped += 0.05f;
+        }
+
+        beforeAudioSource.Stop();
+
+        isNowChanging = false;
+    }
+
+    public void PlaySFXMusic()
     {
 
     }
 
-    public static void PlayUIMusic()
+    public void PlayUIMusic()
     {
 
     }
@@ -55,14 +129,16 @@ public class GameAudioManager : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        backGroundSources = transform.GetChild(0).GetComponentsInChildren<AudioSource>();
-        sfxSource = transform.GetChild(1).GetComponentsInChildren<AudioSource>();
-        UISource = transform.GetChild(2).GetComponentsInChildren<AudioSource>();
+        playRequestStack = new Stack<AudioClip>();
+
+        AudioSource[] temp = GetComponents<AudioSource>();
+
+        BackGroundSources1 = temp[0];
+        BackGroundSources2 = temp[1];
+        BackGroundSources1.loop = true;
+        BackGroundSources2.loop = true;
+
+        CurrentSfxSource = temp[2];
+        CurrentUISource = temp[3];
     }
-
-    void Start()
-    {
-
-    }
-
 }
