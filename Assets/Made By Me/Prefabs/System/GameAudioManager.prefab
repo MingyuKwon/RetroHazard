@@ -49,10 +49,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backGroundAudioClip:
+  - {fileID: 8300000, guid: c4b32211e831f7c4ba96bccd955bb43f, type: 3}
   - {fileID: 8300000, guid: e2c8f7f49964f434aa7b5dcd343923d5, type: 3}
   - {fileID: 8300000, guid: 5a0526a79216db04fbc2e5fd2ccfd80c, type: 3}
+  - {fileID: 8300000, guid: a41a8087bb3d3ee4ea92e433551b1474, type: 3}
+  - {fileID: 8300000, guid: bb35b9f59ba3e404e9443ac3fdc5eb98, type: 3}
   sfxAudioClip: []
-  UIAudioClip: []
+  UIAudioClip:
+  - {fileID: 8300000, guid: eacd9f88148b20a46949b9b757cf4516, type: 3}
+  - {fileID: 8300000, guid: 025ea17357d73ac418a4e24ee8235efd, type: 3}
+  - {fileID: 8300000, guid: e2accd9af93cc97429872c484c2f7ef1, type: 3}
+  - {fileID: 8300000, guid: 3de88d2b19ee33b4c95b1c734fce51ad, type: 3}
 --- !u!82 &6596938227750655252
 AudioSource:
   m_ObjectHideFlags: 0
@@ -160,7 +167,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -256,7 +263,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

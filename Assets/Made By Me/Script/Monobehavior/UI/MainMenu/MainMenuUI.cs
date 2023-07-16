@@ -6,6 +6,8 @@ using System;
 
 public class MainMenuUI : MonoBehaviour, CallBackInterface
 {
+    bool openFirstSelect = true;
+
     public int selectIndex{
         get{
             return _selectIndex;
@@ -21,6 +23,13 @@ public class MainMenuUI : MonoBehaviour, CallBackInterface
             if(_selectIndex >= 0)
             {
                 buttons[_selectIndex].transform.GetChild(1).gameObject.SetActive(true);
+
+                if(openFirstSelect)
+                {
+                    openFirstSelect = false;
+                    return;
+                }
+                GameAudioManager.instance.PlayUIMusic(UIAudioType.Move);
             }
         }
     }
@@ -55,6 +64,8 @@ public class MainMenuUI : MonoBehaviour, CallBackInterface
             int temp = i;
             buttons[i].onClick.RemoveAllListeners();
         }
+
+        openFirstSelect = true;
 
         continueNum = -1;
         GameManager.EventManager.InvokeShowNotice("MainMenuUI");

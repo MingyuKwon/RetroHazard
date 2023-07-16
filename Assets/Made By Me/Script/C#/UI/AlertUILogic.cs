@@ -10,7 +10,27 @@ public class AlertUILogic
     Text[] texts;
     CallBackInterface CallbackScript;
 
-    public  int alertIndex = 0;
+    bool openFirstSelect = true;
+    public int alertIndex {
+        get{
+            return _alertIndex;
+        }
+
+        set{
+            _alertIndex = value;
+            if(openFirstSelect)
+            {
+                openFirstSelect = false;
+                return;
+            }
+            GameAudioManager.instance.PlayUIMusic(UIAudioType.Move);
+        }
+    }
+
+    int _alertIndex = 0;
+
+    bool isClickYes = false;
+
 
     public AlertUILogic(AlertUI monoBehaviour, Text[] texts)
     {
@@ -25,6 +45,7 @@ public class AlertUILogic
         GameMangerInput.InputEvent.AlertUIRightPressed += RightPressed;
         GameMangerInput.getInput(InputType.AlertUIInput);
         AlertUI.instance.alertIndex = 0;
+        isClickYes = false;
 
     }
 
@@ -36,6 +57,8 @@ public class AlertUILogic
         GameMangerInput.InputEvent.AlertUIRightPressed -= RightPressed;
         CallbackScript = null;
         AlertUI.instance.alertIndex = 0;
+
+        openFirstSelect = true;
     }
 
     public void ShowAlert(string dialog, CallBackInterface CallbackScript , string Yes = "yes", string No = "No")
@@ -53,9 +76,11 @@ public class AlertUILogic
         if(AlertUI.instance.alertIndex == 0)
         {
             CallbackScript.CallBack();
+            isClickYes = true;
             CloseAlert();
         }else if(AlertUI.instance.alertIndex == 1)
         {
+            isClickYes = false;
             CloseAlert();
         }
         
@@ -63,6 +88,14 @@ public class AlertUILogic
 
     public void CloseAlert()
     {
+        if(isClickYes)
+        {   
+            GameAudioManager.instance.PlayUIMusic(UIAudioType.Click);
+        }else
+        {
+            GameAudioManager.instance.PlayUIMusic(UIAudioType.Back);
+        }
+
         monoBehaviour.gameObject.SetActive(false);
     }
 

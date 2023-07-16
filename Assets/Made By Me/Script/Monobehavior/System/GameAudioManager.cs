@@ -10,8 +10,18 @@ public enum AudioType{
 }
 
 public enum BackGroundAudioType{
-    Adeenhau_beach = 0,
-    Lasil_archaeological_site = 1,
+    MainMenu = 0,
+    Adeenhau_beach = 1,
+    Lasil_archaeological_site = 2,
+    House_theme1 = 3,
+    House_theme2 = 4,
+}
+
+public enum UIAudioType{
+    Click = 0,
+    Back = 1,
+    Move = 2,
+    Open = 3,    
 }
 
 public class GameAudioManager : MonoBehaviour
@@ -39,8 +49,6 @@ public class GameAudioManager : MonoBehaviour
         AudioClip targetAudioClip = backGroundAudioClip[(int)audioType];
         playRequestStack.Push(targetAudioClip);
 
-        Debug.Log("PlayBackGroundMusic");
-
         if(isNowChanging){
             return;
         }
@@ -57,15 +65,12 @@ public class GameAudioManager : MonoBehaviour
         playRequestStack.Clear();
         if(BackGroundSources1.isPlaying) // 현재 1번창을 틀고 있고, 이제 2번으로 바꿔야 할 차례
         {
-            Debug.Log("BackGroundSources1.isPlaying");
             StartCoroutine(musicChange(BackGroundSources1 , BackGroundSources2, targetAudioClip));
         }else if(BackGroundSources2.isPlaying)
         {
-            Debug.Log("BackGroundSources2.isPlaying");
             StartCoroutine(musicChange(BackGroundSources2 , BackGroundSources1, targetAudioClip));
         }else // 제일 초기 상태
         {
-            Debug.Log("else");
             BackGroundSources1.clip = targetAudioClip;
             BackGroundSources1.volume = currentBackGroundVolume;
             BackGroundSources1.Play();
@@ -114,9 +119,11 @@ public class GameAudioManager : MonoBehaviour
 
     }
 
-    public void PlayUIMusic()
+    public void PlayUIMusic(UIAudioType audioType)
     {
-
+        CurrentUISource.clip = UIAudioClip[(int)audioType];
+        CurrentUISource.volume = currentUIVolume;
+        CurrentUISource.Play();
     }
 
     private void Awake() {

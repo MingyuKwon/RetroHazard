@@ -55,6 +55,7 @@ public class NoticeUILogic
 
             if(isTyping)
             {
+                GameAudioManager.instance.PlayUIMusic(UIAudioType.Click);
                 str.text = "";
                 monoBehaviour.StartCoroutine(Typing(texts));
             }else
@@ -97,6 +98,7 @@ public class NoticeUILogic
         if(isNowTalking) return; // 아직 텍스트 치는거 안끝났으면 이 이후는 받지 않음
 
         callCount++;
+        GameAudioManager.instance.PlayUIMusic(UIAudioType.Click);
 
         if(callCount >= strCount)
         {

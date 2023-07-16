@@ -5,9 +5,28 @@ using UnityEngine;
 public class MainMenuLogic 
 {
     MainMenu monoBehaviour;
-    public int CurrentWindowLayer = 0; // 0: main, 1 :save Slot, 2 : option
+    public int CurrentWindowLayer {
+        get{
+            return _CurrentWindowLayer;
+        }
+        set{
+            if(_CurrentWindowLayer == 0)
+            {
+                _CurrentWindowLayer = value;
+                Debug.Log("UIAudioType.Click");
+                GameAudioManager.instance.PlayUIMusic(UIAudioType.Click);
 
+            }else
+            {
+                _CurrentWindowLayer = value;
+                Debug.Log("UIAudioType.Back");
+                GameAudioManager.instance.PlayUIMusic(UIAudioType.Back);
 
+            }
+        }
+    }
+
+    public int _CurrentWindowLayer = 0;// 0: main, 1 :save Slot, 2 : option
     MainMenuUI mainMenuUI;
     SaveSlotUI saveSlotUI;
     OptionUI optionUI;
@@ -122,7 +141,6 @@ public class MainMenuLogic
 
     private void LeftPressed()
     {
-        Debug.Log("LeftPressed");
         if(MainMenu.instance.mainMenuUI.gameObject.activeInHierarchy)
         {
                 
@@ -141,7 +159,6 @@ public class MainMenuLogic
 
     private void RightPressed()
     {
-        Debug.Log("RightPressed");
         if(MainMenu.instance.mainMenuUI.gameObject.activeInHierarchy)
         {
                 
@@ -160,7 +177,6 @@ public class MainMenuLogic
 
     private void UPPressed()
     {
-        Debug.Log("UPPressed");
         if(MainMenu.instance.mainMenuUI.gameObject.activeInHierarchy)
         {
             int value = MainMenu.instance.mainMenuUI.selectIndex;
@@ -188,7 +204,6 @@ public class MainMenuLogic
 
     private void DownPressed()
     {
-        Debug.Log("DownPressed");
         if(MainMenu.instance.mainMenuUI.gameObject.activeInHierarchy)
         {
             int value = MainMenu.instance.mainMenuUI.selectIndex;

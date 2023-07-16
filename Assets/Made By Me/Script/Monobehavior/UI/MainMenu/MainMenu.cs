@@ -37,6 +37,7 @@ public class MainMenu : MonoBehaviour
 
     private void OnEnable() {
         mainMenuLogic.OnEnable();
+        GameAudioManager.instance.PlayBackGroundMusic(BackGroundAudioType.MainMenu);
     }
 
     private void OnDisable() {

@@ -46,6 +46,7 @@ public class SaveSlotUILogic : CallBackInterface
             }else
             {
                 SaveSlots[_saveSlotIndex].transform.GetChild(6).gameObject.SetActive(true);
+                GameAudioManager.instance.PlayUIMusic(UIAudioType.Move);
             }
         }
     }
@@ -164,7 +165,7 @@ public class SaveSlotUILogic : CallBackInterface
     public void SlotClick(int n)
     {
         saveSlotNum = n;
-
+        GameAudioManager.instance.PlayUIMusic(UIAudioType.Click);
         if(isDelete)
         {
             Delete(n);
