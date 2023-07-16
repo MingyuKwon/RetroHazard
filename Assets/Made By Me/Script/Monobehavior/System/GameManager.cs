@@ -383,25 +383,6 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public void SetPauseGameInput()
-    {
-        if(ObtainKeyItem) return;
-        if(isPlayerParry) return;
-
-        if(Time.timeScale == 0f)
-        {
-            GameManagerUI.instance.isShowingESC = false;
-            GameManagerUI.instance.Visualize_PauseMainUI(false);
-            SetPauseGame(false);
-        }
-        else if(Time.timeScale == 1f)
-        {
-            GameManagerUI.instance.isShowingESC = true;
-            GameManagerUI.instance.Visualize_PauseMainUI(true);
-            SetPauseGame(true);
-        }
-        
-    }
     //Pause
 
     //Tab

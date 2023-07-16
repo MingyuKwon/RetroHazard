@@ -46,6 +46,7 @@ public class InGameUI : MonoBehaviour
     private void OnDisable() {
         GameManager.EventManager.Update_IngameUI_Event -= Update_IngameUI;
         mapShowPanelRecTransform.anchoredPosition = invisiblePosition;
+        canStartCoroutine = true;
     }
 
     public void UpdateIngameUI()
@@ -87,13 +88,13 @@ public class InGameUI : MonoBehaviour
             MoveShowMapShowPanel(0.1f, i, true);
             yield return new WaitForSecondsRealtime(showingTimeHalf / frames);
         }
+
         yield return new WaitForSecondsRealtime(fullShowingTime);
         for(int i=0; i<frames + 2; i++)
         {
             MoveShowMapShowPanel(0.1f, i, false);
             yield return new WaitForSecondsRealtime(showingTimeHalf / frames);
         }
-
         saveYPosition = null;
         canStartCoroutine = true;
     }
