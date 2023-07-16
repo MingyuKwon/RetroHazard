@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class PauseMainUI : MonoBehaviour, CallBackInterface
 {
+    bool isFirstSelect = true;
+
     public int currentIndex{
         get{
             return _currentIndex;
@@ -29,6 +31,14 @@ public class PauseMainUI : MonoBehaviour, CallBackInterface
                 }
 
                 buttons[_currentIndex].SetFocus(true);
+
+                if(isFirstSelect)
+                {
+                    isFirstSelect = false;
+                    return;
+                }
+
+                GameAudioManager.instance.PlayUIMusic(UIAudioType.Move);
             }
         }
     }
@@ -50,6 +60,7 @@ public class PauseMainUI : MonoBehaviour, CallBackInterface
 
     private void OnDisable() {
         GameManager.EventManager.InvokeShowNotice("PauseUI");
+        isFirstSelect = true;
 
     }
 

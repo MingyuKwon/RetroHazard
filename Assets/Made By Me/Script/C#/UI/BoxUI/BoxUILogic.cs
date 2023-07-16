@@ -8,13 +8,74 @@ public class BoxUILogic : CallBackInterface
 {
     public bool isShowing = false;
 
-    public int currentWindowLayer = 0;
+    public int currentWindowLayer {
+        get{
+            return _CurrentWindowLayer;
+        }
+        set{
+            if(_CurrentWindowLayer < value) // 더 깊숙히 들어감
+            {
+                Debug.Log("BoxUI : UIAudioType.Click");
+                GameAudioManager.instance.PlayUIMusic(UIAudioType.Click);
+            }else if(_CurrentWindowLayer > value) // 밖으로 나옴
+            {
+
+            }
+
+            _CurrentWindowLayer = value;
+            
+        }
+    } 
+    public int _CurrentWindowLayer = 0; // 0 : normal, 1 : select, 2 : combine
     public bool isBox = false;
     public bool isCursorInBox = false;
 
+    bool openFirstSelect = true;
+    public int boxItemIndex {
+        get{
+            return _boxItemIndex;
+        }
 
-    public int boxItemIndex = 0;
-    public int playerItemIndex = 0;
+        set{
+            _boxItemIndex = value;
+
+            if(_boxItemIndex >= 0)
+            {
+                if(openFirstSelect)
+                {
+                    openFirstSelect = false;
+                    return;
+                }
+                Debug.Log("BoxUI boxItem : UIAudioType.Move");
+                GameAudioManager.instance.PlayUIMusic(UIAudioType.Move);
+            }
+
+        }
+    }
+    int _boxItemIndex = 0;
+
+    public int playerItemIndex{
+        get{
+            return _playerItemIndex;
+        }
+
+        set{
+            _playerItemIndex = value;
+
+            if(_playerItemIndex >= 0)
+            {
+                if(openFirstSelect)
+                {
+                    openFirstSelect = false;
+                    return;
+                }
+                Debug.Log("BoxUI PlayerItem : UIAudioType.Move");
+                GameAudioManager.instance.PlayUIMusic(UIAudioType.Move);
+            }
+
+        }
+    }
+    int _playerItemIndex = 0;
 
     int previousBoxItemIndex = -1;
     int previousPlayerItemIndex = 0;
@@ -92,6 +153,7 @@ public class BoxUILogic : CallBackInterface
         
     }
 
+    bool openFirstSelectMoveBox = true;
     public void GotoBox()
     {
         playerItemIndex = -1;
@@ -99,6 +161,12 @@ public class BoxUILogic : CallBackInterface
 
         boxItemUI.backgroundPanel.color = boxItemUI.selectColor;
         playerItemUI.backgroundPanel.color = playerItemUI.unSelectColor;
+        if(openFirstSelectMoveBox)
+        {
+            openFirstSelectMoveBox = false;
+            return;
+        }
+        GameAudioManager.instance.PlayUIMusic(UIAudioType.Move);
     }
 
 
@@ -109,6 +177,12 @@ public class BoxUILogic : CallBackInterface
 
         boxItemUI.backgroundPanel.color = boxItemUI.unSelectColor;
         playerItemUI.backgroundPanel.color = playerItemUI.selectColor;
+        if(openFirstSelectMoveBox)
+        {
+            openFirstSelectMoveBox = false;
+            return;
+        }
+        GameAudioManager.instance.PlayUIMusic(UIAudioType.Move);
     }
 
     public void UpdateBoxUI()
@@ -126,6 +200,10 @@ public class BoxUILogic : CallBackInterface
         boxItemIndex = -1;
         playerItemIndex = 0;
         discardTargetItemIndex = -1;
+        currentWindowLayer = 0;
+
+        Debug.Log("BoxUI UIAudioType.Open");
+        GameAudioManager.instance.PlayUIMusic(UIAudioType.Open);
 
         boxItemUI.backgroundPanel.color = boxItemUI.unSelectColor;
         playerItemUI.backgroundPanel.color = playerItemUI.selectColor;
@@ -146,12 +224,14 @@ public class BoxUILogic : CallBackInterface
 
         UI.instance.SetMouseCursorActive(false);
 
-        currentWindowLayer = 0;
+        
         discardTargetItemIndex = -1;
 
         UI.instance.TotalUIUpdate();
-
         GameManager.EventManager.InvokeShowNotice("BoxUI");
+
+        openFirstSelect = true;
+        openFirstSelectMoveBox = true;
 
         GameMangerInput.InputEvent.BoxUIEnterPressed -= EnterPressed;
         GameMangerInput.InputEvent.BoxUIBackPressed -= BackPressed;

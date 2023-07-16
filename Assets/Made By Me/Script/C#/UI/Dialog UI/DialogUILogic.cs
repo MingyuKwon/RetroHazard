@@ -323,6 +323,9 @@ public class DialogUILogic
         DialogInteract.isTalking = true;
 
 
+        GameAudioManager.instance.PlayUIMusic(UIAudioType.Click);
+
+
         GameMangerInput.InputEvent.DialogUIEnterPressed += EnterPressed;
         GameMangerInput.InputEvent.DialogUIUpPressed += UpPressed;
         GameMangerInput.InputEvent.DialogUIDownPressed += DownPressed;
@@ -353,6 +356,7 @@ public class DialogUILogic
     {
         if(!isNowTalking)
         {
+            GameAudioManager.instance.PlayUIMusic(UIAudioType.Click);
             callCount++;
         }
     }

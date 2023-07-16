@@ -104,7 +104,7 @@ public class GameAudioManager : MonoBehaviour
         while(timeElaped < 1f)
         {
             beforeAudioSource.volume = currentBackGroundVolume * Mathf.Cos(Mathf.PI * 0.5f * timeElaped);
-            afterAudioSource.volume += currentBackGroundVolume * Mathf.Sin(Mathf.PI * 0.5f * timeElaped);
+            afterAudioSource.volume = currentBackGroundVolume * Mathf.Sin(Mathf.PI * 0.5f * timeElaped);
             yield return new WaitForSecondsRealtime(0.05f);
             timeElaped += 0.05f;
         }

@@ -4,7 +4,24 @@ using UnityEngine;
 
 public class PauseRootUILogic 
 {
-    public int CurrentWindowLayer = 0;
+    public int CurrentWindowLayer {
+        get{
+            return _CurrentWindowLayer;
+        }
+        set{
+            if(_CurrentWindowLayer == 0)
+            {
+                _CurrentWindowLayer = value;
+                GameAudioManager.instance.PlayUIMusic(UIAudioType.Click);
+
+            }else
+            {
+                _CurrentWindowLayer = value;
+            }
+        }
+    }
+
+    public int _CurrentWindowLayer = 0;
 
     PauseMainUI pauseMainUI;
     SaveSlotUI saveSlotUI;

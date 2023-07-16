@@ -56,10 +56,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: bb35b9f59ba3e404e9443ac3fdc5eb98, type: 3}
   sfxAudioClip: []
   UIAudioClip:
-  - {fileID: 8300000, guid: eacd9f88148b20a46949b9b757cf4516, type: 3}
+  - {fileID: 8300000, guid: e1fb21216e8449844980d364cd76fee8, type: 3}
   - {fileID: 8300000, guid: 025ea17357d73ac418a4e24ee8235efd, type: 3}
   - {fileID: 8300000, guid: e2accd9af93cc97429872c484c2f7ef1, type: 3}
-  - {fileID: 8300000, guid: 3de88d2b19ee33b4c95b1c734fce51ad, type: 3}
+  - {fileID: 8300000, guid: eacd9f88148b20a46949b9b757cf4516, type: 3}
 --- !u!82 &6596938227750655252
 AudioSource:
   m_ObjectHideFlags: 0

@@ -7,7 +7,27 @@ public class ItemContainerLogic
     int containerNum;
     public int indexLimitMin = 0;
     public int indexLimitMax = 2;
-    public int selectIndex = 0;
+
+    bool isFirstSelect = true;
+    public int selectIndex {
+        get{
+            return _selectIndex;
+        }
+
+        set{
+            _selectIndex = value;
+            if(isFirstSelect)
+            {
+                isFirstSelect = false;
+                return;
+            }
+            GameAudioManager.instance.PlayUIMusic(UIAudioType.Move);
+            Debug.Log("ItemContainer : UIAudioType.Move");
+
+        }
+    }
+
+    int _selectIndex = 0;
 
     public bool isFocused = false;
     public bool isCombineable = false;
@@ -243,6 +263,8 @@ public class ItemContainerLogic
     public void OnDisable() {
         fadeImage.color = new Color(0f, 0f, 0f, 0f);
         isInteractive = false;
+
+        isFirstSelect = true;
 
     }
 

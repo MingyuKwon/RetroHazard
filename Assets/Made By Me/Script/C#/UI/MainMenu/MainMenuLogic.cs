@@ -13,14 +13,11 @@ public class MainMenuLogic
             if(_CurrentWindowLayer == 0)
             {
                 _CurrentWindowLayer = value;
-                Debug.Log("UIAudioType.Click");
                 GameAudioManager.instance.PlayUIMusic(UIAudioType.Click);
 
             }else
             {
                 _CurrentWindowLayer = value;
-                Debug.Log("UIAudioType.Back");
-                GameAudioManager.instance.PlayUIMusic(UIAudioType.Back);
 
             }
         }

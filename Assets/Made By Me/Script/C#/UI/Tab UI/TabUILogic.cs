@@ -13,10 +13,54 @@ public class TabUILogic : CallBackInterface
     // true -> open when get item, false -> interact with object
 
     public bool isUseKeyItem = false; 
-    public int[] neededKeyItemCode;
+    public int[] neededKeyItemCode; 
 
-    public int currentWindowLayer = 0; // 0 : normal, 1 : select, 2 : combine
-    public int currentItemindex = 0;
+    public int currentWindowLayer {
+        get{
+            return _CurrentWindowLayer;
+        }
+        set{
+            if(_CurrentWindowLayer < value) // 더 깊숙히 들어감
+            {
+                Debug.Log("TabUI : UIAudioType.Click");
+                GameAudioManager.instance.PlayUIMusic(UIAudioType.Click);
+            }else if(_CurrentWindowLayer > value) // 밖으로 나옴
+            {
+
+            }
+
+            _CurrentWindowLayer = value;
+            
+        }
+    } 
+    public int _CurrentWindowLayer = 0; // 0 : normal, 1 : select, 2 : combine
+    
+    bool openFirstSelect = true;
+
+    public int currentItemindex {
+        get{
+            return _currentItemindex;
+        }
+
+        set{
+            _currentItemindex = value;
+
+            if(_currentItemindex >= 0)
+            {
+                if(openFirstSelect)
+                {
+                    openFirstSelect = false;
+                    return;
+                }
+                Debug.Log("TabUI : UIAudioType.Move");
+                GameAudioManager.instance.PlayUIMusic(UIAudioType.Move);
+            }
+
+        }
+    }
+
+    public int _currentItemindex = 0;
+    
     public int previousItemindex = 0;
     public bool yesNoChoice = true;
 
@@ -288,6 +332,9 @@ public class TabUILogic : CallBackInterface
         UI.instance.SetMouseCursorActive(true);
         discardTargetItemIndex = -1;
 
+        Debug.Log("TabUI : UIAudioType.Open");
+        GameAudioManager.instance.PlayUIMusic(UIAudioType.Open);
+
         //////////////////////
         showingTabIndex = 0;
 
@@ -315,7 +362,6 @@ public class TabUILogic : CallBackInterface
         HiddenInteract.nowYouSeeInTabisHidden = false;
         HiddenInteract.instance = null;
 
-
         showingTabIndex = 0;
         
         GameMangerInput.InputEvent.TabUIEnterPressed -= UIEnterPressed;
@@ -335,6 +381,9 @@ public class TabUILogic : CallBackInterface
         button2.onClick.RemoveAllListeners();
 
         GameManager.EventManager.InvokeShowNotice("TabUI");
+
+        openFirstSelect = true;
+
     }
 
     public void TabUILeftTabPressed()

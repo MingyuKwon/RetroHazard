@@ -25,6 +25,7 @@ public class InteractiveUILogic
         GameMangerInput.InputEvent.InteractiveUIEnterPressed += EnterPressed;
         UI.instance.SetMouseCursorActive(true);
         GameMangerInput.getInput(InputType.InteractiveUIInput);
+        GameAudioManager.instance.PlayUIMusic(UIAudioType.Click);
     }
 
     public void OnDisable() {
@@ -43,6 +44,7 @@ public class InteractiveUILogic
     {
         if(!isNowTalking)
         {
+            GameAudioManager.instance.PlayUIMusic(UIAudioType.Click);
             callCount++;
         }
     }
