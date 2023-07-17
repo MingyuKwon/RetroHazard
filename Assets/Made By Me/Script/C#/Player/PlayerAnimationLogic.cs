@@ -208,6 +208,7 @@ public class PlayerAnimationLogic
 
     private void SetShieldAnimation()
     {
+        Debug.Log("isParrying : " + isParrying + "status.isBlocked : " + status.isBlocked + "sheildCrash : " + sheildCrash);
         if(isParrying) return;
         if(status.isBlocked) return;
         if(sheildCrash) return;
@@ -262,6 +263,42 @@ public class PlayerAnimationLogic
         }
     }
 
+    public void StunAnimationStart()
+    {
+        monoBehaviour.StopAllCoroutines();
+        monoBehaviour.StartCoroutine(StunStart());
+    }
+
+    IEnumerator StunStart()
+    {
+        if(GameManager.Sheild_Durability_Reducing)
+        {
+            status.SheildDurabilityChange(1);
+        }
+
+        GameManager.instance.SetPausePlayer(true);
+        GameManager.instance.SetPlayerMove(false);
+        ResetPlayerAnimationState();
+        GameManager.instance.EnemyCollideIgnore(true);
+        SheildColliderEnable(false);
+        vfxAnimation.StunAnimationStart();
+
+        animator.Play("Stun");
+
+        yield return new WaitForEndOfFrame();
+        while(!isCurrentAnimationEnd())
+        {
+            yield return new WaitForEndOfFrame();
+        }
+
+        GameManager.instance.SetPausePlayer(false);
+        GameManager.instance.SetPlayerMove(true);
+        GameManager.instance.EnemyCollideIgnore(false);
+        
+        animator.Play("Idle");
+
+    }
+
     private void SetParryAnimation()
     {
         if(isParrying || sheildCrash) return;
@@ -285,9 +322,12 @@ public class PlayerAnimationLogic
         SheildColliderEnable(false);
         animator.Play("Parry");
 
+        Player1.instance.playerRigidBody2D.velocity = Vector2.zero;
+
         yield return new WaitForEndOfFrame();
         while(!isCurrentAnimationEnd())
         {
+            Player1.instance.playerRigidBody2D.velocity = Vector2.zero;
             yield return new WaitForEndOfFrame();
         }
         
@@ -312,14 +352,8 @@ public class PlayerAnimationLogic
         }else
         {
             UI.instance.inGameUI.UpdateIngameUI();
+            status.parrySuccess = false;
         }
-    }
-
-
-
-    public void StunAnimationStart()
-    {
-        animator.SetTrigger("Stun");
     }
 
     public void SetSheildCrash(bool ChangeSheild)
@@ -456,27 +490,6 @@ public class PlayerAnimationLogic
         GameManager.instance.SetPlayerMove(true);
     }
 
-    public void StunStart()
-    {
-        if(GameManager.Sheild_Durability_Reducing)
-        {
-            status.SheildDurabilityChange(1);
-        }
-
-        monoBehaviour.StopAllCoroutines();
-        GameManager.instance.SetPausePlayer(true);
-        GameManager.instance.SetPlayerMove(true);
-        GameManager.instance.ResetPlayerAnimationState();
-        GameManager.instance.EnemyCollideIgnore(true);
-        SheildColliderEnable(false);
-        vfxAnimation.StunAnimationStart();
-    }
-
-    public void StunEnd()
-    {
-        GameManager.instance.SetPausePlayer(false);
-        GameManager.instance.EnemyCollideIgnore(false);
-    }
     public void EnergyReloadEnd()
     {
         Player1.instance.playerInventory.EnergyReload();

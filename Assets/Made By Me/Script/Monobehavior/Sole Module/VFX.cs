@@ -8,9 +8,6 @@ using DG.Tweening;
 
 public class VFX : MonoBehaviour
 {
-    public CapsuleCollider2D BodyCollider;
-    public BoxCollider2D attackCollider;
-    public BoxCollider2D sheildCollider;
     private Animator vfxAnimator;
 
     private EnemyManager enemyManager = null;
@@ -56,20 +53,13 @@ public class VFX : MonoBehaviour
 
     public void ParryVFXStart()
     {
-        if(isPlayer)
-        {
-            BodyCollider.enabled = false;
-        }
+
         
     }
 
     public void ParryVFXEnd()
     {
-        if(isPlayer)
-        {
-            BodyCollider.enabled = true;
-        }
-        
+
     }
 
 
