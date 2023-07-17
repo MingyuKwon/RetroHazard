@@ -656,18 +656,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5710392908370957945, guid: bd4d9f244e5ed344ea5823b1d97d48b4, type: 3}
-      propertyPath: sfxAudioClip.Array.size
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 5710392908370957945, guid: bd4d9f244e5ed344ea5823b1d97d48b4, type: 3}
-      propertyPath: sfxAudioClip.Array.data[10]
-      value: 
-      objectReference: {fileID: 8300000, guid: 9faddb8496579de4ab34b30faf6057dc, type: 3}
-    - target: {fileID: 5710392908370957945, guid: bd4d9f244e5ed344ea5823b1d97d48b4, type: 3}
-      propertyPath: sfxAudioClip.Array.data[11]
-      value: 
-      objectReference: {fileID: 8300000, guid: 76697c54200b6594586205ddace55039, type: 3}
     - target: {fileID: 5710392908370957947, guid: bd4d9f244e5ed344ea5823b1d97d48b4, type: 3}
       propertyPath: m_Name
       value: GameAudioManager

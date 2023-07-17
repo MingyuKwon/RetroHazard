@@ -34,9 +34,7 @@ public class PlayerSheildLogic
                     GameManager.instance.SlowMotion();
                 }else
                 {
-                    playerAnimation.SetAnimationFlag("Trigger", "Block");
-                    GameAudioManager.instance.PlaySFXMusic(SFXAudioType.Block);
-
+                    playerAnimation.SetSheildBlock();
                     if(!GameManager.Sheild_Durability_Reducing)
                     {
                         GameManager.EventManager.Invoke_Sheild_Durability_Reduce_Start_Event();
@@ -45,7 +43,7 @@ public class PlayerSheildLogic
             }
             else if(contactCollider.gameObject.layer == LayerMask.NameToLayer("Enemy Body"))
             {
-                playerAnimation.SetAnimationFlag("Trigger", "Block");
+                playerAnimation.SetSheildBlock();
                 if(!GameManager.Sheild_Durability_Reducing)
                 {
                     GameManager.EventManager.Invoke_Sheild_Durability_Reduce_Start_Event();

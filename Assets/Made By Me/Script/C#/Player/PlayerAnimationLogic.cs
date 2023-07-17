@@ -224,10 +224,36 @@ public class PlayerAnimationLogic
         }
     }
 
+    public void SetSheildBlock()
+    {
+        if(status.isBlocked) return;
+        monoBehaviour.StartCoroutine(BlockStart());
+        
+    }
+
+    IEnumerator BlockStart()
+    {
+        status.isBlocked = true;
+        GameAudioManager.instance.PlaySFXMusic(SFXAudioType.Block);
+        GameManager.instance.SetPlayerMove(false);
+        animator.Play("Block");
+
+        yield return new WaitForEndOfFrame();
+        while(!isCurrentAnimationEnd())
+        {
+            yield return new WaitForEndOfFrame();
+        }
+
+        status.SheildDurabilityChange(1);
+        GameManager.instance.SetPlayerMove(true);
+        status.isBlocked = false;
+    }
+
     private void PutSheildBack()
     {
         if(animator.GetCurrentAnimatorStateInfo(0).IsName("Shield") || 
-        animator.GetCurrentAnimatorStateInfo(0).IsName("Parry"))
+        animator.GetCurrentAnimatorStateInfo(0).IsName("Parry") || 
+        animator.GetCurrentAnimatorStateInfo(0).IsName("Block"))
         {
             GameManager.instance.SetPlayerMove(true);
             SheildColliderEnable(false);
@@ -359,7 +385,6 @@ public class PlayerAnimationLogic
         isAttacking = false;
         isParrying = false;
         isSheilding = false;
-        animator.ResetTrigger("Block");
         animator.ResetTrigger("Parry");
 
         if(status == null) return;
@@ -445,21 +470,6 @@ public class PlayerAnimationLogic
         {
             UI.instance.inGameUI.UpdateIngameUI();
         }
-    }
-
-
-
-    public void BlockStart()
-    {
-        GameManager.instance.SetPlayerMove(false);
-        status.isBlocked = true;
-    }
-
-    public void BlockEnd()
-    {
-        status.SheildDurabilityChange(1);
-        GameManager.instance.SetPlayerMove(true);
-        status.isBlocked = false;
     }
 
 

@@ -46,6 +46,11 @@ public class PlayerAnimation : MonoBehaviour
         animationLogic.StunAnimationStart();
     }
 
+    public void SetSheildBlock()
+    {
+        animationLogic.SetSheildBlock();
+    }
+
     public void ResetPlayerAnimationState()
     {
         animationLogic.ResetPlayerAnimationState();
@@ -123,17 +128,6 @@ public class PlayerAnimation : MonoBehaviour
     public void ParryFrameEnd()
     {
        animationLogic.ParryFrameEnd();
-    }
-
-
-    public void BlockStart()
-    {
-        animationLogic.BlockStart();
-    }
-
-    public void BlockEnd()
-    {
-        animationLogic.BlockEnd();
     }
 
     public void EnergyReloadEnd()

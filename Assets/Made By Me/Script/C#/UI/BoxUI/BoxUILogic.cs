@@ -202,7 +202,6 @@ public class BoxUILogic : CallBackInterface
         discardTargetItemIndex = -1;
         currentWindowLayer = 0;
 
-        Debug.Log("BoxUI UIAudioType.Open");
         GameAudioManager.instance.PlayUIMusic(UIAudioType.Open);
 
         boxItemUI.backgroundPanel.color = boxItemUI.unSelectColor;

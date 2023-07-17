@@ -65,6 +65,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e312a64abd6e82d44a1d38d981ecc6da, type: 3}
   - {fileID: 8300000, guid: 786800ac015f5a24c9ea95ba5de7c946, type: 3}
   - {fileID: 8300000, guid: 88c6bd93328a2d040baeb47f21f0ef89, type: 3}
+  - {fileID: 8300000, guid: 9faddb8496579de4ab34b30faf6057dc, type: 3}
+  - {fileID: 8300000, guid: 76697c54200b6594586205ddace55039, type: 3}
   UIAudioClip:
   - {fileID: 8300000, guid: e1fb21216e8449844980d364cd76fee8, type: 3}
   - {fileID: 8300000, guid: 025ea17357d73ac418a4e24ee8235efd, type: 3}
