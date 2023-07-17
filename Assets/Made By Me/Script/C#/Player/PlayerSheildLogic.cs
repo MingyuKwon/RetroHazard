@@ -23,35 +23,41 @@ public class PlayerSheildLogic
 
         if(other.otherCollider.tag == "Sheild")
         {
-            if(contactCollider.gameObject.layer == LayerMask.NameToLayer("Enemy not Body"))
-            {
-                if(contactCollider.tag == "Attack" && status.parryFrame)
-                {
-                    playerAnimation.vfxAnimation.SetAnimationFlag("Trigger", "Parry");
-                    GameAudioManager.instance.PlaySFXMusic(SFXAudioType.ParrySuccess);
-                    status.parrySuccess = true;
-                    GameManager.isPlayerParry = true;
-                    GameManager.instance.SlowMotion();
-                }else
-                {
-                    playerAnimation.SetSheildBlock();
-                    if(!GameManager.Sheild_Durability_Reducing)
-                    {
-                        GameManager.EventManager.Invoke_Sheild_Durability_Reduce_Start_Event();
-                    }
-                }
-            }
-            else if(contactCollider.gameObject.layer == LayerMask.NameToLayer("Enemy Body"))
-            {
+            if(status.isBlocked) return;
+
+            if(contactCollider.gameObject.layer == LayerMask.NameToLayer("Enemy not Body") ||
+                contactCollider.gameObject.layer == LayerMask.NameToLayer("Enemy Body"))
+            { 
+                Debug.Log("Sheild Attack BLock");
                 playerAnimation.SetSheildBlock();
                 if(!GameManager.Sheild_Durability_Reducing)
                 {
                     GameManager.EventManager.Invoke_Sheild_Durability_Reduce_Start_Event();
                 }
             }
-
+            
         }
     }
+
+    public void OnTriggerEnter2D(Collider2D other) { // 일단은 플레이어에서 tirgger가 될 만한 곳은 패리 밖에 없으니 어느 부분과 Trigger가 되었는지는 구분 안해도 될 것 같다
+        if(other.gameObject.layer == LayerMask.NameToLayer("Enemy not Body"))
+        {
+            if(other.gameObject.tag == "Attack" && status.parryFrame)
+            {
+                Debug.Log("Sheild Attack Parry");
+                status.parrySuccess = true;
+                GameManager.instance.EnemyCollideIgnore(true);
+                GameManager.Sheild_Durability_Reducing = false;
+                Player1.instance.playerAnimation.SheildColliderEnable(false);
+                GameManager.isPlayerParry = true;
+                playerAnimation.vfxAnimation.SetAnimationFlag("Trigger", "Parry");
+                GameAudioManager.instance.PlaySFXMusic(SFXAudioType.ParrySuccess);
+                GameManager.instance.SlowMotion();
+            }
+        }
+    }
+
+
 
     public void Start() {
         status = Player1.instance.playerStatus;

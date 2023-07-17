@@ -205,10 +205,8 @@ public class PlayerAnimationLogic
             status.EnergyUse(1, status.Energy);
         }
     }
-
     private void SetShieldAnimation()
     {
-        Debug.Log("isParrying : " + isParrying + "status.isBlocked : " + status.isBlocked + "sheildCrash : " + sheildCrash);
         if(isParrying) return;
         if(status.isBlocked) return;
         if(sheildCrash) return;
@@ -223,6 +221,58 @@ public class PlayerAnimationLogic
         {
             PutSheildBack();
         }
+    }
+
+    private void PutSheildBack()
+    {
+        if(animator.GetCurrentAnimatorStateInfo(0).IsName("Shield") || 
+        animator.GetCurrentAnimatorStateInfo(0).IsName("Parry") || 
+        animator.GetCurrentAnimatorStateInfo(0).IsName("Block") || 
+        animator.GetCurrentAnimatorStateInfo(0).IsName("Parry"))
+        {
+            GameManager.instance.SetPlayerMove(true);
+            SheildColliderEnable(false);
+            animator.Play("Idle");
+        }
+    }
+
+    public void StunAnimationStart()
+    {
+        monoBehaviour.StopAllCoroutines();
+        ResetPlayerAnimationState();
+        
+        monoBehaviour.StartCoroutine(StunStart());
+    }
+
+    IEnumerator StunStart()
+    {
+        if(GameManager.Sheild_Durability_Reducing)
+        {
+            status.SheildDurabilityChange(1);
+        }
+
+        GameManager.instance.SetPausePlayer(true);
+        GameManager.instance.SetPlayerMove(false);
+        Debug.Log("EnemyCollideIgnore Start");
+        GameManager.instance.EnemyCollideIgnore(true);
+        SheildColliderEnable(false);
+        vfxAnimation.StunAnimationStart();
+
+        animator.Play("Stun");
+
+        yield return new WaitForEndOfFrame();
+        while(!isCurrentAnimationEnd())
+        {
+            yield return new WaitForEndOfFrame();
+        }
+
+        GameManager.instance.SetPausePlayer(false);
+        GameManager.instance.SetPlayerMove(true);
+        GameManager.instance.EnemyCollideIgnore(false);
+        Debug.Log("EnemyCollideIgnore End");
+        animator.Play("Idle");
+        
+
     }
 
     public void SetSheildBlock()
@@ -250,55 +300,6 @@ public class PlayerAnimationLogic
         status.isBlocked = false;
     }
 
-    private void PutSheildBack()
-    {
-        if(animator.GetCurrentAnimatorStateInfo(0).IsName("Shield") || 
-        animator.GetCurrentAnimatorStateInfo(0).IsName("Parry") || 
-        animator.GetCurrentAnimatorStateInfo(0).IsName("Block") || 
-        animator.GetCurrentAnimatorStateInfo(0).IsName("Parry"))
-        {
-            GameManager.instance.SetPlayerMove(true);
-            SheildColliderEnable(false);
-            animator.Play("Idle");
-        }
-    }
-
-    public void StunAnimationStart()
-    {
-        monoBehaviour.StopAllCoroutines();
-        monoBehaviour.StartCoroutine(StunStart());
-    }
-
-    IEnumerator StunStart()
-    {
-        if(GameManager.Sheild_Durability_Reducing)
-        {
-            status.SheildDurabilityChange(1);
-        }
-
-        GameManager.instance.SetPausePlayer(true);
-        GameManager.instance.SetPlayerMove(false);
-        ResetPlayerAnimationState();
-        GameManager.instance.EnemyCollideIgnore(true);
-        SheildColliderEnable(false);
-        vfxAnimation.StunAnimationStart();
-
-        animator.Play("Stun");
-
-        yield return new WaitForEndOfFrame();
-        while(!isCurrentAnimationEnd())
-        {
-            yield return new WaitForEndOfFrame();
-        }
-
-        GameManager.instance.SetPausePlayer(false);
-        GameManager.instance.SetPlayerMove(true);
-        GameManager.instance.EnemyCollideIgnore(false);
-        
-        animator.Play("Idle");
-
-    }
-
     private void SetParryAnimation()
     {
         if(isParrying || sheildCrash) return;
@@ -312,6 +313,8 @@ public class PlayerAnimationLogic
     IEnumerator ParryStart()
     {
         isParrying = true;
+        SheildCollidertoTrigger(true);
+
         if(!GameManager.Sheild_Durability_Reducing)
         {
             GameManager.EventManager.Invoke_Sheild_Durability_Reduce_Start_Event();
@@ -330,7 +333,9 @@ public class PlayerAnimationLogic
             Player1.instance.playerRigidBody2D.velocity = Vector2.zero;
             yield return new WaitForEndOfFrame();
         }
-        
+
+        GameManager.instance.EnemyCollideIgnore(false);
+        SheildCollidertoTrigger(false);
         ResetPlayerAnimationState();
 
     }
@@ -346,6 +351,7 @@ public class PlayerAnimationLogic
     {
         SheildColliderEnable(false);
         status.parryFrame = false;
+        
         if(!status.parrySuccess)
         {
             status.SheildDurabilityChange(1);
@@ -461,10 +467,13 @@ public class PlayerAnimationLogic
         isAttacking = false;
         isParrying = false;
         isSheilding = false;
+        SheildColliderEnable(false);
+        SheildCollidertoTrigger(false);
 
         if(status == null) return;
 
         status.parryFrame = false;
+        status.isBlocked = false;
     }
 
 
@@ -503,6 +512,10 @@ public class PlayerAnimationLogic
     public void SheildColliderEnable(bool flag)
     {
         sheildCollider.enabled = flag;
+    }
+    public void SheildCollidertoTrigger(bool flag)
+    {
+        sheildCollider.isTrigger = flag;
     }
 
     public void AttackColliderEnable(bool flag)

@@ -45,17 +45,25 @@ public class PlayerHealthLogic
         if(contactCollider.gameObject.layer == LayerMask.NameToLayer("Enemy Body") 
             || contactCollider.gameObject.layer == LayerMask.NameToLayer("Enemy not Body")) // enemy 몸이나 enemy의 일부에 맞은 경우 
         {
+            Debug.Log( LayerMask.LayerToName(contactCollider.gameObject.layer));
+            Debug.Log( LayerMask.LayerToName(other.otherCollider.gameObject.layer));
             if(other.otherCollider.tag == "Player Body") // 만약 플레이어의 몸체에 닿았다면
             {
+                if(GameManager.isPlayerPaused){
+                    return 0;
+                }
+
                 GameObject contactObject = contactCollider.transform.parent.transform.parent.gameObject;
                 EnemyStatus contactEnemyStat = contactObject.GetComponentInChildren<EnemyStatus>();
 
                 if(contactCollider.tag == "Enemy Body") // 몬스터의 몸에 부딪혔나?
                 {
+                    Debug.Log("Body Body");
                     damage = contactEnemyStat.Attack * contactEnemyStat.bodyDamageRatio;
                 }
                 else if(contactCollider.tag == "Attack") // 몬스터가 공격 한 것을 맞았냐?
                 {
+                    Debug.Log("Body Attack");
                     damage = contactEnemyStat.Attack * contactEnemyStat.AttackDamageRatio;
                 }
 

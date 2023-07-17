@@ -26,6 +26,10 @@ public class PlayerShield : MonoBehaviour
         playerSheildLogic.CollisionEnter2D(other);
     }
 
+    private void OnTriggerEnter2D(Collider2D other) {
+        playerSheildLogic.OnTriggerEnter2D(other);
+    }
+
 
     public void RecoveryVFXStart()
     {

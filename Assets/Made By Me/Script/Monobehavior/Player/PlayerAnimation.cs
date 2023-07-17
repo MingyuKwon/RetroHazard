@@ -71,6 +71,12 @@ public class PlayerAnimation : MonoBehaviour
         StartCoroutine(checkWalkAnimation());
     }
 
+    [Button]
+    public void ShowSheildValue()
+    {
+        Debug.Log("isParrying : " + animationLogic.isParrying + "status.isBlocked : " + Player1.instance.playerStatus.isBlocked + "sheildCrash : " + animationLogic.sheildCrash);
+    }
+
     IEnumerator checkWalkAnimation()
     {
         yield return new WaitForEndOfFrame(); // wait for input system to be changed
