@@ -351,7 +351,7 @@ public class PlayerAnimationLogic
     {
         SheildColliderEnable(false);
         status.parryFrame = false;
-        
+
         if(!status.parrySuccess)
         {
             status.SheildDurabilityChange(1);

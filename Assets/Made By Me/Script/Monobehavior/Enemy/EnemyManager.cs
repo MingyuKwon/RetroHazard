@@ -63,7 +63,15 @@ public class EnemyManager : MonoBehaviour
     }
 
     public bool lockOnMutex = false;
+    public bool isNowAttacking{
+        get{
+            return enemyAnimation.isNowAttacking;
+        }
 
+        set{
+            enemyAnimation.isNowAttacking = value;
+        }
+    }
 
     //Move
     public float enemySpeed = 3f;
@@ -151,6 +159,7 @@ public class EnemyManager : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.layer == LayerMask.NameToLayer("Player Body"))
         {
+            if(isEnemyStunned) return;
             if(CheckObstacleBetween(other.transform.position - transform.position)) return;
 
             if(!isLockedOnPlayer) // 플레이어에게 록온 되어 있는데 trigger 닿았다면 그건 공격 신호

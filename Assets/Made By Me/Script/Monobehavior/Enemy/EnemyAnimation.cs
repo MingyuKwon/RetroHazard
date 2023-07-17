@@ -34,6 +34,8 @@ public class EnemyAnimation : MonoBehaviour
     {
         StopAllCoroutines();
         enemyManager.enemyFollowingPlayer.detectMark.SetActive(false);
+        enemyManager.isEnemyStunned = true;
+        isNowAttacking = false;
     }
 
     public void Parreid()
@@ -41,6 +43,7 @@ public class EnemyAnimation : MonoBehaviour
         if(enemyManager.isEnemyStunned) return;
         enemyManager.vfxAnimator.SetTrigger("Parried");
         Animation_StopAllCoroutine();
+        enemyManager.enemyRigidbody2D.velocity = Vector2.zero;
 
         StartCoroutine(ParreidTime());
     }
@@ -81,6 +84,7 @@ public class EnemyAnimation : MonoBehaviour
         enemyManager.vfxAnimator.SetTrigger("Stun");
         enemyManager.enemyStatus.ParriedWithParrySheild = false;
         enemyManager.isEnemyStunned = true;
+        isNowAttacking = false;
         PlayerAttackIngnore(true);
         Animation_StopAllCoroutine();
 
@@ -157,19 +161,19 @@ public class EnemyAnimation : MonoBehaviour
     ///////////////// For Animation Reference /////////////////////////////////////
     ///////////////// For Animation Reference /////////////////////////////////////
 
-    bool isNowTransforming = false;
+    public bool isNowAttacking = false;
 
     // Down left right up
     // 0     1    2     3
     public void Animation_BodyAttack(int direction) 
     {
-        isNowTransforming = true;
+        isNowAttacking = true;
         StartCoroutine(TransformMove(direction));
     }
 
     public void Animation_Stop_TransformMove()
     {
-        isNowTransforming = false;
+        isNowAttacking = false;
     }
 
     IEnumerator TransformMove(int direction)
@@ -196,7 +200,7 @@ public class EnemyAnimation : MonoBehaviour
 
         float frictionReduce = 1f;
 
-        while(isNowTransforming)
+        while(isNowAttacking)
         {
             float vectorC = 0;
             float temp = 0;

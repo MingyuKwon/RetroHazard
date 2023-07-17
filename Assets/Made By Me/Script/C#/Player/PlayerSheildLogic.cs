@@ -28,7 +28,6 @@ public class PlayerSheildLogic
             if(contactCollider.gameObject.layer == LayerMask.NameToLayer("Enemy not Body") ||
                 contactCollider.gameObject.layer == LayerMask.NameToLayer("Enemy Body"))
             { 
-                Debug.Log("Sheild Attack BLock");
                 playerAnimation.SetSheildBlock();
                 if(!GameManager.Sheild_Durability_Reducing)
                 {
@@ -40,11 +39,11 @@ public class PlayerSheildLogic
     }
 
     public void OnTriggerEnter2D(Collider2D other) { // 일단은 플레이어에서 tirgger가 될 만한 곳은 패리 밖에 없으니 어느 부분과 Trigger가 되었는지는 구분 안해도 될 것 같다
+        
         if(other.gameObject.layer == LayerMask.NameToLayer("Enemy not Body"))
         {
             if(other.gameObject.tag == "Attack" && status.parryFrame)
             {
-                Debug.Log("Sheild Attack Parry");
                 status.parrySuccess = true;
                 GameManager.instance.EnemyCollideIgnore(true);
                 GameManager.Sheild_Durability_Reducing = false;

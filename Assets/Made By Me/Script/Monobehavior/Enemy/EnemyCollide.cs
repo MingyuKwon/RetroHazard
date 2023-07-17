@@ -24,10 +24,12 @@ public class EnemyCollide : MonoBehaviour
         {
             if(other.gameObject.tag == "Sheild") // 실드로 막았다면
             {
+                if(!enemyManager.isNowAttacking) return; 
                 if(Player1.instance.playerStatus.parryFrame && !enemyManager.isParried) // 그리고 그 실드가 패링중이라면
                 {
                     if(Player1.instance.playerStatus.Sheild == 1) enemyManager.enemyStatus.ParriedWithParrySheild = true;
                     enemyManager.enemyAnimation.Parreid();
+                    Debug.Log("Parreid");
                 }
             }
             
