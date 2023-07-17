@@ -332,7 +332,6 @@ public class TabUILogic : CallBackInterface
         UI.instance.SetMouseCursorActive(true);
         discardTargetItemIndex = -1;
 
-        Debug.Log("TabUI : UIAudioType.Open");
         GameAudioManager.instance.PlayUIMusic(UIAudioType.Open);
 
         //////////////////////

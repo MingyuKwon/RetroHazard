@@ -110,16 +110,6 @@ public class PlayerAnimation : MonoBehaviour
         animationLogic.StunEnd();
     }
 
-    public void ParryStart()
-    {
-        animationLogic.ParryStart();
-    }
-
-    public void ParryEnd()
-    {
-        animationLogic.ParryEnd();
-    }
-
     public void ParryFrameStart()
     {
         animationLogic.ParryFrameStart();
