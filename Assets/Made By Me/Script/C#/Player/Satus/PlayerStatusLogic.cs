@@ -138,12 +138,15 @@ public class PlayerStatusLogic
         
     }
 
-
-
     public void HealthChangeDefaultMinus(float damage)
     {
         if(damage == 0)
             return;
+
+        if(damage < 0)
+        {
+            GameAudioManager.instance.PlaySFXMusic(SFXAudioType.HpUp);
+        }
 
         if(damage == -1)
         {

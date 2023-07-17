@@ -27,7 +27,9 @@ public enum SFXAudioType{
     Parry = 6,  
     ParrySuccess = 7,  
     reload = 8,
-    HpUp = 9
+    HpUp = 9,
+    Block = 10,
+    Warp = 11,
 }
 
 public enum UIAudioType{
@@ -127,9 +129,11 @@ public class GameAudioManager : MonoBehaviour
         isNowChanging = false;
     }
 
-    public void PlaySFXMusic()
+    public void PlaySFXMusic(SFXAudioType audioType)
     {
-
+        CurrentSfxSource.clip = sfxAudioClip[(int)audioType];
+        CurrentSfxSource.volume = currentSFXVolume;
+        CurrentSfxSource.Play();
     }
 
     public void PlayUIMusic(UIAudioType audioType)

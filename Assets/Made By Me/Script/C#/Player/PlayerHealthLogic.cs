@@ -61,6 +61,7 @@ public class PlayerHealthLogic
 
                 ForceInput = other.GetContact(0).normal;
                 Debug.Log("player had damage : " + damage);
+                GameAudioManager.instance.PlaySFXMusic(SFXAudioType.Attacked);
                 Reflect(damage);
                 status.HealthChangeDefaultMinus(damage);
 

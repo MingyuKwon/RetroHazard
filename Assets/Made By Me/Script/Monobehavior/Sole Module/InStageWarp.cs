@@ -78,6 +78,8 @@ public class InStageWarp : MonoBehaviour
 
         EnemyCollideIngnore(true);
 
+        GameAudioManager.instance.PlaySFXMusic(SFXAudioType.Warp);
+
         if(moveDirection == Vector2.up)
         {
             isGoingUp = true;

@@ -184,6 +184,21 @@ public class PlayerAnimationLogic
             if(isParrying) return;
 
             animator.SetTrigger("Attack");
+            switch(status.Energy)
+            {
+                case 0 :
+                    GameAudioManager.instance.PlaySFXMusic(SFXAudioType.noramlAttack);
+                    break;
+                case 1 :
+                    GameAudioManager.instance.PlaySFXMusic(SFXAudioType.Energy1Attack);
+                    break;
+                case 2 :
+                    GameAudioManager.instance.PlaySFXMusic(SFXAudioType.Energy2Attack);
+                    break;
+                case 3 :
+                    GameAudioManager.instance.PlaySFXMusic(SFXAudioType.Energy3Attack);
+                    break;
+            }
             isAttacking = true;
             GameManager.instance.SetPlayerMove(false);
             animator.SetFloat("Energy", status.Energy);
@@ -227,6 +242,7 @@ public class PlayerAnimationLogic
         if(GameMangerInput.inputCheck.isPressingShield() && GameMangerInput.inputCheck.isInteractiveButtonDown() && status.Sheild != 2)
         {
             animator.SetTrigger("Parry");
+            GameAudioManager.instance.PlaySFXMusic(SFXAudioType.Parry);
             isParrying = true;
         }
     }
@@ -273,6 +289,7 @@ public class PlayerAnimationLogic
 
     IEnumerator ReloadStart()
     {
+        GameAudioManager.instance.PlaySFXMusic(SFXAudioType.reload);
         GameManager.instance.SetPausePlayer(true);
         GameManager.instance.SetPlayerMove(false);
         animator.Play("Reload");

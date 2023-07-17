@@ -82,6 +82,7 @@ public class InteractiveUILogic
             flag = false; //키 아이템 먹은게 아님
         }else
         {
+            GameAudioManager.instance.PlaySFXMusic(SFXAudioType.GetItem);
             flag = true; // 키 아이템 먹은것
         }
 

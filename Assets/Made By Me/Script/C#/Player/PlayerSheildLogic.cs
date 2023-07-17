@@ -28,12 +28,15 @@ public class PlayerSheildLogic
                 if(contactCollider.tag == "Attack" && status.parryFrame)
                 {
                     playerAnimation.vfxAnimation.SetAnimationFlag("Trigger", "Parry");
+                    GameAudioManager.instance.PlaySFXMusic(SFXAudioType.ParrySuccess);
                     status.parrySuccess = true;
                     GameManager.isPlayerParry = true;
                     GameManager.instance.SlowMotion();
                 }else
                 {
                     playerAnimation.SetAnimationFlag("Trigger", "Block");
+                    GameAudioManager.instance.PlaySFXMusic(SFXAudioType.Block);
+
                     if(!GameManager.Sheild_Durability_Reducing)
                     {
                         GameManager.EventManager.Invoke_Sheild_Durability_Reduce_Start_Event();
