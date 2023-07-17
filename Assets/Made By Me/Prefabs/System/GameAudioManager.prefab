@@ -54,7 +54,17 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5a0526a79216db04fbc2e5fd2ccfd80c, type: 3}
   - {fileID: 8300000, guid: a41a8087bb3d3ee4ea92e433551b1474, type: 3}
   - {fileID: 8300000, guid: bb35b9f59ba3e404e9443ac3fdc5eb98, type: 3}
-  sfxAudioClip: []
+  sfxAudioClip:
+  - {fileID: 8300000, guid: cbeddf14cc9851f40a1e2c70f420d334, type: 3}
+  - {fileID: 8300000, guid: 2937e939bf355d843872bdcbbc722843, type: 3}
+  - {fileID: 8300000, guid: 11ed5dbbd82e0a343974bc100fd0c62c, type: 3}
+  - {fileID: 8300000, guid: 7ae5bedba8592334abfde82e2328230b, type: 3}
+  - {fileID: 8300000, guid: 0df69ced1c0924f4fa44019d77f5889b, type: 3}
+  - {fileID: 8300000, guid: 736f53f7a66b4284a9cf3db800862799, type: 3}
+  - {fileID: 8300000, guid: 7f4d35c9e7f474c49ae0a12f7b11805d, type: 3}
+  - {fileID: 8300000, guid: e312a64abd6e82d44a1d38d981ecc6da, type: 3}
+  - {fileID: 8300000, guid: 786800ac015f5a24c9ea95ba5de7c946, type: 3}
+  - {fileID: 8300000, guid: 88c6bd93328a2d040baeb47f21f0ef89, type: 3}
   UIAudioClip:
   - {fileID: 8300000, guid: e1fb21216e8449844980d364cd76fee8, type: 3}
   - {fileID: 8300000, guid: 025ea17357d73ac418a4e24ee8235efd, type: 3}

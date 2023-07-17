@@ -17,6 +17,19 @@ public enum BackGroundAudioType{
     House_theme2 = 4,
 }
 
+public enum SFXAudioType{
+    noramlAttack = 0,  
+    Energy1Attack = 1, 
+    Energy2Attack = 2, 
+    Energy3Attack = 3, 
+    Attacked = 4,  
+    GetItem = 5,  
+    Parry = 6,  
+    ParrySuccess = 7,  
+    reload = 8,
+    HpUp = 9
+}
+
 public enum UIAudioType{
     Click = 0,
     Back = 1,
