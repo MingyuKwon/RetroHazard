@@ -22,13 +22,11 @@ public class TabUILogic : CallBackInterface
         set{
             if(_CurrentWindowLayer < value) // 더 깊숙히 들어감
             {
-                Debug.Log("TabUI : UIAudioType.Click");
                 GameAudioManager.instance.PlayUIMusic(UIAudioType.Click);
             }else if(_CurrentWindowLayer > value) // 밖으로 나옴
             {
 
             }
-
             _CurrentWindowLayer = value;
             
         }
@@ -52,7 +50,6 @@ public class TabUILogic : CallBackInterface
                     openFirstSelect = false;
                     return;
                 }
-                Debug.Log("TabUI : UIAudioType.Move");
                 GameAudioManager.instance.PlayUIMusic(UIAudioType.Move);
             }
 
@@ -135,10 +132,12 @@ public class TabUILogic : CallBackInterface
 
                 if(!GameManager.TutorialCheck.isItemUITutorialDone)
                 {
+                    Debug.Log("1");
                     GameManager.EventManager.InvokeShowNotice("TabUI", FirstItemUINoticeText , true ,500 ,300);
                     GameManager.TutorialCheck.isItemUITutorialDone = true;
                 }else
                 {
+                    Debug.Log("2");
                     GameManager.EventManager.InvokeShowNotice("TabUI", ItemUINoticeText , false,200 ,440);
                 }
 
@@ -153,9 +152,11 @@ public class TabUILogic : CallBackInterface
 
                 if(!GameManager.TutorialCheck.isMiniMapTutorialDone)
                 {
+                    Debug.Log("3");
                     GameManager.EventManager.InvokeShowNotice("TabUI", FirstMinimapUINoticeText , true ,500 ,300);
                     GameManager.TutorialCheck.isMiniMapTutorialDone = true;
                 }else{
+                    Debug.Log("4");
                     GameManager.EventManager.InvokeShowNotice("TabUI", MiniMapUINoticeText, false , 200 ,440);
                 }
 
@@ -197,6 +198,7 @@ public class TabUILogic : CallBackInterface
         isShowing = flag;
 
         monoBehavior.gameObject.SetActive(flag);
+        if(flag) showingTabIndex = 0;
 
         background.gameObject.SetActive(flag);
         itemUI.gameObject.SetActive(flag);
@@ -335,7 +337,7 @@ public class TabUILogic : CallBackInterface
         GameAudioManager.instance.PlayUIMusic(UIAudioType.Open);
 
         //////////////////////
-        showingTabIndex = 0;
+        
 
         //////////////////////////////////////////
 
@@ -360,8 +362,6 @@ public class TabUILogic : CallBackInterface
 
         HiddenInteract.nowYouSeeInTabisHidden = false;
         HiddenInteract.instance = null;
-
-        showingTabIndex = 0;
         
         GameMangerInput.InputEvent.TabUIEnterPressed -= UIEnterPressed;
         GameMangerInput.InputEvent.TabUIBackPressed -= UIBackPressed;
@@ -378,7 +378,7 @@ public class TabUILogic : CallBackInterface
 
         Button button2 = showingTabMinimapImage.gameObject.GetComponent<Button>();
         button2.onClick.RemoveAllListeners();
-
+        Debug.Log("5");
         GameManager.EventManager.InvokeShowNotice("TabUI");
 
         openFirstSelect = true;

@@ -41,6 +41,7 @@ public class NoticeUILogic
     string showingUI;
     public void showNotice(string showingUI ,string[] texts, bool isTyping, int panelWidth, int panelHeight)
     {
+        Debug.Log("NoticeUI text == null : " + (texts == null) + " \nthis.showingUI : " + this.showingUI + " \nshowingUI : " + showingUI);
         if(texts == null) // 이건 Notice를 닫기를 원할 떄
         {
             if(this.showingUI != showingUI) return;
@@ -108,7 +109,7 @@ public class NoticeUILogic
             {
                 GameManager.instance.SetPauseGame(false);
             }
-            showNotice(this.showingUI, null, false, 100, 100);
+            monoBehaviour.gameObject.SetActive(false);
         }
         
     }
