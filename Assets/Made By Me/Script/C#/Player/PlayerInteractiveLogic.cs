@@ -79,11 +79,10 @@ public class PlayerInteractiveLogic
                     }else if(nearInteract is OneWayDoor)
                     {
                         ((OneWayDoor)nearInteract).OneWayDoorInteract(monoBehaviour.transform);
-                        GameManager.EventManager.InvokeInteractEvent(false); 
                     }else if(nearInteract is RealInteract)
                     {
                         GameManagerUI.instance.Visualize_Tab_Interactive(true, nearInteract.dialog);
-                        GameManager.EventManager.InvokeInteractEvent(true); // RealInteract 발생
+                        ((RealInteract)nearInteract).InteractiveWithReal();
                     }
                 }
                 

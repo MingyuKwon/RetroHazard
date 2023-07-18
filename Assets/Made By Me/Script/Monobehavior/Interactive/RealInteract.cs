@@ -38,8 +38,6 @@ public class RealInteract : Interact
 
         }else
         {
-            Debug.Log("Real Interact name : " + this.gameObject.name);
-
             transform.GetChild(0).gameObject.SetActive(false);
             transform.GetChild(1).gameObject.SetActive(true);
             transform.GetChild(2).gameObject.SetActive(false);
@@ -48,35 +46,31 @@ public class RealInteract : Interact
 
     public override void OnEnable() {
         base.OnEnable();
-        GameManager.EventManager.InteractEvent += InteractiveWithReal;
         GameManager.EventManager.Interact_KeyItem_Success_Event += realInteractSuccess;
     }
 
     public override void OnDisable() {
         base.OnDisable();
-        GameManager.EventManager.InteractEvent -= InteractiveWithReal;
         GameManager.EventManager.Interact_KeyItem_Success_Event -= realInteractSuccess;
     }
 
-    private void InteractiveWithReal(bool isRealInteract) // 이건 실제 아이템으로 성공하지 않고 그냥 interact만 했을 때 뜨는 창을 띄우는거
+    public void InteractiveWithReal() // 이건 실제 아이템으로 성공하지 않고 그냥 interact만 했을 때 뜨는 창을 띄우는거
     {
-        if(isRealInteract)
+        if(if_CurrentGoalIndex_Is_Interact == -1) return;
+
+        if(if_CurrentGoalIndex_Is_Interact == PlayerGoalCollection.currentGoalIndex)
         {
-            if(if_CurrentGoalIndex_Is_Interact == -1) return;
+            PlayerGoalCollection.currentGoalIndex = nextGoalIndex_Is_Interact;
+        }
 
-            if(if_CurrentGoalIndex_Is_Interact == PlayerGoalCollection.currentGoalIndex)
+        if(justInteractNotice)
+        {
+            if(noticeIndex_ifExist != 0)
             {
-                PlayerGoalCollection.currentGoalIndex = nextGoalIndex_Is_Interact;
-            }
-
-            if(justInteractNotice)
-            {
-                if(noticeIndex_ifExist != 0)
-                {
-                    GameManager.EventManager.InvokeInteractNoticeEvent(noticeIndex_ifExist, true);
-                }
+                GameManager.EventManager.InvokeInteractNoticeEvent(noticeIndex_ifExist, true);
             }
         }
+        
     }
 
     private void realInteractSuccess(InteractiveDialog interactiveDialog, int n) // 이게 성공
@@ -100,10 +94,12 @@ public class RealInteract : Interact
                 {
                     if(noticeIndex_ifExist != 0)
                     {
+                        Debug.Log("Real noticeIndex_ifExist 2");
                         GameManager.EventManager.InvokeInteractNoticeEvent(noticeIndex_ifExist, true);
                     }
                 }else
                 {
+                    Debug.Log("Real noticeIndex_ifExist 3");
                     GameManager.EventManager.InvokeInteractNoticeEvent(noticeIndex_ifExist, false);
                 }
                 

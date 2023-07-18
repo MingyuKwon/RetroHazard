@@ -51,12 +51,6 @@ public class GameManager : MonoBehaviour
             InteractNoticeEvent?.Invoke(index, isCreate);
         }
 
-        public static event Action<bool> InteractEvent;
-        public static void InvokeInteractEvent(bool isRealInteract)
-        {
-            InteractEvent?.Invoke(isRealInteract);
-        }
-
         public static event Action ItemUseEvent;
         public static void InvokeItemUseEvent()
         {
