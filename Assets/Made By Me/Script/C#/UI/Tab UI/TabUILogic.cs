@@ -132,12 +132,10 @@ public class TabUILogic : CallBackInterface
 
                 if(!GameManager.TutorialCheck.isItemUITutorialDone)
                 {
-                    Debug.Log("1");
                     GameManager.EventManager.InvokeShowNotice("TabUI", FirstItemUINoticeText , true ,500 ,300);
                     GameManager.TutorialCheck.isItemUITutorialDone = true;
                 }else
                 {
-                    Debug.Log("2");
                     GameManager.EventManager.InvokeShowNotice("TabUI", ItemUINoticeText , false,200 ,440);
                 }
 
@@ -152,11 +150,9 @@ public class TabUILogic : CallBackInterface
 
                 if(!GameManager.TutorialCheck.isMiniMapTutorialDone)
                 {
-                    Debug.Log("3");
                     GameManager.EventManager.InvokeShowNotice("TabUI", FirstMinimapUINoticeText , true ,500 ,300);
                     GameManager.TutorialCheck.isMiniMapTutorialDone = true;
                 }else{
-                    Debug.Log("4");
                     GameManager.EventManager.InvokeShowNotice("TabUI", MiniMapUINoticeText, false , 200 ,440);
                 }
 
@@ -164,7 +160,36 @@ public class TabUILogic : CallBackInterface
         }
     }
 
-    int _showingTabIndex = 0;
+    int _showingTabIndex {
+        get{
+           return  __showingTabIndex; 
+        }
+        set{
+            __showingTabIndex = value;
+
+            if(__showingTabIndex == 0)
+            {
+                showingTabItemImage.color = selectColor;
+                showingTabMinimapImage.color = unSelectColor;
+
+                itemUI.gameObject.SetActive(true);
+                itemExplainUI.gameObject.SetActive(true);
+                miniMap.gameObject.SetActive(false);
+
+
+            }else if(__showingTabIndex == 1)
+            {
+                showingTabItemImage.color = unSelectColor;
+                showingTabMinimapImage.color = selectColor;
+
+                itemUI.gameObject.SetActive(false);
+                itemExplainUI.gameObject.SetActive(false);
+                miniMap.gameObject.SetActive(true);
+            }
+        }
+    }
+
+    int __showingTabIndex = 0;
 
     Image showingTabItemImage;
     Image showingTabMinimapImage;
@@ -336,6 +361,8 @@ public class TabUILogic : CallBackInterface
 
         GameAudioManager.instance.PlayUIMusic(UIAudioType.Open);
 
+        _showingTabIndex = 0;
+
         //////////////////////
         
 
@@ -376,9 +403,10 @@ public class TabUILogic : CallBackInterface
         Button button1 = showingTabItemImage.gameObject.GetComponent<Button>();
         button1.onClick.RemoveAllListeners();
 
+        _showingTabIndex = 0;
+
         Button button2 = showingTabMinimapImage.gameObject.GetComponent<Button>();
         button2.onClick.RemoveAllListeners();
-        Debug.Log("5");
         GameManager.EventManager.InvokeShowNotice("TabUI");
 
         openFirstSelect = true;
