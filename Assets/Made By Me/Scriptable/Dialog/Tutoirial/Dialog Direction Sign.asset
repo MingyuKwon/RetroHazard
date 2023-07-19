@@ -22,7 +22,7 @@ MonoBehaviour:
   - Go left if you want to buy something
   - I can Level up you
   ReapeatingDialogs:
-  - "\u2193 archaeological site\n\u2190 Adeenhau beach"
+  - "\u2193 archaeological site\n\n\u2190 Adeenhau beach"
   EventDialogs: []
   ChoiceDialog:
   - What do you want?
