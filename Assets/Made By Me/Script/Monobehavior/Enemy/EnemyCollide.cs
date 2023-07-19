@@ -43,7 +43,6 @@ public class EnemyCollide : MonoBehaviour
         if(contactCollider.gameObject.layer == LayerMask.NameToLayer("Player not Body")) // 만약 플레이어의 몸이 아닌 곳에 맞았다면
         {
             if(enemyManager.checkAttackedByPlayer) return;
-            
             contactObject = contactCollider.transform.parent.transform.parent.gameObject;
 
             if(other.otherCollider.tag == "Enemy Body" && contactCollider.tag != "Sheild") // 방패에 맞은게 아니라면? -> 공격에 맞은거

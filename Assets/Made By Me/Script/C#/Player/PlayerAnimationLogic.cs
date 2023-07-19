@@ -47,6 +47,7 @@ public class PlayerAnimationLogic
     }
 
     PlayerAnimation monoBehaviour;
+    SpriteRenderer playerSprite;
 
     BoxCollider2D sheildCollider;
     BoxCollider2D attckCollider;
@@ -66,13 +67,14 @@ public class PlayerAnimationLogic
     public float XInput = 0f;
     public float YInput = 0f;
 
-     public float BeforePauseXInput = 0f;
-     public float BeforePauseYInput = 0f;
+    public float BeforePauseXInput = 0f;
+    public float BeforePauseYInput = 0f;
     //flags and values///////////////////////////////////
 
 
     /////////references and constructor///////////////////////////////////
     Animator animator;
+
     public VFXAnimation vfxAnimation;
 
     private PlayerStatus status;
@@ -86,6 +88,8 @@ public class PlayerAnimationLogic
 
         sheildCollider = monoBehaviour.transform.GetChild(0).GetChild(2).gameObject.GetComponent<BoxCollider2D>();
         attckCollider = monoBehaviour.transform.GetChild(0).GetChild(1).gameObject.GetComponent<BoxCollider2D>();
+    
+        playerSprite = monoBehaviour.GetComponent<SpriteRenderer>();
     }
     
     /////////references and constructor///////////////////////////////////
@@ -93,7 +97,6 @@ public class PlayerAnimationLogic
     //monobehavior function//////////////////////////////////////////////////////////////////
     public void Start() {
         status = Player1.instance.playerStatus;
-        
     }
 
     public void Update()
@@ -242,6 +245,7 @@ public class PlayerAnimationLogic
         ResetPlayerAnimationState();
         
         monoBehaviour.StartCoroutine(StunStart());
+        monoBehaviour.StartCoroutine(ColorChange());
     }
 
     IEnumerator StunStart()
@@ -257,19 +261,36 @@ public class PlayerAnimationLogic
         SheildColliderEnable(false);
         vfxAnimation.StunAnimationStart();
 
-        animator.Play("Stun");
+        animator.Play("Idle");
 
-        yield return new WaitForEndOfFrame();
-        while(!isCurrentAnimationEnd())
-        {
-            yield return new WaitForEndOfFrame();
-        }
+        yield return new WaitForSeconds(0.25f);
 
         GameManager.instance.SetPausePlayer(false);
         GameManager.instance.SetPlayerMove(true);
+
         GameManager.instance.EnemyCollideIgnore(false);
-        animator.Play("Idle");
-        
+    
+    }
+
+    IEnumerator ColorChange()
+    {
+        GameManager.instance.EnemyCollideIgnore(true);
+
+        playerSprite.color = new Color(0.4f, 0.4f, 0.4f);
+
+        yield return new WaitForSeconds(0.2f);
+
+        playerSprite.color = new Color(0.9f, 0.9f, 0.9f);
+
+        yield return new WaitForSeconds(0.2f);
+
+        playerSprite.color = new Color(0.6f, 0.6f, 0.6f);
+
+        yield return new WaitForSeconds(0.1f);
+
+        playerSprite.color = new Color(1f, 1f, 1f);
+
+        GameManager.instance.EnemyCollideIgnore(false);
 
     }
 

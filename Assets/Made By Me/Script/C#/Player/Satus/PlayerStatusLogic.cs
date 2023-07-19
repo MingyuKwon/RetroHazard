@@ -22,7 +22,7 @@ public class PlayerStatusLogic
     
     [Header("Equipped")]
     public int Energy = 0;
-    public int[] EnergyDamage = {10, 40 , 100, 80};
+    public int[] EnergyDamage = {5, 30 , 80, 60};
     public int[] EnergyMaganize = {-1, 0 , 0, 0}; // Current sword Energy contain
     public int[] EnergyMaganizeMaximum = {-1, 0 , 0, 0}; // Current sword Energy contain
     public int[] EnergyUpgrade = {-1, 0 , 0, 0}; // Current sword Energy contain
