@@ -291,6 +291,14 @@ PrefabInstance:
       propertyPath: openY
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 2584779707238899055, guid: 50e5af61362dca34da1fd4a9572cbfc0, type: 3}
+      propertyPath: InteractJustSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 0f06e5097290ee3488c5be31532ee2f7, type: 3}
+    - target: {fileID: 2584779707238899055, guid: 50e5af61362dca34da1fd4a9572cbfc0, type: 3}
+      propertyPath: InteractSuccessSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 39c543080618b4f4f81e0f7e71d87b02, type: 3}
     - target: {fileID: 3054877796637674778, guid: 50e5af61362dca34da1fd4a9572cbfc0, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -353,7 +361,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3054877796637674781, guid: 50e5af61362dca34da1fd4a9572cbfc0, type: 3}
       propertyPath: m_Name
-      value: One Way Door
+      value: One Way Door Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50e5af61362dca34da1fd4a9572cbfc0, type: 3}

@@ -29,7 +29,6 @@ public enum SFXAudioType{
     reload = 8,
     HpUp = 9,
     Block = 10,
-    Warp = 11,
 }
 
 public enum UIAudioType{
@@ -43,10 +42,10 @@ public class GameAudioManager : MonoBehaviour
 {
     static public GameAudioManager instance;
     static public float currentBackGroundVolume = 0.5f;
-    static public float currentSFXVolume = 0.5f;
-    static public float currentUIVolume = 0.5f;
+    static public float currentSFXVolume = 0.4f;
+    static public float currentUIVolume = 0.3f;
     static public float currentEnemyVolume = 0.5f;
-    static public float currentEnvironmentVolume = 0.5f;
+    static public float currentEnvironmentVolume = 0.7f;
 
     public AudioClip[] backGroundAudioClip;
     public AudioClip[] sfxAudioClip;

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class RealInteract : Interact
 {
-    AudioSource audioSource = null;
+    public AudioSource audioSource = null;
     public AudioClip InteractJustSound = null;
     public AudioClip InteractSuccessSound = null;
 
@@ -60,7 +60,7 @@ public class RealInteract : Interact
         GameManager.EventManager.Interact_KeyItem_Success_Event -= realInteractSuccess;
     }
 
-    private void PlayEnvironmentMusic(AudioClip audioClip)
+    public void PlayEnvironmentMusic(AudioClip audioClip)
     {
         if(audioSource == null) return;
         if(audioClip == null) return;

@@ -18,6 +18,7 @@ public class OneWayDoor : RealInteract
     public override void OnDisable() {
     }
 
+
     // 우선 InteractUI 띄우는 것만 구현해 보자
     public void OneWayDoorInteract(Transform playerTransform)
     {
@@ -72,6 +73,8 @@ public class OneWayDoor : RealInteract
 
         GameManagerUI.instance.VisualizeInteractiveUI(true);
 
+        PlayEnvironmentMusic(InteractJustSound);
+
         if(flag)
         {
             if(check.activeInHierarchy)
@@ -80,6 +83,8 @@ public class OneWayDoor : RealInteract
                 transform.GetChild(0).gameObject.SetActive(false);
                 transform.GetChild(1).gameObject.SetActive(false);
                 transform.GetChild(2).gameObject.SetActive(true);
+
+                PlayEnvironmentMusic(InteractSuccessSound);
 
                 BoxCollider2D boxCollider2D = GetComponent<BoxCollider2D>();
 

@@ -16,6 +16,9 @@ public class InStageWarp : MonoBehaviour
 
     Vector2 colliderSize;
 
+    AudioSource audioSource = null;
+    public AudioClip InteractSound = null;
+
     private void Start() {
         colliderSize = GetComponent<BoxCollider2D>().size;
 
@@ -28,6 +31,8 @@ public class InStageWarp : MonoBehaviour
         upInteract.SetActive(false);
         beforeOpen.SetActive(true);
         afterOpen.SetActive(false);
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnEnable() {
@@ -38,6 +43,15 @@ public class InStageWarp : MonoBehaviour
         GameManager.EventManager.InStageWarpEvent += DoWarp;
     }
 
+    public void PlayEnvironmentMusic()
+    {
+        if(audioSource == null) return;
+        if(InteractSound == null) return;
+        audioSource.volume = GameAudioManager.currentEnvironmentVolume;
+        audioSource.clip = InteractSound;
+        audioSource.Play();
+    }
+
     private void DoWarp()
     {
         if(!isCurrentWarpActive) return;
@@ -45,6 +59,7 @@ public class InStageWarp : MonoBehaviour
         GameMangerInput.blockAllInput = true;
         beforeOpen.SetActive(false);
         afterOpen.SetActive(true);
+        PlayEnvironmentMusic();
 
         if(isDownActive)
         {
@@ -78,7 +93,6 @@ public class InStageWarp : MonoBehaviour
 
         EnemyCollideIngnore(true);
 
-        GameAudioManager.instance.PlaySFXMusic(SFXAudioType.Warp);
 
         if(moveDirection == Vector2.up)
         {

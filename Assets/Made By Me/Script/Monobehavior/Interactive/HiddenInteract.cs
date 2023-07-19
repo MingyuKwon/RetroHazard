@@ -27,6 +27,7 @@ public class HiddenInteract : RealInteract
             Debug.Log("Hidden Interact name : " + this.gameObject.name);
 
             gameObject.SetActive(true);
+            audioSource = GetComponent<AudioSource>();
         }
     }
 
@@ -38,6 +39,7 @@ public class HiddenInteract : RealInteract
 
     public void Hidden_Interact()
     {
+        PlayEnvironmentMusic(InteractSuccessSound);
         GameManagerUI.instance.SetInteractiveDialogText(dialog.SucessDialog);
         GameManagerUI.instance.VisualizeInteractiveUI(true);
         nowHiddenInteracting = true;
