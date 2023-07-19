@@ -589,6 +589,15 @@ MonoBehaviour:
       _behaviorId: 0
       _userAssignable: 1
       _categoryId: 8
+    - _id: 38
+      _name: Rush
+      _type: 1
+      _descriptiveName: Rush
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 2
     actionCategories:
     - _name: Default
       _descriptiveName: Default
@@ -632,7 +641,7 @@ MonoBehaviour:
       - categoryId: 1
         actionIds: 0200000003000000
       - categoryId: 2
-        actionIds: 00000000070000000100000008000000060000000f000000100000001100000012000000
+        actionIds: 00000000070000000100000008000000060000000f00000010000000110000001200000026000000
       - categoryId: 3
         actionIds: 090000000a0000000b0000000c0000000d0000000e00000015000000160000001b0000001c00000024000000
       - categoryId: 6
@@ -864,6 +873,17 @@ MonoBehaviour:
         _invert: 0
         _axisContribution: 0
         _keyboardKeyCode: 9
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 38
+        _elementType: 1
+        _elementIdentifierId: -1
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 304
         _modifierKey1: 0
         _modifierKey2: 0
         _modifierKey3: 0
@@ -1644,7 +1664,7 @@ MonoBehaviour:
           _customControllerSourceId: -1
           _controllerId: -1
     playerIdCounter: 2
-    actionIdCounter: 38
+    actionIdCounter: 39
     actionCategoryIdCounter: 9
     inputBehaviorIdCounter: 1
     mapCategoryIdCounter: 6

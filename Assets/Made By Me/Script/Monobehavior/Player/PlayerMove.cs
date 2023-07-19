@@ -29,13 +29,23 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    public float moveSpeedScholar{
+    public float runSpeedScholar{
         get{
-            return playerMoveLogic.moveSpeedScholar;
+            return playerMoveLogic.runSpeedScholar;
         }
 
         set{
-            playerMoveLogic.moveSpeedScholar = value;
+            playerMoveLogic.runSpeedScholar = value;
+        }
+    }
+
+    public float stairSpeedScholar{
+        get{
+            return playerMoveLogic.stairSpeedScholar;
+        }
+
+        set{
+            playerMoveLogic.stairSpeedScholar = value;
         }
     }
 

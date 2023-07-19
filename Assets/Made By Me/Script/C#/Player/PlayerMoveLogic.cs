@@ -9,8 +9,9 @@ public class PlayerMoveLogic
 {
     PlayerMove monoBehaviour;
 
-    public float moveSpeed = 4f;
-    public float moveSpeedScholar = 1f;
+    public float moveSpeed = 3.2f;
+    public float runSpeedScholar = 1f;
+    public float stairSpeedScholar = 1f;
 
     public bool canMove = true;
 
@@ -60,7 +61,7 @@ public class PlayerMoveLogic
             }
 
             playerDirection = new Vector2(HorizontalMoveSpeed, VerticalMoveSpeed).normalized;
-            playerDirection = playerDirection * moveSpeed * Time.fixedDeltaTime * moveSpeedScholar;
+            playerDirection = playerDirection * moveSpeed * Time.fixedDeltaTime * runSpeedScholar * stairSpeedScholar;
 
             if( !(playerDirection.x == 0 && playerDirection.y == 0))
             {
@@ -124,10 +125,14 @@ public class PlayerMoveLogic
         GameMangerInput.InputEvent.RightPressed += RightPressed;
         GameMangerInput.InputEvent.LeftPressed += LeftPressed;
 
+        GameMangerInput.InputEvent.ShiftJustPressed += RushStart;
+
         GameMangerInput.InputEvent.UPJustPressed += UPJustPressed;
         GameMangerInput.InputEvent.DownJustPressed += DownJustPressed;
         GameMangerInput.InputEvent.RightJustPressed += RightJustPressed;
         GameMangerInput.InputEvent.LeftJustPressed += LeftJustPressed;
+
+        GameMangerInput.InputEvent.ShiftJustReleased += RushEnd;
 
         GameMangerInput.InputEvent.UPJustReleased += UPJustReleased;
         GameMangerInput.InputEvent.DownJustReleased += DownJustReleased;
@@ -141,10 +146,14 @@ public class PlayerMoveLogic
         GameMangerInput.InputEvent.RightPressed -= RightPressed;
         GameMangerInput.InputEvent.LeftPressed -= LeftPressed;
 
+        GameMangerInput.InputEvent.ShiftJustPressed -= RushStart;
+
         GameMangerInput.InputEvent.UPJustPressed -= UPJustPressed;
         GameMangerInput.InputEvent.DownJustPressed -= DownJustPressed;
         GameMangerInput.InputEvent.RightJustPressed -= RightJustPressed;
         GameMangerInput.InputEvent.LeftJustPressed -= LeftJustPressed;
+
+        GameMangerInput.InputEvent.ShiftJustReleased -= RushEnd;
 
         GameMangerInput.InputEvent.UPJustReleased -= UPJustReleased;
         GameMangerInput.InputEvent.DownJustReleased -= DownJustReleased;
@@ -154,6 +163,18 @@ public class PlayerMoveLogic
 
     
     // keep presseing
+    public void RushStart()
+    {
+        if(!InputOk ) return;
+        runSpeedScholar = 1.3f;
+    }
+
+    public void RushEnd()
+    {
+        if(!InputOk ) return;
+        runSpeedScholar = 1f;
+    }
+
     public void UPPressed()
     {
         if(!InputOk ) return;

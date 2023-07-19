@@ -629,7 +629,7 @@ MonoBehaviour:
   maxAcceleration: -2.5
   rotationSpeed: 360
   slowdownDistance: 0.1
-  pickNextWaypointDist: 1
+  pickNextWaypointDist: 0.5
   endReachedDistance: 0.05
   alwaysDrawGizmos: 1
   slowWhenNotFacingTarget: 1
@@ -662,6 +662,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
+  isNowAttacking: 0
 --- !u!114 &7921016752655537363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -693,6 +694,7 @@ MonoBehaviour:
   enemyRigidbody2D: {fileID: 0}
   PlayerDetect: {fileID: 0}
   AttackDecide: {fileID: 0}
+  checkAttackedByPlayer: 0
   randomSpeed: 2
   chaseSpeed: 3
   attackSpeed: 0.6

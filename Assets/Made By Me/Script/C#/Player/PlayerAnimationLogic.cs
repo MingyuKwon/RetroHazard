@@ -156,7 +156,13 @@ public class PlayerAnimationLogic
         if((!animator.GetCurrentAnimatorStateInfo(0).IsName("Walk") &&
         !animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))) return;
 
-        
+        if(Player1.instance.playerMove.runSpeedScholar != 1)
+        {
+            animator.SetFloat("Speed", 1.6f);
+        }else
+        {
+            animator.SetFloat("Speed", 1.2f);
+        }
 
         if(InStageWarp.isInStageWarpingNow)
         {

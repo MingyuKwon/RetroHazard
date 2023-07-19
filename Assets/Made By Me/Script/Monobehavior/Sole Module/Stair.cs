@@ -19,12 +19,12 @@ public class Stair : MonoBehaviour
             if (angle < 50f)
             {
                 // 플레이어가 위쪽으로 움직이는 경우
-                Player1.instance.playerMove.moveSpeedScholar = upwardSpeed;
+                Player1.instance.playerMove.stairSpeedScholar = upwardSpeed;
             }
             else if(angle > 130f)
             {
                 // 플레이어가 아래쪽으로 움직이는 경우
-                Player1.instance.playerMove.moveSpeedScholar = downwardSpeed;
+                Player1.instance.playerMove.stairSpeedScholar = downwardSpeed;
             }
         }
     }
@@ -32,7 +32,7 @@ public class Stair : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other) {
         if(other.gameObject.layer == LayerMask.NameToLayer("Player Body") )
         {
-            Player1.instance.playerMove.moveSpeedScholar = 1;
+            Player1.instance.playerMove.stairSpeedScholar = 1;
         }
 
     }

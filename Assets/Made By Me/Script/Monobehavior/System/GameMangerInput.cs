@@ -66,6 +66,21 @@ public class GameMangerInput : MonoBehaviour
             LeftPressed.Invoke();
         }
 
+
+
+        public static event Action ShiftJustPressed;
+        public static void Invoke_ShiftJustPressed()
+        {
+            ShiftJustPressed.Invoke();
+        }
+
+        public static event Action ShiftJustReleased;
+        public static void Invoke_ShiftJustReleased()
+        {
+            ShiftJustReleased.Invoke();
+        }
+
+    
         public static event Action UPJustPressed;
         public static void Invoke_UPJustPressed()
         {
@@ -578,11 +593,16 @@ public class GameMangerInput : MonoBehaviour
         player.AddInputEventDelegate(RightJustPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed,"Move Right");
         player.AddInputEventDelegate(LeftJustPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed,"Move Left");
 
+        player.AddInputEventDelegate(ShiftJustPressed, UpdateLoopType.Update, InputActionEventType.ButtonPressed,"Rush");
+
         player.AddInputEventDelegate(UPJustReleased, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased, "Move Up");
         player.AddInputEventDelegate(DownJustReleased, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased, "Move Down");
         player.AddInputEventDelegate(RightJustReleased, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased,"Move Right");
         player.AddInputEventDelegate(LeftJustReleased, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased,"Move Left");
-    
+        
+        player.AddInputEventDelegate(ShiftJustReleased, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased,"Rush");
+
+
         player.AddInputEventDelegate(EnergyReloadStart, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Energy Refill");
         player.AddInputEventDelegate(SheildReloadStart, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Sheild Refill");
     
@@ -629,10 +649,14 @@ public class GameMangerInput : MonoBehaviour
         player.RemoveInputEventDelegate(RightJustPressed);
         player.RemoveInputEventDelegate(LeftJustPressed);
 
+        player.RemoveInputEventDelegate(ShiftJustPressed);
+
         player.RemoveInputEventDelegate(UPJustReleased);
         player.RemoveInputEventDelegate(DownJustReleased);
         player.RemoveInputEventDelegate(RightJustReleased);
         player.RemoveInputEventDelegate(LeftJustReleased);
+
+        player.RemoveInputEventDelegate(ShiftJustReleased);
 
         player.RemoveInputEventDelegate(EnergyReloadStart);
         player.RemoveInputEventDelegate(SheildReloadStart);
@@ -712,6 +736,18 @@ public class GameMangerInput : MonoBehaviour
         if(blockAllInput) return;
         InputEvent.Invoke_LeftPressed();
     }
+
+    public void ShiftJustPressed(InputActionEventData data)
+    {
+        if(blockAllInput) return;
+        InputEvent.Invoke_ShiftJustPressed();
+    }
+    public void ShiftJustReleased(InputActionEventData data)
+    {
+        if(blockAllInput) return;
+        InputEvent.Invoke_ShiftJustReleased();
+    }
+
     // keep presseing
 
     public void UPJustPressed(InputActionEventData data)
