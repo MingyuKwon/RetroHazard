@@ -9,41 +9,20 @@ using Pathfinding;
 
 public class EnemyFollowingPlayer : MonoBehaviour
 {
-    private Transform target; // 플레이어의 위치
     private Vector3 randomPosition; // 랜덤한 위치
 
     public Transform randomTransform;
 
     public GameObject detectMark;
 
-    GridGraph currentMovingGraph; // Assuming we are using a GridGraph
-
-    float minBoundX;
-    float minBoundY;
-
-    float maxBoundX;
-    float maxBoundY;
-
-
-
     private EnemyManager enemyManager;
 
     private void Awake() {
         enemyManager = GetComponent<EnemyManager>();
-
-        target = Player1.instance.playerStatus.transform;
         randomTransform = transform.parent.GetChild(1).transform;
     }
 
     private void Start() {
-        currentMovingGraph = AstarPath.active.data.graphs[enemyManager.graphNum] as GridGraph;
-
-        minBoundX = currentMovingGraph.center.x - currentMovingGraph.size.x / 2;
-        minBoundY = currentMovingGraph.center.y - currentMovingGraph.size.y / 2;
-
-        maxBoundX = currentMovingGraph.center.x + currentMovingGraph.size.x / 2;
-        maxBoundY = currentMovingGraph.center.y + currentMovingGraph.size.y / 2;
-
         setRandomPosition();
     }
 
@@ -56,12 +35,11 @@ public class EnemyFollowingPlayer : MonoBehaviour
             }  
         }else 
         {            
-            if(target.position.x > maxBoundX || 
-            target.position.x < minBoundX || 
-            target.position.y > maxBoundY || 
-            target.position.y < minBoundY)
+            if(enemyManager.target.position.x > enemyManager.maxBoundX || 
+            enemyManager.target.position.x < enemyManager.minBoundX || 
+            enemyManager.target.position.y > enemyManager.maxBoundY || 
+            enemyManager.target.position.y < enemyManager.minBoundY)
             {
-                Debug.Log("Out of Bound");
                 enemyManager.isLockedOnPlayer = false;
             }
         }
@@ -82,9 +60,9 @@ public class EnemyFollowingPlayer : MonoBehaviour
     // Keep trying until a walkable node is found
         do
         {
-            int randomX = Random.Range(0, currentMovingGraph.width); // Get random x coordinate
-            int randomZ = Random.Range(0, currentMovingGraph.depth); // Get random z coordinate
-            node = currentMovingGraph.GetNode(randomX, randomZ);
+            int randomX = Random.Range(0, enemyManager.currentMovingGraph.width); // Get random x coordinate
+            int randomZ = Random.Range(0, enemyManager.currentMovingGraph.depth); // Get random z coordinate
+            node = enemyManager.currentMovingGraph.GetNode(randomX, randomZ);
             randomPoint = (Vector3)node.position;
         } while (!node.Walkable);
 
@@ -94,7 +72,7 @@ public class EnemyFollowingPlayer : MonoBehaviour
     public void setPlayerPosition()
     {
         enemyManager.aiPath.maxSpeed = enemyManager.finalChaseSpeed;
-        enemyManager.destinationSetter.target = target;
+        enemyManager.destinationSetter.target = enemyManager.target;
     }
 
 }

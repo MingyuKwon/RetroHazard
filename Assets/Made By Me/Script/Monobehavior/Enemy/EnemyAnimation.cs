@@ -126,6 +126,7 @@ public class EnemyAnimation : MonoBehaviour
         if(enemyManager.isEnemyStunned) return;
 
         enemyManager.enemyFollowingPlayer.detectMark.SetActive(true);
+        enemyManager.playEnemyMusic(EnemyAudioType.Detect);
         StartCoroutine(EnemyIdleTime());
     }
 

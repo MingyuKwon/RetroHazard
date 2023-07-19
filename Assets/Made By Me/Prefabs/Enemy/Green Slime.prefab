@@ -539,6 +539,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 815b4f18dc80d564ebec0978dd545881, type: 3}
   - {fileID: 8300000, guid: 910e5d65b6105b54991fd3d688193a50, type: 3}
   - {fileID: 8300000, guid: 98a871084a595c548a95aee83964d6ec, type: 3}
+  - {fileID: 8300000, guid: 04df3eee3199b504199ddd641d49b628, type: 3}
   graphNum: 0
   isEnemyPaused: 0
   isParried: 0

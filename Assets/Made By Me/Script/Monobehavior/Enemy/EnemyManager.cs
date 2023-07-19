@@ -9,6 +9,7 @@ public enum EnemyAudioType{
    Attack = 0,
    Stunned = 1,
    Death = 2,
+   Detect = 3,
 }
 
 public class EnemyManager : MonoBehaviour
@@ -164,7 +165,24 @@ public class EnemyManager : MonoBehaviour
         enemyRigidbody2D = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
         enemyFollowingPlayer.enabled = true;
+
+        target = Player1.instance.playerStatus.transform;
+        currentMovingGraph = AstarPath.active.data.graphs[graphNum] as GridGraph;
+
+        minBoundX = currentMovingGraph.center.x - currentMovingGraph.size.x / 2;
+        minBoundY = currentMovingGraph.center.y - currentMovingGraph.size.y / 2;
+
+        maxBoundX = currentMovingGraph.center.x + currentMovingGraph.size.x / 2;
+        maxBoundY = currentMovingGraph.center.y + currentMovingGraph.size.y / 2;
     }
+
+    public Transform target; // 플레이어의 위치
+    public GridGraph currentMovingGraph; // Assuming we are using a GridGraph
+    public float minBoundX;
+    public float minBoundY;
+
+    public float maxBoundX;
+    public float maxBoundY;
 
     private void Start() {
         if(SaveSystem.instance.ActiveStageSaves[SceneManager.GetActiveScene().buildIndex].is_Enemy_Destroy[transform.parent.GetSiblingIndex()])
@@ -179,13 +197,19 @@ public class EnemyManager : MonoBehaviour
             if(isEnemyStunned) return;
             if(CheckObstacleBetween(other.transform.position - transform.position)) return;
 
-            if(!isLockedOnPlayer) // 플레이어에게 록온 되어 있는데 trigger 닿았다면 그건 공격 신호
-            {
-                isLockedOnPlayer = true;
-
-            }else // 플레이어에게 록온 안되었는데 trigger 닿았다면 그건 탐색 완료 신호
+            if(isLockedOnPlayer) // 플레이어에게 록온 되어 있는데 trigger 닿았다면 그건 공격 신호
             {
                 enemyAnimation.Attack();
+            }else // 플레이어에게 록온 안되었는데 trigger 닿았다면 그건 탐색 완료 신호
+            {
+                if(target.position.x > maxBoundX || 
+                target.position.x < minBoundX || 
+                target.position.y > maxBoundY || 
+                target.position.y < minBoundY)
+                {
+                    return;
+                }
+                isLockedOnPlayer = true;
             }
         }
     }

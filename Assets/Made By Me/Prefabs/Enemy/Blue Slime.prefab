@@ -534,10 +534,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70fccd71e7732fe4bbeef1a3fd45c84c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
   enemyAudioClip:
   - {fileID: 8300000, guid: 815b4f18dc80d564ebec0978dd545881, type: 3}
   - {fileID: 8300000, guid: 910e5d65b6105b54991fd3d688193a50, type: 3}
   - {fileID: 8300000, guid: 98a871084a595c548a95aee83964d6ec, type: 3}
+  - {fileID: 8300000, guid: 04df3eee3199b504199ddd641d49b628, type: 3}
   graphNum: 0
   isEnemyPaused: 0
   isParried: 0
