@@ -5,10 +5,25 @@ using Pathfinding;
 using UnityEngine.SceneManagement;
 using Sirenix.OdinInspector;
 
-
+public enum EnemyAudioType{
+   Attack = 0,
+   Stunned = 1,
+   Death = 2,
+}
 
 public class EnemyManager : MonoBehaviour
 {
+    public AudioSource audioSource;
+    public AudioClip[] enemyAudioClip;
+
+    public void playEnemyMusic(EnemyAudioType audioType)
+    {
+        audioSource.clip = enemyAudioClip[(int)audioType];
+        audioSource.volume = GameAudioManager.currentEnemyVolume;
+        audioSource.Play();
+    }
+
+
     [Header("Used in randomMove graph Finding")]
    public int graphNum = 0;
 
@@ -147,7 +162,7 @@ public class EnemyManager : MonoBehaviour
         AttackDecide = transform.GetChild(1).GetComponentInChildren<BoxCollider2D>();
 
         enemyRigidbody2D = GetComponent<Rigidbody2D>();
-
+        audioSource = GetComponent<AudioSource>();
         enemyFollowingPlayer.enabled = true;
     }
 
@@ -261,6 +276,7 @@ public class EnemyManager : MonoBehaviour
         vfxAnimator.SetTrigger("Die");
         canMove = false;
         SaveSystem.instance.ActiveStageSaves[SceneManager.GetActiveScene().buildIndex].is_Enemy_Destroy[transform.parent.GetSiblingIndex()] = true;
+        playEnemyMusic(EnemyAudioType.Death);
     }
 
 }

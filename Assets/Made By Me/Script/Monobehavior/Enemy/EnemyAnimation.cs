@@ -89,6 +89,7 @@ public class EnemyAnimation : MonoBehaviour
         enemyManager.canMove = false;
         enemyManager.checkAttackedByPlayer = true;
         animator.Play("Stun");
+        enemyManager.playEnemyMusic(EnemyAudioType.Stunned);
         yield return new WaitForEndOfFrame();
         while(!isCurrentAnimationEnd())
         {
@@ -191,6 +192,8 @@ public class EnemyAnimation : MonoBehaviour
             }
 
         float frictionReduce = 1f;
+
+        enemyManager.playEnemyMusic(EnemyAudioType.Attack);
 
         while(isNowAttacking)
         {
