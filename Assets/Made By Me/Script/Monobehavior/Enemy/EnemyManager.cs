@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 using UnityEngine.SceneManagement;
+using Sirenix.OdinInspector;
 
 
 
@@ -102,6 +103,7 @@ public class EnemyManager : MonoBehaviour
     public PolygonCollider2D PlayerDetect;
     public BoxCollider2D AttackDecide;
 
+    public bool checkAttackedByPlayer = false;
 
 
     [Header("Following Move")]
@@ -259,18 +261,6 @@ public class EnemyManager : MonoBehaviour
         vfxAnimator.SetTrigger("Die");
         canMove = false;
         SaveSystem.instance.ActiveStageSaves[SceneManager.GetActiveScene().buildIndex].is_Enemy_Destroy[transform.parent.GetSiblingIndex()] = true;
-    }
-
-    public void DamageAndStop(float damageAndStopDelay)
-    {
-        StartCoroutine(DamageAndStopDelay(damageAndStopDelay));
-    }
-
-    IEnumerator DamageAndStopDelay(float damageAndStopDelay)
-    {
-        isEnemyStunned = true;
-        yield return new WaitForSeconds(damageAndStopDelay);
-        isEnemyStunned = false;
     }
 
 }

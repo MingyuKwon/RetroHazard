@@ -54,22 +54,19 @@ public class PlayerHealthLogic
                 GameObject contactObject = contactCollider.transform.parent.transform.parent.gameObject;
                 EnemyStatus contactEnemyStat = contactObject.GetComponentInChildren<EnemyStatus>();
 
-                if(contactCollider.tag == "Enemy Body") // 몬스터의 몸에 부딪혔나?
-                {
-                    damage = contactEnemyStat.Attack * contactEnemyStat.bodyDamageRatio;
-                }
-                else if(contactCollider.tag == "Attack") // 몬스터가 공격 한 것을 맞았냐?
+                if(contactCollider.tag == "Attack") // 몬스터가 공격 한 것을 맞았냐?
                 {
                     damage = contactEnemyStat.Attack * contactEnemyStat.AttackDamageRatio;
+                    ForceInput = other.GetContact(0).normal;
+                    Debug.Log("player had damage : " + damage);
+                    GameAudioManager.instance.PlaySFXMusic(SFXAudioType.Attacked);
+                    Reflect(damage);
+                    status.HealthChangeDefaultMinus(damage);
+
+                    playerAnimation.StunAnimationStart();
                 }
 
-                ForceInput = other.GetContact(0).normal;
-                Debug.Log("player had damage : " + damage);
-                GameAudioManager.instance.PlaySFXMusic(SFXAudioType.Attacked);
-                Reflect(damage);
-                status.HealthChangeDefaultMinus(damage);
-
-                playerAnimation.StunAnimationStart();
+                
             }
         }
 

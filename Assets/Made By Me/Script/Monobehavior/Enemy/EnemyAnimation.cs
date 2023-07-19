@@ -41,21 +41,12 @@ public class EnemyAnimation : MonoBehaviour
     public void Parreid()
     {
         if(enemyManager.isEnemyStunned) return;
+        
         enemyManager.vfxAnimator.SetTrigger("Parried");
         Animation_StopAllCoroutine();
         enemyManager.enemyRigidbody2D.velocity = Vector2.zero;
 
         StartCoroutine(ParreidTime());
-    }
-
-    public void PlayerAttackIngnore(bool flag)
-    {
-        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemy Body"), LayerMask.NameToLayer("Player not Body"), flag);
-    }
-
-    public void PlayerBodyIngnore(bool flag)
-    {
-        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemy Body"), LayerMask.NameToLayer("Player Body"), flag);
     }
 
     IEnumerator ParreidTime()
@@ -81,11 +72,13 @@ public class EnemyAnimation : MonoBehaviour
 
     public void Stun()
     {
+        if(enemyManager.isEnemyStunned) return;
+
         enemyManager.vfxAnimator.SetTrigger("Stun");
         enemyManager.enemyStatus.ParriedWithParrySheild = false;
         enemyManager.isEnemyStunned = true;
         isNowAttacking = false;
-        PlayerAttackIngnore(true);
+        
         Animation_StopAllCoroutine();
 
         StartCoroutine(EnemyStunTime());
@@ -93,8 +86,9 @@ public class EnemyAnimation : MonoBehaviour
 
     IEnumerator EnemyStunTime()
     {
-        animator.Play("Stun");
         enemyManager.canMove = false;
+        enemyManager.checkAttackedByPlayer = true;
+        animator.Play("Stun");
         yield return new WaitForEndOfFrame();
         while(!isCurrentAnimationEnd())
         {
@@ -102,7 +96,7 @@ public class EnemyAnimation : MonoBehaviour
         }
         enemyManager.canMove = true;
         enemyManager.isEnemyStunned = false;
-        PlayerAttackIngnore(false);
+        enemyManager.checkAttackedByPlayer = false;
         animator.Play("Walk");
     }
 
@@ -114,7 +108,6 @@ public class EnemyAnimation : MonoBehaviour
 
     IEnumerator EnemyAttackTime()
     {
-        PlayerBodyIngnore(true);
         animator.Play("Attack");
         enemyManager.canMove = false;
         yield return new WaitForEndOfFrame();
@@ -123,7 +116,6 @@ public class EnemyAnimation : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         enemyManager.canMove = true;
-        PlayerBodyIngnore(false);
         animator.Play("Walk");
     }
 

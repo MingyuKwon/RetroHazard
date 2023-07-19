@@ -10,7 +10,6 @@ public class EnemyStatus : MonoBehaviour
 {
     [SerializeField] EnemyStatValue[] EnemyStats;
     public static event Action EnemyHealthChange;
-    public static event Action<int> EnemyDeath;
     private EnemyManager enemyManager = null;
 
     [Header("Basic")]
@@ -28,11 +27,9 @@ public class EnemyStatus : MonoBehaviour
     public bool ParriedWithParrySheild;
 
     private void OnEnable() {
-        EnemyDeath += DestroySelf;
     }
 
     private void OnDisable() {
-        EnemyDeath -= DestroySelf;
     }
 
     private void Awake() {
@@ -59,7 +56,7 @@ public class EnemyStatus : MonoBehaviour
         EnemyHealthChange?.Invoke();
         if(CurrentHP <=0 )
         {
-            EnemyDeath?.Invoke(transform.parent.transform.parent.transform.GetSiblingIndex());
+            DestroySelf(transform.parent.transform.parent.transform.GetSiblingIndex());
         }
     }
 

@@ -264,6 +264,7 @@ public class GameManager : MonoBehaviour
 
     public void EnemyCollideIgnore(bool flag)
     {
+        Debug.Log("EnemyCollideIgnore " + flag);
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player Body"), LayerMask.NameToLayer("Enemy Body"), flag);
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player Body"), LayerMask.NameToLayer("Enemy not Body"), flag);
     }

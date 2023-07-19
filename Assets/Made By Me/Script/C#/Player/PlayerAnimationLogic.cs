@@ -253,7 +253,6 @@ public class PlayerAnimationLogic
 
         GameManager.instance.SetPausePlayer(true);
         GameManager.instance.SetPlayerMove(false);
-        Debug.Log("EnemyCollideIgnore Start");
         GameManager.instance.EnemyCollideIgnore(true);
         SheildColliderEnable(false);
         vfxAnimation.StunAnimationStart();
@@ -269,7 +268,6 @@ public class PlayerAnimationLogic
         GameManager.instance.SetPausePlayer(false);
         GameManager.instance.SetPlayerMove(true);
         GameManager.instance.EnemyCollideIgnore(false);
-        Debug.Log("EnemyCollideIgnore End");
         animator.Play("Idle");
         
 
