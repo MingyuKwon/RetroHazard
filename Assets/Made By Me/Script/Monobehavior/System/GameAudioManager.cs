@@ -46,6 +46,7 @@ public class GameAudioManager : MonoBehaviour
     static public float currentSFXVolume = 0.5f;
     static public float currentUIVolume = 0.5f;
     static public float currentEnemyVolume = 0.5f;
+    static public float currentEnvironmentVolume = 0.5f;
 
     public AudioClip[] backGroundAudioClip;
     public AudioClip[] sfxAudioClip;

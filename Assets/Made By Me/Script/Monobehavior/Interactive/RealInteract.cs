@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class RealInteract : Interact
 {
+    AudioSource audioSource = null;
+    public AudioClip InteractJustSound = null;
+    public AudioClip InteractSuccessSound = null;
+
     [Header("In RealInteract, choose one when Notice Show event will occur")]
     [SerializeField] bool justInteractNotice;
     [SerializeField] bool SuccessInteractNotice;
@@ -41,6 +45,8 @@ public class RealInteract : Interact
             transform.GetChild(0).gameObject.SetActive(false);
             transform.GetChild(1).gameObject.SetActive(true);
             transform.GetChild(2).gameObject.SetActive(false);
+
+            audioSource = GetComponent<AudioSource>();
         }
     }
 
@@ -54,6 +60,15 @@ public class RealInteract : Interact
         GameManager.EventManager.Interact_KeyItem_Success_Event -= realInteractSuccess;
     }
 
+    private void PlayEnvironmentMusic(AudioClip audioClip)
+    {
+        if(audioSource == null) return;
+        if(audioClip == null) return;
+        audioSource.volume = GameAudioManager.currentEnvironmentVolume;
+        audioSource.clip = audioClip;
+        audioSource.Play();
+    }
+
     public void InteractiveWithReal() // 이건 실제 아이템으로 성공하지 않고 그냥 interact만 했을 때 뜨는 창을 띄우는거
     {
         if(if_CurrentGoalIndex_Is_Interact == -1) return;
@@ -62,6 +77,8 @@ public class RealInteract : Interact
         {
             PlayerGoalCollection.currentGoalIndex = nextGoalIndex_Is_Interact;
         }
+
+        PlayEnvironmentMusic(InteractJustSound);
 
         if(justInteractNotice)
         {
@@ -79,6 +96,8 @@ public class RealInteract : Interact
         {
             if(check.activeInHierarchy)
             {
+                PlayEnvironmentMusic(InteractSuccessSound);
+
                 SaveSystem.instance.ActiveStageSaves[SceneManager.GetActiveScene().buildIndex].is_Interact_Destroy[transform.GetSiblingIndex()] = true;
                 transform.GetChild(0).gameObject.SetActive(false);
                 transform.GetChild(1).gameObject.SetActive(false);
@@ -94,12 +113,10 @@ public class RealInteract : Interact
                 {
                     if(noticeIndex_ifExist != 0)
                     {
-                        Debug.Log("Real noticeIndex_ifExist 2");
                         GameManager.EventManager.InvokeInteractNoticeEvent(noticeIndex_ifExist, true);
                     }
                 }else
                 {
-                    Debug.Log("Real noticeIndex_ifExist 3");
                     GameManager.EventManager.InvokeInteractNoticeEvent(noticeIndex_ifExist, false);
                 }
                 
