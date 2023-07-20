@@ -172,6 +172,10 @@ public class GameManager : MonoBehaviour
         {
             CloseGame_GotoMainMenuEvent?.Invoke();
             SaveSystem.instance.ClearPath();
+            GameManager.TutorialCheck.isItemUITutorialDone = false;
+            GameManager.TutorialCheck.isMiniMapTutorialDone = false;
+            GameManager.TutorialCheck.isBoxUITutorialDone = false;
+            GameManager.TutorialCheck.isSaveSlotUITutorialDone = false;
         }
 
 
