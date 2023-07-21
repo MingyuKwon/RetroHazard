@@ -49,6 +49,7 @@ public class InStageWarp : MonoBehaviour
 
     private void UpdateEnvironmentVolume()
     {
+        if(audioSource == null) return;
         audioSource.volume = GameAudioManager.currentEnvironmentVolume * GameAudioManager.totalVolme;
     }
 

@@ -36,7 +36,7 @@ public class OptionUILogic
         AudioSliders = panels[2].GetComponentsInChildren<Slider>();
         AudioResetButton = panels[2].GetComponentInChildren<Button>();
 
-        AudioSliders[0].maxValue = 3;
+        AudioSliders[0].maxValue = 1;
         AudioSliders[0].minValue = 0;
         AudioSliders[0].value = GameAudioManager.totalVolme;
         AudioSliders[0].onValueChanged.AddListener(UpdateSliderValue0);
@@ -60,7 +60,24 @@ public class OptionUILogic
         AudioSliders[4].minValue = 0;
         AudioSliders[4].value = GameAudioManager.currentEnvironmentVolume;
         AudioSliders[4].onValueChanged.AddListener(UpdateSliderValue4);
+
+        AudioResetButton.onClick.AddListener(ResetAudioOption);
         ////////Audio//////////////////
+    }
+
+    private void ResetAudioOption()
+    {
+            GameAudioManager.totalVolme = GameAudioManager.default_totalVolme;
+            GameAudioManager.currentBackGroundVolume= GameAudioManager.default_currentBackGroundVolume;
+            GameAudioManager.currentUIVolume= GameAudioManager.default_currentUIVolume;
+            GameAudioManager.currentSFXVolume= GameAudioManager.default_currentSFXVolume;
+            GameAudioManager.currentEnvironmentVolume= GameAudioManager.default_currentEnvironmentVolume;
+
+            AudioSliders[0].value = GameAudioManager.totalVolme;
+            AudioSliders[1].value = GameAudioManager.currentBackGroundVolume;
+            AudioSliders[2].value = GameAudioManager.currentUIVolume;
+            AudioSliders[3].value = GameAudioManager.currentSFXVolume;
+            AudioSliders[4].value = GameAudioManager.currentEnvironmentVolume;
     }
 
     private void UpdateSliderValue0(float value)

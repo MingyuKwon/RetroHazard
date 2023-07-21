@@ -165,6 +165,12 @@ public class GameAudioManager : MonoBehaviour
     static float _currentSFXVolume; 
     static float _currentEnvironmentVolume;
 
+    public static float default_totalVolme = 1f;
+    public static float default_currentBackGroundVolume = 0.5f;
+    public static float default_currentUIVolume = 0.3f;
+    public static float default_currentSFXVolume = 0.5f;
+    public static float default_currentEnvironmentVolume = 0.7f;
+
     public AudioClip[] backGroundAudioClip;
     public AudioClip[] sfxAudioClip;
     public AudioClip[] UIAudioClip;
@@ -197,7 +203,7 @@ public class GameAudioManager : MonoBehaviour
         }
         else
         {
-            totalVolme = 1f;
+            totalVolme = default_totalVolme;
             PlayerPrefs.SetFloat("totalVolme", totalVolme);
         }
 
@@ -207,7 +213,7 @@ public class GameAudioManager : MonoBehaviour
         }
         else
         {
-            currentBackGroundVolume = 0.5f;
+            currentBackGroundVolume = default_currentBackGroundVolume;
             PlayerPrefs.SetFloat("currentBackGroundVolume", currentBackGroundVolume);
         }
 
@@ -217,7 +223,7 @@ public class GameAudioManager : MonoBehaviour
         }
         else
         {
-            currentUIVolume = 0.3f;
+            currentUIVolume = default_currentUIVolume;
             PlayerPrefs.SetFloat("currentUIVolume", currentUIVolume);
         }
 
@@ -227,7 +233,7 @@ public class GameAudioManager : MonoBehaviour
         }
         else
         {
-            currentSFXVolume = 0.5f;
+            currentSFXVolume = default_currentSFXVolume;
             PlayerPrefs.SetFloat("currentSFXVolume", currentSFXVolume);
         }
 
@@ -237,7 +243,7 @@ public class GameAudioManager : MonoBehaviour
         }
         else
         {
-            currentEnvironmentVolume = 0.7f;
+            currentEnvironmentVolume = default_currentEnvironmentVolume;
             PlayerPrefs.SetFloat("currentEnvironmentVolume", currentEnvironmentVolume);
         }
 
