@@ -43,7 +43,7 @@ public class MainMenuUI : MonoBehaviour, CallBackInterface
     }
     
     private void OnEnable() {
-        selectIndex = 0;
+        selectIndex = -1;
 
         FindContinueSlot();
 

@@ -21,4 +21,12 @@ public class OptionUI : MonoBehaviour
         panelNum = 0;
     }
 
+    private void OnEnable() {
+        optionUILogic.OnEnable();
+    }
+
+    private void OnDisable() {
+        optionUILogic.OnDisable();
+    }
+
 }

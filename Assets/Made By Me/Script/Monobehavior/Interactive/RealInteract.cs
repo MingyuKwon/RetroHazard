@@ -53,11 +53,18 @@ public class RealInteract : Interact
     public override void OnEnable() {
         base.OnEnable();
         GameManager.EventManager.Interact_KeyItem_Success_Event += realInteractSuccess;
+        GameAudioManager.AudioEvent.updateEnvironmentVolume += UpdateEnvironmentVolume;
     }
 
     public override void OnDisable() {
         base.OnDisable();
         GameManager.EventManager.Interact_KeyItem_Success_Event -= realInteractSuccess;
+        GameAudioManager.AudioEvent.updateEnvironmentVolume -= UpdateEnvironmentVolume;
+    }
+
+    private void UpdateEnvironmentVolume()
+    {
+        audioSource.volume = GameAudioManager.currentEnvironmentVolume * GameAudioManager.totalVolme;
     }
 
     public void PlayEnvironmentMusic(AudioClip audioClip)

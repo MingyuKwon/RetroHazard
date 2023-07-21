@@ -20,8 +20,21 @@ public class EnemyManager : MonoBehaviour
     public void playEnemyMusic(EnemyAudioType audioType)
     {
         audioSource.clip = enemyAudioClip[(int)audioType];
-        audioSource.volume = GameAudioManager.currentEnemyVolume  * GameAudioManager.totalVolme;
+        audioSource.volume = GameAudioManager.currentSFXVolume  * GameAudioManager.totalVolme;
         audioSource.Play();
+    }
+
+    private void OnEnable() {
+        GameAudioManager.AudioEvent.updateEnemyVolume += UpdateEnemyVolume;
+    }
+
+    private void OnDisable() {
+        GameAudioManager.AudioEvent.updateEnemyVolume -= UpdateEnemyVolume;
+    }
+
+    private void UpdateEnemyVolume()
+    {
+        audioSource.volume = GameAudioManager.currentSFXVolume  * GameAudioManager.totalVolme;
     }
 
 

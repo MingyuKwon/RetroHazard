@@ -37,10 +37,19 @@ public class InStageWarp : MonoBehaviour
 
     private void OnEnable() {
         GameManager.EventManager.InStageWarpEvent += DoWarp;
+        GameAudioManager.AudioEvent.updateEnvironmentVolume += UpdateEnvironmentVolume;
+
     }
 
     private void OnDisable() {
-        GameManager.EventManager.InStageWarpEvent += DoWarp;
+        GameManager.EventManager.InStageWarpEvent -= DoWarp;
+        GameAudioManager.AudioEvent.updateEnvironmentVolume -= UpdateEnvironmentVolume;
+
+    }
+
+    private void UpdateEnvironmentVolume()
+    {
+        audioSource.volume = GameAudioManager.currentEnvironmentVolume * GameAudioManager.totalVolme;
     }
 
     public void PlayEnvironmentMusic()

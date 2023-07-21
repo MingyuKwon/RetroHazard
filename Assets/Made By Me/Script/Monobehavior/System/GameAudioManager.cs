@@ -40,27 +40,223 @@ public enum UIAudioType{
 
 public class GameAudioManager : MonoBehaviour
 {
+    public class AudioEvent{
+        static public void Invoke_updateTotal()
+        {
+            currentBackGroundVolume = currentBackGroundVolume;
+            currentUIVolume = currentUIVolume;
+            currentSFXVolume = currentSFXVolume;
+            currentEnvironmentVolume = currentEnvironmentVolume;
+        }
+
+        static public event Action updateEnemyVolume;
+        static public void Invoke_updateEnemyVolume()
+        {
+            updateEnemyVolume?.Invoke();
+        }
+
+        static public event Action updateEnvironmentVolume;
+        static public void Invoke_updateEnvironmentVolume()
+        {
+            updateEnvironmentVolume?.Invoke();
+        }
+    }
+
     static public GameAudioManager instance;
 
-    static public float totalVolme = 1f;
-    static public float currentBackGroundVolume = 0.5f;
-    static public float currentSFXVolume = 0.4f;
-    static public float currentUIVolume = 0.3f;
-    static public float currentEnemyVolume = 0.5f;
-    static public float currentEnvironmentVolume = 0.7f;
+    static public float totalVolme{
+        get{
+            return _totalVolme;
+        }
+
+        set{
+            _totalVolme = value;
+            PlayerPrefs.SetFloat("totalVolme", _totalVolme);
+            PlayerPrefs.Save();
+
+            if(isAwaking) return;
+
+            AudioEvent.Invoke_updateTotal();
+        }
+    }
+    static public float currentBackGroundVolume{
+        get{
+            return _currentBackGroundVolume;
+        }
+
+        set{
+            _currentBackGroundVolume = value;
+            PlayerPrefs.SetFloat("currentBackGroundVolume", _currentBackGroundVolume);
+            PlayerPrefs.Save();
+
+            if(isAwaking) return;
+
+            if(isNowChanging)
+            {       
+                if(isNowChangingNum == 1)
+                {
+                    BackGroundSources1.volume = _currentBackGroundVolume* totalVolme;
+                }else if(isNowChangingNum == 2)
+                {
+                    BackGroundSources2.volume = _currentBackGroundVolume* totalVolme;
+                }
+            }else
+            {
+                if(BackGroundSources1.isPlaying)
+                {
+                    BackGroundSources1.volume = _currentBackGroundVolume* totalVolme;
+                }else if(BackGroundSources2.isPlaying)
+                {
+                    BackGroundSources2.volume = _currentBackGroundVolume* totalVolme;
+                }
+            }
+
+        }
+    }
+    static public float currentUIVolume{
+        get{
+            return _currentUIVolume;
+        }
+
+        set{
+            _currentUIVolume = value;
+            PlayerPrefs.SetFloat("currentUIVolume", _currentUIVolume);
+            PlayerPrefs.Save();
+
+            if(isAwaking) return;
+
+            CurrentUISource.volume = _currentUIVolume * totalVolme;
+        }
+    }
+    static public float currentSFXVolume{
+        get{
+            return _currentSFXVolume;
+        }
+
+        set{
+            _currentSFXVolume = value;
+            PlayerPrefs.SetFloat("currentSFXVolume", _currentSFXVolume);
+            PlayerPrefs.Save();
+
+            if(isAwaking) return;
+            CurrentSfxSource.volume = _currentSFXVolume * totalVolme;
+            AudioEvent.Invoke_updateEnemyVolume();
+        }
+    } 
+    static public float currentEnvironmentVolume{
+        get{
+            return _currentEnvironmentVolume;
+        }
+
+        set{
+            _currentEnvironmentVolume = value;
+            PlayerPrefs.SetFloat("currentEnvironmentVolume", _currentEnvironmentVolume);
+            PlayerPrefs.Save();
+
+            if(isAwaking) return;
+
+            AudioEvent.Invoke_updateEnvironmentVolume();
+        }
+    } 
+
+    static float _totalVolme;
+    static float _currentBackGroundVolume;
+    static float _currentUIVolume;
+    static float _currentSFXVolume; 
+    static float _currentEnvironmentVolume;
 
     public AudioClip[] backGroundAudioClip;
     public AudioClip[] sfxAudioClip;
     public AudioClip[] UIAudioClip;
 
-    bool isNowChanging = false;
-    AudioSource BackGroundSources1 = null; // 이 2개 옮겨 다니면서 연속적인 배경음악 바꾸기를 할 것이다
-    AudioSource BackGroundSources2 = null;
+    static bool isNowChanging = false;
+    static AudioSource BackGroundSources1 = null; // 이 2개 옮겨 다니면서 연속적인 배경음악 바꾸기를 할 것이다
+    static AudioSource BackGroundSources2 = null;
 
-    AudioSource CurrentSfxSource;
-    AudioSource CurrentUISource;
+    static AudioSource CurrentSfxSource;
+    static AudioSource CurrentUISource;
 
     static Stack<AudioClip> playRequestStack;
+
+
+    static bool isAwaking = true;
+    private void Awake() {
+        if(instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }else
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+
+        if (PlayerPrefs.HasKey("totalVolme"))
+        {
+            totalVolme = PlayerPrefs.GetFloat("totalVolme");
+        }
+        else
+        {
+            totalVolme = 1f;
+            PlayerPrefs.SetFloat("totalVolme", totalVolme);
+        }
+
+        if (PlayerPrefs.HasKey("currentBackGroundVolume"))
+        {
+            currentBackGroundVolume = PlayerPrefs.GetFloat("currentBackGroundVolume");
+        }
+        else
+        {
+            currentBackGroundVolume = 0.5f;
+            PlayerPrefs.SetFloat("currentBackGroundVolume", currentBackGroundVolume);
+        }
+
+        if (PlayerPrefs.HasKey("currentUIVolume"))
+        {
+            currentUIVolume = PlayerPrefs.GetFloat("currentUIVolume");
+        }
+        else
+        {
+            currentUIVolume = 0.3f;
+            PlayerPrefs.SetFloat("currentUIVolume", currentUIVolume);
+        }
+
+        if (PlayerPrefs.HasKey("currentSFXVolume"))
+        {
+            currentSFXVolume = PlayerPrefs.GetFloat("currentSFXVolume");
+        }
+        else
+        {
+            currentSFXVolume = 0.5f;
+            PlayerPrefs.SetFloat("currentSFXVolume", currentSFXVolume);
+        }
+
+        if (PlayerPrefs.HasKey("currentEnvironmentVolume"))
+        {
+            currentEnvironmentVolume = PlayerPrefs.GetFloat("currentEnvironmentVolume");
+        }
+        else
+        {
+            currentEnvironmentVolume = 0.7f;
+            PlayerPrefs.SetFloat("currentEnvironmentVolume", currentEnvironmentVolume);
+        }
+
+        PlayerPrefs.Save();
+
+        isAwaking = false;
+
+        playRequestStack = new Stack<AudioClip>();
+
+        AudioSource[] temp = GetComponents<AudioSource>();
+
+        BackGroundSources1 = temp[0];
+        BackGroundSources2 = temp[1];
+        BackGroundSources1.loop = true;
+        BackGroundSources2.loop = true;
+
+        CurrentSfxSource = temp[2];
+        CurrentUISource = temp[3];
+    }
 
     public void PlayBackGroundMusic(BackGroundAudioType audioType)
     {
@@ -75,6 +271,7 @@ public class GameAudioManager : MonoBehaviour
 
     }
 
+    static int isNowChangingNum = 1;
     private void playBackGroundMusic()
     {
         isNowChanging = true;
@@ -83,9 +280,11 @@ public class GameAudioManager : MonoBehaviour
         playRequestStack.Clear();
         if(BackGroundSources1.isPlaying) // 현재 1번창을 틀고 있고, 이제 2번으로 바꿔야 할 차례
         {
+            isNowChangingNum = 2;
             StartCoroutine(musicChange(BackGroundSources1 , BackGroundSources2, targetAudioClip));
         }else if(BackGroundSources2.isPlaying)
         {
+            isNowChangingNum = 1;
             StartCoroutine(musicChange(BackGroundSources2 , BackGroundSources1, targetAudioClip));
         }else // 제일 초기 상태
         {
@@ -146,26 +345,5 @@ public class GameAudioManager : MonoBehaviour
         CurrentUISource.Play();
     }
 
-    private void Awake() {
-        if(instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(this.gameObject);
-        }else
-        {
-            Destroy(this.gameObject);
-        }
 
-        playRequestStack = new Stack<AudioClip>();
-
-        AudioSource[] temp = GetComponents<AudioSource>();
-
-        BackGroundSources1 = temp[0];
-        BackGroundSources2 = temp[1];
-        BackGroundSources1.loop = true;
-        BackGroundSources2.loop = true;
-
-        CurrentSfxSource = temp[2];
-        CurrentUISource = temp[3];
-    }
 }
