@@ -45,6 +45,7 @@ public class PlayerInventroyLogic
         for(int i=0; i< save.itemsPath.Length; i++)
         {
             items[i] = Resources.Load<ItemInformation>(save.itemsPath[i]);
+            Debug.Log(" I : " + i + " save.itemsPath[i] : " + save.itemsPath[i]+ " items[i] : " + items[i]);
         }
         Array.Copy( save.itemsamount , itemsamount, save.itemsamount.Length);
         Array.Copy( save.isEquipped , isEquipped, save.isEquipped.Length);

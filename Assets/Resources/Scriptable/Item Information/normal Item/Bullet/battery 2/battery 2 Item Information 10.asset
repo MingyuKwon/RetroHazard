@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: battery 2 Item Information 10
   m_EditorClassIdentifier: 
   itemPath: Scriptable/Item Information/normal Item/Bullet/battery 2/battery 2 Item
-    Information 10.asset
+    Information 10
   ItemImage: {fileID: -1710294181, guid: 5bdc2781d97139949a21d7b80c0962a6, type: 3}
   ItemName: Energy 2 battery
   isKeyItem: 0

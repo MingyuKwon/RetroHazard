@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a32a9bd668c1bbb409c635fef9be93c3, type: 3}
   m_Name: battery Sheild Item Information 4
   m_EditorClassIdentifier: 
-  itemPath: Assets/Made By Me/Scriptable/Item Information/normal Item/Bullet/battery
-    Sheild/battery Sheild Item Information 4.asset
+  itemPath: Scriptable/Item Information/normal Item/Bullet/battery Sheild/battery
+    Sheild Item Information 4
   ItemImage: {fileID: -1258920416, guid: 5bdc2781d97139949a21d7b80c0962a6, type: 3}
   ItemName: Sheild battery
   isKeyItem: 0

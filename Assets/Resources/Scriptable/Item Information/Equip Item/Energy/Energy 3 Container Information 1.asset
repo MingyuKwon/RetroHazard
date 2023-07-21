@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Energy 3 Container Information 1
   m_EditorClassIdentifier: 
   itemPath: Scriptable/Item Information/Equip Item/Energy/Energy 3 Container Information
-    1.asset
+    1
   ItemImage: {fileID: 21300090, guid: a977e104bdeb79746b0814c9c7215e80, type: 3}
   ItemName: Energy 3 Container
   isKeyItem: 1

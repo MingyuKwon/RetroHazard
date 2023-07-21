@@ -9,7 +9,9 @@ public class GameStart : MonoBehaviour
 
     private void Awake() {
         SaveSystem.instance.Initialize();
+        Debug.Log("GameStart Awake");
         SaveSystem.instance.Load(0);
+        
     }
 
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Upgrade Potion Information
   m_EditorClassIdentifier: 
   itemPath: Scriptable/Item Information/normal Item/Potion/Upgrade Potion Information
-    1.asset
+    1
   ItemImage: {fileID: -1585365941, guid: 5bdc2781d97139949a21d7b80c0962a6, type: 3}
   ItemName: Upgrade Potion
   isKeyItem: 0
