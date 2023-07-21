@@ -47,7 +47,7 @@ public class InStageWarp : MonoBehaviour
     {
         if(audioSource == null) return;
         if(InteractSound == null) return;
-        audioSource.volume = GameAudioManager.currentEnvironmentVolume;
+        audioSource.volume = GameAudioManager.currentEnvironmentVolume * GameAudioManager.totalVolme;
         audioSource.clip = InteractSound;
         audioSource.Play();
     }

@@ -252,6 +252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &85539695717016097
 GameObject:
   m_ObjectHideFlags: 0
@@ -653,6 +654,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &199199891406513436
 GameObject:
   m_ObjectHideFlags: 0
@@ -828,14 +830,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containerNum: 10
-  playerItemBox: {fileID: 0}
-  itemImage: {fileID: 0}
-  itemAmount: {fileID: 0}
-  EquipImage: {fileID: 0}
-  focus: {fileID: 0}
-  focusSelectPanel: {fileID: 0}
-  isFocused: 0
-  selectIndex: 0
 --- !u!1 &214428206315329365
 GameObject:
   m_ObjectHideFlags: 0
@@ -1088,6 +1082,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &262788782479406255
 GameObject:
   m_ObjectHideFlags: 0
@@ -1415,6 +1410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &336473214437506512
 GameObject:
   m_ObjectHideFlags: 0
@@ -1742,6 +1738,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &417065133454945426
 GameObject:
   m_ObjectHideFlags: 0
@@ -2559,17 +2556,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containerNum: 13
-  itemImage: {fileID: 0}
-  itemAmount: {fileID: 0}
-  EquipImage: {fileID: 0}
-  focus: {fileID: 0}
-  focusSelectPanel: {fileID: 0}
-  isFocused: 0
-  isCombineable: 0
-  indexLimitMin: 0
-  indexLimitMax: 2
-  selectIndex: 0
-  isPreviousEneterd: 0
 --- !u!1 &535516881825025042
 GameObject:
   m_ObjectHideFlags: 0
@@ -2905,6 +2891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &640151592871972306
 GameObject:
   m_ObjectHideFlags: 0
@@ -3724,6 +3711,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &957415245901070864
 GameObject:
   m_ObjectHideFlags: 0
@@ -3814,6 +3802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &963625837763706414
 GameObject:
   m_ObjectHideFlags: 0
@@ -3984,6 +3973,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &979958157919342797
 GameObject:
   m_ObjectHideFlags: 0
@@ -4156,6 +4146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &1006942014358211435
 GameObject:
   m_ObjectHideFlags: 0
@@ -4901,6 +4892,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &1103174113762603495
 GameObject:
   m_ObjectHideFlags: 0
@@ -5496,6 +5488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &1341694975476742712
 GameObject:
   m_ObjectHideFlags: 0
@@ -5663,6 +5656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &1404542583376408910
 GameObject:
   m_ObjectHideFlags: 0
@@ -6384,6 +6378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &1609789077372327578
 GameObject:
   m_ObjectHideFlags: 0
@@ -6792,6 +6787,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &1708038680861491811
 GameObject:
   m_ObjectHideFlags: 0
@@ -6882,6 +6878,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &1722550512279737762
 GameObject:
   m_ObjectHideFlags: 0
@@ -6977,14 +6974,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containerNum: 14
-  playerItemBox: {fileID: 0}
-  itemImage: {fileID: 0}
-  itemAmount: {fileID: 0}
-  EquipImage: {fileID: 0}
-  focus: {fileID: 0}
-  focusSelectPanel: {fileID: 0}
-  isFocused: 0
-  selectIndex: 0
 --- !u!1 &1750678289760473554
 GameObject:
   m_ObjectHideFlags: 0
@@ -7232,6 +7221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &1811706794585521677
 GameObject:
   m_ObjectHideFlags: 0
@@ -7490,6 +7480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &1890925289106110390
 GameObject:
   m_ObjectHideFlags: 0
@@ -7813,6 +7804,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &1985520504394244900
 GameObject:
   m_ObjectHideFlags: 0
@@ -8380,6 +8372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &2112042649212653904
 GameObject:
   m_ObjectHideFlags: 0
@@ -8549,6 +8542,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &2121509043972402210
 GameObject:
   m_ObjectHideFlags: 0
@@ -8968,6 +8962,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &2235967994539544115
 GameObject:
   m_ObjectHideFlags: 0
@@ -9219,6 +9214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &2263470875949773613
 GameObject:
   m_ObjectHideFlags: 0
@@ -9401,6 +9397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &2304170322431055238
 GameObject:
   m_ObjectHideFlags: 0
@@ -9821,14 +9818,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containerNum: 4
-  playerItemBox: {fileID: 0}
-  itemImage: {fileID: 0}
-  itemAmount: {fileID: 0}
-  EquipImage: {fileID: 0}
-  focus: {fileID: 0}
-  focusSelectPanel: {fileID: 0}
-  isFocused: 0
-  selectIndex: 0
 --- !u!1 &2372130629341067964
 GameObject:
   m_ObjectHideFlags: 0
@@ -10148,6 +10137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &2469340167086848807
 GameObject:
   m_ObjectHideFlags: 0
@@ -10314,6 +10304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &2496918010206213047
 GameObject:
   m_ObjectHideFlags: 0
@@ -10481,6 +10472,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &2548905325015517816
 GameObject:
   m_ObjectHideFlags: 0
@@ -10963,10 +10955,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -11003,19 +10995,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2916eab0413d7c64c89ef924fd57d4b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputOk: 0
-  isShowing: 0
-  currentWindowLayer: 0
-  isBox: 0
-  isInventory: 1
-  boxItemIndex: -1
-  playerItemIndex: 0
-  previousBoxItemIndex: 0
-  previousPlayerItemIndex: 0
   boxItemUI: {fileID: 0}
   playerItemUI: {fileID: 0}
-  combineStartItem: {fileID: 0}
-  combineStartItemIndex: 0
+  boxitemExplainUI: {fileID: 0}
 --- !u!1 &2645993423873690842
 GameObject:
   m_ObjectHideFlags: 0
@@ -11106,6 +11088,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &2719587335843909519
 GameObject:
   m_ObjectHideFlags: 0
@@ -11359,17 +11342,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containerNum: 5
-  itemImage: {fileID: 0}
-  itemAmount: {fileID: 0}
-  EquipImage: {fileID: 0}
-  focus: {fileID: 0}
-  focusSelectPanel: {fileID: 0}
-  isFocused: 0
-  isCombineable: 0
-  indexLimitMin: 0
-  indexLimitMax: 2
-  selectIndex: 0
-  isPreviousEneterd: 0
 --- !u!1 &2745379476539237425
 GameObject:
   m_ObjectHideFlags: 0
@@ -11536,6 +11508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &2750301178666750338
 GameObject:
   m_ObjectHideFlags: 0
@@ -11707,17 +11680,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containerNum: 10
-  itemImage: {fileID: 0}
-  itemAmount: {fileID: 0}
-  EquipImage: {fileID: 0}
-  focus: {fileID: 0}
-  focusSelectPanel: {fileID: 0}
-  isFocused: 0
-  isCombineable: 0
-  indexLimitMin: 0
-  indexLimitMax: 2
-  selectIndex: 0
-  isPreviousEneterd: 0
 --- !u!1 &2772363356138573486
 GameObject:
   m_ObjectHideFlags: 0
@@ -12046,6 +12008,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &2828678791123144696
 GameObject:
   m_ObjectHideFlags: 0
@@ -12136,6 +12099,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &2829470162493408559
 GameObject:
   m_ObjectHideFlags: 0
@@ -12410,6 +12374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &2868141401148198331
 GameObject:
   m_ObjectHideFlags: 0
@@ -12835,14 +12800,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containerNum: 5
-  playerItemBox: {fileID: 0}
-  itemImage: {fileID: 0}
-  itemAmount: {fileID: 0}
-  EquipImage: {fileID: 0}
-  focus: {fileID: 0}
-  focusSelectPanel: {fileID: 0}
-  isFocused: 0
-  selectIndex: 0
 --- !u!1 &3039247171277800473
 GameObject:
   m_ObjectHideFlags: 0
@@ -13096,14 +13053,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containerNum: 3
-  playerItemBox: {fileID: 0}
-  itemImage: {fileID: 0}
-  itemAmount: {fileID: 0}
-  EquipImage: {fileID: 0}
-  focus: {fileID: 0}
-  focusSelectPanel: {fileID: 0}
-  isFocused: 0
-  selectIndex: 0
 --- !u!1 &3058738006858840006
 GameObject:
   m_ObjectHideFlags: 0
@@ -13199,14 +13148,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containerNum: 7
-  playerItemBox: {fileID: 0}
-  itemImage: {fileID: 0}
-  itemAmount: {fileID: 0}
-  EquipImage: {fileID: 0}
-  focus: {fileID: 0}
-  focusSelectPanel: {fileID: 0}
-  isFocused: 0
-  selectIndex: 0
 --- !u!1 &3061626061247719617
 GameObject:
   m_ObjectHideFlags: 0
@@ -13297,6 +13238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &3087877458104884022
 GameObject:
   m_ObjectHideFlags: 0
@@ -13619,6 +13561,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &3168221583266439381
 GameObject:
   m_ObjectHideFlags: 0
@@ -13789,6 +13732,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &3210844744964866983
 GameObject:
   m_ObjectHideFlags: 0
@@ -14123,6 +14067,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &3316615027732460522
 GameObject:
   m_ObjectHideFlags: 0
@@ -14310,17 +14255,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containerNum: 2
-  itemImage: {fileID: 0}
-  itemAmount: {fileID: 0}
-  EquipImage: {fileID: 0}
-  focus: {fileID: 0}
-  focusSelectPanel: {fileID: 0}
-  isFocused: 0
-  isCombineable: 0
-  indexLimitMin: 0
-  indexLimitMax: 2
-  selectIndex: 0
-  isPreviousEneterd: 0
 --- !u!1 &3339599983998485090
 GameObject:
   m_ObjectHideFlags: 0
@@ -14487,6 +14421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &3366697697042619157
 GameObject:
   m_ObjectHideFlags: 0
@@ -14815,17 +14750,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containerNum: 8
-  itemImage: {fileID: 0}
-  itemAmount: {fileID: 0}
-  EquipImage: {fileID: 0}
-  focus: {fileID: 0}
-  focusSelectPanel: {fileID: 0}
-  isFocused: 0
-  isCombineable: 0
-  indexLimitMin: 0
-  indexLimitMax: 2
-  selectIndex: 0
-  isPreviousEneterd: 0
 --- !u!1 &3442769867126062660
 GameObject:
   m_ObjectHideFlags: 0
@@ -15144,6 +15068,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &3472826657006181293
 GameObject:
   m_ObjectHideFlags: 0
@@ -15212,12 +15137,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nullSprite: {fileID: 21300000, guid: ad2b9f51047fec3448a1276ba11830f2, type: 3}
   itemContainers: []
-  playerInventory: {fileID: 0}
-  backgroundPanel: {fileID: 0}
+  backgroundPanel: {fileID: 2919340717538879053}
   selectColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
   unSelectColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  currentindex: 0
-  isInventoryFull: 0
 --- !u!1 &3477610889570578807
 GameObject:
   m_ObjectHideFlags: 0
@@ -15392,17 +15314,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containerNum: 7
-  itemImage: {fileID: 0}
-  itemAmount: {fileID: 0}
-  EquipImage: {fileID: 0}
-  focus: {fileID: 0}
-  focusSelectPanel: {fileID: 0}
-  isFocused: 0
-  isCombineable: 0
-  indexLimitMin: 0
-  indexLimitMax: 2
-  selectIndex: 0
-  isPreviousEneterd: 0
 --- !u!1 &3511772137548370444
 GameObject:
   m_ObjectHideFlags: 0
@@ -15729,6 +15640,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &3590780762959351539
 GameObject:
   m_ObjectHideFlags: 0
@@ -15819,6 +15731,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &3624624653265342347
 GameObject:
   m_ObjectHideFlags: 0
@@ -15989,6 +15902,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &3648101077646879843
 GameObject:
   m_ObjectHideFlags: 0
@@ -16163,14 +16077,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containerNum: 13
-  playerItemBox: {fileID: 0}
-  itemImage: {fileID: 0}
-  itemAmount: {fileID: 0}
-  EquipImage: {fileID: 0}
-  focus: {fileID: 0}
-  focusSelectPanel: {fileID: 0}
-  isFocused: 0
-  selectIndex: 0
 --- !u!1 &3659755299616519272
 GameObject:
   m_ObjectHideFlags: 0
@@ -16337,6 +16243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &3718243865804802632
 GameObject:
   m_ObjectHideFlags: 0
@@ -16509,6 +16416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &3773724735822763993
 GameObject:
   m_ObjectHideFlags: 0
@@ -16599,6 +16507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &3808402710965564912
 GameObject:
   m_ObjectHideFlags: 0
@@ -16848,6 +16757,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &3874478402620734743
 GameObject:
   m_ObjectHideFlags: 0
@@ -17023,14 +16933,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containerNum: 8
-  playerItemBox: {fileID: 0}
-  itemImage: {fileID: 0}
-  itemAmount: {fileID: 0}
-  EquipImage: {fileID: 0}
-  focus: {fileID: 0}
-  focusSelectPanel: {fileID: 0}
-  isFocused: 0
-  selectIndex: 0
 --- !u!1 &3899723095184719176
 GameObject:
   m_ObjectHideFlags: 0
@@ -17203,17 +17105,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containerNum: 6
-  itemImage: {fileID: 0}
-  itemAmount: {fileID: 0}
-  EquipImage: {fileID: 0}
-  focus: {fileID: 0}
-  focusSelectPanel: {fileID: 0}
-  isFocused: 0
-  isCombineable: 0
-  indexLimitMin: 0
-  indexLimitMax: 2
-  selectIndex: 0
-  isPreviousEneterd: 0
 --- !u!1 &3906865372087863935
 GameObject:
   m_ObjectHideFlags: 0
@@ -17462,6 +17353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &3943890475228649734
 GameObject:
   m_ObjectHideFlags: 0
@@ -17874,14 +17766,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containerNum: 12
-  playerItemBox: {fileID: 0}
-  itemImage: {fileID: 0}
-  itemAmount: {fileID: 0}
-  EquipImage: {fileID: 0}
-  focus: {fileID: 0}
-  focusSelectPanel: {fileID: 0}
-  isFocused: 0
-  selectIndex: 0
 --- !u!1 &4011472719341450350
 GameObject:
   m_ObjectHideFlags: 0
@@ -18285,6 +18169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &4107863850482111455
 GameObject:
   m_ObjectHideFlags: 0
@@ -18622,17 +18507,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containerNum: 15
-  itemImage: {fileID: 0}
-  itemAmount: {fileID: 0}
-  EquipImage: {fileID: 0}
-  focus: {fileID: 0}
-  focusSelectPanel: {fileID: 0}
-  isFocused: 0
-  isCombineable: 0
-  indexLimitMin: 0
-  indexLimitMax: 2
-  selectIndex: 0
-  isPreviousEneterd: 0
 --- !u!1 &4176161641943966740
 GameObject:
   m_ObjectHideFlags: 0
@@ -18875,6 +18749,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &4274549572778463260
 GameObject:
   m_ObjectHideFlags: 0
@@ -19284,6 +19159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &4458628647582570194
 GameObject:
   m_ObjectHideFlags: 0
@@ -19533,6 +19409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &4537643766405682696
 GameObject:
   m_ObjectHideFlags: 0
@@ -19863,6 +19740,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &4770105479798490251
 GameObject:
   m_ObjectHideFlags: 0
@@ -19958,17 +19836,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containerNum: 11
-  itemImage: {fileID: 0}
-  itemAmount: {fileID: 0}
-  EquipImage: {fileID: 0}
-  focus: {fileID: 0}
-  focusSelectPanel: {fileID: 0}
-  isFocused: 0
-  isCombineable: 0
-  indexLimitMin: 0
-  indexLimitMax: 2
-  selectIndex: 0
-  isPreviousEneterd: 0
 --- !u!1 &4774605578839443709
 GameObject:
   m_ObjectHideFlags: 0
@@ -20135,6 +20002,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &4807536677941196398
 GameObject:
   m_ObjectHideFlags: 0
@@ -20230,14 +20098,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containerNum: 0
-  playerItemBox: {fileID: 0}
-  itemImage: {fileID: 0}
-  itemAmount: {fileID: 0}
-  EquipImage: {fileID: 0}
-  focus: {fileID: 0}
-  focusSelectPanel: {fileID: 0}
-  isFocused: 0
-  selectIndex: 0
 --- !u!1 &4834177921697888641
 GameObject:
   m_ObjectHideFlags: 0
@@ -20408,6 +20268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &4871778544346398360
 GameObject:
   m_ObjectHideFlags: 0
@@ -20970,14 +20831,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containerNum: 2
-  playerItemBox: {fileID: 0}
-  itemImage: {fileID: 0}
-  itemAmount: {fileID: 0}
-  EquipImage: {fileID: 0}
-  focus: {fileID: 0}
-  focusSelectPanel: {fileID: 0}
-  isFocused: 0
-  selectIndex: 0
 --- !u!1 &4981714375297011098
 GameObject:
   m_ObjectHideFlags: 0
@@ -21073,14 +20926,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containerNum: 15
-  playerItemBox: {fileID: 0}
-  itemImage: {fileID: 0}
-  itemAmount: {fileID: 0}
-  EquipImage: {fileID: 0}
-  focus: {fileID: 0}
-  focusSelectPanel: {fileID: 0}
-  isFocused: 0
-  selectIndex: 0
 --- !u!1 &5025293420754926838
 GameObject:
   m_ObjectHideFlags: 0
@@ -21171,6 +21016,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &5040054792937747946
 GameObject:
   m_ObjectHideFlags: 0
@@ -21419,6 +21265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &5099554792118711687
 GameObject:
   m_ObjectHideFlags: 0
@@ -21985,17 +21832,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containerNum: 0
-  itemImage: {fileID: 0}
-  itemAmount: {fileID: 0}
-  EquipImage: {fileID: 0}
-  focus: {fileID: 0}
-  focusSelectPanel: {fileID: 0}
-  isFocused: 0
-  isCombineable: 0
-  indexLimitMin: 0
-  indexLimitMax: 2
-  selectIndex: 0
-  isPreviousEneterd: 0
 --- !u!1 &5153329772946522088
 GameObject:
   m_ObjectHideFlags: 0
@@ -22329,6 +22165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &5294183998442285181
 GameObject:
   m_ObjectHideFlags: 0
@@ -22511,6 +22348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &5333965051462430518
 GameObject:
   m_ObjectHideFlags: 0
@@ -22606,17 +22444,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containerNum: 12
-  itemImage: {fileID: 0}
-  itemAmount: {fileID: 0}
-  EquipImage: {fileID: 0}
-  focus: {fileID: 0}
-  focusSelectPanel: {fileID: 0}
-  isFocused: 0
-  isCombineable: 0
-  indexLimitMin: 0
-  indexLimitMax: 2
-  selectIndex: 0
-  isPreviousEneterd: 0
 --- !u!1 &5349061240973847594
 GameObject:
   m_ObjectHideFlags: 0
@@ -22707,6 +22534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &5357525535108780401
 GameObject:
   m_ObjectHideFlags: 0
@@ -23025,6 +22853,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &5441145999541217907
 GameObject:
   m_ObjectHideFlags: 0
@@ -23271,6 +23100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &5517228093486554345
 GameObject:
   m_ObjectHideFlags: 0
@@ -23602,17 +23432,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containerNum: 9
-  itemImage: {fileID: 0}
-  itemAmount: {fileID: 0}
-  EquipImage: {fileID: 0}
-  focus: {fileID: 0}
-  focusSelectPanel: {fileID: 0}
-  isFocused: 0
-  isCombineable: 0
-  indexLimitMin: 0
-  indexLimitMax: 2
-  selectIndex: 0
-  isPreviousEneterd: 0
 --- !u!1 &5603618250390296609
 GameObject:
   m_ObjectHideFlags: 0
@@ -23779,6 +23598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &5607118696200126710
 GameObject:
   m_ObjectHideFlags: 0
@@ -24027,6 +23847,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &5646165152319978896
 GameObject:
   m_ObjectHideFlags: 0
@@ -24122,14 +23943,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containerNum: 9
-  playerItemBox: {fileID: 0}
-  itemImage: {fileID: 0}
-  itemAmount: {fileID: 0}
-  EquipImage: {fileID: 0}
-  focus: {fileID: 0}
-  focusSelectPanel: {fileID: 0}
-  isFocused: 0
-  selectIndex: 0
 --- !u!1 &5702326533798735467
 GameObject:
   m_ObjectHideFlags: 0
@@ -24297,6 +24110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &5730227986466049399
 GameObject:
   m_ObjectHideFlags: 0
@@ -24469,14 +24283,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containerNum: 1
-  playerItemBox: {fileID: 0}
-  itemImage: {fileID: 0}
-  itemAmount: {fileID: 0}
-  EquipImage: {fileID: 0}
-  focus: {fileID: 0}
-  focusSelectPanel: {fileID: 0}
-  isFocused: 0
-  selectIndex: 0
 --- !u!1 &5782742108629279410
 GameObject:
   m_ObjectHideFlags: 0
@@ -24810,6 +24616,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &5916220264775788906
 GameObject:
   m_ObjectHideFlags: 0
@@ -24976,6 +24783,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &5962611765575431273
 GameObject:
   m_ObjectHideFlags: 0
@@ -25222,6 +25030,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &6026106639486643104
 GameObject:
   m_ObjectHideFlags: 0
@@ -25563,6 +25372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &6128675563311107848
 GameObject:
   m_ObjectHideFlags: 0
@@ -26478,17 +26288,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containerNum: 1
-  itemImage: {fileID: 0}
-  itemAmount: {fileID: 0}
-  EquipImage: {fileID: 0}
-  focus: {fileID: 0}
-  focusSelectPanel: {fileID: 0}
-  isFocused: 0
-  isCombineable: 0
-  indexLimitMin: 0
-  indexLimitMax: 2
-  selectIndex: 0
-  isPreviousEneterd: 0
 --- !u!1 &6497346096505664960
 GameObject:
   m_ObjectHideFlags: 0
@@ -26579,6 +26378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &6505859334181959771
 GameObject:
   m_ObjectHideFlags: 0
@@ -26828,6 +26628,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &6523345592201447193
 GameObject:
   m_ObjectHideFlags: 0
@@ -26918,6 +26719,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &6529792660360078738
 GameObject:
   m_ObjectHideFlags: 0
@@ -27008,6 +26810,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &6568475086664688270
 GameObject:
   m_ObjectHideFlags: 0
@@ -27179,17 +26982,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containerNum: 3
-  itemImage: {fileID: 0}
-  itemAmount: {fileID: 0}
-  EquipImage: {fileID: 0}
-  focus: {fileID: 0}
-  focusSelectPanel: {fileID: 0}
-  isFocused: 0
-  isCombineable: 0
-  indexLimitMin: 0
-  indexLimitMax: 2
-  selectIndex: 0
-  isPreviousEneterd: 0
 --- !u!1 &6603650014141311161
 GameObject:
   m_ObjectHideFlags: 0
@@ -27667,6 +27459,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &6756609714033834904
 GameObject:
   m_ObjectHideFlags: 0
@@ -28007,6 +27800,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &6864807338017468679
 GameObject:
   m_ObjectHideFlags: 0
@@ -28337,6 +28131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &6905368014984596708
 GameObject:
   m_ObjectHideFlags: 0
@@ -28902,6 +28697,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &7012903396179130560
 GameObject:
   m_ObjectHideFlags: 0
@@ -29639,6 +29435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &7232952844785758449
 GameObject:
   m_ObjectHideFlags: 0
@@ -29826,14 +29623,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containerNum: 11
-  playerItemBox: {fileID: 0}
-  itemImage: {fileID: 0}
-  itemAmount: {fileID: 0}
-  EquipImage: {fileID: 0}
-  focus: {fileID: 0}
-  focusSelectPanel: {fileID: 0}
-  isFocused: 0
-  selectIndex: 0
 --- !u!1 &7273912243835524689
 GameObject:
   m_ObjectHideFlags: 0
@@ -30250,6 +30039,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &7398870512118646285
 GameObject:
   m_ObjectHideFlags: 0
@@ -30743,6 +30533,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &7620865365170551809
 GameObject:
   m_ObjectHideFlags: 0
@@ -31397,6 +31188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &7801636155303645245
 GameObject:
   m_ObjectHideFlags: 0
@@ -31639,6 +31431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &7822410117471093475
 GameObject:
   m_ObjectHideFlags: 0
@@ -32378,6 +32171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &8022977827260380609
 GameObject:
   m_ObjectHideFlags: 0
@@ -32887,6 +32681,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &8114793357846830173
 GameObject:
   m_ObjectHideFlags: 0
@@ -33372,17 +33167,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containerNum: 4
-  itemImage: {fileID: 0}
-  itemAmount: {fileID: 0}
-  EquipImage: {fileID: 0}
-  focus: {fileID: 0}
-  focusSelectPanel: {fileID: 0}
-  isFocused: 0
-  isCombineable: 0
-  indexLimitMin: 0
-  indexLimitMax: 2
-  selectIndex: 0
-  isPreviousEneterd: 0
 --- !u!1 &8192449765261589977
 GameObject:
   m_ObjectHideFlags: 0
@@ -33473,6 +33257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &8206205942141204748
 GameObject:
   m_ObjectHideFlags: 0
@@ -33797,6 +33582,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &8248782698627248963
 GameObject:
   m_ObjectHideFlags: 0
@@ -34140,6 +33926,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &8283245771785355245
 GameObject:
   m_ObjectHideFlags: 0
@@ -34306,6 +34093,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &8307701248185905198
 GameObject:
   m_ObjectHideFlags: 0
@@ -34716,6 +34504,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &8428551903586893253
 GameObject:
   m_ObjectHideFlags: 0
@@ -35041,6 +34830,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &8501381844793226898
 GameObject:
   m_ObjectHideFlags: 0
@@ -35385,6 +35175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &8606011234794300705
 GameObject:
   m_ObjectHideFlags: 0
@@ -35633,6 +35424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &8664586347155526099
 GameObject:
   m_ObjectHideFlags: 0
@@ -36431,6 +36223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &8765252896088076487
 GameObject:
   m_ObjectHideFlags: 0
@@ -36690,6 +36483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &8834682335899809894
 GameObject:
   m_ObjectHideFlags: 0
@@ -37011,6 +36805,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &8899280529444157964
 GameObject:
   m_ObjectHideFlags: 0
@@ -37183,6 +36978,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &8925625449549661040
 GameObject:
   m_ObjectHideFlags: 0
@@ -37251,12 +37047,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nullSprite: {fileID: 21300000, guid: ad2b9f51047fec3448a1276ba11830f2, type: 3}
   itemContainers: []
-  playerItemBox: {fileID: 0}
-  backgroundPanel: {fileID: 0}
+  backgroundPanel: {fileID: 6451188782271695888}
   selectColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
   unSelectColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  currentindex: 0
-  isBoxFull: 0
 --- !u!1 &8944453391462685746
 GameObject:
   m_ObjectHideFlags: 0
@@ -37584,6 +37377,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &9086464368211383384
 GameObject:
   m_ObjectHideFlags: 0
@@ -37679,14 +37473,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containerNum: 6
-  playerItemBox: {fileID: 0}
-  itemImage: {fileID: 0}
-  itemAmount: {fileID: 0}
-  EquipImage: {fileID: 0}
-  focus: {fileID: 0}
-  focusSelectPanel: {fileID: 0}
-  isFocused: 0
-  selectIndex: 0
 --- !u!1 &9091697823088974966
 GameObject:
   m_ObjectHideFlags: 0
@@ -38397,6 +38183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102b7f0d8b8c9e428aa21e53d2ad2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &9210732848878408949
 GameObject:
   m_ObjectHideFlags: 0
@@ -38492,14 +38279,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containerNum: 14
-  itemImage: {fileID: 0}
-  itemAmount: {fileID: 0}
-  EquipImage: {fileID: 0}
-  focus: {fileID: 0}
-  focusSelectPanel: {fileID: 0}
-  isFocused: 0
-  isCombineable: 0
-  indexLimitMin: 0
-  indexLimitMax: 2
-  selectIndex: 0
-  isPreviousEneterd: 0

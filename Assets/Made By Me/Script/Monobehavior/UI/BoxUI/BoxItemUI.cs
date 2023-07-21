@@ -14,6 +14,7 @@ public class BoxItemUI : MonoBehaviour
 
 
     private void Awake() {
+        Debug.Log("Awake Awake Awake");
         itemContainers = GetComponentsInChildren<BoxItemContainer>();
         Array.Reverse(itemContainers);
 

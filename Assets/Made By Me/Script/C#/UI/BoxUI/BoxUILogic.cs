@@ -204,6 +204,7 @@ public class BoxUILogic : CallBackInterface
 
         GameAudioManager.instance.PlayUIMusic(UIAudioType.Open);
 
+        Debug.Log("boxItemUI : " + (boxItemUI == null) + " boxItemUI.backgroundPanel : " + (boxItemUI.backgroundPanel == null) + " boxItemUI.unSelectColor : " + (boxItemUI.unSelectColor == null));
         boxItemUI.backgroundPanel.color = boxItemUI.unSelectColor;
         playerItemUI.backgroundPanel.color = playerItemUI.selectColor;
 

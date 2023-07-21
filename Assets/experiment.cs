@@ -33,7 +33,7 @@ public class experiment : MonoBehaviour
     {
         if(count < 2)
         {
-            prefab = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Cube.prefab", typeof(GameObject));
+            prefab = (GameObject)Resources.Load("Cube.prefab", typeof(GameObject));
             count++;
             Instantiate(prefab);
         }

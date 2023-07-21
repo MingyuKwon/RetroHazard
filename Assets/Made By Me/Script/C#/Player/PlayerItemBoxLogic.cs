@@ -71,7 +71,7 @@ public class PlayerItemBoxLogic
     {
         for(int i=0; i< save.itemsPath.Length; i++)
         {
-            items[i] = AssetDatabase.LoadAssetAtPath<ItemInformation>(save.itemsPath[i]);
+            items[i] = Resources.Load<ItemInformation>(save.itemsPath[i]);
         }
         Array.Copy( save.itemsamount , itemsamount, save.itemsamount.Length);
 

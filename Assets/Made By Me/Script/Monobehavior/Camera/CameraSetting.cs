@@ -6,6 +6,7 @@ using Com.LuisPedroFonseca.ProCamera2D;
 
 public class CameraSetting : MonoBehaviour
 {
+    
     Tilemap tilemap;
     GameObject pm; 
     Vector3 maxLimit;

@@ -134,8 +134,8 @@ public class GameManagerUI : MonoBehaviour
 
     public void Visualize_SaveUI(bool flag, bool isSave)
     {
-        PauseUI.saveSlotUI.isSave = isSave;
         Visualize_SaveUI(flag);
+        PauseUI.saveSlotUI.isSave = isSave;
     }
 
 // BlackOut UI

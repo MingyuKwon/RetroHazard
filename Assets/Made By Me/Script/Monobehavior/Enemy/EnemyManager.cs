@@ -20,7 +20,7 @@ public class EnemyManager : MonoBehaviour
     public void playEnemyMusic(EnemyAudioType audioType)
     {
         audioSource.clip = enemyAudioClip[(int)audioType];
-        audioSource.volume = GameAudioManager.currentEnemyVolume;
+        audioSource.volume = GameAudioManager.currentEnemyVolume  * GameAudioManager.totalVolme;
         audioSource.Play();
     }
 

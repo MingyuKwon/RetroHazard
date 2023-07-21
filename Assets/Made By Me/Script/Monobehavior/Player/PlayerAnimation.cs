@@ -20,7 +20,6 @@ public class PlayerAnimation : MonoBehaviour
 
     
     private void Awake() {
-
         animationLogic = new PlayerAnimationLogic(this);
     }
 
@@ -53,6 +52,11 @@ public class PlayerAnimation : MonoBehaviour
 
     public void ResetPlayerAnimationState()
     {
+        if(animationLogic == null)
+        {
+            Debug.Log("animationLogic is NULL");
+            return;
+        }
         animationLogic.ResetPlayerAnimationState();
     }
 

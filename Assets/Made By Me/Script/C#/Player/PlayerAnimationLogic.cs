@@ -85,7 +85,6 @@ public class PlayerAnimationLogic
         animator = monoBehaviour.GetComponent<Animator>();
         vfxAnimation = new VFXAnimation(monoBehaviour.GetComponentInChildren<VFX>().gameObject.GetComponent<Animator>());
 
-
         sheildCollider = monoBehaviour.transform.GetChild(0).GetChild(2).gameObject.GetComponent<BoxCollider2D>();
         attckCollider = monoBehaviour.transform.GetChild(0).GetChild(1).gameObject.GetComponent<BoxCollider2D>();
     

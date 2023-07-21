@@ -24,7 +24,8 @@ public class PlayerInventorySave
     {
         for(int i=0; i< inventory.items.Length; i++)
         {
-            itemsPath[i] = AssetDatabase.GetAssetPath(inventory.items[i]);
+            if(inventory.items[i] == null) continue;
+            itemsPath[i] = inventory.items[i].itemPath;
         }
         Array.Copy( inventory.itemsamount , itemsamount, inventory.itemsamount.Length);
         Array.Copy( inventory.isEquipped , isEquipped, inventory.isEquipped.Length);

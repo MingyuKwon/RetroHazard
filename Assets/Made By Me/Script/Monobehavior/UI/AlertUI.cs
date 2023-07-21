@@ -51,8 +51,6 @@ public class AlertUI : MonoBehaviour
 
         alertUILogic = new AlertUILogic(this, GetComponentsInChildren<Text>());
         this.gameObject.SetActive(false);
-
-        
     }
 
     private void OnEnable() {

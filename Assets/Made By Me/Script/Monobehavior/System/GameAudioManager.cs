@@ -41,6 +41,8 @@ public enum UIAudioType{
 public class GameAudioManager : MonoBehaviour
 {
     static public GameAudioManager instance;
+
+    static public float totalVolme = 1f;
     static public float currentBackGroundVolume = 0.5f;
     static public float currentSFXVolume = 0.4f;
     static public float currentUIVolume = 0.3f;
@@ -88,7 +90,7 @@ public class GameAudioManager : MonoBehaviour
         }else // 제일 초기 상태
         {
             BackGroundSources1.clip = targetAudioClip;
-            BackGroundSources1.volume = currentBackGroundVolume;
+            BackGroundSources1.volume = currentBackGroundVolume * totalVolme;
             BackGroundSources1.Play();
             isNowChanging = false;
         }    
@@ -119,8 +121,8 @@ public class GameAudioManager : MonoBehaviour
         float timeElaped = 0;
         while(timeElaped < 1f)
         {
-            beforeAudioSource.volume = currentBackGroundVolume * Mathf.Cos(Mathf.PI * 0.5f * timeElaped);
-            afterAudioSource.volume = currentBackGroundVolume * Mathf.Sin(Mathf.PI * 0.5f * timeElaped);
+            beforeAudioSource.volume = currentBackGroundVolume * totalVolme * Mathf.Cos(Mathf.PI * 0.5f * timeElaped);
+            afterAudioSource.volume = currentBackGroundVolume * totalVolme * Mathf.Sin(Mathf.PI * 0.5f * timeElaped);
             yield return new WaitForSecondsRealtime(0.05f);
             timeElaped += 0.05f;
         }
@@ -133,14 +135,14 @@ public class GameAudioManager : MonoBehaviour
     public void PlaySFXMusic(SFXAudioType audioType)
     {
         CurrentSfxSource.clip = sfxAudioClip[(int)audioType];
-        CurrentSfxSource.volume = currentSFXVolume;
+        CurrentSfxSource.volume = currentSFXVolume * totalVolme;
         CurrentSfxSource.Play();
     }
 
     public void PlayUIMusic(UIAudioType audioType)
     {
         CurrentUISource.clip = UIAudioClip[(int)audioType];
-        CurrentUISource.volume = currentUIVolume;
+        CurrentUISource.volume = currentUIVolume * totalVolme;
         CurrentUISource.Play();
     }
 

@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a32a9bd668c1bbb409c635fef9be93c3, type: 3}
+  m_Name: Energy 1 Container Information
+  m_EditorClassIdentifier: 
+  itemPath: Scriptable/Item Information/Equip Item/Energy/Energy 1 Container Information.asset
+  ItemImage: {fileID: 21300074, guid: a977e104bdeb79746b0814c9c7215e80, type: 3}
+  ItemName: Energy 1 Container
+  isKeyItem: 1
+  isNormalItem: 0
+  isEquipItem: 1
+  isInteractiveItem: 0
+  isExpansionItem: 0
+  KeyItemCode: 0
+  NormalItemCode: 0
+  combineItems: 06000000
+  combinResultItems:
+  - {fileID: 11400000, guid: 8294c9fe43e111f44b832f95471458ca, type: 2}
+  isSheild: 0
+  isEnergy1: 1
+  isEnergy2: 0
+  isEnergy3: 0
+  isBullet: 0
+  isPotion: 0
+  amount: 1
+  expansionAmount: 0
+  healAmount: 0
+  ItemDescription:
+  - 'Containing Energy 1 up to 5.
+
+    It enable you to attack using Energy 1 '

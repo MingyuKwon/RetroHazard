@@ -64,7 +64,7 @@ public class RealInteract : Interact
     {
         if(audioSource == null) return;
         if(audioClip == null) return;
-        audioSource.volume = GameAudioManager.currentEnvironmentVolume;
+        audioSource.volume = GameAudioManager.currentEnvironmentVolume * GameAudioManager.totalVolme;
         audioSource.clip = audioClip;
         audioSource.Play();
     }

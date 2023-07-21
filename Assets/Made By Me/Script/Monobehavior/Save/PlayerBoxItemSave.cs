@@ -20,7 +20,9 @@ public class PlayerBoxItemSave
     {
         for(int i=0; i< itemBox.items.Length; i++)
         {
-            itemsPath[i] = AssetDatabase.GetAssetPath(itemBox.items[i]);
+            if(itemBox.items[i] == null) continue;
+
+            itemsPath[i] = itemBox.items[i].itemPath;
         }
         Array.Copy( itemBox.itemsamount , itemsamount, itemBox.itemsamount.Length);
 

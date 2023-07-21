@@ -23,7 +23,6 @@ public class AlertUILogic
                 openFirstSelect = false;
                 return;
             }
-            Debug.Log("Alert : UIAudioType.Move");
             GameAudioManager.instance.PlayUIMusic(UIAudioType.Move);
         }
     }
@@ -91,7 +90,6 @@ public class AlertUILogic
     {
         if(isClickYes)
         {   
-            Debug.Log("Alert : UIAudioType.Click");
             GameAudioManager.instance.PlayUIMusic(UIAudioType.Click);
         }else
         {
