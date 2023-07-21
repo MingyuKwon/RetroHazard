@@ -11,7 +11,7 @@ using UnityEngine.EventSystems;
 public class SelectButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] int index;
-    Image image;
+    public Image image;
     ItemContainer itemContainer = null;
     PlayerItemContainer PitemContainer = null;
 

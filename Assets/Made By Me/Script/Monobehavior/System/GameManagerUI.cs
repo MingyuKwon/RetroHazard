@@ -125,17 +125,12 @@ public class GameManagerUI : MonoBehaviour
         PauseUI.saveSlotUI.gameObject.SetActive(!flag);
     }
 
-    public void Visualize_SaveUI(bool flag)
-    {
-        Visualize_PauseUI(flag);
-        PauseUI.saveSlotUI.gameObject.SetActive(flag);
-        PauseUI.pauseMainUI.gameObject.SetActive(!flag);
-    }
-
     public void Visualize_SaveUI(bool flag, bool isSave)
     {
-        Visualize_SaveUI(flag);
-        PauseUI.saveSlotUI.isSave = isSave;
+        Visualize_PauseUI(flag);
+        SaveSlotUI.isSave = isSave;
+        PauseUI.saveSlotUI.gameObject.SetActive(flag);
+        PauseUI.pauseMainUI.gameObject.SetActive(!flag);
     }
 
 // BlackOut UI

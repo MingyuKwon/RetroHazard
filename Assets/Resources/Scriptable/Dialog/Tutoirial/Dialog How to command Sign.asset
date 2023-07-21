@@ -35,7 +35,13 @@ MonoBehaviour:
     Sheild : <b>Right Click</b>
 
     Parry
-    : <b>Space</b> while Sheilding'
+    : <b>Space</b> while Sheilding
+
+
+    Pause Game : <b>ESC</b>
+
+    Open Item Tab
+    : <b>Tab<.b>'
   EventDialogs: []
   ChoiceDialog:
   - What do you want?

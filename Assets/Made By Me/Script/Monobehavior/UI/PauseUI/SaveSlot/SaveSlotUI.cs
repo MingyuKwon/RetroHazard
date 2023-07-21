@@ -26,13 +26,13 @@ public class SaveSlotUI : MonoBehaviour
         }
     }
 
-    public bool isSave{
+    static public bool isSave{
         get{
-            return saveSlotUILogic.isSave;
+            return SaveSlotUILogic.isSave;
         }
 
         set{
-            saveSlotUILogic.isSave = value;
+            SaveSlotUILogic.isSave = value;
         }
     }
 

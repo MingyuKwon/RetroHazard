@@ -84,7 +84,7 @@ public class NoticeUILogic
         {
             previousCallcount = callCount;
             isNowTalking = true;
-            yield return monoBehaviour.StartCoroutine(TypeTextAnimation(texts[callCount], 1.5f));
+            yield return monoBehaviour.StartCoroutine(TypeTextAnimation(texts[callCount], 1f));
             isNowTalking = false;
             while(previousCallcount == callCount)
             {
@@ -118,7 +118,7 @@ public class NoticeUILogic
         //각 프레임이 1/프레임 의 시간동안 지속이 된다
         // 그럼 원하는 시간동안 되도록 프레임을 이용한 방법으로 시간을 맞추기 위해서는
 
-        float timePerChar = time / 70;
+        float timePerChar = time / 100;
 
         Stack<Char> stack = new Stack<Char>();
 

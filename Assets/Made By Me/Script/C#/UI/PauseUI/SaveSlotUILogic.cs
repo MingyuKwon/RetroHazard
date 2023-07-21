@@ -57,7 +57,7 @@ public class SaveSlotUILogic : CallBackInterface
 
 
 
-    public bool isSave = false;
+    static public bool isSave = false;
     Button[] SaveSlots;
     Text[] SaveSlotsTexts;
 
