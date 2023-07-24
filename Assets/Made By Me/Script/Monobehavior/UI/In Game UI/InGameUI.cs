@@ -13,8 +13,8 @@ public class InGameUI : MonoBehaviour
 
     float showingTime = 1.3f;
 
-    Vector2 invisiblePosition = new Vector2(200, 70);
-    Vector2 fullVisiblePosition = new Vector2(200, -10);
+    Vector2 invisiblePosition = new Vector2(200, 100);
+    Vector2 fullVisiblePosition = new Vector2(200, 0);
 
     private RectTransform mapShowPanelRecTransform;
     private Text mapShowPanelText;

@@ -52,7 +52,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 791791cedb375d14fae3f69ff4d7e7cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentWindowLayer: 0
+  mainMenuUI: {fileID: 0}
+  saveSlotUI: {fileID: 0}
+  optionUI: {fileID: 0}
 --- !u!1001 &93319033289903784
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -162,6 +164,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8755441765954986035}
     m_Modifications:
+    - target: {fileID: 6167726675686192882, guid: c393d7bafb6f80e4b92a01423b4946eb, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6167726675686192892, guid: c393d7bafb6f80e4b92a01423b4946eb, type: 3}
       propertyPath: m_Pivot.x
       value: 0

@@ -35,10 +35,12 @@ public class blackOut : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadSceneAsync(sceneName);
         Player1.instance.playerMove.transform.position = destination;
 
         GameManager.instance.SetPausePlayer(false);
+
+        yield return new WaitForSeconds(0.1f); 
 
         while(image.color.a > 0f)
         {

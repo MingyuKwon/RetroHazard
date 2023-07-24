@@ -10,7 +10,7 @@ public class BeforeMainMenu : MonoBehaviour
         if(PlayerPrefs.HasKey("Resolution"))
         {
             switch(PlayerPrefs.GetInt("Resolution"))
-        {
+            {
             case 1080 :
                 Screen.SetResolution(1920, 1080, FullScreenMode.Windowed);
                 break;
@@ -29,6 +29,6 @@ public class BeforeMainMenu : MonoBehaviour
             Screen.SetResolution(1920, 1080, FullScreenMode.Windowed);
             PlayerPrefs.SetInt("Resolution", 1080);
         }
-        SceneManager.LoadScene("Main Menu");
+        SceneManager.LoadSceneAsync("Main Menu");
     }
 }
