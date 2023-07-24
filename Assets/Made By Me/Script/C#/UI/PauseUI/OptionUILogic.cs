@@ -28,6 +28,11 @@ public class OptionUILogic
     Button AudioResetButton;
     //Audio//
 
+    //General//
+    Dropdown LanguageDropDown;
+    Button GeneralResetButton;
+    //General//
+
     public OptionUILogic(OptionUI monoBehaviour)
     {
         this.monoBehaviour = monoBehaviour;
@@ -74,7 +79,7 @@ public class OptionUILogic
                 VideoDropDown.value = 3;
                 break;
         }
-        VideoDropDown.onValueChanged.AddListener(delegate { DropdownValueChanged(VideoDropDown); });
+        VideoDropDown.onValueChanged.AddListener(delegate { DropdownVideoValueChanged(VideoDropDown); });
 
         VideoResetButton.onClick.AddListener(ResetVideoOption);
         ////////Video//////////////////
@@ -110,9 +115,27 @@ public class OptionUILogic
 
         AudioResetButton.onClick.AddListener(ResetAudioOption);
         ////////Audio//////////////////
+
+        LanguageDropDown = panels[3].GetComponentInChildren<Dropdown>();
+        GeneralResetButton = panels[3].GetComponentInChildren<Button>();
+
+        switch(GameAudioManager.LanguageManager.currentLanguage)
+        {
+            case "E" :
+                LanguageDropDown.value = 0;
+                break;
+            case "K" :
+                LanguageDropDown.value = 1;
+                break;
+        }
+
+        LanguageDropDown.onValueChanged.AddListener(delegate { DropdownLanguageValueChanged(LanguageDropDown); });
+    
+        GeneralResetButton.onClick.AddListener(ResetGenralOption);
     }
 
-    void DropdownValueChanged(Dropdown change)
+
+    void DropdownVideoValueChanged(Dropdown change)
     {
         switch(change.value)
         {
@@ -131,6 +154,20 @@ public class OptionUILogic
             case 3 :
                 Screen.SetResolution(960, 540, FullScreenMode.Windowed);
                 PlayerPrefs.SetInt("Resolution", 540);
+                break;
+        }
+        
+    }
+
+    void DropdownLanguageValueChanged(Dropdown change)
+    {
+        switch(change.value)
+        {
+            case 0 :
+                GameAudioManager.LanguageManager.Invoke_languageChangeEvent("E");
+                break;
+            case 1 :
+                GameAudioManager.LanguageManager.Invoke_languageChangeEvent("K");
                 break;
         }
         
@@ -160,6 +197,13 @@ public class OptionUILogic
         PlayerPrefs.SetInt("Resolution", 1080);
         VideoDropDown.value = 0;
     }
+
+    private void ResetGenralOption()
+    {
+        GameAudioManager.LanguageManager.Invoke_languageChangeEvent("E");
+        LanguageDropDown.value = 0;
+    }
+
 
     private void UpdateVideoSlider(float value)
     {

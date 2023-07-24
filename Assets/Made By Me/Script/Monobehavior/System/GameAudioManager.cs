@@ -40,6 +40,17 @@ public enum UIAudioType{
 
 public class GameAudioManager : MonoBehaviour
 {
+    public class LanguageManager{
+        public static string currentLanguage = "E";
+        public static Action<string> languageChangeEvent;
+        public static void Invoke_languageChangeEvent(string language)
+        {
+            currentLanguage = language;
+            languageChangeEvent?.Invoke(language);
+            PlayerPrefs.SetString("language", language);
+        }
+    }
+
     public class AudioEvent{
         static public void Invoke_updateTotal()
         {

@@ -36,10 +36,52 @@ public class MainMenuUI : MonoBehaviour, CallBackInterface
 
     int _selectIndex;
     Button[] buttons;
+
+    Text[] buttonTexts;
+    string[] englishText = { 
+    "Continue" , 
+    "New Game" ,
+    "Load Game" ,
+    "Option" ,
+    "Quit" ,};
+
+    string[] koreanText = { 
+    "계속하기" , 
+    "처음부터" ,
+    "이어하기" ,
+    "설정" ,
+    "나가기" ,};
+
     public int continueNum; // continue 눌렀을 때 시작할 세이브 슬롯 번호
 
     private void Awake() {
         buttons = GetComponentsInChildren<Button>();
+        buttonTexts = transform.GetChild(2).GetComponentsInChildren<Text>();
+
+        changeText(GameAudioManager.LanguageManager.currentLanguage);
+
+        GameAudioManager.LanguageManager.languageChangeEvent += changeText;
+    }
+
+    private void OnDestroy() {
+        GameAudioManager.LanguageManager.languageChangeEvent -= changeText;
+    }
+
+    private void changeText(string language)
+    {
+        if(language == "E")
+        {
+            for(int i=0; i<buttonTexts.Length; i++)
+            {
+                buttonTexts[i].text = englishText[i];
+            }
+        }else if(language == "K")
+        {
+            for(int i=0; i<buttonTexts.Length; i++)
+            {
+                buttonTexts[i].text = koreanText[i];
+            }
+        }
     }
     
     private void OnEnable() {

@@ -29,6 +29,24 @@ public class BeforeMainMenu : MonoBehaviour
             Screen.SetResolution(1920, 1080, FullScreenMode.Windowed);
             PlayerPrefs.SetInt("Resolution", 1080);
         }
+
+        if(PlayerPrefs.HasKey("language"))
+        {
+            switch(PlayerPrefs.GetString("language"))
+            {
+            case "E" :
+                GameAudioManager.LanguageManager.Invoke_languageChangeEvent("E");
+                break;
+            case "K" :
+                GameAudioManager.LanguageManager.Invoke_languageChangeEvent("K");
+                break;
+            }
+        }else
+        {
+            GameAudioManager.LanguageManager.Invoke_languageChangeEvent("E");
+        }
+
+
         SceneManager.LoadSceneAsync("Main Menu");
     }
 }
