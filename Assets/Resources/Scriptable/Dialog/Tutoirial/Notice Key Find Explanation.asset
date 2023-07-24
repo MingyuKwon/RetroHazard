@@ -12,19 +12,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 486b7894a4590d345b90e6f003c46405, type: 3}
   m_Name: Notice Key Find Explanation
   m_EditorClassIdentifier: 
-  noticeDialog:
-  - Ah! I almost forgot to mention something.
-  - The door leading to the archaeological site is locked, but I've managed to secure
-    the key that opens it.
-  - I've hidden it at the upper part of the beach, so all you need to do is find
-    it and use it to unlock the door.
-  - I've also hidden a <b>shield</b> and a <b>Energy Container</b> there, so make
-    sure to take those with you.
-  - "Especially the <b>Energy Container</b> - I highly recommend taking it. No matter
-    how confident you are with the mission, \n\nI've never seen anyone complete it
-    without a <b>Energy Container</b>"
-  - 'In any case, make sure to gather everything you need so you can proceed.
-
-
-    Good
-    luck.'
+  englishNoticeDialog:
+  - Ah, there was something I hadn't mentioned yet.
+  - The entrance might be locked, so you'll need a key to get in.
+  - I've already procured one and hidden it at the top of the beach, so find it and
+    you can open the door.
+  - I've also hidden energy and a shield, so make sure to find them too and proceed
+    with the mission.
+  - Especially the energy, make sure to take it. No matter how confident you are
+    in the mission, I've never seen anyone complete a mission without energy.
+  - If you go up to the very top, it should be the first thing you see, so it should
+    be easy to find.
+  koreanNoticeDialog:
+  - "\uC544 \uADF8\uB7EC\uACE0 \uBCF4\uB2C8 \uC544\uC9C1 \uB9D0\uC740 \uC548 \uD55C\uAC8C
+    \uC788\uC5C8\uC5B4."
+  - "\uC544\uB9C8 \uADF8 \uBB38\uC774 \uC7A0\uACA8 \uC788\uC5B4\uC11C \uB4E4\uC5B4\uAC00\uB824\uBA74
+    \uC5F4\uC1E0\uAC00 \uD544\uC694\uD560 \uAC70\uC57C."
+  - "\uB0B4\uAC00 \uBBF8\uB9AC \uC5BB\uC5B4\uB194\uC11C \uD574\uBCC0\uC758 \uC717\uBD80\uBD84\uC5D0
+    \uC228\uACA8 \uB480\uC73C\uB2C8 \uCC3E\uC544\uC11C \uBB38\uC744 \uC5F4\uBA74
+    \uB420 \uAC70\uC57C."
+  - "\uCD94\uAC00\uB85C <b>\uC5D0\uB108\uC9C0</b>\uB791 <b>\uBC29\uD328</b>\uB3C4
+    \uAC19\uC774 \uC228\uACA8 \uB480\uC73C\uB2C8 \uAF2D \uADF8\uAC83\uB3C4 \uCC3E\uC544\uC11C
+    \uC784\uBB34\uB97C \uC9C4\uD589\uD558\uB3C4\uB85D \uD574"
+  - "\uD2B9\uD788 <b>\uC5D0\uB108\uC9C0</b>\uB294 \uBC18\uB4DC\uC2DC \uCC59\uACA8\uAC00.
+    \uC544\uBB34\uB9AC \uB2C8\uAC00 \uC784\uBB34\uC5D0 \uC790\uC2E0\uC774 \uC788\uB2E4\uACE0
+    \uD574\uB3C4, \uB098\uB294 \uC9C0\uAE08\uAE4C\uC9C0 \uC5D0\uB108\uC9C0 \uC5C6\uC774
+    \uC784\uBB34\uB97C \uC644\uC218\uD55C \uC0AC\uB78C\uC744 \uD55C\uBA85\uB3C4 \uBCF4\uC9C0
+    \uBABB\uD588\uC73C\uB2C8\uAE4C \uB9D0\uC774\uC57C."
+  - "\uC81C\uC77C \uC704\uB85C \uC62C\uB77C\uAC00\uB2E4 \uBCF4\uBA74 \uAC00\uC7A5
+    \uBA3C\uC800 \uBCF4\uC77C\uD14C\uB2C8 \uC544\uB9C8 \uCC3E\uAE30\uB3C4 \uC26C\uC6B8
+    \uAC70\uC57C "

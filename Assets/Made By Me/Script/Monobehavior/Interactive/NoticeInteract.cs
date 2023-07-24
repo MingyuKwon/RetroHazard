@@ -77,7 +77,13 @@ public class NoticeInteract : MonoBehaviour
 
             if(isAlive && other.gameObject.layer == LayerMask.NameToLayer("Player Body") )
             {
-                GameManager.EventManager.InvokeShowNotice("Field", dialog.noticeDialog , true, 900 ,250);
+                if(GameAudioManager.LanguageManager.currentLanguage == "E")
+                {
+                    GameManager.EventManager.InvokeShowNotice("Field", dialog.englishNoticeDialog , true, 900 ,250);
+                }else if(GameAudioManager.LanguageManager.currentLanguage == "K")
+                {
+                    GameManager.EventManager.InvokeShowNotice("Field", dialog.koreanNoticeDialog , true, 900 ,250);
+                }
             
                 SaveSystem.instance.ActiveStageSaves[SceneManager.GetActiveScene().buildIndex].is_Notice_Destroy[transform.GetSiblingIndex()] = true;
                 removePermenantly();

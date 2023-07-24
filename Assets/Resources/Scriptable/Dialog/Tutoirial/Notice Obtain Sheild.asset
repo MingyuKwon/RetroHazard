@@ -12,12 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 486b7894a4590d345b90e6f003c46405, type: 3}
   m_Name: Notice Obtain Sheild
   m_EditorClassIdentifier: 
-  noticeDialog:
-  - You've picked up the shield I mentioned
-  - "To give you a brief explanation, when you equip that shield, \n\nyou'll be able
-    to defend against enemy attacks."
-  - "However, you can't use it continuously. \n\nYou can only use it as many times
-    as the number of shield batteries you have, \nso if you use it thoughtlessly,
-    you may find yourself in a difficult situation."
-  - If you run out of batteries, you can reload the shield using the shield reload
-    button.
+  englishNoticeDialog:
+  - It seems like you've found the shield I mentioned.
+  - When equipped with the shield, you can parry or guard against the enemy's attack.
+  - However, each block will consume one shield battery, so you can't block all attacks
+  - So it would be best to distinguish between when to block and when to just run
+    away without blocking.
+  koreanNoticeDialog:
+  - "\uB0B4\uAC00 \uB9D0\uD588\uB358 \uBC29\uD328\uB97C \uBA39\uC740 \uBAA8\uC591\uC774\uB124."
+  - "\uBC29\uD328\uB294 \uC7A5\uCC29\uD558\uBA74 \uC801\uC758 \uACF5\uACA9\uC744
+    \uAC00\uB4DC\uD560 \uC218\uB3C4 \uC788\uACE0, \uD328\uB9C1 \uD560 \uC218\uB3C4
+    \uC788\uC5B4."
+  - "\uD558\uC9C0\uB9CC \uB9C9\uC744 \uB54C\uB9C8\uB2E4, \uC2E4\uB4DC \uBC30\uD130\uB9AC\uAC00
+    \uD558\uB098\uC529 \uB4E4\uAC8C \uB418\uB2C8 \uBAA8\uB4E0 \uACF5\uACA9\uC744
+    \uB9C9\uC744 \uC21C \uC5C6\uC5B4."
+  - "\uADF8\uB7EC\uB2C8 \uB9C9\uC544\uC57C \uD560 \uACBD\uC6B0\uC640, \uADF8\uB0E5
+    \uB9C9\uC9C0\uB9D0\uACE0 \uB3C4\uB9DD\uAC00\uC57C \uD560 \uB54C\uB97C \uC798
+    \uAD6C\uBD84\uD558\uB294 \uAC8C \uC88B\uC744 \uAC70\uC57C"

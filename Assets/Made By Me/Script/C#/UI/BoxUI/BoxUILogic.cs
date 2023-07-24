@@ -92,16 +92,24 @@ public class BoxUILogic : CallBackInterface
     ItemExplainUI boxitemExplainUI;
     BoxUI monoBehaviour;
 
-    string[] FirstBoxUINoticeText = {
+    string[] FirstBoxUINoticeTextEnglish = {
                 "I'll explain how to use the item box.",
                 "On the right are the items currently in your inventory, and on the left are the items in the box.",
                 "If you want to move something from one side to the other, just click on the item and select 'Move'.",
                 "You can combine or discard items that are in the inventory side.",
                 "Although the box size is also limited, it will be a great help in organizing your inventory!",
                 };
+    string[] FirstBoxUINoticeTextKorean = {
+                "아이템 박스를 사용하는 방법을 알려줄게.",
+                "오른쪽에 있는게 현재 인벤토리에 있는 아이템들이고, 왼쪽에 있는게 박스 안에 있는 아이템들이야.",
+                "만약 한쪽에서 다른쪽으로 아이템을 옮기고 싶다면, 아이템을 눌러서 이동하기 를 선택하면 돼.",
+                "인벤토리에 있는 아이템 끼리는 서로 조합하는 것이 가능하고, 버리는 것도 가능해",
+                "비록 아이템 박스도 무한하지는 않지만, 인벤토리 정리하는 것에 도움을 줄거야!",
+                };
 
     string[] BoxUINoticeText = {
-            "<i><b>-Input-</b></i>\n\n<b>ENTER</b> : space  <b>BACK</b> : backSpace  <b>Box</b> : J    <b>Inventory</b> : K"
+            "<i><b>-Input-</b></i>\n\n<b>ENTER</b> : space  <b>BACK</b> : backSpace  <b>Box</b> : J    <b>Inventory</b> : K",
+            "<i><b>-입력-</b></i>\n\n<b>확인</b> : space  <b>뒤로가기</b> : backSpace  <b>박스로</b> : J    <b>인벤토리로</b> : K"
             };
 
     public BoxUILogic(BoxUI monoBehaviour, Image background)
@@ -123,7 +131,14 @@ public class BoxUILogic : CallBackInterface
         {
             if(!GameManager.TutorialCheck.isBoxUITutorialDone)
             {
-                GameManager.EventManager.InvokeShowNotice("BoxUI", FirstBoxUINoticeText , true ,900 ,150);
+                if(GameAudioManager.LanguageManager.currentLanguage == "E")
+                {   
+                    GameManager.EventManager.InvokeShowNotice("BoxUI", FirstBoxUINoticeTextEnglish , true ,900 ,150);
+                }else if(GameAudioManager.LanguageManager.currentLanguage == "K")
+                {
+                    GameManager.EventManager.InvokeShowNotice("BoxUI", FirstBoxUINoticeTextKorean , true ,900 ,150);
+                }
+                
                 GameManager.TutorialCheck.isBoxUITutorialDone = true;
             }else
             {

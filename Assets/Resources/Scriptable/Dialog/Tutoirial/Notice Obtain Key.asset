@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 486b7894a4590d345b90e6f003c46405, type: 3}
   m_Name: Notice Obtain Key
   m_EditorClassIdentifier: 
-  noticeDialog:
-  - You've picked up the key I mentioned!
-  - Now you should be able to enter the ruins.
+  englishNoticeDialog:
+  - It seems you've finally found the key.
+  - Now you can use that key to open the door to the ruins and enter.
+  koreanNoticeDialog:
+  - "\uB4DC\uB514\uC5B4 \uC5F4\uC1E0\uB97C \uCC3E\uC740 \uBAA8\uC591\uC774\uB124."
+  - "\uC774\uC81C \uADF8 \uC5F4\uC1E0\uB97C \uC774\uC6A9\uD574\uC11C \uC720\uC801\uC9C0
+    \uBB38\uC744 \uC5F4\uACE0 \uB4E4\uC5B4 \uAC08 \uC218 \uC788\uC744 \uAC70\uC57C"

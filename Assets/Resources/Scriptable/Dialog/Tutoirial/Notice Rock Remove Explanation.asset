@@ -12,10 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 486b7894a4590d345b90e6f003c46405, type: 3}
   m_Name: Notice Rock Remove Explanation
   m_EditorClassIdentifier: 
-  noticeDialog:
-  - '"Hmm, I hadn''t thought that this entrance would be blocked.'
-  - ' But since this is an excavation site, there should be a way to remove the rocks.'
-  - Try going into the buildings in the ruins and see if there's <b>something you
-    can use to blow up the rocks</b>.
-  - ' From what I know, they were using <b>nitroglycerin</b> to blow up rocks here. '
-  - ' If you can use that, you''ll be able to clear the rocks away.'
+  englishNoticeDialog:
+  - 'Hmm, I hadn''t thought that this entrance would be blocked. '
+  - 'But since this is an excavation site, there should be a way to remove the rocks. '
+  - 'Try going into the buildings in the ruins and see if there''s something you
+    can use to blow up the rocks. '
+  - ' From what I know, they were using nitroglycerin to blow up rocks here. If you
+    can use that, you''ll be able to clear the rocks away.'
+  koreanNoticeDialog:
+  - "\uD760, \uC774 \uC785\uAD6C\uAC00 \uB9C9\uD600 \uC788\uB294 \uAC74 \uC0DD\uAC01\uC744
+    \uBABB\uD588\uC5C8\uB294\uB370."
+  - "\uADF8\uB798\uB3C4 \uC5EC\uAE34 \uBC1C\uAD74\uC911\uC774\uB358 \uC720\uC801\uC9C0\uC774\uAE30\uC5D0,
+    \uB3CC\uC744 \uCE58\uC6B8 \uC218 \uC788\uB294 \uBC29\uBC95\uC774 \uC788\uC744
+    \uAC70\uC57C"
+  - "\uD55C\uBC88 \uC720\uC801\uC9C0 \uC548\uC758 \uAC74\uBB3C\uC5D0 \uB4E4\uC5B4\uAC00
+    \uBCF4\uBA74\uC11C \uB3CC\uC744 \uD3ED\uD30C \uC2DC\uD0AC \uC218 \uC788\uB294
+    \uBB3C\uAC74\uC774 \uC788\uB294\uC9C0 \uD55C\uBC88 \uBD10\uBD10"
+  - "\uB0B4\uAC00 \uC54C\uAE30\uB860 \uB3CC \uD3ED\uD30C\uC6A9 \uB2C8\uD2B8\uB85C\uAE00\uB9AC\uC138\uB9B0\uC744
+    \uC5EC\uAE30\uC11C \uC4F0\uB294 \uAC78\uB85C \uC54C\uACE0 \uC788\uC5B4. \uADF8\uAC78
+    \uC0AC\uC6A9\uD558\uBA74 \uB3CC\uC744 \uCE58\uC6B8 \uC218 \uC788\uC744 \uAC70\uC57C"

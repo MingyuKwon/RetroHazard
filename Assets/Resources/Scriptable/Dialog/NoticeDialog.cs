@@ -6,5 +6,8 @@ using UnityEngine;
 public class NoticeDialog : ScriptableObject
 {
     [TextArea]
-    public string[] noticeDialog;
+    public string[] englishNoticeDialog;
+
+    [TextArea]
+    public string[] koreanNoticeDialog;
 }

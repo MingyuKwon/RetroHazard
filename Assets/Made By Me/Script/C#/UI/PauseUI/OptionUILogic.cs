@@ -15,6 +15,7 @@ public class OptionUILogic
 
     string[] OptionText = {
         "<i><b>-Input-</b></i>\n\n<b>ENTER</b> : space   <b>BACK</b> : backSpace",
+        "<i><b>-입력-</b></i>\n\n<b>확인</b> : space   <b>뒤로가기</b> : backSpace",
     };
 
     string[] englishButtonText = { 

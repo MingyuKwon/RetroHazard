@@ -15,15 +15,22 @@ public class NoticeUILogic
     int callCount;
     int strCount;
 
+    string[] currentShowingText;
+
     public NoticeUILogic(NoticeUI monoBehaviour)
     {
         this.monoBehaviour = monoBehaviour;
         
         noticePanel = monoBehaviour.transform.GetChild(0).gameObject;
         rectTransform = noticePanel.GetComponent<RectTransform>();
-        str = noticePanel.transform.GetChild(0).gameObject.GetComponent<Text>();
+        str = monoBehaviour.str;
 
         GameManager.EventManager.showNotice += showNotice;
+        GameAudioManager.LanguageManager.languageChangeEvent += changeText;
+    }
+
+    public void OnDestroy() {
+        GameAudioManager.LanguageManager.languageChangeEvent -= changeText;
     }
 
     public void OnEnable() {
@@ -38,6 +45,17 @@ public class NoticeUILogic
         showNotice(this.showingUI, null, false, 100, 100);
     }
 
+    private void changeText(string language){
+        if(currentShowingText == null) return;
+        if(language == "E")
+        {
+            str.text = currentShowingText[0];
+        }else if(language == "K")
+        {
+            str.text = currentShowingText[1];
+        }
+    }
+
     string showingUI;
     public void showNotice(string showingUI ,string[] texts, bool isTyping, int panelWidth, int panelHeight)
     {
@@ -48,6 +66,8 @@ public class NoticeUILogic
         }else
         {
             this.showingUI = showingUI;
+
+            currentShowingText = texts;
 
             monoBehaviour.gameObject.SetActive(true);
 
@@ -60,7 +80,14 @@ public class NoticeUILogic
                 monoBehaviour.StartCoroutine(Typing(texts));
             }else
             {
-                str.text = texts[0];
+                if(GameAudioManager.LanguageManager.currentLanguage == "E")
+                {
+                    str.text = texts[0];
+                }else
+                {
+                    str.text = texts[1];
+                }
+                
             }
             
         }

@@ -63,14 +63,21 @@ public class SaveSlotUILogic : CallBackInterface
 
     int saveSlotNum;
 
-    string[] FirstSaveSlotUINoticeText = {
+    string[] FirstSaveSlotUINoticeTextEnglish = {
                 "The way to save is simple",
                 "Just press the slot you want to save in!",
                 "If you want to delete, you can press the remove button or click the red X button with the mouse",
                 };
+    
+    string[] FirstSaveSlotUINoticeTextKorean = {
+                "저장하는 법은 간단해",
+                "원하는 슬롯을 눌러서 저장하면 돼",
+                "만약 저장 슬롯을 삭제하고 싶다면 슬롯으로 커서를 옮기고 삭제버튼을 누르거나, 위의 X를 누르면 돼",
+                };
 
     string[] SaveSlotUIText = {
             "<i><b>-Input-</b></i>\n\n<b>ENTER</b> : \nspace\n\n<b>BACK</b> : \nbackSpace\n\n<b>REMOVE</b> :\n R",
+            "<i><b>-입력-</b></i>\n\n<b>확인</b> : \nspace\n\n<b>뒤로가기</b> : \nbackSpace\n\n<b>삭제하기</b> :\n R",
                 };
 
     public SaveSlotUILogic(SaveSlotUI monobehaviour)
@@ -123,7 +130,14 @@ public class SaveSlotUILogic : CallBackInterface
 
             if(!GameManager.TutorialCheck.isSaveSlotUITutorialDone)
             {
-                GameManager.EventManager.InvokeShowNotice("SaveSlotUI", FirstSaveSlotUINoticeText , true ,500 ,300);
+                if(GameAudioManager.LanguageManager.currentLanguage == "E")
+                {   
+                    GameManager.EventManager.InvokeShowNotice("SaveSlotUI", FirstSaveSlotUINoticeTextEnglish , true ,500 ,300);
+                }else if(GameAudioManager.LanguageManager.currentLanguage == "K")
+                {
+                    GameManager.EventManager.InvokeShowNotice("SaveSlotUI", FirstSaveSlotUINoticeTextKorean , true ,500 ,300);
+                }
+                
                 GameManager.TutorialCheck.isSaveSlotUITutorialDone = true;
             }else
             {

@@ -90,7 +90,7 @@ public class TabUILogic : CallBackInterface
     Image background;
 
 
-    string[] FirstItemUINoticeText = {
+    string[] FirstItemUINoticeTextEnglish = {
                 "I will explain about the item window",
                 "When you select an item, a menu window pops up, and you can choose the option you want from it.",
                 "The choices vary depending on the type of item",
@@ -99,19 +99,37 @@ public class TabUILogic : CallBackInterface
                 "The slots in the inventory are limited, so be sure to manage your items efficiently!",
                 };
 
-    string[] FirstMinimapUINoticeText = {
+    string[] FirstItemUINoticeTextKorean = {
+                "아이템 창에 대해 알려줄게",
+                "만약 아이템을 선택하면, 선택창이 뜨게 되고, 원하는 작업을 하면 돼",
+                "뜨게 되는 선택지는 무슨 종류의 아이템이냐에 따라 달라지게 될거야",
+                "배터리나 포션 같은 소모성 아이템은 버릴 수 있지만, 장비 아이템이나 중요한 아이템은 버릴 수 없어.",
+                "그리고 아이템 끼리 서로 조합해서 새로운 아이템을 만들 수도 있지",
+                "아이템 창은 한정 되어 있으니, 계획적으로 정리 해봐!",
+                };
+
+    string[] FirstMinimapUINoticeTextEnglish = {
                 "I'll explain how to read the map.",
                 "The brightest spot on the overall map indicates your current location",
                 "the moderately bright spots represent the places you've visited before \n and the dark spots are the places you've never visited",
                 "When you're in danger or planning a strategy, the map can be a great aid, so make good use of it!",
                 };
 
+    string[] FirstMinimapUINoticeTextKorean = {
+                "지도를 보는 법을 설명 해 줄게.",
+                "가장 밝게 빛나는 지점이 현재 위치야",
+                "중간 밝기의 지점은 이전에 방문했었던 지역이고 \n 어두운 지점은 아직 한번도 방문하지 않았던 지역이야.",
+                "만약 위험에 쳐했거나, 계획을 짤 때 지도는 큰 도움이 될거야!",
+                };
+
     string[] ItemUINoticeText = {
-                    "<i><b>-Input-</b></i>\n\n<b>ENTER</b> : \nspace\n\n<b>BACK</b> : \nbackSpace\n\n<b>ItemTab</b> : \nJ\n\n<b>MiniMap</b> : \nK"
+                    "<i><b>-Input-</b></i>\n\n<b>ENTER</b> : \nspace\n\n<b>BACK</b> : \nbackSpace\n\n<b>ItemTab</b> : \nJ\n\n<b>MiniMap</b> : \nK",
+                    "<i><b>-입력-</b></i>\n\n<b>확인</b> : \nspace\n\n<b>뒤로가기</b> : \nbackSpace\n\n<b>아이템창</b> : \nJ\n\n<b>미니맵</b> : \nK"
                 };
 
     string[] MiniMapUINoticeText = {
-                    "<i><b>-Input-</b></i>\n\n<b>BACK</b> : \nbackSpace\n\n<b>ItemTab</b> : \nJ\n\n<b>MiniMap</b> : \nK"               
+                    "<i><b>-Input-</b></i>\n\n<b>BACK</b> : \nbackSpace\n\n<b>ItemTab</b> : \nJ\n\n<b>MiniMap</b> : \nK",
+                    "<i><b>-입력-</b></i>\n\n<b>뒤로가기</b> : \nbackSpace\n\n<b>아이템창</b> : \nJ\n\n<b>미니맵</b> : \nK"               
                 };
 
     public int showingTabIndex{
@@ -132,7 +150,14 @@ public class TabUILogic : CallBackInterface
 
                 if(!GameManager.TutorialCheck.isItemUITutorialDone)
                 {
-                    GameManager.EventManager.InvokeShowNotice("TabUI", FirstItemUINoticeText , true ,500 ,300);
+                    if(GameAudioManager.LanguageManager.currentLanguage == "E")
+                    {   
+                        GameManager.EventManager.InvokeShowNotice("TabUI", FirstItemUINoticeTextEnglish , true ,500 ,300);
+                    }else if(GameAudioManager.LanguageManager.currentLanguage == "K")
+                    {
+                        GameManager.EventManager.InvokeShowNotice("TabUI", FirstItemUINoticeTextKorean , true ,500 ,300);
+                    }
+                    
                     GameManager.TutorialCheck.isItemUITutorialDone = true;
                 }else
                 {
@@ -150,7 +175,13 @@ public class TabUILogic : CallBackInterface
 
                 if(!GameManager.TutorialCheck.isMiniMapTutorialDone)
                 {
-                    GameManager.EventManager.InvokeShowNotice("TabUI", FirstMinimapUINoticeText , true ,500 ,300);
+                    if(GameAudioManager.LanguageManager.currentLanguage == "E")
+                    {   
+                        GameManager.EventManager.InvokeShowNotice("TabUI", FirstMinimapUINoticeTextEnglish , true ,500 ,300);
+                    }else if(GameAudioManager.LanguageManager.currentLanguage == "K")
+                    {
+                        GameManager.EventManager.InvokeShowNotice("TabUI", FirstMinimapUINoticeTextKorean , true ,500 ,300);
+                    }
                     GameManager.TutorialCheck.isMiniMapTutorialDone = true;
                 }else{
                     GameManager.EventManager.InvokeShowNotice("TabUI", MiniMapUINoticeText, false , 200 ,440);

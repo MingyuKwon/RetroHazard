@@ -52,7 +52,8 @@ public class PauseMainUI : MonoBehaviour, CallBackInterface
 
     private void OnEnable() {
         String[] texts = {
-            "<i><b>-Input-</b></i>\n\n<b>ENTER</b> : \nspace\n\n<b>BACK</b> : \nbackSpace"
+            "<i><b>-Input-</b></i>\n\n<b>ENTER</b> : \nspace\n\n<b>BACK</b> : \nbackSpace",
+            "<i><b>-입력-</b></i>\n\n<b>확인</b> : \nspace\n\n<b>뒤로가기</b> : \nbackSpace"
         };
         GameManager.EventManager.InvokeShowNotice("PauseUI", texts , false, 200 ,250);
         currentIndex = -1;

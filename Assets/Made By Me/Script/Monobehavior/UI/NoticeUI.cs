@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Sirenix.OdinInspector;
 
 public class NoticeUI : MonoBehaviour
 {
     NoticeUILogic noticeUILogic;
+    public Text str;
     public static NoticeUI instance;
 
     private void Awake() {
@@ -27,5 +29,9 @@ public class NoticeUI : MonoBehaviour
 
     private void OnDisable() {
         noticeUILogic.OnDisable();
+    }
+
+    private void OnDestroy() {
+        noticeUILogic.OnDestroy();
     }
 }
