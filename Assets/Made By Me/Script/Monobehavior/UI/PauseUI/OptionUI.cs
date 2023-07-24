@@ -29,4 +29,8 @@ public class OptionUI : MonoBehaviour
         optionUILogic.OnDisable();
     }
 
+    private void OnDestroy() {
+        optionUILogic.OnDestroy();
+    }
+
 }

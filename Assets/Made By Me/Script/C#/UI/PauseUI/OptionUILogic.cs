@@ -17,6 +17,64 @@ public class OptionUILogic
         "<i><b>-Input-</b></i>\n\n<b>ENTER</b> : space   <b>BACK</b> : backSpace",
     };
 
+    string[] englishButtonText = { 
+    "Control" , 
+    "Display" ,
+    "Audio" ,
+    "General" ,};
+
+    string[] koreanButtonText = { 
+    "조작" , 
+    "화면" ,
+    "소리" ,
+    "일반" ,};
+    
+    string[] englishDisplayText = { 
+    "Display" , 
+    "Brightness" ,
+    "Resolution" ,};
+
+    string[] koreanDisplayText = { 
+    "화면" , 
+    "밝기" ,
+    "해상도" ,};
+
+    string[] englishAudioText = { 
+    "Audio",
+    "Total Volume" , 
+    "BackGround Volume" ,
+    "UI Volume" ,
+    "SFX Volume" ,
+    "Environment Volume" ,};
+
+    string[] koreanAudioText = { 
+    "소리",
+    "총 음량" , 
+    "배경 음악 음량" ,
+    "UI 음량" ,
+    "효과음 음량" ,
+    "주변 환경 음량" ,};
+
+    string[] englishGeneralText = { 
+    "General",
+    "Language" ,};
+
+    string[] koreanGeneralText = { 
+    "일반",
+    "언어" ,};
+
+    string defaultButtonEnglishText = "Default Value";
+    string defaultButtonKoreanText = "기본값";
+
+
+    Text[] buttonPanelTexts;
+    Text[] defaultButtonPanelTexts;
+
+    Text[] ControlTexts;
+    Text[] DisPlayTexts;
+    Text[] AudioTexts;
+    Text[] GeneralTexts;
+
     //DisPlay//
     Slider VideoSlider;
     Dropdown VideoDropDown;
@@ -116,6 +174,8 @@ public class OptionUILogic
         AudioResetButton.onClick.AddListener(ResetAudioOption);
         ////////Audio//////////////////
 
+        
+        ////////General//////////////////
         LanguageDropDown = panels[3].GetComponentInChildren<Dropdown>();
         GeneralResetButton = panels[3].GetComponentInChildren<Button>();
 
@@ -132,6 +192,106 @@ public class OptionUILogic
         LanguageDropDown.onValueChanged.AddListener(delegate { DropdownLanguageValueChanged(LanguageDropDown); });
     
         GeneralResetButton.onClick.AddListener(ResetGenralOption);
+        ////////General//////////////////
+
+        //Panel and default button///////////////////
+        buttonPanelTexts = monoBehaviour.transform.GetChild(1).GetComponentsInChildren<Text>();
+        Button[] defaultButtons = monoBehaviour.transform.GetChild(2).GetComponentsInChildren<Button>();
+        defaultButtonPanelTexts = new Text[defaultButtons.Length];
+        for(int i=0; i<defaultButtons.Length; i++)
+        {
+            defaultButtonPanelTexts[i] = defaultButtons[i].GetComponentInChildren<Text>();
+        }
+        //Panel and default button///////////////////
+
+        ///////DisPlay//////////////
+        DisPlayTexts = new Text[englishDisplayText.Length];
+        DisPlayTexts[0] = panels[1].transform.GetChild(0).GetComponent<Text>();
+        DisPlayTexts[1] = panels[1].transform.GetChild(1).GetChild(0).GetChild(3).GetComponent<Text>();
+        DisPlayTexts[2] = panels[1].transform.GetChild(1).GetChild(1).GetChild(3).GetComponent<Text>();
+        ///////DisPlay//////////////
+
+        ///////Audio//////////////
+        AudioTexts = new Text[englishAudioText.Length];
+        AudioTexts[0] = panels[2].transform.GetChild(0).GetComponent<Text>();
+        AudioTexts[1] = panels[2].transform.GetChild(1).GetChild(0).GetChild(3).GetComponent<Text>();
+        AudioTexts[2] = panels[2].transform.GetChild(1).GetChild(1).GetChild(3).GetComponent<Text>();
+        AudioTexts[3] = panels[2].transform.GetChild(1).GetChild(2).GetChild(3).GetComponent<Text>();
+        AudioTexts[4] = panels[2].transform.GetChild(1).GetChild(3).GetChild(3).GetComponent<Text>();
+        AudioTexts[5] = panels[2].transform.GetChild(1).GetChild(4).GetChild(3).GetComponent<Text>();
+        ///////Audio//////////////
+
+        //////Genral//////////////
+        GeneralTexts = new Text[englishGeneralText.Length];
+        GeneralTexts[0] = panels[3].transform.GetChild(0).GetComponent<Text>();
+        GeneralTexts[1] = panels[3].transform.GetChild(1).GetChild(0).GetChild(3).GetComponent<Text>();
+        //////Genral//////////////
+
+
+        changeText(GameAudioManager.LanguageManager.currentLanguage);
+        GameAudioManager.LanguageManager.languageChangeEvent += changeText;
+    }
+
+    public void OnDestroy() {
+        GameAudioManager.LanguageManager.languageChangeEvent -= changeText;
+    }
+
+    private void changeText(string language)
+    {
+        if(language == "E")
+        {
+            for(int i=0; i<buttonPanelTexts.Length; i++)
+            {
+                buttonPanelTexts[i].text = englishButtonText[i];
+            }
+
+            for(int i=0; i<defaultButtonPanelTexts.Length; i++)
+            {
+                defaultButtonPanelTexts[i].text = defaultButtonEnglishText;
+            }
+
+            for(int i=0; i<DisPlayTexts.Length; i++)
+            {
+                DisPlayTexts[i].text = englishDisplayText[i];
+            }
+
+            for(int i=0; i<AudioTexts.Length; i++)
+            {
+                AudioTexts[i].text = englishAudioText[i];
+            }
+
+            for(int i=0; i<GeneralTexts.Length; i++)
+            {
+                GeneralTexts[i].text = englishGeneralText[i];
+            }
+            
+        }else if(language == "K")
+        {
+            for(int i=0; i<buttonPanelTexts.Length; i++)
+            {
+                buttonPanelTexts[i].text = koreanButtonText[i];
+            }
+
+            for(int i=0; i<defaultButtonPanelTexts.Length; i++)
+            {
+                defaultButtonPanelTexts[i].text = defaultButtonKoreanText;
+            }
+
+            for(int i=0; i<DisPlayTexts.Length; i++)
+            {
+                DisPlayTexts[i].text = koreanDisplayText[i];
+            }
+
+            for(int i=0; i<AudioTexts.Length; i++)
+            {
+                AudioTexts[i].text = koreanAudioText[i];
+            }
+
+            for(int i=0; i<GeneralTexts.Length; i++)
+            {
+                GeneralTexts[i].text = koreanGeneralText[i];
+            }
+        }
     }
 
 
