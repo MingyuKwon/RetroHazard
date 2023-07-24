@@ -149,7 +149,15 @@ public class MainMenuUI : MonoBehaviour, CallBackInterface
 
         }else if(n == 1) // new Game
         {
+            if(GameAudioManager.LanguageManager.currentLanguage == "E")
+        {   
             AlertUI.instance.ShowAlert("Are you sure you want to start new Game?", this);
+        }else if(GameAudioManager.LanguageManager.currentLanguage == "K")
+        {
+            AlertUI.instance.ShowAlert("새로운 게임을 시작하시겠습니까?", this);
+        }
+
+            
 
         }else if(n == 2)
         {

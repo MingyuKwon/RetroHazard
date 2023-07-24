@@ -188,7 +188,14 @@ public class SaveSlotUILogic : CallBackInterface
 
         if(isSave)
         {
-            AlertUI.instance.ShowAlert("Are you sure you want to save in save slot " + (saveSlotNum + 1) + " ?\n\n<i>(save file will be overwrited if save slot already has one)</i>", this);
+            if(GameAudioManager.LanguageManager.currentLanguage == "E")
+            {   
+                AlertUI.instance.ShowAlert("Are you sure you want to save in save slot " + (saveSlotNum + 1) + " ?\n\n<i>(save file will be overwrited if save slot already has one)</i>", this);
+            }else if(GameAudioManager.LanguageManager.currentLanguage == "K")
+            {
+                AlertUI.instance.ShowAlert("저장 슬롯 " + (saveSlotNum + 1) + "에 저장하시겠습니까 ?\n\n<i>(이미 저장된 슬롯이라면, 그 위에 저장이 덮어 씌워집니다)</i>", this);
+            }
+            
         }else
         {
             if(SaveSystem.instance.saveSlotInfos[saveSlotNum].saveTime == "Empty")
@@ -196,7 +203,13 @@ public class SaveSlotUILogic : CallBackInterface
                 return;
             }
 
-            AlertUI.instance.ShowAlert("Are you sure you want to load from save slot " + (saveSlotNum + 1) + " ?", this);
+            if(GameAudioManager.LanguageManager.currentLanguage == "E")
+            {   
+                AlertUI.instance.ShowAlert("Are you sure you want to load from save slot " + (saveSlotNum + 1) + " ?", this);
+            }else if(GameAudioManager.LanguageManager.currentLanguage == "K")
+            {
+                AlertUI.instance.ShowAlert("저장 슬롯 " + (saveSlotNum + 1) + "에서 로드하시겠습니까 ?", this);
+            }
         }
     }
 
@@ -209,7 +222,13 @@ public class SaveSlotUILogic : CallBackInterface
             return;
         }
 
-        AlertUI.instance.ShowAlert("Are you sure you want to Delete this save slot " + (saveSlotNum + 1) + " ?", new DeleteCallbackClass(n));
+        if(GameAudioManager.LanguageManager.currentLanguage == "E")
+        {   
+            AlertUI.instance.ShowAlert("Are you sure you want to Delete this save slot " + (saveSlotNum + 1) + " ?", new DeleteCallbackClass(n));
+        }else if(GameAudioManager.LanguageManager.currentLanguage == "K")
+        {
+            AlertUI.instance.ShowAlert("정말로 저장 슬롯 " + (saveSlotNum + 1) + "을 삭제하시겠습니까 ?", new DeleteCallbackClass(n));
+        }
     }
 
     private void OnSave(int num)

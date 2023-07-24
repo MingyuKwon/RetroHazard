@@ -323,7 +323,16 @@ public class BoxUILogic : CallBackInterface
                 }else if(playerItemUI.itemContainers[UI.instance.boxUI.playerItemIndex].selectIndex == 2) // discard
                 {
                     discardTargetItemIndex = UI.instance.boxUI.playerItemIndex;
-                    AlertUI.instance.ShowAlert("Are you sure to Discard this Item? \n\n <i>(discarded Item cannot be restored)</i>", this);
+
+                    if(GameAudioManager.LanguageManager.currentLanguage == "E")
+                    {   
+                        AlertUI.instance.ShowAlert("Are you sure to Discard this Item? \n\n <i>(discarded Item cannot be restored)</i>", this);
+                    }else if(GameAudioManager.LanguageManager.currentLanguage == "K")
+                    {
+                        AlertUI.instance.ShowAlert("이 아이템을 버리시겠습니까?? \n\n <i>(버린 아이템은 다시 복구 할 수 없습니다)</i>", this);
+                    }
+                    
+                    
                 }
             }
             else if(currentWindowLayer == 2)

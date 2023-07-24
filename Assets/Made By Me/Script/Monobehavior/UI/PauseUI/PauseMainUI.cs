@@ -67,7 +67,15 @@ public class PauseMainUI : MonoBehaviour, CallBackInterface
 
     public void MainMenu()
     {
-        AlertUI.instance.ShowAlert("Are you sure you want to go back to Main Menu? \n\n <b>(unsaved Data will be deleted)</b>", this);
+        if(GameAudioManager.LanguageManager.currentLanguage == "E")
+        {   
+            AlertUI.instance.ShowAlert("Are you sure you want to go back to Main Menu? \n\n <b>(unsaved Data will be deleted)</b>", this);
+        }else if(GameAudioManager.LanguageManager.currentLanguage == "K")
+        {
+            AlertUI.instance.ShowAlert("메인 메뉴로 돌아가고 싶은게 확실하나요? \n\n <b>(저장되지 않은 진행상황은 삭제 됩니다)</b>", this);
+        }
+
+        
     }
 
     public void CallBack()
