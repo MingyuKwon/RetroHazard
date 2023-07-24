@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UI;
 
 public class OptionUILogic
@@ -15,6 +16,12 @@ public class OptionUILogic
     string[] OptionText = {
         "<i><b>-Input-</b></i>\n\n<b>ENTER</b> : space   <b>BACK</b> : backSpace",
     };
+
+    //DisPlay//
+    Slider VideoSlider;
+    Dropdown VideoDropDown;
+    Button VideoResetButton;
+    //DisPlay//
 
     //Audio//
     Slider[] AudioSliders;
@@ -32,6 +39,46 @@ public class OptionUILogic
             panels[i] = monoBehaviour.transform.GetChild(2).GetChild(i).gameObject;
         }
 
+        ////////Video//////////////////
+        VideoSlider = panels[1].GetComponentInChildren<Slider>();
+        VideoDropDown = panels[1].GetComponentInChildren<Dropdown>();
+        VideoResetButton = panels[1].GetComponentInChildren<Button>();
+
+        VideoSlider.maxValue = 1;
+        VideoSlider.minValue = 0.2f;
+
+        VideoSlider.value = ScreenBright.ScreenLight;
+
+        VideoSlider.onValueChanged.AddListener(UpdateVideoSlider);
+
+        VideoDropDown.options.Clear();
+        List<string> resolutionItem = new List<string> {"1920 X 1080","1600 X 900" ,"1280 X 720", "960 X 540"};
+
+        foreach (var item in resolutionItem)
+        {
+            VideoDropDown.options.Add(new Dropdown.OptionData() { text = item });
+        }
+
+        switch(PlayerPrefs.GetInt("Resolution"))
+        {
+            case 1080 :
+                VideoDropDown.value = 0;
+                break;
+            case 900 :
+                VideoDropDown.value = 1;
+                break;
+            case 720 :
+                VideoDropDown.value = 2;
+                break;
+            case 540 :
+                VideoDropDown.value = 3;
+                break;
+        }
+        VideoDropDown.onValueChanged.AddListener(delegate { DropdownValueChanged(VideoDropDown); });
+
+        VideoResetButton.onClick.AddListener(ResetVideoOption);
+        ////////Video//////////////////
+
         ////////Audio//////////////////
         AudioSliders = panels[2].GetComponentsInChildren<Slider>();
         AudioResetButton = panels[2].GetComponentInChildren<Button>();
@@ -39,30 +86,54 @@ public class OptionUILogic
         AudioSliders[0].maxValue = 1;
         AudioSliders[0].minValue = 0;
         AudioSliders[0].value = GameAudioManager.totalVolme;
-        AudioSliders[0].onValueChanged.AddListener(UpdateSliderValue0);
+        AudioSliders[0].onValueChanged.AddListener(UpdateAudioSliderValue0);
 
         AudioSliders[1].maxValue = 1;
         AudioSliders[1].minValue = 0;
         AudioSliders[1].value = GameAudioManager.currentBackGroundVolume;
-        AudioSliders[1].onValueChanged.AddListener(UpdateSliderValue1);
+        AudioSliders[1].onValueChanged.AddListener(UpdateAudioSliderValue1);
 
         AudioSliders[2].maxValue = 1;
         AudioSliders[2].minValue = 0;
         AudioSliders[2].value = GameAudioManager.currentUIVolume;
-        AudioSliders[2].onValueChanged.AddListener(UpdateSliderValue2);
+        AudioSliders[2].onValueChanged.AddListener(UpdateAudioSliderValue2);
 
         AudioSliders[3].maxValue = 1;
         AudioSliders[3].minValue = 0;
         AudioSliders[3].value = GameAudioManager.currentSFXVolume;
-        AudioSliders[3].onValueChanged.AddListener(UpdateSliderValue3);
+        AudioSliders[3].onValueChanged.AddListener(UpdateAudioSliderValue3);
 
         AudioSliders[4].maxValue = 1;
         AudioSliders[4].minValue = 0;
         AudioSliders[4].value = GameAudioManager.currentEnvironmentVolume;
-        AudioSliders[4].onValueChanged.AddListener(UpdateSliderValue4);
+        AudioSliders[4].onValueChanged.AddListener(UpdateAudioSliderValue4);
 
         AudioResetButton.onClick.AddListener(ResetAudioOption);
         ////////Audio//////////////////
+    }
+
+    void DropdownValueChanged(Dropdown change)
+    {
+        switch(change.value)
+        {
+            case 0 :
+                Screen.SetResolution(1920, 1080, FullScreenMode.Windowed);
+                PlayerPrefs.SetInt("Resolution", 1080);
+                break;
+            case 1 :
+                Screen.SetResolution(1600, 900, FullScreenMode.Windowed);
+                PlayerPrefs.SetInt("Resolution", 900);
+                break;
+            case 2 :
+                Screen.SetResolution(1280, 720, FullScreenMode.Windowed);
+                PlayerPrefs.SetInt("Resolution", 720);
+                break;
+            case 3 :
+                Screen.SetResolution(960, 540, FullScreenMode.Windowed);
+                PlayerPrefs.SetInt("Resolution", 540);
+                break;
+        }
+        
     }
 
     private void ResetAudioOption()
@@ -80,27 +151,42 @@ public class OptionUILogic
             AudioSliders[4].value = GameAudioManager.currentEnvironmentVolume;
     }
 
-    private void UpdateSliderValue0(float value)
+    private void ResetVideoOption()
+    {
+        ScreenBright.ScreenLight = 1f;
+        VideoSlider.value = ScreenBright.ScreenLight;
+
+        Screen.SetResolution(1920, 1080, FullScreenMode.Windowed);
+        PlayerPrefs.SetInt("Resolution", 1080);
+        VideoDropDown.value = 0;
+    }
+
+    private void UpdateVideoSlider(float value)
+    {
+        ScreenBright.ScreenLight = value;
+    }
+
+    private void UpdateAudioSliderValue0(float value)
     {
         GameAudioManager.totalVolme = value;
     }
 
-    private void UpdateSliderValue1(float value)
+    private void UpdateAudioSliderValue1(float value)
     {
         GameAudioManager.currentBackGroundVolume = value;
     }
 
-    private void UpdateSliderValue2(float value)
+    private void UpdateAudioSliderValue2(float value)
     {
         GameAudioManager.currentUIVolume = value;
     }
 
-    private void UpdateSliderValue3(float value)
+    private void UpdateAudioSliderValue3(float value)
     {
         GameAudioManager.currentSFXVolume = value;
     }
 
-    private void UpdateSliderValue4(float value)
+    private void UpdateAudioSliderValue4(float value)
     {
         GameAudioManager.currentEnvironmentVolume = value;
     }
