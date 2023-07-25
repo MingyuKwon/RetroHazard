@@ -9,6 +9,11 @@ public class PauseMainUI : MonoBehaviour, CallBackInterface
 {
     bool isFirstSelect = true;
 
+    public Text resumeText;
+    public Text loadText;
+    public Text optionText;
+    public Text GoMainmenuText;
+
     public int currentIndex{
         get{
             return _currentIndex;
@@ -48,6 +53,31 @@ public class PauseMainUI : MonoBehaviour, CallBackInterface
 
     private void Awake() {
         buttons = GetComponentsInChildren<UIButton>();
+
+        ChangeLanguage(GameAudioManager.LanguageManager.currentLanguage);
+        GameAudioManager.LanguageManager.languageChangeEvent += ChangeLanguage;
+    
+    }
+    private void OnDestroy() {
+        GameAudioManager.LanguageManager.languageChangeEvent -= ChangeLanguage;
+    }
+
+    private void ChangeLanguage(string language)
+    {
+        if(language == "E")
+        {
+            resumeText.text = "Resume Game";
+            loadText.text = "Load Game";
+            optionText.text = "Option";
+            GoMainmenuText.text = "Go to Main Menu";
+            
+        }else if(language == "K")
+        {
+            resumeText.text = "계속하기";
+            loadText.text = "불러오기";
+            optionText.text = "설정";
+            GoMainmenuText.text = "시작화면으로";
+        }
     }
 
     private void OnEnable() {
