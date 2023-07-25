@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemPath: Scriptable/Item Information/Equip Item/Energy/Energy 3 Container Information
   ItemImage: {fileID: 21300078, guid: a977e104bdeb79746b0814c9c7215e80, type: 3}
-  ItemName: Energy 3 Container
+  ItemName: Energy 3 Supplier
+  ItemNameKorean: "\uC5D0\uB108\uC9C0 3 \uACF5\uAE09\uC6D0"
   isKeyItem: 1
   isNormalItem: 0
   isEquipItem: 1
@@ -35,6 +36,11 @@ MonoBehaviour:
   expansionAmount: 0
   healAmount: 0
   ItemDescription:
-  - 'Containing Energy 3 up to 6.
+  - 'Containing <b>Energy 3</b> up to 3.
 
-    It enable you to attack using Energy 3'
+    It enable you to attack using Energy
+    3 '
+  ItemDescriptionKorean:
+  - "<b>\uC5D0\uB108\uC9C0 3</b>\uC744 3\uAC1C \uAE4C\uC9C0 \uBCF4\uAD00\uD560 \uC218
+    \uC788\uB2E4\n\uC7A5\uCC29\uC2DC, \uC5D0\uB108\uC9C0 3\uC744 \uC774\uC6A9\uD574\uC11C
+    \uACF5\uACA9 \uAC00\uB2A5\uD574 \uC9C4\uB2E4"

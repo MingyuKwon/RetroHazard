@@ -8,6 +8,7 @@ using UnityEngine;
 public class InteractiveDialog : ScriptableObject
 {
     public string Interactive_name;
+    public string Interactive_nameKorean;
     [InfoBox("[Standard InteractCode]\n0 : Medium key-hole Door")]
     [InfoBox("[Tutorial InteractCode]\n200 : Tutorial Rock Pile\n201 : Historic Site Gate")]
     public int InteractCode;
@@ -19,8 +20,12 @@ public class InteractiveDialog : ScriptableObject
 
     [TextArea]
     public string Interactive_Situation;
+    [TextArea]
+    public string Interactive_SituationKorean;
 
     [TextArea]
     public string[] SucessDialog;
+    [TextArea]
+    public string[] SucessDialogKorean;
 
 }

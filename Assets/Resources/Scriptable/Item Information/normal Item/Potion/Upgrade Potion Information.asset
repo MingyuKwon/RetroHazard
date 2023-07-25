@@ -16,6 +16,7 @@ MonoBehaviour:
     1
   ItemImage: {fileID: -1585365941, guid: 5bdc2781d97139949a21d7b80c0962a6, type: 3}
   ItemName: Upgrade Potion
+  ItemNameKorean: "\uAC15\uD654 \uD3EC\uC158"
   isKeyItem: 0
   isNormalItem: 1
   isEquipItem: 0
@@ -41,3 +42,7 @@ MonoBehaviour:
 
     If you mix this with heal potrion, something
     great will be created'
+  ItemDescriptionKorean:
+  - "\uCCB4\uB825\uC744 20 \uD68C\uBCF5 \uC2DC\uCF1C\uC900\uB2E4\n\n\uB9CC\uC57D
+    \uD68C\uBCF5 \uD3EC\uC158\uACFC \uC870\uD569\uD55C\uB2E4\uBA74, \uAD49\uC7A5\uD55C
+    \uD3EC\uC158\uC744 \uB9CC\uB4E4 \uC218 \uC788\uC744 \uAC83 \uAC19\uB2E4"

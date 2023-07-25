@@ -88,7 +88,14 @@ public class InteractiveUILogic
 
         while(callCount == 0 && flag)
         {
-            interactiveDialogText.text = "You obtained <b><color=blue>\"" + ItemName + "\"</color></b> !";
+            if(GameAudioManager.LanguageManager.currentLanguage == "E")
+            {
+                interactiveDialogText.text = "You obtained <b><color=blue>\"" + ItemName + "\"</color></b> !";
+            }else if(GameAudioManager.LanguageManager.currentLanguage == "K")
+            {
+                interactiveDialogText.text = "<b><color=blue>\"" + ItemName + "\"</color></b>를 획득했다 !";
+            }
+            
             yield return new WaitForEndOfFrame();
         }
         

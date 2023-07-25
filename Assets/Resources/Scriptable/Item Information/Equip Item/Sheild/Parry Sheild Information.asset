@@ -15,6 +15,7 @@ MonoBehaviour:
   itemPath: Scriptable/Item Information/Equip Item/Sheild/Parry Sheild Information
   ItemImage: {fileID: -1402280519, guid: 5bdc2781d97139949a21d7b80c0962a6, type: 3}
   ItemName: Parry Sheild
+  ItemNameKorean: "\uD328\uB9AC \uBC29\uD328"
   isKeyItem: 1
   isNormalItem: 0
   isEquipItem: 1
@@ -41,3 +42,9 @@ MonoBehaviour:
 
     After
     Sucessing Parry, next Attack will be stronger than normal '
+  ItemDescriptionKorean:
+  - "\uC801\uC758 \uACF5\uACA9\uC744 \uB9C9\uAC70\uB098 \uD328\uB9C1 \uD560 \uC218
+    \uC788\uB2E4\n\n\uBC29\uD328\uB85C \uACF5\uACA9\uC744 \uB9C9\uC744 \uB54C, 100%
+    \uB2E4 \uB9C9\uC744 \uC21C \uC5C6\uB2E4\n\uB9CC\uC57D \uD328\uB9C1\uC5D0 \uC131\uACF5\uD588\uB2E4\uBA74,
+    \uAE30\uC808\uD55C \uC0C1\uD0DC\uC758 \uC801\uC744 \uACF5\uACA9\uC2DC \uCD94\uAC00\uC758
+    \uB370\uBBF8\uC9C0\uB97C \uC8FC\uAC8C \uB41C\uB2E4"

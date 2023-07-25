@@ -13,13 +13,19 @@ MonoBehaviour:
   m_Name: Interact OneWayDoor
   m_EditorClassIdentifier: 
   Interactive_name: One way Door
+  Interactive_nameKorean: "\uC77C\uBC18\uD1B5\uD589 \uBB38"
   InteractCode: -1
   InteractKeyItems: ffffffff
   Interactive_Situation: 'It seems like the door won''t open from this side.
 
 '
+  Interactive_SituationKorean: "\uBB38\uC774 \uC774\uCABD\uC5D0\uC120 \uC5F4\uB9AC\uC9C0
+    \uC54A\uB294 \uAC83 \uAC19\uB2E4"
   SucessDialog:
   - The door opened!
   - 'This passage can now be traversed!
 
 '
+  SucessDialogKorean:
+  - "\uBB38\uC774 \uC5F4\uB838\uB2E4!"
+  - "\uC774\uC81C \uC774 \uD1B5\uB85C\uB294 \uC774\uB3D9 \uAC00\uB2A5\uD574\uC84C\uB2E4!"

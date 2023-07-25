@@ -16,6 +16,7 @@ MonoBehaviour:
     3/battery 3 Item Information 8
   ItemImage: {fileID: 1033867955, guid: 5bdc2781d97139949a21d7b80c0962a6, type: 3}
   ItemName: Energy 3 battery
+  ItemNameKorean: "\uC5D0\uB108\uC9C0 3 \uBC30\uD130\uB9AC"
   isKeyItem: 0
   isNormalItem: 1
   isEquipItem: 0
@@ -36,3 +37,5 @@ MonoBehaviour:
   healAmount: 0
   ItemDescription:
   - can be used to reload Energy 3
+  ItemDescriptionKorean:
+  - "\uC5D0\uB108\uC9C0 3\uC744 \uC7A5\uC804 \uD560 \uB54C \uC0AC\uC6A9\uB41C\uB2E4"

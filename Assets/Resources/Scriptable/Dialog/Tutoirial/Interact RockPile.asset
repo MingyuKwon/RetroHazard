@@ -12,11 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 610cd96129616a742947f51acbf0e357, type: 3}
   m_Name: Interact RockPile
   m_EditorClassIdentifier: 
-  Interactive_name: Rock Pile
+  Interactive_name: BIg Rock Pile
+  Interactive_nameKorean: "\uD070 \uB3CC \uBB34\uB354\uAE30"
   InteractCode: 200
   InteractKeyItems: c8000000
   Interactive_Situation: "The exit to the archaeological site is blocked by stones.
     \n\nSomething is needed to clear the stones from the path"
+  Interactive_SituationKorean: "\uC720\uC801\uC9C0\uB85C \uBD80\uD130 \uB098\uAC00\uB294
+    \uAE38\uC774 \uB3CC\uB85C \uC778\uD574 \uB9C9\uD600\uC788\uB2E4\n\n\uAE38\uC5D0\uC11C
+    \uB3CC\uC744 \uCE58\uC6B8 \uC218 \uC788\uB294 \uBB34\uC5B8\uAC00\uAC00 \uD544\uC694\uD558\uB2E4"
   SucessDialog:
   - Boom!
   - " the stones have been cleared, \n"
+  SucessDialogKorean:
+  - "\uCF85!"
+  - "\uB3CC\uC744 \uCE58\uC6B0\uB294\uB370 \uC131\uACF5\uD588\uB2E4!"

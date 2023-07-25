@@ -40,7 +40,14 @@ public class HiddenInteract : RealInteract
     public void Hidden_Interact()
     {
         PlayEnvironmentMusic(InteractSuccessSound);
-        GameManagerUI.instance.SetInteractiveDialogText(dialog.SucessDialog);
+        
+        if(GameAudioManager.LanguageManager.currentLanguage == "E")
+        {
+            GameManagerUI.instance.SetInteractiveDialogText(dialog.SucessDialog);
+        }else if(GameAudioManager.LanguageManager.currentLanguage == "K")
+        {
+            GameManagerUI.instance.SetInteractiveDialogText(dialog.SucessDialogKorean);
+        }
         GameManagerUI.instance.VisualizeInteractiveUI(true);
         nowHiddenInteracting = true;
         StartCoroutine(isDialogEnd());

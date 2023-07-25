@@ -15,6 +15,7 @@ MonoBehaviour:
   itemPath: Scriptable/Item Information/Equip Item/Sheild/Big Sheild Information
   ItemImage: {fileID: -151410628, guid: 5bdc2781d97139949a21d7b80c0962a6, type: 3}
   ItemName: Big  Sheild
+  ItemNameKorean: "\uB300\uBC29\uD328"
   isKeyItem: 1
   isNormalItem: 0
   isEquipItem: 1
@@ -34,4 +35,7 @@ MonoBehaviour:
   expansionAmount: 0
   healAmount: 0
   ItemDescription:
-  - Can Sheild but cam't Parry Enemy Attack
+  - consumes less durability than a regular shield, but <b>parrying is not possible</b>.
+  ItemDescriptionKorean:
+  - "\uB0B4\uAD6C\uB3C4\uAC00 \uC77C\uBC18 \uBC29\uD328\uBCF4\uB2E4 \uC801\uAC8C
+    \uB2EC\uC9C0\uB9CC, \uD328\uB9C1\uC774 \uBD88\uAC00\uB2A5\uD558\uB2E4."

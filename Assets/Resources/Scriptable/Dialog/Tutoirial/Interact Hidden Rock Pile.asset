@@ -13,10 +13,17 @@ MonoBehaviour:
   m_Name: Interact Hidden Rock Pile
   m_EditorClassIdentifier: 
   Interactive_name: Rock Pile
+  Interactive_nameKorean: "\uB3CC \uBB34\uB354\uAE30"
   InteractCode: 0
   InteractKeyItems: 
   Interactive_Situation: 
+  Interactive_SituationKorean: 
   SucessDialog:
   - It seems like there's some item inside the pile of rocks.
   - Clatter, clatter
   - Found a useful item!
+  SucessDialogKorean:
+  - "\uB3CC \uBB34\uB354\uAE30 \uC548\uC5D0 \uC544\uC774\uD15C\uC774 \uC788\uB294
+    \uAC83 \uAC19\uB2E4......."
+  - "\uC798\uADF8\uB77D, \uC798\uADF8\uB77D"
+  - "\uC4F8\uB9CC\uD55C \uC544\uC774\uD15C\uC744 \uCC3E\uC558\uB2E4!"

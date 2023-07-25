@@ -29,10 +29,24 @@ public class OneWayDoor : RealInteract
             if(playerTransform.position.x < transform.position.x)
             {
                 flag = true;
-                GameManagerUI.instance.SetInteractiveDialogText(dialog.SucessDialog);
+                if(GameAudioManager.LanguageManager.currentLanguage == "E")
+                    {   
+                        GameManagerUI.instance.SetInteractiveDialogText(dialog.SucessDialog);
+                    }else if(GameAudioManager.LanguageManager.currentLanguage == "K")
+                    {
+                        GameManagerUI.instance.SetInteractiveDialogText(dialog.SucessDialogKorean);
+                    }
+                
             }else
             {
-                texts[0] = dialog.Interactive_Situation;
+                if(GameAudioManager.LanguageManager.currentLanguage == "E")
+                {
+                    texts[0] = dialog.Interactive_Situation;
+                }else if(GameAudioManager.LanguageManager.currentLanguage == "K")
+                {
+                    texts[0] = dialog.Interactive_SituationKorean;
+                }
+
                 GameManagerUI.instance.SetInteractiveDialogText(texts);
             }
 
@@ -41,10 +55,22 @@ public class OneWayDoor : RealInteract
             if(playerTransform.position.x > transform.position.x)
             {
                 flag = true;
-                GameManagerUI.instance.SetInteractiveDialogText(dialog.SucessDialog);
+                if(GameAudioManager.LanguageManager.currentLanguage == "E")
+                    {   
+                        GameManagerUI.instance.SetInteractiveDialogText(dialog.SucessDialog);
+                    }else if(GameAudioManager.LanguageManager.currentLanguage == "K")
+                    {
+                        GameManagerUI.instance.SetInteractiveDialogText(dialog.SucessDialogKorean);
+                    }
             }else
             {
-                texts[0] = dialog.Interactive_Situation;
+                if(GameAudioManager.LanguageManager.currentLanguage == "E")
+                {
+                    texts[0] = dialog.Interactive_Situation;
+                }else if(GameAudioManager.LanguageManager.currentLanguage == "K")
+                {
+                    texts[0] = dialog.Interactive_SituationKorean;
+                }
                 GameManagerUI.instance.SetInteractiveDialogText(texts);
             }
         }else if(openX == 0 && openY == 1)
@@ -52,10 +78,22 @@ public class OneWayDoor : RealInteract
             if(playerTransform.position.y < transform.position.y)
             {
                 flag = true;
-                GameManagerUI.instance.SetInteractiveDialogText(dialog.SucessDialog);
+                if(GameAudioManager.LanguageManager.currentLanguage == "E")
+                    {   
+                        GameManagerUI.instance.SetInteractiveDialogText(dialog.SucessDialog);
+                    }else if(GameAudioManager.LanguageManager.currentLanguage == "K")
+                    {
+                        GameManagerUI.instance.SetInteractiveDialogText(dialog.SucessDialogKorean);
+                    }
             }else
             {
-                texts[0] = dialog.Interactive_Situation;
+                if(GameAudioManager.LanguageManager.currentLanguage == "E")
+                {
+                    texts[0] = dialog.Interactive_Situation;
+                }else if(GameAudioManager.LanguageManager.currentLanguage == "K")
+                {
+                    texts[0] = dialog.Interactive_SituationKorean;
+                }
                 GameManagerUI.instance.SetInteractiveDialogText(texts);
             }
         }else if(openX == 0 && openY == -1)
@@ -63,10 +101,22 @@ public class OneWayDoor : RealInteract
             if(playerTransform.position.y > transform.position.y)
             {
                 flag = true;
-                GameManagerUI.instance.SetInteractiveDialogText(dialog.SucessDialog);
+                if(GameAudioManager.LanguageManager.currentLanguage == "E")
+                    {   
+                        GameManagerUI.instance.SetInteractiveDialogText(dialog.SucessDialog);
+                    }else if(GameAudioManager.LanguageManager.currentLanguage == "K")
+                    {
+                        GameManagerUI.instance.SetInteractiveDialogText(dialog.SucessDialogKorean);
+                    }
             }else
             {
-                texts[0] = dialog.Interactive_Situation;
+                if(GameAudioManager.LanguageManager.currentLanguage == "E")
+                {
+                    texts[0] = dialog.Interactive_Situation;
+                }else if(GameAudioManager.LanguageManager.currentLanguage == "K")
+                {
+                    texts[0] = dialog.Interactive_SituationKorean;
+                }
                 GameManagerUI.instance.SetInteractiveDialogText(texts);
             }
         }

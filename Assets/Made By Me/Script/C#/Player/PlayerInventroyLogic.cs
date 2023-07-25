@@ -388,7 +388,6 @@ public class PlayerInventroyLogic
 
     public void Obtain_Potion_Item(ItemInformation itemInformation)
     {
-        Debug.Log("Obtain_Potion_Item : " + itemInformation.ItemName);
         for(int i=0; i<CurrentContainerSize; i++)
         {
             if(items[i] == null)
@@ -406,7 +405,6 @@ public class PlayerInventroyLogic
 
     public void Obtain_bullet_Item(ItemInformation itemInformation, int amount)
     {
-        Debug.Log("Obtain_bullet_Item : " + itemInformation.ItemName + " amount : " + amount);
         if(amount > 0)
         {
             for(int i=0; i<CurrentContainerSize; i++)
@@ -442,7 +440,6 @@ public class PlayerInventroyLogic
 
     public void Obtain_Expansion_Item(ItemInformation itemInformation)
     {
-        Debug.Log("Obtain_Expansion_Item : " + itemInformation.ItemName);
         for(int i=0; i<CurrentContainerSize; i++)
         {
             if(items[i] == null)
@@ -459,7 +456,6 @@ public class PlayerInventroyLogic
 
     public void Obtain_RealKey_Item(ItemInformation itemInformation)
     {
-        Debug.Log("Obtain_RealKey_Item : " + itemInformation.ItemName);
         for(int i=0; i<CurrentContainerSize; i++)
         {
             if(items[i] == null)
@@ -478,8 +474,6 @@ public class PlayerInventroyLogic
     public void Obtain_Equip_Item(ItemInformation itemInformation, int KeyItemCode)
     {
         if(!itemInformation.isEquipItem) return;
-
-        Debug.Log("Obtain_Equip_Item : " + itemInformation.ItemName);
 
         for(int i=0; i<CurrentContainerSize; i++)
         {

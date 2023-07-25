@@ -15,6 +15,7 @@ MonoBehaviour:
   itemPath: Scriptable/Item Information/normal Item/Potion/Elixer Potion Information
   ItemImage: {fileID: 419501038, guid: 5bdc2781d97139949a21d7b80c0962a6, type: 3}
   ItemName: Elixer Potion
+  ItemNameKorean: "\uC5D8\uB9AD\uC11C"
   isKeyItem: 0
   isNormalItem: 1
   isEquipItem: 0
@@ -35,3 +36,5 @@ MonoBehaviour:
   healAmount: 1
   ItemDescription:
   - It will heal your HP to Max HP
+  ItemDescriptionKorean:
+  - "\uCCB4\uB825\uC744 \uCD5C\uB300\uCE58\uB85C \uD68C\uBCF5\uC2DC\uCF1C \uC900\uB2E4"

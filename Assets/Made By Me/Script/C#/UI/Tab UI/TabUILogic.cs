@@ -297,9 +297,22 @@ public class TabUILogic : CallBackInterface
                 neededKeyItemCode = null;
                 interactiveDialog = null;
             }
-
-            interactiveMessageUI.SetInteractiveName(dialog.Interactive_name);
-            interactiveMessageUI.SetInteractiveSituation(dialog.Interactive_Situation);
+            if(GameAudioManager.LanguageManager.currentLanguage == "E")
+            {
+                interactiveMessageUI.SetInteractiveName(dialog.Interactive_name);
+            }else if(GameAudioManager.LanguageManager.currentLanguage == "K")
+            {
+                interactiveMessageUI.SetInteractiveName(dialog.Interactive_nameKorean);
+            }
+            
+            if(GameAudioManager.LanguageManager.currentLanguage == "E")
+            {
+                interactiveMessageUI.SetInteractiveSituation(dialog.Interactive_Situation);
+            }else if(GameAudioManager.LanguageManager.currentLanguage == "K")
+            {
+                interactiveMessageUI.SetInteractiveSituation(dialog.Interactive_SituationKorean);
+            }
+            
         }
 
         monoBehavior.gameObject.SetActive(flag);
@@ -354,8 +367,15 @@ public class TabUILogic : CallBackInterface
         Visualize_Tab_Obtain(flag);
         bulletItem = item;
 
-        interactiveMessageUI.SetInteractiveName(item.information.ItemName);
-        interactiveMessageUI.SetInteractiveSituation(item.information.ItemDescription[0]);
+        if(GameAudioManager.LanguageManager.currentLanguage == "E")
+        {
+            interactiveMessageUI.SetInteractiveName(item.information.ItemName);
+            interactiveMessageUI.SetInteractiveSituation(item.information.ItemDescription[0]);
+        }else if(GameAudioManager.LanguageManager.currentLanguage == "K")
+        {
+            interactiveMessageUI.SetInteractiveName(item.information.ItemNameKorean);
+            interactiveMessageUI.SetInteractiveSituation(item.information.ItemDescriptionKorean[0]);
+        }
         interactiveMessageUI.SetItemImage(item.information.ItemImage);
         interactiveMessageUI.SetAmountText(item.information.amount);
     }
@@ -365,8 +385,15 @@ public class TabUILogic : CallBackInterface
         Visualize_Tab_Obtain(flag);
         potionItem = item;
 
-        interactiveMessageUI.SetInteractiveName(item.information.ItemName);
-        interactiveMessageUI.SetInteractiveSituation(item.information.ItemDescription[0]);
+        if(GameAudioManager.LanguageManager.currentLanguage == "E")
+        {
+            interactiveMessageUI.SetInteractiveName(item.information.ItemName);
+            interactiveMessageUI.SetInteractiveSituation(item.information.ItemDescription[0]);
+        }else if(GameAudioManager.LanguageManager.currentLanguage == "K")
+        {
+            interactiveMessageUI.SetInteractiveName(item.information.ItemNameKorean);
+            interactiveMessageUI.SetInteractiveSituation(item.information.ItemDescriptionKorean[0]);
+        }
         interactiveMessageUI.SetItemImage(item.information.ItemImage);
         interactiveMessageUI.SetAmountText(item.information.amount);
     }
@@ -376,8 +403,15 @@ public class TabUILogic : CallBackInterface
         Visualize_Tab_Obtain(flag);
         keyItem = item;
 
-        interactiveMessageUI.SetInteractiveName(item.information.ItemName);
-        interactiveMessageUI.SetInteractiveSituation(item.information.ItemDescription[0]);
+        if(GameAudioManager.LanguageManager.currentLanguage == "E")
+        {
+            interactiveMessageUI.SetInteractiveName(item.information.ItemName);
+            interactiveMessageUI.SetInteractiveSituation(item.information.ItemDescription[0]);
+        }else if(GameAudioManager.LanguageManager.currentLanguage == "K")
+        {
+            interactiveMessageUI.SetInteractiveName(item.information.ItemNameKorean);
+            interactiveMessageUI.SetInteractiveSituation(item.information.ItemDescriptionKorean[0]);
+        }
         interactiveMessageUI.SetItemImage(item.information.ItemImage);
         interactiveMessageUI.SetAmountText(item.information.amount);
         
@@ -586,7 +620,14 @@ public class TabUILogic : CallBackInterface
                         if(isUseKeyItem)
                         {
                             GameManager.EventManager.Invoke_Interact_KeyItem_Success_Event(interactiveDialog, currentItemindex);
-                            GameManagerUI.instance.SetInteractiveDialogText(interactiveDialog.SucessDialog);
+                            
+                            if(GameAudioManager.LanguageManager.currentLanguage == "E")
+                            {
+                                GameManagerUI.instance.SetInteractiveDialogText(interactiveDialog.SucessDialog);
+                            }else if(GameAudioManager.LanguageManager.currentLanguage == "K")
+                            {
+                                GameManagerUI.instance.SetInteractiveDialogText(interactiveDialog.SucessDialogKorean);
+                            }
                             monoBehavior.StartCoroutine(showInteractiveDialogDelay());
                         }
                     }

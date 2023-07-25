@@ -13,10 +13,17 @@ MonoBehaviour:
   m_Name: Interact OneWayRock
   m_EditorClassIdentifier: 
   Interactive_name: One way Rock
+  Interactive_nameKorean: "\uC77C\uBC18\uD1B5\uD589 \uB3CC"
   InteractCode: -1
   InteractKeyItems: ffffffff
   Interactive_Situation: It's a pile of rocks that seems like it would crumble if
     pushed from the other side.
+  Interactive_SituationKorean: "\uBC18\uB300\uCABD\uC5D0\uC11C \uBC00\uBA74 \uB118\uC5B4\uC9C8
+    \uAC83 \uAC19\uC740 \uB3CC \uBB34\uB354\uAE30\uB2E4....."
   SucessDialog:
   - Thump!
   - As the pile of rocks crumbled, the way opened up.
+  SucessDialogKorean:
+  - "\uCFF5!"
+  - "\uB3CC\uC774 \uBB34\uB108\uC84C\uAE30\uC5D0, \uC774 \uAE38\uC740 \uC774\uC81C
+    \uD1B5\uD589 \uAC00\uB2A5\uD558\uB2E4"

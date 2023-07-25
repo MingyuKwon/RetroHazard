@@ -15,6 +15,7 @@ MonoBehaviour:
   itemPath: Scriptable/Item Information/Key Item/medium key Item Information
   ItemImage: {fileID: 1128730992, guid: a8f5bf4adb58b60439f8325f1a7750c0, type: 3}
   ItemName: medium key
+  ItemNameKorean: "\uC911\uAC04\uD06C\uAE30\uC758 \uC5F4\uC1E0"
   isKeyItem: 1
   isNormalItem: 0
   isEquipItem: 0
@@ -35,3 +36,6 @@ MonoBehaviour:
   healAmount: 0
   ItemDescription:
   - It is used to open lock which has medium_size key hole.
+  ItemDescriptionKorean:
+  - "\uC911\uAC04\uD06C\uAE30\uC758 \uC5F4\uC1E0 \uAD6C\uBA4D\uC744 \uAC00\uC9C0\uACE0
+    \uC788\uB294 \uBB38\uC744 \uC5F4 \uB54C \uC0AC\uC6A9 \uB41C\uB2E4"

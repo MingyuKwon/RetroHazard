@@ -15,6 +15,7 @@ MonoBehaviour:
   itemPath: Scriptable/Item Information/Key Item/Tutoiral/Nitroglycerin
   ItemImage: {fileID: -499114694, guid: 985d42a2b6a3bf14f9c443829443c88a, type: 3}
   ItemName: Nitroglycerin
+  ItemNameKorean: "\uB2C8\uD2B8\uB85C\uAE00\uB9AC\uC138\uB9B0"
   isKeyItem: 1
   isNormalItem: 0
   isEquipItem: 0
@@ -36,3 +37,7 @@ MonoBehaviour:
   ItemDescription:
   - "A highly explosive ingredient for dynamite. \n\nThe stones could likely be destroyed
     with this"
+  ItemDescriptionKorean:
+  - "\uB9E4\uC6B0 \uD3ED\uD314\uC131\uC774 \uB192\uC740  \uB2E4\uC774\uB108\uB9C8\uC774\uD2B8\uC758
+    \uC7AC\uB8CC\n\n\uB3CC\uC744 \uC774\uAC83\uC73C\uB85C \uBD80\uC220 \uC218 \uC788\uC744
+    \uAC83 \uAC19\uB2E4"

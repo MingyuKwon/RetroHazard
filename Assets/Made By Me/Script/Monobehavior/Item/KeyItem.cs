@@ -20,10 +20,19 @@ public class KeyItem : Item
     public void Get_Item_Pause_Game()
     {
         GameManager.instance.SetPlayerAnimationObtainKeyItem(true);
-        GameManagerUI.instance.SetInteractiveDialogText(information.ItemDescription);
+        
 
         spriteRenderer.sortingLayerName = "4";
-        GameManagerUI.instance.VisualizeInteractiveUI(true, information.ItemName);
+        
+        if(GameAudioManager.LanguageManager.currentLanguage == "E")
+        {
+            GameManagerUI.instance.VisualizeInteractiveUI(true, information.ItemName);
+            GameManagerUI.instance.SetInteractiveDialogText(information.ItemDescription);
+        }else if(GameAudioManager.LanguageManager.currentLanguage == "K")
+        {
+            GameManagerUI.instance.VisualizeInteractiveUI(true, information.ItemNameKorean);
+            GameManagerUI.instance.SetInteractiveDialogText(information.ItemDescriptionKorean);
+        }
         StartCoroutine(isDialogEnd());
     }
 

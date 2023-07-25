@@ -15,6 +15,7 @@ MonoBehaviour:
   itemPath: Scriptable/Item Information/Equip Item/Sheild/Normal Sheild Information
   ItemImage: {fileID: -1501839339, guid: 5bdc2781d97139949a21d7b80c0962a6, type: 3}
   ItemName: Noraml Sheild
+  ItemNameKorean: "\uC77C\uBC18 \uBC29\uD328"
   isKeyItem: 1
   isNormalItem: 0
   isEquipItem: 1
@@ -35,3 +36,6 @@ MonoBehaviour:
   healAmount: 0
   ItemDescription:
   - Can Block or Parry Enemy Attack
+  ItemDescriptionKorean:
+  - "\uC801\uC758 \uACF5\uACA9\uC744 \uB9C9\uAC70\uB098 \uD328\uB9C1 \uD560 \uC218
+    \uC788\uB2E4"

@@ -15,6 +15,7 @@ MonoBehaviour:
   itemPath: Scriptable/Item Information/Expansion Item/Energy2 Item Information
   ItemImage: {fileID: -1780172890, guid: 5bdc2781d97139949a21d7b80c0962a6, type: 3}
   ItemName: Energy 2 Maganize
+  ItemNameKorean: "\uC5D0\uB108\uC9C0 2 \uD0C4\uCC3D"
   isKeyItem: 1
   isNormalItem: 0
   isEquipItem: 0
@@ -36,4 +37,9 @@ MonoBehaviour:
   expansionAmount: 4
   healAmount: 0
   ItemDescription:
-  - It will expand your <b>Energy 2 Maximum contain limit</b>
+  - It will expand your <b>Energy 2 Maximum contain limit</b> by combing with Energy
+    2 Supplier
+  ItemDescriptionKorean:
+  - "<b>\uC5D0\uB108\uC9C0 2 \uACF5\uAE09\uC6D0</b>\uACFC \uC870\uD569\uD558\uB294
+    \uAC83\uC73C\uB85C, \uC5D0\uB108\uC9C0 2\uC758 \uC7A5\uC804 \uC0C1\uD55C\uC744
+    \uB298\uB9B4 \uC218 \uC788\uB2E4"

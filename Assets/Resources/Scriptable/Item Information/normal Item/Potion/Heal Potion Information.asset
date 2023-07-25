@@ -15,6 +15,7 @@ MonoBehaviour:
   itemPath: Scriptable/Item Information/normal Item/Potion/Heal Potion Information
   ItemImage: {fileID: 1691647916, guid: 5bdc2781d97139949a21d7b80c0962a6, type: 3}
   ItemName: Heal Potion
+  ItemNameKorean: "\uD68C\uBCF5 \uD3EC\uC158"
   isKeyItem: 0
   isNormalItem: 1
   isEquipItem: 0
@@ -37,3 +38,5 @@ MonoBehaviour:
   healAmount: 50
   ItemDescription:
   - It will heal your HP 50
+  ItemDescriptionKorean:
+  - "\uCCB4\uB825\uC744 50 \uD68C\uBCF5 \uC2DC\uCF1C\uC900\uB2E4"

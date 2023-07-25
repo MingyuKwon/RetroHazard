@@ -15,6 +15,7 @@ MonoBehaviour:
   itemPath: Scriptable/Item Information/Key Item/Tutoiral/Historic Gate Key
   ItemImage: {fileID: 21300000, guid: bfc32cafd64a3514e94808cc7e6989de, type: 3}
   ItemName: Historic Gate Key
+  ItemNameKorean: "\uC720\uC801\uC9C0 \uB300\uBB38 \uC5F4\uC1E0"
   isKeyItem: 1
   isNormalItem: 0
   isEquipItem: 0
@@ -35,3 +36,6 @@ MonoBehaviour:
   healAmount: 0
   ItemDescription:
   - The key that can unlock the door leading to the historic site
+  ItemDescriptionKorean:
+  - "\uC720\uC801\uC9C0\uB85C \uD1B5\uD558\uB294 \uB300\uBB38\uC744 \uC5F4 \uC218
+    \uC788\uB294 \uC5F4\uC1E0"

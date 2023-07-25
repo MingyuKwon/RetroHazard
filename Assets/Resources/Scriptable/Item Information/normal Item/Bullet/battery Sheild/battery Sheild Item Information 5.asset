@@ -16,6 +16,7 @@ MonoBehaviour:
     Sheild Item Information 5
   ItemImage: {fileID: -1258920416, guid: 5bdc2781d97139949a21d7b80c0962a6, type: 3}
   ItemName: Sheild battery
+  ItemNameKorean: "\uBC29\uD328 \uBC30\uD130\uB9AC"
   isKeyItem: 0
   isNormalItem: 1
   isEquipItem: 0
@@ -35,4 +36,6 @@ MonoBehaviour:
   expansionAmount: 0
   healAmount: 0
   ItemDescription:
-  - 'can be used to recharge Sheild '
+  - can be used to recharge Sheild durability
+  ItemDescriptionKorean:
+  - "\uBC29\uD328 \uB0B4\uAD6C\uB3C4\uB97C \uC7A5\uC804 \uD560 \uB54C \uC0AC\uC6A9\uB41C\uB2E4"

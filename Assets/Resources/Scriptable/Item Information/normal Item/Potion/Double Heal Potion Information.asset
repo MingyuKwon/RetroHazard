@@ -15,6 +15,7 @@ MonoBehaviour:
   itemPath: Scriptable/Item Information/normal Item/Potion/Double Heal Potion Information
   ItemImage: {fileID: 2142285042, guid: 5bdc2781d97139949a21d7b80c0962a6, type: 3}
   ItemName: Double Heal Potion
+  ItemNameKorean: "\uAC15\uD654 \uD68C\uBCF5 \uD3EC\uC158"
   isKeyItem: 0
   isNormalItem: 1
   isEquipItem: 0
@@ -35,3 +36,5 @@ MonoBehaviour:
   healAmount: 120
   ItemDescription:
   - It will heal your HP 120
+  ItemDescriptionKorean:
+  - "\uCCB4\uB825\uC744 120 \uC62C\uB824\uC900\uB2E4"

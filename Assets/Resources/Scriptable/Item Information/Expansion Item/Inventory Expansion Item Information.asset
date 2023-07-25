@@ -15,6 +15,7 @@ MonoBehaviour:
   itemPath: Scriptable/Item Information/Expansion Item/Inventory Expansion Item Information
   ItemImage: {fileID: 1752006173, guid: 5bdc2781d97139949a21d7b80c0962a6, type: 3}
   ItemName: Inventory Bag
+  ItemNameKorean: "\uC544\uC774\uD15C \uCC3D \uAC00\uBC29"
   isKeyItem: 1
   isNormalItem: 0
   isEquipItem: 0
@@ -35,3 +36,5 @@ MonoBehaviour:
   healAmount: 0
   ItemDescription:
   - It will expand your <b>Inventory contain limit</b>
+  ItemDescriptionKorean:
+  - "\uC544\uC774\uD15C \uCC3D\uC758  <b>\uC18C\uC9C0 \uC0C1\uD55C</b>\uC744 \uB298\uB824\uC900\uB2E4"

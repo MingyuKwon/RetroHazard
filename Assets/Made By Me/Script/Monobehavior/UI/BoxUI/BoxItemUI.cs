@@ -39,8 +39,15 @@ public class BoxItemUI : MonoBehaviour
                 itemContainers[i].SetFocus(true);
                 if(Player1.instance.playerItemBox.items[i] != null)
                 {
-                    UI.instance.boxUI.boxitemExplainUI.SetItemExplain(Player1.instance.playerItemBox.items[i].ItemDescription[0]);
-                    UI.instance.boxUI.boxitemExplainUI.SetItemName(Player1.instance.playerItemBox.items[i].ItemName);
+                    if(GameAudioManager.LanguageManager.currentLanguage == "E")
+                    {
+                        UI.instance.boxUI.boxitemExplainUI.SetItemExplain(Player1.instance.playerItemBox.items[i].ItemDescription[0]);
+                        UI.instance.boxUI.boxitemExplainUI.SetItemName(Player1.instance.playerItemBox.items[i].ItemName);
+                    }else if(GameAudioManager.LanguageManager.currentLanguage == "K")
+                    {
+                        UI.instance.boxUI.boxitemExplainUI.SetItemExplain(Player1.instance.playerItemBox.items[i].ItemDescriptionKorean[0]);
+                        UI.instance.boxUI.boxitemExplainUI.SetItemName(Player1.instance.playerItemBox.items[i].ItemNameKorean);
+                    }
                 }else
                 {
                     UI.instance.boxUI.boxitemExplainUI.SetItemExplain(" ");
@@ -62,8 +69,15 @@ public class BoxItemUI : MonoBehaviour
                 itemContainers[i].SetFocus(true);
                 if(Player1.instance.playerItemBox.items[i] != null)
                 {
-                    UI.instance.boxUI.boxitemExplainUI.SetItemExplain(Player1.instance.playerItemBox.items[i].ItemDescription[0]);
-                    UI.instance.boxUI.boxitemExplainUI.SetItemName(Player1.instance.playerItemBox.items[i].ItemName);
+                    if(GameAudioManager.LanguageManager.currentLanguage == "E")
+                    {
+                        UI.instance.boxUI.boxitemExplainUI.SetItemExplain(Player1.instance.playerItemBox.items[i].ItemDescription[0]);
+                        UI.instance.boxUI.boxitemExplainUI.SetItemName(Player1.instance.playerItemBox.items[i].ItemName);
+                    }else if(GameAudioManager.LanguageManager.currentLanguage == "K")
+                    {
+                        UI.instance.boxUI.boxitemExplainUI.SetItemExplain(Player1.instance.playerItemBox.items[i].ItemDescriptionKorean[0]);
+                        UI.instance.boxUI.boxitemExplainUI.SetItemName(Player1.instance.playerItemBox.items[i].ItemNameKorean);
+                    }
                 }else
                 {
                     UI.instance.boxUI.boxitemExplainUI.SetItemExplain(" ");

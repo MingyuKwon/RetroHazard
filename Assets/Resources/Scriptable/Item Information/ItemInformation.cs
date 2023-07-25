@@ -9,6 +9,7 @@ public class ItemInformation : ScriptableObject
     public string itemPath;
     public Sprite ItemImage;
     public string ItemName;
+    public string ItemNameKorean;
     [Space]
 
     [Header("Interact with Item when first obtain? (Just Select One)")]
@@ -54,6 +55,8 @@ public class ItemInformation : ScriptableObject
     [Space]
     [TextArea]
     public string[] ItemDescription;
+    [TextArea]
+    public string[] ItemDescriptionKorean;
 
 
 
