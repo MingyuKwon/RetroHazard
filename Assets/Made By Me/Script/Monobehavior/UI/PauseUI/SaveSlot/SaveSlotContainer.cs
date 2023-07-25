@@ -11,6 +11,33 @@ public class SaveSlotContainer : MonoBehaviour, IPointerEnterHandler, IPointerEx
 
     Image focus;
 
+    public Text whereText;
+    public Text GoalText;
+
+    private void Awake() {
+       transform.GetChild(6).gameObject.SetActive(false);
+       ChangeLanguage(GameAudioManager.LanguageManager.currentLanguage);
+
+       GameAudioManager.LanguageManager.languageChangeEvent += ChangeLanguage;
+    }
+
+    private void OnDestroy() {
+        GameAudioManager.LanguageManager.languageChangeEvent -= ChangeLanguage;
+    }
+
+    private void ChangeLanguage(string language)
+    {
+        if(language == "E")
+        {
+            whereText.text = "Where : ";
+            GoalText.text = "Current Goal : ";
+        }else if(language == "K")
+        {
+            whereText.text = "장소 : ";
+            GoalText.text = "현재 목표 : ";
+        }
+    }
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         if(SceneManager.GetActiveScene().name == "Main Menu")
@@ -33,8 +60,6 @@ public class SaveSlotContainer : MonoBehaviour, IPointerEnterHandler, IPointerEx
         }
     }
 
-    private void Awake() {
-       transform.GetChild(6).gameObject.SetActive(false);
-    }
+
 
 }

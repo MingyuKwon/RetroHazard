@@ -142,6 +142,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 0
+  whereText: {fileID: 3529459993255559396}
+  GoalText: {fileID: 6858192107745816768}
 --- !u!1 &1339379152045680456
 GameObject:
   m_ObjectHideFlags: 0
