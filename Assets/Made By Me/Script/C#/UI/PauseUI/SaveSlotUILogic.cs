@@ -115,7 +115,7 @@ public class SaveSlotUILogic : CallBackInterface
                 SaveSlots[i].transform.GetChild(5).gameObject.SetActive(true);
 
                 SaveSlots[i].transform.GetChild(4).GetComponent<Text>().text = SaveSystem.instance.saveSlotInfos[i].saveTime;
-                SaveSlots[i].transform.GetChild(2).GetComponent<Text>().text = SaveSystem.instance.saveSlotInfos[i].saveScene;
+                SaveSlots[i].transform.GetChild(2).GetComponent<Text>().text = MapNameCollection.getMapNameArray((int)(SaveSystem.instance.saveSlotInfos[i].saveSceneName))[SaveSystem.instance.saveSlotInfos[i].saveSceneIndex];
                 SaveSlots[i].transform.GetChild(3).GetComponent<Text>().text = PlayerGoalCollection.PlayerGoals[SaveSystem.instance.saveSlotInfos[i].saveCurrentGoalNum];
             }
         }
@@ -257,7 +257,7 @@ public class SaveSlotUILogic : CallBackInterface
                 SaveSlots[i].transform.GetChild(5).gameObject.SetActive(true);
 
                 SaveSlots[i].transform.GetChild(4).GetComponent<Text>().text = SaveSystem.instance.saveSlotInfos[i].saveTime;
-                SaveSlots[i].transform.GetChild(2).GetComponent<Text>().text = SaveSystem.instance.saveSlotInfos[i].saveScene;
+                SaveSlots[i].transform.GetChild(2).GetComponent<Text>().text = MapNameCollection.getMapNameArray((int)(SaveSystem.instance.saveSlotInfos[i].saveSceneName))[SaveSystem.instance.saveSlotInfos[i].saveSceneIndex];
                 SaveSlots[i].transform.GetChild(3).GetComponent<Text>().text = PlayerGoalCollection.PlayerGoals[SaveSystem.instance.saveSlotInfos[i].saveCurrentGoalNum];
             }else
             {

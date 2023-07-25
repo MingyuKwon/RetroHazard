@@ -16,6 +16,8 @@ public class MapShowTerritory : MonoBehaviour
         {
             UI.instance.inGameUI.ShowMapShowPanel(MapNameCollection.getMapNameArray((int)sceneName)[index]);
             GameAudioManager.instance.PlayBackGroundMusic(musicName);
+            MapNameCollection.currentSceneName = sceneName;
+            MapNameCollection.currentSceneIndex = index;
         }
     }
 }
