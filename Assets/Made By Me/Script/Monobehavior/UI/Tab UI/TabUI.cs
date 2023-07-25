@@ -139,6 +139,9 @@ public class TabUI : MonoBehaviour
         }
     }
 
+    public Text currentGoalText;
+    public Text willYouTakelText;
+
     private void Awake() {
         itemUI = GetComponentInChildren<ItemUI>();
         itemExplainUI = GetComponentInChildren<ItemExplainUI>();
@@ -148,6 +151,10 @@ public class TabUI : MonoBehaviour
         miniMap = GetComponentInChildren<MiniMap>();
 
         tabUILogic = new TabUILogic(transform.GetChild(0).GetComponent<Image>(), this);
+    }
+
+    private void OnDestroy() {
+        tabUILogic.OnDestroy();
     }
 
     private void OnEnable() {

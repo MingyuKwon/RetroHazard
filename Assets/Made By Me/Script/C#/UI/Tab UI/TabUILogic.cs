@@ -89,6 +89,14 @@ public class TabUILogic : CallBackInterface
 
     Image background;
 
+    Text currentGoalText;
+    string currentGoalEnglish = "Current Goal";
+    string currentGoalKorean = "현재 목표";
+
+    Text willYouTakeText;
+    string willYouTakeEnglish = "Will you take it?";
+    string willYouTakeKorean = "이 아이템을 가져가시겠습니까?";
+
 
     string[] FirstItemUINoticeTextEnglish = {
                 "I will explain about the item window",
@@ -241,7 +249,18 @@ public class TabUILogic : CallBackInterface
         showingTabPanel = tabUI.gameObject.transform.GetChild(7).gameObject;
         showingTabItemImage = showingTabPanel.transform.GetChild(0).GetComponent<Image>();
         showingTabMinimapImage = showingTabPanel.transform.GetChild(1).GetComponent<Image>();
+
+        currentGoalText = monoBehavior.currentGoalText;
+        willYouTakeText = monoBehavior.willYouTakelText;
+
+        ChangeLanguage(GameAudioManager.LanguageManager.currentLanguage);
+
+        GameAudioManager.LanguageManager.languageChangeEvent += ChangeLanguage;
         
+    }
+
+    public void OnDestroy() {
+        GameAudioManager.LanguageManager.languageChangeEvent -= ChangeLanguage;
     }
 
 
@@ -478,6 +497,19 @@ public class TabUILogic : CallBackInterface
 
     }
 
+    private void ChangeLanguage(string language)
+    {
+        if(language == "E")
+        {
+            currentGoalText.text = currentGoalEnglish;
+            willYouTakeText.text = willYouTakeEnglish;
+        }else if(language == "K")
+        {
+            currentGoalText.text = currentGoalKorean;
+            willYouTakeText.text = willYouTakeKorean;
+        }
+    }
+
     public void TabUILeftTabPressed()
     {
         showingTabIndex = 0;
@@ -569,7 +601,8 @@ public class TabUILogic : CallBackInterface
             {
                 if(itemUI.itemContainers[currentItemindex].selectIndex == 0) // use
                 {
-                    if(itemUI.itemContainers[currentItemindex].focus.selectTexts[0].text == "DisArm")
+                    if(itemUI.itemContainers[currentItemindex].focus.selectTexts[0].text == "DisArm" ||
+                     itemUI.itemContainers[currentItemindex].focus.selectTexts[0].text == "해제하기")
                     {
                         int KeyItemCode = Player1.instance.playerInventory.items[currentItemindex].KeyItemCode;
                         if(KeyItemCode < 3 || (KeyItemCode > 8 && KeyItemCode < 12) || (KeyItemCode > 11 && KeyItemCode < 15))
@@ -582,7 +615,8 @@ public class TabUILogic : CallBackInterface
                             itemUI.itemContainers[currentItemindex].focus.SetselectText(0, "Equip");
                         }
 
-                    }else if(itemUI.itemContainers[currentItemindex].focus.selectTexts[0].text == "Equip")
+                    }else if(itemUI.itemContainers[currentItemindex].focus.selectTexts[0].text == "Equip" ||
+                    itemUI.itemContainers[currentItemindex].focus.selectTexts[0].text == "장착하기")
                     {
                         int KeyItemCode = Player1.instance.playerInventory.items[currentItemindex].KeyItemCode;
                         if(KeyItemCode < 3)
@@ -607,7 +641,8 @@ public class TabUILogic : CallBackInterface
                         }
 
                         
-                    }else if(itemUI.itemContainers[currentItemindex].focus.selectTexts[0].text == "Use")
+                    }else if(itemUI.itemContainers[currentItemindex].focus.selectTexts[0].text == "Use" || 
+                    itemUI.itemContainers[currentItemindex].focus.selectTexts[0].text == "사용하기")
                     {
                         // 포션을 사용한 경우
                         if(Player1.instance.playerInventory.items[currentItemindex].isPotion)

@@ -22,8 +22,6 @@ public class ItemContainerLogic
                 return;
             }
             GameAudioManager.instance.PlayUIMusic(UIAudioType.Move);
-            Debug.Log("ItemContainer : UIAudioType.Move");
-
         }
     }
 
@@ -220,6 +218,9 @@ public class ItemContainerLogic
                 indexLimitMin = 0;
                 focus.selectButtons[0].gameObject.SetActive(true);
             }
+
+            focus.SetselectText(1, "Combine");
+            focus.SetselectText(2, "Discard");
         }
 
         selectIndex = indexLimitMin;
@@ -257,6 +258,9 @@ public class ItemContainerLogic
         {
             focus.SetselectText(0, "Use"); // If you want to modify this String, you should also modify TabUI pressEnter code
         }
+
+        focus.SetselectText(1, "Combine");
+        focus.SetselectText(2, "Discard");
     }
 
 
