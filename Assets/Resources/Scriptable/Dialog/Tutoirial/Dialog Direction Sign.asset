@@ -13,27 +13,24 @@ MonoBehaviour:
   m_Name: Dialog Direction Sign
   m_EditorClassIdentifier: 
   NPCname: Sign Board
+  NPCnameKorean: "\uD45C\uC9C0\uD310"
   hasFirstEncounterDialog: 0
   hasChoiceDialog: 0
   ChoiceQuestionQuantity: 0
-  FirstEnCountDialogs:
-  - Hi You must be Player
-  - Go right if you want to learn commands
-  - Go left if you want to buy something
-  - I can Level up you
+  FirstEnCountDialogs: []
+  FirstEnCountDialogsKorean: []
   ReapeatingDialogs:
-  - "\u2193 archaeological site\n\n\u2190 Adeenhau beach"
+  - "\u2193 Lasil archaeological site\n\n\n\u2190 Adeenhau beach"
+  ReapeatingDialogsKorean:
+  - "\u2193 \uB77C\uC2E4 \uACE0\uB300 \uC720\uC801\uC9C0\n\n\u2190 \uC544\uB518\uD558\uC6B0
+    \uD574\uBCC0"
   EventDialogs: []
-  ChoiceDialog:
-  - What do you want?
-  - 'You can choose one '
-  - Level UP
-  - tell me something
-  - nothing
-  option1Dialog:
-  - Okay, I will give you a power
-  option2Dialog:
-  - "Here is our town. A lovely Town. \nAnd you have a duty to protect the town. 
-    \nUse NPCs in town efficiently if you want to be stronger."
-  option3Dialog:
-  - Oh, I see. come to me if you want to level up
+  EventDialogsKorean: []
+  ChoiceDialog: []
+  ChoiceDialogKorean: []
+  option1Dialog: []
+  option1DialogKorean: []
+  option2Dialog: []
+  option2DialogKorean: []
+  option3Dialog: []
+  option3DialogKorean: []

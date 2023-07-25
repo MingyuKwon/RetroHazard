@@ -13,28 +13,26 @@ MonoBehaviour:
   m_Name: Dialog Sign Board Gate
   m_EditorClassIdentifier: 
   NPCname: Sign Board
+  NPCnameKorean: "\uC548\uB0B4\uD310"
   hasFirstEncounterDialog: 0
   hasChoiceDialog: 0
   ChoiceQuestionQuantity: 0
-  FirstEnCountDialogs:
-  - Hi You must be Player
-  - Go right if you want to learn commands
-  - Go left if you want to buy something
-  - I can Level up you
+  FirstEnCountDialogs: []
+  FirstEnCountDialogsKorean: []
   ReapeatingDialogs:
   - "<b>NOTICE</b>\n \nIn order to prevent the imminent risk of our archaeological
     site being destroyed by the roaming monsters, we are closing this gate."
+  ReapeatingDialogsKorean:
+  - "<b>\uACF5\uC9C0</b>\n\n\uBAAC\uC2A4\uD130\uAC00 \uC720\uC801\uC9C0 \uB0B4\uBD80\uC5D0
+    \uB4E4\uC5B4\uC640 \uC720\uC801\uC744 \uC190\uC0C1\uC2DC\uD0A4\uB294 \uAC83\uC744
+    \uB9C9\uAE30 \uC704\uD574\uC11C, \uC774 \uB300\uBB38\uC744 \uD3D0\uC1C4 \uD569\uB2C8\uB2E4"
   EventDialogs: []
-  ChoiceDialog:
-  - What do you want?
-  - 'You can choose one '
-  - Level UP
-  - tell me something
-  - nothing
-  option1Dialog:
-  - Okay, I will give you a power
-  option2Dialog:
-  - "Here is our town. A lovely Town. \nAnd you have a duty to protect the town. 
-    \nUse NPCs in town efficiently if you want to be stronger."
-  option3Dialog:
-  - Oh, I see. come to me if you want to level up
+  EventDialogsKorean: []
+  ChoiceDialog: []
+  ChoiceDialogKorean: []
+  option1Dialog: []
+  option1DialogKorean: []
+  option2Dialog: []
+  option2DialogKorean: []
+  option3Dialog: []
+  option3DialogKorean: []

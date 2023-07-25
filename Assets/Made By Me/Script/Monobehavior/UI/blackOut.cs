@@ -35,7 +35,7 @@ public class blackOut : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
-        SceneManager.LoadSceneAsync(sceneName);
+        SceneManager.LoadScene(sceneName);
         Player1.instance.playerMove.transform.position = destination;
 
         GameManager.instance.SetPausePlayer(false);

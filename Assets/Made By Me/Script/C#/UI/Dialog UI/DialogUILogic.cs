@@ -41,7 +41,14 @@ public class DialogUILogic
     {
         VisualizeDialogUI(true);
         this.dialog = dialog;
-        SetSpeakerText(dialog.NPCname);
+        if(GameAudioManager.LanguageManager.currentLanguage == "E")
+        {   
+            SetSpeakerText(dialog.NPCname);
+        }else if(GameAudioManager.LanguageManager.currentLanguage == "K")
+        {
+            SetSpeakerText(dialog.NPCnameKorean);
+        }
+        
         if(visited == false && dialog.hasFirstEncounterDialog)
         {
             monoBehavior.StartCoroutine(showFirstEncountDialog());
@@ -85,7 +92,16 @@ public class DialogUILogic
 
     IEnumerator showFirstEncountDialog()
     {
-        string[] FirstEncountDialog = dialog.FirstEnCountDialogs;
+        string[] FirstEncountDialog = null;
+
+        if(GameAudioManager.LanguageManager.currentLanguage == "E")
+        {   
+            FirstEncountDialog = dialog.FirstEnCountDialogs;
+        }else if(GameAudioManager.LanguageManager.currentLanguage == "K")
+        {
+            FirstEncountDialog = dialog.FirstEnCountDialogsKorean;
+        }
+
         int strCount = FirstEncountDialog.Length;
         int previousCallcount;
 
@@ -106,7 +122,16 @@ public class DialogUILogic
 
     IEnumerator showRepeatingDialog()
     {
-        string[] RepeatingDialog = dialog.ReapeatingDialogs;
+        string[] RepeatingDialog = null;
+
+        if(GameAudioManager.LanguageManager.currentLanguage == "E")
+        {   
+            RepeatingDialog = dialog.ReapeatingDialogs;
+        }else if(GameAudioManager.LanguageManager.currentLanguage == "K")
+        {
+            RepeatingDialog = dialog.ReapeatingDialogsKorean;
+        }
+
         int strCount = RepeatingDialog.Length;
         int previousCallcount;
 
@@ -191,7 +216,17 @@ public class DialogUILogic
 
     IEnumerator showChoiceDialog()
     {
-        string[] ChoiceDialog = dialog.ChoiceDialog;
+        string[] ChoiceDialog = null;
+
+        if(GameAudioManager.LanguageManager.currentLanguage == "E")
+        {   
+            ChoiceDialog = dialog.ChoiceDialog;
+        }else if(GameAudioManager.LanguageManager.currentLanguage == "K")
+        {
+            ChoiceDialog = dialog.ChoiceDialogKorean;
+        }
+
+
         int ChoiceQuestionQuantity = dialog.ChoiceQuestionQuantity; 
         // 전체 크기 중에 질문에 대한 길이
         int strCount = ChoiceDialog.Length;
@@ -252,23 +287,51 @@ public class DialogUILogic
 
     IEnumerator showEventDialog()
     {
-        string[] EventDialog = dialog.EventDialogs;
+        string[] EventDialog = null;
+        if(GameAudioManager.LanguageManager.currentLanguage == "E")
+        {   
+            EventDialog = dialog.EventDialogs;
+        }else if(GameAudioManager.LanguageManager.currentLanguage == "K")
+        {
+            EventDialog = dialog.EventDialogsKorean;
+        }
+
         int strCount = EventDialog.Length;
         yield return new WaitForEndOfFrame();
     }
 
     IEnumerator showOptionDialog(int index)
     {
-        string[] OptionDialog;
+        string[] OptionDialog = null;
         if(index == 0)
         {
-            OptionDialog = dialog.option1Dialog;
+            if(GameAudioManager.LanguageManager.currentLanguage == "E")
+            {   
+                OptionDialog = dialog.option1Dialog;
+            }else if(GameAudioManager.LanguageManager.currentLanguage == "K")
+            {
+                OptionDialog = dialog.option1DialogKorean;
+            }
+            
         }else if(index == 1)
         {
-            OptionDialog = dialog.option2Dialog;
+            if(GameAudioManager.LanguageManager.currentLanguage == "E")
+            {   
+                OptionDialog = dialog.option2Dialog;
+            }else if(GameAudioManager.LanguageManager.currentLanguage == "K")
+            {
+                OptionDialog = dialog.option2DialogKorean;
+            }
+            
         }else
         {
-            OptionDialog = dialog.option3Dialog;
+            if(GameAudioManager.LanguageManager.currentLanguage == "E")
+            {   
+                OptionDialog = dialog.option3Dialog;
+            }else if(GameAudioManager.LanguageManager.currentLanguage == "K")
+            {
+                OptionDialog = dialog.option3DialogKorean;
+            }
         }
 
         int strCount = OptionDialog.Length;
