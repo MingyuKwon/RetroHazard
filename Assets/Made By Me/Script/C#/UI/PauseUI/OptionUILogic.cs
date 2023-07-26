@@ -30,6 +30,78 @@ public class OptionUILogic
     "소리" ,
     "일반" ,};
     
+
+    string englishControlText = "Control";
+    string koreanControlText = "조작";
+    
+    string[] englishControlText1 = { 
+    "Game Pad" , 
+    "Move" ,
+    "Move" ,
+    "Pause" ,
+    "Tab" ,
+    "Interact\n/Ok" ,
+    "Rush\n/Back" ,
+    "remove" ,
+    "Sheild\n/left Tab" ,
+    "Sheild\nreload" ,
+    "Attack\n/right Tab" ,
+    "Energy\nreload" ,
+    };
+
+
+    string[] koreanControlText1 = { 
+    "게임 패드" , 
+    "이동" ,
+    "이동" ,
+    "일시정지" ,
+    "탭 열기" ,
+    "상호작용\n/확인" ,
+    "달리기\n/취소" ,
+    "삭제하기" ,
+    "방어\n/왼쪽 탭이동" ,
+    "내구도\n장전" ,
+    "공격\n/오른쪽 탭이동" ,
+    "에너지\n장전" ,
+    };
+
+    string[] englishControlText2 = { 
+    "KeyBoard" , 
+    "Mouse" ,
+    "Move" ,
+    "Sheild\nreload" ,
+    "Energy\nreload" ,
+    "left Tab" ,
+    "right Tab" ,
+    "remove" ,
+    "Pause" ,
+    "Tab" ,
+    "Rush" ,
+    "Back" ,
+    "Interact\n/Ok" ,
+    "Attack\n/Ok" ,
+    "Sheild\n/Back" ,
+    };
+
+    string[] koreanControlText2 = { 
+    "키보드" , 
+    "마우스" ,
+    "이동" ,
+    "내구도\n장전" ,
+    "에너지\n장전" ,
+    "왼쪽 \n탭이동" ,
+    "오른쪽 \n탭이동" ,
+    "삭제하기" ,
+    "일시정지" ,
+    "탭 열기" ,
+    "달리기" ,
+    "취소" ,
+    "상호작용\n/확인" ,
+    "공격\n/확인" ,
+    "방어\n/취소" ,
+    };
+
+
     string[] englishDisplayText = { 
     "Display" , 
     "Brightness" ,
@@ -102,6 +174,10 @@ public class OptionUILogic
         {
             panels[i] = monoBehaviour.transform.GetChild(2).GetChild(i).gameObject;
         }
+
+        ////////Control//////////////////
+        
+        ////////Control//////////////////
 
         ////////Video//////////////////
         VideoSlider = panels[1].GetComponentInChildren<Slider>();
@@ -205,6 +281,28 @@ public class OptionUILogic
         }
         //Panel and default button///////////////////
 
+        ////////Control//////////////////
+        Text[] ControlTexts1 = panels[0].transform.GetChild(1).GetChild(0).GetComponentsInChildren<Text>();
+        Text[] ControlTexts2 = panels[0].transform.GetChild(1).GetChild(1).GetComponentsInChildren<Text>();
+        ControlTexts = new Text[1 + ControlTexts1.Length + ControlTexts2.Length];
+
+        int k = 0;
+        ControlTexts[k] = panels[0].transform.GetChild(0).GetComponent<Text>();
+        k++;
+
+        for(int j=0; j < ControlTexts1.Length; j++)
+        {
+            ControlTexts[k] = ControlTexts1[j];
+            k++;
+        }
+
+        for(int j=0; j < ControlTexts2.Length; j++)
+        {
+            ControlTexts[k] = ControlTexts2[j];
+            k++;
+        }
+        ////////Control//////////////////
+
         ///////DisPlay//////////////
         DisPlayTexts = new Text[englishDisplayText.Length];
         DisPlayTexts[0] = panels[1].transform.GetChild(0).GetComponent<Text>();
@@ -251,6 +349,22 @@ public class OptionUILogic
                 defaultButtonPanelTexts[i].text = defaultButtonEnglishText;
             }
 
+            int j = 0;
+            ControlTexts[j].text = englishControlText;
+            j++;
+
+            for(int i=0; i< englishControlText1.Length; i++)
+            {
+                ControlTexts[j].text = englishControlText1[i];
+                j++;
+            }
+
+            for(int i=0; i< englishControlText2.Length; i++)
+            {
+                ControlTexts[j].text = englishControlText2[i];
+                j++;
+            }
+
             for(int i=0; i<DisPlayTexts.Length; i++)
             {
                 DisPlayTexts[i].text = englishDisplayText[i];
@@ -276,6 +390,22 @@ public class OptionUILogic
             for(int i=0; i<defaultButtonPanelTexts.Length; i++)
             {
                 defaultButtonPanelTexts[i].text = defaultButtonKoreanText;
+            }
+
+            int j = 0;
+            ControlTexts[j].text = koreanControlText;
+            j++;
+
+            for(int i=0; i< koreanControlText1.Length; i++)
+            {
+                ControlTexts[j].text = koreanControlText1[i];
+                j++;
+            }
+
+            for(int i=0; i< koreanControlText2.Length; i++)
+            {
+                ControlTexts[j].text = koreanControlText2[i];
+                j++;
             }
 
             for(int i=0; i<DisPlayTexts.Length; i++)
