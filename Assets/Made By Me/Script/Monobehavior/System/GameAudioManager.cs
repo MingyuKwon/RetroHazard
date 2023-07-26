@@ -51,6 +51,10 @@ public class GameAudioManager : MonoBehaviour
         }
     }
 
+    public class LoadManager{
+        public static string nextSceneName;
+    }
+
     public class AudioEvent{
         static public void Invoke_updateTotal()
         {

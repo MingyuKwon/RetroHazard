@@ -251,7 +251,8 @@ public class SaveSystem : MonoBehaviour
 
         if(SceneManager.GetActiveScene().name == "SingleTon Make Room" && SaveSystem.SaveSlotNum == -1)
         {
-            SceneManager.LoadScene("Adeenhau beach");
+            GameAudioManager.LoadManager.nextSceneName = "Adeenhau beach";
+            SceneManager.LoadScene("Loading");
             Player1.instance.playerRigidBody2D.transform.position = new Vector3(0, 0, 0);
 
             return;
@@ -259,8 +260,10 @@ public class SaveSystem : MonoBehaviour
 
         if(flag == 0)
         {
+            GameAudioManager.LoadManager.nextSceneName = MapNameCollection.getMapNameArrayEnglish((int)(saveSlotInfos[SaveSlotNum].saveSceneName))[saveSlotInfos[SaveSlotNum].saveSceneIndex];
+            SceneManager.LoadScene("Loading");
+
             GameManagerUI.instance.BlackOut(1.5f); 
-            SceneManager.LoadScene(MapNameCollection.getMapNameArrayEnglish((int)(saveSlotInfos[SaveSlotNum].saveSceneName))[saveSlotInfos[SaveSlotNum].saveSceneIndex], LoadSceneMode.Single);
 
             FindObjectOfType<PlayerHealth>().transform.position = saveSlotInfos[SaveSlotNum].saveLocation;
             PlayerGoalCollection.currentGoalIndex = saveSlotInfos[SaveSlotNum].saveCurrentGoalNum;
