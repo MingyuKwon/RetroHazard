@@ -1,17 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class OptionButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class OptionButton : MonoBehaviour
 {
     [SerializeField] int index;
-    public void OnPointerEnter(PointerEventData eventData)
+
+    public GameObject focus;
+
+    public void OnClick()
     {
         OptionUI.panelNum = index;
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
     }
 }

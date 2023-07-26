@@ -13,12 +13,28 @@ public class OptionUI : MonoBehaviour
 
         set{
             optionUILogic.panelNum = value;
+            panelsearchNum = value;
             optionUILogic.ChangePanel(optionUILogic.panelNum);
         }
     }
+
+    public static int panelsearchNum{
+        get{
+            return optionUILogic.panelsearchNum;
+        }
+
+        set{
+            optionUILogic.panelsearchNum = value;
+            optionUILogic.ChangeOptionButtonFocus(optionUILogic.panelsearchNum);
+        }
+    }
+
     private void Awake() {
         optionUILogic = new OptionUILogic(this);
+        panelNum = 1;
         panelNum = 0;
+
+        panelsearchNum = 0;
     }
 
     private void OnEnable() {

@@ -8,138 +8,13 @@ public class OptionUILogic
 {
     OptionUI monoBehaviour;
 
-    public int panelNum = 0; // 0 -> Control, 1 -> Audio, 2-> Vidio. 3-> General
+
+    public int panelNum = 0; // 0 -> not showing , 1 -> control, 2 -> video, 3 -> audio, 4 -> General
+    // 이건 선택용을 한 경우에 몇번 째인지를 보여주는 지표.
+    public int panelsearchNum = 0;
 
     GameObject[] panels;
-    Button[] buttons; // 0 : Control, 1 : Display, 2 : Sound, 3 : General
-
-    string[] OptionText = {
-        "<i><b>-Input-</b></i>\n\n<b>ENTER</b> : space   <b>BACK</b> : backSpace",
-        "<i><b>-입력-</b></i>\n\n<b>확인</b> : space   <b>뒤로가기</b> : backSpace",
-    };
-
-    string[] englishButtonText = { 
-    "Control" , 
-    "Display" ,
-    "Audio" ,
-    "General" ,};
-
-    string[] koreanButtonText = { 
-    "조작" , 
-    "화면" ,
-    "소리" ,
-    "일반" ,};
-    
-
-    string englishControlText = "Control";
-    string koreanControlText = "조작";
-    
-    string[] englishControlText1 = { 
-    "Game Pad" , 
-    "Move" ,
-    "Move" ,
-    "Pause" ,
-    "Tab" ,
-    "Interact\n/Ok" ,
-    "Rush\n/Back" ,
-    "remove" ,
-    "Sheild\n/left Tab" ,
-    "Sheild\nreload" ,
-    "Attack\n/right Tab" ,
-    "Energy\nreload" ,
-    };
-
-
-    string[] koreanControlText1 = { 
-    "게임 패드" , 
-    "이동" ,
-    "이동" ,
-    "일시정지" ,
-    "탭 열기" ,
-    "상호작용\n/확인" ,
-    "달리기\n/취소" ,
-    "삭제하기" ,
-    "방어\n/왼쪽 탭이동" ,
-    "내구도\n장전" ,
-    "공격\n/오른쪽 탭이동" ,
-    "에너지\n장전" ,
-    };
-
-    string[] englishControlText2 = { 
-    "KeyBoard" , 
-    "Mouse" ,
-    "Move" ,
-    "Sheild\nreload" ,
-    "Energy\nreload" ,
-    "left Tab" ,
-    "right Tab" ,
-    "remove" ,
-    "Pause" ,
-    "Tab" ,
-    "Rush" ,
-    "Back" ,
-    "Interact\n/Ok" ,
-    "Attack\n/Ok" ,
-    "Sheild\n/Back" ,
-    };
-
-    string[] koreanControlText2 = { 
-    "키보드" , 
-    "마우스" ,
-    "이동" ,
-    "내구도\n장전" ,
-    "에너지\n장전" ,
-    "왼쪽 \n탭이동" ,
-    "오른쪽 \n탭이동" ,
-    "삭제하기" ,
-    "일시정지" ,
-    "탭 열기" ,
-    "달리기" ,
-    "취소" ,
-    "상호작용\n/확인" ,
-    "공격\n/확인" ,
-    "방어\n/취소" ,
-    };
-
-
-    string[] englishDisplayText = { 
-    "Display" , 
-    "Brightness" ,
-    "Resolution" ,};
-
-    string[] koreanDisplayText = { 
-    "화면" , 
-    "밝기" ,
-    "해상도" ,};
-
-    string[] englishAudioText = { 
-    "Audio",
-    "Total Volume" , 
-    "BackGround Volume" ,
-    "UI Volume" ,
-    "SFX Volume" ,
-    "Environment Volume" ,};
-
-    string[] koreanAudioText = { 
-    "소리",
-    "총 음량" , 
-    "배경 음악 음량" ,
-    "UI 음량" ,
-    "효과음 음량" ,
-    "주변 환경 음량" ,};
-
-    string[] englishGeneralText = { 
-    "General",
-    "Language" ,};
-
-    string[] koreanGeneralText = { 
-    "일반",
-    "언어" ,};
-
-    string defaultButtonEnglishText = "Default Value";
-    string defaultButtonKoreanText = "기본값";
-
-
+    OptionButton[] buttons; // 0 : Control, 1 : Display, 2 : Sound, 3 : General
     Text[] buttonPanelTexts;
     Text[] defaultButtonPanelTexts;
 
@@ -170,20 +45,28 @@ public class OptionUILogic
     Toggle enlgishToggle;
     Toggle koreanToggle;
 
+    public void ChangeOptionButtonFocus(int index)
+    {
+        foreach(OptionButton button in buttons)
+        {
+            button.focus.SetActive(false);
+        }
+
+        if(index == 0) return;
+        buttons[index-1].focus.SetActive(true);
+    }
+
     public OptionUILogic(OptionUI monoBehaviour)
     {
         this.monoBehaviour = monoBehaviour;
 
         panels = new GameObject[monoBehaviour.transform.GetChild(2).childCount];
+        buttons = monoBehaviour.transform.GetChild(1).GetComponentsInChildren<OptionButton>();
 
         for(int i=0; i< panels.Length; i++)
         {
             panels[i] = monoBehaviour.transform.GetChild(2).GetChild(i).gameObject;
         }
-
-        ////////Control//////////////////
-        
-        ////////Control//////////////////
 
         ////////Video//////////////////
         VideoSlider = panels[1].GetComponentInChildren<Slider>();
@@ -643,7 +526,9 @@ public class OptionUILogic
             panels[i].SetActive(false);
         }
 
-        panels[index].SetActive(true);
+        if(index == 0) return;
+
+        panels[index-1].SetActive(true);
     }
 
     public void OnEnable() {
@@ -655,6 +540,130 @@ public class OptionUILogic
     }
 
 
+        string[] OptionText = {
+        "<i><b>-Input-</b></i>\n\n<b>ENTER</b> : space   <b>BACK</b> : backSpace",
+        "<i><b>-입력-</b></i>\n\n<b>확인</b> : space   <b>뒤로가기</b> : backSpace",
+    };
 
+    string[] englishButtonText = { 
+    "Control" , 
+    "Display" ,
+    "Audio" ,
+    "General" ,};
+
+    string[] koreanButtonText = { 
+    "조작" , 
+    "화면" ,
+    "소리" ,
+    "일반" ,};
+    
+
+    string englishControlText = "Control";
+    string koreanControlText = "조작";
+    
+    string[] englishControlText1 = { 
+    "Game Pad" , 
+    "Move" ,
+    "Move" ,
+    "Pause" ,
+    "Tab" ,
+    "Interact\n/Ok" ,
+    "Rush\n/Back" ,
+    "remove" ,
+    "Sheild\n/left Tab" ,
+    "Sheild\nreload" ,
+    "Attack\n/right Tab" ,
+    "Energy\nreload" ,
+    };
+
+
+    string[] koreanControlText1 = { 
+    "게임 패드" , 
+    "이동" ,
+    "이동" ,
+    "일시정지" ,
+    "탭 열기" ,
+    "상호작용\n/확인" ,
+    "달리기\n/취소" ,
+    "삭제하기" ,
+    "방어\n/왼쪽 탭이동" ,
+    "내구도\n장전" ,
+    "공격\n/오른쪽 탭이동" ,
+    "에너지\n장전" ,
+    };
+
+    string[] englishControlText2 = { 
+    "KeyBoard" , 
+    "Mouse" ,
+    "Move" ,
+    "Sheild\nreload" ,
+    "Energy\nreload" ,
+    "left Tab" ,
+    "right Tab" ,
+    "remove" ,
+    "Pause" ,
+    "Tab" ,
+    "Rush" ,
+    "Back" ,
+    "Interact\n/Ok" ,
+    "Attack\n/Ok" ,
+    "Sheild\n/Back" ,
+    };
+
+    string[] koreanControlText2 = { 
+    "키보드" , 
+    "마우스" ,
+    "이동" ,
+    "내구도\n장전" ,
+    "에너지\n장전" ,
+    "왼쪽 \n탭이동" ,
+    "오른쪽 \n탭이동" ,
+    "삭제하기" ,
+    "일시정지" ,
+    "탭 열기" ,
+    "달리기" ,
+    "취소" ,
+    "상호작용\n/확인" ,
+    "공격\n/확인" ,
+    "방어\n/취소" ,
+    };
+
+
+    string[] englishDisplayText = { 
+    "Display" , 
+    "Brightness" ,
+    "Resolution" ,};
+
+    string[] koreanDisplayText = { 
+    "화면" , 
+    "밝기" ,
+    "해상도" ,};
+
+    string[] englishAudioText = { 
+    "Audio",
+    "Total Volume" , 
+    "BackGround Volume" ,
+    "UI Volume" ,
+    "SFX Volume" ,
+    "Environment Volume" ,};
+
+    string[] koreanAudioText = { 
+    "소리",
+    "총 음량" , 
+    "배경 음악 음량" ,
+    "UI 음량" ,
+    "효과음 음량" ,
+    "주변 환경 음량" ,};
+
+    string[] englishGeneralText = { 
+    "General",
+    "Language" ,};
+
+    string[] koreanGeneralText = { 
+    "일반",
+    "언어" ,};
+
+    string defaultButtonEnglishText = "Default Value";
+    string defaultButtonKoreanText = "기본값";
     
 }

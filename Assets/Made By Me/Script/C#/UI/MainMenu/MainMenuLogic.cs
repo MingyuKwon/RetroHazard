@@ -127,11 +127,37 @@ public class MainMenuLogic
 
         }else if(MainMenu.instance.optionUI.gameObject.activeInHierarchy)
         {
+            if(OptionUI.panelNum == 0)
+            {
+                OptionUI.panelNum = OptionUI.panelsearchNum;
+            }else if(OptionUI.panelNum == 1)
+            {
 
+            }else if(OptionUI.panelNum == 2)
+            {
+
+            }else if(OptionUI.panelNum == 3)
+            {
+
+            }else if(OptionUI.panelNum == 4)
+            {
+
+            }
         }
     }
     private void BackPressed()
     {
+        if(MainMenu.instance.optionUI.gameObject.activeInHierarchy && OptionUI.panelNum == 0)
+        {
+            
+        }else if(MainMenu.instance.optionUI.gameObject.activeInHierarchy && OptionUI.panelNum != 0)
+        {
+            int beforeInt = OptionUI.panelsearchNum;
+            OptionUI.panelNum = 0;
+            OptionUI.panelsearchNum =beforeInt;
+            return;
+        }
+
         CurrentWindowLayer = 0;
         GameManager.EventManager.Invoke_MainMenuWindowLayer_Change_Event();
     }
@@ -168,7 +194,7 @@ public class MainMenuLogic
 
         }else if(MainMenu.instance.optionUI.gameObject.activeInHierarchy)
         {
-
+            
         }
     }
 
@@ -195,7 +221,25 @@ public class MainMenuLogic
 
         }else if(MainMenu.instance.optionUI.gameObject.activeInHierarchy)
         {
+            if(OptionUI.panelNum == 0)
+            {
+                int value = OptionUI.panelsearchNum;
+                value--;
+                OptionUI.panelsearchNum = Mathf.Clamp(value,1,4);
+            }else if(OptionUI.panelNum == 1)
+            {
 
+            }else if(OptionUI.panelNum == 2)
+            {
+
+            }else if(OptionUI.panelNum == 3)
+            {
+
+            }else if(OptionUI.panelNum == 4)
+            {
+
+            }
+            
         }
     }
 
@@ -222,7 +266,24 @@ public class MainMenuLogic
 
         }else if(MainMenu.instance.optionUI.gameObject.activeInHierarchy)
         {
+            if(OptionUI.panelNum == 0)
+            {
+                int value = OptionUI.panelsearchNum;
+                value++;
+                OptionUI.panelsearchNum = Mathf.Clamp(value,1,4);
+            }else if(OptionUI.panelNum == 1)
+            {
 
+            }else if(OptionUI.panelNum == 2)
+            {
+
+            }else if(OptionUI.panelNum == 3)
+            {
+
+            }else if(OptionUI.panelNum == 4)
+            {
+
+            }
         }
     }
 

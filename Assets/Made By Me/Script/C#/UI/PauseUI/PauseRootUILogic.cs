@@ -118,12 +118,39 @@ public class PauseRootUILogic
 
         }else if(UI.instance.PauseUI.optionUI.gameObject.activeInHierarchy)
         {
+            if(OptionUI.panelNum == 0)
+            {
+                OptionUI.panelNum = OptionUI.panelsearchNum;
+            }else if(OptionUI.panelNum == 1)
+            {
 
+            }else if(OptionUI.panelNum == 2)
+            {
+
+            }else if(OptionUI.panelNum == 3)
+            {
+
+            }else if(OptionUI.panelNum == 4)
+            {
+
+            }
+        
         }
     }
 
     private void Back_Clicked_Pressed()
     {
+        if(UI.instance.PauseUI.optionUI.gameObject.activeInHierarchy && OptionUI.panelNum == 0)
+        {
+            
+        }else if(UI.instance.PauseUI.optionUI.gameObject.activeInHierarchy && OptionUI.panelNum != 0)
+        {
+            int beforeInt = OptionUI.panelsearchNum;
+            OptionUI.panelNum = 0;
+            OptionUI.panelsearchNum =beforeInt;
+            return;
+        }
+
         if(CurrentWindowLayer == 0 )
         {
             CurrentWindowLayer--;
@@ -131,9 +158,8 @@ public class PauseRootUILogic
         {
             CurrentWindowLayer = 0;
         }
-        
+
         GameManager.EventManager.Invoke_PauseWindowLayer_Change_Event();
-        
     }
 
     private void Up_Pressed()
@@ -156,7 +182,24 @@ public class PauseRootUILogic
 
         }else if(UI.instance.PauseUI.optionUI.gameObject.activeInHierarchy)
         {
+            if(OptionUI.panelNum == 0)
+            {
+                int value = OptionUI.panelsearchNum;
+                value--;
+                OptionUI.panelsearchNum = Mathf.Clamp(value,1,4);
+            }else if(OptionUI.panelNum == 1)
+            {
 
+            }else if(OptionUI.panelNum == 2)
+            {
+
+            }else if(OptionUI.panelNum == 3)
+            {
+
+            }else if(OptionUI.panelNum == 4)
+            {
+
+            }
         }
     }
 
@@ -179,7 +222,24 @@ public class PauseRootUILogic
             UI.instance.PauseUI.saveSlotUI.saveSlotIndex = Mathf.Clamp(value, 0,9);
         }else if(UI.instance.PauseUI.optionUI.gameObject.activeInHierarchy)
         {
+            if(OptionUI.panelNum == 0)
+            {
+                int value = OptionUI.panelsearchNum;
+                value++;
+                OptionUI.panelsearchNum = Mathf.Clamp(value,1,4);
+            }else if(OptionUI.panelNum == 1)
+            {
 
+            }else if(OptionUI.panelNum == 2)
+            {
+
+            }else if(OptionUI.panelNum == 3)
+            {
+
+            }else if(OptionUI.panelNum == 4)
+            {
+
+            }
         }
     }
 
