@@ -1,112 +1,112 @@
 fileFormatVersion: 2
-guid: 89d274fe8898068448058292b73dbb11
+guid: 3dfe07f692a118043848b9dfeb29312e
 TextureImporter:
   internalIDToNameTable:
   - first:
       213: 21300000
-    second: Retrocade Xbox_0
+    second: Retrocade PS_0
   - first:
       213: 21300002
-    second: Retrocade Xbox_1
+    second: Retrocade PS_1
   - first:
       213: 21300004
-    second: Retrocade Xbox_2
+    second: Retrocade PS_2
   - first:
       213: 21300006
-    second: Retrocade Xbox_3
+    second: Retrocade PS_3
   - first:
       213: 21300008
-    second: Retrocade Xbox_4
+    second: Retrocade PS_4
   - first:
       213: 21300010
-    second: Retrocade Xbox_5
+    second: Retrocade PS_5
   - first:
       213: 21300012
-    second: Retrocade Xbox_6
+    second: Retrocade PS_6
   - first:
       213: 21300014
-    second: Retrocade Xbox_7
+    second: Retrocade PS_7
   - first:
       213: 21300016
-    second: Retrocade Xbox_8
+    second: Retrocade PS_8
   - first:
       213: 21300018
-    second: Retrocade Xbox_9
+    second: Retrocade PS_9
   - first:
       213: 21300020
-    second: Retrocade Xbox_10
+    second: Retrocade PS_10
   - first:
       213: 21300022
-    second: Retrocade Xbox_11
+    second: Retrocade PS_11
   - first:
       213: 21300024
-    second: Retrocade Xbox_12
+    second: Retrocade PS_12
   - first:
       213: 21300026
-    second: Retrocade Xbox_13
+    second: Retrocade PS_13
   - first:
       213: 21300028
-    second: Retrocade Xbox_14
+    second: Retrocade PS_14
   - first:
       213: 21300030
-    second: Retrocade Xbox_15
+    second: Retrocade PS_15
   - first:
       213: 21300032
-    second: Retrocade Xbox_16
+    second: Retrocade PS_16
   - first:
       213: 21300034
-    second: Retrocade Xbox_17
+    second: Retrocade PS_17
   - first:
       213: 21300036
-    second: Retrocade Xbox_18
+    second: Retrocade PS_18
   - first:
       213: 21300038
-    second: Retrocade Xbox_19
+    second: Retrocade PS_19
   - first:
       213: 21300040
-    second: Retrocade Xbox_20
+    second: Retrocade PS_20
   - first:
       213: 21300042
-    second: Retrocade Xbox_21
+    second: Retrocade PS_21
   - first:
       213: 21300044
-    second: Retrocade Xbox_22
+    second: Retrocade PS_22
   - first:
       213: 21300046
-    second: Retrocade Xbox_23
+    second: Retrocade PS_23
   - first:
       213: 21300048
-    second: Retrocade Xbox_24
+    second: Retrocade PS_24
   - first:
       213: 21300050
-    second: Retrocade Xbox_25
+    second: Retrocade PS_25
   - first:
       213: 21300052
-    second: Retrocade Xbox_26
+    second: Retrocade PS_26
   - first:
       213: 21300054
-    second: Retrocade Xbox_27
+    second: Retrocade PS_27
   - first:
       213: 21300056
-    second: Retrocade Xbox_28
+    second: Retrocade PS_28
   - first:
       213: 21300058
-    second: Retrocade Xbox_29
+    second: Retrocade PS_29
   - first:
       213: 21300060
-    second: Retrocade Xbox_30
+    second: Retrocade PS_30
   - first:
       213: 21300062
-    second: Retrocade Xbox_31
+    second: Retrocade PS_31
   - first:
       213: 21300064
-    second: Retrocade Xbox_32
+    second: Retrocade PS_32
   - first:
       213: 21300066
-    second: Retrocade Xbox_33
+    second: Retrocade PS_33
   - first:
       213: 21300068
-    second: Retrocade Xbox_34
+    second: Retrocade PS_34
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -152,7 +152,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -181,7 +181,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
@@ -193,7 +193,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
     maxTextureSize: 2048
@@ -205,7 +205,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Server
     maxTextureSize: 2048
@@ -217,12 +217,12 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Retrocade Xbox_0
+      name: Retrocade PS_0
       rect:
         serializedVersion: 2
         x: 0
@@ -243,7 +243,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Retrocade Xbox_1
+      name: Retrocade PS_1
       rect:
         serializedVersion: 2
         x: 16
@@ -264,7 +264,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Retrocade Xbox_2
+      name: Retrocade PS_2
       rect:
         serializedVersion: 2
         x: 32
@@ -285,7 +285,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Retrocade Xbox_3
+      name: Retrocade PS_3
       rect:
         serializedVersion: 2
         x: 48
@@ -306,7 +306,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Retrocade Xbox_4
+      name: Retrocade PS_4
       rect:
         serializedVersion: 2
         x: 64
@@ -327,7 +327,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Retrocade Xbox_5
+      name: Retrocade PS_5
       rect:
         serializedVersion: 2
         x: 80
@@ -348,7 +348,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Retrocade Xbox_6
+      name: Retrocade PS_6
       rect:
         serializedVersion: 2
         x: 96
@@ -369,7 +369,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Retrocade Xbox_7
+      name: Retrocade PS_7
       rect:
         serializedVersion: 2
         x: 0
@@ -390,7 +390,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Retrocade Xbox_8
+      name: Retrocade PS_8
       rect:
         serializedVersion: 2
         x: 16
@@ -411,7 +411,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Retrocade Xbox_9
+      name: Retrocade PS_9
       rect:
         serializedVersion: 2
         x: 32
@@ -432,7 +432,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Retrocade Xbox_10
+      name: Retrocade PS_10
       rect:
         serializedVersion: 2
         x: 48
@@ -453,7 +453,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Retrocade Xbox_11
+      name: Retrocade PS_11
       rect:
         serializedVersion: 2
         x: 64
@@ -474,7 +474,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Retrocade Xbox_12
+      name: Retrocade PS_12
       rect:
         serializedVersion: 2
         x: 80
@@ -495,7 +495,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Retrocade Xbox_13
+      name: Retrocade PS_13
       rect:
         serializedVersion: 2
         x: 96
@@ -516,7 +516,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Retrocade Xbox_14
+      name: Retrocade PS_14
       rect:
         serializedVersion: 2
         x: 0
@@ -537,7 +537,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Retrocade Xbox_15
+      name: Retrocade PS_15
       rect:
         serializedVersion: 2
         x: 16
@@ -558,7 +558,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Retrocade Xbox_16
+      name: Retrocade PS_16
       rect:
         serializedVersion: 2
         x: 32
@@ -579,7 +579,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Retrocade Xbox_17
+      name: Retrocade PS_17
       rect:
         serializedVersion: 2
         x: 48
@@ -600,7 +600,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Retrocade Xbox_18
+      name: Retrocade PS_18
       rect:
         serializedVersion: 2
         x: 64
@@ -621,7 +621,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Retrocade Xbox_19
+      name: Retrocade PS_19
       rect:
         serializedVersion: 2
         x: 80
@@ -642,7 +642,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Retrocade Xbox_20
+      name: Retrocade PS_20
       rect:
         serializedVersion: 2
         x: 96
@@ -663,7 +663,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Retrocade Xbox_21
+      name: Retrocade PS_21
       rect:
         serializedVersion: 2
         x: 0
@@ -684,7 +684,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Retrocade Xbox_22
+      name: Retrocade PS_22
       rect:
         serializedVersion: 2
         x: 16
@@ -705,7 +705,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Retrocade Xbox_23
+      name: Retrocade PS_23
       rect:
         serializedVersion: 2
         x: 32
@@ -726,7 +726,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Retrocade Xbox_24
+      name: Retrocade PS_24
       rect:
         serializedVersion: 2
         x: 48
@@ -747,7 +747,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Retrocade Xbox_25
+      name: Retrocade PS_25
       rect:
         serializedVersion: 2
         x: 64
@@ -768,7 +768,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Retrocade Xbox_26
+      name: Retrocade PS_26
       rect:
         serializedVersion: 2
         x: 80
@@ -789,7 +789,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Retrocade Xbox_27
+      name: Retrocade PS_27
       rect:
         serializedVersion: 2
         x: 96
@@ -810,7 +810,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Retrocade Xbox_28
+      name: Retrocade PS_28
       rect:
         serializedVersion: 2
         x: 0
@@ -831,7 +831,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Retrocade Xbox_29
+      name: Retrocade PS_29
       rect:
         serializedVersion: 2
         x: 16
@@ -852,7 +852,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Retrocade Xbox_30
+      name: Retrocade PS_30
       rect:
         serializedVersion: 2
         x: 32
@@ -873,7 +873,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Retrocade Xbox_31
+      name: Retrocade PS_31
       rect:
         serializedVersion: 2
         x: 48
@@ -894,7 +894,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Retrocade Xbox_32
+      name: Retrocade PS_32
       rect:
         serializedVersion: 2
         x: 64
@@ -925,39 +925,39 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Retrocade Xbox_14: 21300028
-      Retrocade Xbox_18: 21300036
-      Retrocade Xbox_17: 21300034
-      Retrocade Xbox_7: 21300014
-      Retrocade Xbox_6: 21300012
-      Retrocade Xbox_21: 21300042
-      Retrocade Xbox_0: 21300000
-      Retrocade Xbox_5: 21300010
-      Retrocade Xbox_19: 21300038
-      Retrocade Xbox_20: 21300040
-      Retrocade Xbox_24: 21300048
-      Retrocade Xbox_23: 21300046
-      Retrocade Xbox_10: 21300020
-      Retrocade Xbox_13: 21300026
-      Retrocade Xbox_27: 21300054
-      Retrocade Xbox_28: 21300056
-      Retrocade Xbox_29: 21300058
-      Retrocade Xbox_1: 21300002
-      Retrocade Xbox_3: 21300006
-      Retrocade Xbox_4: 21300008
-      Retrocade Xbox_30: 21300060
-      Retrocade Xbox_32: 21300064
-      Retrocade Xbox_2: 21300004
-      Retrocade Xbox_11: 21300022
-      Retrocade Xbox_12: 21300024
-      Retrocade Xbox_25: 21300050
-      Retrocade Xbox_26: 21300052
-      Retrocade Xbox_8: 21300016
-      Retrocade Xbox_9: 21300018
-      Retrocade Xbox_16: 21300032
-      Retrocade Xbox_15: 21300030
-      Retrocade Xbox_22: 21300044
-      Retrocade Xbox_31: 21300062
+      Retrocade PS_15: 21300030
+      Retrocade PS_25: 21300050
+      Retrocade PS_9: 21300018
+      Retrocade PS_5: 21300010
+      Retrocade PS_27: 21300054
+      Retrocade PS_28: 21300056
+      Retrocade PS_22: 21300044
+      Retrocade PS_32: 21300064
+      Retrocade PS_6: 21300012
+      Retrocade PS_0: 21300000
+      Retrocade PS_10: 21300020
+      Retrocade PS_1: 21300002
+      Retrocade PS_31: 21300062
+      Retrocade PS_20: 21300040
+      Retrocade PS_26: 21300052
+      Retrocade PS_30: 21300060
+      Retrocade PS_11: 21300022
+      Retrocade PS_13: 21300026
+      Retrocade PS_23: 21300046
+      Retrocade PS_14: 21300028
+      Retrocade PS_3: 21300006
+      Retrocade PS_24: 21300048
+      Retrocade PS_4: 21300008
+      Retrocade PS_17: 21300034
+      Retrocade PS_18: 21300036
+      Retrocade PS_29: 21300058
+      Retrocade PS_8: 21300016
+      Retrocade PS_16: 21300032
+      Retrocade PS_7: 21300014
+      Retrocade PS_19: 21300038
+      Retrocade PS_12: 21300024
+      Retrocade PS_21: 21300042
+      Retrocade PS_2: 21300004
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
