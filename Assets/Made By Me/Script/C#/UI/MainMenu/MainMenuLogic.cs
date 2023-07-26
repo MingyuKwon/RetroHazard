@@ -154,7 +154,10 @@ public class MainMenuLogic
         {
             int beforeInt = OptionUI.panelsearchNum;
             OptionUI.panelNum = 0;
-            OptionUI.panelsearchNum =beforeInt;
+            OptionUI.panelsearchNum = beforeInt;
+            OptionUI.videoIndex = 0;
+            OptionUI.audioIndex = 0;
+            OptionUI.generalIndex = 0;
             return;
         }
 
@@ -231,13 +234,20 @@ public class MainMenuLogic
 
             }else if(OptionUI.panelNum == 2)
             {
-
+                int value = OptionUI.videoIndex;
+                value--;
+                OptionUI.videoIndex = Mathf.Clamp(value,0,5);
+                 
             }else if(OptionUI.panelNum == 3)
             {
-
+                int value = OptionUI.audioIndex;
+                value--;
+                OptionUI.audioIndex = Mathf.Clamp(value,0,5);
             }else if(OptionUI.panelNum == 4)
             {
-
+                int value = OptionUI.generalIndex;
+                value--;
+                OptionUI.generalIndex = Mathf.Clamp(value,0,2);
             }
             
         }
@@ -276,13 +286,19 @@ public class MainMenuLogic
 
             }else if(OptionUI.panelNum == 2)
             {
-
+                int value = OptionUI.videoIndex;
+                value++;
+                OptionUI.videoIndex = Mathf.Clamp(value,0,5);
             }else if(OptionUI.panelNum == 3)
             {
-
+                int value = OptionUI.audioIndex;
+                value++;
+                OptionUI.audioIndex = Mathf.Clamp(value,0,5);
             }else if(OptionUI.panelNum == 4)
             {
-
+                int value = OptionUI.generalIndex;
+                value++;
+                OptionUI.generalIndex = Mathf.Clamp(value,0,2);
             }
         }
     }

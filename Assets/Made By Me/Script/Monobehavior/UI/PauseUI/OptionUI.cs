@@ -29,6 +29,42 @@ public class OptionUI : MonoBehaviour
         }
     }
 
+    public static int videoIndex{
+        get{
+            return optionUILogic.videoIndex;
+        }
+
+        set{
+            optionUILogic.videoIndex = value;
+            optionUILogic.SetVideoIndexFocus(optionUILogic.videoIndex);
+        }
+    }
+    public GameObject[] displayFocus;
+
+    public static int audioIndex{
+        get{
+            return optionUILogic.audioIndex;
+        }
+
+        set{
+            optionUILogic.audioIndex = value;
+            optionUILogic.SetAudioIndexFocus(optionUILogic.audioIndex);
+        }
+    }
+    public GameObject[] audioFocus;
+
+    public static int generalIndex{
+        get{
+            return optionUILogic.generalIndex;
+        }
+
+        set{
+            optionUILogic.generalIndex = value;
+            optionUILogic.SetGeneralIndexFocus(optionUILogic.generalIndex);
+        }
+    }
+    public GameObject[] generalFocus;
+
     private void Awake() {
         optionUILogic = new OptionUILogic(this);
         panelNum = 1;

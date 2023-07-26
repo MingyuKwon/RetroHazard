@@ -13,6 +13,14 @@ public class OptionUILogic
     // 이건 선택용을 한 경우에 몇번 째인지를 보여주는 지표.
     public int panelsearchNum = 0;
 
+    public int videoIndex;
+    public int audioIndex;
+    public int generalIndex;
+
+    public GameObject[] displayFocus;
+    public GameObject[] audioFocus;
+    public GameObject[] generalFocus;
+
     GameObject[] panels;
     OptionButton[] buttons; // 0 : Control, 1 : Display, 2 : Sound, 3 : General
     Text[] buttonPanelTexts;
@@ -54,6 +62,36 @@ public class OptionUILogic
 
         if(index == 0) return;
         buttons[index-1].focus.SetActive(true);
+    }
+
+    public void SetVideoIndexFocus(int index)
+    {
+        foreach(GameObject obejct in displayFocus)
+        {
+            obejct.SetActive(false);
+        }
+
+        displayFocus[index].SetActive(true);
+    }
+
+    public void SetAudioIndexFocus(int index)
+    {
+        foreach(GameObject obejct in audioFocus)
+        {
+            obejct.SetActive(false);
+        }
+
+        audioFocus[index].SetActive(true);
+    }
+
+    public void SetGeneralIndexFocus(int index)
+    {
+        foreach(GameObject obejct in generalFocus)
+        {
+            obejct.SetActive(false);
+        }
+
+        generalFocus[index].SetActive(true);
     }
 
     public OptionUILogic(OptionUI monoBehaviour)
@@ -265,6 +303,10 @@ public class OptionUILogic
 
         changeText(GameAudioManager.LanguageManager.currentLanguage);
         GameAudioManager.LanguageManager.languageChangeEvent += changeText;
+
+        displayFocus = monoBehaviour.displayFocus;
+        audioFocus = monoBehaviour.audioFocus;
+        generalFocus = monoBehaviour.generalFocus;
     }
 
     public void OnDestroy() {
@@ -537,6 +579,10 @@ public class OptionUILogic
 
     public void OnDisable() {
         GameManager.EventManager.InvokeShowNotice("OptionUI");
+        panelNum = 0;
+        videoIndex = 0;
+        audioIndex = 0;
+        generalIndex = 0;
     }
 
 
