@@ -150,7 +150,11 @@ public class OptionUILogic
 
     //DisPlay//
     Slider VideoSlider;
-    Dropdown VideoDropDown;
+    Toggle Toggle1080;
+    Toggle Toggle900;
+    Toggle Toggle720;
+    Toggle Toggle540;
+
     Button VideoResetButton;
     //DisPlay//
 
@@ -160,9 +164,11 @@ public class OptionUILogic
     //Audio//
 
     //General//
-    Dropdown LanguageDropDown;
     Button GeneralResetButton;
     //General//
+
+    Toggle enlgishToggle;
+    Toggle koreanToggle;
 
     public OptionUILogic(OptionUI monoBehaviour)
     {
@@ -181,7 +187,13 @@ public class OptionUILogic
 
         ////////Video//////////////////
         VideoSlider = panels[1].GetComponentInChildren<Slider>();
-        VideoDropDown = panels[1].GetComponentInChildren<Dropdown>();
+
+        Toggle[] videoToggles = panels[1].GetComponentsInChildren<Toggle>();
+        Toggle1080 = videoToggles[0];
+        Toggle900 = videoToggles[1];
+        Toggle720 = videoToggles[2];
+        Toggle540 = videoToggles[3];
+        
         VideoResetButton = panels[1].GetComponentInChildren<Button>();
 
         VideoSlider.maxValue = 1;
@@ -191,30 +203,62 @@ public class OptionUILogic
 
         VideoSlider.onValueChanged.AddListener(UpdateVideoSlider);
 
-        VideoDropDown.options.Clear();
-        List<string> resolutionItem = new List<string> {"1920 X 1080","1600 X 900" ,"1280 X 720", "960 X 540"};
-
-        foreach (var item in resolutionItem)
-        {
-            VideoDropDown.options.Add(new Dropdown.OptionData() { text = item });
-        }
-
         switch(PlayerPrefs.GetInt("Resolution"))
         {
             case 1080 :
-                VideoDropDown.value = 0;
+                Toggle1080.isOn = true;
+                Toggle900.isOn = false;
+                Toggle720.isOn = false;
+                Toggle540.isOn = false;
+                Toggle1080.interactable = false;
+                Toggle900.interactable = true;
+                Toggle720.interactable = true;
+                Toggle540.interactable = true;
+                Screen.SetResolution(1920, 1080, FullScreenMode.Windowed);
+                PlayerPrefs.SetInt("Resolution", 1080);
                 break;
             case 900 :
-                VideoDropDown.value = 1;
+                Toggle1080.isOn = false;
+                Toggle900.isOn = true;
+                Toggle720.isOn = false;
+                Toggle540.isOn = false;
+                Toggle1080.interactable = true;
+                Toggle900.interactable = false;
+                Toggle720.interactable = true;
+                Toggle540.interactable = true;
+                Screen.SetResolution(1600, 900, FullScreenMode.Windowed);
+                PlayerPrefs.SetInt("Resolution", 900);
                 break;
             case 720 :
-                VideoDropDown.value = 2;
+                Toggle1080.isOn = false;
+                Toggle900.isOn = false;
+                Toggle720.isOn = true;
+                Toggle540.isOn = false;
+                Toggle1080.interactable = true;
+                Toggle900.interactable = true;
+                Toggle720.interactable = false;
+                Toggle540.interactable = true;
+                Screen.SetResolution(1280, 720, FullScreenMode.Windowed);
+                PlayerPrefs.SetInt("Resolution", 720);
                 break;
             case 540 :
-                VideoDropDown.value = 3;
+                Toggle1080.isOn = false;
+                Toggle900.isOn = false;
+                Toggle720.isOn = false;
+                Toggle540.isOn = true;
+                Toggle1080.interactable = true;
+                Toggle900.interactable = true;
+                Toggle720.interactable = true;
+                Toggle540.interactable = false;
+                Screen.SetResolution(960, 540, FullScreenMode.Windowed);
+                PlayerPrefs.SetInt("Resolution", 540);
                 break;
         }
-        VideoDropDown.onValueChanged.AddListener(delegate { DropdownVideoValueChanged(VideoDropDown); });
+
+        Toggle1080.onValueChanged.AddListener(delegate { VideoValueChanged(1080, Toggle1080); });
+        Toggle900.onValueChanged.AddListener(delegate { VideoValueChanged(900, Toggle900); });
+        Toggle720.onValueChanged.AddListener(delegate { VideoValueChanged(720, Toggle720); });
+        Toggle540.onValueChanged.AddListener(delegate { VideoValueChanged(540, Toggle540); });
 
         VideoResetButton.onClick.AddListener(ResetVideoOption);
         ////////Video//////////////////
@@ -253,21 +297,30 @@ public class OptionUILogic
 
         
         ////////General//////////////////
-        LanguageDropDown = panels[3].GetComponentInChildren<Dropdown>();
+        Toggle[] toggles = panels[3].transform.GetChild(1).GetComponentsInChildren<Toggle>();
+        enlgishToggle = toggles[0];
+        koreanToggle = toggles[1];
         GeneralResetButton = panels[3].GetComponentInChildren<Button>();
 
         switch(GameAudioManager.LanguageManager.currentLanguage)
         {
             case "E" :
-                LanguageDropDown.value = 0;
+                enlgishToggle.isOn = true;
+                enlgishToggle.interactable = false;
+                koreanToggle.isOn = false;
+                koreanToggle.interactable = true;
                 break;
             case "K" :
-                LanguageDropDown.value = 1;
+                enlgishToggle.isOn = false;
+                enlgishToggle.interactable = true;
+                koreanToggle.isOn = true;
+                koreanToggle.interactable = false;
                 break;
         }
 
-        LanguageDropDown.onValueChanged.AddListener(delegate { DropdownLanguageValueChanged(LanguageDropDown); });
-    
+        enlgishToggle.onValueChanged.AddListener(delegate { LanguageValueChanged("E" , enlgishToggle); });
+        koreanToggle.onValueChanged.AddListener(delegate { LanguageValueChanged("K", koreanToggle); });
+
         GeneralResetButton.onClick.AddListener(ResetGenralOption);
         ////////General//////////////////
 
@@ -306,8 +359,8 @@ public class OptionUILogic
         ///////DisPlay//////////////
         DisPlayTexts = new Text[englishDisplayText.Length];
         DisPlayTexts[0] = panels[1].transform.GetChild(0).GetComponent<Text>();
-        DisPlayTexts[1] = panels[1].transform.GetChild(1).GetChild(0).GetChild(3).GetComponent<Text>();
-        DisPlayTexts[2] = panels[1].transform.GetChild(1).GetChild(1).GetChild(3).GetComponent<Text>();
+        DisPlayTexts[1] = panels[1].transform.GetChild(1).GetChild(1).GetChild(3).GetComponent<Text>();
+        DisPlayTexts[2] = panels[1].transform.GetChild(1).GetChild(0).GetComponent<Text>();
         ///////DisPlay//////////////
 
         ///////Audio//////////////
@@ -323,7 +376,7 @@ public class OptionUILogic
         //////Genral//////////////
         GeneralTexts = new Text[englishGeneralText.Length];
         GeneralTexts[0] = panels[3].transform.GetChild(0).GetComponent<Text>();
-        GeneralTexts[1] = panels[3].transform.GetChild(1).GetChild(0).GetChild(3).GetComponent<Text>();
+        GeneralTexts[1] = panels[3].transform.GetChild(1).GetChild(0).GetComponent<Text>();
         //////Genral//////////////
 
 
@@ -426,23 +479,59 @@ public class OptionUILogic
     }
 
 
-    void DropdownVideoValueChanged(Dropdown change)
+    void VideoValueChanged(int Resolution, Toggle toggle)
     {
-        switch(change.value)
+        switch(Resolution)
         {
-            case 0 :
+            case 1080 :
+            if(!toggle.isOn) return;
+                Toggle1080.isOn = true;
+                Toggle900.isOn = false;
+                Toggle720.isOn = false;
+                Toggle540.isOn = false;
+                Toggle1080.interactable = false;
+                Toggle900.interactable = true;
+                Toggle720.interactable = true;
+                Toggle540.interactable = true;
                 Screen.SetResolution(1920, 1080, FullScreenMode.Windowed);
                 PlayerPrefs.SetInt("Resolution", 1080);
                 break;
-            case 1 :
+            case 900 :
+            if(!toggle.isOn) return;
+                Toggle1080.isOn = false;
+                Toggle900.isOn = true;
+                Toggle720.isOn = false;
+                Toggle540.isOn = false;
+                Toggle1080.interactable = true;
+                Toggle900.interactable = false;
+                Toggle720.interactable = true;
+                Toggle540.interactable = true;
                 Screen.SetResolution(1600, 900, FullScreenMode.Windowed);
                 PlayerPrefs.SetInt("Resolution", 900);
                 break;
-            case 2 :
+            case 720 :
+            if(!toggle.isOn) return;
+                Toggle1080.isOn = false;
+                Toggle900.isOn = false;
+                Toggle720.isOn = true;
+                Toggle540.isOn = false;
+                Toggle1080.interactable = true;
+                Toggle900.interactable = true;
+                Toggle720.interactable = false;
+                Toggle540.interactable = true;
                 Screen.SetResolution(1280, 720, FullScreenMode.Windowed);
                 PlayerPrefs.SetInt("Resolution", 720);
                 break;
-            case 3 :
+            case 540 :
+            if(!toggle.isOn) return;
+                Toggle1080.isOn = false;
+                Toggle900.isOn = false;
+                Toggle720.isOn = false;
+                Toggle540.isOn = true;
+                Toggle1080.interactable = true;
+                Toggle900.interactable = true;
+                Toggle720.interactable = true;
+                Toggle540.interactable = false;
                 Screen.SetResolution(960, 540, FullScreenMode.Windowed);
                 PlayerPrefs.SetInt("Resolution", 540);
                 break;
@@ -450,14 +539,25 @@ public class OptionUILogic
         
     }
 
-    void DropdownLanguageValueChanged(Dropdown change)
+    void LanguageValueChanged(string language, Toggle toggle)
     {
-        switch(change.value)
+        switch(language)
         {
-            case 0 :
+            case "E" :
+            if(!toggle.isOn) return;
+
+                koreanToggle.isOn = false;
+                koreanToggle.interactable = true;
+                enlgishToggle.interactable = false;
+                
                 GameAudioManager.LanguageManager.Invoke_languageChangeEvent("E");
                 break;
-            case 1 :
+            case "K" :
+            if(!toggle.isOn) return;
+
+                enlgishToggle.isOn = false;
+                enlgishToggle.interactable = true;
+                koreanToggle.interactable = false;
                 GameAudioManager.LanguageManager.Invoke_languageChangeEvent("K");
                 break;
         }
@@ -484,15 +584,25 @@ public class OptionUILogic
         ScreenBright.ScreenLight = 1f;
         VideoSlider.value = ScreenBright.ScreenLight;
 
+        Toggle1080.isOn = true;
+        Toggle900.isOn = false;
+        Toggle720.isOn = false;
+        Toggle540.isOn = false;
+        Toggle1080.interactable = false;
+        Toggle900.interactable = true;
+        Toggle720.interactable = true;
+        Toggle540.interactable = true;
         Screen.SetResolution(1920, 1080, FullScreenMode.Windowed);
         PlayerPrefs.SetInt("Resolution", 1080);
-        VideoDropDown.value = 0;
     }
 
     private void ResetGenralOption()
     {
         GameAudioManager.LanguageManager.Invoke_languageChangeEvent("E");
-        LanguageDropDown.value = 0;
+        enlgishToggle.isOn = true;
+        enlgishToggle.interactable = false;
+        koreanToggle.isOn = false;
+        koreanToggle.interactable = true;
     }
 
 
