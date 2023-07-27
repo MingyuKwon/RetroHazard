@@ -51,6 +51,9 @@ public class MainMenuLogic
         GameMangerInput.InputEvent.MenuUIRightPressed += RightPressed;
         GameMangerInput.InputEvent.MenuUILeftPressed += LeftPressed;
 
+        GameMangerInput.InputEvent.MenuUIRightPressing += RightPressing;
+        GameMangerInput.InputEvent.MenuUILeftPressing += LeftPressing;
+
         GameMangerInput.InputEvent.RemoveSaveSlot += RemoveSaveSlot;
 
     }
@@ -65,6 +68,9 @@ public class MainMenuLogic
         GameMangerInput.InputEvent.MenuUIDownPressed -= DownPressed;
         GameMangerInput.InputEvent.MenuUIRightPressed -= RightPressed;
         GameMangerInput.InputEvent.MenuUILeftPressed -= LeftPressed;
+
+        GameMangerInput.InputEvent.MenuUIRightPressing -= RightPressing;
+        GameMangerInput.InputEvent.MenuUILeftPressing -= LeftPressing;
 
         GameMangerInput.InputEvent.RemoveSaveSlot -= RemoveSaveSlot;
 
@@ -187,6 +193,33 @@ public class MainMenuLogic
                 
             }else if(OptionUI.panelNum == 2)
             {
+            }else if(OptionUI.panelNum == 3)
+            {
+            }else if(OptionUI.panelNum == 4)
+            {
+
+            }
+        }
+    }
+
+    private void LeftPressing()
+    {
+        if(MainMenu.instance.mainMenuUI.gameObject.activeInHierarchy)
+        {
+                
+        }else if(MainMenu.instance.saveSlotUI.gameObject.activeInHierarchy)
+        {
+
+        }else if(MainMenu.instance.optionUI.gameObject.activeInHierarchy)
+        {
+            if(OptionUI.panelNum == 0)
+            {
+
+            }else if(OptionUI.panelNum == 1)
+            {
+                
+            }else if(OptionUI.panelNum == 2)
+            {
                 MainMenu.instance.optionUI.VideoSliderChange(false);
             }else if(OptionUI.panelNum == 3)
             {
@@ -209,6 +242,33 @@ public class MainMenuLogic
             value += 1;
 
             MainMenu.instance.saveSlotUI.saveSlotIndex = Mathf.Clamp(value, 0,9);
+
+        }else if(MainMenu.instance.optionUI.gameObject.activeInHierarchy)
+        {
+            if(OptionUI.panelNum == 0)
+            {
+
+            }else if(OptionUI.panelNum == 1)
+            {
+                
+            }else if(OptionUI.panelNum == 2)
+            {
+            }else if(OptionUI.panelNum == 3)
+            {
+            }else if(OptionUI.panelNum == 4)
+            {
+
+            }
+        }
+    }
+
+    private void RightPressing()
+    {
+        if(MainMenu.instance.mainMenuUI.gameObject.activeInHierarchy)
+        {
+                
+        }else if(MainMenu.instance.saveSlotUI.gameObject.activeInHierarchy)
+        {
 
         }else if(MainMenu.instance.optionUI.gameObject.activeInHierarchy)
         {

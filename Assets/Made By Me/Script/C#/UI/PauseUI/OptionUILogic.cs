@@ -667,14 +667,14 @@ public class OptionUILogic
     public void VideoSliderChange(bool isRight)
     {
         if(videoIndex != 0) return;
-        
+
         if(!isRight)
         {
-            ScreenBright.ScreenLight -= 0.01f;
+            ScreenBright.ScreenLight -= 0.003f;
             VideoSlider.value = ScreenBright.ScreenLight;
         }else
         {
-            ScreenBright.ScreenLight += 0.01f;
+            ScreenBright.ScreenLight += 0.003f;
             VideoSlider.value = ScreenBright.ScreenLight;
         }
     }
@@ -685,24 +685,24 @@ public class OptionUILogic
         {
             switch(audioIndex) {
                 case 0 : 
-                    GameAudioManager.totalVolme -= 0.01f;
+                    GameAudioManager.totalVolme -= 0.003f;
                     AudioSliders[0].value = GameAudioManager.totalVolme;
                     break;
                 case 1 : 
-                    GameAudioManager.currentBackGroundVolume -= 0.01f;
+                    GameAudioManager.currentBackGroundVolume -= 0.003f;
                     AudioSliders[1].value = GameAudioManager.currentBackGroundVolume;
                     break;
                 case 2 : 
-                    GameAudioManager.currentUIVolume -= 0.01f;
+                    GameAudioManager.currentUIVolume -= 0.003f;
                     AudioSliders[2].value = GameAudioManager.currentUIVolume;
                     break;
                 case 3 : 
-                    GameAudioManager.currentSFXVolume -= 0.01f;
+                    GameAudioManager.currentSFXVolume -= 0.003f;
                     AudioSliders[3].value = GameAudioManager.currentSFXVolume;
                     break;
                 case 4 : 
-                    GameAudioManager.currentEnvironmentVolume -= 0.01f;
-                    AudioSliders[3].value = GameAudioManager.currentEnvironmentVolume;
+                    GameAudioManager.currentEnvironmentVolume -= 0.003f;
+                    AudioSliders[4].value = GameAudioManager.currentEnvironmentVolume;
                     break;
             }
 
@@ -710,24 +710,24 @@ public class OptionUILogic
         {
             switch(audioIndex) {
                 case 0 : 
-                    GameAudioManager.totalVolme += 0.01f;
+                    GameAudioManager.totalVolme += 0.003f;
                     AudioSliders[0].value = GameAudioManager.totalVolme;
                     break;
                 case 1 : 
-                    GameAudioManager.currentBackGroundVolume += 0.01f;
+                    GameAudioManager.currentBackGroundVolume += 0.003f;
                     AudioSliders[1].value = GameAudioManager.currentBackGroundVolume;
                     break;
                 case 2 : 
-                    GameAudioManager.currentUIVolume += 0.01f;
+                    GameAudioManager.currentUIVolume += 0.003f;
                     AudioSliders[2].value = GameAudioManager.currentUIVolume;
                     break;
                 case 3 : 
-                    GameAudioManager.currentSFXVolume += 0.01f;
+                    GameAudioManager.currentSFXVolume += 0.003f;
                     AudioSliders[3].value = GameAudioManager.currentSFXVolume;
                     break;
                 case 4 : 
-                    GameAudioManager.currentEnvironmentVolume += 0.01f;
-                    AudioSliders[3].value = GameAudioManager.currentEnvironmentVolume;
+                    GameAudioManager.currentEnvironmentVolume += 0.003f;
+                    AudioSliders[4].value = GameAudioManager.currentEnvironmentVolume;
                     break;
             }
         }

@@ -278,6 +278,31 @@ public class GameMangerInput : MonoBehaviour
             }
         }
 
+        public static event Action TabUIRightPressing;
+        public static event Action DialogUIRightPressing;
+        public static event Action BoxUIRightPressing;
+        public static event Action MenuUIRightPressing;
+        public static event Action AlertUIRightPressing;
+        public static void Invoke_UIRightPressing()
+        {
+            if(currentInput(InputType.TabUIInput))
+            {
+                TabUIRightPressing.Invoke();
+            }else if(currentInput(InputType.DialogtUIInput))
+            {
+                DialogUIRightPressing.Invoke();
+            }else if(currentInput(InputType.BoxUIInput))
+            {
+                BoxUIRightPressing.Invoke();
+            }else if(currentInput(InputType.MenuUIInput))
+            {
+                MenuUIRightPressing.Invoke();
+            }else if(currentInput(InputType.AlertUIInput))
+            {
+                AlertUIRightPressing.Invoke();
+            }
+        }
+
         public static event Action TabUILeftPressed;
         public static event Action DialogUILeftPressed;
         public static event Action BoxUILeftPressed;
@@ -300,6 +325,31 @@ public class GameMangerInput : MonoBehaviour
             }else if(currentInput(InputType.AlertUIInput))
             {
                 AlertUILeftPressed.Invoke();
+            }
+        }
+
+        public static event Action TabUILeftPressing;
+        public static event Action DialogUILeftPressing;
+        public static event Action BoxUILeftPressing;
+        public static event Action MenuUILeftPressing;
+        public static event Action AlertUILeftPressing;
+        public static void Invoke_UILeftPressing()
+        {
+            if(currentInput(InputType.TabUIInput))
+            {
+                TabUILeftPressing.Invoke();
+            }else if(currentInput(InputType.DialogtUIInput))
+            {
+                DialogUILeftPressing.Invoke();
+            }else if(currentInput(InputType.BoxUIInput))
+            {
+                BoxUILeftPressing.Invoke();
+            }else if(currentInput(InputType.MenuUIInput))
+            {
+                MenuUILeftPressing.Invoke();
+            }else if(currentInput(InputType.AlertUIInput))
+            {
+                AlertUILeftPressing.Invoke();
             }
         }
 
@@ -621,6 +671,9 @@ public class GameMangerInput : MonoBehaviour
         player.AddInputEventDelegate(UIRightPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "SelectRight");
         player.AddInputEventDelegate(UILeftPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "SelectLeft");
 
+        player.AddInputEventDelegate(UIRightPressing, UpdateLoopType.Update, InputActionEventType.ButtonPressed, "SelectRight");
+        player.AddInputEventDelegate(UILeftPressing, UpdateLoopType.Update, InputActionEventType.ButtonPressed, "SelectLeft");
+
         player.AddInputEventDelegate(RemoveSaveSlot, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Remove");
 
 
@@ -674,6 +727,9 @@ public class GameMangerInput : MonoBehaviour
         player.RemoveInputEventDelegate(UIDownPressed);
         player.RemoveInputEventDelegate(UIRightPressed);
         player.RemoveInputEventDelegate(UILeftPressed);
+
+        player.RemoveInputEventDelegate(UIRightPressing);
+        player.RemoveInputEventDelegate(UILeftPressing);
     }
 
     private void NoticeClose(InputActionEventData data)
@@ -870,10 +926,21 @@ public class GameMangerInput : MonoBehaviour
         InputEvent.Invoke_UIRightPressed();
     }
 
+    public void UIRightPressing(InputActionEventData data)
+    {
+        if(blockAllInput) return;
+        InputEvent.Invoke_UIRightPressing();
+    }
+
     public void UILeftPressed(InputActionEventData data)
     {
         if(blockAllInput) return;
         InputEvent.Invoke_UILeftPressed();
+    }
+    public void UILeftPressing(InputActionEventData data)
+    {
+        if(blockAllInput) return;
+        InputEvent.Invoke_UILeftPressing();
     }
 
     public void LeftTab(InputActionEventData data)
