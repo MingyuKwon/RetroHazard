@@ -287,19 +287,19 @@ public class GameMangerInput : MonoBehaviour
         {
             if(currentInput(InputType.TabUIInput))
             {
-                TabUIRightPressing.Invoke();
+                TabUIRightPressing?.Invoke();
             }else if(currentInput(InputType.DialogtUIInput))
             {
-                DialogUIRightPressing.Invoke();
+                DialogUIRightPressing?.Invoke();
             }else if(currentInput(InputType.BoxUIInput))
             {
-                BoxUIRightPressing.Invoke();
+                BoxUIRightPressing?.Invoke();
             }else if(currentInput(InputType.MenuUIInput))
             {
-                MenuUIRightPressing.Invoke();
+                MenuUIRightPressing?.Invoke();
             }else if(currentInput(InputType.AlertUIInput))
             {
-                AlertUIRightPressing.Invoke();
+                AlertUIRightPressing?.Invoke();
             }
         }
 
@@ -337,19 +337,19 @@ public class GameMangerInput : MonoBehaviour
         {
             if(currentInput(InputType.TabUIInput))
             {
-                TabUILeftPressing.Invoke();
+                TabUILeftPressing?.Invoke();
             }else if(currentInput(InputType.DialogtUIInput))
             {
-                DialogUILeftPressing.Invoke();
+                DialogUILeftPressing?.Invoke();
             }else if(currentInput(InputType.BoxUIInput))
             {
-                BoxUILeftPressing.Invoke();
+                BoxUILeftPressing?.Invoke();
             }else if(currentInput(InputType.MenuUIInput))
             {
-                MenuUILeftPressing.Invoke();
+                MenuUILeftPressing?.Invoke();
             }else if(currentInput(InputType.AlertUIInput))
             {
-                AlertUILeftPressing.Invoke();
+                AlertUILeftPressing?.Invoke();
             }
         }
 

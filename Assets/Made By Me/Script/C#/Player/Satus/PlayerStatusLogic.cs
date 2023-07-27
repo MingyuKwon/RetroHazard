@@ -120,8 +120,8 @@ public class PlayerStatusLogic
             SheildMaganize[Sheild] -= damage;
         }
         
-        GameManager.Sheild_Durability_Reducing = false;
         GameManager.EventManager.Invoke_Sheild_Durability_Change_Event(SheildMaganize[Sheild], Sheild);
+        GameManager.Sheild_Durability_Reducing = false;
         if(SheildMaganize[Sheild] <=0 )
         {
             SheildMaganize[Sheild] = 0;

@@ -53,7 +53,17 @@ public class PlayerAnimationLogic
     BoxCollider2D attckCollider;
 
     //flags and values///////////////////////////////////
-    public bool sheildCrash; // is Sheild is broken and cannot use
+    public bool sheildCrash{
+        get{
+            if(status.SheildMaganize[status.Sheild] == 0)
+            {
+                return true;
+            }else
+            {
+                return false;
+            }
+        }
+    }
 
     public bool isAttacking; // is Player is now doing Attack Animation
     public bool isSheilding; // is Player is now doing Sheild Animation
@@ -225,6 +235,7 @@ public class PlayerAnimationLogic
             animator.SetFloat("Sheild Kind", status.Sheild);
             SheildColliderEnable(true);
             animator.Play("Shield");
+            Player1.instance.playerRigidBody2D.velocity = Vector2.zero;
         }else
         {
             PutSheildBack();
@@ -273,8 +284,6 @@ public class PlayerAnimationLogic
         GameManager.instance.SetPausePlayer(false);
         GameManager.instance.SetPlayerMove(true);
 
-        GameManager.instance.EnemyCollideIgnore(false);
-    
     }
 
     IEnumerator ColorChange()
@@ -319,7 +328,11 @@ public class PlayerAnimationLogic
             yield return new WaitForEndOfFrame();
         }
 
-        status.SheildDurabilityChange(1);
+        if(GameManager.Sheild_Durability_Reducing)
+        {
+            status.SheildDurabilityChange(1);
+        }
+
         GameManager.instance.SetPlayerMove(true);
         status.isBlocked = false;
     }
@@ -388,14 +401,12 @@ public class PlayerAnimationLogic
 
     public void SetSheildCrash(bool ChangeSheild)
     {
-        sheildCrash = true;
         isSheilding = false;
         PutSheildBack();
     }
 
     public void SetSheildRecovery(bool ChangeSheild)
     {
-        sheildCrash = false;
         GameManager.instance.SetPlayerMove(true);
     }
 

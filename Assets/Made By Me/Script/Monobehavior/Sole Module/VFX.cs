@@ -78,6 +78,6 @@ public class VFX : MonoBehaviour
 
     public void DeathEnd()
     {
-        Destroy(this.transform.parent.gameObject);
+        
     }
 }

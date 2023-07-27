@@ -125,7 +125,7 @@ public class EnemyManager : MonoBehaviour
 
 
     public Animator vfxAnimator;
-    private SpriteRenderer spriteRenderer;
+    public SpriteRenderer enemySprite;
 
     public Rigidbody2D enemyRigidbody2D;
 
@@ -165,7 +165,7 @@ public class EnemyManager : MonoBehaviour
 
         enemyAnimation = GetComponent<EnemyAnimation>(); 
 
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        enemySprite = GetComponent<SpriteRenderer>();
         vfxAnimator = GetComponentInChildren<VFX>().gameObject.GetComponent<Animator>();
 
         aiPath = GetComponent<AIPath>();
@@ -200,7 +200,7 @@ public class EnemyManager : MonoBehaviour
     private void Start() {
         if(SaveSystem.instance.ActiveStageSaves[SceneManager.GetActiveScene().buildIndex].is_Enemy_Destroy[transform.parent.GetSiblingIndex()])
         {
-            Destroy(transform.parent.gameObject);
+            transform.parent.gameObject.SetActive(false);
         }
     }
 
@@ -308,12 +308,19 @@ public class EnemyManager : MonoBehaviour
 
     public void KillEnemy()
     {
-        animator.SetTrigger("Die");
-        animator.speed = 0;
+        StartCoroutine(enemyDeath());
+    }
+
+    IEnumerator enemyDeath()
+    {
+        animator.Play("Death");
         vfxAnimator.SetTrigger("Die");
         canMove = false;
         SaveSystem.instance.ActiveStageSaves[SceneManager.GetActiveScene().buildIndex].is_Enemy_Destroy[transform.parent.GetSiblingIndex()] = true;
         playEnemyMusic(EnemyAudioType.Death);
+
+        yield return new WaitForSeconds(0.5f);
+        transform.parent.gameObject.SetActive(false);
     }
 
 }

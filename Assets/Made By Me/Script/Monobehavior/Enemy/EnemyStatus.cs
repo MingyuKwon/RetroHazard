@@ -56,16 +56,8 @@ public class EnemyStatus : MonoBehaviour
         EnemyHealthChange?.Invoke();
         if(CurrentHP <=0 )
         {
-            DestroySelf(transform.parent.transform.parent.transform.GetSiblingIndex());
+            enemyManager.KillEnemy();
         }
     }
-
-    private void DestroySelf(int index)
-    {
-        if(index != transform.parent.transform.parent.transform.GetSiblingIndex()) return;
-        
-        enemyManager.KillEnemy();
-    }
-
 
 }

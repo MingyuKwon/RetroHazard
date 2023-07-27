@@ -55,6 +55,9 @@ public class PauseRootUILogic
         GameMangerInput.InputEvent.MenuUIRightPressed += Right_Pressed;
         GameMangerInput.InputEvent.MenuUILeftPressed += Left_Pressed;
 
+        GameMangerInput.InputEvent.MenuUIRightPressing += Right_Pressing;
+        GameMangerInput.InputEvent.MenuUILeftPressing += Left_Pressing;
+
         GameMangerInput.InputEvent.RemoveSaveSlot += RemoveSaveSlot;
 
         GameManager.EventManager.Invoke_PauseWindowLayer_Change_Event();
@@ -75,6 +78,9 @@ public class PauseRootUILogic
         GameMangerInput.InputEvent.MenuUIDownPressed -= Down_Pressed;
         GameMangerInput.InputEvent.MenuUIRightPressed -= Right_Pressed;
         GameMangerInput.InputEvent.MenuUILeftPressed -= Left_Pressed;
+
+        GameMangerInput.InputEvent.MenuUIRightPressing -= Right_Pressing;
+        GameMangerInput.InputEvent.MenuUILeftPressing -= Left_Pressing;
 
         GameMangerInput.InputEvent.RemoveSaveSlot -= RemoveSaveSlot;
     }
@@ -279,6 +285,32 @@ public class PauseRootUILogic
                 
             }else if(OptionUI.panelNum == 2)
             {
+            }else if(OptionUI.panelNum == 3)
+            {
+            }else if(OptionUI.panelNum == 4)
+            {
+
+            }
+        }
+    }
+
+    private void Right_Pressing()
+    {
+        if(UI.instance.PauseUI.pauseMainUI.gameObject.activeInHierarchy)
+        {
+
+        }else if(UI.instance.PauseUI.saveSlotUI.gameObject.activeInHierarchy)
+        {
+
+        }else if(UI.instance.PauseUI.optionUI.gameObject.activeInHierarchy)
+        {
+            if(OptionUI.panelNum == 0)
+            {
+            }else if(OptionUI.panelNum == 1)
+            {
+                
+            }else if(OptionUI.panelNum == 2)
+            {
                 UI.instance.PauseUI.optionUI.VideoSliderChange(true);
             }else if(OptionUI.panelNum == 3)
             {
@@ -301,6 +333,32 @@ public class PauseRootUILogic
             value -= 1;
 
             UI.instance.PauseUI.saveSlotUI.saveSlotIndex = Mathf.Clamp(value, 0,9);
+        }else if(UI.instance.PauseUI.optionUI.gameObject.activeInHierarchy)
+        {
+            if(OptionUI.panelNum == 0)
+            {
+            }else if(OptionUI.panelNum == 1)
+            {
+                
+            }else if(OptionUI.panelNum == 2)
+            {
+            }else if(OptionUI.panelNum == 3)
+            {
+            }else if(OptionUI.panelNum == 4)
+            {
+                
+            }
+        }
+    }
+
+    private void Left_Pressing()
+    {
+        if(UI.instance.PauseUI.pauseMainUI.gameObject.activeInHierarchy)
+        {
+
+        }else if(UI.instance.PauseUI.saveSlotUI.gameObject.activeInHierarchy)
+        {
+
         }else if(UI.instance.PauseUI.optionUI.gameObject.activeInHierarchy)
         {
             if(OptionUI.panelNum == 0)

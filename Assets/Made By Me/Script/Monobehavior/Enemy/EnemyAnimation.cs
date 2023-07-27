@@ -56,7 +56,7 @@ public class EnemyAnimation : MonoBehaviour
         enemyManager.isParried = true;
         enemyManager.isEnemyStunned = true;
         enemyManager.canMove = false;
-
+        enemyManager.enemySprite.color = new Color(1f, 1f, 1f, 0.6f);
         yield return new WaitForEndOfFrame();
         while(!isCurrentAnimationEnd())
         {
@@ -67,12 +67,13 @@ public class EnemyAnimation : MonoBehaviour
         enemyManager.isParried = false;
         enemyManager.isEnemyStunned = false;
         enemyManager.canMove = true;
+        enemyManager.enemySprite.color = new Color(1f, 1f, 1f, 1f);
         animator.Play("Walk");
     }
 
     public void Stun()
     {
-        if(enemyManager.isEnemyStunned) return;
+        if(enemyManager.isEnemyStunned && !(enemyManager.isParried)) return;
 
         enemyManager.vfxAnimator.SetTrigger("Stun");
         enemyManager.enemyStatus.ParriedWithParrySheild = false;
@@ -82,22 +83,42 @@ public class EnemyAnimation : MonoBehaviour
         Animation_StopAllCoroutine();
 
         StartCoroutine(EnemyStunTime());
+        StartCoroutine(ColorChange());
+    }
+
+    IEnumerator ColorChange()
+    {
+        enemyManager.enemySprite.color = new Color(0.4f, 0.4f, 0.4f);
+
+        yield return new WaitForSeconds(0.2f);
+
+        enemyManager.enemySprite.color = new Color(0.9f, 0.9f, 0.9f);
+
+        yield return new WaitForSeconds(0.2f);
+
+        enemyManager.enemySprite.color = new Color(0.6f, 0.6f, 0.6f);
+
+        yield return new WaitForSeconds(0.1f);
+
+        enemyManager.enemySprite.color = new Color(1f, 1f, 1f);
+
+        enemyManager.checkAttackedByPlayer = false;
+
     }
 
     IEnumerator EnemyStunTime()
     {
         enemyManager.canMove = false;
         enemyManager.checkAttackedByPlayer = true;
-        animator.Play("Stun");
+        enemyManager.isParried = false;
+
         enemyManager.playEnemyMusic(EnemyAudioType.Stunned);
-        yield return new WaitForEndOfFrame();
-        while(!isCurrentAnimationEnd())
-        {
-            yield return new WaitForEndOfFrame();
-        }
+        animator.Play("Idle");
+
+        yield return new WaitForSeconds(0.3f);
+
         enemyManager.canMove = true;
         enemyManager.isEnemyStunned = false;
-        enemyManager.checkAttackedByPlayer = false;
         animator.Play("Walk");
     }
 

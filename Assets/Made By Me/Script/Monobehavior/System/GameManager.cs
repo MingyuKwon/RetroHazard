@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour
         public static event Action Sheild_Durability_Reduce_Start_Event;
         public static void Invoke_Sheild_Durability_Reduce_Start_Event()
         {
+            Sheild_Durability_Reducing = true;
             Sheild_Durability_Reduce_Start_Event?.Invoke();
         }
 
@@ -252,7 +253,6 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable() {
         GameMangerInput.getInput(InputType.FieldInput);
-        EventManager.Sheild_Durability_Reduce_Start_Event += Set_Sheild_Durability_Reducing;
         GameManager.EventManager.CloseGame_GotoMainMenuEvent += DestroyMyself;
     }
 
@@ -270,11 +270,6 @@ public class GameManager : MonoBehaviour
     {
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player Body"), LayerMask.NameToLayer("Enemy Body"), flag);
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player Body"), LayerMask.NameToLayer("Enemy not Body"), flag);
-    }
-
-    private void Set_Sheild_Durability_Reducing()
-    {
-        Sheild_Durability_Reducing = true;
     }
 
     private void Update() {

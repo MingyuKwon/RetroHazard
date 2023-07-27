@@ -64,6 +64,11 @@ public class RealInteract : Interact
 
     private void UpdateEnvironmentVolume()
     {
+        if(audioSource == null)
+        {
+            return;
+        }
+
         audioSource.volume = GameAudioManager.currentEnvironmentVolume * GameAudioManager.totalVolme;
     }
 
