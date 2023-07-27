@@ -549,6 +549,84 @@ public class OptionUILogic
         OptionUI.generalIndex = 2;
     }
 
+    public void OkAudioOption()
+    {
+        if(audioIndex == -1)
+        {
+            OptionUI.audioIndex = 0;
+            return;
+        }else if(audioIndex == 0)
+        {
+
+        }else if(audioIndex == 1)
+        {
+
+        }else if(audioIndex == 2)
+        {
+
+        }else if(audioIndex == 3)
+        {
+
+        }else if(audioIndex == 4)
+        {
+
+        }else if(audioIndex == 5)
+        {
+            ResetAudioOption();
+        }
+    }
+
+    public void OkVideoOption()
+    {
+        if(videoIndex == -1)
+        {
+            OptionUI.videoIndex = 0;
+            return;
+        }else if(videoIndex == 0)
+        {
+            
+        }else if(videoIndex == 1)
+        {
+            Toggle1080.isOn = true;
+            VideoValueChanged(1080, Toggle1080);
+        }else if(videoIndex == 2)
+        {
+            Toggle900.isOn = true;
+            VideoValueChanged(900, Toggle900);
+        }else if(videoIndex == 3)
+        {
+            Toggle720.isOn = true;
+            VideoValueChanged(720, Toggle720);
+        }else if(videoIndex == 4)
+        {
+            Toggle540.isOn = true;
+            VideoValueChanged(540, Toggle540);
+        }else if(videoIndex == 5)
+        {
+            ResetVideoOption();
+        }
+    }
+
+    public void OkGeneralOption()
+    {
+        if(generalIndex == -1)
+        {
+            OptionUI.generalIndex = 0;
+            return;
+        }else if(generalIndex == 0)
+        {
+            enlgishToggle.isOn = true;
+            LanguageValueChanged("E", enlgishToggle);
+        }else if(generalIndex == 1)
+        {
+            koreanToggle.isOn = true;
+            LanguageValueChanged("K", koreanToggle);
+        }else if(generalIndex == 2)
+        {
+            ResetGenralOption();
+        }
+    }
+
 
     private void UpdateVideoSlider(float value)
     {

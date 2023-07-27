@@ -132,16 +132,16 @@ public class MainMenuLogic
                 OptionUI.panelNum = OptionUI.panelsearchNum;
             }else if(OptionUI.panelNum == 1)
             {
-
+                
             }else if(OptionUI.panelNum == 2)
             {
-
+                MainMenu.instance.optionUI.OkVideoOption();
             }else if(OptionUI.panelNum == 3)
             {
-
+                MainMenu.instance.optionUI.OkAudioOption();
             }else if(OptionUI.panelNum == 4)
             {
-
+                MainMenu.instance.optionUI.OkGeneralOption();
             }
         }
     }

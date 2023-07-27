@@ -123,16 +123,16 @@ public class PauseRootUILogic
                 OptionUI.panelNum = OptionUI.panelsearchNum;
             }else if(OptionUI.panelNum == 1)
             {
-
+                
             }else if(OptionUI.panelNum == 2)
             {
-
+                UI.instance.PauseUI.optionUI.OkVideoOption();
             }else if(OptionUI.panelNum == 3)
             {
-
+                UI.instance.PauseUI.optionUI.OkAudioOption();
             }else if(OptionUI.panelNum == 4)
             {
-
+                UI.instance.PauseUI.optionUI.OkGeneralOption();
             }
         
         }

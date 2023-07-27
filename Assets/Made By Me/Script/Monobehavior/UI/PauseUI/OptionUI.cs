@@ -89,4 +89,19 @@ public class OptionUI : MonoBehaviour
         optionUILogic.OnDestroy();
     }
 
+    public void OkAudioOption()
+    {
+        optionUILogic.OkAudioOption();
+    }
+
+    public void OkVideoOption()
+    {
+        optionUILogic.OkVideoOption();
+    }
+
+    public void OkGeneralOption()
+    {
+        optionUILogic.OkGeneralOption();
+    }
+
 }
