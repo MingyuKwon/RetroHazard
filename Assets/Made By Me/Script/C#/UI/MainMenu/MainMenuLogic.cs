@@ -179,7 +179,22 @@ public class MainMenuLogic
 
         }else if(MainMenu.instance.optionUI.gameObject.activeInHierarchy)
         {
+            if(OptionUI.panelNum == 0)
+            {
 
+            }else if(OptionUI.panelNum == 1)
+            {
+                
+            }else if(OptionUI.panelNum == 2)
+            {
+                MainMenu.instance.optionUI.VideoSliderChange(false);
+            }else if(OptionUI.panelNum == 3)
+            {
+                MainMenu.instance.optionUI.AudioSliderChange(false);
+            }else if(OptionUI.panelNum == 4)
+            {
+
+            }
         }
     }
 
@@ -197,7 +212,22 @@ public class MainMenuLogic
 
         }else if(MainMenu.instance.optionUI.gameObject.activeInHierarchy)
         {
-            
+            if(OptionUI.panelNum == 0)
+            {
+
+            }else if(OptionUI.panelNum == 1)
+            {
+                
+            }else if(OptionUI.panelNum == 2)
+            {
+                MainMenu.instance.optionUI.VideoSliderChange(true);
+            }else if(OptionUI.panelNum == 3)
+            {
+                MainMenu.instance.optionUI.AudioSliderChange(true);
+            }else if(OptionUI.panelNum == 4)
+            {
+
+            }
         }
     }
 

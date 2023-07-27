@@ -272,7 +272,21 @@ public class PauseRootUILogic
             UI.instance.PauseUI.saveSlotUI.saveSlotIndex = Mathf.Clamp(value, 0,9);
         }else if(UI.instance.PauseUI.optionUI.gameObject.activeInHierarchy)
         {
+            if(OptionUI.panelNum == 0)
+            {
+            }else if(OptionUI.panelNum == 1)
+            {
+                
+            }else if(OptionUI.panelNum == 2)
+            {
+                UI.instance.PauseUI.optionUI.VideoSliderChange(true);
+            }else if(OptionUI.panelNum == 3)
+            {
+                UI.instance.PauseUI.optionUI.AudioSliderChange(true);
+            }else if(OptionUI.panelNum == 4)
+            {
 
+            }
         }
     }
 
@@ -289,7 +303,21 @@ public class PauseRootUILogic
             UI.instance.PauseUI.saveSlotUI.saveSlotIndex = Mathf.Clamp(value, 0,9);
         }else if(UI.instance.PauseUI.optionUI.gameObject.activeInHierarchy)
         {
-
+            if(OptionUI.panelNum == 0)
+            {
+            }else if(OptionUI.panelNum == 1)
+            {
+                
+            }else if(OptionUI.panelNum == 2)
+            {
+                UI.instance.PauseUI.optionUI.VideoSliderChange(false);
+            }else if(OptionUI.panelNum == 3)
+            {
+                UI.instance.PauseUI.optionUI.AudioSliderChange(false);
+            }else if(OptionUI.panelNum == 4)
+            {
+                
+            }
         }
     }
 

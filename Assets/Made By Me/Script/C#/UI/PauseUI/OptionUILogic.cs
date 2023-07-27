@@ -664,6 +664,75 @@ public class OptionUILogic
         OptionUI.audioIndex = 4;
     }
 
+    public void VideoSliderChange(bool isRight)
+    {
+        if(videoIndex != 0) return;
+        
+        if(!isRight)
+        {
+            ScreenBright.ScreenLight -= 0.01f;
+            VideoSlider.value = ScreenBright.ScreenLight;
+        }else
+        {
+            ScreenBright.ScreenLight += 0.01f;
+            VideoSlider.value = ScreenBright.ScreenLight;
+        }
+    }
+
+    public void AudioSliderChange(bool isRight)
+    {
+        if(!isRight)
+        {
+            switch(audioIndex) {
+                case 0 : 
+                    GameAudioManager.totalVolme -= 0.01f;
+                    AudioSliders[0].value = GameAudioManager.totalVolme;
+                    break;
+                case 1 : 
+                    GameAudioManager.currentBackGroundVolume -= 0.01f;
+                    AudioSliders[1].value = GameAudioManager.currentBackGroundVolume;
+                    break;
+                case 2 : 
+                    GameAudioManager.currentUIVolume -= 0.01f;
+                    AudioSliders[2].value = GameAudioManager.currentUIVolume;
+                    break;
+                case 3 : 
+                    GameAudioManager.currentSFXVolume -= 0.01f;
+                    AudioSliders[3].value = GameAudioManager.currentSFXVolume;
+                    break;
+                case 4 : 
+                    GameAudioManager.currentEnvironmentVolume -= 0.01f;
+                    AudioSliders[3].value = GameAudioManager.currentEnvironmentVolume;
+                    break;
+            }
+
+        }else
+        {
+            switch(audioIndex) {
+                case 0 : 
+                    GameAudioManager.totalVolme += 0.01f;
+                    AudioSliders[0].value = GameAudioManager.totalVolme;
+                    break;
+                case 1 : 
+                    GameAudioManager.currentBackGroundVolume += 0.01f;
+                    AudioSliders[1].value = GameAudioManager.currentBackGroundVolume;
+                    break;
+                case 2 : 
+                    GameAudioManager.currentUIVolume += 0.01f;
+                    AudioSliders[2].value = GameAudioManager.currentUIVolume;
+                    break;
+                case 3 : 
+                    GameAudioManager.currentSFXVolume += 0.01f;
+                    AudioSliders[3].value = GameAudioManager.currentSFXVolume;
+                    break;
+                case 4 : 
+                    GameAudioManager.currentEnvironmentVolume += 0.01f;
+                    AudioSliders[3].value = GameAudioManager.currentEnvironmentVolume;
+                    break;
+            }
+        }
+    }
+
     public void ChangePanel(int index)
     {
         for(int i=0; i< panels.Length; i++)

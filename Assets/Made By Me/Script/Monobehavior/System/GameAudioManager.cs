@@ -101,6 +101,7 @@ public class GameAudioManager : MonoBehaviour
 
         set{
             _currentBackGroundVolume = value;
+            _currentBackGroundVolume = Mathf.Clamp(_currentBackGroundVolume, 0,1);
             PlayerPrefs.SetFloat("currentBackGroundVolume", _currentBackGroundVolume);
             PlayerPrefs.Save();
 
@@ -135,6 +136,7 @@ public class GameAudioManager : MonoBehaviour
 
         set{
             _currentUIVolume = value;
+            _currentUIVolume = Mathf.Clamp(_currentUIVolume, 0,1);
             PlayerPrefs.SetFloat("currentUIVolume", _currentUIVolume);
             PlayerPrefs.Save();
 
@@ -150,6 +152,7 @@ public class GameAudioManager : MonoBehaviour
 
         set{
             _currentSFXVolume = value;
+            _currentSFXVolume = Mathf.Clamp(_currentSFXVolume, 0,1);
             PlayerPrefs.SetFloat("currentSFXVolume", _currentSFXVolume);
             PlayerPrefs.Save();
 
@@ -165,6 +168,7 @@ public class GameAudioManager : MonoBehaviour
 
         set{
             _currentEnvironmentVolume = value;
+             _currentEnvironmentVolume = Mathf.Clamp(_currentEnvironmentVolume, 0,1);
             PlayerPrefs.SetFloat("currentEnvironmentVolume", _currentEnvironmentVolume);
             PlayerPrefs.Save();
 

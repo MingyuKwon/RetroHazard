@@ -104,4 +104,12 @@ public class OptionUI : MonoBehaviour
         optionUILogic.OkGeneralOption();
     }
 
+    public void VideoSliderChange(bool isRight){
+        optionUILogic.VideoSliderChange(isRight);
+    }
+
+    public void AudioSliderChange(bool isRight){
+        optionUILogic.AudioSliderChange(isRight);
+    }
+
 }
