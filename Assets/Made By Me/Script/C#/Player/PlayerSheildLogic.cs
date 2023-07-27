@@ -25,12 +25,14 @@ public class PlayerSheildLogic
         {
             if(status.isBlocked) return;
 
-            if(contactCollider.gameObject.layer == LayerMask.NameToLayer("Enemy not Body") ||
-                contactCollider.gameObject.layer == LayerMask.NameToLayer("Enemy Body"))
+            if(contactCollider.gameObject.layer == LayerMask.NameToLayer("Enemy not Body"))
             { 
+                EnemyManager contactEnemyManager = other.GetContact(0).collider.transform.parent.transform.parent.gameObject.GetComponent<EnemyManager>();
+
                 playerAnimation.SetSheildBlock();
                 if(!GameManager.Sheild_Durability_Reducing)
                 {
+                    contactEnemyManager.attackSuccess = true;
                     GameManager.EventManager.Invoke_Sheild_Durability_Reduce_Start_Event();
                 }
             }

@@ -21,6 +21,7 @@ public class EnemyAnimation : MonoBehaviour
 
     private void Update() {
         if(enemyManager.isEnemyStunned) return;
+        if(enemyManager.attackSuccess) return;
         SetXYAnimation();
     }
 
@@ -111,6 +112,7 @@ public class EnemyAnimation : MonoBehaviour
         enemyManager.canMove = false;
         enemyManager.checkAttackedByPlayer = true;
         enemyManager.isParried = false;
+        enemyManager.attackSuccess = false;
 
         enemyManager.playEnemyMusic(EnemyAudioType.Stunned);
         animator.Play("Idle");
@@ -125,6 +127,7 @@ public class EnemyAnimation : MonoBehaviour
     public void Attack()
     {
         if(enemyManager.isEnemyStunned) return;
+        if(enemyManager.attackSuccess) return;
         StartCoroutine(EnemyAttackTime());
     }
 
@@ -145,6 +148,7 @@ public class EnemyAnimation : MonoBehaviour
     {
         if(!flag) return;
         if(enemyManager.isEnemyStunned) return;
+        if(enemyManager.attackSuccess) return;
 
         enemyManager.enemyFollowingPlayer.detectMark.SetActive(true);
         enemyManager.playEnemyMusic(EnemyAudioType.Detect);
@@ -231,6 +235,15 @@ public class EnemyAnimation : MonoBehaviour
             enemyManager.enemyRigidbody2D.MovePosition((Vector2)transform.position + ForceInput.normalized * vectorC * enemyManager.finalAttackSpeed );
             yield return new WaitForSeconds(0.02f);
             frictionReduce = Mathf.Lerp(frictionReduce , 0 , 0.3f);
+        }
+
+        if(enemyManager.attackSuccess)
+        {
+            enemyManager.canMove = false;
+            animator.Play("Idle");
+            yield return new WaitForSeconds(0.5f);
+            enemyManager.canMove = true;
+            enemyManager.attackSuccess = false;
         }
     }
 

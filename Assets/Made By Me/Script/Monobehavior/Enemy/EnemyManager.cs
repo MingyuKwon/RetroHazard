@@ -107,6 +107,8 @@ public class EnemyManager : MonoBehaviour
     public float enemySpeed = 3f;
     //Move
 
+    public bool attackSuccess = false;
+
     // animation
     public int animationX = 0;
     public int animationY = -1;
@@ -304,6 +306,11 @@ public class EnemyManager : MonoBehaviour
             }
             animationX = 0;
         }
+    }
+
+    public void AttackAndStop()
+    {
+
     }
 
     public void KillEnemy()

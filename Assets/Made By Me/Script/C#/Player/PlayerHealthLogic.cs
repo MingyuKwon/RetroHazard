@@ -53,9 +53,11 @@ public class PlayerHealthLogic
 
                 GameObject contactObject = contactCollider.transform.parent.transform.parent.gameObject;
                 EnemyStatus contactEnemyStat = contactObject.GetComponentInChildren<EnemyStatus>();
+                EnemyManager contactEnemyManager = contactObject.GetComponent<EnemyManager>();
 
                 if(contactCollider.tag == "Attack") // 몬스터가 공격 한 것을 맞았냐?
                 {
+                    contactEnemyManager.attackSuccess = true;
                     damage = contactEnemyStat.Attack * contactEnemyStat.AttackDamageRatio;
                     ForceInput = other.GetContact(0).normal;
                     Debug.Log("player had damage : " + damage);
