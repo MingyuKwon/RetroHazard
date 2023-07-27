@@ -71,6 +71,8 @@ public class OptionUILogic
             obejct.SetActive(false);
         }
 
+        if(index == -1) return;
+
         displayFocus[index].SetActive(true);
     }
 
@@ -81,6 +83,7 @@ public class OptionUILogic
             obejct.SetActive(false);
         }
 
+        if(index == -1) return;
         audioFocus[index].SetActive(true);
     }
 
@@ -91,6 +94,7 @@ public class OptionUILogic
             obejct.SetActive(false);
         }
 
+        if(index == -1) return;
         generalFocus[index].SetActive(true);
     }
 
@@ -307,6 +311,7 @@ public class OptionUILogic
         displayFocus = monoBehaviour.displayFocus;
         audioFocus = monoBehaviour.audioFocus;
         generalFocus = monoBehaviour.generalFocus;
+        
     }
 
     public void OnDestroy() {

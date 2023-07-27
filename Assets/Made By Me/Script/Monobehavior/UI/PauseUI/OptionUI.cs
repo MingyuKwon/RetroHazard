@@ -14,7 +14,11 @@ public class OptionUI : MonoBehaviour
         set{
             optionUILogic.panelNum = value;
             panelsearchNum = value;
+
             optionUILogic.ChangePanel(optionUILogic.panelNum);
+            videoIndex = -1;
+            audioIndex = -1;
+            generalIndex = -1;
         }
     }
 

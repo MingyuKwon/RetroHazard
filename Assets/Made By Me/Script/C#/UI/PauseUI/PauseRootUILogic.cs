@@ -148,9 +148,9 @@ public class PauseRootUILogic
             int beforeInt = OptionUI.panelsearchNum;
             OptionUI.panelNum = 0;
             OptionUI.panelsearchNum =beforeInt;
-            OptionUI.videoIndex = 0;
-            OptionUI.audioIndex = 0;
-            OptionUI.generalIndex = 0;
+            OptionUI.videoIndex = -1;
+            OptionUI.audioIndex = -1;
+            OptionUI.generalIndex = -1;
             return;
         }
 
