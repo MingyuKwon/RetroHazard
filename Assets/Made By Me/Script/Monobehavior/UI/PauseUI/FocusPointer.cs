@@ -7,12 +7,12 @@ public class FocusPointer : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 {
     public void OnPointerEnter(PointerEventData eventData)
     {
-        this.gameObject.SetActive(true);
+        //this.gameObject.SetActive(true);
 
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        this.gameObject.SetActive(false);
+        //this.gameObject.SetActive(false);
     }
 }

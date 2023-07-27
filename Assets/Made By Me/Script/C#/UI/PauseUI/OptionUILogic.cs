@@ -425,6 +425,7 @@ public class OptionUILogic
                 Toggle540.interactable = true;
                 Screen.SetResolution(1920, 1080, FullScreenMode.Windowed);
                 PlayerPrefs.SetInt("Resolution", 1080);
+                OptionUI.videoIndex = 1;
                 break;
             case 900 :
             if(!toggle.isOn) return;
@@ -438,6 +439,7 @@ public class OptionUILogic
                 Toggle540.interactable = true;
                 Screen.SetResolution(1600, 900, FullScreenMode.Windowed);
                 PlayerPrefs.SetInt("Resolution", 900);
+                OptionUI.videoIndex = 2;
                 break;
             case 720 :
             if(!toggle.isOn) return;
@@ -451,6 +453,7 @@ public class OptionUILogic
                 Toggle540.interactable = true;
                 Screen.SetResolution(1280, 720, FullScreenMode.Windowed);
                 PlayerPrefs.SetInt("Resolution", 720);
+                OptionUI.videoIndex = 3;
                 break;
             case 540 :
             if(!toggle.isOn) return;
@@ -464,6 +467,7 @@ public class OptionUILogic
                 Toggle540.interactable = false;
                 Screen.SetResolution(960, 540, FullScreenMode.Windowed);
                 PlayerPrefs.SetInt("Resolution", 540);
+                OptionUI.videoIndex = 4;
                 break;
         }
         
@@ -481,6 +485,8 @@ public class OptionUILogic
                 enlgishToggle.interactable = false;
                 
                 GameAudioManager.LanguageManager.Invoke_languageChangeEvent("E");
+
+                OptionUI.generalIndex = 0;
                 break;
             case "K" :
             if(!toggle.isOn) return;
@@ -489,6 +495,8 @@ public class OptionUILogic
                 enlgishToggle.interactable = true;
                 koreanToggle.interactable = false;
                 GameAudioManager.LanguageManager.Invoke_languageChangeEvent("K");
+
+                OptionUI.generalIndex = 1;
                 break;
         }
         
@@ -507,6 +515,8 @@ public class OptionUILogic
             AudioSliders[2].value = GameAudioManager.currentUIVolume;
             AudioSliders[3].value = GameAudioManager.currentSFXVolume;
             AudioSliders[4].value = GameAudioManager.currentEnvironmentVolume;
+
+            OptionUI.audioIndex = 5;
     }
 
     private void ResetVideoOption()
@@ -524,6 +534,8 @@ public class OptionUILogic
         Toggle540.interactable = true;
         Screen.SetResolution(1920, 1080, FullScreenMode.Windowed);
         PlayerPrefs.SetInt("Resolution", 1080);
+
+        OptionUI.videoIndex = 5;
     }
 
     private void ResetGenralOption()
@@ -533,37 +545,45 @@ public class OptionUILogic
         enlgishToggle.interactable = false;
         koreanToggle.isOn = false;
         koreanToggle.interactable = true;
+
+        OptionUI.generalIndex = 2;
     }
 
 
     private void UpdateVideoSlider(float value)
     {
         ScreenBright.ScreenLight = value;
+        OptionUI.videoIndex = 0;
     }
 
     private void UpdateAudioSliderValue0(float value)
     {
         GameAudioManager.totalVolme = value;
+        OptionUI.audioIndex = 0;
     }
 
     private void UpdateAudioSliderValue1(float value)
     {
         GameAudioManager.currentBackGroundVolume = value;
+        OptionUI.audioIndex = 1;
     }
 
     private void UpdateAudioSliderValue2(float value)
     {
         GameAudioManager.currentUIVolume = value;
+        OptionUI.audioIndex = 2;
     }
 
     private void UpdateAudioSliderValue3(float value)
     {
         GameAudioManager.currentSFXVolume = value;
+        OptionUI.audioIndex = 3;
     }
 
     private void UpdateAudioSliderValue4(float value)
     {
         GameAudioManager.currentEnvironmentVolume = value;
+        OptionUI.audioIndex = 4;
     }
 
     public void ChangePanel(int index)
@@ -585,9 +605,9 @@ public class OptionUILogic
     public void OnDisable() {
         GameManager.EventManager.InvokeShowNotice("OptionUI");
         panelNum = 0;
-        videoIndex = 0;
-        audioIndex = 0;
-        generalIndex = 0;
+        videoIndex = -1;
+        audioIndex = -1;
+        generalIndex = -1;
     }
 
 
