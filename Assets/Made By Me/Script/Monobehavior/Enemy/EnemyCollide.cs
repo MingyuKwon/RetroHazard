@@ -18,24 +18,6 @@ public class EnemyCollide : MonoBehaviour
         enemyManager = GetComponent<EnemyManager>();
     }
 
-    // 여기도 Player Not body하고 상호작용이 Trigger로 되는 경우는 패링 밖에 없기에 구분 안함
-    private void OnTriggerEnter2D(Collider2D other) {
-        if(other.gameObject.layer == LayerMask.NameToLayer("Player not Body")) // 만약 플레이어의 몸이 아닌 곳에 맞았다면
-        {
-            if(other.gameObject.tag == "Sheild") // 실드로 막았다면
-            {
-                if(!enemyManager.isNowAttacking) return; 
-                if(Player1.instance.playerStatus.parryFrame && !enemyManager.isParried) // 그리고 그 실드가 패링중이라면
-                {
-                    if(Player1.instance.playerStatus.Sheild == 1) enemyManager.enemyStatus.ParriedWithParrySheild = true;
-                    enemyManager.enemyAnimation.Parreid();
-                    Debug.Log("Parreid");
-                }
-            }
-            
-        }
-    }
-
     private void OnCollisionEnter2D(Collision2D other) {
 
         contactCollider = other.GetContact(0).collider;
@@ -44,6 +26,21 @@ public class EnemyCollide : MonoBehaviour
         {
             if(enemyManager.checkAttackedByPlayer) return;
             contactObject = contactCollider.transform.parent.transform.parent.gameObject;
+
+            if(contactCollider.tag == "Sheild" && Player1.instance.playerStatus.Sheild == 1) // 스턴 실드로 막았다면
+            {
+                if(!enemyManager.isNowAttacking) return;
+                enemyManager.enemyAnimation.Stun();
+                ForceInput = other.GetContact(0).normal;
+                Reflect(10);
+                // if(Player1.instance.playerStatus.parryFrame && !enemyManager.isParried) // 그리고 그 실드가 패링중이라면
+                // {
+                //     if(Player1.instance.playerStatus.Sheild == 1) enemyManager.enemyStatus.ParriedWithParrySheild = true;
+                //     enemyManager.enemyAnimation.Parreid();
+                //     Debug.Log("Parreid");
+                // }
+            }
+
 
             if(other.otherCollider.tag == "Enemy Body" && contactCollider.tag != "Sheild") // 방패에 맞은게 아니라면? -> 공격에 맞은거
             {

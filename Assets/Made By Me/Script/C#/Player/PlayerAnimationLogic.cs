@@ -452,6 +452,7 @@ public class PlayerAnimationLogic
         GameAudioManager.instance.PlaySFXMusic(SFXAudioType.reload);
         GameManager.instance.SetPausePlayer(true);
         GameManager.instance.SetPlayerMove(false);
+        Player1.instance.playerRigidBody2D.velocity = Vector2.zero;
         animator.Play("Reload");
 
         yield return new WaitForEndOfFrame();

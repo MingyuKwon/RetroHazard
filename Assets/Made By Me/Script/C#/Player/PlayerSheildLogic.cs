@@ -28,11 +28,21 @@ public class PlayerSheildLogic
             if(contactCollider.gameObject.layer == LayerMask.NameToLayer("Enemy not Body"))
             { 
                 EnemyManager contactEnemyManager = other.GetContact(0).collider.transform.parent.transform.parent.gameObject.GetComponent<EnemyManager>();
+                
+                GameObject contactObject = contactCollider.transform.parent.transform.parent.gameObject;
+                EnemyStatus contactEnemyStat = contactObject.GetComponentInChildren<EnemyStatus>();
+
+                float damage = contactEnemyStat.Attack * contactEnemyStat.AttackDamageRatio;
 
                 playerAnimation.SetSheildBlock();
                 if(!GameManager.Sheild_Durability_Reducing)
                 {
-                    contactEnemyManager.attackSuccess = true;
+                    if(status.Sheild == 1)
+                    {
+                        status.HealthChangeDefaultMinus(damage * 0.25f);
+                    }else{
+                        contactEnemyManager.attackSuccess = true;
+                    }
                     GameManager.EventManager.Invoke_Sheild_Durability_Reduce_Start_Event();
                 }
             }
@@ -42,20 +52,20 @@ public class PlayerSheildLogic
 
     public void OnTriggerEnter2D(Collider2D other) { // 일단은 플레이어에서 tirgger가 될 만한 곳은 패리 밖에 없으니 어느 부분과 Trigger가 되었는지는 구분 안해도 될 것 같다
         
-        if(other.gameObject.layer == LayerMask.NameToLayer("Enemy not Body"))
-        {
-            if(other.gameObject.tag == "Attack" && status.parryFrame)
-            {
-                status.parrySuccess = true;
-                GameManager.instance.EnemyCollideIgnore(true);
-                GameManager.Sheild_Durability_Reducing = false;
-                Player1.instance.playerAnimation.SheildColliderEnable(false);
-                GameManager.isPlayerParry = true;
-                playerAnimation.vfxAnimation.SetAnimationFlag("Trigger", "Parry");
-                GameAudioManager.instance.PlaySFXMusic(SFXAudioType.ParrySuccess);
-                GameManager.instance.SlowMotion();
-            }
-        }
+    //     if(other.gameObject.layer == LayerMask.NameToLayer("Enemy not Body"))
+    //     {
+    //         if(other.gameObject.tag == "Attack" && status.parryFrame)
+    //         {
+    //             status.parrySuccess = true;
+    //             GameManager.instance.EnemyCollideIgnore(true);
+    //             GameManager.Sheild_Durability_Reducing = false;
+    //             Player1.instance.playerAnimation.SheildColliderEnable(false);
+    //             GameManager.isPlayerParry = true;
+    //             playerAnimation.vfxAnimation.SetAnimationFlag("Trigger", "Parry");
+    //             GameAudioManager.instance.PlaySFXMusic(SFXAudioType.ParrySuccess);
+    //             GameManager.instance.SlowMotion();
+    //         }
+    //     }
     }
 
 

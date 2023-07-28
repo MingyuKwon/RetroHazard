@@ -35,7 +35,6 @@ MonoBehaviour:
   expansionAmount: 0
   healAmount: 0
   ItemDescription:
-  - Can Block or Parry Enemy Attack
+  - Can Block Enemy Attack
   ItemDescriptionKorean:
-  - "\uC801\uC758 \uACF5\uACA9\uC744 \uB9C9\uAC70\uB098 \uD328\uB9C1 \uD560 \uC218
-    \uC788\uB2E4"
+  - "\uC801\uC758 \uACF5\uACA9\uC744 \uB9C9\uC744 \uC218 \uC788\uB2E4"
