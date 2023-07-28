@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 486b7894a4590d345b90e6f003c46405, type: 3}
+  m_Name: Notice battle Explanation
+  m_EditorClassIdentifier: 
+  englishNoticeDialog:
+  - You'll soon be entering an area with enemies.
+  - If you haven't picked up the energy yet, be sure to grab the energy nearby, open
+    the item window and equip it.
+  - "Defend: RT(Left Click)\r Reload Durability: RB(Q)\r\nAttack: LT(Right Click)\r
+    Reload Energy: LB(E). Make sure to use these during combat!"
+  - And remember, your combat resources are limited, so distinguish between when
+    to attack and when to run!
+  koreanNoticeDialog:
+  - "\uC774\uC81C \uACE7 \uC801\uB4E4\uC774 \uC788\uB294 \uC9C0\uC5ED\uC73C\uB85C
+    \uB4E4\uC5B4\uAC00\uAC8C \uB420\uAC70\uC57C"
+  - "\uD639\uC2DC\uB77C\uB3C4 \uC544\uC9C1 \uC5D0\uB108\uC9C0\uB97C \uBA39\uC9C0
+    \uC54A\uC558\uB2E4\uBA74 \uADF8 \uADFC\uCC98\uC5D0 \uC788\uB294 \uC5D0\uB108\uC9C0\uB97C
+    \uAF2D \uBA39\uC740 \uD6C4\uC5D0, \uC544\uC774\uD15C \uCC3D\uC744 \uC5F4\uC5B4
+    \uC7A5\uCC29\uD558\uB3C4\uB85D \uD574"
+  - "\uBC29\uC5B4 : RT(\uC88C\uD074\uB9AD) \r\uB0B4\uAD6C\uB3C4 \uC7A5\uC804 : RB(Q)\r\n\uACF5\uACA9
+    : LT(\uC6B0\uD074\uB9AD)\r \uC5D0\uB108\uC9C0 \uC7A5\uC804 : LB(E) \uC774\uB2C8
+    \uC804\uD22C\uB97C \uD560 \uB54C \uD65C\uC6A9 \uD558\uB3C4\uB85D \uD574!"
+  - "\uADF8\uB9AC\uACE0 \uC804\uD22C\uC790\uC6D0\uC774 \uD55C\uC815\uB418\uC5B4 \uC788\uC73C\uB2C8,
+    \uACF5\uACA9 \uD560 \uB584\uC640, \uB3C4\uB9DD\uAC08 \uB54C\uB97C \uAD6C\uBD84\uD574\uC57C\uD574!"

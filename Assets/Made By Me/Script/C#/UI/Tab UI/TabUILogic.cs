@@ -546,7 +546,8 @@ public class TabUILogic : CallBackInterface
             {
                 if(Player1.instance.playerInventory.isInventoryFull)
                 {
-                    GameManagerUI.instance.SetInteractiveDialogText(new string[] {"<b><color=red>Your inventory is full!</color></b> \n\n\nCan't get this item"});
+                    GameManagerUI.instance.SetInteractiveDialogText(new string[] {"<b><color=red>Your inventory is full!</color></b> \n\n\nCan't get this item", 
+                    "<b><color=red>가방이 가득 찼어!</color></b> \n\n\n아이템을 더이상 가져갈 수 없어"});
                     GameManagerUI.instance.VisualizeInteractiveUI(true);
                     return;
                 }

@@ -14,15 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   englishNoticeDialog:
   - It seems like you've found the shield I mentioned.
-  - When equipped with the shield, you can parry or guard against the enemy's attack.
+  - When equipped with the shield, you can guard against the enemy's attack.
   - However, each block will consume one shield battery, so you can't block all attacks
   - So it would be best to distinguish between when to block and when to just run
     away without blocking.
   koreanNoticeDialog:
   - "\uB0B4\uAC00 \uB9D0\uD588\uB358 \uBC29\uD328\uB97C \uBA39\uC740 \uBAA8\uC591\uC774\uB124."
   - "\uBC29\uD328\uB294 \uC7A5\uCC29\uD558\uBA74 \uC801\uC758 \uACF5\uACA9\uC744
-    \uAC00\uB4DC\uD560 \uC218\uB3C4 \uC788\uACE0, \uD328\uB9C1 \uD560 \uC218\uB3C4
-    \uC788\uC5B4."
+    \uAC00\uB4DC\uD560 \uC218 \uC788\uC5B4"
   - "\uD558\uC9C0\uB9CC \uB9C9\uC744 \uB54C\uB9C8\uB2E4, \uC2E4\uB4DC \uBC30\uD130\uB9AC\uAC00
     \uD558\uB098\uC529 \uB4E4\uAC8C \uB418\uB2C8 \uBAA8\uB4E0 \uACF5\uACA9\uC744
     \uB9C9\uC744 \uC21C \uC5C6\uC5B4."
