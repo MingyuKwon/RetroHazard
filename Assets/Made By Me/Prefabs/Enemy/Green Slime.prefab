@@ -545,6 +545,8 @@ MonoBehaviour:
   isParried: 0
   lockOnMutex: 0
   enemySpeed: 3
+  attackSuccess: 0
+  attackSuccessWaitTime: 0.5
   animationX: 0
   animationY: -1
   normalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -556,6 +558,7 @@ MonoBehaviour:
   destinationSetter: {fileID: 0}
   seeker: {fileID: 0}
   vfxAnimator: {fileID: 0}
+  enemySprite: {fileID: 0}
   enemyRigidbody2D: {fileID: 0}
   PlayerDetect: {fileID: 0}
   AttackDecide: {fileID: 0}
@@ -563,6 +566,11 @@ MonoBehaviour:
   randomSpeed: 2
   chaseSpeed: 3
   attackSpeed: 0.6
+  target: {fileID: 0}
+  minBoundX: 0
+  minBoundY: 0
+  maxBoundX: 0
+  maxBoundY: 0
 --- !u!212 &6730699321470691015
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -675,7 +683,7 @@ MonoBehaviour:
   endReachedDistance: 0.05
   alwaysDrawGizmos: 1
   slowWhenNotFacingTarget: 1
-  whenCloseToDestination: 0
+  whenCloseToDestination: 1
   constrainInsideGraph: 1
 --- !u!114 &9133546130988904974
 MonoBehaviour:

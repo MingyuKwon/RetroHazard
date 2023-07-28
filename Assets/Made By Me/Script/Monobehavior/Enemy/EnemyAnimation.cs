@@ -47,23 +47,20 @@ public class EnemyAnimation : MonoBehaviour
         Animation_StopAllCoroutine();
         enemyManager.enemyRigidbody2D.velocity = Vector2.zero;
 
+        enemyManager.isParried = true;
+        enemyManager.isEnemyStunned = true;
+        enemyManager.attackSuccess = false;
+        enemyManager.canMove = false;
+        enemyManager.enemySprite.color = new Color(1f, 1f, 1f, 0.6f);
+
+        animator.Play("Stagger");
         StartCoroutine(ParreidTime());
     }
 
     IEnumerator ParreidTime()
     {
-        animator.Play("Stagger");
-
-        enemyManager.isParried = true;
-        enemyManager.isEnemyStunned = true;
-        enemyManager.canMove = false;
-        enemyManager.enemySprite.color = new Color(1f, 1f, 1f, 0.6f);
-        yield return new WaitForEndOfFrame();
-        while(!isCurrentAnimationEnd())
-        {
-            yield return new WaitForEndOfFrame();
-        }
-
+        yield return new WaitForSeconds(0.9f);
+    
         enemyManager.enemyStatus.ParriedWithParrySheild = false;
         enemyManager.isParried = false;
         enemyManager.isEnemyStunned = false;
@@ -83,6 +80,13 @@ public class EnemyAnimation : MonoBehaviour
         
         Animation_StopAllCoroutine();
 
+        enemyManager.canMove = false;
+        enemyManager.checkAttackedByPlayer = true;
+        enemyManager.isParried = false;
+        enemyManager.attackSuccess = false;
+
+        enemyManager.playEnemyMusic(EnemyAudioType.Stunned);
+        animator.Play("Idle");
         StartCoroutine(EnemyStunTime());
         StartCoroutine(ColorChange());
     }
@@ -109,14 +113,6 @@ public class EnemyAnimation : MonoBehaviour
 
     IEnumerator EnemyStunTime()
     {
-        enemyManager.canMove = false;
-        enemyManager.checkAttackedByPlayer = true;
-        enemyManager.isParried = false;
-        enemyManager.attackSuccess = false;
-
-        enemyManager.playEnemyMusic(EnemyAudioType.Stunned);
-        animator.Play("Idle");
-
         yield return new WaitForSeconds(0.3f);
 
         enemyManager.canMove = true;
@@ -241,7 +237,7 @@ public class EnemyAnimation : MonoBehaviour
         {
             enemyManager.canMove = false;
             animator.Play("Idle");
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(enemyManager.attackSuccessWaitTime);
             enemyManager.canMove = true;
             enemyManager.attackSuccess = false;
         }

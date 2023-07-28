@@ -200,8 +200,6 @@ public class PlayerAnimationLogic
             if(isAttacking) return;
             if(isSheilding) return;
             if(isParrying) return;
-
-            animator.SetTrigger("Attack");
             switch(status.Energy)
             {
                 case 0 :
@@ -217,12 +215,31 @@ public class PlayerAnimationLogic
                     GameAudioManager.instance.PlaySFXMusic(SFXAudioType.Energy3Attack);
                     break;
             }
-            isAttacking = true;
-            GameManager.instance.SetPlayerMove(false);
+            
             animator.SetFloat("Energy", status.Energy);
             status.EnergyUse(1, status.Energy);
+            isAttacking = true;
+
+            monoBehaviour.StartCoroutine(AttackStart());
         }
     }
+
+    IEnumerator AttackStart()
+    {
+        GameManager.instance.SetPlayerMove(false);
+
+        animator.Play("Attack");
+
+        yield return new WaitForEndOfFrame();
+        while(!isCurrentAnimationEnd())
+        {
+            yield return new WaitForEndOfFrame();
+        }
+
+        GameManager.instance.SetPlayerMove(true);
+        animator.Play("Idle");
+    }
+
     private void SetShieldAnimation()
     {
         if(isParrying) return;
@@ -339,12 +356,12 @@ public class PlayerAnimationLogic
 
     private void SetParryAnimation()
     {
-        if(isParrying || sheildCrash) return;
+        // if(isParrying || sheildCrash) return;
 
-        if(GameMangerInput.inputCheck.isPressingShield() && GameMangerInput.inputCheck.isInteractiveButtonDown() && status.Sheild != 2)
-        {
-            monoBehaviour.StartCoroutine(ParryStart());
-        }
+        // if(GameMangerInput.inputCheck.isPressingShield() && GameMangerInput.inputCheck.isInteractiveButtonDown() && status.Sheild != 2)
+        // {
+        //     monoBehaviour.StartCoroutine(ParryStart());
+        // }
     }
 
     IEnumerator ParryStart()

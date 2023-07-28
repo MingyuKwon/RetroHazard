@@ -62,6 +62,11 @@ public class EnemyManager : MonoBehaviour
             if(!isEnemyStunned)
             {
                 aiPath.canMove = value;
+                if(aiPath.canMove == true)
+                {
+                    attackSuccess = false;
+                }
+                
             }
         }
     }
@@ -108,6 +113,7 @@ public class EnemyManager : MonoBehaviour
     //Move
 
     public bool attackSuccess = false;
+    public float attackSuccessWaitTime = 0.5f;
 
     // animation
     public int animationX = 0;
@@ -205,6 +211,7 @@ public class EnemyManager : MonoBehaviour
             transform.parent.gameObject.SetActive(false);
         }
     }
+
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.layer == LayerMask.NameToLayer("Player Body"))
@@ -308,10 +315,7 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    public void AttackAndStop()
-    {
-
-    }
+    
 
     public void KillEnemy()
     {
