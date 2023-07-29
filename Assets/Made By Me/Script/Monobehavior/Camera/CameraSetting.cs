@@ -7,7 +7,7 @@ using Com.LuisPedroFonseca.ProCamera2D;
 public class CameraSetting : MonoBehaviour
 {
     
-    Tilemap tilemap;
+    BoxCollider2D tilemap;
     GameObject pm; 
     Vector3 maxLimit;
     Vector3 minLimit;
@@ -19,7 +19,7 @@ public class CameraSetting : MonoBehaviour
     float cameraVerticalHalf;
     float cameraHorizontalHalf;
     private void Awake() {
-        tilemap = FindObjectOfType<WholeWorld>().GetComponent<Tilemap>();
+        tilemap = FindObjectOfType<WholeWorld>().GetComponent<BoxCollider2D>();
         pm = FindObjectOfType<PlayerHealth>().gameObject;
 
         ProCamera2D.Instance.AddCameraTarget(pm.transform);
@@ -29,8 +29,8 @@ public class CameraSetting : MonoBehaviour
     void Start() {
         transform.position = new Vector3(transform.position.x, transform.position.y, cameraHeight);
 
-        maxLimit = new Vector3(tilemap.localBounds.max.x-playerWidth, tilemap.localBounds.max.y-playerWidth, tilemap.localBounds.max.z) ;
-        minLimit = new Vector3(tilemap.localBounds.min.x + playerWidth , tilemap.localBounds.min.y + playerWidth , tilemap.localBounds.max.z) ;
+        maxLimit = new Vector3(tilemap.bounds.max.x-playerWidth, tilemap.bounds.max.y-playerWidth, tilemap.bounds.max.z) ;
+        minLimit = new Vector3(tilemap.bounds.min.x + playerWidth , tilemap.bounds.min.y + playerWidth , tilemap.bounds.max.z) ;
     }
 
     private void FixedUpdate() {

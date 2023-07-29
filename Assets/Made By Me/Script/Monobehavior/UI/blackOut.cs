@@ -14,6 +14,8 @@ public class blackOut : MonoBehaviour
 
     Vector3 destination;
 
+    public static bool blackouting = false;
+
     public void BlackOut(string sceneName, Vector3 destination)
     {
         StartCoroutine(blackout(sceneName));
@@ -27,6 +29,7 @@ public class blackOut : MonoBehaviour
 
     IEnumerator blackout(string sceneName)
     {
+        blackouting = true;
         GameManager.instance.EnemyCollideIgnore(true);
         GameManager.instance.SetPausePlayer(true);
         while(image.color.a < 1f)
@@ -50,10 +53,12 @@ public class blackOut : MonoBehaviour
         }
 
         GameManager.instance.EnemyCollideIgnore(false);
+        blackouting = false;
     }
 
     IEnumerator blackout(float speed)
     {
+        blackouting = true;
         GameManager.instance.SetPausePlayer(true);
         image.color = new Color(image.color.r, image.color.g, image.color.b, 1);
 
@@ -63,6 +68,7 @@ public class blackOut : MonoBehaviour
             yield return new WaitForEndOfFrame(); 
         }
         GameManager.instance.SetPausePlayer(false);
+        blackouting = false;
         
     }
 }

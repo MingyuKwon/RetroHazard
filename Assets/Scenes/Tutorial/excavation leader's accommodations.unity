@@ -438,6 +438,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2019463802680025185}
   - component: {fileID: 2019463802680025184}
+  - component: {fileID: 2019463802680025189}
+  - component: {fileID: 2019463802680025188}
   m_Layer: 3
   m_Name: 1,2 Floor Stage
   m_TagString: Untagged
@@ -445,6 +447,44 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!61 &2019463802680025188
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019463802680025187}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 3.012762}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 30, y: 20.105064}
+  m_EdgeRadius: 0
+--- !u!114 &2019463802680025189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019463802680025187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4423dad1aa451cb4286388c52dc8d4ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!483693784 &2019463802741775464
 TilemapRenderer:
   m_ObjectHideFlags: 0
@@ -2955,18 +2995,6 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
---- !u!114 &2019463803733311648
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2019463803733311676}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4423dad1aa451cb4286388c52dc8d4ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!483693784 &2019463803733311650
 TilemapRenderer:
   m_ObjectHideFlags: 0
@@ -9583,7 +9611,6 @@ GameObject:
   - component: {fileID: 2019463803733311677}
   - component: {fileID: 2019463803733311651}
   - component: {fileID: 2019463803733311650}
-  - component: {fileID: 2019463803733311648}
   m_Layer: 3
   m_Name: First Floor
   m_TagString: Untagged
@@ -12389,7 +12416,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7167900790723856470}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.88, y: 6, z: 0}
+  m_LocalPosition: {x: -0.69, y: -2.28, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12405,6 +12432,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7167900790723856469}
+  - component: {fileID: 7167900790723856471}
   m_Layer: 3
   m_Name: direct Colider
   m_TagString: Untagged
@@ -12412,6 +12440,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!68 &7167900790723856471
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7167900790723856470}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.5, y: 0}
+  - {x: 2.3234851, y: 0.026428621}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1001 &7167900791174318085
 PrefabInstance:
   m_ObjectHideFlags: 0
