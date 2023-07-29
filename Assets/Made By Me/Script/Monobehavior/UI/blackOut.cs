@@ -9,7 +9,7 @@ using DG.Tweening;
 
 public class blackOut : MonoBehaviour
 {
-    float delayTime = 2;
+    float delayTime = 4;
     [SerializeField] Image image;
 
     Vector3 destination;
