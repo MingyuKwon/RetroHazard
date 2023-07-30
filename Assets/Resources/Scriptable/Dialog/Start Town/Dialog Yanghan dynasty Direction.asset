@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99652aa1957e80f49a9c5c0b514715db, type: 3}
+  m_Name: Dialog Yanghan dynasty Direction
+  m_EditorClassIdentifier: 
+  NPCname: '- Noshuc  Dynasty Tomb - '
+  NPCnameKorean: "- \uB178\uC288\uD06C \uC655\uC870 \uBB34\uB364 - "
+  hasFirstEncounterDialog: 0
+  hasChoiceDialog: 0
+  ChoiceQuestionQuantity: 0
+  FirstEnCountDialogs: []
+  FirstEnCountDialogsKorean: []
+  ReapeatingDialogs:
+  - "<b>-Noshuc Dynasty Tomb -</b>\r\n\nBefore the present-day <b>Okera</b> nation
+    existed, there was the country of <b>Noshuc</b>. This is the tomb where the bodies
+    of the Noshuc Dynasty are gathered.\r"
+  - "Inside, you can see the architectural style of the Noshuc era, and also see
+    historically significant artifacts. Among them, the <b>sword of the first king</b>
+    is the most valuable artifact from the Noshuc era.\r"
+  - '* If you do not even have a <b>level 0 key</b>, please go into the <b>office
+    on the right</b> and purchase one to enter. '
+  ReapeatingDialogsKorean:
+  - "<b>- Noshuc \uC655\uC870 \uBB34\uB364 -\r</b>\n\r\n\uD604\uC7AC <b>\uC624\uCF00\uB77C</b>
+    \uB098\uB77C\uAC00 \uC788\uAE30 \uC804\uC5D0, \uC774\uC804\uC5D0 <b>\uB178\uC288\uD06C</b>
+    \uB098\uB77C\uAC00 \uC874\uC7AC\uD588\uC2B5\uB2C8\uB2E4.\r\n\n\uADF8\uB9AC\uACE0
+    \uC5EC\uAE34 \uB178\uC288\uD06C \uC655\uC870\uC758 \uC2DC\uC2E0\uB4E4\uC774 \uBAA8\uC5EC\uC788\uB294
+    \uBB34\uB364\uC785\uB2C8\uB2E4.\r"
+  - "\uC548\uC5D0\uC11C, \uB178\uC288\uD06C \uC2DC\uB300\uC758 \uAC74\uCD95 \uC591\uC2DD\uC744
+    \uBCFC \uC218 \uC788\uACE0, \uC5ED\uC0AC\uC801\uC73C\uB85C \uC911\uC694\uD55C
+    \uC720\uBB3C\uB4E4\uB3C4 \uBCFC \uC218 \uC788\uC2B5\uB2C8\uB2E4\r\n\n\uADF8\uC911
+    <b>\uCD08\uB300\uC655\uC758 \uBCF4\uAC80</b>\uC740 \uB178\uC288\uD06C\uC2DC\uB300\uC758
+    \uC720\uBB3C \uC911, \uCD5C\uACE0\uC758 \uAC00\uCE58\uB97C \uAC00\uC9C4 \uC720\uBB3C\uC785\uB2C8\uB2E4\r"
+  - "*\uB9CC\uC57D <b>\uB808\uBCA8 0 \uC5F4\uC1E0</b>\uB3C4 \uC5C6\uC73C\uC2E0 \uBD84\uC740
+    <b>\uC624\uB978\uCABD\uC5D0 \uC788\uB294 \uC0AC\uBB34\uC2E4</b>\uC5D0 \uB4E4\uC5B4\uAC00\uC11C
+    \uAD6C\uB9E4\uD574\uC11C \uB4E4\uC5B4\uAC00\uC2DC\uAE38 \uBC14\uB78D\uB2C8\uB2E4"
+  EventDialogs: []
+  EventDialogsKorean: []
+  ChoiceDialog: []
+  ChoiceDialogKorean: []
+  option1Dialog: []
+  option1DialogKorean: []
+  option2Dialog: []
+  option2DialogKorean: []
+  option3Dialog: []
+  option3DialogKorean: []
