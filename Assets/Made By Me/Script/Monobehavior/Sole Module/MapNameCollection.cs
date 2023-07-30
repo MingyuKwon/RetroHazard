@@ -6,6 +6,7 @@ public class MapNameCollection
 {
     public enum sceneName{
         Tutorial = 0,
+        YangHan_Village = 1,
     }
 
     public static sceneName currentSceneName;
@@ -24,6 +25,16 @@ public class MapNameCollection
                     return tutorialMapNameKorean;
                 }
                 break;
+
+            case 1:
+                if(GameAudioManager.LanguageManager.currentLanguage == "E")
+                {   
+                    return startTownMapNameEnglish;
+                }else if(GameAudioManager.LanguageManager.currentLanguage == "K")
+                {   
+                    return startTownMapNameKorean;
+                }
+                break;
                 
         }
 
@@ -37,6 +48,8 @@ public class MapNameCollection
         {
             case 0:
                 return tutorialMapNameEnglish;
+            case 1:
+                return startTownMapNameEnglish;
         }
 
         Debug.Log("getMapNameArray NULL");
@@ -55,5 +68,13 @@ public class MapNameCollection
         "라실 고대 유적지",
         "발굴자들의 숙소",
         "발굴대장의 숙소",
+    };
+
+    public static string[] startTownMapNameEnglish = {
+        "YangHan Village",
+    };
+
+    public static string[] startTownMapNameKorean = {
+        "양한 마을",
     };
 }

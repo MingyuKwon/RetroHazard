@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a32a9bd668c1bbb409c635fef9be93c3, type: 3}
+  m_Name: catacombs Gate Key
+  m_EditorClassIdentifier: 
+  itemPath: Scriptable/Item Information/Key Item/Start Townl/catacombs Gate Key
+  ItemImage: {fileID: -335906945, guid: a8f5bf4adb58b60439f8325f1a7750c0, type: 3}
+  ItemName: catacombs Gate Key
+  ItemNameKorean: "\uC9C0\uD558\uBB18\uC9C0 \uBB38 \uC5F4\uC1E0"
+  isKeyItem: 1
+  isNormalItem: 0
+  isEquipItem: 0
+  isInteractiveItem: 1
+  isExpansionItem: 0
+  KeyItemCode: 300
+  NormalItemCode: -1
+  combineItems: 
+  combinResultItems: []
+  isSheild: 0
+  isEnergy1: 0
+  isEnergy2: 0
+  isEnergy3: 0
+  isBullet: 0
+  isPotion: 0
+  amount: 1
+  expansionAmount: 0
+  healAmount: 0
+  ItemDescription:
+  - The key that can unlock the door leading to the catacombs
+  ItemDescriptionKorean:
+  - "\uC9C0\uD558\uBB18\uC9C0\uB85C \uD1B5\uD558\uB294 \uBB38\uC744 \uC5F4 \uC218
+    \uC788\uB294 \uC5F4\uC1E0"

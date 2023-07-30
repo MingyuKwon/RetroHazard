@@ -11,11 +11,13 @@ public class InteractiveDialog : ScriptableObject
     public string Interactive_nameKorean;
     [InfoBox("[Standard InteractCode]\n0 : Medium key-hole Door")]
     [InfoBox("[Tutorial InteractCode]\n200 : Tutorial Rock Pile\n201 : Historic Site Gate")]
+    [InfoBox("[yangHan InteractCode]\n300 : catacombs gate\n")]
     public int InteractCode;
 
 
     [InfoBox("[Standard Interactive Item]\n100 : medium key")]
-    [InfoBox("[Tutorial Interactive Item]\n200 : Nitroglycerin\n201 : Historic Gate Key")]
+    [InfoBox("[Tutorial Interactive Item]\n200 : Nitroglycerin\n")]
+    [InfoBox("[yangHan Interactive Item]\n300 : catacombs Key\n")]
     public int[] InteractKeyItems;
 
     [TextArea]

@@ -915,6 +915,14 @@ PrefabInstance:
       propertyPath: sfxAudioClip.Array.size
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 5710392908370957945, guid: bd4d9f244e5ed344ea5823b1d97d48b4, type: 3}
+      propertyPath: backGroundAudioClip.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5710392908370957945, guid: bd4d9f244e5ed344ea5823b1d97d48b4, type: 3}
+      propertyPath: backGroundAudioClip.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: 57f7db12eb8823b4b98ede53276ae6ba, type: 3}
     - target: {fileID: 5710392908370957947, guid: bd4d9f244e5ed344ea5823b1d97d48b4, type: 3}
       propertyPath: m_Name
       value: GameAudioManager

@@ -15,6 +15,7 @@ public enum BackGroundAudioType{
     Lasil_archaeological_site = 2,
     House_theme1 = 3,
     House_theme2 = 4,
+    YangHan_Village = 5,
 }
 
 public enum SFXAudioType{

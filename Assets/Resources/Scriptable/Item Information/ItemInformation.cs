@@ -28,6 +28,7 @@ public class ItemInformation : ScriptableObject
 
     [InfoBox("[Standard Interactive Item]\n100 : medium key")]
     [InfoBox("[Tutorial Interactive Item]\n200 : Nitroglycerin\n201 : Historic Gate Key")]
+    [InfoBox("[yangHan Interactive Item]\n300 : catacombs Key\n")]
     public int KeyItemCode;
 
     [InfoBox("[NormalItem]\n\n0 : heal potion, 1 : upgrade porion, 2 : double heal potion, 3 : elixer potion \n 4 : energy1 bullet, 5 : energy2 bullet, 6 : energy3 bullet, 7 : sheild bullet")]
