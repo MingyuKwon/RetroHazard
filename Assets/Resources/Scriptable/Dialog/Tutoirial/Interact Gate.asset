@@ -15,6 +15,7 @@ MonoBehaviour:
   Interactive_name: Locked Gate
   Interactive_nameKorean: "\uC7A0\uAE34 \uB300\uBB38"
   InteractCode: 201
+  isItemRemainAfterInteract: 1
   InteractKeyItems: c9000000
   Interactive_Situation: "The gate that must be passed to enter the 'Okera' region
     is locked. \n\nIt seems that the appropriate key is needed to unlock it."

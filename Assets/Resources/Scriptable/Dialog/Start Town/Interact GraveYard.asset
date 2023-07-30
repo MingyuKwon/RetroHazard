@@ -15,6 +15,7 @@ MonoBehaviour:
   Interactive_name: Locked catacombs gate
   Interactive_nameKorean: "\uC7A0\uAE34 \uC9C0\uD558\uBB18\uC9C0 \uC785\uAD6C"
   InteractCode: 300
+  isItemRemainAfterInteract: 1
   InteractKeyItems: 2c010000
   Interactive_Situation: 'The door to the underground cemetery is locke
 

@@ -231,7 +231,6 @@ public class PlayerInventroyLogic
 
     public void DiscardItem(int index)
     {
-
         Obtain_bullet_Item(items[index], -itemsamount[index]);
 
         items[index] = null;
@@ -245,6 +244,7 @@ public class PlayerInventroyLogic
 
     public void DiscardItem(InteractiveDialog interactiveDialog, int index)
     {
+        if(interactiveDialog.isItemRemainAfterInteract) return;
         DiscardItem(index);
     }
 

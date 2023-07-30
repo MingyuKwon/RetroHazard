@@ -14,6 +14,8 @@ public class InteractiveDialog : ScriptableObject
     [InfoBox("[yangHan InteractCode]\n300 : catacombs gate\n")]
     public int InteractCode;
 
+    public bool isItemRemainAfterInteract;
+
 
     [InfoBox("[Standard Interactive Item]\n100 : medium key")]
     [InfoBox("[Tutorial Interactive Item]\n200 : Nitroglycerin\n")]
