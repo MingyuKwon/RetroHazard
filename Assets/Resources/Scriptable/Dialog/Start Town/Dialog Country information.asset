@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99652aa1957e80f49a9c5c0b514715db, type: 3}
+  m_Name: Dialog Country information
+  m_EditorClassIdentifier: 
+  NPCname: guidebook
+  NPCnameKorean: "\uC548\uB0B4\uC11C"
+  hasFirstEncounterDialog: 0
+  hasChoiceDialog: 0
+  ChoiceQuestionQuantity: 0
+  FirstEnCountDialogs: []
+  FirstEnCountDialogsKorean: []
+  ReapeatingDialogs:
+  - 'Welcome to the Okera region!
+
+    
+
+    This Okera region has a long history,
+    with <b>numerous nations existing before Okera</b>.
+
+    
+
+    According to
+    what is known so far, the order of nations established was <b>Lasil -> Eogory
+    -> Noshuc</b> -> Okera.'
+  - 'The tomb right next door is the <b>Noshuc Royal Mausoleum</b>, which boasts
+    the largest scale among the royal tombs found so far.
+
+    
+
+    The <b>Eogory
+    Royal Mausoleum</b>, which appears when you go north, has a very <b>unique structure</b>,
+    so we recommend you to take a tour.
+
+
+'
+  - 'Lastly, the location of the <b>Lasil Royal Mausoleum</b> has not yet been found...
+
+    
+
+    However,
+    the <b>Lasil archaeological site has recently been discovered</b>, and we think
+    that its location can be found as the excavation progresses.
+
+    
+
+    If
+    the Lasil Royal Mausoleum is actually found, please come back for another tour!
+
+    
+
+'
+  ReapeatingDialogsKorean:
+  - "\uC624\uCF00\uB77C \uC9C0\uC5ED\uC5D0 \uC624\uC2E0 \uAC83\uC744 \uD658\uC601\uD569\uB2C8\uB2E4!\r\n\r\n\uC774
+    \uC624\uCF00\uB77C \uC9C0\uC5ED\uC740 \uC624\uB79C \uC5ED\uC0AC\uB97C \uAC00\uC9C4
+    \uC9C0\uC5ED\uC73C\uB85C, <b>\uC624\uCF00\uB77C \uC774\uC804\uC5D0 \uC218\uB9CE\uC740
+    \uB098\uB77C\uB4E4\uC774 \uC788\uC5C8\uC2B5\uB2C8\uB2E4</b>\n\n\uD604\uC7AC \uAE4C\uC9C0
+    \uC54C\uB824\uC9C4 \uBC14\uC5D0 \uB530\uB974\uBA74, <b>\uB77C\uC2E4 -> \uC5D0\uACE0\uB9AC
+    -> \uB178\uC288\uD06C</b> -> \uC624\uCF00\uB77C \uC758 \uC21C\uC11C\uB300\uB85C
+    \uB098\uB77C\uAC00 \uAC74\uAD6D \uB418\uC5C8\uC2B5\uB2C8\uB2E4"
+  - "\uBC14\uB85C \uC606\uC5D0 \uC788\uB294 \uBB34\uB364\uC774 <b>\uB178\uC288\uD06C
+    \uC655\uB989</b>\uC774\uACE0 \uD604\uC7AC\uAE4C\uC9C0 \uBC1C\uACAC \uB41C \uC655\uB989
+    \uC911 \uAC00\uC7A5 \uD070 \uADDC\uBAA8\uB97C \uC790\uB791\uD569\uB2C8\uB2E4\r\n\r\n\uBD81\uCABD\uC73C\uB85C
+    \uC62C\uB77C\uAC00\uBA74 \uB098\uC624\uB294 <b>\uC5D0\uACE0\uB9AC  \uC655\uB989</b>\uC740
+    \uAD49\uC7A5\uD788 <b>\uB3C5\uD2B9\uD55C \uAD6C\uC870</b>\uB97C \uD558\uACE0
+    \uC788\uAE30\uC5D0, \uD55C\uBC88 \uAD00\uAD11\uC744 \uAC00\uC2DC\uB294 \uAC83\uC744
+    \uCD94\uCC9C\uB4DC\uB9BD\uB2C8\uB2E4"
+  - "\uB9C8\uC9C0\uB9C9\uC73C\uB85C, <b>\uB77C\uC2E4 \uC655\uB989</b>\uC740 \uC544\uC9C1
+    \uCC3E\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4...\r\n\r\n\uADF8\uB798\uB3C4 \uD604\uC7AC
+    <b>\uB77C\uC2E4 \uC720\uC801\uC9C0\uAC00 \uCD5C\uADFC\uC5D0 \uBC1C\uACAC \uB418\uC5B4</b>,
+    \uBC1C\uAD74\uC774 \uC9C4\uD589 \uB418\uB2E4 \uBCF4\uBA74 \uADF8 \uC704\uCE58\uB97C
+    \uCC3E\uC744 \uC218 \uC788\uC744 \uAC70\uB77C \uC0DD\uAC01\uD569\uB2C8\uB2E4.\r\n\r\n\uB9CC\uC57D
+    \uB77C\uC2E4 \uC655\uB989\uC774 \uC2E4\uC81C\uB85C \uBC1C\uACAC\uB41C\uB2E4\uBA74,
+    \uB2E4\uC2DC \uD55C\uBC88 \uAD00\uAD11\uC744 \uC640\uC8FC\uC138\uC694!"
+  EventDialogs: []
+  EventDialogsKorean: []
+  ChoiceDialog: []
+  ChoiceDialogKorean: []
+  option1Dialog: []
+  option1DialogKorean: []
+  option2Dialog: []
+  option2DialogKorean: []
+  option3Dialog: []
+  option3DialogKorean: []

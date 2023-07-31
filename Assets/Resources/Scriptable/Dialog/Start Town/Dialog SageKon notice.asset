@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99652aa1957e80f49a9c5c0b514715db, type: 3}
+  m_Name: Dialog SageKon notice
+  m_EditorClassIdentifier: 
+  NPCname: Notice
+  NPCnameKorean: "\uACF5\uC9C0"
+  hasFirstEncounterDialog: 0
+  hasChoiceDialog: 0
+  ChoiceQuestionQuantity: 0
+  FirstEnCountDialogs: []
+  FirstEnCountDialogsKorean: []
+  ReapeatingDialogs:
+  - "Due to the <b>current monster incursions, Sagekon Village is expected to be
+    closed</b>, \n\nand we plan to <b>lock the door that leads to the said village
+    connected to the royal tomb</b>."
+  ReapeatingDialogsKorean:
+  - "\uD604\uC7AC <b>\uBAAC\uC2A4\uD130\uB4E4\uC758 \uCE68\uBC94\uC73C\uB85C \uC138\uC774\uC9C0\uCF58
+    \uB9C8\uC744\uC774  \uD3D0\uC1E0\uB420 \uC608\uC815</b>\uC774\uB2C8, \n\n\uC655\uB989\uACFC
+    \uC5F0\uACB0\uB418\uC5B4 \uC788\uB294 <b>\uD574\uB2F9 \uB9C8\uC744\uB85C \uD1B5\uD558\uB294
+    \uBB38\uC744 \uC7A0\uAD74 \uC608\uC815 </b>\uC785\uB2C8\uB2E4\r"
+  EventDialogs: []
+  EventDialogsKorean: []
+  ChoiceDialog: []
+  ChoiceDialogKorean: []
+  option1Dialog: []
+  option1DialogKorean: []
+  option2Dialog: []
+  option2DialogKorean: []
+  option3Dialog: []
+  option3DialogKorean: []

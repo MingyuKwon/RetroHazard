@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99652aa1957e80f49a9c5c0b514715db, type: 3}
+  m_Name: Dialog Noshuc notice
+  m_EditorClassIdentifier: 
+  NPCname: Notice
+  NPCnameKorean: "\uACF5\uC9C0"
+  hasFirstEncounterDialog: 0
+  hasChoiceDialog: 0
+  ChoiceQuestionQuantity: 0
+  FirstEnCountDialogs: []
+  FirstEnCountDialogsKorean: []
+  ReapeatingDialogs:
+  - "When closing the Noshuc Royal Tomb, the person in charge on that day is kindly
+    requested to lock the door with a <b>Level 3</b> security device.\r\n\r"
+  ReapeatingDialogsKorean:
+  - "\uB178\uC288\uD06C \uC655\uB989\uC744 \uD3D0\uC1C4 \uD560 \uB584, \uADF8 \uB0A0
+    \uB2F4\uB2F9\uC790\uB294 \uBC18\uB4DC\uC2DC \uBB38\uC744 <b>\uB808\uBCA8 3</b>\uC758
+    \uBCF4\uC548 \uC7A5\uCE58\uB85C \uC7A0\uAD88\uC8FC\uC2DC\uAE38 \uBC14\uB78D\uB2C8\uB2E4."
+  EventDialogs: []
+  EventDialogsKorean: []
+  ChoiceDialog: []
+  ChoiceDialogKorean: []
+  option1Dialog: []
+  option1DialogKorean: []
+  option2Dialog: []
+  option2DialogKorean: []
+  option3Dialog: []
+  option3DialogKorean: []

@@ -72,9 +72,19 @@ public class MapNameCollection
 
     public static string[] startTownMapNameEnglish = {
         "YangHan Village",
+        "Ben's House", 
+        "Martin's House", 
+        "Thomas's House", 
+        "William's House", 
+        "Tourist Information Center",
     };
 
     public static string[] startTownMapNameKorean = {
         "양한 마을",
+        "벤의 집",
+        "마르틴의 집",
+        "토마스의 집",
+        "윌리엄의 집",
+        "관광 가이드 센터",
     };
 }

@@ -15,7 +15,7 @@ MonoBehaviour:
   Interactive_name: Locked Heart Door
   Interactive_nameKorean: "\uC7A0\uAE34  \uD558\uD2B8 \uBB38"
   InteractCode: 301
-  isItemRemainAfterInteract: 1
+  isItemRemainAfterInteract: 0
   InteractKeyItems: 2d010000
   Interactive_Situation: To open the door, a heart key is needed
   Interactive_SituationKorean: "\uBB38\uC744 \uC5F4\uAE30 \uC704\uD574\uC120, \uD558\uD2B8

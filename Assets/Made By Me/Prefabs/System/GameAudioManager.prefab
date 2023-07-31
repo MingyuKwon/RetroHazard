@@ -54,6 +54,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5a0526a79216db04fbc2e5fd2ccfd80c, type: 3}
   - {fileID: 8300000, guid: a41a8087bb3d3ee4ea92e433551b1474, type: 3}
   - {fileID: 8300000, guid: bb35b9f59ba3e404e9443ac3fdc5eb98, type: 3}
+  - {fileID: 8300000, guid: 57f7db12eb8823b4b98ede53276ae6ba, type: 3}
+  - {fileID: 8300000, guid: aea60a5c54e63544896a51808a98b386, type: 3}
+  - {fileID: 8300000, guid: 7b9dcd4ec4fdd9b4b9c4a0a8c2cef7cb, type: 3}
   sfxAudioClip:
   - {fileID: 8300000, guid: 4989d0b9559e41e409767280a4f267ce, type: 3}
   - {fileID: 8300000, guid: ad0d9a6175be98e42a6fe1422f703cf0, type: 3}
@@ -66,7 +69,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 786800ac015f5a24c9ea95ba5de7c946, type: 3}
   - {fileID: 8300000, guid: 88c6bd93328a2d040baeb47f21f0ef89, type: 3}
   - {fileID: 8300000, guid: 438090ceab563084fb0a3ad07088d0d1, type: 3}
-  - {fileID: 8300000, guid: 76697c54200b6594586205ddace55039, type: 3}
   UIAudioClip:
   - {fileID: 8300000, guid: e1fb21216e8449844980d364cd76fee8, type: 3}
   - {fileID: 8300000, guid: 025ea17357d73ac418a4e24ee8235efd, type: 3}
