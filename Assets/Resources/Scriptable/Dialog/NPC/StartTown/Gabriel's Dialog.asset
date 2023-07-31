@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99652aa1957e80f49a9c5c0b514715db, type: 3}
+  m_Name: Gabriel's Dialog
+  m_EditorClassIdentifier: 
+  NPCname: Gabriel
+  NPCnameKorean: "\uAC00\uBE0C\uB9AC\uC5D8"
+  hasFirstEncounterDialog: 0
+  hasChoiceDialog: 0
+  ChoiceQuestionQuantity: -1
+  FirstEnCountDialogs: []
+  FirstEnCountDialogsKorean: []
+  ReapeatingDialogs:
+  - 'Oh, judging by your attire, are you also a stranger here?
+
+    
+
+    I came
+    here on a trip this time, and I was surprised to see everyone armed!
+
+    
+
+    According
+    to the people here, monsters appear very often, so they have to be armed with
+    armor and such even in normal times.'
+  - On top of that, they make tourists buy a level 0 key and tell them to only go
+    places where they can with a level 0 key!
+  - No matter how I think about it, I feel like I've come to the wrong place for
+    sightseeing...
+  ReapeatingDialogsKorean:
+  - "\uC624 \uB108\uB3C4 \uBCF5\uC7A5\uC744 \uBCF4\uB2C8 \uC678\uC9C0\uC778 \uC778\uAC00??\r\n\r\n\uB09C
+    \uC774\uBC88\uC5D0 \uC5EC\uAE30\uB85C \uC5EC\uD589\uC744 \uC654\uB294\uB370,
+    \uC0AC\uB78C\uB4E4\uC774 \uB2E4 \uBB34\uC7A5\uC744 \uD558\uACE0 \uC788\uC5B4\uC11C
+    \uAE5C\uC9DD \uB180\uB790\uC9C0 \uBB50\uC57C!\r\n\n\uC598\uAE30\uB97C \uB4E4\uC5B4\uBCF4\uB2C8,
+    \uBAAC\uC2A4\uD130\uAC00 \uB9E4\uC6B0 \uC790\uC8FC \uB098\uC640\uC11C \uD3C9\uC18C\uC5D0\uB3C4
+    \uAC11\uC637 \uB4F1\uC73C\uB85C \uBB34\uC7A5\uC744 \uD574\uC57C \uD55C\uB2E4\uACE0
+    \uD558\uB354\uAD70\n"
+  - "\uAC70\uAE30\uB2E4\uAC00, \uAD00\uAD11\uAC1D\uC5D0\uAC8C\uB294 0\uB2E8\uACC4
+    \uC5F4\uC1E0\uB97C \uC0AC\uAC8C \uD558\uB354\uB2C8 0\uB2E8\uACC4 \uC5F4\uC1E0\uB85C
+    \uAC08 \uC218 \uC788\uB294 \uACF3\uB9CC \uB2E4\uB2C8\uB77C\uACE0 \uD558\uB354\uAD70!"
+  - "\uC544\uBB34\uB9AC \uC0DD\uAC01\uD574\uB3C4 \uAD00\uAD11\uC744 \uC798\uBABB
+    \uC628 \uAC83 \uAC19\uC544...."
+  EventDialogs: []
+  EventDialogsKorean: []
+  ChoiceDialog: []
+  ChoiceDialogKorean: []
+  option1Dialog: []
+  option1DialogKorean: []
+  option2Dialog: []
+  option2DialogKorean: []
+  option3Dialog: []
+  option3DialogKorean: []
