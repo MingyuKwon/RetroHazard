@@ -84,14 +84,14 @@ public class NPCMove : MonoBehaviour
         if(aiPath.canMove && animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
         {
             animator.Play("Walk");
-            idleFlag = false;
         }
+        idleFlag = false;
     }
 
     private void walkingAnimation()
     {
         if(idleFlag) return;
-        
+
         Vector2 playerDirection = destinationSetter.target.position - transform.position;
 
         int upAngle = (int)Vector2.Angle(Vector2.up, playerDirection);

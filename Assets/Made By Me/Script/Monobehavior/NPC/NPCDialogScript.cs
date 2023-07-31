@@ -14,7 +14,11 @@ public class NPCDialogScript : MonoBehaviour
 
     public void showDialog()
     {
-        npcMove.IdleAnimation();
+        if(npcMove != null)
+        {
+            npcMove.IdleAnimation();
+        }   
+        
         GameManagerUI.instance.showTalkNPCDialog(visited, dialog);
         if(!visited) visited = true;
     }

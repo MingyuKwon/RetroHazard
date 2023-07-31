@@ -22,12 +22,12 @@ MonoBehaviour:
   ReapeatingDialogs:
   - 'Oh, judging by your attire, are you also a stranger here?
 
-    
 
-    I came
-    here on a trip this time, and I was surprised to see everyone armed!
 
-    
+    I came here
+    on a trip this time, and I was surprised to see everyone armed!
+
+
 
     According
     to the people here, monsters appear very often, so they have to be armed with
@@ -45,8 +45,8 @@ MonoBehaviour:
     \uAC11\uC637 \uB4F1\uC73C\uB85C \uBB34\uC7A5\uC744 \uD574\uC57C \uD55C\uB2E4\uACE0
     \uD558\uB354\uAD70\n"
   - "\uAC70\uAE30\uB2E4\uAC00, \uAD00\uAD11\uAC1D\uC5D0\uAC8C\uB294 0\uB2E8\uACC4
-    \uC5F4\uC1E0\uB97C \uC0AC\uAC8C \uD558\uB354\uB2C8 0\uB2E8\uACC4 \uC5F4\uC1E0\uB85C
-    \uAC08 \uC218 \uC788\uB294 \uACF3\uB9CC \uB2E4\uB2C8\uB77C\uACE0 \uD558\uB354\uAD70!"
+    \uC5F4\uC1E0\uB97C \uC8FC\uB354\uB2C8  0\uB2E8\uACC4 \uC5F4\uC1E0\uB85C \uAC08
+    \uC218 \uC788\uB294 \uACF3\uB9CC \uB2E4\uB2C8\uB77C\uACE0 \uD558\uB354\uAD70!"
   - "\uC544\uBB34\uB9AC \uC0DD\uAC01\uD574\uB3C4 \uAD00\uAD11\uC744 \uC798\uBABB
     \uC628 \uAC83 \uAC19\uC544...."
   EventDialogs: []
