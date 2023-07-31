@@ -35,6 +35,10 @@ public class DialogUILogic
         GameManager.instance.SetPauseGame(flag);
 
         monoBehavior.gameObject.SetActive(flag);
+        if(!flag)
+        {
+            GameManager.EventManager.Invoke_NPCWalkAgainEvent();
+        }
     }
     
     public void showTalkNPCDialog(bool visited ,Dialog dialog)

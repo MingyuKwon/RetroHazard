@@ -7,6 +7,7 @@ public class NPCMove : MonoBehaviour
 {
     Transform[] targets;
     Rigidbody2D NPCrigidbody2D;
+    Animator animator;
 
     public AIPath aiPath; // AIPath 컴포넌트
     public AIDestinationSetter destinationSetter; // AIDestinationSetter 컴포넌트
@@ -33,31 +34,122 @@ public class NPCMove : MonoBehaviour
         }
 
         NPCrigidbody2D = GetComponent<Rigidbody2D>();
-    }
+        animator = GetComponent<Animator>();
 
-    private void Start() {
         transform.position = targets[0].position;
         currentTarget = 0;
         StartCoroutine(walkingCoroutine());
     }
 
+    private void OnEnable() {
+        GameManager.EventManager.NPCWalkAgainEvent += WalkAgain;
+    }
+
+    private void OnDisable() {
+        GameManager.EventManager.NPCWalkAgainEvent -= WalkAgain;
+    }
+
+    bool isFirst = true;
     IEnumerator walkingCoroutine()
     {
         while(true)
         {
             setNextTarget();
 
-            yield return new WaitForSeconds(1f);
+            if(isFirst)
+            {
+                isFirst = false;
+            }else
+            {
+                yield return new WaitForSeconds(1f);
+            }
+            
             aiPath.canMove = true;
+
+            animator.Play("Walk");
 
             while(!aiPath.reachedEndOfPath)
             {
-                yield return new WaitForEndOfFrame();
-                
+                walkingAnimation();
+                yield return null;
             }
 
             aiPath.canMove = false;
+            animator.Play("Idle");
         }
+    }
+
+    private void WalkAgain()
+    {
+        if(aiPath.canMove && animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+        {
+            animator.Play("Walk");
+            idleFlag = false;
+        }
+    }
+
+    private void walkingAnimation()
+    {
+        if(idleFlag) return;
+        
+        Vector2 playerDirection = destinationSetter.target.position - transform.position;
+
+        int upAngle = (int)Vector2.Angle(Vector2.up, playerDirection);
+        int rightAngle = (int)Vector2.Angle(Vector2.right, playerDirection);
+        int leftAngle = (int)Vector2.Angle(Vector2.left, playerDirection);
+        int downAngle = (int)Vector2.Angle(Vector2.down, playerDirection);
+
+        if(upAngle <= 45)
+        {
+            animator.SetFloat("X", 0);
+            animator.SetFloat("Y", 1);
+        }else if(rightAngle <= 45)
+        {
+            animator.SetFloat("X", 1);
+            animator.SetFloat("Y", 0);
+        }else if(leftAngle <= 45)
+        {
+            animator.SetFloat("X", -1);
+            animator.SetFloat("Y", 0);
+        }else if(downAngle <= 45)
+        {
+            animator.SetFloat("X", 0);
+            animator.SetFloat("Y", -1);
+        }
+
+    }
+
+    bool idleFlag = false;
+    public void IdleAnimation()
+    {
+        idleFlag = true;
+        Vector2 playerDirection = Player1.instance.playerMove.transform.position - transform.position;
+
+        int upAngle = (int)Vector2.Angle(Vector2.up, playerDirection);
+        int rightAngle = (int)Vector2.Angle(Vector2.right, playerDirection);
+        int leftAngle = (int)Vector2.Angle(Vector2.left, playerDirection);
+        int downAngle = (int)Vector2.Angle(Vector2.down, playerDirection);
+
+        if(upAngle <= 45)
+        {
+            animator.SetFloat("X", 0);
+            animator.SetFloat("Y", 1);
+        }else if(rightAngle <= 45)
+        {
+            animator.SetFloat("X", 1);
+            animator.SetFloat("Y", 0);
+        }else if(leftAngle <= 45)
+        {
+            animator.SetFloat("X", -1);
+            animator.SetFloat("Y", 0);
+        }else if(downAngle <= 45)
+        {
+            animator.SetFloat("X", 0);
+            animator.SetFloat("Y", -1);
+        }
+
+        animator.Play("Idle");
+
     }
 
     private void setNextTarget()

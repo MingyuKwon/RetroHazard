@@ -24,6 +24,13 @@ public class GameManager : MonoBehaviour
 
     public class EventManager
     {
+        public static event Action NPCWalkAgainEvent;
+        public static void Invoke_NPCWalkAgainEvent()
+        {
+            // 아무 인수 없이 호출시에, notice를 닫는 것
+            NPCWalkAgainEvent?.Invoke();
+        }
+
         public static event Action InStageWarpEvent;
         public static void Invoke_InStageWarpEvent()
         {

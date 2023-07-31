@@ -10,9 +10,11 @@ public class NPCDialogScript : MonoBehaviour
 {
     [SerializeField] Dialog dialog;
     [SerializeField] bool visited = false;
+    [SerializeField] NPCMove npcMove;
 
     public void showDialog()
     {
+        npcMove.IdleAnimation();
         GameManagerUI.instance.showTalkNPCDialog(visited, dialog);
         if(!visited) visited = true;
     }
