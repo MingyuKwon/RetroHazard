@@ -18,6 +18,7 @@ public enum BackGroundAudioType{
     YangHan_Village = 5,
     Spooky_House = 6,
     Guide_Center = 7,
+    Cave = 8,
 }
 
 public enum SFXAudioType{

@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99652aa1957e80f49a9c5c0b514715db, type: 3}
+  m_Name: tomb government's Dialog
+  m_EditorClassIdentifier: 
+  NPCname: Tomb Guardian
+  NPCnameKorean: "\uBB34\uB364 \uAD00\uB9AC\uC778"
+  hasFirstEncounterDialog: 0
+  hasChoiceDialog: 0
+  ChoiceQuestionQuantity: -1
+  FirstEnCountDialogs: []
+  FirstEnCountDialogsKorean: []
+  ReapeatingDialogs:
+  - 'Oh, what should I do?
+
+
+    what should I do?'
+  - 'No matter how much I think about it, it seems like I locked the tomb with the
+    level 3 key inside...
+
+    
+
+    There''s only one level 3 key at the information
+    desk, and getting a new one is ridiculously expensive...'
+  - Plus, it's been over a month since I haven't been able to get in and manage the
+    place, so it's probably become a den of monsters by now...
+  - Really, what should I do... Should I just run away secretly?
+  ReapeatingDialogsKorean:
+  - "\uC5B4\uB5BB\uAC8C \uD558\uC9C0?\n \n\uC5B4\uB5BB\uAC8C \uD558\uC9C0\r?\n"
+  - "\uC544\uBB34\uB9AC \uC0DD\uAC01\uD574 \uBD10\uB3C4 3\uB2E8\uACC4 \uC5F4\uC1E0\uB97C
+    \uC655\uB989 \uC548\uC5D0 \uD758\uB9B0 \uCC44\uB85C \uBB38\uC744 \uC7A0\uAD88
+    \uBC84\uB9B0\uAC70 \uAC19\uC544....\r\n\r\n\uC548\uB0B4\uC18C\uC5D0\uB294 3\uB2E8\uACC4
+    \uC5F4\uC1E0\uAC00 \uC800\uAC70 \uBC16\uC5D0 \uC5C6\uACE0, \uADF8\uB0E5 \uD558\uB098
+    \uC0C8\uB85C \uAD6C\uD558\uC790\uB2C8 \uB9D0\uB3C4 \uC548\uB418\uAC8C \uBE44\uC2FC\uB370...."
+  - "\uAC8C\uB2E4\uAC00 \uBABB \uB4E4\uC5B4\uAC00\uC11C \uAD00\uB9AC\uB97C \uBABB\uD55C\uC9C0
+    \uD55C \uB2EC\uC774 \uB118\uC5C8\uC73C\uB2C8 \uC548\uC740 \uC774\uC81C \uBAAC\uC2A4\uD130
+    \uC18C\uAD74\uC774 \uB418\uC5C8\uC744 \uAC70\uC57C..... "
+  - "\uC815\uB9D0 \uC5B4\uB5BB\uAC8C \uD558\uC9C0...... \uADF8\uB0E5 \uBAB0\uB798
+    \uB3C4\uB9DD\uCE60\uAE4C....."
+  EventDialogs: []
+  EventDialogsKorean: []
+  ChoiceDialog: []
+  ChoiceDialogKorean: []
+  option1Dialog: []
+  option1DialogKorean: []
+  option2Dialog: []
+  option2DialogKorean: []
+  option3Dialog: []
+  option3DialogKorean: []

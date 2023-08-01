@@ -23,9 +23,9 @@ public class PlayerGoalCollection : MonoBehaviour
 
     public static void ChangeGoalIndex(int n)
     {
-        if(n >= PlayerGoals.Length)
+        if(n >= PlayerGoals.Length || n < 0)
         {
-            Debug.LogError(n + "is bigger than array index limit " + PlayerGoals.Length);
+            Debug.Log(n + "is bigger than array index limit " + PlayerGoals.Length);
             return;
         }
 
@@ -51,14 +51,18 @@ public class PlayerGoalCollection : MonoBehaviour
         "Get out of the archaeological site",
         "Find something that can remove the pile of rocks.",
         "Entering the Open Passage by Removing the Stones",
+        "Finding a way to enter the Noshuc Royal Tomb.",
     };
 
     static string[] PlayerGoalsKorean = {
-        "Okera 지방에 들어가기",
+        "오케라 지방에 들어가기",
         "잠긴 대문을 열기 위한 키를 찾기",
         "유적지로 부터 나가서 Okera지방에 들어가기",
         "돌 무더기를 치울 수 있는 것을 찾아보기.",
         "돌을 치우고 생긴 길을 통해 Okera 지방에 들어가기",
+        "노슈크 왕릉에 들어 갈 수 있는 방법을 찾기",
+
+        
     };
 
 }

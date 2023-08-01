@@ -7,6 +7,7 @@ public class MapNameCollection
     public enum sceneName{
         Tutorial = 0,
         YangHan_Village = 1,
+        Noshuc_Royal_Tomb = 2,
     }
 
     public static sceneName currentSceneName;
@@ -33,6 +34,16 @@ public class MapNameCollection
                 }else if(GameAudioManager.LanguageManager.currentLanguage == "K")
                 {   
                     return startTownMapNameKorean;
+                }
+                break;
+
+            case 2:
+                if(GameAudioManager.LanguageManager.currentLanguage == "E")
+                {   
+                    return Noshuc_Royal_TombEnglish;
+                }else if(GameAudioManager.LanguageManager.currentLanguage == "K")
+                {   
+                    return Noshuc_Royal_TombKoream;
                 }
                 break;
                 
@@ -86,5 +97,13 @@ public class MapNameCollection
         "토마스의 집",
         "윌리엄의 집",
         "관광 가이드 센터",
+    };
+
+    public static string[] Noshuc_Royal_TombEnglish = {
+        "Noshuc Royal Tomb Entrance",
+    };
+
+    public static string[] Noshuc_Royal_TombKoream = {
+        "노슈크 왕릉 입구",
     };
 }

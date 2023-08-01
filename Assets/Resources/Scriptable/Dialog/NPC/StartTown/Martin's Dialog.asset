@@ -20,20 +20,32 @@ MonoBehaviour:
   FirstEnCountDialogs: []
   FirstEnCountDialogsKorean: []
   ReapeatingDialogs:
-  - 'Finally, I''ve saved up enough money to buy a Level 1 key!
+  - 'I finally bought the part to upgrade to a level 1 key!
 
+    
 
-    I''ve been
-    uncomfortable because there are so many restrictions on where I can go with just
-    a Level 0 key, so I''m very happy.'
-  - Now all that's left is to move to Jujedo Island and live a safe life~~
+    Now that
+    I can go to Jujedo Island, I''m going to get out of this dangerous village as
+    soon as possible!'
+  - 'What, you want to get the upgrade part too?
+
+    
+
+    I heard there''s someone
+    in Chokos Village who knows how to get the part for free...'
+  - "But I'm not even sure if you can make it to Chokos Village safely, haha!\r\n\r"
   ReapeatingDialogsKorean:
-  - "\uB4DC\uB514\uC5B4 \uB808\uBCA8 1 \uC5F4\uC1E0\uB97C \uC0B4 \uC218 \uC788\uB294
-    \uB3C8\uC744 \uBAA8\uC558\uC5B4!\r\n\r\n\uB808\uBCA8 0 \uC5F4\uC1E0 \uB9CC\uC73C\uB85C\uB294
-    \uAC08 \uC218 \uC788\uB294 \uACF3\uC774 \uB108\uBB34 \uB108\uBB34 \uD55C\uC815\uB418\uC5B4
-    \uC788\uC5B4\uC11C \uBD88\uD3B8\uD588\uB294\uB370 \uAE30\uBED0.\r\n\r\n"
-  - "\uC774\uC81C \uC8FC\uC81C\uB3C4 \uC12C\uC73C\uB85C \uC774\uC0AC\uB97C \uAC00\uC11C
-    \uC548\uC804\uD55C \uC0B6\uC744 \uC0AC\uB294 \uC77C\uB9CC \uB0A8\uC558\uB2E4~~"
+  - "\uB4DC\uB514\uC5B4 \uB808\uBCA8 1 \uC5F4\uC1E0\uB85C \uC5C5\uADF8\uB808\uC774\uB4DC
+    \uD560 \uC218 \uC788\uB294 \uBD80\uD488\uC744 \uC0C0\uC5B4!\r\n\r\n\uC774\uC81C
+    \uC8FC\uC81C\uB3C4 \uC12C\uC73C\uB85C \uAC08 \uC218 \uC788\uC73C\uB2C8. \uD558\uB8E8
+    \uBE68\uB9AC \uC774 \uC704\uD5D8\uD55C \uB9C8\uC744\uC5D0\uC11C \uB098\uAC08
+    \uAC70\uC57C!"
+  - "\uBB50 \uB108\uB3C4 \uC5C5\uADF8\uB808\uC774\uB4DC \uBD80\uD488\uC744 \uC5BB\uACE0
+    \uC2F6\uC5B4?\r\n\r\n\uCD08\uCF54\uC2A4 \uB9C8\uC744\uC5D0 \uBD80\uD488\uC744
+    \uACF5\uC9DC\uB85C \uC5BB\uC744 \uC218 \uC788\uB294 \uBC29\uBC95\uC744 \uC548\uB2E4\uB294
+    \uC0AC\uB78C\uC774 \uC788\uB2E4\uACE0 \uD558\uB358\uB370...."
+  - "\uADFC\uB370 \uB2C8\uAC00 \uCD08\uCF54\uC2A4 \uB9C8\uC744\uC5D0 \uBB34\uC0AC\uD788
+    \uAC08 \uC218 \uC788\uC744 \uC9C0\uC870\uCC28 \uBAA8\uB974\uACA0\uB124 \uD558\uD558!"
   EventDialogs: []
   EventDialogsKorean: []
   ChoiceDialog: []

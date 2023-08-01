@@ -15,6 +15,8 @@ public class NoticeInteract : MonoBehaviour
     [Header("0 will be ignore and only square collider is valid")]
     [SerializeField] int isSquareIndex;
 
+    public int changeGoalIndexAfterNotice = -1;
+
     bool isAlive = true;
 
     private void Awake() {
@@ -84,7 +86,12 @@ public class NoticeInteract : MonoBehaviour
                 {
                     GameManager.EventManager.InvokeShowNotice("Field", dialog.koreanNoticeDialog , true, 900 ,250);
                 }
-            
+
+                if(changeGoalIndexAfterNotice >= 0)
+                {
+                    PlayerGoalCollection.ChangeGoalIndex(changeGoalIndexAfterNotice);
+                }
+                
                 SaveSystem.instance.ActiveStageSaves[SceneManager.GetActiveScene().buildIndex].is_Notice_Destroy[transform.GetSiblingIndex()] = true;
                 removePermenantly();
             }

@@ -911,6 +911,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5710392908370957945, guid: bd4d9f244e5ed344ea5823b1d97d48b4, type: 3}
+      propertyPath: backGroundAudioClip.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5710392908370957945, guid: bd4d9f244e5ed344ea5823b1d97d48b4, type: 3}
+      propertyPath: backGroundAudioClip.Array.data[8]
+      value: 
+      objectReference: {fileID: 8300000, guid: db2c067075c5d514c80a7ccf87f29020, type: 3}
     - target: {fileID: 5710392908370957947, guid: bd4d9f244e5ed344ea5823b1d97d48b4, type: 3}
       propertyPath: m_Name
       value: GameAudioManager
