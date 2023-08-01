@@ -8,6 +8,7 @@ public class MapNameCollection
         Tutorial = 0,
         YangHan_Village = 1,
         Noshuc_Royal_Tomb = 2,
+        Road = 3,
     }
 
     public static sceneName currentSceneName;
@@ -46,6 +47,16 @@ public class MapNameCollection
                     return Noshuc_Royal_TombKoream;
                 }
                 break;
+
+            case 3:
+                if(GameAudioManager.LanguageManager.currentLanguage == "E")
+                {   
+                    return RoadEnglish;
+                }else if(GameAudioManager.LanguageManager.currentLanguage == "K")
+                {   
+                    return RoadKorean;
+                }
+                break;
                 
         }
 
@@ -63,6 +74,8 @@ public class MapNameCollection
                 return startTownMapNameEnglish;
             case 2:
                 return Noshuc_Royal_TombEnglish;
+            case 3:
+                return RoadEnglish;
         }
 
         Debug.Log("getMapNameArray NULL");
@@ -107,5 +120,13 @@ public class MapNameCollection
 
     public static string[] Noshuc_Royal_TombKoream = {
         "노슈크 왕릉 입구",
+    };
+
+    public static string[] RoadEnglish = {
+        "ChoYang Road",
+    };
+
+    public static string[] RoadKorean = {
+        "초양 도로",
     };
 }
