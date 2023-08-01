@@ -46,6 +46,8 @@ public class blackOut : MonoBehaviour
 
         yield return new WaitForSeconds(0.1f); 
 
+        warp.isPlayerNearWarp = false;
+
         while(image.color.a > 0f)
         {
             image.color = new Color(image.color.r, image.color.g, image.color.b, Mathf.MoveTowards(image.color.a, 0f, delayTime * Time.deltaTime));
@@ -61,7 +63,8 @@ public class blackOut : MonoBehaviour
         blackouting = true;
         GameManager.instance.SetPausePlayer(true);
         image.color = new Color(image.color.r, image.color.g, image.color.b, 1);
-
+        
+        warp.isPlayerNearWarp = false;
         while(image.color.a > 0f)
         {
             image.color = new Color(image.color.r, image.color.g, image.color.b, Mathf.MoveTowards(image.color.a, 0f, speed * Time.deltaTime));

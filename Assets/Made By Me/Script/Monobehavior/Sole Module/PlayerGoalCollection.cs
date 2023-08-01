@@ -52,6 +52,7 @@ public class PlayerGoalCollection : MonoBehaviour
         "Find something that can remove the pile of rocks.",
         "Entering the Open Passage by Removing the Stones",
         "Finding a way to enter the Noshuc Royal Tomb.",
+        "Finding a way to upgrade the level of a key.",
     };
 
     static string[] PlayerGoalsKorean = {
@@ -61,6 +62,7 @@ public class PlayerGoalCollection : MonoBehaviour
         "돌 무더기를 치울 수 있는 것을 찾아보기.",
         "돌을 치우고 생긴 길을 통해 Okera 지방에 들어가기",
         "노슈크 왕릉에 들어 갈 수 있는 방법을 찾기",
+        "열쇠의 단계를 올릴 수 있는 방법을 찾기.",
 
         
     };

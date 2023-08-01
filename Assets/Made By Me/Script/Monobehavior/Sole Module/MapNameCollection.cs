@@ -61,6 +61,8 @@ public class MapNameCollection
                 return tutorialMapNameEnglish;
             case 1:
                 return startTownMapNameEnglish;
+            case 2:
+                return Noshuc_Royal_TombEnglish;
         }
 
         Debug.Log("getMapNameArray NULL");

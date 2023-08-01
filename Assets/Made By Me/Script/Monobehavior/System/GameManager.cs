@@ -24,6 +24,11 @@ public class GameManager : MonoBehaviour
 
     public class EventManager
     {
+        public static event Action WarpEvent;
+        public static void Invoke_WarpEvent()
+        {
+            WarpEvent?.Invoke();
+        }
         public static event Action NPCWalkAgainEvent;
         public static void Invoke_NPCWalkAgainEvent()
         {

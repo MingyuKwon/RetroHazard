@@ -24,26 +24,22 @@ MonoBehaviour:
 
 
     what should I do?'
-  - 'No matter how much I think about it, it seems like I locked the tomb with the
-    level 3 key inside...
-
-    
-
-    There''s only one level 3 key at the information
-    desk, and getting a new one is ridiculously expensive...'
-  - Plus, it's been over a month since I haven't been able to get in and manage the
-    place, so it's probably become a den of monsters by now...
+  - "No matter how much I think about it, it seems like<b> I locked the tomb with
+    the level 3 key inside...\r</b>\n\r\nThere's only one level 3 key at the information
+    desk, and getting a new one is ridiculously expensive..."
+  - "Plus, it's been over a month since I haven't been able to get in and manage
+    the place, \n\nso <b>it's probably become a den of monsters by now</b>..."
   - Really, what should I do... Should I just run away secretly?
   ReapeatingDialogsKorean:
   - "\uC5B4\uB5BB\uAC8C \uD558\uC9C0?\n \n\uC5B4\uB5BB\uAC8C \uD558\uC9C0\r?\n"
-  - "\uC544\uBB34\uB9AC \uC0DD\uAC01\uD574 \uBD10\uB3C4 3\uB2E8\uACC4 \uC5F4\uC1E0\uB97C
-    \uC655\uB989 \uC548\uC5D0 \uD758\uB9B0 \uCC44\uB85C \uBB38\uC744 \uC7A0\uAD88
+  - "\uC544\uBB34\uB9AC \uC0DD\uAC01\uD574 \uBD10\uB3C4 <b>3\uB2E8\uACC4 \uC5F4\uC1E0\uB97C
+    \uC655\uB989 \uC548\uC5D0 \uD758\uB9B0 \uCC44</b>\uB85C \uBB38\uC744 \uC7A0\uAD88
     \uBC84\uB9B0\uAC70 \uAC19\uC544....\r\n\r\n\uC548\uB0B4\uC18C\uC5D0\uB294 3\uB2E8\uACC4
     \uC5F4\uC1E0\uAC00 \uC800\uAC70 \uBC16\uC5D0 \uC5C6\uACE0, \uADF8\uB0E5 \uD558\uB098
     \uC0C8\uB85C \uAD6C\uD558\uC790\uB2C8 \uB9D0\uB3C4 \uC548\uB418\uAC8C \uBE44\uC2FC\uB370...."
   - "\uAC8C\uB2E4\uAC00 \uBABB \uB4E4\uC5B4\uAC00\uC11C \uAD00\uB9AC\uB97C \uBABB\uD55C\uC9C0
-    \uD55C \uB2EC\uC774 \uB118\uC5C8\uC73C\uB2C8 \uC548\uC740 \uC774\uC81C \uBAAC\uC2A4\uD130
-    \uC18C\uAD74\uC774 \uB418\uC5C8\uC744 \uAC70\uC57C..... "
+    \uD55C \uB2EC\uC774 \uB118\uC5C8\uC73C\uB2C8 <b>\uC548\uC740 \uC774\uC81C \uBAAC\uC2A4\uD130
+    \uC18C\uAD74</b>\uC774 \uB418\uC5C8\uC744 \uAC70\uC57C..... "
   - "\uC815\uB9D0 \uC5B4\uB5BB\uAC8C \uD558\uC9C0...... \uADF8\uB0E5 \uBAB0\uB798
     \uB3C4\uB9DD\uCE60\uAE4C....."
   EventDialogs: []
