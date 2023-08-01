@@ -191,6 +191,8 @@ public class GameMangerInput : MonoBehaviour
         }
 
         public static event Action TabUIBackPressed;
+        public static event Action InteractiveUIBackPressed;
+        public static event Action DialogUIBackPressed;
         public static event Action BoxUIBackPressed;
         public static event Action MenuUIBackPressed;
         public static event Action AlertUIBackPressed;
@@ -199,6 +201,12 @@ public class GameMangerInput : MonoBehaviour
             if(currentInput(InputType.TabUIInput))
             {
                 TabUIBackPressed.Invoke();
+            }else if(currentInput(InputType.InteractiveUIInput))
+            {
+                InteractiveUIBackPressed.Invoke();
+            }else if(currentInput(InputType.DialogtUIInput))
+            {
+                DialogUIBackPressed.Invoke();
             }else if(currentInput(InputType.BoxUIInput))
             {
                 BoxUIBackPressed.Invoke();

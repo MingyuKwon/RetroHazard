@@ -23,6 +23,7 @@ public class InteractiveUILogic
 
     public void OnEnable() {
         GameMangerInput.InputEvent.InteractiveUIEnterPressed += EnterPressed;
+        GameMangerInput.InputEvent.InteractiveUIBackPressed += EnterPressed;
         UI.instance.SetMouseCursorActive(true);
         GameMangerInput.getInput(InputType.InteractiveUIInput);
         GameAudioManager.instance.PlayUIMusic(UIAudioType.Click);
@@ -33,6 +34,7 @@ public class InteractiveUILogic
         UI.instance.SetMouseCursorActive(false);
         isCalledByKeyItem = false;
         GameMangerInput.InputEvent.InteractiveUIEnterPressed -= EnterPressed;
+        GameMangerInput.InputEvent.InteractiveUIBackPressed -= EnterPressed;
     }
 
     public void SetInteractiveDialogText(string[] texts)

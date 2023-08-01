@@ -389,6 +389,7 @@ public class DialogUILogic
 
 
         GameMangerInput.InputEvent.DialogUIEnterPressed += EnterPressed;
+        GameMangerInput.InputEvent.DialogUIBackPressed += EnterPressed;
         GameMangerInput.InputEvent.DialogUIUpPressed += UpPressed;
         GameMangerInput.InputEvent.DialogUIDownPressed += DownPressed;
         GameMangerInput.InputEvent.DialogUIRightPressed += RightPressed;
@@ -408,6 +409,7 @@ public class DialogUILogic
 
 
         GameMangerInput.InputEvent.DialogUIEnterPressed -= EnterPressed;
+        GameMangerInput.InputEvent.DialogUIBackPressed -= EnterPressed;
         GameMangerInput.InputEvent.DialogUIUpPressed -= UpPressed;
         GameMangerInput.InputEvent.DialogUIDownPressed -= DownPressed;
         GameMangerInput.InputEvent.DialogUIRightPressed -= RightPressed;

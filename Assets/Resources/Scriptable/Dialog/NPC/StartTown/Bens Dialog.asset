@@ -22,38 +22,33 @@ MonoBehaviour:
   ReapeatingDialogs:
   - 'I can''t access the underground tomb anymore because of Eddie...
 
-    
+
 
 
 '
-  - 'He rushed off as soon as he heard a rumor that a  <b>level 3 key upgrade component</b>
+  - He rushed off as soon as he heard a rumor that a  <b>level 3 key upgrade component</b>
     was <b>in the tomb</b>.
-
-
-    It wouldn''t be a problem if he stopped at that,
-    but he took the key and locked the door, worried that someone else might come
-    in...'
-  - 'The <b>spare key</b> that can open that door would only be in <b>Sagekon village</b>....
-
-    
-
-    Despite
-    the danger, I used to visit my wife''s grave regularly, but it''s already been
-    over a year since I couldn''t...'
+  - It wouldn't be a problem if he stopped at that, but he took the key and locked
+    the door, worried that someone else might come in...
+  - The <b>spare key</b> that can open that door would only be in <b>Sagekon village</b>....
+  - Despite the danger, I used to visit my wife's grave regularly, but it's already
+    been over a year since I couldn't...
   ReapeatingDialogsKorean:
   - "\uC5D0\uB514 \uB188 \uB54C\uBB38\uC5D0 \uC9C0\uD558 \uBB18\uC9C0\uB85C \uB354
     \uC774\uC0C1 \uAC08 \uC218 \uC5C6\uAC8C \uB418\uC5C8\uC5B4...."
   - "\uADF8 \uB140\uC11D <b>\uC9C0\uD558 \uBB34\uB364</b>\uC5D0 <b>3\uB2E8\uACC4
     \uC5F4\uC1E0 \uAC15\uD654 \uBD80\uD488</b>\uC774 \uC788\uB2E4\uB294 \uC18C\uBB38\uC744
-    \uB4E3\uACE0 \uBC14\uB85C \uB2EC\uB824\uAC00\uB354\uAD70\r\n\r\n\uAC70\uAE30\uAE4C\uC9C4
-    \uC0C1\uAD00 \uC5C6\uB354\uB77C\uB3C4, \uD639\uC2DC \uB2E4\uB978 \uC0AC\uB78C\uC774
-    \uB4E4\uC5B4 \uC624\uBA74 \uC548\uB41C\uB2E4\uACE0 \uC5F4\uC1E0\uB97C \uAC00\uC838\uAC04
-    \uB2E4\uC74C \uBB38\uC744 \uC7A0\uAD88\uBC84\uB9AC\uBA74 \uC5B4\uB5BB\uAC8C \uD574...."
+    \uB4E3\uACE0 \uBC14\uB85C \uB2EC\uB824\uAC00\uB354\uAD70\r\n\r\n"
+  - "\uAC70\uAE30\uAE4C\uC9C4 \uC0C1\uAD00 \uC5C6\uB354\uB77C\uB3C4, \uD639\uC2DC
+    \uB2E4\uB978 \uC0AC\uB78C\uC774 \uB4E4\uC5B4 \uC624\uBA74 \uC548\uB41C\uB2E4\uACE0
+    \uC5F4\uC1E0\uB97C \uAC00\uC838\uAC04 \uB2E4\uC74C \uBB38\uC744 \uC7A0\uAD88\uBC84\uB9AC\uBA74
+    \uC5B4\uB5BB\uAC8C \uD574...."
   - "\uADF8 \uBB38\uC744 \uC5F4 \uC218 \uC788\uB294 <b>\uC5F4\uC1E0\uC758 \uC5EC\uBD84</b>\uC740
     <b>\uC138\uC774\uC9C0\uCF58 \uB9C8\uC744</b>\uC5D0\uB098 \uC788\uC744 \uAC83\uC778\uB370
-    .....\r\n\r\n\uC544\uBB34\uB9AC \uC704\uD5D8\uD574\uB3C4 \uAF2C\uBC15\uAF2C\uBC15
-    \uBD80\uC778\uC744 \uBCF4\uB7EC \uBB34\uB364\uC5D0 \uAC14\uC5C8\uB294\uB370, 
-    \uBC8C\uC368 \uBABB \uAC04\uC9C0 1\uB144\uC774 \uB118\uC5B4\uAC00\uB294 \uAD70..."
+    .....\r\n\r\n"
+  - "\uC544\uBB34\uB9AC \uC704\uD5D8\uD574\uB3C4 \uAF2C\uBC15\uAF2C\uBC15 \uBD80\uC778\uC744
+    \uBCF4\uB7EC \uBB34\uB364\uC5D0 \uAC14\uC5C8\uB294\uB370,  \uBC8C\uC368 \uBABB
+    \uAC04\uC9C0 1\uB144\uC774 \uB118\uC5B4\uAC00\uB294 \uAD70..."
   EventDialogs: []
   EventDialogsKorean: []
   ChoiceDialog: []
