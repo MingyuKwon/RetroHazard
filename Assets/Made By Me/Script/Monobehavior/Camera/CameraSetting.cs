@@ -14,7 +14,7 @@ public class CameraSetting : MonoBehaviour
 
     [SerializeField] int cameraHeight = -5;
 
-    float playerWidth = 0.5f;
+    float playerWidth = 0.2f;
 
     float cameraVerticalHalf;
     float cameraHorizontalHalf;

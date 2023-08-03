@@ -17,9 +17,12 @@ public class EnemyFollowingPlayer : MonoBehaviour
 
     private EnemyManager enemyManager;
 
+    BoxCollider2D ranDomRange;
+
     private void Awake() {
         enemyManager = GetComponent<EnemyManager>();
         randomTransform = transform.parent.GetChild(1).transform;
+        ranDomRange = transform.parent.GetChild(2).GetComponent<BoxCollider2D>();
     }
 
     private void Start() {
@@ -60,9 +63,20 @@ public class EnemyFollowingPlayer : MonoBehaviour
     // Keep trying until a walkable node is found
         do
         {
-            int randomX = Random.Range(0, enemyManager.currentMovingGraph.width); // Get random x coordinate
-            int randomZ = Random.Range(0, enemyManager.currentMovingGraph.depth); // Get random z coordinate
-            node = enemyManager.currentMovingGraph.GetNode(randomX, randomZ);
+            int randomX; // Get random x coordinate
+            int randomY; // Get random z coordinate
+
+            randomX = Random.Range(0, enemyManager.currentMovingGraph.width);
+            randomY = Random.Range(0, enemyManager.currentMovingGraph.depth); 
+            node = enemyManager.currentMovingGraph.GetNode(randomX, randomY);
+
+            while(!isInRange((Vector3)node.position))
+            {
+                randomX = Random.Range(0, enemyManager.currentMovingGraph.width);
+                randomY = Random.Range(0, enemyManager.currentMovingGraph.depth); 
+                node = enemyManager.currentMovingGraph.GetNode(randomX, randomY);
+            }
+
             randomPoint = (Vector3)node.position;
         } while (!node.Walkable);
 
@@ -73,6 +87,21 @@ public class EnemyFollowingPlayer : MonoBehaviour
     {
         enemyManager.aiPath.maxSpeed = enemyManager.finalChaseSpeed;
         enemyManager.destinationSetter.target = enemyManager.target;
+    }
+
+    private bool isInRange(Vector3 position)
+    {
+        if(ranDomRange == null) return true;
+
+        if( ranDomRange.bounds.max.x >= position.x && 
+            ranDomRange.bounds.min.x <= position.x && 
+            ranDomRange.bounds.max.y >= position.y && 
+            ranDomRange.bounds.min.y <= position.y )
+            {
+                return true;
+            }
+
+        return false;
     }
 
 }
