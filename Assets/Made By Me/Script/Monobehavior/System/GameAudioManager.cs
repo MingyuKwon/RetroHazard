@@ -19,6 +19,13 @@ public enum BackGroundAudioType{
     Spooky_House = 6,
     Guide_Center = 7,
     Cave = 8,
+    Road_theme1 = 9,
+    Road_theme2 = 10,
+    Road_theme3 = 11,
+    Chokos_Village = 12,
+    Monster_House_Theme1 = 13,
+    Monster_House_Theme2 = 14,
+    Monster_House_Theme3 = 15,
 }
 
 public enum SFXAudioType{

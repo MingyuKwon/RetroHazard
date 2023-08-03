@@ -57,6 +57,14 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 57f7db12eb8823b4b98ede53276ae6ba, type: 3}
   - {fileID: 8300000, guid: aea60a5c54e63544896a51808a98b386, type: 3}
   - {fileID: 8300000, guid: 7b9dcd4ec4fdd9b4b9c4a0a8c2cef7cb, type: 3}
+  - {fileID: 8300000, guid: db2c067075c5d514c80a7ccf87f29020, type: 3}
+  - {fileID: 8300000, guid: 2333d3a400dddc942b5c9f66096b70ea, type: 3}
+  - {fileID: 8300000, guid: 0e68b62e5f9ce174f99bacf450f8b8f3, type: 3}
+  - {fileID: 8300000, guid: 819ff8252b9b09848ae1e365ad9b3d83, type: 3}
+  - {fileID: 8300000, guid: ee599035cd5f5c2469eb04a8f334c1dc, type: 3}
+  - {fileID: 8300000, guid: ba2965b8050501943a9294ee42361d55, type: 3}
+  - {fileID: 8300000, guid: bad4888e31af2a44d9bfe627902f9923, type: 3}
+  - {fileID: 8300000, guid: fcb3ad26657e2d141b7abd2b232dfd54, type: 3}
   sfxAudioClip:
   - {fileID: 8300000, guid: 4989d0b9559e41e409767280a4f267ce, type: 3}
   - {fileID: 8300000, guid: ad0d9a6175be98e42a6fe1422f703cf0, type: 3}

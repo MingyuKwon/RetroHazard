@@ -622,8 +622,8 @@ MonoBehaviour:
   PlayerDetect: {fileID: 0}
   AttackDecide: {fileID: 0}
   checkAttackedByPlayer: 0
-  randomSpeed: 2
-  chaseSpeed: 5
+  randomSpeed: 1.5
+  chaseSpeed: 4.5
   attackSpeed: 0.6
   target: {fileID: 0}
   minBoundX: 0
