@@ -5,30 +5,36 @@ using UnityEngine;
 public class InStageWarp : MonoBehaviour
 {
     static public bool isInStageWarpingNow = false;
-    GameObject downInteract;
-    GameObject upInteract;
+    GameObject downLeftInteract;
+    GameObject upRightInteract;
 
     GameObject beforeOpen;
     GameObject afterOpen;
 
     bool isCurrentWarpActive = false;
     bool isDownActive = false;
+    bool isLeftActive = false;
 
     Vector2 colliderSize;
 
     AudioSource audioSource = null;
     public AudioClip InteractSound = null;
 
+
+    public bool isHorizontal = false;
+
+    public bool isBottom;
+
     private void Start() {
         colliderSize = GetComponent<BoxCollider2D>().size;
 
-        downInteract = transform.GetChild(0).gameObject;
-        upInteract = transform.GetChild(1).gameObject;
+        downLeftInteract = transform.GetChild(0).gameObject;
+        upRightInteract = transform.GetChild(1).gameObject;
         beforeOpen = transform.GetChild(2).gameObject;
         afterOpen = transform.GetChild(3).gameObject;
 
-        downInteract.SetActive(false);
-        upInteract.SetActive(false);
+        downLeftInteract.SetActive(false);
+        upRightInteract.SetActive(false);
         beforeOpen.SetActive(true);
         afterOpen.SetActive(false);
 
@@ -71,7 +77,47 @@ public class InStageWarp : MonoBehaviour
         afterOpen.SetActive(true);
         PlayEnvironmentMusic();
 
-        if(isDownActive)
+        if(isHorizontal)
+        {
+            if(isLeftActive)
+        {
+            if(isBottom)
+            {
+                Player1.instance.playerMove.transform.position = new Vector3(transform.position.x - colliderSize.x / 2, 
+                transform.position.y + colliderSize.y / 3, 
+                transform.position.z); 
+                StartCoroutine(moveDirect(Vector2.right));
+            }else
+            {
+                Player1.instance.playerMove.transform.position = new Vector3(transform.position.x - colliderSize.x / 2, 
+                transform.position.y, 
+                transform.position.z); 
+                StartCoroutine(moveDirect(Vector2.right));
+            }
+            
+
+        }else
+        {
+            if(isBottom)
+            {
+                Player1.instance.playerMove.transform.position = new Vector3(transform.position.x + colliderSize.x / 2, 
+                transform.position.y + colliderSize.y / 3, 
+                transform.position.z); 
+                StartCoroutine(moveDirect(Vector2.left));
+            }else
+            {
+                Player1.instance.playerMove.transform.position = new Vector3(transform.position.x + colliderSize.x / 2, 
+                transform.position.y, 
+                transform.position.z); 
+                StartCoroutine(moveDirect(Vector2.left));
+            }
+
+        }
+
+
+        }else
+        {
+            if(isDownActive)
         {
             Player1.instance.playerMove.transform.position = new Vector3(transform.position.x, 
             transform.position.y - colliderSize.y / 2, 
@@ -87,6 +133,10 @@ public class InStageWarp : MonoBehaviour
             StartCoroutine(moveDirect(Vector2.down));
 
         }
+
+        }
+
+        
     }
 
     public void EnemyCollideIngnore(bool flag)
@@ -99,25 +149,37 @@ public class InStageWarp : MonoBehaviour
     {
         isInStageWarpingNow = true;
 
-        bool isGoingUp = false;
+        int direction = 0; // 0: UP, 1 : down . 2 : left, 3 : right
 
         EnemyCollideIngnore(true);
 
 
         if(moveDirection == Vector2.up)
         {
-            isGoingUp = true;
+            direction = 0;
         }else if(moveDirection == Vector2.down)
         {
-            isGoingUp = false;
+            direction = 1;
+        }else if(moveDirection == Vector2.left)
+        {
+            direction = 2;
+        }else if(moveDirection == Vector2.right)
+        {
+            direction = 3;
         }
 
-        if(isGoingUp)
+        if(direction == 0)
         {
             GameMangerInput.InputEvent.Invoke_UPJustPressed();
-        }else
+        }else if(direction == 1)
         {
             GameMangerInput.InputEvent.Invoke_DownJustPressed();
+        }else if(direction == 2)
+        {
+            GameMangerInput.InputEvent.Invoke_LeftJustPressed();
+        }else if(direction == 3)
+        {
+            GameMangerInput.InputEvent.Invoke_RightJustPressed();
         }
 
         Player1.instance.playerSprite.sortingLayerName = "0";
@@ -132,12 +194,18 @@ public class InStageWarp : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
 
-        if(isGoingUp)
+        if(direction == 0)
         {
             GameMangerInput.InputEvent.Invoke_UPJustReleased();
-        }else
+        }else if(direction == 1)
         {
             GameMangerInput.InputEvent.Invoke_DownJustReleased();
+        }else if(direction == 2)
+        {
+            GameMangerInput.InputEvent.Invoke_LeftJustReleased();
+        }else if(direction == 3)
+        {
+            GameMangerInput.InputEvent.Invoke_RightJustReleased();
         }
 
             if(GameMangerInput.inputCheck.isPressingUP())
@@ -170,19 +238,40 @@ public class InStageWarp : MonoBehaviour
     private void OnTriggerStay2D(Collider2D other) {
         GameManager.isPlayerNearStageWarp = true;
         isCurrentWarpActive = true;
-        if(other.transform.position.y < transform.position.y) // 아래서 접촉
+
+        if(isHorizontal)
+        {
+            if(other.transform.position.x < transform.position.x) // 왼쪽에서 접촉
+        {
+            isLeftActive = true;
+
+            downLeftInteract.SetActive(true);
+            upRightInteract.SetActive(false);
+        }else if(other.transform.position.x > transform.position.x) // 오른쪽에서 접촉
+        {
+            isLeftActive = false;
+
+            downLeftInteract.SetActive(false);
+            upRightInteract.SetActive(true);
+        }
+
+        }else
+        {
+            if(other.transform.position.y < transform.position.y) // 아래서 접촉
         {
             isDownActive = true;
 
-            downInteract.SetActive(true);
-            upInteract.SetActive(false);
+            downLeftInteract.SetActive(true);
+            upRightInteract.SetActive(false);
         }else if(other.transform.position.y > transform.position.y) // 위에서 접촉
         {
             isDownActive = false;
 
-            downInteract.SetActive(false);
-            upInteract.SetActive(true);
+            downLeftInteract.SetActive(false);
+            upRightInteract.SetActive(true);
         }
+        }
+        
     }
 
     private void OnTriggerExit2D(Collider2D other) {
@@ -193,7 +282,7 @@ public class InStageWarp : MonoBehaviour
 
         GameManager.isPlayerNearStageWarp = false;
         GameMangerInput.blockAllInput = false;
-        downInteract.SetActive(false);
-        upInteract.SetActive(false);
+        downLeftInteract.SetActive(false);
+        upRightInteract.SetActive(false);
     }
 }
