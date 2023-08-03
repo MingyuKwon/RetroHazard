@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1234190924}
   - component: {fileID: 1234190926}
   - component: {fileID: 1234190925}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1259507119}
   - component: {fileID: 1259507120}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,7 +179,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1275209606}
   - component: {fileID: 1275209607}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237,7 +237,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1907562033}
   - component: {fileID: 1907562034}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GameObject (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,7 +297,7 @@ GameObject:
   - component: {fileID: 2068315370}
   - component: {fileID: 2068315372}
   - component: {fileID: 2068315371}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -405,6 +405,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2092605425275420519, guid: 2d5d778d693514240a67dc3a46888176, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3054877796577506306, guid: 2d5d778d693514240a67dc3a46888176, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3054877796637674778, guid: 2d5d778d693514240a67dc3a46888176, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -477,14 +485,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rusty Door Interact
       objectReference: {fileID: 0}
+    - target: {fileID: 3054877796637674781, guid: 2d5d778d693514240a67dc3a46888176, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5635718518263283841, guid: 2d5d778d693514240a67dc3a46888176, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7563513110423427547, guid: 2d5d778d693514240a67dc3a46888176, type: 3}
       propertyPath: dialog
       value: 
-      objectReference: {fileID: 11400000, guid: cca145fa192868e4b9bcbc65fbdac94d, type: 2}
+      objectReference: {fileID: 11400000, guid: 1b073ee01c181384585ab334f7d33e99, type: 2}
     - target: {fileID: 7563513110423427547, guid: 2d5d778d693514240a67dc3a46888176, type: 3}
       propertyPath: InteractJustSound
       value: 
-      objectReference: {fileID: 8300000, guid: ce36f42d6d2ce1c4caa87e4c54fff6d1, type: 3}
+      objectReference: {fileID: 8300000, guid: 181a62a67f484f94986da96f8c77f109, type: 3}
     - target: {fileID: 7563513110423427547, guid: 2d5d778d693514240a67dc3a46888176, type: 3}
       propertyPath: justInteractNotice
       value: 1

@@ -35,7 +35,11 @@ MonoBehaviour:
   expansionAmount: 0
   healAmount: 0
   ItemDescription:
-  - It is used to open lock which has level 0  key hole.
+  - "Lubricant for rusted places\n\nIt magically repairs places like doors that have
+    <b>become unusable due to rust.\r</b>\n\r\nIt's disposable, and it disappears
+    after one use."
   ItemDescriptionKorean:
-  - "\uB808\uBCA8 0\uC758 \uC5F4\uC1E0 \uAD6C\uBA4D\uC744 \uAC00\uC9C0\uACE0 \uC788\uB294
-    \uBB38\uC744 \uC5F4 \uB54C \uC0AC\uC6A9 \uB41C\uB2E4"
+  - "\uB179\uC4F4 \uACF3\uC5D0 \uC4F0\uB294 \uC724\uD65C\uC720\n\n<b>\uB179\uC2AC\uC5B4\uC11C
+    \uBABB\uC4F0\uAC8C \uB41C \uBB38</b> \uAC19\uC740 \uACF3\uC5D0 \uBFCC\uB9AC\uBA74
+    \uB9C8\uBC95\uCC98\uB7FC \uACE0\uCCD0\uC900\uB2E4\r\n\r\n\uC77C\uD68C\uC6A9\uC73C\uB85C,
+    \uD55C\uBC88 \uC4F0\uBA74 \uC0AC\uB77C\uC9C4\uB2E4"

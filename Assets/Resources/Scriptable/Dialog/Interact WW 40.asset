@@ -15,7 +15,7 @@ MonoBehaviour:
   Interactive_name: A door that won't open due to rust.
   Interactive_nameKorean: "\uB179\uC2AC\uC5B4\uC11C \uC548\uC5F4\uB9AC\uB294 \uBB38"
   InteractCode: 110
-  isItemRemainAfterInteract: 1
+  isItemRemainAfterInteract: 0
   InteractKeyItems: 6e000000
   Interactive_Situation: "The door won't open because it's too rusty.\n\nIf there
     was a legendary lubricant that can fix anything just by spraying it on the rusted

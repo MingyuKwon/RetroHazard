@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99652aa1957e80f49a9c5c0b514715db, type: 3}
+  m_Name: Dialog Caution ChoYang
+  m_EditorClassIdentifier: 
+  NPCname: <b>Caution</b>
+  NPCnameKorean: "<b>\uC704\uD5D8</b>"
+  hasFirstEncounterDialog: 0
+  hasChoiceDialog: 0
+  ChoiceQuestionQuantity: 0
+  FirstEnCountDialogs: []
+  FirstEnCountDialogsKorean: []
+  ReapeatingDialogs:
+  - 'The path you are about to take is infested with monsters.
+
+    
+
+    Never
+    enter if you don''t have a <b>means to deal with the monsters</b>.
+
+    
+
+    <b>The
+    government takes no responsibility for any accidents or deaths that occur on
+    this road</b>.'
+  ReapeatingDialogsKorean:
+  - "\uC9C0\uAE08\uBD80\uD130 \uC9C0\uB098\uAC8C \uB420 \uAE38\uC740 \uBAAC\uC2A4\uD130\uAC00
+    \uB098\uC624\uB294 \uAE38\uC785\uB2C8\uB2E4. \r\n\r\n<b>\uBAAC\uC2A4\uD130\uC5D0
+    \uB300\uD56D\uD560 \uC218\uB2E8</b>\uC774 \uC5C6\uC73C\uBA74 <b>\uC808\uB300
+    \uB4E4\uC5B4\uAC00\uC9C0 \uB9C8\uC138\uC694</b>.\r\n\r\n\uC774 \uAE38\uC5D0\uC11C
+    \uC77C\uC5B4\uB09C <b>\uC0AC\uACE0 \uBC0F \uC0AC\uB9DD \uC0AC\uACE0\uB294 \uC815\uBD80\uC5D0\uC11C
+    \uC804\uD600 \uCC45\uC784\uC744 \uC9C0\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4</b>"
+  EventDialogs: []
+  EventDialogsKorean: []
+  ChoiceDialog: []
+  ChoiceDialogKorean: []
+  option1Dialog: []
+  option1DialogKorean: []
+  option2Dialog: []
+  option2DialogKorean: []
+  option3Dialog: []
+  option3DialogKorean: []

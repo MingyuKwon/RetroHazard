@@ -311,7 +311,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5515617326359189851, guid: bc46ccd485bd61844a322e743159c888, type: 3}
       propertyPath: m_Name
-      value: MoveLikeDoor (7) Variant
+      value: Wooden Door
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc46ccd485bd61844a322e743159c888, type: 3}

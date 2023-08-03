@@ -623,7 +623,7 @@ MonoBehaviour:
   AttackDecide: {fileID: 0}
   checkAttackedByPlayer: 0
   randomSpeed: 2
-  chaseSpeed: 4
+  chaseSpeed: 5
   attackSpeed: 0.6
   target: {fileID: 0}
   minBoundX: 0

@@ -183,7 +183,7 @@ public class InStageWarp : MonoBehaviour
         }
 
         Player1.instance.playerSprite.sortingLayerName = "0";
-        Player1.instance.playerSprite.sortingOrder = 3;
+        Player1.instance.playerSprite.sortingOrder = 4;
         Player1.instance.playerRigidBody2D.bodyType = RigidbodyType2D.Kinematic;
 
         Player1.instance.playerRigidBody2D.velocity = Vector2.zero;
