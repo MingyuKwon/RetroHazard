@@ -24,6 +24,12 @@ public class GameManager : MonoBehaviour
 
     public class EventManager
     {
+        public static event Action<int, bool> ShadowEvent;
+        public static void Invoke_ShadowEvent(int index, bool isClear)
+        {
+            ShadowEvent?.Invoke(index, isClear);
+        }
+
         public static event Action WarpEvent;
         public static void Invoke_WarpEvent()
         {

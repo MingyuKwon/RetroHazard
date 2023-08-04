@@ -17,20 +17,28 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: cf7ebcab0215eb146bf31fcb811d00ca, type: 3}
     - target: {fileID: 1712822530, guid: 6d972f2ca5891404b92282b8684db37c, type: 3}
       propertyPath: m_SortingLayer
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1712822530, guid: 6d972f2ca5891404b92282b8684db37c, type: 3}
       propertyPath: m_SortingOrder
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1712822530, guid: 6d972f2ca5891404b92282b8684db37c, type: 3}
       propertyPath: m_SortingLayerID
-      value: 1575797767
+      value: -873447751
       objectReference: {fileID: 0}
     - target: {fileID: 1810003491, guid: 6d972f2ca5891404b92282b8684db37c, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 5b05a4021dac889428ac535a3c50c005, type: 3}
+    - target: {fileID: 1810003491, guid: 6d972f2ca5891404b92282b8684db37c, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1810003491, guid: 6d972f2ca5891404b92282b8684db37c, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1413702355
+      objectReference: {fileID: 0}
     - target: {fileID: 1810003492, guid: 6d972f2ca5891404b92282b8684db37c, type: 3}
       propertyPath: m_Size.x
       value: 1.7067204

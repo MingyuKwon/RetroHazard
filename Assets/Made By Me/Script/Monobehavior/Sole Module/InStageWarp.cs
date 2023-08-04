@@ -5,6 +5,8 @@ using UnityEngine;
 public class InStageWarp : MonoBehaviour
 {
     static public bool isInStageWarpingNow = false;
+
+    [SerializeField] int index;
     GameObject downLeftInteract;
     GameObject upRightInteract;
 
@@ -24,6 +26,9 @@ public class InStageWarp : MonoBehaviour
     public bool isHorizontal = false;
 
     public bool isBottom;
+
+    [Header("0: UP, 1 : down . 2 : left, 3 : right")]
+    public int roomShadowClearDirection = -1;
 
     private void Start() {
         colliderSize = GetComponent<BoxCollider2D>().size;
@@ -147,6 +152,7 @@ public class InStageWarp : MonoBehaviour
 
     IEnumerator moveDirect(Vector2 moveDirection)
     {
+        GameManager.EventManager.Invoke_ShadowEvent(index, true);
         isInStageWarpingNow = true;
 
         int direction = 0; // 0: UP, 1 : down . 2 : left, 3 : right
@@ -166,6 +172,18 @@ public class InStageWarp : MonoBehaviour
         }else if(moveDirection == Vector2.right)
         {
             direction = 3;
+        }
+
+        if(roomShadowClearDirection == direction)
+        {
+            GameManager.EventManager.Invoke_ShadowEvent(index, true);
+        }else if(
+        roomShadowClearDirection == 0 && direction == 1 ||
+        roomShadowClearDirection == 1 && direction == 0 ||
+        roomShadowClearDirection == 2 && direction == 3 ||
+        roomShadowClearDirection == 3 && direction == 2 )
+        {
+            GameManager.EventManager.Invoke_ShadowEvent(index, false);
         }
 
         if(direction == 0)

@@ -15,12 +15,9 @@ MonoBehaviour:
   englishNoticeDialog:
   - 'Oh, you''ve arrived safely.
 
-    
-
-    I need to keep the line open for communications
-    with other agents, so I won''t be able to stay on the line with you. '
-  - Lastly, let me fill you in on the <b>current situation in this country</b>, which
-    might be useful for your mission.
+'
+  - let me fill you in on the <b>current situation in this country</b>, which might
+    be useful for your mission.
   - "This country has <b>a long history</b> and used to thrive on tourism related
     to historical sites. \n\n"
   - 'However, a few years ago, <b>monsters suddenly began to appear</b>, and the
@@ -30,20 +27,10 @@ MonoBehaviour:
 '
   - <b>Many people with money fled to the relatively safer Jujedo Island</b>, leaving
     many cities abandoned.
-  - Moreover, <b>most of the roads have been closed for safety reasons against monsters</b>,
-    which restricts free movement.
-  - 'Of course, it''s not that <b>you can''t use the roads</b>. If you have <b>a
-    key issued by the country</b>, you can open the roads, but the<b> problem is
-    that these keys are ridiculously expensive</b>. '
-  - Furthermore, there are different security levels for each road, so even if you
-    have a key, you can't open all the roads.
-  - I'll be away for a while. Please carry on with the mission in the meantime.
   koreanNoticeDialog:
-  - "\uC624 \uBB34\uC0AC\uD788 \uB4E4\uC5B4\uC654\uAD6C\uB098\r\n\r\n\uC774\uC81C
-    \uB2E4\uB978 \uC694\uC6D0\uB4E4\uACFC\uB3C4 \uD1B5\uC2E0\uC744 \uD574\uC57C \uD574\uC11C
-    \uACC4\uC18D \uD1B5\uC2E0\uC744 \uD560 \uC21C \uC5C6\uC744 \uAC70 \uAC19\uC544\r"
-  - "\uB9C8\uC9C0\uB9C9\uC73C\uB85C \uC784\uBB34\uC5D0 \uB3C4\uC6C0\uC774 \uB420
-    <b>\uC774 \uB098\uB77C\uC758 \uD604\uC7AC \uC0C1\uD669</b>\uC744 \uC54C\uB824\uC904\uAC8C\r\n"
+  - "\uC624 \uBB34\uC0AC\uD788 \uB4E4\uC5B4\uC654\uAD6C\uB098\r\n\r"
+  - "\uC784\uBB34\uC5D0 \uB3C4\uC6C0\uC774 \uB420 <b>\uC774 \uB098\uB77C\uC758 \uD604\uC7AC
+    \uC0C1\uD669</b>\uC744 \uC54C\uB824\uC904\uAC8C\r\n"
   - "\uC774 \uB098\uB77C\uB294 <b>\uC5ED\uC0AC\uAC00 \uC624\uB798\uB41C \uB098\uB77C</b>\uC5EC\uC11C
     \uC608\uC804\uC5D4 \uC720\uC801 \uAD00\uAD11 \uB4F1\uC73C\uB85C  \uD765\uD588\uB358
     \uB098\uB77C\uC600\uC5B4\r\n\n"
@@ -54,17 +41,3 @@ MonoBehaviour:
     \uB354 \uC548\uC804\uD55C \uC8FC\uC81C\uB3C4 \uC12C\uC73C\uB85C \uB2E4 \uB3C4\uB9DD\uAC00\uBC84\uB824\uC11C</b> 
     \uBC84\uB824\uC9C4 \uB3C4\uC2DC\uB4E4\uC774 \uD55C \uB450\uAC1C\uAC00 \uC544\uB2C8\uC57C.
     \r"
-  - "\uAC8C\uB2E4\uAC00 <b>\uBAAC\uC2A4\uD130\uB85C \uBD80\uD130\uC758 \uC548\uC804\uC744
-    \uC704\uD574\uC11C\uB77C\uBA70 \uB300\uBD80\uBD84\uC758 \uAE38\uB4E4\uC744 \uB9C9\uC544\uBC84\uB824\uC11C</b>
-    \uB9C8\uC74C\uB300\uB85C \uC774\uB3D9 \uD560 \uC218 \uC870\uCC28 \uC5C6\uB2E4\uACE0
-    \uD574"
-  - "\uBB3C\uB860 <b>\uAE38\uC744 \uC774\uC6A9 \uD560 \uC218 \uC5C6\uB294 \uAC74
-    \uC544\uB2C8\uC57C</b>. <b>\uB098\uB77C\uC5D0\uC11C \uBC1C\uAE09\uD558\uB294
-    \uD0A4</b>\uAC00 \uC788\uC73C\uBA74 \uAE38\uC744 \uC5F4 \uC218\uAC00 \uC788\uC9C0\uB9CC,
-    \uADF8 \uC5F4\uC1E0\uAC00 \uD130\uBB34\uB2C8 \uC5C6\uC774 \uBE44\uC2F8\uB2E4\uB294
-    \uAC8C \uBB38\uC81C\uC9C0.  \n"
-  - "\uAC8C\uB2E4\uAC00 \uBB38\uB9C8\uB2E4 \uBCF4\uC548 \uB2E8\uACC4\uAC00 \uC788\uC5B4\uC11C
-    \uD0A4\uB97C \uAC00\uC84C\uB2E4\uACE0 \uBAA8\uB4E0 \uAE38\uC744 \uC5F4 \uC218
-    \uC788\uB294 \uAC83\uB3C4 \uC544\uB2C8\uACE0."
-  - "\uC774\uC815\uB3C4\uC57C. \uC7A0\uC2DC \uC790\uB9AC\uB97C \uBE44\uC6B8\uD14C\uB2C8 
-    \uADF8\uB3D9\uC548 \uC784\uBB34\uB97C \uC9C4\uD589\uD574\uC918"

@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 486b7894a4590d345b90e6f003c46405, type: 3}
+  m_Name: Notice Story Explanation 2
+  m_EditorClassIdentifier: 
+  englishNoticeDialog:
+  - Oh right, I didn't explain the locking system of this country yet.
+  - Because so many monsters started to appear, the government closed off almost
+    all the paths.
+  - And only people with <b>designated key</b>s can come and go.
+  - Keys range from <b>Level 0 to Level 3</b>, and the <b>higher the level, the higher
+    the lock you can open</b> and go to a new area.
+  - Just note that the higher the level of the key, the more astronomically expensive
+    it is.
+  - So, the more money you have, the safer you can live in areas with high security
+    levels, and if you don't have money, you keep living in dangerous places without
+    being able to go anywhere.
+  koreanNoticeDialog:
+  - "\uC544 \uADF8\uB7EC\uB124, \uC544\uC9C1 \uC774 \uB098\uB77C\uC758 \uC7A0\uAE08
+    \uBC29\uC2DD\uC744 \uC548 \uC54C\uB824 \uC92C\uAD6C\uB098."
+  - "\uC774 \uB098\uB77C\uC5D0 \uB108\uBB34 \uB9CE\uC740 \uBAAC\uC2A4\uD130\uAC00
+    \uB098\uC624\uAC8C \uB418\uC790, \uC815\uBD80\uC5D0\uC11C \uAC70\uC758 \uB300\uBD80\uBD84\uC758
+    \uAE38\uB4E4\uC744 \uD3D0\uC1C4\uD588\uC5B4."
+  - "\uADF8\uB9AC\uACE0 <b>\uC9C0\uC815\uB41C \uC5F4\uC1E0</b>\uAC00 \uC788\uB294
+    \uC0AC\uB78C\uB4E4\uB9CC \uC624\uACE0 \uAC08 \uC218 \uC788\uB3C4\uB85D \uD588\uC9C0."
+  - "\uC5F4\uC1E0\uB294 <b>0\uB2E8\uACC4\uBD80\uD130 3\uB2E8\uACC4</b>\uAE4C\uC9C0\uAC00
+    \uC788\uACE0, <b>\uB2E8\uACC4\uAC00 \uB192\uC744 \uC218\uB85D \uB354 \uB192\uC740
+    \uC7A0\uAE08</b>\uC744 \uC5F4\uACE0 \uC0C8\uB85C\uC6B4 \uC9C0\uC5ED\uC73C\uB85C
+    \uAC08 \uC218 \uC788\uC5B4."
+  - "\uCC38\uACE0\uB85C \uC5F4\uC1E0\uC758 \uB2E8\uACC4\uAC00 \uB192\uC744\uC218\uB85D
+    \uAC00\uACA9\uC774 \uC5B4\uB9C8\uC5B4\uB9C8\uD558\uAC8C \uBE44\uC2F8. "
+  - "\uADF8\uB798\uC11C \uB3C8\uC774 \uB9CE\uC740 \uC0AC\uB78C\uC77C \uC218\uB85D
+    \uB192\uC740 \uBCF4\uC548 \uB2E8\uACC4\uAC00 \uC788\uB294 \uAD6C\uC5ED\uC5D0\uC11C
+    \uC548\uC804\uD558\uAC8C \uC0B4\uACE0, \uB3C8\uC774 \uC5C6\uC73C\uBA74  \uC704\uD5D8\uD55C
+    \uACF3\uC5D0\uC11C \uC5B4\uB51C \uAC00\uC9C0\uB3C4 \uBABB\uD558\uACE0 \uACC4\uC18D
+    \uC0AC\uB294\uAC70\uC9C0"
