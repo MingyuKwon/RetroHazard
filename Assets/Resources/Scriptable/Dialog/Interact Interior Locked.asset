@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 610cd96129616a742947f51acbf0e357, type: 3}
+  m_Name: Interact Interior Locked
+  m_EditorClassIdentifier: 
+  Interactive_name: Locked Indoor Door
+  Interactive_nameKorean: "\uC7A0\uAE34 \uC2E4\uB0B4 \uBB38"
+  InteractCode: 111
+  isItemRemainAfterInteract: 1
+  InteractKeyItems: 6f000000
+  Interactive_Situation: A key for indoor use is needed to open the door.
+  Interactive_SituationKorean: "\uBB38\uC744 \uC5F4\uAE30 \uC704\uD574\uC11C\uB294
+    \uC2E4\uB0B4 \uD0A4\uAC00 \uD544\uC694\uD558\uB2E4"
+  SucessDialog:
+  - The Door opend!
+  SucessDialogKorean:
+  - "\uBB38\uC774 \uC5F4\uB838\uB2E4!"

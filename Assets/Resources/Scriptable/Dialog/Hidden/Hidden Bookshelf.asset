@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 610cd96129616a742947f51acbf0e357, type: 3}
+  m_Name: Hidden Bookshelf
+  m_EditorClassIdentifier: 
+  Interactive_name: ' Suspicious Bookshelf'
+  Interactive_nameKorean: "\uC218\uC0C1\uD55C \uCC45\uC7A5"
+  InteractCode: 0
+  isItemRemainAfterInteract: 0
+  InteractKeyItems: 
+  Interactive_Situation: 
+  Interactive_SituationKorean: 
+  SucessDialog:
+  - "\rThere seems to be something on the top of the bookshelf..."
+  - Rattle, rattle
+  - Found a useful item!
+  SucessDialogKorean:
+  - "\uCC45\uC7A5 \uC717\uBD80\uBD84\uC5D0 \uBB54\uAC00 \uC544\uC774\uD15C\uC774
+    \uC788\uB294 \uAC83 \uAC19\uB2E4....."
+  - "\uB35C\uCEF9, \uB35C"
+  - "\uC720\uC6A9\uD55C \uC544\uC774\uD15C\uC744 \uCC3E\uC558\uB2E4!"

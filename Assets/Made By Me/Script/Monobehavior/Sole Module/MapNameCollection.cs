@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class MapNameCollection 
 {
-    public enum sceneName{
+    public enum SceneName{
         Tutorial = 0,
         YangHan_Village = 1,
         Noshuc_Royal_Tomb = 2,
-        Road = 3,
+        ChoYang_Road = 3,
     }
 
-    public static sceneName currentSceneName;
+    public static SceneName currentSceneName;
     public static int currentSceneIndex;
 
     public static string[] getMapNameArray(int num)
@@ -51,10 +51,10 @@ public class MapNameCollection
             case 3:
                 if(GameAudioManager.LanguageManager.currentLanguage == "E")
                 {   
-                    return RoadEnglish;
+                    return ChoYangEnglish;
                 }else if(GameAudioManager.LanguageManager.currentLanguage == "K")
                 {   
-                    return RoadKorean;
+                    return ChoYangKorean;
                 }
                 break;
                 
@@ -75,7 +75,7 @@ public class MapNameCollection
             case 2:
                 return Noshuc_Royal_TombEnglish;
             case 3:
-                return RoadEnglish;
+                return ChoYangEnglish;
         }
 
         Debug.Log("getMapNameArray NULL");
@@ -122,11 +122,19 @@ public class MapNameCollection
         "노슈크 왕릉 입구",
     };
 
-    public static string[] RoadEnglish = {
+    public static string[] ChoYangEnglish = {
         "ChoYang Road",
+        "Abandoned house of Philipp",
+        "Abandoned house of Mario",
+        "Abandoned house of Tony",
+        "Manuel's House",
     };
 
-    public static string[] RoadKorean = {
+    public static string[] ChoYangKorean = {
         "초양 도로",
+        "버려진 필립의 집",
+        "버려진 마리오의 집",
+        "버려진 토니의 집",
+        "마누엘의 집",
     };
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MapShowInteract : MonoBehaviour
 {
-    public MapNameCollection.sceneName sceneName;
+    public MapNameCollection.SceneName sceneName;
 
     [Header("is Passage is Vertiacl? or Horizontal")]
     public bool isVertical;

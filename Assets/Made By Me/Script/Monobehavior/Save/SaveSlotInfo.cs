@@ -6,7 +6,7 @@ using System;
 public class SaveSlotInfo
 {
     public string saveTime = "Empty";
-    public MapNameCollection.sceneName saveSceneName;
+    public MapNameCollection.SceneName saveSceneName;
     public int saveSceneIndex = 0;
     public Vector3 saveLocation = new Vector3(0,0,0);
     public int saveCurrentGoalNum = 0;
