@@ -381,6 +381,7 @@ public class GameManager : MonoBehaviour
     {
         if(ObtainKeyItem) return;
         if(isPlayerParry) return;
+        if(InStageWarp.isInStageWarpingNow) return;
 
         if(Time.timeScale == 0f)
         {
