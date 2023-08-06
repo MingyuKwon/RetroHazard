@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class EnemyAnimation : MonoBehaviour
 {
+    [Header("0 : bodyAttack , 1 : Zombie Dash")]
+    public float AttackKind;
     public Animator animator;
     private Rigidbody2D rb;
     private EnemyManager enemyManager;
-    private float AttackKind;
 
     private void Awake() {
         animator = GetComponent<Animator>();
@@ -37,6 +38,13 @@ public class EnemyAnimation : MonoBehaviour
         enemyManager.enemyFollowingPlayer.detectMark.SetActive(false);
         enemyManager.isEnemyStunned = true;
         isNowAttacking = false;
+        enemyManager.EnableAttackCollider(false);
+        if(enemyManager.isLockedOnPlayer)
+        {
+            enemyManager.aiPath.maxSpeed = enemyManager.finalChaseSpeed;
+        }else{
+            enemyManager.aiPath.maxSpeed = enemyManager.finalRandomSpeed;
+        }
     }
 
     public void Parreid()
@@ -113,7 +121,7 @@ public class EnemyAnimation : MonoBehaviour
 
     IEnumerator EnemyStunTime()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.4f);
 
         enemyManager.canMove = true;
         enemyManager.isEnemyStunned = false;
@@ -124,21 +132,11 @@ public class EnemyAnimation : MonoBehaviour
     {
         if(enemyManager.isEnemyStunned) return;
         if(enemyManager.attackSuccess) return;
-        StartCoroutine(EnemyAttackTime());
-    }
 
-    IEnumerator EnemyAttackTime()
-    {
         animator.Play("Attack");
         enemyManager.canMove = false;
-        yield return new WaitForEndOfFrame();
-        while(!isCurrentAnimationEnd())
-        {
-            yield return new WaitForEndOfFrame();
-        }
-        enemyManager.canMove = true;
-        animator.Play("Walk");
     }
+
 
     public void PlayerLockOn(bool flag)
     {
@@ -186,13 +184,53 @@ public class EnemyAnimation : MonoBehaviour
         StartCoroutine(TransformMove(direction));
     }
 
-    public void Animation_Stop_TransformMove()
+    public void Animation_Stop_Attack()
     {
         isNowAttacking = false;
     }
 
+    public void Animation_ZombieDash() 
+    {
+        isNowAttacking = true;
+        StartCoroutine(ZomebieDash());
+    }
+
+    IEnumerator ZomebieDash()
+    {
+        enemyManager.EnableAttackCollider(true);
+
+        yield return new WaitForEndOfFrame();
+        animator.Play("Walk");
+        enemyManager.canMove = true;
+        enemyManager.aiPath.maxSpeed = enemyManager.finalDashSpeed;
+
+        for(int i=0; i<20 && !enemyManager.attackSuccess; i++)
+        {
+            yield return new WaitForSeconds(0.02f);
+        }
+
+        isNowAttacking = false;
+
+        if(enemyManager.isLockedOnPlayer)
+        {
+            enemyManager.aiPath.maxSpeed = enemyManager.finalChaseSpeed;
+        }else{
+            enemyManager.aiPath.maxSpeed = enemyManager.finalRandomSpeed;
+        }
+
+        enemyManager.canMove = false;
+        animator.Play("Idle");
+        yield return new WaitForSeconds(enemyManager.attackSuccessWaitTime);
+        enemyManager.attackSuccess = false;
+        
+
+        enemyManager.canMove = true;
+        animator.Play("Walk");
+    }
+
     IEnumerator TransformMove(int direction)
     {
+        enemyManager.EnableAttackCollider(true);
         Vector2 destinationPosition = transform.position;
 
         Vector2 ForceInput = Vector2.up;
@@ -233,14 +271,18 @@ public class EnemyAnimation : MonoBehaviour
             frictionReduce = Mathf.Lerp(frictionReduce , 0 , 0.3f);
         }
 
+        enemyManager.EnableAttackCollider(false);
+
         if(enemyManager.attackSuccess)
         {
             enemyManager.canMove = false;
             animator.Play("Idle");
             yield return new WaitForSeconds(enemyManager.attackSuccessWaitTime);
-            enemyManager.canMove = true;
             enemyManager.attackSuccess = false;
         }
+
+        enemyManager.canMove = true;
+        animator.Play("Walk");
     }
 
     private float checkObstacleBehind(Vector2 forceInput)

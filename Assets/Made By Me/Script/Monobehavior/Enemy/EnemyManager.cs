@@ -133,7 +133,10 @@ public class EnemyManager : MonoBehaviour
 
 
     public Animator vfxAnimator;
+
+    [Header("Need to be serielized")]
     public SpriteRenderer enemySprite;
+    public BoxCollider2D AttackCollider;
 
     public Rigidbody2D enemyRigidbody2D;
 
@@ -157,6 +160,13 @@ public class EnemyManager : MonoBehaviour
         }
     } // 최종 쫓아갈 속도
 
+    [SerializeField] float dashSpeed = 4f; // 쫓아갈 속도
+    public float finalDashSpeed {
+        get{
+            return dashSpeed * enemyStatus.Speed;
+        }
+    } // 최종 쫓아갈 속도
+
     [Header("Animation")]
     [SerializeField] float attackSpeed = 1.8f; // 몸통박치기 시에 순간 대시할 속도
     public float finalAttackSpeed {
@@ -173,7 +183,6 @@ public class EnemyManager : MonoBehaviour
 
         enemyAnimation = GetComponent<EnemyAnimation>(); 
 
-        enemySprite = GetComponent<SpriteRenderer>();
         vfxAnimator = GetComponentInChildren<VFX>().gameObject.GetComponent<Animator>();
 
         aiPath = GetComponent<AIPath>();
@@ -246,6 +255,7 @@ public class EnemyManager : MonoBehaviour
         // Raycast
         RaycastHit2D hit = Physics2D.Raycast(transform.position, rayDirection, checkDistance, obstacleMask | targetMask);
 
+
         // hit.collider 가 null 이 아니라면, 무언가에 부딪혔다는 의미입니다.
         if (hit.collider != null)
         {
@@ -258,6 +268,11 @@ public class EnemyManager : MonoBehaviour
             }
         }
         return false;
+    }
+
+    public void EnableAttackCollider(bool flag)
+    {
+        AttackCollider.enabled = flag;
     }
 
     private void Update() {

@@ -559,13 +559,15 @@ MonoBehaviour:
   destinationSetter: {fileID: 0}
   seeker: {fileID: 0}
   vfxAnimator: {fileID: 0}
-  enemySprite: {fileID: 0}
+  enemySprite: {fileID: 6730699321470691015}
+  AttackCollider: {fileID: 3164822848221605578}
   enemyRigidbody2D: {fileID: 0}
   PlayerDetect: {fileID: 0}
   AttackDecide: {fileID: 0}
   checkAttackedByPlayer: 0
   randomSpeed: 1.5
   chaseSpeed: 5
+  dashSpeed: 4
   attackSpeed: 0.6
   target: {fileID: 0}
   minBoundX: 0
@@ -680,7 +682,7 @@ MonoBehaviour:
   maxAcceleration: -2.5
   rotationSpeed: 360
   slowdownDistance: 0.1
-  pickNextWaypointDist: 0.5
+  pickNextWaypointDist: 1
   endReachedDistance: 0.05
   alwaysDrawGizmos: 1
   slowWhenNotFacingTarget: 1
@@ -712,6 +714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26c75b2a2ee0d8742a91e5b68190345c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AttackKind: 0
   animator: {fileID: 0}
   isNowAttacking: 0
 --- !u!114 &8855339012748659490
