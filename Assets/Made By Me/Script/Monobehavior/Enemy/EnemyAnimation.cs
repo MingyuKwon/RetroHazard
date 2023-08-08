@@ -204,12 +204,10 @@ public class EnemyAnimation : MonoBehaviour
         enemyManager.canMove = true;
         enemyManager.aiPath.maxSpeed = enemyManager.finalDashSpeed;
 
-        for(int i=0; i<20 && !enemyManager.attackSuccess; i++)
+        for(int i=0; i<25 && !enemyManager.attackSuccess; i++)
         {
             yield return new WaitForSeconds(0.02f);
         }
-
-        isNowAttacking = false;
 
         if(enemyManager.isLockedOnPlayer)
         {
@@ -220,10 +218,15 @@ public class EnemyAnimation : MonoBehaviour
 
         enemyManager.canMove = false;
         animator.Play("Idle");
-        yield return new WaitForSeconds(enemyManager.attackSuccessWaitTime);
-        enemyManager.attackSuccess = false;
-        
 
+
+        enemyManager.attackSuccess = false;
+        enemyManager.EnableAttackCollider(false);
+
+        yield return new WaitForSeconds(enemyManager.attackSuccessWaitTime);
+        
+        isNowAttacking = false;
+        
         enemyManager.canMove = true;
         animator.Play("Walk");
     }

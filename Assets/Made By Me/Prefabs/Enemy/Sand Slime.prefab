@@ -567,7 +567,7 @@ MonoBehaviour:
   checkAttackedByPlayer: 0
   randomSpeed: 1.5
   chaseSpeed: 5
-  dashSpeed: 8
+  dashSpeed: 10
   attackSpeed: 0.6
   target: {fileID: 0}
   minBoundX: 0
@@ -673,7 +673,7 @@ MonoBehaviour:
   orientation: 1
   enableRotation: 0
   autoRepath:
-    mode: 2
+    mode: 1
     period: 0.5
     sensitivity: 10
     maximumPeriod: 2
@@ -686,7 +686,7 @@ MonoBehaviour:
   endReachedDistance: 0.05
   alwaysDrawGizmos: 1
   slowWhenNotFacingTarget: 1
-  whenCloseToDestination: 1
+  whenCloseToDestination: 0
   constrainInsideGraph: 1
 --- !u!114 &9133546130988904974
 MonoBehaviour:

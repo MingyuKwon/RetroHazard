@@ -70,11 +70,19 @@ public class EnemyFollowingPlayer : MonoBehaviour
             randomY = Random.Range(0, enemyManager.currentMovingGraph.depth); 
             node = enemyManager.currentMovingGraph.GetNode(randomX, randomY);
 
+            int count = 0;
             while(!isInRange((Vector3)node.position))
             {
                 randomX = Random.Range(0, enemyManager.currentMovingGraph.width);
                 randomY = Random.Range(0, enemyManager.currentMovingGraph.depth); 
                 node = enemyManager.currentMovingGraph.GetNode(randomX, randomY);
+                count++;
+
+                if(count > 100)
+                {
+                    Debug.Log("Cant find correct Node in RandomPostion");
+                    return Vector3.zero;
+                }
             }
 
             randomPoint = (Vector3)node.position;

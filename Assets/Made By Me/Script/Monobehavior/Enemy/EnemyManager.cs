@@ -87,6 +87,8 @@ public class EnemyManager : MonoBehaviour
             {
                 enemyAnimation.animator.speed = 1.0f;
                 enemyFollowingPlayer.setRandomPosition();
+                isNowAttacking = false;
+                attackSuccess = false;
             }
 
             PlayerDetect.enabled = !_isLockedOnPlayer;
@@ -230,6 +232,7 @@ public class EnemyManager : MonoBehaviour
 
             if(isLockedOnPlayer) // 플레이어에게 록온 되어 있는데 trigger 닿았다면 그건 공격 신호
             {
+                if(isNowAttacking) return;
                 enemyAnimation.Attack();
             }else // 플레이어에게 록온 안되었는데 trigger 닿았다면 그건 탐색 완료 신호
             {
