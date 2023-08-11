@@ -212,7 +212,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 2}
+  m_Size: {x: 1.7, y: 1.7}
   m_EdgeRadius: 0
 --- !u!1 &5907384939025840980
 GameObject:
@@ -547,7 +547,7 @@ MonoBehaviour:
   lockOnMutex: 0
   enemySpeed: 3
   attackSuccess: 0
-  attackSuccessWaitTime: 0.5
+  attackSuccessWaitTime: 0.7
   animationX: 0
   animationY: -1
   normalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -567,7 +567,7 @@ MonoBehaviour:
   checkAttackedByPlayer: 0
   randomSpeed: 1.5
   chaseSpeed: 3
-  dashSpeed: 10
+  dashSpeed: 8
   attackSpeed: 0.6
   target: {fileID: 0}
   minBoundX: 0
@@ -679,7 +679,7 @@ MonoBehaviour:
     maximumPeriod: 2
     visualizeSensitivity: 0
   targetCompatibility: {fileID: 0}
-  maxAcceleration: -2.5
+  maxAcceleration: 30
   rotationSpeed: 360
   slowdownDistance: 0.1
   pickNextWaypointDist: 1

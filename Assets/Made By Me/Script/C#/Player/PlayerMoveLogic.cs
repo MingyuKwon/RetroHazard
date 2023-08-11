@@ -9,7 +9,7 @@ public class PlayerMoveLogic
 {
     PlayerMove monoBehaviour;
 
-    public float moveSpeed = 3.2f;
+    public float moveSpeed = 3f;
     public float runSpeedScholar = 1f;
     public float stairSpeedScholar = 1f;
 
@@ -166,7 +166,7 @@ public class PlayerMoveLogic
     public void RushStart()
     {
         if(!InputOk ) return;
-        runSpeedScholar = 1.3f;
+        runSpeedScholar = 1.2f;
     }
 
     public void RushEnd()
