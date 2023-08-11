@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56e092d3fc6a15d4cb350fa7015cff8a, type: 3}
   m_Name: Blue Slime Stat
   m_EditorClassIdentifier: 
-  MaxHP: 100
-  CurrentHP: 100
+  MaxHP: 60
+  CurrentHP: 60
   Speed: 1
   Attack: 10
   ArmorDefence: 20

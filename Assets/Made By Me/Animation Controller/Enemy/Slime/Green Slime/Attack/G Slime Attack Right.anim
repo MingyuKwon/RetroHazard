@@ -96,17 +96,11 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: -1189702060, guid: 296b99d8a8c0b2641a2a317db4826ae2, type: 3}
-    - time: 0.083333336
-      value: {fileID: 875474232, guid: 296b99d8a8c0b2641a2a317db4826ae2, type: 3}
-    - time: 0.25
-      value: {fileID: -1189702060, guid: 296b99d8a8c0b2641a2a317db4826ae2, type: 3}
+      value: {fileID: -1189702060, guid: 67f0a4ecd6ad76646b685292b0d8ee40, type: 3}
+    - time: 0.16666667
+      value: {fileID: 875474232, guid: 67f0a4ecd6ad76646b685292b0d8ee40, type: 3}
     - time: 0.33333334
-      value: {fileID: 875474232, guid: 296b99d8a8c0b2641a2a317db4826ae2, type: 3}
-    - time: 0.5
-      value: {fileID: -1189702060, guid: 296b99d8a8c0b2641a2a317db4826ae2, type: 3}
-    - time: 0.8333333
-      value: {fileID: -1189702060, guid: 296b99d8a8c0b2641a2a317db4826ae2, type: 3}
+      value: {fileID: -1189702060, guid: 67f0a4ecd6ad76646b685292b0d8ee40, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -154,18 +148,15 @@ AnimationClip:
       customType: 0
       isPPtrCurve: 0
     pptrCurveMapping:
-    - {fileID: -1189702060, guid: 296b99d8a8c0b2641a2a317db4826ae2, type: 3}
-    - {fileID: 875474232, guid: 296b99d8a8c0b2641a2a317db4826ae2, type: 3}
-    - {fileID: -1189702060, guid: 296b99d8a8c0b2641a2a317db4826ae2, type: 3}
-    - {fileID: 875474232, guid: 296b99d8a8c0b2641a2a317db4826ae2, type: 3}
-    - {fileID: -1189702060, guid: 296b99d8a8c0b2641a2a317db4826ae2, type: 3}
-    - {fileID: -1189702060, guid: 296b99d8a8c0b2641a2a317db4826ae2, type: 3}
+    - {fileID: -1189702060, guid: 67f0a4ecd6ad76646b685292b0d8ee40, type: 3}
+    - {fileID: 875474232, guid: 67f0a4ecd6ad76646b685292b0d8ee40, type: 3}
+    - {fileID: -1189702060, guid: 67f0a4ecd6ad76646b685292b0d8ee40, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.84999996
+    m_StopTime: 0.35000002
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -262,16 +253,9 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.33333334
-    functionName: Animation_BodyAttack
+    functionName: Animation_ZombieDash
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 2
-    messageOptions: 0
-  - time: 0.5
-    functionName: Animation_Stop_Attack
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
     messageOptions: 0

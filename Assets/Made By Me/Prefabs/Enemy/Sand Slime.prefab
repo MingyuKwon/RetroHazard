@@ -566,7 +566,7 @@ MonoBehaviour:
   AttackDecide: {fileID: 0}
   checkAttackedByPlayer: 0
   randomSpeed: 1.5
-  chaseSpeed: 5
+  chaseSpeed: 3
   dashSpeed: 10
   attackSpeed: 0.6
   target: {fileID: 0}
@@ -674,7 +674,7 @@ MonoBehaviour:
   enableRotation: 0
   autoRepath:
     mode: 1
-    period: 0.5
+    period: 0.3
     sensitivity: 10
     maximumPeriod: 2
     visualizeSensitivity: 0

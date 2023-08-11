@@ -143,7 +143,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.15}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -154,7 +154,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1, y: 0.7}
+  m_Size: {x: 1.1, y: 1}
   m_EdgeRadius: 0
 --- !u!1 &3245911918687099666
 GameObject:
@@ -201,7 +201,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.44021684}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -212,7 +212,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9278717, y: 0.68043363}
+  m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
 --- !u!1 &5907384939025840980
 GameObject:
@@ -461,8 +461,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0010700226, y: 0.09766042}
-  m_Size: {x: 0.90906906, y: 0.9580841}
+  m_Offset: {x: 0, y: 0.1}
+  m_Size: {x: 0.9, y: 0.9}
   m_Direction: 0
 --- !u!114 &3164822848763403932
 MonoBehaviour:
@@ -566,8 +566,8 @@ MonoBehaviour:
   AttackDecide: {fileID: 0}
   checkAttackedByPlayer: 0
   randomSpeed: 1.5
-  chaseSpeed: 5
-  dashSpeed: 4
+  chaseSpeed: 3
+  dashSpeed: 8
   attackSpeed: 0.6
   target: {fileID: 0}
   minBoundX: 0

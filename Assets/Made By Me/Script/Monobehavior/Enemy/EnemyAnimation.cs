@@ -200,7 +200,7 @@ public class EnemyAnimation : MonoBehaviour
         enemyManager.EnableAttackCollider(true);
 
         yield return new WaitForEndOfFrame();
-        animator.Play("Walk");
+        animator.Play("Attack Walk");
         enemyManager.canMove = true;
         enemyManager.aiPath.maxSpeed = enemyManager.finalDashSpeed;
 
